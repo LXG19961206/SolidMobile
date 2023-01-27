@@ -1,55 +1,115 @@
+:root {
+  --lxgUI-button-large-height: var(--lxgUI-large-size);
+  --lxgUI-button-normal-height: var(--lxgUI-normal-size);
+  --lxgUI-button-mini-height: var(--lxgUI-mini-size);
+  --lxgUI-button-large-padding: 15px;
+  --lxgUI-button-normal-padding: 12px;
+  --lxgUI-button-mini-padding: 9px;
+  --lxgUI-button-round-padding: 20px;
+}
+
 .lxgUI-button {
-  outline: none;
-  box-sizing: border-box;
   border: 0 transparent solid;
-  font-size: 16px;
-  border-radius: 4px;
-  color: #fff;
+  font-size: var(--lxgUI-font-md);
+  border-radius: var(--lxgUI-border-radius-sm);
+  color: var(--lxgUI-white);
   cursor: pointer;
-  font-weight: 600;
+  font-weight: var(--lxgUI-font-bold);
   position: relative;
   z-index: 1;
-  
-  &-normal { height: 44px; line-height: 44px; padding: 0 12px;font-size: 14px; }
-  &-large { height: 50px; line-height: 50px; padding: 0 15px;font-size: 16px; }
-  &-mini { height: 36px;line-height: 36px; padding: 0 9px;font-size: 12px; }
-  &-block { display: block; }
 
-  &-primary { 
-    background: #1989fa;
-    border: #1989fa; 
-    &.lxgUI-button-plain { color: #1989fa; border: 1px solid #1989fa;background: transparent; }
-    &.lxgUI-button-hairline::after { border: 1px solid #1989fa; }
+  &-normal {
+    height: var(--lxgUI-button-normal-height);
+    line-height: var(--lxgUI-button-normal-height);
+    padding: 0 var(--lxgUI-button-normal-padding);
+    font-size: var(--lxgUI-font-md);
   }
 
-  &-danger { 
-    background: #ee0824;
-    border: #ee0824; 
-    &.lxgUI-button-plain { color: #ee0824; border: 1px solid #ee0824;background: transparent; }
-    &.lxgUI-button-hairline::after { border: 1px solid #ee0824; }
+  &-large {
+    height: var(--lxgUI-button-large-height);
+    line-height: var(--lxgUI-button-large-height);
+    padding: 0 var(--lxgUI-button-large-padding);
+    font-size: var(--lxgUI-font-lg);
   }
 
-  &-warning { 
-    background: #ff976a;
-    border: #ff976a; 
-    &.lxgUI-button-plain { color: #ff976a; border: 1px solid #ff976a;background: transparent; }
-    &.lxgUI-button-hairline::after { border: 1px solid #ff976a; }
+  &-mini {
+    height: var(--lxgUI-button-mini-height);
+    line-height: var(--lxgUI-button-mini-height);
+    padding: 0 var(--lxgUI-button-mini-padding);
+    font-size: var(--lxgUI-font-sm);
   }
 
-  &-success { 
-    background: #0cc160;
-    border: #0cc160;
-    &.lxgUI-button-plain { color: #0cc160; border: 1px solid #0cc160;background: transparent; }
-    &.lxgUI-button-hairline::after { border: 1px solid #0cc160; }
+  &-block {
+    display: block;
   }
 
-  &-round { 
-    border-radius: 999em;
-    padding: 0 20px;
+  &-primary {
+    background: var(--lxgUI-theme-primary); 
+    border: var(--lxgUI-theme-primary);
+
+    &.lxgUI-button-plain {
+      color: var(--lxgUI-theme-primary);
+      border: 1px solid var(--lxgUI-theme-primary);
+      background: transparent;
+    }
+
+    &.lxgUI-button-hairline::after {
+      border: 1px solid var(--lxgUI-theme-primary);
+    }
+  }
+
+  &-danger {
+    background: var(--lxgUI-theme-danger);
+    border: var(--lxgUI-theme-danger);
+
+    &.lxgUI-button-plain {
+      color: var(--lxgUI-theme-danger);
+      border: 1px solid var(--lxgUI-theme-danger);
+      background: transparent;
+    }
+
+    &.lxgUI-button-hairline::after {
+      border: 1px solid var(--lxgUI-theme-danger);
+    }
+  }
+
+  &-warning {
+    background: var(--lxgUI-theme-warning);
+    border: var(--lxgUI-theme-warning);
+
+    &.lxgUI-button-plain {
+      color: var(--lxgUI-theme-warning);
+      border: 1px solid var(--lxgUI-theme-warning);
+      background: transparent;
+    }
+
+    &.lxgUI-button-hairline::after {
+      border: 1px solid var(--lxgUI-theme-warning);
+    }
+  }
+
+  &-success {
+    background: var(--lxgUI-theme-success);
+    border: var(--lxgUI-theme-success);
+
+    &.lxgUI-button-plain {
+      color: var(--lxgUI-theme-success);
+      border: 1px solid var(--lxgUI-theme-success);
+      background: transparent;
+    }
+
+    &.lxgUI-button-hairline::after {
+      border: 1px solid var(--lxgUI-theme-success);
+    }
+  }
+
+  &-round {
+    border-radius: var(--lxgUI-border-radius-circie);
+    padding: 0 var(--lxgUI-button-round-padding);
   }
 
   &-disabled {
-    opacity: .5;
+    opacity: var(--lxgUI-disabled-opacity);
   }
 
   &-block {
@@ -59,6 +119,7 @@
 
   &-hairline {
     border-width: 0 !important;
+
     &::after {
       position: absolute;
       content: '';
@@ -70,13 +131,18 @@
       left: 0;
       transform-origin: 0% 0%;
       transform: scale(0.5, 0.5);
-      border-radius: 4px;
+      border-radius: var(--lxgUI-border-radius-sm);
     }
   }
 
   @keyframes loading {
-    0% { transform: rotate(0); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   .lxgUI-button-icon {
