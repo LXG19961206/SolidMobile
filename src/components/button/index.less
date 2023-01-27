@@ -1,0 +1,99 @@
+.lxgUI-button {
+  outline: none;
+  box-sizing: border-box;
+  border: 0 transparent solid;
+  font-size: 16px;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+  
+  &-normal { height: 44px; line-height: 44px; padding: 0 12px;font-size: 14px; }
+  &-large { height: 50px; line-height: 50px; padding: 0 15px;font-size: 16px; }
+  &-mini { height: 36px;line-height: 36px; padding: 0 9px;font-size: 12px; }
+  &-block { display: block; }
+
+  &-primary { 
+    background: #1989fa;
+    border: #1989fa; 
+    &.lxgUI-button-plain { color: #1989fa; border: 1px solid #1989fa;background: transparent; }
+    &.lxgUI-button-hairline::after { border: 1px solid #1989fa; }
+  }
+
+  &-danger { 
+    background: #ee0824;
+    border: #ee0824; 
+    &.lxgUI-button-plain { color: #ee0824; border: 1px solid #ee0824;background: transparent; }
+    &.lxgUI-button-hairline::after { border: 1px solid #ee0824; }
+  }
+
+  &-warning { 
+    background: #ff976a;
+    border: #ff976a; 
+    &.lxgUI-button-plain { color: #ff976a; border: 1px solid #ff976a;background: transparent; }
+    &.lxgUI-button-hairline::after { border: 1px solid #ff976a; }
+  }
+
+  &-success { 
+    background: #0cc160;
+    border: #0cc160;
+    &.lxgUI-button-plain { color: #0cc160; border: 1px solid #0cc160;background: transparent; }
+    &.lxgUI-button-hairline::after { border: 1px solid #0cc160; }
+  }
+
+  &-round { 
+    border-radius: 999em;
+    padding: 0 20px;
+  }
+
+  &-disabled {
+    opacity: .5;
+  }
+
+  &-block {
+    display: block;
+    margin: 0 auto;
+  }
+
+  &-hairline {
+    border-width: 0 !important;
+    &::after {
+      position: absolute;
+      content: '';
+      box-sizing: border-box;
+      width: 200%;
+      height: 200%;
+      transform-origin: center;
+      top: 0;
+      left: 0;
+      transform-origin: 0% 0%;
+      transform: scale(0.5, 0.5);
+      border-radius: 4px;
+    }
+  }
+
+  @keyframes loading {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .lxgUI-button-icon {
+    height: 40%;
+    margin-left: 8px;
+    display: inline-block;
+    vertical-align: middle;
+    animation: loading 2s infinite;
+    line-height: 0;
+  }
+
+  .lxgUI-button-text {
+    color: inherit;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+  }
+
+}

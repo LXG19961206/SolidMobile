@@ -1,0 +1,102 @@
+.lxgUI-cell-group {
+  &-card {
+    width: 90%;
+    margin: auto;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  background: #fff;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+  .lxgUI-cell-item:not(:last-child) {
+    &::after {
+      position: absolute;
+      content: '';
+      width: calc(100% - 32px);
+      left: 16px;
+      bottom: 0;
+      height: 1px;
+      transform: scaleY(.5);
+      background: #efefef;
+    }
+  }
+}
+
+.lxgUI-cell-item {
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 16px;
+  position: relative;
+  background: #fff;
+
+  &-icon {
+    display: inline-block;
+    margin-left: 3px;
+    margin-right: 3px;
+    transform-origin: center;
+    &-top { transform: rotate(-90deg); }
+    &-bottom { transform: rotate(90deg); }
+    &-left { transform: rotate(180deg); }
+  }
+
+  &-title {
+    color: #323233;
+    font-weight: 400;
+  }
+
+  &-detail {
+    color: #c8c9cc;
+    padding: 5px 0;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  &-value {
+    color: #c8c9cc;
+    font-weight: 500;
+    max-width: 250px;
+    text-overflow: ellipsis;
+    margin-left: auto;
+  }
+
+  &-normal {
+    .lxgUI-cell-item-icon {
+      height: 14px;
+    }
+    .lxgUI-cell-item-top {
+      height: 44px;
+      display: flex;
+      align-items: center;
+    }
+    .lxgUI-cell-item-title, .lxgUI-cell-item-value {
+      font-size: 14px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .lxgUI-cell-item-detail {
+      font-size: 13px;
+    }
+  }
+
+  &-mini {
+    .lxgUI-cell-item-top {
+      height: 38px;
+    }
+    .lxgUI-cell-item-title, .lxgUI-cell-item-value {
+      line-height: 38px;
+      font-size: 12px;
+    }
+  }
+
+  &-large {
+    .lxgUI-cell-item-top {
+      height: 50px;
+    }
+    .lxgUI-cell-item-title, .lxgUI-cell-item-value {
+      line-height: 50px;
+      font-size: 16px;
+    }
+  }
+
+}
