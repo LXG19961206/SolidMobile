@@ -53,26 +53,28 @@ export default (props: Partial<ButtonProps>) => {
         <>
           <MaybeElement
             maybeJsx={maybeText}>
-            <p class="lxgUI-button-text"> {maybeText} </p>
+            <p class="lxgUI-button-text">
+              {maybeText}
+              <Show when={props.loadingStatus || props.icon}>
+                {
+                  props.loadingStatus
+                    ? (
+                      <Icon name={'Loading'} class={props.iconClass || "lxgUI-button-icon"} />
+                    )
+                    : (
+                      <Show
+                        fallback={props.icon}
+                        when={props.icon && isString(props.icon)}>
+                        <Icon
+                          name={props.loadingStatus ? 'Loading' : props.icon as string}
+                          class={props.iconClass || "lxgUI-button-icon"}
+                        />
+                      </Show>
+                    )
+                }
+              </Show>
+            </p>
           </MaybeElement>
-          <Show when={props.loadingStatus || props.icon}>
-            {
-              props.loadingStatus
-                ? (
-                  <Icon name={'Loading'} class={props.iconClass || "lxgUI-button-icon"} />
-                )
-                : (
-                  <Show
-                    fallback={props.icon}
-                    when={ props.icon && isString(props.icon)}>
-                    <Icon
-                      name={props.loadingStatus ? 'Loading' : props.icon as string}
-                      class={props.iconClass || "lxgUI-button-icon"}
-                    />
-                  </Show>
-                )
-            }
-          </Show>
         </>
       }
     </button>

@@ -49,8 +49,10 @@ const App: Component = () => {
       </Button>
       <Button
         block 
+        round
+        plain
         onClick={() => setSize('mini')} icon={
-          <Icon name="error" color='#fff'></Icon>
+          <Icon name="zoomout" color='blue' size={20}></Icon>
         } type='primary'>
         点我变小
       </Button>
