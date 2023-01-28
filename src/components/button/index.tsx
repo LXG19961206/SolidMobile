@@ -3,7 +3,7 @@ import './index.less'
 import { SizeDict, ThemeTypeDict } from '../../dict/common'
 import { pick, isString } from 'lodash'
 import loading from '../../assets/loading.svg'
-import { Show, onMount, onCleanup, JSX } from 'solid-js'
+import { Show, JSX } from 'solid-js'
 import { HTMLNativeEvent } from '../../dict/native'
 import { MaybeElement } from '../common'
 import Icon from '../icon'
@@ -33,18 +33,11 @@ export default (props: Partial<ButtonProps>) => {
     'solidMobile-button-hairline': props.hairline,
   })
 
-  onMount(() => {
-    props.action && buttonElementReference.addEventListener(HTMLNativeEvent.click, props.action)
-  })
-
-  onCleanup(() => {
-    props.action && buttonElementReference.removeEventListener(HTMLNativeEvent.click, props.action)
-  })
-
   return (
     <button
       {...events}
       ref={buttonElementReference}
+      onClick={props.action}
       type={props.nativeType}
       style={{ ...(props.style || {}) as JSX.CSSProperties, color: props.textColor }}
       disabled={props.loadingStatus || props.disabled || false}
