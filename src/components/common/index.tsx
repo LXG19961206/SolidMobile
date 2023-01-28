@@ -1,5 +1,6 @@
-import { JSXElement, Show } from 'solid-js'
+import { JSXElement, Show, createEffect, children } from 'solid-js'
 import { isFunction } from 'lodash'
+import { BasePropsAndAttrs } from './types'
 
 export type MaybeElementProps = {
   maybeJsx: JSXElement | string,
@@ -17,6 +18,14 @@ export const MaybeElement = (props: MaybeElementProps) => {
           </Show>
         )
       }
+    </>
+  )
+}
+
+export function WithAttrsAndListeners<T extends BasePropsAndAttrs> (props: T) {
+  return (
+    <>
+      { props.children }
     </>
   )
 }

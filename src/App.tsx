@@ -22,7 +22,8 @@ const App: Component = () => {
           value="海港区秦皇小区83号楼"
         ></Cell>
       </CellGroup>
-      <CellGroup isCard>
+      <CellGroup 
+        isCard>
         <Cell title="你好" value="solid"></Cell>
         <Cell
           icon={'https://himg.bdimg.com/sys/portraitn/item/public.1.8fb343.gFYvYD3TGlifN2UIGJ3ZOQ'}
