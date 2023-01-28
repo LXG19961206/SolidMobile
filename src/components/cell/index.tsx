@@ -47,13 +47,15 @@ export default (props: Partial<CellProps>) => {
           </MaybeElement>
         </span>
       </div>
-      <p
-        onClick={props.detailAction}
-        class={props.detailClass || `solidMobile-cell-item-detail`}>
-        <MaybeElement maybeJsx={props.detail}>
-          <> {props.detail} </>
-        </MaybeElement>
-      </p>
+      <Show when={props.detail}>
+        <p
+          onClick={props.detailAction}
+          class={props.detailClass || `solidMobile-cell-item-detail`}>
+          <MaybeElement maybeJsx={props.detail}>
+            <> {props.detail} </>
+          </MaybeElement>
+        </p>
+      </Show>
     </div>
   )
 }
