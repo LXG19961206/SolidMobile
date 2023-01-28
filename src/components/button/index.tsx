@@ -6,11 +6,11 @@ import loading from '../../assets/loading.svg'
 import { Show, onMount, onCleanup, JSX } from 'solid-js'
 import { HTMLNativeEvent } from '../../dict/native'
 import { MaybeElement } from '../common'
-
+import Icon from '../icon'
 
 export default (props: Partial<ButtonProps>) => {
 
-  let buttonElementReference:HTMLButtonElement = document.createElement('button')
+  let buttonElementReference: HTMLButtonElement = document.createElement('button')
 
   const maybeText = (props.text || props.children || '')!
 
@@ -44,9 +44,9 @@ export default (props: Partial<ButtonProps>) => {
   return (
     <button
       {...events}
-      ref={ buttonElementReference }
+      ref={buttonElementReference}
       type={props.nativeType}
-      style={{ ...(props.style || {}) as JSX.CSSProperties,color: props.textColor }}
+      style={{ ...(props.style || {}) as JSX.CSSProperties, color: props.textColor }}
       disabled={props.loadingStatus || props.disabled || false}
       classList={classList()}>
       {
@@ -56,9 +56,22 @@ export default (props: Partial<ButtonProps>) => {
             <p class="lxgUI-button-text"> {maybeText} </p>
           </MaybeElement>
           <Show when={props.loadingStatus || props.icon}>
-            <img
-              src={props.loadingStatus ? loading : props.icon}
-              class={props.iconClass || "lxgUI-button-icon"} />
+            {
+              props.loadingStatus
+                ? (
+                  <Icon name={'Loading'} class={props.iconClass || "lxgUI-button-icon"} />
+                )
+                : (
+                  <Show
+                    fallback={props.icon}
+                    when={ props.icon && isString(props.icon)}>
+                    <Icon
+                      name={props.loadingStatus ? 'Loading' : props.icon as string}
+                      class={props.iconClass || "lxgUI-button-icon"}
+                    />
+                  </Show>
+                )
+            }
           </Show>
         </>
       }

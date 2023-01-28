@@ -1,5 +1,5 @@
 import { JSXElement, Show, createEffect, children } from 'solid-js'
-import { isFunction } from 'lodash'
+import { isFunction, isNumber,isString } from 'lodash'
 import { BasePropsAndAttrs } from './types'
 
 export type MaybeElementProps = {
@@ -13,8 +13,8 @@ export const MaybeElement = (props: MaybeElementProps) => {
       {
         !!props.maybeJsx && (
           <Show
-            fallback={props.children}
-            when={isFunction(props.maybeJsx)}> {<> {props.maybeJsx} </> }
+            fallback={props.maybeJsx}
+            when={isString(props.maybeJsx) || isNumber(props.maybeJsx)}> {props.children}
           </Show>
         )
       }

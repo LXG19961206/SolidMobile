@@ -1,9 +1,10 @@
 import { SizeDict } from "../../dict/common";
 import { CellGroupProps, CellProps } from "./types";
-import { createRenderEffect, JSX, Show } from 'solid-js'
+import { JSX, Show } from 'solid-js'
 import './index.less'
 import rightIcon from '../../assets/arrow-right.png'
 import { MaybeElement } from '../common'
+import Icon from '../icon/index'
 
 export default (props: Partial<CellProps>) => {
 
@@ -15,46 +16,45 @@ export default (props: Partial<CellProps>) => {
   })
 
   return (
-      <div
-        onClick={props.action}
-        style={{ ...(props.style || {}) as JSX.CSSProperties }}
-        classList={classList()}>
-        <div class="lxgUI-cell-item-top">
-          <Show when={!!props.icon}>
-            <img
-              onClick={props.iconAction}
-              class={`lxgUI-cell-item-icon`}
-              src={props.icon}
-            />
-          </Show>
+    <div
+      onClick={props.action}
+      style={{ ...(props.style || {}) as JSX.CSSProperties }}
+      classList={classList()}>
+      <div class="lxgUI-cell-item-top">
+        <MaybeElement maybeJsx={props.icon}>
+          <Icon name={props.icon as string}></Icon>
+        </MaybeElement>
+        <span
+          onClick={props.titleAction}
+          class={props.titleClass || `lxgUI-cell-item-title`}>
           <MaybeElement maybeJsx={props.title}>
-            <span
-              onClick={props.titleAction}
-              class={props.titleClass || `lxgUI-cell-item-title`}>
-              {props.title}
-            </span>
+            <> {props.title} </>
           </MaybeElement>
+        </span>
+        <span
+          onClick={props.valueAction}
+          class={props.valueClass || `lxgUI-cell-item-value`}>
           <MaybeElement maybeJsx={props.value}>
-            <span
-              onClick={props.valueAction}
-              class={props.valueClass || `lxgUI-cell-item-value`}>
+            <>
               {props.value}
               <Show when={!!props.isLink}>
-                <img
+                <Icon
                   class={`lxgUI-cell-item-icon lxgUI-cell-item-icon-${props.arrowDirection}`}
-                  src={rightIcon}
+                  name="arrowright"
                 />
               </Show>
-            </span>
+            </>
           </MaybeElement>
-        </div>
-        <MaybeElement maybeJsx={props.detail}>
-          <p onClick={props.detailAction}
-            class={props.detailClass || `lxgUI-cell-item-detail`}>
-            {props.detail}
-          </p>
-        </MaybeElement>
+        </span>
       </div>
+      <p
+        onClick={props.detailAction}
+        class={props.detailClass || `lxgUI-cell-item-detail`}>
+        <MaybeElement maybeJsx={props.detail}>
+          <> {props.detail} </>
+        </MaybeElement>
+      </p>
+    </div>
   )
 }
 

@@ -7,7 +7,7 @@ import { BasePropsAndAttrs } from "../common/types";
   value: string | JSXElement,
   detail: string | JSXElement,
   size: Exclude<Size, 'mini'>,
-  icon: string,
+  icon: JSXElement | string,
   isLink: boolean,
   alignCenter: boolean,
   arrowDirection: Position,

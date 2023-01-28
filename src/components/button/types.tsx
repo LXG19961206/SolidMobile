@@ -13,7 +13,7 @@ export interface ButtonProps extends BasePropsAndAttrs {
     text: string,
     color: string, 
     textColor: string,
-    icon: string,
+    icon: string | JSXElement,
     iconClass: string,
     iconPosition: Position, // todo
     nativeType: ButtonNativeTypes,
