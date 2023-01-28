@@ -35,13 +35,24 @@ const App: Component = () => {
           value="海港区秦皇小区83号楼"
         ></Cell>
       </CellGroup>
-      <Button onClick={() => setSize('mini')} size={size()} type='success' loadingStatus block>
+      <Button 
+        onClick={() => setSize('mini')} size={size()} type='success' loadingStatus block>
         正在处理中，请稍等
       </Button>
-      <Button onClick={() => setSize('mini')} icon={loading} type='primary'>
+      <Button
+        block 
+        onClick={() => setSize('mini')} icon={loading} type='primary'>
         {size}
       </Button>
       <Button
+        block
+        action={alert.bind(window)}
+        type='danger'>
+        {size}
+      </Button>
+      <Button
+        block
+        size="small"
         action={alert.bind(window)}
         type='danger'>
         {size}

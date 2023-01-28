@@ -1,9 +1,11 @@
 :root {
-  --lxgUI-button-large-height: var(--lxgUI-large-size);
-  --lxgUI-button-normal-height: var(--lxgUI-normal-size);
-  --lxgUI-button-mini-height: var(--lxgUI-mini-size);
-  --lxgUI-button-large-padding: 15px;
-  --lxgUI-button-normal-padding: 12px;
+  --lxgUI-button-large-height: 50px;
+  --lxgUI-button-normal-height: 46px;
+  --lxgUI-button-small-height: 42px;
+  --lxgUI-button-mini-height: 38px;
+  --lxgUI-button-large-padding: 0;
+  --lxgUI-button-normal-padding: 15px;
+  --lxgUI-button-small-padding: 12px;
   --lxgUI-button-mini-padding: 9px;
   --lxgUI-button-round-padding: 20px;
 }
@@ -26,6 +28,8 @@
   }
 
   &-large {
+    width: 100%;
+    display: block;
     height: var(--lxgUI-button-large-height);
     line-height: var(--lxgUI-button-large-height);
     padding: 0 var(--lxgUI-button-large-padding);
@@ -36,6 +40,13 @@
     height: var(--lxgUI-button-mini-height);
     line-height: var(--lxgUI-button-mini-height);
     padding: 0 var(--lxgUI-button-mini-padding);
+    font-size: var(--lxgUI-font-sm);
+  }
+
+  &-small {
+    height: var(--lxgUI-button-small-height);
+    line-height: var(--lxgUI-button-small-height);
+    padding: 0 var(--lxgUI-button-small-padding);
     font-size: var(--lxgUI-font-sm);
   }
 
@@ -161,5 +172,4 @@
     padding: 0;
     margin: 0;
   }
-
 }

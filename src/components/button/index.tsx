@@ -1,14 +1,14 @@
-import { ButtonOptions } from './types'
+import { ButtonProps } from './types'
 import './index.less'
 import { SizeDict, ThemeTypeDict } from '../../dict/common'
 import { pick, isString } from 'lodash'
 import loading from '../../assets/loading.svg'
-import { Show, onMount, onCleanup } from 'solid-js'
+import { Show, onMount, onCleanup, JSX } from 'solid-js'
 import { HTMLNativeEvent } from '../../dict/native'
 import { MaybeElement } from '../common'
 
 
-export default (props: Partial<ButtonOptions>) => {
+export default (props: Partial<ButtonProps>) => {
 
   let buttonElementReference:HTMLButtonElement = document.createElement('button')
 
@@ -20,6 +20,7 @@ export default (props: Partial<ButtonOptions>) => {
     'lxgUI-button': true,
     'lxgUI-button-normal': !props.size || props.size === SizeDict.normal,
     'lxgUI-button-mini': props.size === SizeDict.mini,
+    'lxgUI-button-small': props.size === SizeDict.small,
     'lxgUI-button-large': props.size === SizeDict.large,
     'lxgUI-button-primary': !props.type || props.type === ThemeTypeDict.primary,
     'lxgUI-button-success': props.type === ThemeTypeDict.success,
@@ -45,7 +46,7 @@ export default (props: Partial<ButtonOptions>) => {
       {...events}
       ref={ buttonElementReference }
       type={props.nativeType}
-      style={{ color: props.textColor }}
+      style={{ ...(props.style || {}) as JSX.CSSProperties,color: props.textColor }}
       disabled={props.loadingStatus || props.disabled || false}
       classList={classList()}>
       {

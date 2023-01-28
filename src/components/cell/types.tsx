@@ -1,11 +1,12 @@
 import { JSXElement } from "solid-js";
 import { NoLimitFunc, Position, Size } from "../../@types/common";
+import { BasePropsAndAttrs } from "../common/types";
 
-export interface CellOptions {
+ export interface CellProps extends BasePropsAndAttrs {
   title: string | JSXElement,
   value: string | JSXElement,
   detail: string | JSXElement,
-  size: Size,
+  size: Exclude<Size, 'mini'>,
   icon: string,
   isLink: boolean,
   alignCenter: boolean,
@@ -21,7 +22,7 @@ export interface CellOptions {
   iconAction: NoLimitFunc
 }
 
-export interface CellGroupOptions {
+export interface CellGroupProps extends BasePropsAndAttrs {
   isCard?: boolean,
   children: JSXElement
 }

@@ -1,17 +1,17 @@
 import { SizeDict } from "../../dict/common";
-import { CellGroupOptions, CellOptions } from "./types";
+import { CellGroupProps, CellProps } from "./types";
 import { createRenderEffect, JSX, Show } from 'solid-js'
 import './index.less'
 import rightIcon from '../../assets/arrow-right.png'
 import { MaybeElement } from '../common'
 
-export default (props: Partial<CellOptions>) => {
+export default (props: Partial<CellProps>) => {
 
   const classList = () => ({
     'lxgUI-cell-item': true,
     'lxgUI-cell-item-normal': !props.size || props.size === SizeDict.normal,
-    'lxgUI-cell-item-mini': props.size === SizeDict.mini,
-    'lxgUI-cell-item-large': props.size === SizeDict.large,
+    'lxgUI-cell-item-small': props.size === SizeDict.small,
+    'lxgUI-cell-item-large': props.size === SizeDict.large
   })
 
   return (
@@ -57,7 +57,7 @@ export default (props: Partial<CellOptions>) => {
   )
 }
 
-export const CellGroup = (props: CellGroupOptions) => {
+export const CellGroup = (props: CellGroupProps) => {
   return (
     <div classList={{
       "lxgUI-cell-group": true,

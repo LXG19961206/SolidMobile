@@ -11,6 +11,7 @@ export const ThemeTypeDict = {
 
 
 export const SizeDict = {
+  small: 'small',
   normal: 'normal',
   large: 'large',
   mini: 'mini'
