@@ -1,25 +1,25 @@
 :root {
-  --lxgUI-cell-card-width: 90%;
-  --lxgUI-cell-border-offset: 16px;
-  --lxgUI-cell-value-maxWidth: 250px;
+  --solidMobile-cell-card-width: 90%;
+  --solidMobile-cell-border-offset: 16px;
+  --solidMobile-cell-value-maxWidth: 250px;
 }
 
-.lxgUI-cell-group {
+.solidMobile-cell-group {
   &-card {
-    width: var(--lxgUI-cell-card-width);
+    width: var(--solidMobile-cell-card-width);
     margin: auto;
-    border-radius: var(--lxgUI-border-radius-md);
+    border-radius: var(--solidMobile-border-radius-md);
     overflow: hidden;
   }
-  background: var(--lxgUI-white);
-  border-top: 1px solid var(--lxgUI-border-color);
-  border-bottom: 1px solid var(--lxgUI-border-color);
-  .lxgUI-cell-item:not(:last-child) {
+  background: var(--solidMobile-white);
+  border-top: 1px solid var(--solidMobile-border-color);
+  border-bottom: 1px solid var(--solidMobile-border-color);
+  .solidMobile-cell-item:not(:last-child) {
     &::after {
       position: absolute;
       content: '';
-      width: calc(100% - var(--lxgUI-cell-border-offset) * 2);
-      left: var(--lxgUI-cell-border-offset);
+      width: calc(100% - var(--solidMobile-cell-border-offset) * 2);
+      left: var(--solidMobile-cell-border-offset);
       bottom: 0;
       height: 1px;
       transform: scaleY(.5);
@@ -28,11 +28,11 @@
   }
 }
 
-.lxgUI-cell-item {
+.solidMobile-cell-item {
   cursor: pointer;
   box-sizing: border-box;
   width: 100%;
-  padding: 0 var(--lxgUI-cell-border-offset);
+  padding: 0 var(--solidMobile-cell-border-offset);
   position: relative;
   background: #fff;
 
@@ -47,71 +47,71 @@
   }
 
   &-title {
-    color: var(--lxgUI-dark-main);
+    color: var(--solidMobile-dark-main);
   }
 
   &-detail {
-    color: var(--lxgUI-dark-weak);
+    color: var(--solidMobile-dark-weak);
     padding: 5px 0;
     margin: 0;
     line-height: 1.5;
   }
 
   &-value {
-    color: var(--lxgUI-dark-secondary);
-    max-width: var(--lxgUI-cell-value-maxWidth);
+    color: var(--solidMobile-dark-secondary);
+    max-width: var(--solidMobile-cell-value-maxWidth);
     text-overflow: ellipsis;
     margin-left: auto;
   }
 
   &-normal {
-    .lxgUI-cell-item-icon {
-      height: var(--lxgUI-font-md);
+    .solidMobile-cell-item-icon {
+      height: var(--solidMobile-font-md);
     }
-    .lxgUI-cell-item-top {
-      height: var(--lxgUI-normal-size);
+    .solidMobile-cell-item-top {
+      height: var(--solidMobile-normal-size);
       display: flex;
       align-items: center;
     }
-    .lxgUI-cell-item-title, .lxgUI-cell-item-value {
-      font-size: var(--lxgUI-font-md);
+    .solidMobile-cell-item-title, .solidMobile-cell-item-value {
+      font-size: var(--solidMobile-font-md);
       display: inline-block;
       vertical-align: middle;
     }
-    .lxgUI-cell-item-detail {
-      font-size: calc(var(--lxgUI-font-md) - 1px);
+    .solidMobile-cell-item-detail {
+      font-size: calc(var(--solidMobile-font-md) - 1px);
     }
   }
 
   &-small {
-    .lxgUI-cell-item-icon {
-      height: var(--lxgUI-font-sm);
+    .solidMobile-cell-item-icon {
+      height: var(--solidMobile-font-sm);
     }
-    .lxgUI-cell-item-top {
-      height: var(--lxgUI-small-size);
+    .solidMobile-cell-item-top {
+      height: var(--solidMobile-small-size);
     }
-    .lxgUI-cell-item-title, .lxgUI-cell-item-value {
-      line-height: var(--lxgUI-small-size);
-      font-size: var(--lxgUI-font-sm);
+    .solidMobile-cell-item-title, .solidMobile-cell-item-value {
+      line-height: var(--solidMobile-small-size);
+      font-size: var(--solidMobile-font-sm);
     }
-    .lxgUI-cell-item-detail {
-      font-size: calc(var(--lxgUI-font-sm) - 1px);
+    .solidMobile-cell-item-detail {
+      font-size: calc(var(--solidMobile-font-sm) - 1px);
     }
   }
 
   &-large {
-    .lxgUI-cell-item-icon {
-      height: var(--lxgUI-font-lg);
+    .solidMobile-cell-item-icon {
+      height: var(--solidMobile-font-lg);
     }
-    .lxgUI-cell-item-top {
-      height: var(--lxgUI-large-size);
+    .solidMobile-cell-item-top {
+      height: var(--solidMobile-large-size);
     }
-    .lxgUI-cell-item-title, .lxgUI-cell-item-value {
-      line-height: var(--lxgUI-large-size);
-      font-size: var(--lxgUI-font-lg);
+    .solidMobile-cell-item-title, .solidMobile-cell-item-value {
+      line-height: var(--solidMobile-large-size);
+      font-size: var(--solidMobile-font-lg);
     }
-    .lxgUI-cell-item-detail {
-      font-size: calc(var(--lxgUI-font-lg) - 1px);
+    .solidMobile-cell-item-detail {
+      font-size: calc(var(--solidMobile-font-lg) - 1px);
     }
   }
 

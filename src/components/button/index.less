@@ -1,53 +1,53 @@
 :root {
-  --lxgUI-button-large-height: 50px;
-  --lxgUI-button-normal-height: 46px;
-  --lxgUI-button-small-height: 42px;
-  --lxgUI-button-mini-height: 38px;
-  --lxgUI-button-large-padding: 0;
-  --lxgUI-button-normal-padding: 15px;
-  --lxgUI-button-small-padding: 12px;
-  --lxgUI-button-mini-padding: 9px;
-  --lxgUI-button-round-padding: 20px;
+  --solidMobile-button-large-height: 50px;
+  --solidMobile-button-normal-height: 46px;
+  --solidMobile-button-small-height: 42px;
+  --solidMobile-button-mini-height: 38px;
+  --solidMobile-button-large-padding: 0;
+  --solidMobile-button-normal-padding: 15px;
+  --solidMobile-button-small-padding: 12px;
+  --solidMobile-button-mini-padding: 9px;
+  --solidMobile-button-round-padding: 20px;
 }
 
-.lxgUI-button {
+.solidMobile-button {
   border: 0 transparent solid;
-  font-size: var(--lxgUI-font-md);
-  border-radius: var(--lxgUI-border-radius-sm);
-  color: var(--lxgUI-white);
+  font-size: var(--solidMobile-font-md);
+  border-radius: var(--solidMobile-border-radius-sm);
+  color: var(--solidMobile-white);
   cursor: pointer;
-  font-weight: var(--lxgUI-font-bold);
+  font-weight: var(--solidMobile-font-bold);
   position: relative;
   z-index: 1;
 
   &-normal {
-    height: var(--lxgUI-button-normal-height);
-    line-height: var(--lxgUI-button-normal-height);
-    padding: 0 var(--lxgUI-button-normal-padding);
-    font-size: var(--lxgUI-font-md);
+    height: var(--solidMobile-button-normal-height);
+    line-height: var(--solidMobile-button-normal-height);
+    padding: 0 var(--solidMobile-button-normal-padding);
+    font-size: var(--solidMobile-font-md);
   }
 
   &-large {
     width: 100%;
     display: block;
-    height: var(--lxgUI-button-large-height);
-    line-height: var(--lxgUI-button-large-height);
-    padding: 0 var(--lxgUI-button-large-padding);
-    font-size: var(--lxgUI-font-lg);
+    height: var(--solidMobile-button-large-height);
+    line-height: var(--solidMobile-button-large-height);
+    padding: 0 var(--solidMobile-button-large-padding);
+    font-size: var(--solidMobile-font-lg);
   }
 
   &-mini {
-    height: var(--lxgUI-button-mini-height);
-    line-height: var(--lxgUI-button-mini-height);
-    padding: 0 var(--lxgUI-button-mini-padding);
-    font-size: var(--lxgUI-font-sm);
+    height: var(--solidMobile-button-mini-height);
+    line-height: var(--solidMobile-button-mini-height);
+    padding: 0 var(--solidMobile-button-mini-padding);
+    font-size: var(--solidMobile-font-sm);
   }
 
   &-small {
-    height: var(--lxgUI-button-small-height);
-    line-height: var(--lxgUI-button-small-height);
-    padding: 0 var(--lxgUI-button-small-padding);
-    font-size: var(--lxgUI-font-sm);
+    height: var(--solidMobile-button-small-height);
+    line-height: var(--solidMobile-button-small-height);
+    padding: 0 var(--solidMobile-button-small-padding);
+    font-size: var(--solidMobile-font-sm);
   }
 
   &-block {
@@ -55,72 +55,72 @@
   }
 
   &-primary {
-    background: var(--lxgUI-theme-primary); 
-    border: var(--lxgUI-theme-primary);
+    background: var(--solidMobile-theme-primary); 
+    border: var(--solidMobile-theme-primary);
 
-    &.lxgUI-button-plain {
-      color: var(--lxgUI-theme-primary);
-      border: 1px solid var(--lxgUI-theme-primary);
+    &.solidMobile-button-plain {
+      color: var(--solidMobile-theme-primary);
+      border: 1px solid var(--solidMobile-theme-primary);
       background: transparent;
     }
 
-    &.lxgUI-button-hairline::after {
-      border: 1px solid var(--lxgUI-theme-primary);
+    &.solidMobile-button-hairline::after {
+      border: 1px solid var(--solidMobile-theme-primary);
     }
   }
 
   &-danger {
-    background: var(--lxgUI-theme-danger);
-    border: var(--lxgUI-theme-danger);
+    background: var(--solidMobile-theme-danger);
+    border: var(--solidMobile-theme-danger);
 
-    &.lxgUI-button-plain {
-      color: var(--lxgUI-theme-danger);
-      border: 1px solid var(--lxgUI-theme-danger);
+    &.solidMobile-button-plain {
+      color: var(--solidMobile-theme-danger);
+      border: 1px solid var(--solidMobile-theme-danger);
       background: transparent;
     }
 
-    &.lxgUI-button-hairline::after {
-      border: 1px solid var(--lxgUI-theme-danger);
+    &.solidMobile-button-hairline::after {
+      border: 1px solid var(--solidMobile-theme-danger);
     }
   }
 
   &-warning {
-    background: var(--lxgUI-theme-warning);
-    border: var(--lxgUI-theme-warning);
+    background: var(--solidMobile-theme-warning);
+    border: var(--solidMobile-theme-warning);
 
-    &.lxgUI-button-plain {
-      color: var(--lxgUI-theme-warning);
-      border: 1px solid var(--lxgUI-theme-warning);
+    &.solidMobile-button-plain {
+      color: var(--solidMobile-theme-warning);
+      border: 1px solid var(--solidMobile-theme-warning);
       background: transparent;
     }
 
-    &.lxgUI-button-hairline::after {
-      border: 1px solid var(--lxgUI-theme-warning);
+    &.solidMobile-button-hairline::after {
+      border: 1px solid var(--solidMobile-theme-warning);
     }
   }
 
   &-success {
-    background: var(--lxgUI-theme-success);
-    border: var(--lxgUI-theme-success);
+    background: var(--solidMobile-theme-success);
+    border: var(--solidMobile-theme-success);
 
-    &.lxgUI-button-plain {
-      color: var(--lxgUI-theme-success);
-      border: 1px solid var(--lxgUI-theme-success);
+    &.solidMobile-button-plain {
+      color: var(--solidMobile-theme-success);
+      border: 1px solid var(--solidMobile-theme-success);
       background: transparent;
     }
 
-    &.lxgUI-button-hairline::after {
-      border: 1px solid var(--lxgUI-theme-success);
+    &.solidMobile-button-hairline::after {
+      border: 1px solid var(--solidMobile-theme-success);
     }
   }
 
   &-round {
-    border-radius: var(--lxgUI-border-radius-circie);
-    padding: 0 var(--lxgUI-button-round-padding);
+    border-radius: var(--solidMobile-border-radius-circie);
+    padding: 0 var(--solidMobile-button-round-padding);
   }
 
   &-disabled {
-    opacity: var(--lxgUI-disabled-opacity);
+    opacity: var(--solidMobile-disabled-opacity);
   }
 
   &-block {
@@ -142,7 +142,7 @@
       left: 0;
       transform-origin: 0% 0%;
       transform: scale(0.5, 0.5);
-      border-radius: var(--lxgUI-border-radius-sm);
+      border-radius: var(--solidMobile-border-radius-sm);
     }
   }
 
@@ -156,7 +156,7 @@
     }
   }
 
-  .lxgUI-button-icon {
+  .solidMobile-button-icon {
     height: 40%;
     margin-left: 8px;
     display: inline-block;
@@ -165,7 +165,7 @@
     line-height: 0;
   }
 
-  .lxgUI-button-text {
+  .solidMobile-button-text {
     width: 100%;
     height: 100%;
     align-items: center;

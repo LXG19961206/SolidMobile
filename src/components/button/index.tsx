@@ -17,20 +17,20 @@ export default (props: Partial<ButtonProps>) => {
   const events = pick(props, Object.keys(props).filter(key => /on[A-Za-z0-9]{1,}/.test(key)))
 
   const classList = () => ({
-    'lxgUI-button': true,
-    'lxgUI-button-normal': !props.size || props.size === SizeDict.normal,
-    'lxgUI-button-mini': props.size === SizeDict.mini,
-    'lxgUI-button-small': props.size === SizeDict.small,
-    'lxgUI-button-large': props.size === SizeDict.large,
-    'lxgUI-button-primary': !props.type || props.type === ThemeTypeDict.primary,
-    'lxgUI-button-success': props.type === ThemeTypeDict.success,
-    'lxgUI-button-danger': props.type === ThemeTypeDict.danger,
-    'lxgUI-button-warning': props.type === ThemeTypeDict.warning,
-    'lxgUI-button-plain': props.plain,
-    'lxgUI-button-round': props.round,
-    'lxgUI-button-disabled': props.disabled || props.loadingStatus,
-    'lxgUI-button-block': props.block,
-    'lxgUI-button-hairline': props.hairline,
+    'solidMobile-button': true,
+    'solidMobile-button-normal': !props.size || props.size === SizeDict.normal,
+    'solidMobile-button-mini': props.size === SizeDict.mini,
+    'solidMobile-button-small': props.size === SizeDict.small,
+    'solidMobile-button-large': props.size === SizeDict.large,
+    'solidMobile-button-primary': !props.type || props.type === ThemeTypeDict.primary,
+    'solidMobile-button-success': props.type === ThemeTypeDict.success,
+    'solidMobile-button-danger': props.type === ThemeTypeDict.danger,
+    'solidMobile-button-warning': props.type === ThemeTypeDict.warning,
+    'solidMobile-button-plain': props.plain,
+    'solidMobile-button-round': props.round,
+    'solidMobile-button-disabled': props.disabled || props.loadingStatus,
+    'solidMobile-button-block': props.block,
+    'solidMobile-button-hairline': props.hairline,
   })
 
   onMount(() => {
@@ -53,13 +53,13 @@ export default (props: Partial<ButtonProps>) => {
         <>
           <MaybeElement
             maybeJsx={maybeText}>
-            <p class="lxgUI-button-text">
+            <p class="solidMobile-button-text">
               {maybeText}
               <Show when={props.loadingStatus || props.icon}>
                 {
                   props.loadingStatus
                     ? (
-                      <Icon name={'Loading'} class={props.iconClass || "lxgUI-button-icon"} />
+                      <Icon name={'Loading'} class={props.iconClass || "solidMobile-button-icon"} />
                     )
                     : (
                       <Show
@@ -67,7 +67,7 @@ export default (props: Partial<ButtonProps>) => {
                         when={props.icon && isString(props.icon)}>
                         <Icon
                           name={props.loadingStatus ? 'Loading' : props.icon as string}
-                          class={props.iconClass || "lxgUI-button-icon"}
+                          class={props.iconClass || "solidMobile-button-icon"}
                         />
                       </Show>
                     )
