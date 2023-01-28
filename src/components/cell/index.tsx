@@ -17,6 +17,7 @@ export default (props: Partial<CellProps>) => {
   return (
       <div
         onClick={props.action}
+        style={{ ...(props.style || {}) as JSX.CSSProperties }}
         classList={classList()}>
         <div class="lxgUI-cell-item-top">
           <Show when={!!props.icon}>
