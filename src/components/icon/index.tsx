@@ -2,7 +2,7 @@ import './index.less'
 import { IconProps } from './types'
 import { isNumber,pick } from 'lodash'
 import { JSX } from 'solid-js/jsx-runtime'
-
+import '../../assets/iconfont.js'
 export default (props: IconProps) => {
 
   const events = pick(props, Object.keys(props).filter(key => /on[A-Za-z0-9]{1,}/.test(key)))
