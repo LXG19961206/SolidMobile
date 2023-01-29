@@ -2,6 +2,7 @@ import { Component, createSignal } from 'solid-js';
 import Button from './components/button'
 import Cell, { CellGroup } from './components/cell'
 import Icon from './components/icon';
+import Title from './components/title';
 import { Size } from './@types/common';
 import './assets/iconfont.js'
 
@@ -9,6 +10,44 @@ const App: Component = () => {
   const [size, setSize] = createSignal<Size>('large')
   return (
     <>
+      <Title
+        fixed 
+        backArrow
+        backAction={window.alert.bind(window)}
+        rightTextOrIcon={<Icon name="shouye"></Icon>}
+        leftTextOrIcon='返回'
+        background='#fff'
+        color='#000'
+        zIndex={3}
+        placeholder
+        title="投保-影像件上传">
+      </Title>
+      <CellGroup>
+        <Cell title="你好" value="solid"></Cell>
+        <Cell
+          icon={<Icon name="shouye" size={16} color="#aaa"></Icon>}
+          title="旅客居住地"
+          value={'插件'}></Cell>
+        <Cell
+          isLink
+          detail="弃我去者，昨日之日不可留，乱我心者，今日之日多烦忧，长风万里宋秋燕，收到即可拉伸就"
+          title="旅客详细住址"
+          value="海港区秦皇小区83号楼"
+        ></Cell>
+      </CellGroup>
+      <CellGroup>
+        <Cell title="你好" value="solid"></Cell>
+        <Cell
+          icon={<Icon name="shouye" size={16} color="#aaa"></Icon>}
+          title="旅客居住地"
+          value={'插件'}></Cell>
+        <Cell
+          isLink
+          detail="弃我去者，昨日之日不可留，乱我心者，今日之日多烦忧，长风万里宋秋燕，收到即可拉伸就"
+          title="旅客详细住址"
+          value="海港区秦皇小区83号楼"
+        ></Cell>
+      </CellGroup>
       <CellGroup>
         <Cell title="你好" value="solid"></Cell>
         <Cell

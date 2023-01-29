@@ -39,7 +39,7 @@ export default (props: Partial<CellProps>) => {
               <Show when={!!props.isLink}>
                 <Icon
                   class={`solidMobile-cell-item-icon solidMobile-cell-item-icon-${props.arrowDirection}`}
-                  name="arrowright"
+                  name="right"
                 />
               </Show>
             </>
