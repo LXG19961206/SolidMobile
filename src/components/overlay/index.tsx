@@ -9,11 +9,6 @@ export default (props: OverLayProps) => {
 
   const overflow = document.documentElement.style.overflow
 
-  onMount(() => {
-    if (isNil(props.disableScroll) || props.disableScroll) {
-    }
-  })
-
   createEffect(() => {
     if (isNil(props.disableScroll) || props.disableScroll) {
       props.show
