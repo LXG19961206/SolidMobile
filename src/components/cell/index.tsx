@@ -2,7 +2,6 @@ import { SizeDict } from "../../dict/common";
 import { CellGroupProps, CellProps } from "./types";
 import { JSX, Show } from 'solid-js'
 import './index.less'
-import rightIcon from '../../assets/arrow-right.png'
 import { MaybeElement } from '../common'
 import Icon from '../icon/index'
 

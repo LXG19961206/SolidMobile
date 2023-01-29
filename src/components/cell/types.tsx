@@ -10,7 +10,7 @@ import { BasePropsAndAttrs } from "../common/types";
   icon: JSXElement | string,
   isLink: boolean,
   alignCenter: boolean,
-  arrowDirection: Position,
+  arrowDirection: Exclude<Position, 'middle'>,
   titleClass: string,
   valueClass: string,
   detailClass: string,

@@ -1,5 +1,4 @@
 import { Component, createSignal } from 'solid-js';
-import loading from './assets/loading.svg'
 import Button from './components/button'
 import Cell, { CellGroup } from './components/cell'
 import Icon from './components/icon';
