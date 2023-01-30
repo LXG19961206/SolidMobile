@@ -1,28 +1,28 @@
 import './index.less'
 import { OverLayProps } from './types'
-import { Show, onMount, onCleanup, createEffect } from 'solid-js'
+import { Show, onMount } from 'solid-js'
 import { Portal } from 'solid-js/web'
+import { HTMLNativeEvent } from '../../dict/native'
 
 import { isNil } from 'lodash'
 
 export default (props: OverLayProps) => {
 
-  const overflow = document.documentElement.style.overflow
+  let overlay:HTMLDivElement
 
-  createEffect(() => {
+  onMount(() => {
     if (isNil(props.disableScroll) || props.disableScroll) {
-      props.show
-        ? document.documentElement.style.overflow = "hidden"
-        : document.documentElement.style.overflow = overflow
+      overlay.addEventListener(HTMLNativeEvent.touchMove, (evt) => {
+        evt.preventDefault()
+      })
     }
   })
-
-
 
   return (
     <Portal mount={props.portal}>
       <Show when={props.show}>
         <div
+          ref={ el => overlay = el }
           style={{ 
             "z-index": props.zIndex,
             height: props.portal ? '100%' : '100vh',
