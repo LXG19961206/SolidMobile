@@ -5,6 +5,7 @@ import Icon from './components/icon';
 import Title from './components/title';
 import Overlay from './components/overlay';
 import { Size } from './@types/common';
+import Toast from './components/toast';
 
 const App: Component = () => {
   const [size, setSize] = createSignal<Size>('large')
@@ -12,7 +13,7 @@ const App: Component = () => {
 
   return (
     <>
-      <Overlay
+      {/* <Overlay
         portal={document.getElementById('root')!} 
         show={show()}>
         <CellGroup isCard>
@@ -30,11 +31,11 @@ const App: Component = () => {
             value="海港区秦皇小区83号楼"
           ></Cell>
         </CellGroup>
-      </Overlay>
+      </Overlay> */}
       <Title
         fixed
         backArrow
-        backAction={window.alert.bind(window)}
+        backAction={ () => Toast({ message: '恭喜您，您的退款申请已经通过', type: 'fail', duration: 10000 }) }
         rightTextOrIcon={<Icon name="shouye"></Icon>}
         leftTextOrIcon='返回'
         background='#fff'
@@ -43,6 +44,32 @@ const App: Component = () => {
         placeholder
         title="投保-影像件上传">
       </Title>
+      <CellGroup>
+        <Cell title="你好" value="solid"></Cell>
+        <Cell
+          icon={<Icon name="shouye" size={16} color="#aaa"></Icon>}
+          title="旅客居住地"
+          value={'插件'}></Cell>
+        <Cell
+          isLink
+          detail="弃我去者，昨日之日不可留，乱我心者，今日之日多烦忧，长风万里宋秋燕，收到即可拉伸就"
+          title="旅客详细住址"
+          value="海港区秦皇小区83号楼"
+        ></Cell>
+      </CellGroup>
+      <CellGroup>
+        <Cell title="你好" value="solid"></Cell>
+        <Cell
+          icon={<Icon name="shouye" size={16} color="#aaa"></Icon>}
+          title="旅客居住地"
+          value={'插件'}></Cell>
+        <Cell
+          isLink
+          detail="弃我去者，昨日之日不可留，乱我心者，今日之日多烦忧，长风万里宋秋燕，收到即可拉伸就"
+          title="旅客详细住址"
+          value="海港区秦皇小区83号楼"
+        ></Cell>
+      </CellGroup>
       <CellGroup>
         <Cell title="你好" value="solid"></Cell>
         <Cell

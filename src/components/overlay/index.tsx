@@ -11,6 +11,7 @@ export default (props: OverLayProps) => {
   let overlay:HTMLDivElement
 
   onMount(() => {
+
     if (isNil(props.disableScroll) || props.disableScroll) {
       overlay.addEventListener(HTMLNativeEvent.touchMove, (evt) => {
         evt.preventDefault()
@@ -33,6 +34,5 @@ export default (props: OverLayProps) => {
         </div>
       </Show>
     </Portal>
-
   )
 }

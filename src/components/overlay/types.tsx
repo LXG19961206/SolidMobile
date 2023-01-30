@@ -1,4 +1,4 @@
-import { JSXElement, createSignal, Accessor, Setter } from "solid-js";
+import { JSXElement } from "solid-js";
 import { BasePropsAndAttrs } from "../common/types";
 
 export interface OverLayProps extends BasePropsAndAttrs {

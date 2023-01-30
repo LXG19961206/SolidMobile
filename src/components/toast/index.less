@@ -1,0 +1,38 @@
+:root {
+  --solidMobile-toast-maxWidth: 70%;
+  --solidMobile-toast-minWidth: 30%;
+  --solidMobile-toast-color: var(--solidMobile-white);
+  --solidMobile-toast-background: rgba(0,0,0,.7);
+  --solidMobile-toast-icon-size: 40px;
+  --solidMobile-toast-topOrBottom-position: 20%;
+}
+
+@keyframes ToastFade {
+  0% {
+    background: transparent;
+  }
+}
+
+.solidMobile-toast {
+  min-width: var(--solidMobile-toast-minWidth);
+  max-width: var(--solidMobile-toast-maxWidth);
+  border-radius: var(--solidMobile-border-radius-md);
+  padding: 7px 15px;
+  box-sizing: border-box;
+  color: var(--solidMobile-toast-color);
+  background: var(--solidMobile-toast-background);
+  font-size: var(--solidMobile-font-md);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ToastFade var(--solidMobile-animation-base);
+  text-align: center;
+  &-icon {
+    padding: 0;
+    margin: 15px 0;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: var(--solidMobile-toast-icon-size);
+  }
+}

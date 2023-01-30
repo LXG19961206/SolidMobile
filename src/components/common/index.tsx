@@ -23,9 +23,5 @@ export const MaybeElement = (props: MaybeElementProps) => {
 }
 
 export function WithAttrsAndListeners<T extends BasePropsAndAttrs> (props: T) {
-  return (
-    <>
-      { props.children }
-    </>
-  )
+  
 }
