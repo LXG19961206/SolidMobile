@@ -38,7 +38,9 @@ const App: Component = () => {
         backAction={ () => Toast({ 
           message: <> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat, tempora! </>, 
           type: 'loading', 
-          duration: 10000 
+          duration: 30000,
+          overlay: true,
+          position: 'bottom'
         }) }
         rightTextOrIcon={<Icon name="shouye"></Icon>}
         leftTextOrIcon='返回'

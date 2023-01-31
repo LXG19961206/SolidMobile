@@ -15,3 +15,5 @@ export type ComponentProps<T> = {
 }
 
 export type NoLimitFunc = (...arg: unknown []) => unknown
+
+export type EventHandleFunc = (evt: Event) => unknown

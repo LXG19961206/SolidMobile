@@ -16,14 +16,8 @@ export default (props: Partial<ButtonProps>) => {
 
   const classList = () => ({
     'solidMobile-button': true,
-    'solidMobile-button-normal': !props.size || props.size === SizeDict.normal,
-    'solidMobile-button-mini': props.size === SizeDict.mini,
-    'solidMobile-button-small': props.size === SizeDict.small,
-    'solidMobile-button-large': props.size === SizeDict.large,
-    'solidMobile-button-primary': !props.type || props.type === ThemeTypeDict.primary,
-    'solidMobile-button-success': props.type === ThemeTypeDict.success,
-    'solidMobile-button-danger': props.type === ThemeTypeDict.danger,
-    'solidMobile-button-warning': props.type === ThemeTypeDict.warning,
+    [`solidMobile-button-${props.size || 'normal'}`]: true,
+    [`solidMobile-button-${props.type || 'primary'}`]: true,
     'solidMobile-button-plain': props.plain,
     'solidMobile-button-round': props.round,
     'solidMobile-button-disabled': props.disabled || props.loadingStatus,

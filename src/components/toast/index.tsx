@@ -1,10 +1,12 @@
 import './index.less'
 import { ToastProps } from './types'
-import { Show, createSignal, Switch, Match, Accessor, Setter, JSXElement } from 'solid-js'
+import { Show, createSignal, Switch, Match, Accessor, Setter, JSXElement, JSX } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import { isString } from 'lodash'
 import Icon from '../icon'
-
+import Overlay from '../overlay'
+import { BasePropsAndAttrs } from '../common/types'
+import { OverLayProps } from '../overlay/types'
 
 export const ToastTypeDict = {
   success: 'success',
@@ -15,6 +17,8 @@ export const ToastTypeDict = {
 let lastToastShowStatus: Accessor<boolean>,
   lastToastStatusSetter: Setter<boolean>
 
+let overlayRef: HTMLElement
+
 const Toast = (props: Partial<ToastProps>) => {
 
   if (lastToastShowStatus && lastToastShowStatus()) {
@@ -24,14 +28,31 @@ const Toast = (props: Partial<ToastProps>) => {
   [lastToastShowStatus, lastToastStatusSetter] = createSignal(true)
 
   const classList = () => ({
-    'solidMobile-toast-breakWord': props.keepAll
+    'solidMobile-toast-breakWord': props.keepAll,
+    'solidMobile-toast-withOverlay': !!props.overlay,
+    [`solidMobile-toast-${props.position || 'middle'}`]: true
   })
+
+  const whenClickOverlay = () => props.closeWhenClickOverlay && lastToastStatusSetter(false)
+
+  const whenClickToast = () => props.closeWhenClick && lastToastStatusSetter(false)
 
   const node = (
     <Show when={lastToastShowStatus()}>
-      <Portal mount={props.portal}>
+      <Show when={props.overlay}>
+        <Overlay
+          style={{ ...props.overlayStyle as JSX.CSSProperties }}
+          onClick={ whenClickOverlay }
+          show={true}>
+          <div class="solidMobile-toast-overlay" ref={el => overlayRef = el}>
+          </div>
+        </Overlay>
+      </Show>
+      <Portal mount={props.overlay ? overlayRef : props.portal}>
         <div
+          onClick={ whenClickToast }
           classList={classList()}
+          style={{ ...props.style as JSX.CSSProperties ,"z-index": props.zIndex }}
           class="solidMobile-toast">
           <Show when={props.icon || props.type}>
             <p class="solidMobile-toast-icon">

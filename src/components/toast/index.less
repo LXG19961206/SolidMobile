@@ -5,6 +5,7 @@
   --solidMobile-toast-background: rgba(0,0,0,.7);
   --solidMobile-toast-icon-size: 40px;
   --solidMobile-toast-topOrBottom-position: 20%;
+  --solidMobile-toast-background-withOverlay: rgba(0,0,0);
 }
 
 @keyframes ToastFade {
@@ -23,12 +24,19 @@
   background: var(--solidMobile-toast-background);
   font-size: var(--solidMobile-font-md);
   position: fixed;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   word-break: break-all;
   animation: ToastFade var(--solidMobile-animation-base);
   text-align: center;
+
+  &-middle {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &-withOverlay {
+    background: var(--solidMobile-toast-background-withOverlay);
+  }
   &-breakWord {
     word-break: keep-all;
   }
@@ -40,5 +48,13 @@
     &-withRotate {
       animation: Rotate ease 2s infinite;
     }
+  }
+  &-bottom {
+    bottom: var(--solidMobile-toast-topOrBottom-position);
+    transform: translateX(-50%);
+  }
+  &-top {
+    top: var(--solidMobile-toast-topOrBottom-position);
+    transform: translateX(-50%);
   }
 }
