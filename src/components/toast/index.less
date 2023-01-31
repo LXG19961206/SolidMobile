@@ -26,13 +26,19 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  word-break: break-all;
   animation: ToastFade var(--solidMobile-animation-base);
   text-align: center;
+  &-breakWord {
+    word-break: keep-all;
+  }
   &-icon {
     padding: 0;
-    margin: 15px 0;
-    margin-bottom: 5px;
+    margin: 10px 0 10px 0;
     text-align: center;
     font-size: var(--solidMobile-toast-icon-size);
+    &-withRotate {
+      animation: Rotate ease 2s infinite;
+    }
   }
 }

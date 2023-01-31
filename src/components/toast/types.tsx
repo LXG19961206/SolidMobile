@@ -7,6 +7,7 @@ export type ToastType = 'success' | 'loading' | 'fail'
 export interface ToastProps extends BasePropsAndAttrs {
   type: ToastType,
   position: Position,
+  keepAll: boolean,
   message: string | number | JSXElement,
   icon: String | JSXElement,
   overlay: boolean,

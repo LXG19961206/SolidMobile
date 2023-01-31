@@ -35,7 +35,11 @@ const App: Component = () => {
       <Title
         fixed
         backArrow
-        backAction={ () => Toast({ message: '恭喜您，您的退款申请已经通过', type: 'fail', duration: 10000 }) }
+        backAction={ () => Toast({ 
+          message: <> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat, tempora! </>, 
+          type: 'loading', 
+          duration: 10000 
+        }) }
         rightTextOrIcon={<Icon name="shouye"></Icon>}
         leftTextOrIcon='返回'
         background='#fff'
