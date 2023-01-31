@@ -10,11 +10,16 @@ let showStatusGetter: Accessor<boolean>, showStatusSetter: Setter<boolean>
 
 let actionSheetGetter: Accessor<HTMLDivElement | void>, actionSheetSetter: Setter<HTMLDivElement | void>
 
+const close = (duration: number) => {
+  actionSheetGetter()?.classList.add('hide')
+  setTimeout(() => showStatusSetter(false), duration)
+}
+
 export default (props: ActionSheetProps) => {
 
   const [overlay, setOverlay] = createSignal<HTMLDivElement>()
 
-  const duration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-actionSheet-animation-close')) * 1000;
+  const duration = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-actionSheet-animation-close')) * 1000;
 
   [showStatusGetter, showStatusSetter] = props.bind;
 
@@ -28,10 +33,7 @@ export default (props: ActionSheetProps) => {
 
     props.whenSelect && props.whenSelect(item)
 
-    if (props.closeOnSelect) {
-      actionSheetGetter()?.classList.add('hide')
-      setTimeout(() => showStatusSetter(false), duration)
-    }
+    if (props.closeOnSelect)  close(duration)
 
   }
 

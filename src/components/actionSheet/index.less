@@ -3,8 +3,7 @@
   --solidMobile-actionSheet-header-height: 48px;
   --solidMobile-actionSheet-background: --var(--solidMobile-white);
   --solidMobile-actionSheet-animation: 1s;
-  --solidMobile-actionSheet-animation-close: 0.5s;
-
+  --solidMobile-actionSheet-animation-close: 0.6s;
 }
 
 @keyframes ActionSheetShow {
@@ -21,7 +20,7 @@
   max-height: var(--solidMobile-actionSheet-max-height);
   bottom: 0;
   background: var(--solidMobile-white);
-  animation: ActionSheetShow ease var(--solidMobile-actionSheet-animation);
+  animation: ActionSheetShow linear var(--solidMobile-actionSheet-animation);
 
   &-overlay {
     width: 100%;
@@ -29,7 +28,7 @@
   }
 
   &.hide {
-    animation: ActionSheetHide ease var(--solidMobile-actionSheet-animation-close);
+    animation: ActionSheetHide linear var(--solidMobile-actionSheet-animation-close);
   }
 
   &-items {
