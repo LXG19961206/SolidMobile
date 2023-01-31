@@ -1,12 +1,10 @@
 import './index.less'
 import { ToastProps } from './types'
-import { Show, createSignal, Switch, Match, Accessor, Setter, JSXElement, JSX } from 'solid-js'
+import { Show, createSignal, Switch, Match, Accessor, Setter, JSXElement, JSX, createEffect, on } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import { isString } from 'lodash'
 import Icon from '../icon'
 import Overlay from '../overlay'
-import { BasePropsAndAttrs } from '../common/types'
-import { OverLayProps } from '../overlay/types'
 
 export const ToastTypeDict = {
   success: 'success',
@@ -15,7 +13,7 @@ export const ToastTypeDict = {
 }
 
 let lastToastShowStatus: Accessor<boolean>,
-  lastToastStatusSetter: Setter<boolean>
+    lastToastStatusSetter: Setter<boolean>
 
 let overlayRef: HTMLElement
 
@@ -36,6 +34,10 @@ const Toast = (props: Partial<ToastProps>) => {
   const whenClickOverlay = () => props.closeWhenClickOverlay && lastToastStatusSetter(false)
 
   const whenClickToast = () => props.closeWhenClick && lastToastStatusSetter(false)
+
+  createEffect(on(lastToastShowStatus, (boo: boolean) => {
+    boo ? (props.onOpen && props.onOpen()) : (props.onClose && props.onClose())
+  }))
 
   const node = (
     <Show when={lastToastShowStatus()}>

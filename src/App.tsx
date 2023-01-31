@@ -39,6 +39,7 @@ const App: Component = () => {
           message: <> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat, tempora! </>, 
           type: 'loading', 
           duration: 30000,
+          closeWhenClickOverlay: true,
           overlay: true,
           position: 'bottom'
         }) }
