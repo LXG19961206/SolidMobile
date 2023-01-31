@@ -6,6 +6,7 @@ import Title from './components/title';
 import Overlay from './components/overlay';
 import { Size } from './@types/common';
 import Toast from './components/toast';
+import ActionSheet from './components/actionSheet';
 
 const App: Component = () => {
   const [size, setSize] = createSignal<Size>('large')
@@ -32,6 +33,21 @@ const App: Component = () => {
           ></Cell>
         </CellGroup>
       </Overlay> */}
+      <ActionSheet
+        bind={[show, setShow]}
+        closeOnSelect
+        overlay 
+        closeWhenClickOverlay
+        whenSelect={console.log.bind(console)}
+        round
+        items={[
+          { name: '去你妈大家' },
+          { name: '多擦呈现出', subname: '吃啥' },
+          { name: '的撒的阿是撒阿是' },
+          { name: '大撒大声地', subname: '啥的' },
+        ]}
+      >
+      </ActionSheet>
       <Title
         fixed
         backArrow
@@ -52,7 +68,9 @@ const App: Component = () => {
         title="投保-影像件上传">
       </Title>
       <CellGroup>
-        <Cell title="你好" value="solid"></Cell>
+        <Cell
+          action={() => setShow(true)} 
+          title="你好" value="solid"></Cell>
         <Cell
           icon={<Icon name="shouye" size={16} color="#aaa"></Icon>}
           title="旅客居住地"
