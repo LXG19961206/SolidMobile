@@ -150,7 +150,7 @@ const App: Component = () => {
         round
         plain
         onClick={() => setSize('mini')} icon={
-          <Icon name="zoomout" color='blue' size={20}></Icon>
+          <Icon name="Loading" color='blue' size={20}></Icon>
         } type='primary'>
         点我变小
       </Button>

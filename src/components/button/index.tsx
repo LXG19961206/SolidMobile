@@ -1,18 +1,20 @@
 import { ButtonProps } from './types'
 import './index.less'
-import { SizeDict, ThemeTypeDict } from '../../dict/common'
 import { pick, isString } from 'lodash'
 import { Show, JSX } from 'solid-js'
 import { MaybeElement } from '../common'
 import Icon from '../icon'
+import { useNativeEventFilter } from '../../hooks'
+
+
 
 export default (props: Partial<ButtonProps>) => {
 
   let buttonElementReference: HTMLButtonElement = document.createElement('button')
 
+
   const maybeText = (props.text || props.children || '')!
 
-  const events = pick(props, Object.keys(props).filter(key => /on[A-Za-z0-9]{1,}/.test(key)))
 
   const classList = () => ({
     'solidMobile-button': true,
@@ -25,9 +27,10 @@ export default (props: Partial<ButtonProps>) => {
     'solidMobile-button-hairline': props.hairline,
   })
 
+
   return (
     <button
-      {...events}
+      {...useNativeEventFilter(props)}
       ref={buttonElementReference}
       onClick={props.action}
       type={props.nativeType}

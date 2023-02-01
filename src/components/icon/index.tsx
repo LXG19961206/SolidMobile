@@ -3,13 +3,12 @@ import { IconProps } from './types'
 import { isNumber,pick } from 'lodash'
 import { JSX } from 'solid-js/jsx-runtime'
 import '../../assets/iconfont.js'
+import { useNativeEventFilter } from '../../hooks'
 export default (props: IconProps) => {
-
-  const events = pick(props, Object.keys(props).filter(key => /on[A-Za-z0-9]{1,}/.test(key)))
 
   return (
     <svg
-      { ...events }
+      { ...useNativeEventFilter(props) }
       style={{ 
         color: props.color, 
         "font-size": isNumber(props.size) ? `${props.size}px` : props.size,

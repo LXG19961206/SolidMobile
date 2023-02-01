@@ -1,6 +1,6 @@
 import { JSXElement } from "solid-js";
 import { JSX } from "solid-js/jsx-runtime";
-import { EventHandleFunc } from "../../@types/common";
+import { EventHandleFunc, NoLimitFunc } from "../../@types/common";
 
 
 export interface BasePropsAndAttrs {
@@ -8,5 +8,5 @@ export interface BasePropsAndAttrs {
   id?: string,
   class?: string,
   children?: JSXElement | string,
-  [event: `on${string}`]: EventHandleFunc
+  [event: `on${string}`]: EventHandleFunc | NoLimitFunc
 }

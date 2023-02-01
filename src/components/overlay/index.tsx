@@ -4,13 +4,13 @@ import { Show, onMount, createEffect, on, createSignal } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import { HTMLNativeEvent } from '../../dict/native'
 import { pick } from 'lodash'
+import { useNativeEventFilter } from '../../hooks'
 
 
 export default (props: OverLayProps) => {
 
   const [overlayRef, setRef] = createSignal<HTMLDivElement>()
 
-  const events = pick(props, Object.keys(props).filter(key => /on[A-Za-z0-9]{1,}/.test(key)))
 
   createEffect(on(overlayRef, () => {
     const wrapper = overlayRef()
@@ -23,7 +23,7 @@ export default (props: OverLayProps) => {
     <Portal mount={props.portal}>
       <Show when={props.show}>
         <div
-          { ...events }
+          { ...useNativeEventFilter(props) }
           style={{ 
             "z-index": props.zIndex,
             height: props.portal ? '100%' : '100vh',

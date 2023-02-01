@@ -13,7 +13,6 @@ export type OptionItem = {
 export interface ActionSheetProps extends BasePropsAndAttrs {
   bind: [Accessor<boolean>, Setter<Boolean>], 
   items?: OptionItem [],
-  itemBorder?: boolean,
   title?: string | JSXElement,
   cancelText?: string | JSXElement,
   description?: string | JSXElement,
