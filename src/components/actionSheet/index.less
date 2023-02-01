@@ -1,26 +1,32 @@
 :root {
   --solidMobile-actionSheet-max-height: 80%;
+  --solidMobile-actionSheet-min-height: 40%;
+  --solidMobile-actionSheet-desc-height: 60px;
   --solidMobile-actionSheet-header-height: 48px;
-  --solidMobile-actionSheet-background: --var(--solidMobile-white);
-  --solidMobile-actionSheet-animation: .8s;
-  --solidMobile-actionSheet-animation-close: 0.6s;
+  --solidMobile-actionSheet-background: var(--solidMobile-white);
+  --solidMobile-actionSheet-animation: 0.5s;
+  --solidMobile-actionSheet-animation-close: 0.4s;
   --solidMobile-actionSheet-singleLine-height: 50px;
   --solidMobile-actionSheet-both-height: 76px;
   --solidMobile-actionSheet-gap-color: #f7f8fa;
   --solidMobile-actionSheet-gap-height: 8px;
+  --solidMobile-actionSheet-desc-color: var(--solidMobile-dark-secondary);
+  --solidMobile-actionSheet-title-fontSize: 18px;
 }
 
 @keyframes ActionSheetShow {
-  0% { max-height: 0; }
+  0% { max-height: 0; min-height: 0; }
 }
 
 @keyframes ActionSheetHide {
-  100% { max-height: 0; }
+  100% { max-height: 0; min-height: 0; }
 }
 
 .solidMobile-actionSheet {
   width: 100%;
   position: fixed;
+  overflow-x: hidden;
+  overflow-y: scroll;
   max-height: var(--solidMobile-actionSheet-max-height);
   bottom: 0;
   background: var(--solidMobile-white);
@@ -29,6 +35,48 @@
   &-overlay {
     width: 100%;
     height: 100%;
+  }
+
+  &-custom {
+    min-height: var(--solidMobile-actionSheet-min-height);
+  }
+
+  &-header {
+    width: 100%;
+    height: var(--solidMobile-actionSheet-header-height);
+    text-align: center;
+    border: 1px solid #f7f8fa;
+    position: relative;
+    font-size: var(--solidMobile-actionSheet-title-fontSize);
+    &-title {
+      padding: 0 20px;
+      margin: 0 auto;
+      font-weight: var(--solidMobile-font-bold);
+      width: 100%;
+      text-overflow: ellipsis;
+      line-height: var(--solidMobile-actionSheet-header-height);
+    }
+    .closeIcon {
+      position: absolute;
+      right: 20px;
+      color: var(--solidMobile-dark-secondary);
+      top: calc((var(--solidMobile-actionSheet-header-height) - var(--solidMobile-actionSheet-title-fontSize)) / 2);
+    }
+  }
+
+  &-desc {
+    box-sizing: border-box;
+    padding: 20px 10px;
+    width: 100%;
+    text-align: center;
+    line-height: 1.5;
+    min-height: var(--solidMobile-actionSheet-desc-height);
+    border-bottom: 1px solid var(--solidMobile-border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--solidMobile-actionSheet-desc-color);
+    font-size: var(--solidMobile-font-md);
   }
 
   &-cancel-gap {

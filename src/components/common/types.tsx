@@ -8,5 +8,5 @@ export interface BasePropsAndAttrs {
   id?: string,
   class?: string,
   children?: JSXElement | string,
-  [event: `on${string}`]: EventHandleFunc | NoLimitFunc
+  [event: `on${string}`]: EventHandleFunc | NoLimitFunc | void
 }

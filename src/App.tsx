@@ -34,32 +34,23 @@ const App: Component = () => {
         </CellGroup>
       </Overlay> */}
       <ActionSheet
-        cancelText="取消"
         bind={[show, setShow]}
-        closeOnSelect
-        overlay 
-        closeWhenClickOverlay
-        onSelect={console.log.bind(console)}
-        round
-        items={[
-          { name: '大幅度发的大幅度' },
-          { name: '多擦呈现出', subname: '吃啥' },
-          { name: '的撒的阿是撒阿是' },
-          { name: '大撒大声地', subname: '啥的' },
-        ]}
-      >
+        overlay
+        closeable
+        round>
+          4343
       </ActionSheet>
       <Title
         fixed
         backArrow
-        backAction={ () => Toast({ 
-          message: <> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat, tempora! </>, 
-          type: 'loading', 
+        backAction={() => Toast({
+          message: <> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat, tempora! </>,
+          type: 'loading',
           duration: 30000,
           closeWhenClickOverlay: true,
           overlay: true,
           position: 'bottom'
-        }) }
+        })}
         rightTextOrIcon={<Icon name="shouye"></Icon>}
         leftTextOrIcon='返回'
         background='#fff'
@@ -70,7 +61,7 @@ const App: Component = () => {
       </Title>
       <CellGroup>
         <Cell
-          action={() => setShow(true)} 
+          action={() => setShow(true)}
           title="你好" value="solid"></Cell>
         <Cell
           icon={<Icon name="shouye" size={16} color="#aaa"></Icon>}

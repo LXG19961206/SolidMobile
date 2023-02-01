@@ -1,11 +1,15 @@
-import { createSignal, Show, For, Accessor, Setter } from 'solid-js'
+import { createSignal, Show, For, Accessor, Setter, Switch, Match } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import Button from '../button'
+import Icon from '../icon'
 import './index.less'
 
 import Overlay from '../overlay'
 import { ActionSheetProps, OptionItem } from './types'
 import { SizeDict } from '../../dict/common'
+import { MaybeElement } from '../common'
+import { isNil } from 'lodash'
+import { NoLimitFunc } from '../../@types/common'
 
 let showStatusGetter: Accessor<boolean>,
   showStatusSetter: Setter<boolean>,
@@ -13,8 +17,11 @@ let showStatusGetter: Accessor<boolean>,
   actionSheetGetter: Accessor<HTMLDivElement | void>,
   actionSheetSetter: Setter<HTMLDivElement | void>
 
-const close = (duration: number, id: number) => {
+const close = (duration: number, id: number, beforeClose?: NoLimitFunc) => {
   actionSheetGetter()?.classList.add('hide')
+
+  beforeClose?.call(void 0)
+
   setTimeout(() => {
     if (theLastSheetId === id && showStatusGetter?.call(void 0)) {
       showStatusSetter(false)
@@ -46,18 +53,25 @@ export default (props: ActionSheetProps) => {
   [actionSheetGetter, actionSheetSetter] = createSignal<HTMLDivElement>()
 
   const classList = () => ({
-    "solidMobile-actionSheet-round": !!props.round
+    "solidMobile-actionSheet-round": !!props.round,
+    "solidMobile-actionSheet-custom": !!props.children
   })
 
   const whenSelect = (item: OptionItem) => {
     props.onSelect?.call(void 0, item)
-    if (props.closeOnSelect) close(duration, theLastSheetId)
+    if (props.closeOnSelect) close(duration, theLastSheetId, props.beforeClose)
+  }
+
+  const closeSheet = () => {
+    close(duration, theLastSheetId, props.beforeClose)
+    props.onClose?.call(void 0)
   }
 
   return (
-    <Show when={showStatusGetter()}>
+    <Show when={showStatusGetter() && (props.children || props.items?.length) }>
       <Show when={props.overlay}>
         <Overlay
+          disableScroll={isNil(props.lockScroll) ? true : props.lockScroll}
           onClick={() => props.closeWhenClickOverlay && showStatusSetter(false)}
           style={props.overlayStyle}
           portal={props.portal!}
@@ -71,30 +85,58 @@ export default (props: ActionSheetProps) => {
           classList={classList()}
           style={{ "z-index": props.zIndex }}
           class="solidMobile-actionSheet">
-          <Show when={props.items && props.items.length}>
-            <div class="solidMobile-actionSheet-items">
-              <For each={props.items}>
-                {
-                  (item) => (
-                    <div
-                      onClick={[whenSelect, item]}
-                      classList={actionsItemClassList(item)}
-                      class="solidMobile-actionSheet-item">
-                      <p class="solidMobile-actionSheet-item-name"> {item.name} </p>
-                      <p class="solidMobile-actionSheet-item-subname"> {item.subname} </p>
-                    </div>
-                  )
-                }
-              </For>
-            </div>
-          </Show>
-          <Show when={props.cancelText}>
-            <div class="solidMobile-actionSheet-cancel-gap"></div>
-            <Button
-              color={'transparent'} 
-              textColor={textColorVar()}
-              size={SizeDict.large}> { props.cancelText || '取消' }
-            </Button>
+          <Switch>
+            <Match when={props.title || props.closeable}>
+              <div class="solidMobile-actionSheet-header">
+                <p class="solidMobile-actionSheet-header-title">
+                  {props.title || '标题'}
+                </p>
+                <Show when={props.closeable}>
+                  <Icon
+                    onClick={closeSheet}
+                    name="shut"
+                    class='closeIcon'>
+                  </Icon>
+                </Show>
+              </div>
+            </Match>
+            <Match when={props.description}>
+              <div class="solidMobile-actionSheet-desc">
+                {props.description}
+              </div>
+            </Match>
+          </Switch>
+          <Show
+            fallback={props.children}
+            when={!props.children}>
+            <Show when={props.items && props.items.length}>
+              <div class="solidMobile-actionSheet-items">
+                <For each={props.items}>
+                  {
+                    (item) => (
+                      <div
+                        onClick={[whenSelect, item]}
+                        classList={actionsItemClassList(item)}
+                        class="solidMobile-actionSheet-item">
+                        <p class="solidMobile-actionSheet-item-name"> {item.name} </p>
+                        <p class="solidMobile-actionSheet-item-subname"> {item.subname} </p>
+                      </div>
+                    )
+                  }
+                </For>
+              </div>
+            </Show>
+            <Show when={props.cancelText}>
+              <div class="solidMobile-actionSheet-cancel-gap"></div>
+              <MaybeElement maybeJsx={props.cancelText}>
+                <Button
+                  action={props.onCancel || close.bind(void 0, duration, theLastSheetId, props.beforeClose)}
+                  color={'transparent'}
+                  textColor={textColorVar()}
+                  size={SizeDict.large}> {props.cancelText || '取消'}
+                </Button>
+              </MaybeElement>
+            </Show>
           </Show>
         </div>
       </Portal>
