@@ -34,6 +34,7 @@ const App: Component = () => {
         </CellGroup>
       </Overlay> */}
       <ActionSheet
+        cancelText="取消"
         bind={[show, setShow]}
         closeOnSelect
         overlay 
@@ -41,7 +42,7 @@ const App: Component = () => {
         onSelect={console.log.bind(console)}
         round
         items={[
-          { name: '去你妈大家' },
+          { name: '大幅度发的大幅度' },
           { name: '多擦呈现出', subname: '吃啥' },
           { name: '的撒的阿是撒阿是' },
           { name: '大撒大声地', subname: '啥的' },
@@ -65,7 +66,7 @@ const App: Component = () => {
         color='#000'
         zIndex={3}
         placeholder
-        title="投保-影像件上传">
+        title="测试内容">
       </Title>
       <CellGroup>
         <Cell
@@ -143,6 +144,10 @@ const App: Component = () => {
       </CellGroup>
       <Button
         onClick={() => setSize('mini')} size={"large"} type='success' loadingStatus block>
+        正在处理中，请稍等
+      </Button>
+      <Button
+        onClick={() => setSize('mini')} size={"large"} color='#fff' textColor='#333' disabled block>
         正在处理中，请稍等
       </Button>
       <Button

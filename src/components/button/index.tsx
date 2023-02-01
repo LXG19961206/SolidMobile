@@ -19,7 +19,7 @@ export default (props: Partial<ButtonProps>) => {
   const classList = () => ({
     'solidMobile-button': true,
     [`solidMobile-button-${props.size || 'normal'}`]: true,
-    [`solidMobile-button-${props.type || 'primary'}`]: true,
+    [`solidMobile-button-${props.type || 'custom'}`]: true,
     'solidMobile-button-plain': props.plain,
     'solidMobile-button-round': props.round,
     'solidMobile-button-disabled': props.disabled || props.loadingStatus,
@@ -34,7 +34,7 @@ export default (props: Partial<ButtonProps>) => {
       ref={buttonElementReference}
       onClick={props.action}
       type={props.nativeType}
-      style={{ ...(props.style || {}) as JSX.CSSProperties, color: props.textColor }}
+      style={{ ...(props.style || {}) as JSX.CSSProperties, background: props.color, color: props.textColor }}
       disabled={props.loadingStatus || props.disabled || false}
       classList={classList()}>
       {

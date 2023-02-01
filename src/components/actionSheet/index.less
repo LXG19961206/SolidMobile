@@ -4,6 +4,10 @@
   --solidMobile-actionSheet-background: --var(--solidMobile-white);
   --solidMobile-actionSheet-animation: .8s;
   --solidMobile-actionSheet-animation-close: 0.6s;
+  --solidMobile-actionSheet-singleLine-height: 50px;
+  --solidMobile-actionSheet-both-height: 76px;
+  --solidMobile-actionSheet-gap-color: #f7f8fa;
+  --solidMobile-actionSheet-gap-height: 8px;
 }
 
 @keyframes ActionSheetShow {
@@ -27,17 +31,34 @@
     height: 100%;
   }
 
+  &-cancel-gap {
+    background: var(--solidMobile-actionSheet-gap-color);
+    height: var(--solidMobile-actionSheet-gap-height);
+    width: 100%;
+  }
+
   &.hide {
     animation: ActionSheetHide linear var(--solidMobile-actionSheet-animation-close);
   }
 
-  &-items {
-    padding: 8px 0;
-  }
-
   &-item {
-    padding: 10px 10px;
     text-align: center;
+    &-single {
+      height: var(--solidMobile-actionSheet-singleLine-height);
+      line-height: var(--solidMobile-actionSheet-singleLine-height);
+    }
+
+    &-both {
+      height: var(--solidMobile-actionSheet-both-height);
+      box-sizing: border-box;
+      padding: 10px 0;
+      .solidMobile-actionSheet-item-name {
+        margin: 7px 0;
+      }
+      .solidMobile-actionSheet-item-subname {
+        margin: 7px 0;
+      }
+    }
 
     cursor: pointer;
 
@@ -53,13 +74,10 @@
     }
     &-name {
       font-size: var(--solidMobile-font-lg);
-      line-height: 1.5;
       color: var(--solidMobile-dark-main);
     }
     &-subname {
       font-size: var(--solidMobile-font-sm);
-      line-height: 1.5;
-      margin-top: 2px;
       color: var(--solidMobile-dark-secondary);
     }
   }

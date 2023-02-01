@@ -1,25 +1,30 @@
 import { createSignal, Show, For, Accessor, Setter } from 'solid-js'
 import { Portal } from 'solid-js/web'
+import Button from '../button'
 import './index.less'
 
 import Overlay from '../overlay'
 import { ActionSheetProps, OptionItem } from './types'
+import { SizeDict } from '../../dict/common'
 
-let showStatusGetter: Accessor<boolean>, 
-    showStatusSetter: Setter<boolean>, 
-    theLastSheetId: number,
-    actionSheetGetter: Accessor<HTMLDivElement | void>, 
-    actionSheetSetter: Setter<HTMLDivElement | void>
+let showStatusGetter: Accessor<boolean>,
+  showStatusSetter: Setter<boolean>,
+  theLastSheetId: number,
+  actionSheetGetter: Accessor<HTMLDivElement | void>,
+  actionSheetSetter: Setter<HTMLDivElement | void>
 
 const close = (duration: number, id: number) => {
   actionSheetGetter()?.classList.add('hide')
   setTimeout(() => {
-    // 如果触发关闭行为时 该弹窗已经被其他方式关闭
     if (theLastSheetId === id && showStatusGetter?.call(void 0)) {
       showStatusSetter(false)
     }
   }, duration)
 }
+
+const actionsItemClassList = (itemProps: OptionItem) => ({
+  [`solidMobile-actionSheet-item-${itemProps.subname ? 'both' : 'single'}`]: true
+})
 
 export default (props: ActionSheetProps) => {
 
@@ -32,6 +37,9 @@ export default (props: ActionSheetProps) => {
   const duration = parseFloat(
     getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-actionSheet-animation-close')
   ) * 1000;
+
+
+  const textColorVar = () => getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-dark-main');
 
   [showStatusGetter, showStatusSetter] = props.bind;
 
@@ -70,6 +78,7 @@ export default (props: ActionSheetProps) => {
                   (item) => (
                     <div
                       onClick={[whenSelect, item]}
+                      classList={actionsItemClassList(item)}
                       class="solidMobile-actionSheet-item">
                       <p class="solidMobile-actionSheet-item-name"> {item.name} </p>
                       <p class="solidMobile-actionSheet-item-subname"> {item.subname} </p>
@@ -78,6 +87,14 @@ export default (props: ActionSheetProps) => {
                 }
               </For>
             </div>
+          </Show>
+          <Show when={props.cancelText}>
+            <div class="solidMobile-actionSheet-cancel-gap"></div>
+            <Button
+              color={'transparent'} 
+              textColor={textColorVar()}
+              size={SizeDict.large}> { props.cancelText || '取消' }
+            </Button>
           </Show>
         </div>
       </Portal>
