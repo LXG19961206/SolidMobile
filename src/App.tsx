@@ -38,7 +38,7 @@ const App: Component = () => {
         closeOnSelect
         overlay 
         closeWhenClickOverlay
-        whenSelect={console.log.bind(console)}
+        onSelect={console.log.bind(console)}
         round
         items={[
           { name: '去你妈大家' },

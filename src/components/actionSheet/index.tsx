@@ -1,25 +1,37 @@
 import { createSignal, Show, For, Accessor, Setter } from 'solid-js'
 import { Portal } from 'solid-js/web'
-import { isArray } from 'lodash'
 import './index.less'
 
 import Overlay from '../overlay'
 import { ActionSheetProps, OptionItem } from './types'
 
-let showStatusGetter: Accessor<boolean>, showStatusSetter: Setter<boolean>
+let showStatusGetter: Accessor<boolean>, 
+    showStatusSetter: Setter<boolean>, 
+    theLastSheetId: number,
+    actionSheetGetter: Accessor<HTMLDivElement | void>, 
+    actionSheetSetter: Setter<HTMLDivElement | void>
 
-let actionSheetGetter: Accessor<HTMLDivElement | void>, actionSheetSetter: Setter<HTMLDivElement | void>
-
-const close = (duration: number) => {
+const close = (duration: number, id: number) => {
   actionSheetGetter()?.classList.add('hide')
-  setTimeout(() => showStatusSetter(false), duration)
+  setTimeout(() => {
+    // 如果触发关闭行为时 该弹窗已经被其他方式关闭
+    if (theLastSheetId === id && showStatusGetter?.call(void 0)) {
+      showStatusSetter(false)
+    }
+  }, duration)
 }
 
 export default (props: ActionSheetProps) => {
 
+  if (showStatusGetter?.call(void 0)) showStatusSetter(false)
+
+  theLastSheetId = +new Date()
+
   const [overlay, setOverlay] = createSignal<HTMLDivElement>()
 
-  const duration = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-actionSheet-animation-close')) * 1000;
+  const duration = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-actionSheet-animation-close')
+  ) * 1000;
 
   [showStatusGetter, showStatusSetter] = props.bind;
 
@@ -30,11 +42,8 @@ export default (props: ActionSheetProps) => {
   })
 
   const whenSelect = (item: OptionItem) => {
-
-    props.whenSelect && props.whenSelect(item)
-
-    if (props.closeOnSelect)  close(duration)
-
+    props.onSelect?.call(void 0, item)
+    if (props.closeOnSelect) close(duration, theLastSheetId)
   }
 
   return (

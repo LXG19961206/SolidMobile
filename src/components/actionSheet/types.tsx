@@ -27,5 +27,5 @@ export interface ActionSheetProps extends BasePropsAndAttrs {
   closeWhenClickOverlay?: boolean,
   portal?: Node,
   beforeClose?: NoLimitFunc,
-  whenSelect: (item: OptionItem) => unknown 
+  onSelect: NoLimitFunc
 }
