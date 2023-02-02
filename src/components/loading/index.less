@@ -1,0 +1,29 @@
+:root {
+  --solidMobile-loading-duration: 2s;
+  --solidMobile-loading-size: 22px;
+  --solidMobile-loading-color: var(--solidMobile-white);
+}
+
+@keyframes LoadingRotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.solidMobile-loading {
+  display: inline-block;
+  text-align: center;
+  font-size: var(--solidMobile-loading-size);
+  color: var(--solidMobile-loading-color);
+  fill: var(--solidMobile-loading-color);
+  .icon {
+    animation: LoadingRotate ease var(--solidMobile-loading-duration) infinite;
+  }
+  &-text {
+    font-size: var(--solidMobile-font-md);
+  }
+}

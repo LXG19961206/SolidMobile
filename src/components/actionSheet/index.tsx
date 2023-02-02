@@ -8,8 +8,8 @@ import Overlay from '../overlay'
 import { ActionSheetProps, OptionItem } from './types'
 import { SizeDict } from '../../dict/common'
 import { MaybeElement } from '../common'
-import { isNil } from 'lodash'
 import { NoLimitFunc } from '../../@types/common'
+import { propDefaultValue } from '../../util/propDefaultValue'
 
 let showStatusGetter: Accessor<boolean>,
   showStatusSetter: Setter<boolean>,
@@ -69,9 +69,9 @@ export default (props: ActionSheetProps) => {
 
   return (
     <Show when={showStatusGetter() && (props.children || props.items?.length) }>
-      <Show when={props.overlay}>
+      <Show when={propDefaultValue(props.overlay, true)}>
         <Overlay
-          disableScroll={isNil(props.lockScroll) ? true : props.lockScroll}
+          disableScroll={propDefaultValue(props.lockScroll, true)}
           onClick={() => props.closeWhenClickOverlay && showStatusSetter(false)}
           style={props.overlayStyle}
           portal={props.portal!}
@@ -126,7 +126,8 @@ export default (props: ActionSheetProps) => {
                 </For>
               </div>
             </Show>
-            <Show when={props.cancelText}>
+          </Show>
+          <Show when={props.cancelText}>
               <div class="solidMobile-actionSheet-cancel-gap"></div>
               <MaybeElement maybeJsx={props.cancelText}>
                 <Button
@@ -137,7 +138,6 @@ export default (props: ActionSheetProps) => {
                 </Button>
               </MaybeElement>
             </Show>
-          </Show>
         </div>
       </Portal>
     </Show>
