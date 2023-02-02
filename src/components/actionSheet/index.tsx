@@ -18,6 +18,7 @@ let showStatusGetter: Accessor<boolean>,
   actionSheetSetter: Setter<HTMLDivElement | void>
 
 const close = (duration: number, id: number, beforeClose?: NoLimitFunc) => {
+
   actionSheetGetter()?.classList.add('hide')
 
   beforeClose?.call(void 0)
@@ -27,6 +28,7 @@ const close = (duration: number, id: number, beforeClose?: NoLimitFunc) => {
       showStatusSetter(false)
     }
   }, duration)
+  
 }
 
 const actionsItemClassList = (itemProps: OptionItem) => ({
@@ -72,7 +74,7 @@ export default (props: ActionSheetProps) => {
       <Show when={propDefaultValue(props.overlay, true)}>
         <Overlay
           disableScroll={propDefaultValue(props.lockScroll, true)}
-          onClick={() => props.closeWhenClickOverlay && showStatusSetter(false)}
+          onClick={() => props.closeWhenClickOverlay && close.call(void 0, duration, theLastSheetId, props.beforeClose)}
           style={props.overlayStyle}
           portal={props.portal!}
           show={!!props.overlay}>

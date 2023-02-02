@@ -2,6 +2,8 @@
   --solidMobile-loading-duration: 2s;
   --solidMobile-loading-size: 22px;
   --solidMobile-loading-color: var(--solidMobile-white);
+  --solidMobile-loading-gap-width: 7px;
+
 }
 
 @keyframes LoadingRotate {
@@ -22,8 +24,16 @@
   fill: var(--solidMobile-loading-color);
   .icon {
     animation: LoadingRotate ease var(--solidMobile-loading-duration) infinite;
+    display: inline-block;
+    vertical-align: middle;
   }
   &-text {
     font-size: var(--solidMobile-font-md);
+    display: inline-block;
+    vertical-align: middle;
+  }
+  &-gap {
+    width: var(--solidMobile-loading-gap-width);
+    display: inline-block;
   }
 }
