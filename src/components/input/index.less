@@ -1,0 +1,25 @@
+:root {
+  --solidMobile-input-cell-background: var(--solidMobile-white);
+  --solidMobile-input-cell-height-md: 44px;
+  --solidMobile-input-cell-padding-x: 16px;
+  --solidMobile-input-cell-padding-y: 10px;
+}
+
+.solidMobile-input-cell {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--solidMobile-input-cell-background);
+  height: var(--solidMobile-input-cell-height-md);
+  font-size: var(--solidMobile-font-lg);
+  padding: var(--solidMobile-input-cell-padding-y) var(--solidMobile-input-cell-padding-x);
+  &-field {
+    text-align: left;
+    flex: 0 0 70%;
+    color: var(--solidMobile-dark-main);
+  }
+  &-label {
+    flex: 0 0 30%;
+    color: var(--solidMobile-dark-main);
+  }
+}
