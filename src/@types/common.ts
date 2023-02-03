@@ -16,4 +16,4 @@ export type ComponentProps<T> = {
 
 export type NoLimitFunc = (...arg: unknown []) => unknown
 
-export type EventHandleFunc<T = unknown> = (evt: T extends unknown ? Event : T) => unknown
+export type EventHandleFunc<T extends Event = Event> = (evt: T) => unknown

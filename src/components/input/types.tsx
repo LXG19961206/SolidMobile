@@ -6,9 +6,9 @@ import { BasePropsAndAttrs } from "../common/types";
 
 type InputVal = HTMLInputElement["value"]
 
-type InputType = HTMLInputElement["type"]
+type InputType = 'tel' | 'url' | 'date' | 'file' | 'text' | 'time' | 'week' | 'color' | 'digit' | 'email' | 'image' | 'month' | 'radio' | 'range' | 'reset' | 'button' | 'hidden' | 'number' | 'search' | 'submit' | 'checkbox' | 'password' | 'textarea' | 'datetime-local'
 
-type ValueFormatter = <T extends string = string>(val: string) => T 
+type ValueFormatter = (val: string) => string
 
 type FormatterTriggers = "input" | "change" | "blur"
 
@@ -59,4 +59,11 @@ export interface InputProps extends BasePropsAndAttrs {
   onClickValue: NoLimitFunc,
   onClickLeftIcon: NoLimitFunc,
   onClickRightIcon: NoLimitFunc
+}
+
+export const InputTypeDict = {
+  password: 'password',
+  text: 'text',
+  email: 'email',
+
 }

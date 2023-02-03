@@ -8,9 +8,17 @@ export default () => {
 
   return (
     <>
-      <Loading color="red" textColor="red" icon={"success"}> { val() } </Loading>
+      <Loading 
+        color="red" 
+        textColor="red" 
+        icon={"success"}> 
+        { val() } 
+      </Loading>
       <Input
         colon
+        formatterTrigger="blur"
+        formatter={ (val) => val.toUpperCase() }
+        maxlength={5}
         placeholder="请输入用户信息"
         label="文本"
         bind={[val, setVal]}
