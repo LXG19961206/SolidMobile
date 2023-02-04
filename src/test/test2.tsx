@@ -15,13 +15,14 @@ export default () => {
         { val() } 
       </Loading>
       <Input
+        bind={[val, setVal]}
+        clearable
         colon
         formatterTrigger="blur"
         formatter={ (val) => val.toUpperCase() }
         maxlength={5}
         placeholder="请输入用户信息"
         label="文本"
-        bind={[val, setVal]}
       />
     </>
   )

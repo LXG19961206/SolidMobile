@@ -1,4 +1,4 @@
-import { StringIterator } from "lodash";
+import { StringIterator, tail } from "lodash";
 import { Accessor, JSXElement, Setter } from "solid-js";
 import { EventHandleFunc, NoLimitFunc, Size } from "../../@types/common";
 import { BasePropsAndAttrs } from "../common/types";
@@ -14,6 +14,33 @@ type FormatterTriggers = "input" | "change" | "blur"
 
 type InputAlignTypes = "right" | "left" | "center"
 
+
+export const InputTypeDict: Record<InputType, InputType> = {
+  password: 'password',
+  text: 'text',
+  email: 'email',
+  number: 'number',
+  tel: 'tel',
+  url: 'url',
+  date: 'date',
+  file: 'file',
+  time: 'time',
+  week: 'week',
+  color: 'color',
+  digit: 'digit',
+  image: 'image',
+  month: 'month',
+  radio: 'radio',
+  checkbox: 'checkbox',
+  range: 'range',
+  reset: 'reset',
+  button: 'button',
+  hidden: 'hidden',
+  search: 'search',
+  submit: 'submit',
+  textarea: 'textarea',
+  "datetime-local": 'datetime-local'
+}
 
 export interface InputProps extends BasePropsAndAttrs {
   bind: [Accessor<InputVal>, Setter<InputVal>],
@@ -59,11 +86,4 @@ export interface InputProps extends BasePropsAndAttrs {
   onClickValue: NoLimitFunc,
   onClickLeftIcon: NoLimitFunc,
   onClickRightIcon: NoLimitFunc
-}
-
-export const InputTypeDict = {
-  password: 'password',
-  text: 'text',
-  email: 'email',
-
 }
