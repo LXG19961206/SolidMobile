@@ -5,8 +5,26 @@
   --solidMobile-input-cell-padding-y: 10px;
 }
 
+.solidMobile-cell-group {
+  overflow: hidden;
+  .solidMobile-input-cell:not(:last-child) {
+    &::after {
+      position: absolute;
+      content: '';
+      width: calc(100% - var(--solidMobile-cell-border-offset) * 2);
+      left: var(--solidMobile-cell-border-offset);
+      bottom: 0;
+      height: 1px;
+      transform: scaleY(.5);
+      background: #efefef;
+    }
+  }
+}
+
 .solidMobile-input-cell {
+  position: relative;
   display: flex;
+  align-items: center;
   width: 100%;
   box-sizing: border-box;
   background: var(--solidMobile-input-cell-background);
@@ -22,10 +40,15 @@
   &-label {
     flex: 0 0 30%;
     color: var(--solidMobile-dark-main);
+    .icon { margin-right: 3px; }
   }
   &-with-clear {
     .solidMobile-input-cell-field {
       flex: 0 0 55%;
     }
+  }
+  &-clearIcon {
+    flex: 0 0 15%;
+    text-align: center;
   }
 }

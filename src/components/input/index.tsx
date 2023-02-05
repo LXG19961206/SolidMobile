@@ -1,5 +1,5 @@
 import { InputProps, InputTypeDict } from './types'
-import { createEffect, createSignal, Show } from 'solid-js'
+import { createEffect, createSignal, onMount, Show } from 'solid-js'
 import { attrsForward } from '../../util/attrsForward'
 import './index.less'
 import { propDefaultValue } from '../../util/propDefaultValue'
@@ -8,23 +8,31 @@ import { isNumber } from 'lodash'
 import { HTMLNativeEvent } from '../../dict/native'
 import { MaybeElement } from '../common'
 import Icon from '../icon'
+import { NoLimitFunc } from '../../@types/common'
 
+declare module "solid-js" {
+  namespace JSX {
+    interface CustomEvents {
+      click: NoLimitFunc
+    }
+  }
+}
 
 
 export default (props: Partial<InputProps>) => {
 
   const [getter, setter] = props.bind || []
 
-  let [iconElement, setIconEl] = createSignal<HTMLSpanElement>()
+  const intersectionOfInputAttrsAndProps = ['maxlength', 'disabled', 'readonly', 'name', 'id', 'placeholder']
 
-  const intersectionOfInputAttrsAndProps = ['disabled', 'readonly', 'name', 'id', 'placeholder']
+  const [inputEl, setInputEl] = createSignal<HTMLInputElement>()
 
   const makeReactive = (event: Event, formatterFlag: boolean) => {
     const input = event.target as HTMLInputElement
     /* handle max length */
     if (
-      props.type ===  InputTypeDict.number && 
-      isNumber(props.maxlength) && 
+      props.type === InputTypeDict.number &&
+      isNumber(props.maxlength) &&
       input.value.length > props.maxlength
     ) {
       input.value = input.value.slice(0, props.maxlength)
@@ -36,18 +44,18 @@ export default (props: Partial<InputProps>) => {
   }
 
   const onChange = mergeEvent(
-    props.onChange, 
+    props.onChange,
     (evt) => props.lazy && makeReactive(evt, !!props.formatter && props.formatterTrigger === HTMLNativeEvent.change)
   )
 
   const onInput = mergeEvent(
-    props.onInput, 
+    props.onInput,
     (evt) => !props.lazy && makeReactive(evt, !!props.formatter && props.formatterTrigger === HTMLNativeEvent.input)
   )
 
   const onBlur = mergeEvent(
     props.onBlur,
-    evt => makeReactive(evt, !!props.formatter && props.formatterTrigger === HTMLNativeEvent.blur)
+    evt => makeReactive(evt, !!props.formatter && (props.formatterTrigger === HTMLNativeEvent.blur || !props.formatterTrigger))
   )
 
   const onClear = () => {
@@ -58,44 +66,55 @@ export default (props: Partial<InputProps>) => {
     "solidMobile-input-cell-with-clear": !!props.clearIcon || !!props.clearable
   })
 
-  createEffect(() => {
-    if (props.clearIcon || props.clearable || setter) {
-      iconElement()?.addEventListener(HTMLNativeEvent.click, setter!.bind(void 0, ''), { once: true })
-    }
+  onMount(() => {
+    props.autofocus && inputEl()?.focus()
   })
 
   return (
     <Show
-      fallback={TextArea(props)} 
+      fallback={TextArea(props)}
       when={!props.textarea}>
-        <div 
-          classList={classList()}
-          class="solidMobile-input-cell">
-          <span class="solidMobile-input-cell-label"> { props.label }{ props.colon ? ':' : '' } </span>
-          <input
-            { ...attrsForward(props, intersectionOfInputAttrsAndProps) }
-            class="solidMobile-input-cell-field"
-            onInput={onInput}
-            onChange={onChange}
-            onBlur={onBlur}
-            value={ getter ? getter() : props.value }
-            type={propDefaultValue(props.type, InputTypeDict.text)}
-          />
-          <Show when={props.clearable && getter?.call(void 0) }>
-            <span
-              ref={setIconEl}
-              class="solidMobile-input-cell-clearIcon">
+      <div
+        classList={classList()}
+        class="solidMobile-input-cell">
+        <span
+          on:click={props.onClickLabel}
+          class={"solidMobile-input-cell-label" + ` ${props.labelClass}`}>
+          <MaybeElement maybeJsx={props.leftIcon}>
+            <Icon
+              on:click={ props.onClickLeftIcon }
+              name={props.leftIcon as string}>
+            </Icon>
+          </MaybeElement>
+          {props.label}{props.colon ? ':' : ''}
+        </span>
+        <input
+          {...attrsForward(props, intersectionOfInputAttrsAndProps)}
+          class="solidMobile-input-cell-field"
+          onInput={onInput}
+          onChange={onChange}
+          ref={setInputEl}
+          onFocus={props.onFocus}
+          on:click={props.onClickValue}
+          onBlur={onBlur}
+          value={getter ? getter() : props.value}
+          type={propDefaultValue(props.type, InputTypeDict.text)}
+        />
+        <Show when={props.clearable && getter?.call(void 0)}>
+          <span
+            on:click={props.clearable ? onClear : props.rightIcon ? props.onClickRightIcon : void 0}
+            class="solidMobile-input-cell-clearIcon">
+            <Icon
+              name={"shut"}>
+            </Icon>
+            <MaybeElement maybeJsx={props.clearIcon}>
               <Icon
-                onClick={ onClear }
-                name={"shut"}></Icon>
-              <MaybeElement maybeJsx={props.clearIcon}>
-                <Icon
-                  onClick={ onClear }
-                  name={props.clearIcon as string}></Icon>
-              </MaybeElement>
-            </span>
-          </Show>
-        </div>
+                name={props.clearIcon as string}>
+              </Icon>
+            </MaybeElement>
+          </span>
+        </Show>
+      </div>
     </Show>
   )
 }

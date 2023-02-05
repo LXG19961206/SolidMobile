@@ -8,7 +8,7 @@ export const useNativeEventFilter = function  <T extends Partial<BasePropsAndAtt
   return pick(
     props, 
     Object.keys(props)
-      .filter(key => /^on[A-Za-z]{1,}$/.test(key))
-      .filter(eventName => eventName.toLocaleLowerCase() in window)
+      .filter(key => /^on(\:?)[a-zA-Z]{1,}$/.test(key))
+      .filter(eventName => eventName.replace(':', '').toLocaleLowerCase() in window)
   )
 }
