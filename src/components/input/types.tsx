@@ -67,7 +67,7 @@ export interface InputProps extends BasePropsAndAttrs {
   showWordLimit: boolean,
   showError: boolean,
   errorText: string | JSXElement,
-  errorTextAlign: string,
+  errorTextAlign: "left" | "right" | "center",
   formatter: ValueFormatter,
   formatterTrigger: FormatterTriggers,
   validator: ((value: string) => boolean) | RegExp [],

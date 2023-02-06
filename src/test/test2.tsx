@@ -22,13 +22,24 @@ export default () => {
       <CellGroup isCard>
         <Input
           required
+          showError
+          validator={(va) => va.length > 10 }
           bind={[val, setVal]}
-          leftIcon="Loading"
           clearable
+          errorTextAlign="right"
           autofocus
           onClickLeftIcon={() => console.log(123)}
           formatter={(val) => val.toUpperCase()}
+          placeholder="请输入用户信息"
+          label="文本"
+        />
+        <Input
+          leftIcon="Loading"
+          clearable
           maxlength={5}
+          autofocus
+          onClickLeftIcon={() => console.log(123)}
+          formatter={(val) => val.toUpperCase()}
           placeholder="请输入用户信息"
           label="文本"
         />
@@ -37,20 +48,9 @@ export default () => {
           leftIcon="Loading"
           clearable
           autofocus
+          maxlength={7}
           onClickLeftIcon={() => console.log(123)}
           formatter={(val) => val.toUpperCase()}
-          maxlength={5}
-          placeholder="请输入用户信息"
-          label="文本"
-        />
-        <Input
-          bind={[val, setVal]}
-          leftIcon="Loading"
-          clearable
-          autofocus
-          onClickLeftIcon={() => console.log(123)}
-          formatter={(val) => val.toUpperCase()}
-          maxlength={5}
           placeholder="请输入用户信息"
           label="文本"
         />

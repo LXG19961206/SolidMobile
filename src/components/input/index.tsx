@@ -1,5 +1,5 @@
 import { InputProps, InputTypeDict } from './types'
-import { createEffect, createSignal, onMount, Show } from 'solid-js'
+import { createEffect, createSignal, on, onMount, Show } from 'solid-js'
 import { attrsForward } from '../../util/attrsForward'
 import './index.less'
 import { propDefaultValue } from '../../util/propDefaultValue'
@@ -27,28 +27,39 @@ export default (props: Partial<InputProps>) => {
 
   const [inputEl, setInputEl] = createSignal<HTMLInputElement>()
 
-  const [errStatus, setErrStatus] = createSignal<boolean>(false)
+  const [satisfyRules, setSatisfyStatus] = createSignal<boolean>(false)
 
   const makeReactive = (event: Event, formatterFlag: boolean) => {
     const input = event.target as HTMLInputElement
-    /* handle max length */
-    if (
-      props.type === InputTypeDict.number &&
-      isNumber(props.maxlength) &&
-      input.value.length > props.maxlength
-    ) {
-      input.value = input.value.slice(0, props.maxlength)
-    }
 
     if (props.formatter && formatterFlag) {
       input.value = props.formatter(input.value)
     }
     setter && setter(input.value)
+  }
 
-    if (props.validator && props.errorText) {
-      isFunction(props.validator) ? props.validator(input.value) : props.validator.every(rule => rule.test(input.value))
+  const execCheck = () => {
+    if (props.validator) {
+      setSatisfyStatus(
+        isFunction(props.validator)
+          ? props.validator(getter?.call(void 0) || props.value! || '')
+          : props.validator.every(rule => rule.test(getter?.call(void 0) || props.value! || ''))
+      )
     }
   }
+
+  getter && createEffect(on(getter!, () => {
+    execCheck()
+    /* handle max length */
+    if (
+      isNumber(props.maxlength) &&
+      inputEl?.call(void 0) &&
+      inputEl()!.value.length > props.maxlength 
+    ) {
+      inputEl()!.value = inputEl()!.value.slice(0, props.maxlength)
+    }
+  }))
+
 
   const onChange = mergeEvent(
     props.onChange,
@@ -62,7 +73,8 @@ export default (props: Partial<InputProps>) => {
 
   const onBlur = mergeEvent(
     props.onBlur,
-    evt => makeReactive(evt, !!props.formatter && (props.formatterTrigger === HTMLNativeEvent.blur || !props.formatterTrigger))
+    evt => makeReactive(evt, !!props.formatter && (props.formatterTrigger === HTMLNativeEvent.blur || !props.formatterTrigger)),
+    execCheck
   )
 
   const onClear = () => {
@@ -77,7 +89,7 @@ export default (props: Partial<InputProps>) => {
   const isRequiredButEmpty = () => !!props.required && !props.value && !getter?.call(void 0)
 
   const inputClassList = () => ({
-    "solidMobile-input-cell-field-required": isRequiredButEmpty()
+    "solidMobile-input-cell-field-required": isRequiredButEmpty() && props.showError
   })
 
   onMount(() => {
@@ -127,6 +139,13 @@ export default (props: Partial<InputProps>) => {
                 name={props.clearIcon as string}>
               </Icon>
             </MaybeElement>
+          </span>
+        </Show>
+        <Show when={props.showError && (props.value || getter?.call(void 0)) && !satisfyRules()}>
+          <span
+            style={{ "text-align": props.errorTextAlign }} 
+            class="solidMobile-input-cell-error-tip">
+            请输入正确的{props.label}
           </span>
         </Show>
       </div>

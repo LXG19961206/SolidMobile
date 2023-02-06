@@ -3,16 +3,18 @@
   --solidMobile-input-cell-height-md: 44px;
   --solidMobile-input-cell-padding-x: 16px;
   --solidMobile-input-cell-padding-y: 10px;
+  --solidMobile-input-cell-label-width: 30%;
 }
 
 .solidMobile-input-cell {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   width: 100%;
   box-sizing: border-box;
   background: var(--solidMobile-input-cell-background);
-  height: var(--solidMobile-input-cell-height-md);
+  min-height: var(--solidMobile-input-cell-height-md);
   font-size: var(--solidMobile-font-lg);
   padding: var(--solidMobile-input-cell-padding-y) var(--solidMobile-input-cell-padding-x);
 
@@ -26,8 +28,18 @@
     color: var(--solidMobile-theme-danger);
   }
 
+  &-error-tip {
+    margin-top: 3px;
+    flex: 0 0 100%;
+    text-align: left;
+    box-sizing: border-box;
+    padding-left: var(--solidMobile-input-cell-label-width);
+    color: var(--solidMobile-theme-danger);
+    font-size: var(--solidMobile-font-sm);
+  }
+
   &-label {
-    flex: 0 0 30%;
+    flex: 0 0 var(--solidMobile-input-cell-label-width);
     color: var(--solidMobile-dark-main);
     .icon { margin-right: 3px; }
   }
@@ -35,6 +47,7 @@
   &-required {
     .solidMobile-input-cell-label {
       position: relative;
+      text-indent: 10px;
       &::before {
         content: '*';
         display: inline-block;
@@ -53,7 +66,8 @@
     }
   }
   &-clearIcon {
-    flex: 0 0 15%;
-    text-align: center;
+    flex: 0 0 calc(100% - 85% - var(--solidMobile-input-cell-padding-y));
+    text-align: right;
+    float: right;
   }
 }

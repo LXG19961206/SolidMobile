@@ -4,8 +4,8 @@ import Test2 from './test/test2'
 const App = () => {
   return (
     <>
-      <Test1></Test1>
-      {/* <Test2></Test2> */}
+      {/* <Test1></Test1> */}
+      <Test2></Test2>
     </>
   )
 };
