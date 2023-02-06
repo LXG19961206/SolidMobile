@@ -15,17 +15,38 @@
   height: var(--solidMobile-input-cell-height-md);
   font-size: var(--solidMobile-font-lg);
   padding: var(--solidMobile-input-cell-padding-y) var(--solidMobile-input-cell-padding-x);
+
   &-field {
     text-align: left;
     flex: 0 0 70%;
     color: var(--solidMobile-dark-main);
     letter-spacing: 1px;
   }
+  &-field-required::placeholder {
+    color: var(--solidMobile-theme-danger);
+  }
+
   &-label {
     flex: 0 0 30%;
     color: var(--solidMobile-dark-main);
     .icon { margin-right: 3px; }
   }
+
+  &-required {
+    .solidMobile-input-cell-label {
+      position: relative;
+      &::before {
+        content: '*';
+        display: inline-block;
+        position: absolute;
+        color: var(--solidMobile-theme-danger);
+        font-size: var(--solidMobile-font-lg);
+        top: 0px;
+        left: -10px;
+      }
+    }
+  }
+
   &-with-clear {
     .solidMobile-input-cell-field {
       flex: 0 0 55%;

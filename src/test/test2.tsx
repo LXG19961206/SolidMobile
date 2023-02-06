@@ -21,6 +21,7 @@ export default () => {
 
       <CellGroup isCard>
         <Input
+          required
           bind={[val, setVal]}
           leftIcon="Loading"
           clearable

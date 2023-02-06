@@ -39,14 +39,14 @@ export default (props: Partial<InputProps>) => {
     ) {
       input.value = input.value.slice(0, props.maxlength)
     }
-    
+
     if (props.formatter && formatterFlag) {
       input.value = props.formatter(input.value)
     }
     setter && setter(input.value)
-    
+
     if (props.validator && props.errorText) {
-       isFunction(props.validator) ? props.validator(input.value) : props.validator.every(rule => rule.test(input.value)) 
+      isFunction(props.validator) ? props.validator(input.value) : props.validator.every(rule => rule.test(input.value))
     }
   }
 
@@ -70,7 +70,14 @@ export default (props: Partial<InputProps>) => {
   }
 
   const classList = () => ({
-    "solidMobile-input-cell-with-clear": !!props.clearIcon || !!props.clearable
+    "solidMobile-input-cell-with-clear": !!props.clearIcon || !!props.clearable,
+    "solidMobile-input-cell-required": !!props.required,
+  })
+
+  const isRequiredButEmpty = () => !!props.required && !props.value && !getter?.call(void 0)
+
+  const inputClassList = () => ({
+    "solidMobile-input-cell-field-required": isRequiredButEmpty()
   })
 
   onMount(() => {
@@ -89,7 +96,7 @@ export default (props: Partial<InputProps>) => {
           class={"solidMobile-input-cell-label" + ` ${props.labelClass}`}>
           <MaybeElement maybeJsx={props.leftIcon}>
             <Icon
-              on:click={ props.onClickLeftIcon }
+              on:click={props.onClickLeftIcon}
               name={props.leftIcon as string}>
             </Icon>
           </MaybeElement>
@@ -98,6 +105,7 @@ export default (props: Partial<InputProps>) => {
         <input
           {...attrsForward(props, intersectionOfInputAttrsAndProps)}
           class="solidMobile-input-cell-field"
+          classList={inputClassList()}
           onInput={onInput}
           onChange={onChange}
           ref={setInputEl}
