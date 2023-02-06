@@ -4,7 +4,7 @@ import { attrsForward } from '../../util/attrsForward'
 import './index.less'
 import { propDefaultValue } from '../../util/propDefaultValue'
 import { mergeEvent } from '../../util/merageEvent'
-import { isNumber } from 'lodash'
+import { isNumber, isFunction } from 'lodash'
 import { HTMLNativeEvent } from '../../dict/native'
 import { MaybeElement } from '../common'
 import Icon from '../icon'
@@ -27,6 +27,8 @@ export default (props: Partial<InputProps>) => {
 
   const [inputEl, setInputEl] = createSignal<HTMLInputElement>()
 
+  const [errStatus, setErrStatus] = createSignal<boolean>(false)
+
   const makeReactive = (event: Event, formatterFlag: boolean) => {
     const input = event.target as HTMLInputElement
     /* handle max length */
@@ -37,10 +39,15 @@ export default (props: Partial<InputProps>) => {
     ) {
       input.value = input.value.slice(0, props.maxlength)
     }
+    
     if (props.formatter && formatterFlag) {
       input.value = props.formatter(input.value)
     }
     setter && setter(input.value)
+    
+    if (props.validator && props.errorText) {
+       isFunction(props.validator) ? props.validator(input.value) : props.validator.every(rule => rule.test(input.value)) 
+    }
   }
 
   const onChange = mergeEvent(

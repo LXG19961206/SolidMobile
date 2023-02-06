@@ -70,6 +70,7 @@ export interface InputProps extends BasePropsAndAttrs {
   errorTextAlign: string,
   formatter: ValueFormatter,
   formatterTrigger: FormatterTriggers,
+  validator: ((value: string) => boolean) | RegExp [],
   labelClass: string,
   labelWidth: string,
   labelAlign: string,
