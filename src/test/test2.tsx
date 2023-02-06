@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js"
 import Input from "../components/input"
-import { CellGroup } from '../components/cell'
+import CellGroup from '../components/cellGroup'
 import Loading from "../components/loading"
 import Button from "../components/button"
 
@@ -19,7 +19,7 @@ export default () => {
         {val()}
       </Loading>
 
-      <CellGroup>
+      <CellGroup isCard>
         <Input
           bind={[val, setVal]}
           leftIcon="Loading"

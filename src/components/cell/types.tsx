@@ -21,8 +21,3 @@ import { BasePropsAndAttrs } from "../common/types";
   detailAction: NoLimitFunc,
   iconAction: NoLimitFunc
 }
-
-export interface CellGroupProps extends BasePropsAndAttrs {
-  isCard?: boolean,
-  children: JSXElement
-}

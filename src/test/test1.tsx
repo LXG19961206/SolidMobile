@@ -1,6 +1,7 @@
 import { Component, createSignal } from 'solid-js';
 import Button from '../components/button'
-import Cell, { CellGroup } from '../components/cell'
+import Cell from '../components/cell'
+import CellGroup from '../components/cellGroup';
 import Icon from '../components/icon';
 import Title from '../components/title';
 import { Size } from '../@types/common';

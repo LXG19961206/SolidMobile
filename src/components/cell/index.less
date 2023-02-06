@@ -1,31 +1,6 @@
 :root {
-  --solidMobile-cell-card-width: 90%;
   --solidMobile-cell-border-offset: 16px;
   --solidMobile-cell-value-maxWidth: 250px;
-}
-
-.solidMobile-cell-group {
-  &-card {
-    width: var(--solidMobile-cell-card-width);
-    margin: auto;
-    border-radius: var(--solidMobile-border-radius-md);
-    overflow: hidden;
-  }
-  background: var(--solidMobile-white);
-  border-top: 1px solid var(--solidMobile-border-color);
-  border-bottom: 1px solid var(--solidMobile-border-color);
-  .solidMobile-cell-item:not(:last-child) {
-    &::after {
-      position: absolute;
-      content: '';
-      width: calc(100% - var(--solidMobile-cell-border-offset) * 2);
-      left: var(--solidMobile-cell-border-offset);
-      bottom: 0;
-      height: 1px;
-      transform: scaleY(.5);
-      background: #efefef;
-    }
-  }
 }
 
 .solidMobile-cell-item {

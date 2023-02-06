@@ -1,5 +1,5 @@
 import { SizeDict } from "../../dict/common";
-import { CellGroupProps, CellProps } from "./types";
+import { CellProps } from "./types";
 import { JSX, Show } from 'solid-js'
 import './index.less'
 import { MaybeElement } from '../common'
@@ -55,17 +55,6 @@ export default (props: Partial<CellProps>) => {
           </MaybeElement>
         </p>
       </Show>
-    </div>
-  )
-}
-
-export const CellGroup = (props: CellGroupProps) => {
-  return (
-    <div classList={{
-      "solidMobile-cell-group": true,
-      "solidMobile-cell-group-card": props.isCard
-    }}>
-      {<> {props.children} </>}
     </div>
   )
 }
