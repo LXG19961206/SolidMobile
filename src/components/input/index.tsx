@@ -1,13 +1,13 @@
 import { InputProps, InputTypeDict } from './types'
 import { createEffect, createSignal, on, onMount, Show } from 'solid-js'
 import { attrsForward } from '../../util/attrsForward'
-import './index.less'
 import { propDefaultValue } from '../../util/propDefaultValue'
 import { mergeEvents } from '../../util/merageEvent'
 import { isNumber, isFunction } from 'lodash'
 import { HTMLNativeEvent } from '../../dict/native'
 import { MaybeElement } from '../common'
 import Icon from '../icon'
+import './index.less'
 import { NoLimitFunc } from '../../@types/common'
 
 declare module "solid-js" {
@@ -53,6 +53,7 @@ export default (props: Partial<InputProps>) => {
     execCheck()
     /* handle max length */
     if (
+      props.type === InputTypeDict.number &&
       isNumber(props.maxlength) &&
       inputEl?.call(void 0) &&
       inputEl()!.value.length > props.maxlength 
@@ -132,13 +133,9 @@ export default (props: Partial<InputProps>) => {
           <span
             on:click={props.clearable ? onClear : props.rightIcon ? props.onClickRightIcon : void 0}
             class="solidMobile-input-cell-clearIcon">
-            <Icon
-              name={"shut"}>
-            </Icon>
+            <Icon name={"shut"}></Icon>
             <MaybeElement maybeJsx={props.clearIcon}>
-              <Icon
-                name={props.clearIcon as string}>
-              </Icon>
+              <Icon name={props.clearIcon as string}></Icon>
             </MaybeElement>
           </span>
         </Show>
