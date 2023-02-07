@@ -73,7 +73,7 @@ export interface InputProps extends BasePropsAndAttrs {
   validator: ((value: string) => boolean) | RegExp [],
   labelClass: string,
   labelWidth: string,
-  labelAlign: string,
+  labelAlign: "left" | "right" | "center",
   align: InputAlignTypes,
   leftIcon: string | JSXElement,
   rightIcon: string | JSXElement,
@@ -86,5 +86,6 @@ export interface InputProps extends BasePropsAndAttrs {
   onClickLabel: NoLimitFunc,
   onClickValue: NoLimitFunc,
   onClickLeftIcon: NoLimitFunc,
-  onClickRightIcon: NoLimitFunc
+  onClickRightIcon: NoLimitFunc,
+  onClickLink: NoLimitFunc
 }

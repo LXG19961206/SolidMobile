@@ -21,12 +21,13 @@ export default () => {
 
       <CellGroup isCard>
         <Input
+          autosize
           required
           showError
+          textarea
           validator={(va) => va.length > 10 }
           bind={[val, setVal]}
-          clearable
-          errorTextAlign="right"
+          islink
           autofocus
           onClickLeftIcon={() => console.log(123)}
           formatter={(val) => val.toUpperCase()}
