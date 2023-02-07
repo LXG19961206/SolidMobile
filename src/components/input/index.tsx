@@ -3,7 +3,7 @@ import { createEffect, createSignal, on, onMount, Show } from 'solid-js'
 import { attrsForward } from '../../util/attrsForward'
 import './index.less'
 import { propDefaultValue } from '../../util/propDefaultValue'
-import { mergeEvent } from '../../util/merageEvent'
+import { mergeEvents } from '../../util/merageEvent'
 import { isNumber, isFunction } from 'lodash'
 import { HTMLNativeEvent } from '../../dict/native'
 import { MaybeElement } from '../common'
@@ -39,11 +39,12 @@ export default (props: Partial<InputProps>) => {
   }
 
   const execCheck = () => {
-    if (props.validator) {
+    const value = inputEl()?.value
+    if (props.validator && value) {
       setSatisfyStatus(
         isFunction(props.validator)
-          ? props.validator(getter?.call(void 0) || props.value! || '')
-          : props.validator.every(rule => rule.test(getter?.call(void 0) || props.value! || ''))
+          ? props.validator(value)
+          : props.validator.every(rule => rule.test(value))
       )
     }
   }
@@ -61,17 +62,17 @@ export default (props: Partial<InputProps>) => {
   }))
 
 
-  const onChange = mergeEvent(
+  const onChange = mergeEvents(
     props.onChange,
     (evt) => props.lazy && makeReactive(evt, !!props.formatter && props.formatterTrigger === HTMLNativeEvent.change)
   )
 
-  const onInput = mergeEvent(
+  const onInput = mergeEvents(
     props.onInput,
     (evt) => !props.lazy && makeReactive(evt, !!props.formatter && props.formatterTrigger === HTMLNativeEvent.input)
   )
 
-  const onBlur = mergeEvent(
+  const onBlur = mergeEvents(
     props.onBlur,
     evt => makeReactive(evt, !!props.formatter && (props.formatterTrigger === HTMLNativeEvent.blur || !props.formatterTrigger)),
     execCheck
@@ -145,7 +146,7 @@ export default (props: Partial<InputProps>) => {
           <span
             style={{ "text-align": props.errorTextAlign }} 
             class="solidMobile-input-cell-error-tip">
-            请输入正确的{props.label}
+            { props.errorText || `请输入正确的${props.label}` }
           </span>
         </Show>
       </div>
