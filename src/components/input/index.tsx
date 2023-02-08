@@ -1,6 +1,5 @@
 import { InputProps, InputTypeDict } from './types'
-import { createEffect, createSignal, on, onMount, Show, Switch, Match, ValidComponent } from 'solid-js'
-import { Dynamic } from 'solid-js/web'
+import { createEffect, createSignal, on, onMount, Show, Switch, Match } from 'solid-js'
 
 import { attrsForward } from '../../util/attrsForward'
 import { propDefaultValue } from '../../util/propDefaultValue'
@@ -46,8 +45,10 @@ export default (props: Partial<InputProps>) => {
       input.value &&
       props.autosize
     ) {
-      input.style.height = 'auto'
-      input.style.height = input.scrollHeight + 'px'
+      input.style.height = ''
+      if (input.offsetHeight < input.scrollHeight) {
+        input.style.height = (input.scrollHeight + 'px')
+      }
     }
   }
 
@@ -133,18 +134,21 @@ export default (props: Partial<InputProps>) => {
       </span>
       <Show
         fallback={
-          <textarea
-            {...attrsForward(props, intersectionOfInputAttrsAndProps)}
-            class="solidMobile-input-cell-field"
-            classList={inputClassList()}
-            onInput={onInput}
-            onChange={onChange}
-            ref={setInputEl}
-            onFocus={props.onFocus}
-            on:click={props.onClickValue}
-            onBlur={onBlur}
-            value={getter ? getter() : props.value}
-          />
+          <>
+            <textarea
+              {...attrsForward(props, intersectionOfInputAttrsAndProps)}
+              class="solidMobile-input-cell-field"
+              classList={inputClassList()}
+              onInput={onInput}
+              onChange={onChange}
+              ref={setInputEl}
+              onFocus={props.onFocus}
+              on:click={props.onClickValue}
+              onBlur={onBlur}
+              value={getter ? getter() : props.value}
+            />
+          </>
+          
         }
         when={!props.textarea && props.type !== InputTypeDict.textarea}>
         <input
