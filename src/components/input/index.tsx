@@ -1,6 +1,5 @@
 import { InputProps, InputTypeDict } from './types'
 import { createEffect, createSignal, on, onMount, Show, Switch, Match } from 'solid-js'
-
 import { attrsForward } from '../../util/attrsForward'
 import { propDefaultValue } from '../../util/propDefaultValue'
 import { mergeEvents } from '../../util/merageEvent'
@@ -40,8 +39,9 @@ export default (props: Partial<InputProps>) => {
 
     setter && setter(input.value)
 
+    // auto handle textarea height while "autosize" is true 
     if (
-      (props.textarea || props.type === InputTypeDict.textarea) && 
+      (props.textarea || props.type === InputTypeDict.textarea) &&
       input.value &&
       props.autosize
     ) {
@@ -65,23 +65,26 @@ export default (props: Partial<InputProps>) => {
 
   getter && createEffect(on(getter!, () => {
     execCheck()
-    /* handle max length */
     if (
+      // if is number type input
       props.type === InputTypeDict.number &&
+      // and user set "maxlength" prop 
       isNumber(props.maxlength) &&
       inputEl?.call(void 0) &&
+      // and the length of value is over limit
       inputEl()!.value.length > props.maxlength
     ) {
       inputEl()!.value = inputEl()!.value.slice(0, props.maxlength)
     }
   }))
 
-
+  // when "lazy" prop is true, reactive handler exec only "onchange" event dispatch
   const onChange = mergeEvents(
     props.onChange,
     (evt) => props.lazy && makeReactive(evt, !!props.formatter && props.formatterTrigger === HTMLNativeEvent.change)
   )
 
+  // when "lazy" prop is false, reactive handler exec only "oninput" event dispatch
   const onInput = mergeEvents(
     props.onInput,
     (evt) => !props.lazy && makeReactive(evt, !!props.formatter && props.formatterTrigger === HTMLNativeEvent.input)
@@ -98,11 +101,13 @@ export default (props: Partial<InputProps>) => {
   }
 
   const classList = () => ({
+    // style of "clearIcon" is also used for other rightIcons.
     "solidMobile-input-cell-with-clear": !!props.clearIcon || !!props.clearable || !!props.rightIcon || !!props.islink,
     "solidMobile-input-cell-required": !!props.required,
     "solidMobile-input-cell-align-center": !!props.center,
   })
 
+  // returns "not null check" result
   const isRequiredButEmpty = () => !!props.required && !props.value && !getter?.call(void 0)
 
   const inputClassList = () => ({
@@ -134,21 +139,18 @@ export default (props: Partial<InputProps>) => {
       </span>
       <Show
         fallback={
-          <>
-            <textarea
-              {...attrsForward(props, intersectionOfInputAttrsAndProps)}
-              class="solidMobile-input-cell-field"
-              classList={inputClassList()}
-              onInput={onInput}
-              onChange={onChange}
-              ref={setInputEl}
-              onFocus={props.onFocus}
-              on:click={props.onClickValue}
-              onBlur={onBlur}
-              value={getter ? getter() : props.value}
-            />
-          </>
-          
+          <textarea
+            {...attrsForward(props, intersectionOfInputAttrsAndProps)}
+            class="solidMobile-input-cell-field"
+            classList={inputClassList()}
+            onInput={onInput}
+            onChange={onChange}
+            ref={setInputEl}
+            onFocus={props.onFocus}
+            on:click={props.onClickValue}
+            onBlur={onBlur}
+            value={getter ? getter() : props.value}
+          />
         }
         when={!props.textarea && props.type !== InputTypeDict.textarea}>
         <input
