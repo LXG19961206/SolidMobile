@@ -22,12 +22,15 @@ export default () => {
       <CellGroup isCard>
         <Input
           autosize
-          required
-          showError
           textarea
-          validator={(va) => va.length > 10 }
+          required
+          showWordLimit
+          maxlength={30}
+          showError
+          errorText="请输入正确的身份证号"
+          clearable
+          validator={[/^\d{10,18}$/]}
           bind={[val, setVal]}
-          islink
           autofocus
           onClickLeftIcon={() => console.log(123)}
           formatter={(val) => val.toUpperCase()}

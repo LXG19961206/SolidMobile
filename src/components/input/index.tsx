@@ -9,6 +9,7 @@ import { MaybeElement } from '../common'
 import Icon from '../icon'
 import './index.less'
 import { NoLimitFunc } from '../../@types/common'
+import { PositionDict } from '../../dict/common'
 
 declare module "solid-js" {
   namespace JSX {
@@ -26,6 +27,8 @@ export default (props: Partial<InputProps>) => {
   const intersectionOfInputAttrsAndProps = ['maxlength', 'disabled', 'readonly', 'name', 'id', 'placeholder']
 
   const [inputEl, setInputEl] = createSignal<HTMLInputElement | HTMLTextAreaElement>()
+
+  const [labelEl, setLabelEl] = createSignal<HTMLLabelElement>()
 
   const [satisfyRules, setSatisfyStatus] = createSignal<boolean>(false)
 
@@ -46,8 +49,12 @@ export default (props: Partial<InputProps>) => {
       props.autosize
     ) {
       input.style.height = ''
+      labelEl()!.style.height = ''
       if (input.offsetHeight < input.scrollHeight) {
         input.style.height = (input.scrollHeight + 'px')
+        if (props.labelAlign === 'center') {
+         labelEl()!.style.height = (input.scrollHeight + 'px')
+        }
       }
     }
   }
@@ -98,6 +105,8 @@ export default (props: Partial<InputProps>) => {
 
   const onClear = () => {
     setter?.call(void 0, '')
+    inputEl()!.style.height = ''
+    labelEl()!.style.height = ''
   }
 
   const classList = () => ({
@@ -105,6 +114,8 @@ export default (props: Partial<InputProps>) => {
     "solidMobile-input-cell-with-clear": !!props.clearIcon || !!props.clearable || !!props.rightIcon || !!props.islink,
     "solidMobile-input-cell-required": !!props.required,
     "solidMobile-input-cell-align-center": !!props.center,
+    "solidMobile-input-cell-textarea-autosize": !!props.textarea || props.type === InputTypeDict.textarea,
+    [`solidMobile-input-cell-with-label-${propDefaultValue(props.labelAlign, 'left')}`]: true,
   })
 
   // returns "not null check" result
@@ -123,11 +134,9 @@ export default (props: Partial<InputProps>) => {
       classList={classList()}
       class="solidMobile-input-cell">
       <span
+        ref={setLabelEl}
         on:click={props.onClickLabel}
-        style={{
-          "text-align": propDefaultValue(props.labelAlign, 'left'),
-          width: props.labelWidth
-        }}
+        style={{ width: props.labelWidth }}
         class={"solidMobile-input-cell-label" + ` ${props.labelClass}`}>
         <MaybeElement maybeJsx={props.leftIcon}>
           <Icon
@@ -139,18 +148,20 @@ export default (props: Partial<InputProps>) => {
       </span>
       <Show
         fallback={
-          <textarea
-            {...attrsForward(props, intersectionOfInputAttrsAndProps)}
-            class="solidMobile-input-cell-field"
-            classList={inputClassList()}
-            onInput={onInput}
-            onChange={onChange}
-            ref={setInputEl}
-            onFocus={props.onFocus}
-            on:click={props.onClickValue}
-            onBlur={onBlur}
-            value={getter ? getter() : props.value}
-          />
+          <>
+            <textarea
+              {...attrsForward(props, intersectionOfInputAttrsAndProps)}
+              class="solidMobile-input-cell-field"
+              classList={inputClassList()}
+              onInput={onInput}
+              onChange={onChange}
+              ref={setInputEl}
+              onFocus={props.onFocus}
+              on:click={props.onClickValue}
+              onBlur={onBlur}
+              value={getter ? getter() : props.value}
+            />
+          </>
         }
         when={!props.textarea && props.type !== InputTypeDict.textarea}>
         <input
@@ -200,6 +211,15 @@ export default (props: Partial<InputProps>) => {
           </span>
         </Match>
       </Switch>
+      <Show when={
+        (getter?.call(void 0) || props.value ) &&
+        props.showWordLimit && 
+        props.maxlength && 
+        (props.textarea || props.type === InputTypeDict.textarea) }>
+        <span class="solidMobile-input-cell-field-limit">
+          {getter ? getter().length : props.value ? props.value.length : 0}/{props.maxlength}
+        </span>
+      </Show>
       <Show when={props.showError && (props.value || getter?.call(void 0)) && !satisfyRules()}>
         <span
           style={{ "text-align": props.errorTextAlign }}

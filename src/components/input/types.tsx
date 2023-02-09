@@ -14,7 +14,6 @@ type FormatterTriggers = "input" | "change" | "blur"
 
 type InputAlignTypes = "right" | "left" | "center"
 
-
 export const InputTypeDict: Record<InputType, InputType> = {
   password: 'password',
   text: 'text',
@@ -73,7 +72,7 @@ export interface InputProps extends BasePropsAndAttrs {
   validator: ((value: string) => boolean) | RegExp [],
   labelClass: string,
   labelWidth: string,
-  labelAlign: "left" | "right" | "center",
+  labelAlign: "top" | "left" | "center",
   align: InputAlignTypes,
   leftIcon: string | JSXElement,
   rightIcon: string | JSXElement,

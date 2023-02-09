@@ -4,7 +4,11 @@
   --solidMobile-input-cell-padding-x: 16px;
   --solidMobile-input-cell-padding-y: 10px;
   --solidMobile-input-cell-label-width: 30%;
+  --solidMobile-input-lineHeight-normal: 24px;
 }
+
+
+
 
 .solidMobile-input-cell {
   position: relative;
@@ -18,13 +22,14 @@
   font-size: var(--solidMobile-font-lg);
   padding: var(--solidMobile-input-cell-padding-y) var(--solidMobile-input-cell-padding-x);
 
+
   &-field {
     text-align: left;
-    flex: 0 0 70%;
+    flex: 0 0 calc(100% - var(--solidMobile-input-cell-label-width) - var(--solidMobile-input-cell-padding-x));
     color: var(--solidMobile-dark-main);
     letter-spacing: 1px;
-    height: 24px;
-    line-height: 24px;
+    height: var(--solidMobile-input-lineHeight-normal);
+    line-height: var(--solidMobile-input-lineHeight-normal);
     resize: none;
   }
   &-field-required::placeholder {
@@ -50,15 +55,11 @@
   &-required {
     .solidMobile-input-cell-label {
       position: relative;
-      text-indent: 10px;
+      // text-indent: 10px;
       &::before {
         content: '*';
-        display: inline-block;
-        position: absolute;
         color: var(--solidMobile-theme-danger);
         font-size: var(--solidMobile-font-lg);
-        top: 0px;
-        left: -10px;
       }
     }
   }
@@ -79,4 +80,40 @@
     text-align: right;
     float: right;
   }
+}
+
+.solidMobile-input-cell-with-label-top {
+  .solidMobile-input-cell-label {
+    flex: 0 1 100%;
+    margin-bottom: 4px;
+  }
+
+  .solidMobile-input-cell-field {
+    text-align: left;
+    flex: 0 0 calc(100% - var(--solidMobile-input-cell-padding-x));
+  }
+
+  &.solidMobile-input-cell-with-clear {
+    .solidMobile-input-cell-field {
+      flex: 0 0 calc(100% - var(--solidMobile-input-cell-padding-x) - 10%);
+    }
+    .solidMobile-input-cell-error-tip {
+      padding-left: 0;
+    }
+  }
+  
+}
+
+.solidMobile-input-cell-with-label-center {
+  .solidMobile-input-cell-label {
+    text-align: center;
+  }
+}
+
+.solidMobile-input-cell-field-limit {
+  position: absolute;
+  bottom: calc(0.5 * var(--solidMobile-input-lineHeight-normal));
+  right: var(--solidMobile-input-lineHeight-normal);
+  color: var(--solidMobile-dark-secondary);
+  font-size: var(--solidMobile-font-sm);
 }
