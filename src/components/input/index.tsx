@@ -9,7 +9,6 @@ import { MaybeElement } from '../common'
 import Icon from '../icon'
 import './index.less'
 import { NoLimitFunc } from '../../@types/common'
-import { PositionDict } from '../../dict/common'
 
 declare module "solid-js" {
   namespace JSX {
@@ -125,6 +124,12 @@ export default (props: Partial<InputProps>) => {
     "solidMobile-input-cell-field-required": isRequiredButEmpty() && props.showError
   })
 
+  const getCurrentLength = () => {
+    const currentLength = inputEl()?.value.length
+    return (currentLength && props.maxlength)
+      ? (currentLength < props.maxlength ? currentLength : props.maxlength) : 0  
+  }
+
   onMount(() => {
     props.autofocus && inputEl()?.focus()
   })
@@ -217,7 +222,7 @@ export default (props: Partial<InputProps>) => {
         props.maxlength && 
         (props.textarea || props.type === InputTypeDict.textarea) }>
         <span class="solidMobile-input-cell-field-limit">
-          {getter ? getter().length : props.value ? props.value.length : 0}/{props.maxlength}
+          { getCurrentLength() + `/${props.maxlength}`}
         </span>
       </Show>
       <Show when={props.showError && (props.value || getter?.call(void 0)) && !satisfyRules()}>
