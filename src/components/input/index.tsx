@@ -9,6 +9,7 @@ import { MaybeElement } from '../common'
 import Icon from '../icon'
 import './index.less'
 import { NoLimitFunc } from '../../@types/common'
+import { useFormContext } from '../form/context'
 
 declare module "solid-js" {
   namespace JSX {
@@ -20,6 +21,8 @@ declare module "solid-js" {
 
 
 export default (props: Partial<InputProps>) => {
+
+  const formCtx = useFormContext()
 
   const [getter, setter] = props.bind || []
 
@@ -56,6 +59,17 @@ export default (props: Partial<InputProps>) => {
         }
       }
     }
+
+    if (
+      !!formCtx && 
+      (props.name || props.label)
+    ) {
+      formCtx.setFormItemValue(
+        (props.name || props.label) as string,
+        input.value
+      )
+    }
+    
   }
 
   const execCheck = () => {
@@ -131,7 +145,15 @@ export default (props: Partial<InputProps>) => {
   }
 
   onMount(() => {
-    props.autofocus && inputEl()?.focus()
+    props.autofocus && inputEl()?.focus();
+
+    if (
+      !!formCtx && 
+      (props.name || props.label)
+    ) {
+      formCtx.setFields(props.name || props.label as string)
+    }
+
   })
 
   return (
