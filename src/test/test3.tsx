@@ -1,18 +1,17 @@
 import CellGroup from "../components/cellGroup"
 import Form from "../components/form"
 import Input from "../components/input"
-import { createSignal, createEffect } from 'solid-js'
+import { createSignal } from 'solid-js'
+
+let FormWithGeneric = Form<{ name: string, age: string, gender: number }>
 
 export default () => {
 
   const [val, setVal] = createSignal({ name: 'tom', age: '20', gender: 1 })
 
   return (
-    <Form<{ name: string, age: string, gender: number }>
+    <FormWithGeneric
       bind={[val, setVal]}
-      onChange={ (val) => {
-        
-      }}
       lazy>
       <CellGroup>
         <Input name="name" label="name"></Input>
@@ -20,6 +19,6 @@ export default () => {
         <Input name="gender" label="gender"></Input>
         <Input name="otherinfo" label="otherinfo"></Input>
       </CellGroup>
-    </Form>
+    </FormWithGeneric>
   )
 }

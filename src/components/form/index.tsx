@@ -1,10 +1,9 @@
-import { createContext, createSignal, Accessor } from 'solid-js'
-import { BasePropsAndAttrs } from '../common/types'
+import { createSignal } from 'solid-js'
 import { FormProps, FormValue } from './types'
 import { FormValueContext } from './context'
 import { isFunction } from 'lodash'
 
-export default function <T = FormValue>(props: Partial<FormProps<T>>) {
+export default function <T extends FormValue = FormValue>(props: Partial<FormProps<T>>) {
 
   const [formValue, setFromValue] = (
     props.bind || createSignal<FormValue>(props.value || {})
