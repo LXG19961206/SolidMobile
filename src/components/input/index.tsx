@@ -3,7 +3,7 @@ import { createEffect, createSignal, on, onMount, Show, Switch, Match } from 'so
 import { attrsForward } from '../../util/attrsForward'
 import { propDefaultValue } from '../../util/propDefaultValue'
 import { mergeEvents } from '../../util/merageEvent'
-import { isNumber, isFunction } from 'lodash'
+import { isNumber, isFunction, isNil } from 'lodash'
 import { HTMLNativeEvent } from '../../dict/native'
 import { MaybeElement } from '../common'
 import Icon from '../icon'
@@ -24,6 +24,8 @@ export default (props: Partial<InputProps>) => {
 
   const formCtx = useFormContext()
 
+  const isLazy = () => props.lazy || formCtx?.lazy
+
   const [getter, setter] = props.bind || []
 
   const intersectionOfInputAttrsAndProps = ['maxlength', 'disabled', 'readonly', 'name', 'id', 'placeholder']
@@ -33,6 +35,23 @@ export default (props: Partial<InputProps>) => {
   const [labelEl, setLabelEl] = createSignal<HTMLLabelElement>()
 
   const [satisfyRules, setSatisfyStatus] = createSignal<boolean>(false)
+
+  const shouldUseContext = () => !!(formCtx && (props.name || props.label))
+
+  const getValue = (): string | number => {
+    // if use "bind" prop, returns getter. 
+    if (!!getter) {
+      return getter()
+    // or if user set "value" prop 
+    } else if (!isNil(props.value)) {
+      return props.value
+    // or if value is from form context
+    } else if (shouldUseContext()) {
+      return formCtx!.formValue()[(props.name || props.label)! as string] as string | number
+    } else {
+      return ''
+    }
+  }
 
   const makeReactive = (event: Event, formatterFlag: boolean) => {
 
@@ -60,16 +79,13 @@ export default (props: Partial<InputProps>) => {
       }
     }
 
-    if (
-      !!formCtx && 
-      (props.name || props.label)
-    ) {
-      formCtx.setFormItemValue(
+    if (shouldUseContext()) {
+      formCtx!.setFormItemValue(
         (props.name || props.label) as string,
         input.value
       )
     }
-    
+
   }
 
   const execCheck = () => {
@@ -101,13 +117,13 @@ export default (props: Partial<InputProps>) => {
   // when "lazy" prop is true, reactive handler exec only "onchange" event dispatch
   const onChange = mergeEvents(
     props.onChange,
-    (evt) => props.lazy && makeReactive(evt, !!props.formatter && props.formatterTrigger === HTMLNativeEvent.change)
+    (evt) => isLazy() && makeReactive(evt, !!props.formatter && props.formatterTrigger === HTMLNativeEvent.change)
   )
 
   // when "lazy" prop is false, reactive handler exec only "oninput" event dispatch
   const onInput = mergeEvents(
     props.onInput,
-    (evt) => !props.lazy && makeReactive(evt, !!props.formatter && props.formatterTrigger === HTMLNativeEvent.input)
+    (evt) => !isLazy() && makeReactive(evt, !!props.formatter && props.formatterTrigger === HTMLNativeEvent.input)
   )
 
   const onBlur = mergeEvents(
@@ -146,14 +162,9 @@ export default (props: Partial<InputProps>) => {
 
   onMount(() => {
     props.autofocus && inputEl()?.focus();
-
-    if (
-      !!formCtx && 
-      (props.name || props.label)
-    ) {
-      formCtx.setFields(props.name || props.label as string)
+    if (shouldUseContext()) {
+      formCtx!.setFields(props.name || props.label as string)
     }
-
   })
 
   return (
@@ -186,7 +197,7 @@ export default (props: Partial<InputProps>) => {
               onFocus={props.onFocus}
               on:click={props.onClickValue}
               onBlur={onBlur}
-              value={getter ? getter() : props.value}
+              value={getValue()}
             />
           </>
         }
@@ -201,7 +212,7 @@ export default (props: Partial<InputProps>) => {
           onFocus={props.onFocus}
           on:click={props.onClickValue}
           onBlur={onBlur}
-          value={getter ? getter() : props.value}
+          value={getValue()}
           type={propDefaultValue(props.type, InputTypeDict.text)}
         />
       </Show>
