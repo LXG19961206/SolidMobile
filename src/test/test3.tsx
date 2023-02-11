@@ -14,10 +14,10 @@ export default () => {
       bind={[val, setVal]}
       lazy>
       <CellGroup>
-        <Input name="name" label="name"></Input>
-        <Input name="age" label="age"></Input>
-        <Input name="gender" label="gender"></Input>
-        <Input name="otherinfo" label="otherinfo"></Input>
+        <Input label="name"></Input>
+        <Input label="age"></Input>
+        <Input label="gender"></Input>
+        <Input label="otherinfo"></Input>
       </CellGroup>
     </FormWithGeneric>
   )
