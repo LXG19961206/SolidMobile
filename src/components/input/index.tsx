@@ -3,7 +3,7 @@ import { createEffect, createSignal, on, onMount, Show, Switch, Match } from 'so
 import { attrsForward } from '../../util/attrsForward'
 import { propDefaultValue } from '../../util/propDefaultValue'
 import { mergeEvents } from '../../util/merageEvent'
-import { isNumber, isFunction, isNil } from 'lodash'
+import { isNumber, isFunction, isNil, isString } from 'lodash'
 import { HTMLNativeEvent } from '../../dict/native'
 import { MaybeElement } from '../common'
 import Icon from '../icon'
@@ -28,30 +28,60 @@ export default (props: Partial<InputProps>) => {
 
   const [getter, setter] = props.bind || []
 
-  const intersectionOfInputAttrsAndProps = ['maxlength', 'disabled', 'readonly', 'name', 'id', 'placeholder']
+  const intersectionOfInputAttrsAndProps = ['maxlength', 'name', 'id', 'placeholder']
 
   const [inputEl, setInputEl] = createSignal<HTMLInputElement | HTMLTextAreaElement>()
 
   const [labelEl, setLabelEl] = createSignal<HTMLLabelElement>()
 
+
   const [satisfyRules, setSatisfyStatus] = createSignal<boolean>(false)
 
   const shouldUseContext = () => !!(formCtx && (props.name || props.label))
+
+  const labelWidth = () => props.labelWidth || formCtx?.labelWidth
+
+  const showError = () => props.showError || formCtx?.showError
+
+  const errorTextAlign = () => props.errorTextAlign || formCtx?.errorTextAlign
+
+  const labelAlign = () => props.labelAlign || formCtx?.labelAlign
+
+  const disabled = () => !!(props.disabled || formCtx?.disabled)
+
+  const readonly = () => !!(props.readonly || formCtx?.readonly)
+
+  const colon = () => !!(props.colon || formCtx?.colon)
+
+  const isTextArea = () => props.textarea || props.type === InputTypeDict.textarea
+
+  const currentErr = () => {
+    if (!formCtx) return
+    return formCtx?.fieldErrs()[(props.name || props.label) as string]
+  }
+
+  createEffect(on(currentErr, (errExist) => {
+    if (formCtx?.scrollToErr && inputEl() && errExist) {
+      inputEl()?.scrollIntoView()
+    }
+  }))
 
   const getValue = (): string | number => {
     // if use "bind" prop, returns getter. 
     if (!!getter) {
       return getter()
-    // or if user set "value" prop 
+      // or if user set "value" prop 
     } else if (!isNil(props.value)) {
       return props.value
-    // or if value is from form context
+      // or if value is from form context
     } else if (shouldUseContext()) {
       return formCtx!.formValue()[(props.name || props.label)! as string] as string | number
     } else {
       return ''
     }
   }
+
+  const [currentLen, setLength] = createSignal(getValue()?.toString()?.length || 0)
 
   const makeReactive = (event: Event, formatterFlag: boolean) => {
 
@@ -63,9 +93,20 @@ export default (props: Partial<InputProps>) => {
 
     setter && setter(input.value)
 
+    if (shouldUseContext()) {
+      formCtx!.setFormItemValue(
+        (props.name || props.label) as string,
+        input.value
+      )
+    }
+  }
+
+  const handleTextArea = (event: Event) => {
+    const input = event.target as HTMLInputElement
+
     // auto handle textarea height while "autosize" is true 
     if (
-      (props.textarea || props.type === InputTypeDict.textarea) &&
+      (isTextArea()) &&
       input.value &&
       props.autosize
     ) {
@@ -73,19 +114,11 @@ export default (props: Partial<InputProps>) => {
       labelEl()!.style.height = ''
       if (input.offsetHeight < input.scrollHeight) {
         input.style.height = (input.scrollHeight + 'px')
-        if (props.labelAlign === 'center') {
-         labelEl()!.style.height = (input.scrollHeight + 'px')
+        if (labelAlign() === 'center') {
+          labelEl()!.style.height = (input.scrollHeight + 'px')
         }
       }
     }
-
-    if (shouldUseContext()) {
-      formCtx!.setFormItemValue(
-        (props.name || props.label) as string,
-        input.value
-      )
-    }
-
   }
 
   const execCheck = () => {
@@ -123,7 +156,9 @@ export default (props: Partial<InputProps>) => {
   // when "lazy" prop is false, reactive handler exec only "oninput" event dispatch
   const onInput = mergeEvents(
     props.onInput,
-    (evt) => !isLazy() && makeReactive(evt, !!props.formatter && props.formatterTrigger === HTMLNativeEvent.input)
+    (evt) => !isLazy() && makeReactive(evt, !!props.formatter && props.formatterTrigger === HTMLNativeEvent.input),
+    handleTextArea,
+    (evt) => setLength((evt.target as HTMLInputElement).value.length)
   )
 
   const onBlur = mergeEvents(
@@ -143,22 +178,18 @@ export default (props: Partial<InputProps>) => {
     "solidMobile-input-cell-with-clear": !!props.clearIcon || !!props.clearable || !!props.rightIcon || !!props.islink,
     "solidMobile-input-cell-required": !!props.required,
     "solidMobile-input-cell-align-center": !!props.center,
-    "solidMobile-input-cell-textarea-autosize": !!props.textarea || props.type === InputTypeDict.textarea,
-    [`solidMobile-input-cell-with-label-${propDefaultValue(props.labelAlign, 'left')}`]: true,
+    "solidMobile-input-cell-disabled": !!disabled(),
+    "solidMobile-input-cell-textarea-autosize": isTextArea(),
+    [`solidMobile-input-cell-with-label-${propDefaultValue(labelAlign(), 'left')}`]: true,
   })
 
   // returns "not null check" result
   const isRequiredButEmpty = () => !!props.required && !props.value && !getter?.call(void 0)
 
-  const inputClassList = () => ({
-    "solidMobile-input-cell-field-required": isRequiredButEmpty() && props.showError
-  })
 
-  const getCurrentLength = () => {
-    const currentLength = inputEl()?.value.length
-    return (currentLength && props.maxlength)
-      ? (currentLength < props.maxlength ? currentLength : props.maxlength) : 0  
-  }
+  const inputClassList = () => ({
+    "solidMobile-input-cell-field-required": isRequiredButEmpty() && showError()
+  })
 
   onMount(() => {
     props.autofocus && inputEl()?.focus();
@@ -174,7 +205,7 @@ export default (props: Partial<InputProps>) => {
       <span
         ref={setLabelEl}
         on:click={props.onClickLabel}
-        style={{ width: props.labelWidth }}
+        style={{ width: isString(labelWidth()) ? labelWidth() : labelWidth() + 'px' }}
         class={"solidMobile-input-cell-label" + ` ${props.labelClass}`}>
         <MaybeElement maybeJsx={props.leftIcon}>
           <Icon
@@ -182,7 +213,7 @@ export default (props: Partial<InputProps>) => {
             name={props.leftIcon as string}>
           </Icon>
         </MaybeElement>
-        {props.label}{props.colon ? ':' : ''}
+        {props.label}{colon() ? ':' : ''}
       </span>
       <Show
         fallback={
@@ -191,6 +222,8 @@ export default (props: Partial<InputProps>) => {
               {...attrsForward(props, intersectionOfInputAttrsAndProps)}
               class="solidMobile-input-cell-field"
               classList={inputClassList()}
+              disabled={disabled()}
+              readOnly={readonly()}
               onInput={onInput}
               onChange={onChange}
               ref={setInputEl}
@@ -201,10 +234,12 @@ export default (props: Partial<InputProps>) => {
             />
           </>
         }
-        when={!props.textarea && props.type !== InputTypeDict.textarea}>
+        when={!isTextArea()}>
         <input
           {...attrsForward(props, intersectionOfInputAttrsAndProps)}
           class="solidMobile-input-cell-field"
+          disabled={disabled()}
+          readOnly={readonly()}
           classList={inputClassList()}
           onInput={onInput}
           onChange={onChange}
@@ -250,21 +285,39 @@ export default (props: Partial<InputProps>) => {
         </Match>
       </Switch>
       <Show when={
-        (getter?.call(void 0) || props.value ) &&
-        props.showWordLimit && 
-        props.maxlength && 
-        (props.textarea || props.type === InputTypeDict.textarea) }>
+        getValue() &&
+        props.showWordLimit &&
+        props.maxlength &&
+        isTextArea()}>
         <span class="solidMobile-input-cell-field-limit">
-          { getCurrentLength() + `/${props.maxlength}`}
+          {currentLen() + `/${props.maxlength}`}
         </span>
       </Show>
-      <Show when={props.showError && (props.value || getter?.call(void 0)) && !satisfyRules()}>
-        <span
-          style={{ "text-align": props.errorTextAlign }}
-          class="solidMobile-input-cell-error-tip">
-          {props.errorText || `请输入正确的${props.label}`}
-        </span>
-      </Show>
+
+      <Switch 
+        fallback={
+          <Show when={props.showWordLimit}>
+            <span
+              style={{ visibility: 'hidden' }} 
+              class="solidMobile-input-cell-error-tip"> { props.showWordLimit!.toString() } 
+            </span>
+          </Show>
+        }>
+        <Match when={showError() && currentErr()}>
+          <span
+            style={{ "text-align": errorTextAlign() }}
+            class="solidMobile-input-cell-error-tip">
+            {currentErr()}
+          </span>
+        </Match>
+        <Match when={showError() && (props.value || getter?.call(void 0)) && !satisfyRules()}>
+          <span
+            style={{ "text-align": errorTextAlign() }}
+            class="solidMobile-input-cell-error-tip">
+            {props.errorText || `请输入正确的${props.label}`}
+          </span>
+        </Match>
+      </Switch>
     </div>
   )
 }

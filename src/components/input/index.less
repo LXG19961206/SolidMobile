@@ -32,6 +32,14 @@
     line-height: var(--solidMobile-input-lineHeight-normal);
     resize: none;
   }
+
+  &-disabled {
+    input,textarea {
+      background: var(--solidMobile-white);
+      color: var(--solidMobile-dark-secondary);
+    }
+  }
+
   &-field-required::placeholder {
     color: var(--solidMobile-theme-danger);
   }
@@ -86,6 +94,10 @@
   .solidMobile-input-cell-label {
     flex: 0 1 100%;
     margin-bottom: 4px;
+  }
+
+  .solidMobile-input-cell-error-tip {
+    padding-left: 0;
   }
 
   .solidMobile-input-cell-field {

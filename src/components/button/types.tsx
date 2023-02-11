@@ -22,6 +22,7 @@ export interface ButtonProps extends BasePropsAndAttrs {
     round: boolean,
     disabled: boolean,
     hairline: boolean,
-    loadingStatus: boolean
+    loadingStatus: boolean,
+    submit: boolean
 }
 

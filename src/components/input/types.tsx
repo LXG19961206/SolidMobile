@@ -12,7 +12,7 @@ type ValueFormatter = (val: string) => string
 
 type FormatterTriggers = "input" | "change" | "blur"
 
-type InputAlignTypes = "right" | "left" | "center"
+export type InputAlignTypes = "right" | "left" | "center"
 
 export const InputTypeDict: Record<InputType, InputType> = {
   password: 'password',

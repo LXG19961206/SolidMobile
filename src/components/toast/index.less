@@ -6,6 +6,7 @@
   --solidMobile-toast-icon-size: 40px;
   --solidMobile-toast-topOrBottom-position: 20%;
   --solidMobile-toast-background-withOverlay: rgba(0,0,0);
+  --solidMobile-toast-zIndex: 99;
 }
 
 @keyframes ToastFade {
@@ -25,6 +26,7 @@
   font-size: var(--solidMobile-font-md);
   position: fixed;
   left: 50%;
+  z-index: var(--solidMobile-toast-zIndex);
   word-break: break-all;
   animation: ToastFade var(--solidMobile-animation-base);
   text-align: center;
