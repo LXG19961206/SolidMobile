@@ -69,12 +69,13 @@ export interface InputProps extends BasePropsAndAttrs {
   errorTextAlign: "left" | "right" | "center",
   formatter: ValueFormatter,
   formatterTrigger: FormatterTriggers,
-  validator: ((value: string) => boolean) | RegExp [],
+  validator: ((value: string) => boolean),
   labelClass: string,
   labelWidth: string,
   labelAlign: "top" | "left" | "center",
   align: InputAlignTypes,
   leftIcon: string | JSXElement,
+  lazyValidate: boolean,
   rightIcon: string | JSXElement,
   autosize: boolean,
   onChange: EventHandleFunc,
@@ -86,5 +87,11 @@ export interface InputProps extends BasePropsAndAttrs {
   onClickValue: NoLimitFunc,
   onClickLeftIcon: NoLimitFunc,
   onClickRightIcon: NoLimitFunc,
-  onClickLink: NoLimitFunc
+  onClickLink: NoLimitFunc, 
+  rules: Array<{
+    validator: RegExp | ((value: string | number | boolean) => boolean),
+    errTip?: ((val: string | number | boolean) => string) | string,
+    successCallback?: (value: string | number | boolean) => unknown,
+    failCallback?: (value: string | number | boolean) => unknown,
+  }>
 }

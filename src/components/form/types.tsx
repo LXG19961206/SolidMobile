@@ -1,8 +1,8 @@
-import { Accessor, Setter } from "solid-js";
+import { Accessor, JSXElement, Setter } from "solid-js";
 import { BasePropsAndAttrsWithoutListeners } from "../common/types";
 import { InputAlignTypes } from "../input/types";
 
-export type FormValue = { [key: string]: string | void | number | boolean } 
+export type FormValue = { [key: string]: string | void | number | boolean }
 
 
 export interface FormProps<D extends FormValue = FormValue> extends BasePropsAndAttrsWithoutListeners {
@@ -31,10 +31,10 @@ export interface FormProps<D extends FormValue = FormValue> extends BasePropsAnd
 type TipsWhenFailed = string
 
 export type ValidateRules<
-  T extends (string | number | symbol) = string, 
-  D extends FormValue = FormValue> = Record<T, Array<[
-  RegExp | ((value: string | number| boolean, formValue: D) => boolean),
-  TipsWhenFailed
-]> | Array<[
-  RegExp | ((value: string | number| boolean, formValue: D) => boolean)
-]>> 
+  T extends (string | number | symbol) = string,
+  D extends FormValue = FormValue> = Record<T, Array<{
+    validator: RegExp | ((value: string | number | boolean, formValue: D) => boolean),
+    errTip?: ((val: string | number | boolean) => TipsWhenFailed) | TipsWhenFailed,
+    successCallback?: (name: string, value: string | number | boolean, formValue: D) => unknown,
+    failCallback?: (name: string, value: string | number | boolean, formValue: D) => unknown,
+  }>>

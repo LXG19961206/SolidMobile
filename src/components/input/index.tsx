@@ -1,5 +1,5 @@
 import { InputProps, InputTypeDict } from './types'
-import { createEffect, createSignal, on, onMount, Show, Switch, Match } from 'solid-js'
+import { createEffect, createSignal, on, onMount, Show, Switch, Match, JSXElement } from 'solid-js'
 import { attrsForward } from '../../util/attrsForward'
 import { propDefaultValue } from '../../util/propDefaultValue'
 import { mergeEvents } from '../../util/merageEvent'
@@ -34,8 +34,9 @@ export default (props: Partial<InputProps>) => {
 
   const [labelEl, setLabelEl] = createSignal<HTMLLabelElement>()
 
-
   const [satisfyRules, setSatisfyStatus] = createSignal<boolean>(false)
+
+  const [selfErr, setSelfErr] = createSignal<string | JSXElement>('')
 
   const shouldUseContext = () => !!(formCtx && (props.name || props.label))
 
@@ -47,6 +48,8 @@ export default (props: Partial<InputProps>) => {
 
   const labelAlign = () => props.labelAlign || formCtx?.labelAlign
 
+  const shouldFieldCheck = () => ((props.validator || props.rules?.length) && (props.showError))
+
   const disabled = () => !!(props.disabled || formCtx?.disabled)
 
   const readonly = () => !!(props.readonly || formCtx?.readonly)
@@ -55,12 +58,12 @@ export default (props: Partial<InputProps>) => {
 
   const isTextArea = () => props.textarea || props.type === InputTypeDict.textarea
 
-  const currentErr = () => {
+  const currentErrFromForm = () => {
     if (!formCtx) return
     return formCtx?.fieldErrs()[(props.name || props.label) as string]
   }
 
-  createEffect(on(currentErr, (errExist) => {
+  createEffect(on(currentErrFromForm, (errExist) => {
     if (formCtx?.scrollToErr && inputEl() && errExist) {
       inputEl()?.scrollIntoView()
     }
@@ -122,14 +125,47 @@ export default (props: Partial<InputProps>) => {
   }
 
   const execCheck = () => {
-    const value = inputEl()?.value
-    if (props.validator && value) {
-      setSatisfyStatus(
-        isFunction(props.validator)
-          ? props.validator(value)
-          : props.validator.every(rule => rule.test(value))
-      )
+    const value = inputEl()?.value || ''
+
+    if (shouldFieldCheck()) {
+
+      let isPass = true
+
+      const rules = [...(props.rules || []), { 
+        validator: props.validator, errTip: props.errorText, successCallback: null, failCallback: null }
+      ]
+
+      try {
+
+        rules.filter(item => item.validator).forEach(rule => {
+
+          const { validator, failCallback, successCallback, errTip } = rule
+          
+          let result = (isFunction(validator)) ? validator(value) : validator!.test(value)
+
+          if (!result) {
+            
+            errTip && setSelfErr(errTip as (string | JSXElement))
+
+            isFunction(failCallback) && failCallback(value)
+  
+            isPass = false
+
+            if (propDefaultValue(props.lazyValidate, true)) {
+              throw new Error('')
+            }
+  
+          } else {
+            isFunction(successCallback) && successCallback(value)
+          }
+
+  
+        })
+      } catch(err) {
+      }
+      setSatisfyStatus(isPass)
     }
+
   }
 
   getter && createEffect(on(getter!, () => {
@@ -193,6 +229,7 @@ export default (props: Partial<InputProps>) => {
 
   onMount(() => {
     props.autofocus && inputEl()?.focus();
+    shouldFieldCheck() && execCheck()
     if (shouldUseContext()) {
       formCtx!.setFields(props.name || props.label as string)
     }
@@ -296,25 +333,25 @@ export default (props: Partial<InputProps>) => {
 
       <Switch 
         fallback={
-          <Show when={props.showWordLimit}>
+          <Show when={ showError() && props.showWordLimit}>
             <span
               style={{ visibility: 'hidden' }} 
               class="solidMobile-input-cell-error-tip"> { props.showWordLimit!.toString() } 
             </span>
           </Show>
         }>
-        <Match when={showError() && currentErr()}>
+        <Match when={showError() && currentErrFromForm()}>
           <span
             style={{ "text-align": errorTextAlign() }}
             class="solidMobile-input-cell-error-tip">
-            {currentErr()}
+            {currentErrFromForm()}
           </span>
         </Match>
-        <Match when={showError() && (props.value || getter?.call(void 0)) && !satisfyRules()}>
+        <Match when={showError() && selfErr() && !satisfyRules() }>
           <span
             style={{ "text-align": errorTextAlign() }}
             class="solidMobile-input-cell-error-tip">
-            {props.errorText || `请输入正确的${props.label}`}
+            { selfErr() || props.errorText }
           </span>
         </Match>
       </Switch>

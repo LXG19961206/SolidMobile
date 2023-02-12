@@ -52,7 +52,7 @@ export default function <T extends FormValue = FormValue>(props: Partial<FormPro
 
           rules.forEach(rule => {
 
-            const [validator, errTip] = rule
+            const { validator, errTip, successCallback, failCallback } = rule
 
             const result = isFunction(validator)
               ? validator(currentFieldValue!, currentValue)
@@ -63,19 +63,26 @@ export default function <T extends FormValue = FormValue>(props: Partial<FormPro
               isFail = true
 
               setFieldErrs({
-                ...fieldErrs(), [name]: errTip || null
+                ...fieldErrs(), [name]: isFunction(errTip) ? errTip(currentFieldValue!) : (errTip || null)
               })
 
+              failCallback?.call(void 0, name, currentFieldValue!, formValue() as T)
+
+
               if (propDefaultValue(props.lazyValidate, true)) {
-                throw new Error(errTip || '')
+                throw new Error('')
               }
+
+            } else {
+              
+              successCallback?.call(void 0, name, currentFieldValue!, formValue() as T)
+
             }
 
           })
 
         })
       } catch (err) {
-
       }
 
       return !isFail

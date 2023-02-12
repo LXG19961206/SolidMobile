@@ -4,6 +4,7 @@ import Input from "../components/input"
 import { createSignal } from 'solid-js'
 import Button from "../components/button"
 import { ValidateRules } from "../components/form/types"
+import Toast from "../components/toast"
 
 let FormWithGeneric = Form<{ name: string, age: string, gender: number }>
 
@@ -13,15 +14,30 @@ export default () => {
 
   const rules: ValidateRules = {
     name: [
-      [(val) => (val as string).length < 10, '姓名长度必须小于10位'],
-      [/^[A-Za-z]{1,}$/, '姓名必须为英文']
+      {
+        validator: /^[a-zA-Z]{1,10}$/,
+        errTip: '姓名必须是1-10位的英文字母'
+      },
+      {
+        validator: val => !['admin', 'root', 'sudo'].includes(val as string),
+        errTip: (val) => `不能以${val}命名`,
+        failCallback () {
+          Toast({ message: '姓名未通过检验' })
+        }
+      }
     ],
     age: [
-      [(age) => (age as number) < 60, '很抱歉，投保人年龄必须小于60岁'],
-      [(age, value) => (age as number) > (value.name as string).length, '很抱歉，不能低于被保人年龄'],
-      [/^\d{1,3}$/, '请输入合法的年龄'],
+      {
+        validator: val => (val as number) <= 60,
+        errTip: '年龄在60岁以上不能参与投保'
+      },
     ]
   }
+
+  const rulesGender = [{
+    validator: /^[0,1]{1}$/,
+    errTip: '性别必须为0或者1'
+  }]
 
   return (
     <FormWithGeneric
@@ -36,8 +52,8 @@ export default () => {
       <CellGroup isCard>
         <Input textarea autofocus autosize label="name" showWordLimit maxlength={50}></Input>
         <Input label="age"></Input>
-        <Input label="gender"></Input>
-        <Input label="otherinfo"></Input>
+        <Input rules={rulesGender} label="gender"></Input>
+        <Input validator={ val => val.length > 30 } errorText="请输入正确的信息" showError label="otherinfo"></Input>
         <Button
           size="large"
           type="success"
