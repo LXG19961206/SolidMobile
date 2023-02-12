@@ -37,4 +37,4 @@ export type ValidateRules<
     errTip?: ((val: string | number | boolean) => TipsWhenFailed) | TipsWhenFailed,
     successCallback?: (name: string, value: string | number | boolean, formValue: D) => unknown,
     failCallback?: (name: string, value: string | number | boolean, formValue: D) => unknown,
-  }>>
+}>>
