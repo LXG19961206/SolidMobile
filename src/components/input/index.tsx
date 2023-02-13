@@ -217,6 +217,7 @@ export default (props: Partial<InputProps>) => {
     "solidMobile-input-cell-disabled": !!disabled(),
     "solidMobile-input-cell-textarea-autosize": isTextArea(),
     [`solidMobile-input-cell-with-label-${propDefaultValue(labelAlign(), 'left')}`]: true,
+    [`solidMobile-input-cell-${props.size}`]: true
   })
 
   // returns "not null check" result

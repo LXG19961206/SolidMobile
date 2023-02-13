@@ -51,8 +51,8 @@ export default () => {
     >
       <CellGroup isCard>
         <Input textarea autofocus autosize label="name" showWordLimit maxlength={50}></Input>
-        <Input label="age"></Input>
-        <Input rules={rulesGender} label="gender"></Input>
+        <Input label="age" size="large"></Input>
+        <Input  rules={rulesGender} label="gender"></Input>
         <Input validator={ val => val.length > 30 } errorText="请输入正确的信息" showError label="otherinfo"></Input>
         <Button
           size="large"

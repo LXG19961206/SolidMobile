@@ -1,11 +1,15 @@
 :root {
   --solidMobile-input-cell-background: var(--solidMobile-white);
-  --solidMobile-input-cell-height-md: 44px;
+  --solidMobile-input-cell-height-md: 46px;
+  --solidMobile-input-cell-height-lg: 50px;
+  --solidMobile-input-cell-height-sm: 42px;
   --solidMobile-input-cell-padding-x: 16px;
   --solidMobile-input-cell-padding-y: 10px;
   --solidMobile-input-cell-label-width: 30%;
   --solidMobile-input-lineHeight-normal: 24px;
 }
+
+
 
 
 
@@ -22,6 +26,21 @@
   font-size: var(--solidMobile-font-lg);
   padding: var(--solidMobile-input-cell-padding-y) var(--solidMobile-input-cell-padding-x);
 
+  &-large {
+    min-height: var(--solidMobile-input-cell-height-lg);
+    & .solidMobile-input-cell-field {
+      height: calc(var(--solidMobile-input-lineHeight-normal) + 2px);
+      line-height: calc(var(--solidMobile-input-lineHeight-normal) + 2px);
+    }
+  }
+
+  &-small {
+    min-height: var(--solidMobile-input-cell-height-sm);
+    padding: calc(var(--solidMobile-input-cell-padding-y) - 2px) var(--solidMobile-input-cell-padding-x);
+    & .solidMobile-input-cell-field {
+      line-height: calc(var(--solidMobile-input-lineHeight-normal) - 2px);
+    }
+  }
 
   &-field {
     text-align: left;
@@ -55,9 +74,16 @@
   }
 
   &-label {
+    display: inline-block;
     flex: 0 0 var(--solidMobile-input-cell-label-width);
     color: var(--solidMobile-dark-main);
     .icon { margin-right: 3px; }
+    &::after {
+      vertical-align: middle;
+      content: '.';
+      opacity: 0;
+      display: inline-block;
+    }
   }
 
   &-required {

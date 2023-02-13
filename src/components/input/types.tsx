@@ -47,7 +47,7 @@ export interface InputProps extends BasePropsAndAttrs {
   name: string,
   type: InputType,
   lazy: boolean,
-  size: Size,
+  size: Exclude<Size, 'mini'>,
   value: InputVal,
   maxlength: number | string,
   placeholder: string,
