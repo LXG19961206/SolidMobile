@@ -1,6 +1,7 @@
 import { isArray } from 'lodash'
 import './index.less'
 import { PickerOptions, PickerProps } from './types'
+import { createEffect, createMemo, createSignal, on } from 'solid-js'
 
 const getColCount = (cols: PickerProps['columns']) => {
   // if get a empty list, return 0
@@ -75,10 +76,33 @@ const columns = [
   },
 ];
 
-export default () => {
+export default (props: PickerProps) => {
 
-  console.log(
-    getColCount(columns)
-  )
+  const colCount = createMemo(() => getColCount(props.columns))
+
+  const [cols, setCols] = createSignal<Array<PickerOptions []>>()
+
+  const isTree = () => !isArray(props.columns[0])
+
+  createEffect(on(colCount, () => {
+
+    let currentDepth = 1, target = props.columns
+
+    const tempCols = []
+
+    while (currentDepth < colCount()) {
+
+      if (isTree()) {
+
+        tempCols.push(target as PickerOptions [])
+
+      } else {
+
+      }
+
+    }
+
+
+  }))
 
 }

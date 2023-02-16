@@ -4,18 +4,18 @@ import Toast from "../components/toast"
 import picker from "../components/picker"
 import { SimpleQueue } from "../util/simpleQueue"
 
-picker()
 export default () => {
 
   const [el, setEl] = createSignal<HTMLDivElement>()
 
   const [translate, setTranslate] = createSignal<number>(0)
-  const [translate2, setTranslate2] = createSignal<number>(0)
 
+  const [translate2, setTranslate2] = createSignal<number>(0)
 
   const [currentIndex, setIndex] = createSignal(0)
 
   const [duration, setDuration] = createSignal(500)
+
   const [duration2, setDuration2] = createSignal(500)
 
 
@@ -94,7 +94,7 @@ export default () => {
 
     el()?.addEventListener('pointerup', (evt) => {
 
-      currentTargetIndex === 1 ? setDuration(2000) : setDuration2(2000)
+      currentTargetIndex === 1 ? setDuration(1500) : setDuration2(1500)
 
       let value = queue.value()
 
