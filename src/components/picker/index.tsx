@@ -80,29 +80,74 @@ export default (props: PickerProps) => {
 
   const colCount = createMemo(() => getColCount(props.columns))
 
-  const [cols, setCols] = createSignal<Array<PickerOptions []>>()
+  const accessors = createMemo(
+    _ => new Array(colCount()).fill(0).map(() => createSignal<PickerOptions []>([]))
+  )
+
+  const idxAccessors = createMemo(
+    _ => new Array(colCount()).fill(0).map(() => createSignal<number>(0))
+  )
+
+  const translateAccessors = createMemo(
+    _ => new Array(colCount()).fill(0).map(() => createSignal<number>(0))
+  )
+
+  const durationAccessors = createMemo(
+    _ => new Array(colCount()).fill(0).map(() => createSignal<number>(0))
+  )
+
+  const allCols = createMemo(_ => accessors().map(([getter]) => getter()))
+
+  const allCurrentIdxs = createMemo(_ => idxAccessors().map(([getter]) => getter()))
+
+  const allTranslate = createMemo(_ => translateAccessors().map(([getter]) => getter()))
+
+  const allDuration = createMemo(_ => durationAccessors().map(([getter]) => getter()))
+
+  const [targetIdx, setTargetIdx] = createSignal(0)
+
 
   const isTree = () => !isArray(props.columns[0])
 
   createEffect(on(colCount, () => {
 
-    let currentDepth = 1, target = props.columns
-
-    const tempCols = []
+    let currentDepth = 0, isFlat = !isTree(), target = props.columns
 
     while (currentDepth < colCount()) {
 
-      if (isTree()) {
+      const [_getter, setter] = accessors()[currentDepth]
 
-        tempCols.push(target as PickerOptions [])
+      const [idxGetter, _idxSetter] = idxAccessors()[currentDepth]
+
+      if (isFlat) {
+
+        setter((props.columns as PickerOptions [][])[currentDepth])
 
       } else {
 
+        setter(target as PickerOptions [])
+
+        if (currentDepth + 1 <= colCount()) {
+
+          target = (target as PickerOptions [])[idxGetter()].children!
+
+        }
+
       }
+
+      ++currentDepth
 
     }
 
+    console.log(
+      allCols(), allCurrentIdxs()
+    )
 
   }))
+
+
+  return (
+    <div></div>
+  )
 
 }

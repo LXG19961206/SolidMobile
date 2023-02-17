@@ -18,5 +18,5 @@ export interface PickerProps {
   optionHeight?: number,
   swipeDuration?: number,
   withInertia?: boolean,
-  onChange: (value: PickerOptions) => unknown
+  onChange?: (value: PickerOptions) => unknown
 }
