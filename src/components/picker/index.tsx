@@ -1,7 +1,7 @@
 import { isArray } from 'lodash'
 import './index.less'
 import { PickerOptions, PickerProps } from './types'
-import { createEffect, createMemo, createSignal, on } from 'solid-js'
+import { createEffect, createMemo, createSignal, on, For } from 'solid-js'
 
 const getColCount = (cols: PickerProps['columns']) => {
   // if get a empty list, return 0
@@ -96,6 +96,8 @@ export default (props: PickerProps) => {
     _ => new Array(colCount()).fill(0).map(() => createSignal<number>(0))
   )
 
+  const itemCount = () => props.visibleItemCount || 7
+
   const allCols = createMemo(_ => accessors().map(([getter]) => getter()))
 
   const allCurrentIdxs = createMemo(_ => idxAccessors().map(([getter]) => getter()))
@@ -109,7 +111,7 @@ export default (props: PickerProps) => {
 
   const isTree = () => !isArray(props.columns[0])
 
-  createEffect(on(colCount, () => {
+  createEffect(on(allCols, () => {
 
     let currentDepth = 0, isFlat = !isTree(), target = props.columns
 
@@ -139,15 +141,39 @@ export default (props: PickerProps) => {
 
     }
 
-    console.log(
-      allCols(), allCurrentIdxs()
-    )
-
   }))
 
 
   return (
-    <div></div>
+    <div class="solidMobile-picker">
+      <div class="solidMobile-picker-mask"></div>
+      <div class="solidMobile-picker-reference"></div>
+      <For each={allCols()}>
+        {
+          (cols) => (
+            <div
+              style={{ 
+                flex: `0 0 ${100 / colCount()}%` 
+              }} 
+              class="solidMobile-picker-content">
+              {
+                <>
+                  <For each={new Array(Math.ceil(itemCount() / 2)).fill(0)}>
+                    { () => (<p class="solidMobile-picker-content-item"></p>) }
+                  </For>
+                  <For each={cols}>
+                    { item => (<p class="solidMobile-picker-content-item"> { item.text } </p>) }
+                  </For>
+                  <For each={new Array(Math.floor(itemCount() / 2)).fill(0)}>
+                    { () => (<p class="solidMobile-picker-content-item"></p>) }
+                  </For>
+                </>
+              }
+            </div>
+          )
+        }
+      </For>
+    </div>
   )
 
 }

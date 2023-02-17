@@ -1,0 +1,68 @@
+:root {
+  --solidMobile-picker-max-height: 450px;
+  --solidMobile-picker-content-zIndex: 2;
+  --solidMobile-picker-content-item-lineHeight: 50px;
+  --solidMobile-picker-content-duration-noraml: 500ms;
+
+}
+
+
+.solidMobile-picker {
+  max-height: var(--solidMobile-picker-min-height);
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  vertical-align: center;
+  position: relative;
+  user-select: none;
+  &-mask {
+    z-index: calc(var(--solidMobile-picker-content-zIndex) + 2);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(255, 255, 255) 0%,
+      rgba(255, 255, 255, .8) 10%,
+      rgba(255, 255, 255, .7) 20%,
+      rgba(255, 255, 255, .6) 30%,
+      rgba(255, 255, 255, .5) 40%,
+      transparent,
+      rgba(255, 255, 255, .5) 60%,
+      rgba(255, 255, 255, .6) 70%,
+      rgba(255, 255, 255, .7) 80%,
+      rgba(255, 255, 255, .8) 90%,
+      rgba(255, 255, 255) 100%);
+    
+  }
+  &-reference {
+    width: 97%;
+    border-radius: 5px;
+    left: 1.5%;
+    height: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    background: #000;
+    opacity: .03;
+    position: absolute;
+  }
+  &-content {
+
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: var(--solidMobile-font-lg);
+    transition: transform var(--solidMobile-picker-content-duration-noraml) cubic-bezier(0.215, 0.610, 0.355, 1);
+    &-item {
+      height: var(--solidMobile-picker-content-item-lineHeight);
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
