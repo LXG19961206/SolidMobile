@@ -64,7 +64,7 @@ export default () => {
       if (!start) return
 
 
-      distance += (evt.clientY - lastPos) * 2.5
+      distance += (evt.clientY - lastPos) * 1
 
       queue.push([ distance, evt.timeStamp])
 
@@ -98,17 +98,17 @@ export default () => {
 
       let value = queue.value()
 
-      if (value.length > 2) {
+      // if (value.length > 2) {
 
-        const [d, t] = queue.getLast()
+      //   const [d, t] = queue.getLast()
 
-        const [d2, t2] = value.slice(-2)[0]
+      //   const [d2, t2] = value.slice(-2)[0]
 
-        distance += (d - d2) * 2
+      //   distance += (d - d2) * 2
 
-        currentTargetIndex === 1 ? setTranslate(Math.floor(distance / 50) * 50) :setTranslate2(Math.floor(distance / 50) * 50)
+      //   currentTargetIndex === 1 ? setTranslate(Math.floor(distance / 50) * 50) :setTranslate2(Math.floor(distance / 50) * 50)
 
-      }
+      // }
 
       lastPos = evt.clientY
 

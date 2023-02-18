@@ -1,5 +1,6 @@
 :root {
   --solidMobile-picker-max-height: 450px;
+  --solidMobile-picker-min-height: 350px;
   --solidMobile-picker-content-zIndex: 2;
   --solidMobile-picker-content-item-lineHeight: 50px;
   --solidMobile-picker-content-duration-noraml: 500ms;
@@ -11,25 +12,29 @@
   max-height: var(--solidMobile-picker-min-height);
   display: flex;
   width: 100%;
+  min-height: var(--solidMobile-picker-min-height);
   justify-content: center;
   vertical-align: center;
   position: relative;
-  user-select: none;
+  touch-action: none;
+  overflow: hidden;
   &-mask {
     z-index: calc(var(--solidMobile-picker-content-zIndex) + 2);
     position: absolute;
     width: 100%;
+    touch-action: none;
+    user-select: none;
     height: 100%;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(rgba(255, 255, 255) 0%,
+    background: linear-gradient(to bottom,rgba(255, 255, 255) 0%,
       rgba(255, 255, 255, .8) 10%,
       rgba(255, 255, 255, .7) 20%,
       rgba(255, 255, 255, .6) 30%,
       rgba(255, 255, 255, .5) 40%,
-      transparent,
+      transparent 50%,
       rgba(255, 255, 255, .5) 60%,
       rgba(255, 255, 255, .6) 70%,
       rgba(255, 255, 255, .7) 80%,
@@ -59,6 +64,7 @@
     transition: transform var(--solidMobile-picker-content-duration-noraml) cubic-bezier(0.215, 0.610, 0.355, 1);
     &-item {
       height: var(--solidMobile-picker-content-item-lineHeight);
+      line-height: var(--solidMobile-picker-content-item-lineHeight);
       padding: 0;
       margin: 0;
       overflow: hidden;

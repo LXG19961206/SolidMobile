@@ -29,7 +29,6 @@ export default () => {
           showError
           errorText="请输入正确的身份证号"
           clearable
-          validator={[/^\d{10,18}$/]}
           bind={[val, setVal]}
           autofocus
           onClickLeftIcon={() => console.log(123)}

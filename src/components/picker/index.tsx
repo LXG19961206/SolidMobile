@@ -1,22 +1,25 @@
-import { isArray } from 'lodash'
+import { isArray, range, add } from 'lodash'
 import './index.less'
 import { PickerOptions, PickerProps } from './types'
-import { createEffect, createMemo, createSignal, on, For } from 'solid-js'
+import { createEffect, createMemo, createSignal, on, For, onMount, onCleanup, Setter, Accessor, Index } from 'solid-js'
+import { disabledIOSElasticScroll } from '../../util/dom'
+import { SimpleQueue } from '../../util/simpleQueue'
+import { Millisecond, Second } from '../../dict/time'
 
 const getColCount = (cols: PickerProps['columns']) => {
   // if get a empty list, return 0
   if (!cols.length) {
-    
+
     return 0
-    
+
   } else if ((cols as Array<unknown>).every(isArray)) {
-    
+
     return cols.length
 
   } else {
 
-    let depth = 1, pointer = (cols as PickerOptions [])[0]
-    
+    let depth = 1, pointer = (cols as PickerOptions[])[0]
+
     while (pointer && pointer.children) {
       depth += 1
       pointer = pointer.children[0]
@@ -78,10 +81,22 @@ const columns = [
 
 export default (props: PickerProps) => {
 
+  const lineHeight = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-picker-content-item-lineHeight')
+  )
+
+  const swipeDuration = () => props.swipeDuration || Second * 2
+
+  const queue = new SimpleQueue<[number, number, boolean]>(30)
+
+  const ratio = () => props.ratio || 2
+
   const colCount = createMemo(() => getColCount(props.columns))
 
+  const [maskEl, setMaskEl] = createSignal<HTMLElement>()
+
   const accessors = createMemo(
-    _ => new Array(colCount()).fill(0).map(() => createSignal<PickerOptions []>([]))
+    _ => new Array(colCount()).fill(0).map(() => createSignal<PickerOptions[]>([]))
   )
 
   const idxAccessors = createMemo(
@@ -89,7 +104,7 @@ export default (props: PickerProps) => {
   )
 
   const translateAccessors = createMemo(
-    _ => new Array(colCount()).fill(0).map(() => createSignal<number>(0))
+    _ => new Array(colCount()).fill(0).map((_, idx) => (createSignal<number>(0)))
   )
 
   const durationAccessors = createMemo(
@@ -108,65 +123,272 @@ export default (props: PickerProps) => {
 
   const [targetIdx, setTargetIdx] = createSignal(0)
 
+  const placeHolderItems = createMemo(
+
+    () => allCols().map((col) => {
+
+      const topItemCount = Math.floor(itemCount() / 2)
+
+      const bottomItemCount = itemCount() - ((col.length + topItemCount) % itemCount())
+
+      return ([
+        range(topItemCount),
+        range(bottomItemCount)
+      ])
+
+    })
+  )
+
+  let disabled = true
 
   const isTree = () => !isArray(props.columns[0])
 
-  createEffect(on(allCols, () => {
+  let releaser: () => unknown
 
-    let currentDepth = 0, isFlat = !isTree(), target = props.columns
+  let lastPosY: number = 0
 
-    while (currentDepth < colCount()) {
+  createEffect(
 
-      const [_getter, setter] = accessors()[currentDepth]
+    on(allCurrentIdxs, (
+      oldVal: number[],
+      newVal: number[] | void
+    ) => {
 
-      const [idxGetter, _idxSetter] = idxAccessors()[currentDepth]
+      if (oldVal && newVal) {
 
-      if (isFlat) {
-
-        setter((props.columns as PickerOptions [][])[currentDepth])
-
-      } else {
-
-        setter(target as PickerOptions [])
-
-        if (currentDepth + 1 <= colCount()) {
-
-          target = (target as PickerOptions [])[idxGetter()].children!
-
-        }
+        differAndReset(
+          oldVal,
+          newVal
+        )
 
       }
 
-      ++currentDepth
+      let currentDepth = 0, isFlat = !isTree(), target = props.columns
+
+      while (currentDepth < colCount()) {
+
+        const [_getter, setter] = accessors()[currentDepth]
+
+        const [idxGetter, _idxSetter] = idxAccessors()[currentDepth]
+
+        if (isFlat) {
+
+          setter((props.columns as PickerOptions[][])[currentDepth])
+
+        } else {
+
+          setter(target as PickerOptions[])
+
+          if (currentDepth + 1 <= colCount()) {
+
+            target = (target as PickerOptions[])[idxGetter()].children!
+
+          }
+
+        }
+
+        ++currentDepth
+
+      }
+
+    }))
+
+  const differAndReset = (
+    oldVal: number[],
+    newVal: number[]
+  ) => {
+
+    const changedIdx = newVal.findIndex((item, i) => !Object.is(item, oldVal[i]))
+    if (changedIdx > -1) {
+
+      idxAccessors().forEach(([_, setter], i) => {
+        i > changedIdx && setter(0)
+      })
+
+      translateAccessors().forEach(([_, setter], i) => {
+        i > changedIdx && setter(0)
+      })
 
     }
 
-  }))
+  }
+
+  const pointerDown = (evt: PointerEvent) => {
+
+    disabled = false
+
+    queue.clear()
+
+    setTargetIdx(Math.floor(evt.offsetX / (evt.target as HTMLElement).clientWidth / (1 / colCount())))
+
+    lastPosY = evt.clientY
+
+  }
+
+  const pointerMove = (evt: PointerEvent) => {
+
+    if (disabled || (!evt.pressure && !evt.tangentialPressure)) return
+
+    const [__, durationSetter] = durationAccessors()[targetIdx()]
+
+    durationSetter(Millisecond * 300)
+
+    evt.stopPropagation()
+
+    evt.stopImmediatePropagation()
+
+    const chunkDistance = (evt.clientY - lastPosY) * ratio()
+
+    queue.push([chunkDistance, evt.timeStamp, false])
+
+    const [translateGetter, translateSetter] = translateAccessors()[targetIdx()]
+
+    const sumChunkDistance = queue.value()
+      .filter(item => !item[2])
+      .map(item => item[0])
+      .reduce(add, 0)
+
+    if (Math.abs(sumChunkDistance) > lineHeight) {
+
+      translateSetter(translateGetter() + (sumChunkDistance > 0 ? lineHeight : -lineHeight))
+
+      queue.value().forEach(item => item[2] = true)
+
+    }
+
+    lastPosY = evt.clientY
+
+  }
+
+  const pointerUp = (evt: PointerEvent) => {
+
+    disabled = true
+
+    const [translateGetter, translateSetter] = translateAccessors()[targetIdx()]
+
+    if (false && queue.value().length > 2 && evt.timeStamp - queue.getFirst()[1] < 300) {
+      
+
+      const [_, durationSetter] = durationAccessors()[targetIdx()]
+
+      durationSetter(swipeDuration())
+
+      let [lastDistance, lastTime] = queue.getLast()
+
+      let [secondLastDistance, secondLastTime] = queue.value().slice(-2)[0]
+
+      let chunkDistance = lastDistance - secondLastDistance,
+        chunkTime = lastTime - secondLastTime
+
+      while (chunkTime < swipeDuration()) {
+        chunkDistance += 0.9 * chunkDistance
+        chunkTime *= 2
+      }
+
+      debugger
+
+      translateSetter(translateGetter() + chunkDistance)
+
+    }
+
+    boundaryHandle(
+      translateSetter,
+      translateGetter,
+      allCols()[targetIdx()].length
+    )
+
+    lastPosY = evt.clientY
+
+
+
+  }
+
+
+
+  const boundaryHandle = (
+    setter: Setter<number>,
+    value: Accessor<number>,
+    boundaryVal: number
+  ) => {
+
+    setTimeout(releaser)
+
+    const [_, idxSetter] = idxAccessors()[targetIdx()]
+
+    if (value() > 0) {
+
+      setter(lineHeight)
+
+      setTimeout(() => {
+
+        setter(0)
+
+        idxSetter(-(value() / lineHeight))
+
+        disabled = false
+
+      }, Millisecond * 200)
+
+    } else if (value() < -(lineHeight * boundaryVal) + lineHeight) {
+
+      setTimeout(() => {
+
+        setter(-lineHeight * boundaryVal + lineHeight)
+
+        idxSetter(-(value() / lineHeight))
+
+      }, Millisecond * 200)
+
+    } else {
+
+      setter(Math.floor(value() / lineHeight) * lineHeight)
+
+      idxSetter(-(value() / lineHeight))
+
+    }
+  }
+
+  onMount(() => {
+    releaser = disabledIOSElasticScroll()
+  })
+
+  onCleanup(() => {
+    releaser()
+  })
+
 
 
   return (
     <div class="solidMobile-picker">
-      <div class="solidMobile-picker-mask"></div>
-      <div class="solidMobile-picker-reference"></div>
+      <div
+        ref={setMaskEl}
+        onPointerMove={pointerMove}
+        onPointerUp={pointerUp}
+        onPointerDown={pointerDown}
+        class="solidMobile-picker-mask">
+      </div>
+      <div
+        class="solidMobile-picker-reference"></div>
       <For each={allCols()}>
         {
-          (cols) => (
+          (cols, i) => (
             <div
-              style={{ 
-                flex: `0 0 ${100 / colCount()}%` 
-              }} 
+              style={{
+                flex: `0 0 ${100 / colCount()}%`,
+                transform: `translate3D(0,${allTranslate()[i()]}px,0)`
+              }}
               class="solidMobile-picker-content">
               {
                 <>
-                  <For each={new Array(Math.ceil(itemCount() / 2)).fill(0)}>
-                    { () => (<p class="solidMobile-picker-content-item"></p>) }
-                  </For>
+                  <Index each={(placeHolderItems()[i()][0])}>
+                    {() => (<p class="solidMobile-picker-content-item"></p>)}
+                  </Index>
                   <For each={cols}>
-                    { item => (<p class="solidMobile-picker-content-item"> { item.text } </p>) }
+                    {item => (<p class="solidMobile-picker-content-item"> {item.text} </p>)}
                   </For>
-                  <For each={new Array(Math.floor(itemCount() / 2)).fill(0)}>
-                    { () => (<p class="solidMobile-picker-content-item"></p>) }
-                  </For>
+                  <Index each={(placeHolderItems()[i()][1])}>
+                    {() => (<p class="solidMobile-picker-content-item"></p>)}
+                  </Index>
                 </>
               }
             </div>

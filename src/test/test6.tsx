@@ -43,10 +43,64 @@ const cols = [
             { text: '海沧区', value: 'Haicang' },
           ],
         },
+        {
+          text: '泉州',
+          value: 'Xiamen',
+          children: [
+            { text: '泉州村', value: 'Siming' },
+            { text: '泉州屯', value: 'Haicang' },
+          ],
+        },
       ],
     },
   ]
 
+  const cols2 = [
+    [
+      {
+        text: '哈哈',
+        value: '哈哈'
+      },
+      {
+        text: '哈哈',
+        value: '哈哈'
+      },
+      {
+        text: '哈哈',
+        value: '哈哈'
+      },
+      {
+        text: '哈哈',
+        value: '哈哈'
+      }
+      ,{
+        text: '哈哈',
+        value: '哈哈'
+      }
+    ],
+    [
+      {
+        text: '哈哈',
+        value: '哈哈'
+      },
+      {
+        text: '哈哈',
+        value: '哈哈'
+      },
+      {
+        text: '哈哈',
+        value: '哈哈'
+      },
+      {
+        text: '哈哈',
+        value: '哈哈'
+      }
+      ,{
+        text: '哈哈',
+        value: '哈哈'
+      }
+    ]
+  ]
 
 export default () => {
   return (

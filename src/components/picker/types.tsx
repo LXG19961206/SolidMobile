@@ -15,6 +15,7 @@ export interface PickerProps {
   confirmText?: string | JSXElement,
   cancelText?: string | JSXElement,
   visibleItemCount?: number,
+  ratio?: number,
   optionHeight?: number,
   swipeDuration?: number,
   withInertia?: boolean,
