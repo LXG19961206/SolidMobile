@@ -30,6 +30,25 @@ const getColCount = (cols: PickerProps['columns']) => {
   }
 }
 
+const calcStyle = (
+  idx: number,
+  currentIdx: number,
+  count: number
+) => {
+
+  const levelCount = Math.ceil(0.5 * count)
+
+  if (Math.abs(idx - currentIdx) > levelCount || idx === currentIdx) {
+    return { "font-weight": 500 }
+  }
+
+  return {
+    transform: `scale(${(1 - Math.abs(idx - currentIdx) * 0.05)})`,
+    opacity: 0.6 - (Math.abs(idx - currentIdx) * 0.1)
+  }
+
+}
+
 
 
 const columns = [
@@ -199,6 +218,7 @@ export default (props: PickerProps) => {
   ) => {
 
     const changedIdx = newVal.findIndex((item, i) => !Object.is(item, oldVal[i]))
+    
     if (changedIdx > -1) {
 
       idxAccessors().forEach(([_, setter], i) => {
@@ -227,7 +247,7 @@ export default (props: PickerProps) => {
 
   const pointerMove = (evt: PointerEvent) => {
 
-    if (disabled || (!evt.pressure && !evt.tangentialPressure)) return
+    // if (disabled || (!evt.pressure)) return
 
     const [__, durationSetter] = durationAccessors()[targetIdx()]
 
@@ -285,10 +305,7 @@ export default (props: PickerProps) => {
         chunkTime *= 2
       }
 
-      debugger
-
       translateSetter(translateGetter() + chunkDistance)
-
     }
 
     boundaryHandle(
@@ -384,7 +401,11 @@ export default (props: PickerProps) => {
                     {() => (<p class="solidMobile-picker-content-item"></p>)}
                   </Index>
                   <For each={cols}>
-                    {item => (<p class="solidMobile-picker-content-item"> {item.text} </p>)}
+                    {(item, index) => (
+                      <p
+                        style={calcStyle( index(), allCurrentIdxs()[i()], itemCount()  )}
+                        class="solidMobile-picker-content-item"> {item.text} </p>
+                    )}
                   </For>
                   <Index each={(placeHolderItems()[i()][1])}>
                     {() => (<p class="solidMobile-picker-content-item"></p>)}

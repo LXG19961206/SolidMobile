@@ -15,6 +15,8 @@
   min-height: var(--solidMobile-picker-min-height);
   justify-content: center;
   vertical-align: center;
+  user-select: none;
+  -webkit-user-select: none;
   position: relative;
   touch-action: none;
   overflow: hidden;
@@ -29,18 +31,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom,rgba(255, 255, 255) 0%,
-      rgba(255, 255, 255, .8) 10%,
-      rgba(255, 255, 255, .7) 20%,
-      rgba(255, 255, 255, .6) 30%,
-      rgba(255, 255, 255, .5) 40%,
-      transparent 50%,
-      rgba(255, 255, 255, .5) 60%,
-      rgba(255, 255, 255, .6) 70%,
-      rgba(255, 255, 255, .7) 80%,
-      rgba(255, 255, 255, .8) 90%,
-      rgba(255, 255, 255) 100%);
-    
   }
   &-reference {
     width: 97%;
@@ -55,7 +45,8 @@
     position: absolute;
   }
   &-content {
-
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
     padding: 0;
     margin: 0;
     text-align: center;
@@ -69,6 +60,7 @@
       margin: 0;
       overflow: hidden;
       text-overflow: ellipsis;
+      transition: .3s all;
     }
   }
 }
