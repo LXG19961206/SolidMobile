@@ -1,3 +1,4 @@
+import { range } from "lodash"
 import Picker from "../components/picker"
 
 const cols = [
@@ -56,90 +57,18 @@ const cols = [
   ]
 
   const cols2 = [
-    [
-      {
-        text: '哈哈',
-        value: '哈哈'
-      },
-      {
-        text: '哈哈',
-        value: '哈哈'
-      },
-      {
-        text: '哈哈',
-        value: '哈哈'
-      },
-      {
-        text: '哈哈',
-        value: '哈哈'
-      }
-      ,{
-        text: '哈哈',
-        value: '哈哈'
-      },
-      {
-        text: '哈哈',
-        value: '哈哈'
-      },
-      {
-        text: '哈哈',
-        value: '哈哈'
-      },
-      {
-        text: '哈哈',
-        value: '哈哈'
-      },
-      {
-        text: '哈哈',
-        value: '哈哈'
-      }
-      ,{
-        text: '哈哈',
-        value: '哈哈'
-      },
-      {
-        text: '哈哈',
-        value: '哈哈'
-      },
-      {
-        text: '哈哈',
-        value: '哈哈'
-      },
-      {
-        text: '哈哈',
-        value: '哈哈'
-      },
-      {
-        text: '哈哈',
-        value: '哈哈'
-      }
-      ,{
-        text: '哈哈',
-        value: '哈哈'
-      }
-    ],
-    [
-      {
-        text: '哈哈',
-        value: '哈哈'
-      },
-      {
-        text: '哈哈',
-        value: '哈哈'
-      },
-      {
-        text: '哈哈',
-        value: '哈哈'
-      },
-      {
-        text: '哈哈',
-        value: '哈哈'
-      }
-      ,{
-        text: '哈哈',
-        value: '哈哈'
-      }
-    ]
+    range(20).map(item => ({
+      text: 2005 + item + '年',
+      value: 2005 + item
+    })),
+    range(12).map(item => ({
+      text: item + 1 + '月',
+      value: item + 1
+    })),
+    range(30).map(item => ({
+      text: item + 1 + '日',
+      value: item + 1
+    })),
   ]
 
 export default () => {
