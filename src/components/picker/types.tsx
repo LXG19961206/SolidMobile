@@ -18,6 +18,6 @@ export interface PickerProps {
   ratio?: number,
   optionHeight?: number,
   swipeDuration?: number,
-  withInertia?: boolean,
+  useMomentum?: boolean,
   onChange?: (value: PickerOptions) => unknown
 }

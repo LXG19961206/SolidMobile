@@ -76,6 +76,46 @@ const cols = [
       ,{
         text: '哈哈',
         value: '哈哈'
+      },
+      {
+        text: '哈哈',
+        value: '哈哈'
+      },
+      {
+        text: '哈哈',
+        value: '哈哈'
+      },
+      {
+        text: '哈哈',
+        value: '哈哈'
+      },
+      {
+        text: '哈哈',
+        value: '哈哈'
+      }
+      ,{
+        text: '哈哈',
+        value: '哈哈'
+      },
+      {
+        text: '哈哈',
+        value: '哈哈'
+      },
+      {
+        text: '哈哈',
+        value: '哈哈'
+      },
+      {
+        text: '哈哈',
+        value: '哈哈'
+      },
+      {
+        text: '哈哈',
+        value: '哈哈'
+      }
+      ,{
+        text: '哈哈',
+        value: '哈哈'
       }
     ],
     [
@@ -104,6 +144,6 @@ const cols = [
 
 export default () => {
   return (
-    <Picker columns={cols}></Picker>
+    <Picker columns={cols2}></Picker>
   )
 }

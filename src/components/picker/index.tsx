@@ -33,20 +33,26 @@ const getColCount = (cols: PickerProps['columns']) => {
 const calcStyle = (
   idx: number,
   currentIdx: number,
-  count: number
+  count: number,
+  disabled: boolean
 ) => {
 
   const levelCount = Math.ceil(0.5 * count)
 
-  if (Math.abs(idx - currentIdx) > levelCount || idx === currentIdx) {
-    return { "font-weight": 500 }
-  }
+  if (Math.abs(idx - currentIdx) > levelCount) {
 
-  return {
-    transform: `scale(${(1 - Math.abs(idx - currentIdx) * 0.05)})`,
-    opacity: 0.6 - (Math.abs(idx - currentIdx) * 0.1)
-  }
+    return { visibility: 'hidden' as const }
 
+  } else if (disabled && idx === currentIdx) {
+
+    return { opacity: 1, "font-weight": 500 }
+
+  } else {
+    return {
+      transform: `rotate3D(1,0,0,${(idx - currentIdx) * 15}deg)`,
+      opacity: 0.6 - (Math.abs(idx - currentIdx) * 0.1)
+    }
+  }
 }
 
 
@@ -104,7 +110,7 @@ export default (props: PickerProps) => {
     getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-picker-content-item-lineHeight')
   )
 
-  const swipeDuration = () => props.swipeDuration || Second * 2
+  const swipeDuration = () => props.swipeDuration || Second * 1
 
   const queue = new FixedQueue<[number, number, boolean]>(30)
 
@@ -158,7 +164,7 @@ export default (props: PickerProps) => {
     })
   )
 
-  let disabled = true
+  const [disabled, setDisabled] = createSignal(true)
 
   const isTree = () => !isArray(props.columns[0])
 
@@ -173,11 +179,10 @@ export default (props: PickerProps) => {
       newVal: number[] | void
     ) => {
 
-      if (oldVal && newVal) {
+      if (oldVal && newVal && isTree()) {
 
         differAndReset(
-          oldVal,
-          newVal
+          oldVal, newVal
         )
 
       }
@@ -235,11 +240,19 @@ export default (props: PickerProps) => {
 
   const pointerDown = (evt: PointerEvent) => {
 
-    disabled = false
+    setTargetIdx(Math.floor(evt.offsetX / (evt.target as HTMLElement).clientWidth / (1 / colCount())))
+
+    setTimeout(() => {
+
+      setDisabled(false)
+
+    }, Millisecond * 50)
+
+    const [__, durationSetter] = durationAccessors()[targetIdx()]
+
+    durationSetter(Millisecond * 500)
 
     queue.clear()
-
-    setTargetIdx(Math.floor(evt.offsetX / (evt.target as HTMLElement).clientWidth / (1 / colCount())))
 
     lastPosY = evt.clientY
 
@@ -247,11 +260,7 @@ export default (props: PickerProps) => {
 
   const pointerMove = (evt: PointerEvent) => {
 
-    if (disabled) return 
-
-    const [__, durationSetter] = durationAccessors()[targetIdx()]
-
-    durationSetter(Millisecond * 300)
+    if (disabled())
 
     evt.stopPropagation()
 
@@ -263,6 +272,8 @@ export default (props: PickerProps) => {
 
     const [translateGetter, translateSetter] = translateAccessors()[targetIdx()]
 
+    const [_, idxSetter] = idxAccessors()[targetIdx()]
+
     const sumChunkDistance = queue.value()
       .filter(item => !item[2])
       .map(item => item[0])
@@ -271,6 +282,8 @@ export default (props: PickerProps) => {
     if (Math.abs(sumChunkDistance) > lineHeight) {
 
       translateSetter(translateGetter() + (sumChunkDistance > 0 ? lineHeight : -lineHeight))
+
+      idxSetter(-(translateGetter() / lineHeight))
 
       queue.value().forEach(item => item[2] = true)
 
@@ -282,31 +295,7 @@ export default (props: PickerProps) => {
 
   const pointerUp = (evt: PointerEvent) => {
 
-    disabled = true
-
     const [translateGetter, translateSetter] = translateAccessors()[targetIdx()]
-
-    if (false && queue.value().length > 2 && evt.timeStamp - queue.getFirst()[1] < 300) {
-      
-
-      const [_, durationSetter] = durationAccessors()[targetIdx()]
-
-      durationSetter(swipeDuration())
-
-      let [lastDistance, lastTime] = queue.getLast()
-
-      let [secondLastDistance, secondLastTime] = queue.value().slice(-2)[0]
-
-      let chunkDistance = lastDistance - secondLastDistance,
-        chunkTime = lastTime - secondLastTime
-
-      while (chunkTime < swipeDuration()) {
-        chunkDistance += 0.9 * chunkDistance
-        chunkTime *= 2
-      }
-
-      translateSetter(translateGetter() + chunkDistance)
-    }
 
     boundaryHandle(
       translateSetter,
@@ -315,8 +304,6 @@ export default (props: PickerProps) => {
     )
 
     lastPosY = evt.clientY
-
-
 
   }
 
@@ -327,6 +314,9 @@ export default (props: PickerProps) => {
     value: Accessor<number>,
     boundaryVal: number
   ) => {
+
+
+    handleMomentum()
 
     setTimeout(releaser)
 
@@ -340,9 +330,9 @@ export default (props: PickerProps) => {
 
         setter(0)
 
-        idxSetter(-(value() / lineHeight))
+        setDisabled(true)
 
-        disabled = false
+        idxSetter(-(value() / lineHeight))
 
       }, Millisecond * 200)
 
@@ -351,6 +341,8 @@ export default (props: PickerProps) => {
       setTimeout(() => {
 
         setter(-lineHeight * boundaryVal + lineHeight)
+
+        setDisabled(true)
 
         idxSetter(-(value() / lineHeight))
 
@@ -362,6 +354,35 @@ export default (props: PickerProps) => {
 
       idxSetter(-(value() / lineHeight))
 
+      setDisabled(true)
+
+    }
+  }
+
+  const handleMomentum = () => {
+
+    setDisabled(false)
+
+    if (queue.length < 2) return
+
+    const [theLastDistance, theLastTime] = queue.getLast()
+
+    const [secondLastDistance, _] = queue.value().slice(-2)[0]
+
+    if (
+      theLastTime - queue.getFirst()[1] < Millisecond * 300
+    ) {
+
+      const lastMove = theLastDistance - secondLastDistance
+
+      const [getter, setter] = translateAccessors()[targetIdx()]
+
+      durationAccessors()[targetIdx()][1](swipeDuration())
+
+      setter((lastMove > 0 ? Math.ceil : Math.floor)((getter() - lastMove * 5) / 50) * 50)
+
+      setTimeout(() => setDisabled(true), swipeDuration() * 0.5)
+      
     }
   }
 
@@ -392,6 +413,7 @@ export default (props: PickerProps) => {
             <div
               style={{
                 flex: `0 0 ${100 / colCount()}%`,
+                "transition-duration": `${allDuration()[i()]}ms`,
                 transform: `translate3D(0,${allTranslate()[i()]}px,0)`
               }}
               class="solidMobile-picker-content">
@@ -403,7 +425,7 @@ export default (props: PickerProps) => {
                   <For each={cols}>
                     {(item, index) => (
                       <p
-                        style={calcStyle( index(), allCurrentIdxs()[i()], itemCount()  )}
+                        style={ calcStyle( index(), allCurrentIdxs()[i()], itemCount(), disabled() )}
                         class="solidMobile-picker-content-item"> {item.text} </p>
                     )}
                   </For>
