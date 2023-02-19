@@ -49,7 +49,7 @@ const calcStyle = (
 
   } else {
     return {
-      transform: `rotate3D(1,0,0,${(idx - currentIdx) * 15}deg)`,
+      transform: `rotate3D(1,0,0,${(idx - currentIdx) * -15}deg)`,
       opacity: 0.6 - (Math.abs(idx - currentIdx) * 0.1)
     }
   }
