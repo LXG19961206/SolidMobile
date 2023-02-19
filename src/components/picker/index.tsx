@@ -247,7 +247,7 @@ export default (props: PickerProps) => {
 
   const pointerMove = (evt: PointerEvent) => {
 
-    // if (disabled || (!evt.pressure)) return
+    if (disabled) return 
 
     const [__, durationSetter] = durationAccessors()[targetIdx()]
 
