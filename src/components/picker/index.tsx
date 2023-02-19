@@ -3,7 +3,7 @@ import './index.less'
 import { PickerOptions, PickerProps } from './types'
 import { createEffect, createMemo, createSignal, on, For, onMount, onCleanup, Setter, Accessor, Index } from 'solid-js'
 import { disabledIOSElasticScroll } from '../../util/dom'
-import { SimpleQueue } from '../../util/simpleQueue'
+import { FixedQueue } from '../../util/FixedQueue'
 import { Millisecond, Second } from '../../dict/time'
 
 const getColCount = (cols: PickerProps['columns']) => {
@@ -87,7 +87,7 @@ export default (props: PickerProps) => {
 
   const swipeDuration = () => props.swipeDuration || Second * 2
 
-  const queue = new SimpleQueue<[number, number, boolean]>(30)
+  const queue = new FixedQueue<[number, number, boolean]>(30)
 
   const ratio = () => props.ratio || 2
 

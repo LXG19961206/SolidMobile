@@ -1,12 +1,12 @@
-export class SimpleQueue<T = unknown> {
+export class FixedQueue<T = unknown> {
 
-  size: number
+  capacity: number
 
   _value: T []
 
-  constructor (size: number) {
+  constructor (capacity: number) {
 
-    this.size = size
+    this.capacity = capacity
 
     this._value = []
 
@@ -17,7 +17,7 @@ export class SimpleQueue<T = unknown> {
   }
 
   push (item: T) {
-    if (this._value.length >= this.size) {
+    if (this._value.length >= this.capacity) {
       this.shift()
     }
     this._value.push(item)
@@ -45,6 +45,10 @@ export class SimpleQueue<T = unknown> {
 
   getFirst () {
     return this._value[0]
+  }
+
+  get length () {
+    return this._value.length
   }
 
 }

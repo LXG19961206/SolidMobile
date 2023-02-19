@@ -2,7 +2,7 @@ import "./test.less"
 import { createSignal, createEffect, onMount } from 'solid-js'
 import Toast from "../components/toast"
 import picker from "../components/picker"
-import { SimpleQueue } from "../util/simpleQueue"
+import { FixedQueue } from "../util/FixedQueue"
 
 export default () => {
 
@@ -25,7 +25,7 @@ export default () => {
 
   let currentTargetIndex = 0
   
-  const queue = new SimpleQueue<[number, number]>(60)
+  const queue = new FixedQueue<[number, number]>(60)
 
   onMount(() => {
 
