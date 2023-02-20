@@ -73,6 +73,8 @@ const cols = [
 
 export default () => {
   return (
-    <Picker columns={cols2}></Picker>
+    <Picker
+      resetChildrenPos 
+      columns={cols2}></Picker>
   )
 }

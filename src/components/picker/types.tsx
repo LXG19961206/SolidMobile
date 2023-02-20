@@ -19,5 +19,6 @@ export interface PickerProps {
   optionHeight?: number,
   swipeDuration?: number,
   useMomentum?: boolean,
-  onChange?: (value: PickerOptions) => unknown
+  onChange?: (value: PickerOptions) => unknown,
+  resetChildrenPos?: boolean
 }

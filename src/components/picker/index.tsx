@@ -5,6 +5,7 @@ import { createEffect, createMemo, createSignal, on, For, onMount, onCleanup, Se
 import { disabledIOSElasticScroll } from '../../util/dom'
 import { FixedQueue } from '../../util/FixedQueue'
 import { Millisecond, Second } from '../../dict/time'
+import { HTMLNativeEvent } from '../../dict/native'
 
 const getColCount = (cols: PickerProps['columns']) => {
   // if get a empty list, return 0
@@ -179,7 +180,9 @@ export default (props: PickerProps) => {
       newVal: number[] | void
     ) => {
 
-      if (oldVal && newVal && isTree()) {
+      if (oldVal && newVal && (
+        isTree() || props.resetChildrenPos
+      )) {
 
         differAndReset(
           oldVal, newVal
@@ -242,11 +245,7 @@ export default (props: PickerProps) => {
 
     setTargetIdx(Math.floor(evt.offsetX / (evt.target as HTMLElement).clientWidth / (1 / colCount())))
 
-    setTimeout(() => {
-
-      setDisabled(false)
-
-    }, Millisecond * 50)
+    setTimeout(() => setDisabled(false), Millisecond * 50)
 
     const [__, durationSetter] = durationAccessors()[targetIdx()]
 
@@ -260,7 +259,7 @@ export default (props: PickerProps) => {
 
   const pointerMove = (evt: PointerEvent) => {
 
-    if (disabled())
+    if (disabled()) return 
 
     evt.stopPropagation()
 
@@ -275,8 +274,8 @@ export default (props: PickerProps) => {
     const [_, idxSetter] = idxAccessors()[targetIdx()]
 
     const sumChunkDistance = queue.value()
-      .filter(item => !item[2])
-      .map(item => item[0])
+      .filter(([_distance, _time, hasCalc]) => !hasCalc)
+      .map(([distance]) => distance)
       .reduce(add, 0)
 
     if (Math.abs(sumChunkDistance) > lineHeight) {
