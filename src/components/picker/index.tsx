@@ -1,11 +1,10 @@
-import { isArray, range, add } from 'lodash'
+import { isArray, range, add, values } from 'lodash'
 import './index.less'
 import { PickerOptions, PickerProps } from './types'
 import { createEffect, createMemo, createSignal, on, For, onMount, onCleanup, Setter, Accessor, Index } from 'solid-js'
 import { disabledIOSElasticScroll } from '../../util/dom'
 import { FixedQueue } from '../../util/FixedQueue'
 import { Millisecond, Second } from '../../dict/time'
-import { HTMLNativeEvent } from '../../dict/native'
 
 const getColCount = (cols: PickerProps['columns']) => {
   // if get a empty list, return 0
@@ -31,12 +30,19 @@ const getColCount = (cols: PickerProps['columns']) => {
   }
 }
 
+const idxRangeFix = (idx: number, maxIdx: number) => {
+  return idx < 0 ? 0 : idx > maxIdx ? maxIdx : idx
+}
+
 const calcStyle = (
   idx: number,
-  currentIdx: number,
+  currentTranslate: number,
   count: number,
+  lineHeight: number,
   disabled: boolean
 ) => {
+
+  const currentIdx = -parseInt((currentTranslate / lineHeight).toString())
 
   const levelCount = Math.ceil(0.5 * count)
 
@@ -44,14 +50,14 @@ const calcStyle = (
 
     return { visibility: 'hidden' as const }
 
-  } else if (disabled && idx === currentIdx) {
+  } else if (idx === currentIdx && disabled) {
 
-    return { opacity: 1, "font-weight": 500 }
+    return { opacity: 1, "font-weight": 400 }
 
   } else {
     return {
-      transform: `rotate3D(1,0,0,${(idx - currentIdx) * -15}deg)`,
-      opacity: 0.6 - (Math.abs(idx - currentIdx) * 0.1)
+      transform: `rotate3D(1,0,0,${(idx - currentIdx) * -10}deg)`,
+      opacity: disabled ? 0.6 - (Math.abs(idx - currentIdx) * 0.1) : ''
     }
   }
 }
@@ -100,6 +106,8 @@ export default (props: PickerProps) => {
 
   const [targetIdx, setTargetIdx] = createSignal(0)
 
+  const [currentValue, setCurrentVal] = createSignal(new Array(allCols().length).fill(""))
+
   const placeHolderItems = createMemo(
 
     () => allCols().map((col) => {
@@ -126,20 +134,32 @@ export default (props: PickerProps) => {
 
   createEffect(
 
-    on(allCurrentIdxs, (
-      oldVal: number[],
-      newVal: number[] | void
+    on(allCols, (
+      newVal: PickerOptions[][],
+      oldVal: PickerOptions[][] | void
     ) => {
 
-      if (oldVal && newVal && (
-        isTree() || props.resetChildrenPos
-      )) {
+      if (!oldVal) return
 
-        differAndReset(
-          oldVal, newVal
-        )
+      newVal.forEach((items, idx) => {
 
-      }
+        if (idx === targetIdx()) return
+
+        if (items.length < oldVal[idx].length) {
+
+          idxAccessors()[idx][1](0)
+
+          translateAccessors()[idx][1](0)
+
+        }
+
+      })
+    })
+  )
+
+  createEffect(
+
+    on(allCurrentIdxs, () => {
 
       let currentDepth = 0, isFlat = !isTree(), target = props.columns
 
@@ -147,7 +167,11 @@ export default (props: PickerProps) => {
 
         const [_getter, setter] = colAccessors()[currentDepth]
 
-        const [idxGetter, _idxSetter] = idxAccessors()[currentDepth]
+        const [idxGetter, _] = idxAccessors()[currentDepth]
+
+        const finalIndex = idxRangeFix(
+          idxGetter(), target.length - 1
+        )
 
         if (isFlat) {
 
@@ -159,7 +183,7 @@ export default (props: PickerProps) => {
 
           if (currentDepth + 1 <= colCount()) {
 
-            target = (target as PickerOptions[])[idxGetter()].children!
+            target = (target as PickerOptions[])[finalIndex].children!
 
           }
 
@@ -170,27 +194,6 @@ export default (props: PickerProps) => {
       }
 
     }))
-
-  const differAndReset = (
-    oldVal: number[],
-    newVal: number[]
-  ) => {
-
-    const changedIdx = newVal.findIndex((item, i) => !Object.is(item, oldVal[i]))
-    
-    if (changedIdx > -1) {
-
-      idxAccessors().forEach(([_, setter], i) => {
-        i > changedIdx && setter(0)
-      })
-
-      translateAccessors().forEach(([_, setter], i) => {
-        i > changedIdx && setter(0)
-      })
-
-    }
-
-  }
 
   const pointerDown = (evt: PointerEvent) => {
 
@@ -210,7 +213,7 @@ export default (props: PickerProps) => {
 
   const pointerMove = (evt: PointerEvent) => {
 
-    if (disabled()) return 
+    if (disabled()) return
 
     evt.stopPropagation()
 
@@ -247,11 +250,38 @@ export default (props: PickerProps) => {
 
     const [translateGetter, translateSetter] = translateAccessors()[targetIdx()]
 
-    boundaryHandle(
-      translateSetter,
-      translateGetter,
-      allCols()[targetIdx()].length
+    const [durationGetter, durationSetter] = durationAccessors()[targetIdx()]
+
+    const [_, idxSetter] = idxAccessors()[targetIdx()]
+
+    const useMomentum = (
+      queue.length > 2 &&
+      queue.getLast()[1] - queue.getFirst()[1] < Millisecond * 300
     )
+
+    const finalTranslate = boundaryCalc(
+      momentumCalc(useMomentum)
+    )
+
+    useMomentum && durationSetter(swipeDuration())
+
+    translateSetter(finalTranslate)
+
+    !useMomentum && setDisabled(true)
+
+    setTimeout(() => {
+
+      idxSetter(-(translateGetter() / lineHeight))
+
+      setDisabled(true)
+
+      setCurrentVal(
+        allCurrentIdxs().map((selectedIdx, i) => allCols()[i][selectedIdx].value)
+      )
+
+      props.onChange?.call(void 0, currentValue())
+
+    },(useMomentum ? durationGetter() : 300 * Millisecond) * 0.5)
 
     lastPosY = evt.clientY
 
@@ -259,79 +289,35 @@ export default (props: PickerProps) => {
 
 
 
-  const boundaryHandle = (
-    setter: Setter<number>,
-    value: Accessor<number>,
-    boundaryVal: number
+  const boundaryCalc = (
+    value: number
   ) => {
 
-    handleMomentum()
+    const boundaryBottom = (1 - allCols()[targetIdx()].length) * lineHeight, boundaryTop = 0
 
-    setTimeout(releaser)
+    return value > boundaryTop ? boundaryTop : value < boundaryBottom ? boundaryBottom : value
 
-    const [_, idxSetter] = idxAccessors()[targetIdx()]
+  }
 
-    if (value() > 0) {
+  const momentumCalc = (
+    enableMomentum: boolean
+  ): number => {
+    const currentTranslate = allTranslate()[targetIdx()];
 
-      setter(lineHeight)
+    if (!enableMomentum) {
 
-      setTimeout(() => {
-
-        setter(0)
-
-        setDisabled(true)
-
-        idxSetter(-(value() / lineHeight))
-
-      }, Millisecond * 200)
-
-    } else if (value() < -(lineHeight * boundaryVal) + lineHeight) {
-
-      setTimeout(() => {
-
-        setter(-lineHeight * boundaryVal + lineHeight)
-
-        setDisabled(true)
-
-        idxSetter(-(value() / lineHeight))
-
-      }, Millisecond * 200)
+      return currentTranslate
 
     } else {
 
-      setter(Math.floor(value() / lineHeight) * lineHeight)
+      const [theLastDistance] = queue.getLast()
 
-      idxSetter(-(value() / lineHeight))
+      const [secondLastDistance] = queue.value().slice(-2)[0]
 
-      setDisabled(true)
+      const lastMove = theLastDistance - secondLastDistance;
 
-    }
-  }
+      return (lastMove > 0 ? Math.ceil : Math.floor)((currentTranslate - lastMove * 5) / lineHeight) * lineHeight
 
-  const handleMomentum = () => {
-
-    setDisabled(false)
-
-    if (queue.length < 2) return
-
-    const [theLastDistance, theLastTime] = queue.getLast()
-
-    const [secondLastDistance, _] = queue.value().slice(-2)[0]
-
-    if (
-      theLastTime - queue.getFirst()[1] < Millisecond * 300
-    ) {
-
-      const lastMove = theLastDistance - secondLastDistance
-
-      const [getter, setter] = translateAccessors()[targetIdx()]
-
-      durationAccessors()[targetIdx()][1](swipeDuration())
-
-      setter((lastMove > 0 ? Math.ceil : Math.floor)((getter() - lastMove * 5) / 50) * 50)
-
-      setTimeout(() => setDisabled(true), swipeDuration() * 0.5)
-      
     }
   }
 
@@ -374,7 +360,7 @@ export default (props: PickerProps) => {
                   <For each={cols}>
                     {(item, index) => (
                       <p
-                        style={ calcStyle( index(), allCurrentIdxs()[i()], itemCount(), disabled() )}
+                        style={calcStyle(index(),allTranslate()[i()],itemCount(), lineHeight, disabled())}
                         class="solidMobile-picker-content-item"> {item.text} </p>
                     )}
                   </For>

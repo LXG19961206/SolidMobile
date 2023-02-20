@@ -3,7 +3,7 @@ import { BasePropsAndAttrs } from "../common/types"
 
 export type PickerOptions = {
   text: string | number,
-  value?: string | number,
+  value: string | number,
   children?: PickerOptions [],
   disabled?: boolean,
   className?: string
@@ -19,6 +19,6 @@ export interface PickerProps {
   optionHeight?: number,
   swipeDuration?: number,
   useMomentum?: boolean,
-  onChange?: (value: PickerOptions) => unknown,
+  onChange?: (value: (number | string) []) => unknown,
   resetChildrenPos?: boolean
 }
