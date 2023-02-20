@@ -56,55 +56,6 @@ const calcStyle = (
   }
 }
 
-
-
-const columns = [
-  {
-    text: '浙江',
-    value: 'Zhejiang',
-    children: [
-      {
-        text: '杭州',
-        value: 'Hangzhou',
-        children: [
-          { text: '西湖区', value: 'Xihu' },
-          { text: '余杭区', value: 'Yuhang' },
-        ],
-      },
-      {
-        text: '温州',
-        value: 'Wenzhou',
-        children: [
-          { text: '鹿城区', value: 'Lucheng' },
-          { text: '瓯海区', value: 'Ouhai' },
-        ],
-      },
-    ],
-  },
-  {
-    text: '福建',
-    value: 'Fujian',
-    children: [
-      {
-        text: '福州',
-        value: 'Fuzhou',
-        children: [
-          { text: '鼓楼区', value: 'Gulou' },
-          { text: '台江区', value: 'Taijiang' },
-        ],
-      },
-      {
-        text: '厦门',
-        value: 'Xiamen',
-        children: [
-          { text: '思明区', value: 'Siming' },
-          { text: '海沧区', value: 'Haicang' },
-        ],
-      },
-    ],
-  },
-];
-
 export default (props: PickerProps) => {
 
   const lineHeight = parseFloat(
@@ -121,7 +72,7 @@ export default (props: PickerProps) => {
 
   const [maskEl, setMaskEl] = createSignal<HTMLElement>()
 
-  const accessors = createMemo(
+  const colAccessors = createMemo(
     _ => new Array(colCount()).fill(0).map(() => createSignal<PickerOptions[]>([]))
   )
 
@@ -139,7 +90,7 @@ export default (props: PickerProps) => {
 
   const itemCount = () => props.visibleItemCount || 7
 
-  const allCols = createMemo(_ => accessors().map(([getter]) => getter()))
+  const allCols = createMemo(_ => colAccessors().map(([getter]) => getter()))
 
   const allCurrentIdxs = createMemo(_ => idxAccessors().map(([getter]) => getter()))
 
@@ -194,7 +145,7 @@ export default (props: PickerProps) => {
 
       while (currentDepth < colCount()) {
 
-        const [_getter, setter] = accessors()[currentDepth]
+        const [_getter, setter] = colAccessors()[currentDepth]
 
         const [idxGetter, _idxSetter] = idxAccessors()[currentDepth]
 
@@ -313,7 +264,6 @@ export default (props: PickerProps) => {
     value: Accessor<number>,
     boundaryVal: number
   ) => {
-
 
     handleMomentum()
 
