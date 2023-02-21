@@ -137,7 +137,7 @@ export default (props: PickerProps) => {
 
   createEffect(
 
-    on(allCurrentIdxs, () => {
+    on([allCurrentIdxs, () => props.columns], () => {
 
       let currentDepth = 0, isFlat = !isTree(), target = props.columns
 
@@ -173,17 +173,27 @@ export default (props: PickerProps) => {
 
     }))
 
-  colAccessors().forEach(([getter]) => {
-    createRenderEffect(
+  colAccessors().forEach(([getter], idx) => {
 
+    createRenderEffect(
       on(getter, (
         newVal: PickerOptions[],
         oldVal: PickerOptions[] | void,
       ) => {
-        debugger
+
+        if (!oldVal) return
+
+        if (newVal.length < oldVal.length) {
+
+          idxAccessors()[idx][1](0)
+
+          translateAccessors()[idx][1](0)
+
+        }
       })
     )
   })
+
 
   const pointerDown = (evt: PointerEvent) => {
 
