@@ -1,7 +1,7 @@
 import { isArray, range, add, values } from 'lodash'
 import './index.less'
 import { PickerOptions, PickerProps } from './types'
-import { createEffect, createMemo, createSignal, on, For, onMount, onCleanup, Setter, Accessor, Index } from 'solid-js'
+import { createEffect, createMemo, createSignal, on, For, onMount, onCleanup, Setter, Accessor, Index, createRenderEffect } from 'solid-js'
 import { disabledIOSElasticScroll } from '../../util/dom'
 import { FixedQueue } from '../../util/FixedQueue'
 import { Millisecond, Second } from '../../dict/time'
@@ -132,30 +132,8 @@ export default (props: PickerProps) => {
 
   let lastPosY: number = 0
 
-  createEffect(
 
-    on(allCols, (
-      newVal: PickerOptions[][],
-      oldVal: PickerOptions[][] | void
-    ) => {
 
-      if (!oldVal) return
-
-      newVal.forEach((items, idx) => {
-
-        if (idx === targetIdx()) return
-
-        if (items.length < oldVal[idx].length) {
-
-          idxAccessors()[idx][1](0)
-
-          translateAccessors()[idx][1](0)
-
-        }
-
-      })
-    })
-  )
 
   createEffect(
 
@@ -194,6 +172,18 @@ export default (props: PickerProps) => {
       }
 
     }))
+
+  colAccessors().forEach(([getter]) => {
+    createRenderEffect(
+
+      on(getter, (
+        newVal: PickerOptions[],
+        oldVal: PickerOptions[] | void,
+      ) => {
+        debugger
+      })
+    )
+  })
 
   const pointerDown = (evt: PointerEvent) => {
 
@@ -269,19 +259,19 @@ export default (props: PickerProps) => {
 
     !useMomentum && setDisabled(true)
 
-    setTimeout(() => {
+    idxSetter(-(translateGetter() / lineHeight))
 
-      idxSetter(-(translateGetter() / lineHeight))
+    setCurrentVal(
+      allCurrentIdxs().map((selectedIdx, i) => allCols()[i][selectedIdx].value)
+    )
+
+    setTimeout(() => {
 
       setDisabled(true)
 
-      setCurrentVal(
-        allCurrentIdxs().map((selectedIdx, i) => allCols()[i][selectedIdx].value)
-      )
-
       props.onChange?.call(void 0, currentValue())
 
-    },(useMomentum ? durationGetter() : 300 * Millisecond) * 0.5)
+    }, (useMomentum ? durationGetter() : 300 * Millisecond) * 0.5)
 
     lastPosY = evt.clientY
 
@@ -360,7 +350,7 @@ export default (props: PickerProps) => {
                   <For each={cols}>
                     {(item, index) => (
                       <p
-                        style={calcStyle(index(),allTranslate()[i()],itemCount(), lineHeight, disabled())}
+                        style={calcStyle(index(), allTranslate()[i()], itemCount(), lineHeight, disabled())}
                         class="solidMobile-picker-content-item"> {item.text} </p>
                     )}
                   </For>

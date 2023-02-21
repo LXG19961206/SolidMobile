@@ -1,5 +1,5 @@
 import { range } from "lodash"
-import { createMemo, createSignal } from "solid-js"
+import { createEffect, createMemo, createSignal, on } from "solid-js"
 import Picker from "../components/picker"
 
 const cols = [
@@ -88,40 +88,47 @@ const month = createMemo(() => {
   }))
 })
 
-const col3 = createMemo(() => {
+const [col3, setCol3] = createSignal(range(30).map(item => ({
+  text: item + 1 + '日',
+  value: item + 1
+})))
 
-  if (val()[1] === 2) {
+createEffect(on(val, (val, val2, val3) => {
+  let fn = () => {
+    if (val[1] === 2) {
 
-    if (
-      (val()[0] % 4 === 0 && val()[0] % 100) || val()[0] % 400 === 0
-    ) {
-      return range(29).map(item => ({
+      if (
+        (val[0] % 4 === 0 && val[0] % 100) || val[0] % 400 === 0
+      ) {
+        return range(29).map(item => ({
+          text: item + 1 + '日',
+          value: item + 1
+        }))
+
+      } else {
+        return range(28).map(item => ({
+          text: item + 1 + '日',
+          value: item + 1
+        }))
+
+      }
+
+    } else if ([1, 3, 5, 7, 8, 10, 12].includes(val[1])) {
+      return range(31).map(item => ({
         text: item + 1 + '日',
         value: item + 1
       }))
 
     } else {
-      return range(28).map(item => ({
+      return range(30).map(item => ({
         text: item + 1 + '日',
         value: item + 1
       }))
-
     }
-
-  } else if ([1, 3, 5, 7, 8, 10, 12].includes(val()[1])) {
-    return range(31).map(item => ({
-      text: item + 1 + '日',
-      value: item + 1
-    }))
-
-  } else {
-    return range(30).map(item => ({
-      text: item + 1 + '日',
-      value: item + 1
-    }))
   }
-
-})
+  console.log(fn())
+  setCol3(fn())
+}))
 
 export default () => {
   return (
