@@ -62,13 +62,15 @@ const calcStyle = (
   }
 }
 
+const defaultDuration = Millisecond * 400
+
 export default (props: PickerProps) => {
 
   const lineHeight = parseFloat(
     getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-picker-content-item-lineHeight')
   )
 
-  const swipeDuration = () => props.swipeDuration || Second * 1
+  const swipeDuration = () => props.swipeDuration || Second * 1.5
 
   const queue = new FixedQueue<[number, number, boolean]>(30)
 
@@ -159,7 +161,7 @@ export default (props: PickerProps) => {
 
           setter(target as PickerOptions[])
 
-          if (currentDepth + 1 <= colCount()) {
+          if (currentDepth + 1 <= colCount() && (target as PickerOptions[])[finalIndex]) {
 
             target = (target as PickerOptions[])[finalIndex].children!
 
@@ -176,6 +178,7 @@ export default (props: PickerProps) => {
   colAccessors().forEach(([getter], idx) => {
 
     createRenderEffect(
+      
       on(getter, (
         newVal: PickerOptions[],
         oldVal: PickerOptions[] | void,
@@ -183,11 +186,28 @@ export default (props: PickerProps) => {
 
         if (!oldVal) return
 
-        if (newVal.length < oldVal.length) {
+        const currentIdx = allCurrentIdxs()[idx]
 
-          idxAccessors()[idx][1](0)
+        if (currentIdx + 1 > newVal.length) {
 
-          translateAccessors()[idx][1](0)
+          durationAccessors()[idx][1](0)
+
+          idxAccessors()[idx][1](newVal.length - 1)
+
+          translateAccessors()[idx][1](
+            -lineHeight * currentIdx
+          )
+
+
+          setTimeout(() => {
+  
+            durationAccessors()[idx][1](defaultDuration * 0.5)
+
+            translateAccessors()[idx][1](
+              -lineHeight * (newVal.length - 1)
+            )
+
+          })
 
         }
       })
@@ -203,7 +223,7 @@ export default (props: PickerProps) => {
 
     const [__, durationSetter] = durationAccessors()[targetIdx()]
 
-    durationSetter(Millisecond * 300)
+    durationSetter(defaultDuration)
 
     queue.clear()
 
@@ -349,7 +369,7 @@ export default (props: PickerProps) => {
               style={{
                 flex: `0 0 ${100 / colCount()}%`,
                 "transition-duration": `${allDuration()[i()]}ms`,
-                transform: `translate3D(0,${allTranslate()[i()]}px,0)`
+                transform: `translate(0,${allTranslate()[i()]}px)`
               }}
               class="solidMobile-picker-content">
               {

@@ -1,6 +1,9 @@
 import { range } from "lodash"
 import { createEffect, createMemo, createSignal, on } from "solid-js"
 import Picker from "../components/picker"
+import city from "./city"
+
+import City from './city'
 
 const cols = [
   {
@@ -126,7 +129,6 @@ createEffect(on(val, (val, val2, val3) => {
       }))
     }
   }
-  console.log(fn())
   setCol3(fn())
 }))
 
@@ -135,11 +137,7 @@ export default () => {
     <Picker
       onChange={setVal}
       resetChildrenPos
-      columns={[
-        years(),
-        month(),
-        col3()
-      ]}
+      columns={city}
     ></Picker>
   )
 }
