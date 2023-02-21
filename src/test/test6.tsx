@@ -74,9 +74,21 @@ const cols2 = [
 
 const [val, setVal] = createSignal([0, 0, 0])
 
+const years = createMemo(() => {
+  return range(20).map(item => ({
+    text: 2005 + item + '年',
+    value: 2005 + item
+  }))
+})
+
+const month = createMemo(() => {
+  return range(12).map(item => ({
+    text: item + 1 + '月',
+    value: item + 1
+  }))
+})
+
 const col3 = createMemo(() => {
-
-
 
   if (val()[1] === 2) {
 
@@ -117,14 +129,8 @@ export default () => {
       onChange={setVal}
       resetChildrenPos
       columns={[
-        range(20).map(item => ({
-          text: 2005 + item + '年',
-          value: 2005 + item
-        })),
-        range(12).map(item => ({
-          text: item + 1 + '月',
-          value: item + 1
-        })),
+        years(),
+        month(),
         col3()
       ]}
     ></Picker>

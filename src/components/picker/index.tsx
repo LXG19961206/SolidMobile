@@ -203,7 +203,7 @@ export default (props: PickerProps) => {
 
     const [__, durationSetter] = durationAccessors()[targetIdx()]
 
-    durationSetter(Millisecond * 500)
+    durationSetter(Millisecond * 300)
 
     queue.clear()
 
