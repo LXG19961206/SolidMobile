@@ -64,6 +64,8 @@ const calcStyle = (
 
 const defaultDuration = Millisecond * 400
 
+const moveDuration = Millisecond * 0
+
 export default (props: PickerProps) => {
 
   const lineHeight = parseFloat(
@@ -74,7 +76,7 @@ export default (props: PickerProps) => {
 
   const queue = new FixedQueue<[number, number, boolean]>(30)
 
-  const ratio = () => props.ratio || 2
+  const ratio = () => props.ratio || 1
 
   const colCount = createMemo(() => getColCount(props.columns))
 
@@ -198,10 +200,9 @@ export default (props: PickerProps) => {
             -lineHeight * currentIdx
           )
 
-
           setTimeout(() => {
   
-            durationAccessors()[idx][1](defaultDuration * 0.5)
+            durationAccessors()[idx][1](defaultDuration)
 
             translateAccessors()[idx][1](
               -lineHeight * (newVal.length - 1)
@@ -223,7 +224,7 @@ export default (props: PickerProps) => {
 
     const [__, durationSetter] = durationAccessors()[targetIdx()]
 
-    durationSetter(defaultDuration)
+    durationSetter(moveDuration)
 
     queue.clear()
 
@@ -252,15 +253,18 @@ export default (props: PickerProps) => {
       .map(([distance]) => distance)
       .reduce(add, 0)
 
-    if (Math.abs(sumChunkDistance) > lineHeight) {
+    // if (Math.abs(sumChunkDistance) > lineHeight) {
 
-      translateSetter(translateGetter() + (sumChunkDistance > 0 ? lineHeight : -lineHeight))
+    //   translateSetter(translateGetter() + (sumChunkDistance > 0 ? lineHeight : -lineHeight))
 
-      idxSetter(-(translateGetter() / lineHeight))
+    //   idxSetter(-(translateGetter() / lineHeight))
 
-      queue.value().forEach(item => item[2] = true)
+    //   queue.value().forEach(item => item[2] = true)
 
-    }
+    // }
+
+      translateSetter(translateGetter() + chunkDistance)
+
 
     lastPosY = evt.clientY
 
@@ -274,6 +278,14 @@ export default (props: PickerProps) => {
 
     const [_, idxSetter] = idxAccessors()[targetIdx()]
 
+    translateSetter(
+      +(+(translateGetter() / lineHeight).toString()).toFixed(0) * lineHeight
+    )
+
+    idxSetter(
+      -translateGetter() / lineHeight
+    )
+
     const useMomentum = (
       queue.length > 2 &&
       queue.getLast()[1] - queue.getFirst()[1] < Millisecond * 300
@@ -283,7 +295,7 @@ export default (props: PickerProps) => {
       momentumCalc(useMomentum)
     )
 
-    useMomentum && durationSetter(swipeDuration())
+    useMomentum ? durationSetter(swipeDuration()) : durationSetter(defaultDuration)
 
     translateSetter(finalTranslate)
 
