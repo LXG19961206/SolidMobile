@@ -30,6 +30,22 @@ const getColCount = (cols: PickerProps['columns']) => {
   }
 }
 
+const getDirection = (queue: FixedQueue<[number, number, boolean]>) => (
+  queue.getLast()[0] - queue.at(-2)[0] > 0 ? 1 : 0
+)
+
+
+const calcApproximate = (
+  float: number,
+  direction: 1 | 0
+) => {
+  console.log(
+    float,
+    (float > 0 ? 1 : -1) * (+((Math.abs(float).toFixed(0)) + direction))
+  )
+ return  (float > 0 ? 1 : -1) * (+((Math.abs(float).toFixed(0)) + direction))
+}
+
 const idxRangeFix = (idx: number, maxIdx: number) => {
   return idx < 0 ? 0 : idx > maxIdx ? maxIdx : idx
 }
@@ -64,7 +80,7 @@ const calcStyle = (
 
 const defaultDuration = Millisecond * 400
 
-const moveDuration = Millisecond * 0
+const moveDuration = Millisecond * 50
 
 export default (props: PickerProps) => {
 
@@ -72,11 +88,11 @@ export default (props: PickerProps) => {
     getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-picker-content-item-lineHeight')
   )
 
-  const swipeDuration = () => props.swipeDuration || Second * 1.5
+  const swipeDuration = () => props.swipeDuration || Second * 1
 
   const queue = new FixedQueue<[number, number, boolean]>(30)
 
-  const ratio = () => props.ratio || 1
+  const ratio = () => props.ratio || 2
 
   const colCount = createMemo(() => getColCount(props.columns))
 
@@ -135,8 +151,6 @@ export default (props: PickerProps) => {
   let releaser: () => unknown
 
   let lastPosY: number = 0
-
-
 
 
   createEffect(
@@ -246,25 +260,7 @@ export default (props: PickerProps) => {
 
     const [translateGetter, translateSetter] = translateAccessors()[targetIdx()]
 
-    const [_, idxSetter] = idxAccessors()[targetIdx()]
-
-    const sumChunkDistance = queue.value()
-      .filter(([_distance, _time, hasCalc]) => !hasCalc)
-      .map(([distance]) => distance)
-      .reduce(add, 0)
-
-    // if (Math.abs(sumChunkDistance) > lineHeight) {
-
-    //   translateSetter(translateGetter() + (sumChunkDistance > 0 ? lineHeight : -lineHeight))
-
-    //   idxSetter(-(translateGetter() / lineHeight))
-
-    //   queue.value().forEach(item => item[2] = true)
-
-    // }
-
-      translateSetter(translateGetter() + chunkDistance)
-
+    translateSetter(translateGetter() + chunkDistance)
 
     lastPosY = evt.clientY
 
@@ -278,8 +274,9 @@ export default (props: PickerProps) => {
 
     const [_, idxSetter] = idxAccessors()[targetIdx()]
 
+
     translateSetter(
-      +(+(translateGetter() / lineHeight).toString()).toFixed(0) * lineHeight
+      calcApproximate(translateGetter() / lineHeight, getDirection(queue)) * lineHeight
     )
 
     idxSetter(
@@ -348,7 +345,7 @@ export default (props: PickerProps) => {
 
       const lastMove = theLastDistance - secondLastDistance;
 
-      return (lastMove > 0 ? Math.ceil : Math.floor)((currentTranslate - lastMove * 5) / lineHeight) * lineHeight
+      return calcApproximate((currentTranslate - lastMove * 5), getDirection(queue)) * lineHeight
 
     }
   }

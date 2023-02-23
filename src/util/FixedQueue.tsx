@@ -23,6 +23,10 @@ export class FixedQueue<T = unknown> {
     this._value.push(item)
   }
 
+  at (idx: number) {
+    return idx >= 0 ? this._value[idx] : this._value.slice(idx)[0]
+  }
+
   clear () {
     this._value.splice(0, this._value.length)
   }

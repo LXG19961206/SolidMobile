@@ -10,13 +10,14 @@
 .solidMobile-picker {
   max-height: var(--solidMobile-picker-min-height);
   display: flex;
+  position: fixed;
+  bottom: 0;
   width: 100%;
   min-height: var(--solidMobile-picker-min-height);
   justify-content: center;
   vertical-align: center;
   user-select: none;
   -webkit-user-select: none;
-  position: relative;
   touch-action: none;
   overflow: hidden;
   &-mask {
@@ -55,9 +56,10 @@
       height: var(--solidMobile-picker-content-item-lineHeight);
       line-height: var(--solidMobile-picker-content-item-lineHeight);
       padding: 0;
-      margin: 0;
+      margin: 0 auto;
       overflow: hidden;
       text-overflow: ellipsis;
+      width: 90%;
       opacity: .5;
       transition: all var(--solidMobile-picker-content-duration-noraml) cubic-bezier(0.215, 0.610, 0.355, 1);
     }
