@@ -1,10 +1,23 @@
-import { isArray, range, add, values } from 'lodash'
-import './index.less'
+import { isArray, range, round } from 'lodash'
 import { PickerOptions, PickerProps } from './types'
-import { createEffect, createMemo, createSignal, on, For, onMount, onCleanup, Setter, Accessor, Index, createRenderEffect } from 'solid-js'
+import {
+  createEffect,
+  createMemo,
+  createSignal,
+  on,
+  For,
+  onMount,
+  onCleanup,
+  mergeProps,
+  Index,
+  createRenderEffect
+} from 'solid-js'
+import { Portal } from 'solid-js/web'
 import { disabledIOSElasticScroll } from '../../util/dom'
 import { FixedQueue } from '../../util/FixedQueue'
 import { Millisecond, Second } from '../../dict/time'
+import Overlay from '../overlay'
+import './index.less'
 
 const getColCount = (cols: PickerProps['columns']) => {
   // if get a empty list, return 0
@@ -30,21 +43,8 @@ const getColCount = (cols: PickerProps['columns']) => {
   }
 }
 
-const getDirection = (queue: FixedQueue<[number, number, boolean]>) => (
-  queue.getLast()[0] - queue.at(-2)[0] > 0 ? 1 : 0
-)
+const calcApproximate = (num: number, lineHeight: number) => round(num / lineHeight) * lineHeight
 
-
-const calcApproximate = (
-  float: number,
-  direction: 1 | 0
-) => {
-  console.log(
-    float,
-    (float > 0 ? 1 : -1) * (+((Math.abs(float).toFixed(0)) + direction))
-  )
- return  (float > 0 ? 1 : -1) * (+((Math.abs(float).toFixed(0)) + direction))
-}
 
 const idxRangeFix = (idx: number, maxIdx: number) => {
   return idx < 0 ? 0 : idx > maxIdx ? maxIdx : idx
@@ -82,39 +82,45 @@ const defaultDuration = Millisecond * 400
 
 const moveDuration = Millisecond * 50
 
-export default (props: PickerProps) => {
+export default (preProps: PickerProps) => {
+
+  const props = mergeProps({
+    swipeDuration: Second * 1,
+    ratio: 2,
+    visibleItemCount: 7,
+    overlay: true,
+    optionHeight: (
+      getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-picker-content-item-lineHeight') || 50
+    ),
+  }, preProps)
 
   const lineHeight = parseFloat(
-    getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-picker-content-item-lineHeight')
+    props.optionHeight?.toString()
   )
 
-  const swipeDuration = () => props.swipeDuration || Second * 1
-
   const queue = new FixedQueue<[number, number, boolean]>(30)
-
-  const ratio = () => props.ratio || 2
 
   const colCount = createMemo(() => getColCount(props.columns))
 
   const [maskEl, setMaskEl] = createSignal<HTMLElement>()
 
+  const [overlay, setOverlay] = createSignal<HTMLElement>()
+
   const colAccessors = createMemo(
-    _ => new Array(colCount()).fill(0).map(() => createSignal<PickerOptions[]>([]))
+    _ => range(colCount()).map(() => createSignal<PickerOptions[]>([]))
   )
 
   const idxAccessors = createMemo(
-    _ => new Array(colCount()).fill(0).map(() => createSignal<number>(0))
+    _ => range(colCount()).map(() => createSignal<number>(0))
   )
 
   const translateAccessors = createMemo(
-    _ => new Array(colCount()).fill(0).map((_, idx) => (createSignal<number>(0)))
+    _ => range(colCount()).map((_, idx) => (createSignal<number>(0)))
   )
 
   const durationAccessors = createMemo(
-    _ => new Array(colCount()).fill(0).map(() => createSignal<number>(0))
+    _ => range(colCount()).map(() => createSignal<number>(0))
   )
-
-  const itemCount = () => props.visibleItemCount || 7
 
   const allCols = createMemo(_ => colAccessors().map(([getter]) => getter()))
 
@@ -132,9 +138,9 @@ export default (props: PickerProps) => {
 
     () => allCols().map((col) => {
 
-      const topItemCount = Math.floor(itemCount() / 2)
+      const topItemCount = Math.floor(props.visibleItemCount / 2)
 
-      const bottomItemCount = itemCount() - ((col.length + topItemCount) % itemCount())
+      const bottomItemCount = props.visibleItemCount - ((col.length + topItemCount) % props.visibleItemCount)
 
       return ([
         range(topItemCount),
@@ -151,7 +157,6 @@ export default (props: PickerProps) => {
   let releaser: () => unknown
 
   let lastPosY: number = 0
-
 
   createEffect(
 
@@ -194,7 +199,7 @@ export default (props: PickerProps) => {
   colAccessors().forEach(([getter], idx) => {
 
     createRenderEffect(
-      
+
       on(getter, (
         newVal: PickerOptions[],
         oldVal: PickerOptions[] | void,
@@ -215,7 +220,7 @@ export default (props: PickerProps) => {
           )
 
           setTimeout(() => {
-  
+
             durationAccessors()[idx][1](defaultDuration)
 
             translateAccessors()[idx][1](
@@ -254,7 +259,7 @@ export default (props: PickerProps) => {
 
     evt.stopImmediatePropagation()
 
-    const chunkDistance = (evt.clientY - lastPosY) * ratio()
+    const chunkDistance = (evt.clientY - lastPosY) * props.ratio
 
     queue.push([chunkDistance, evt.timeStamp, false])
 
@@ -275,8 +280,9 @@ export default (props: PickerProps) => {
     const [_, idxSetter] = idxAccessors()[targetIdx()]
 
 
+
     translateSetter(
-      calcApproximate(translateGetter() / lineHeight, getDirection(queue)) * lineHeight
+      calcApproximate(translateGetter(), lineHeight)
     )
 
     idxSetter(
@@ -285,14 +291,14 @@ export default (props: PickerProps) => {
 
     const useMomentum = (
       queue.length > 2 &&
-      queue.getLast()[1] - queue.getFirst()[1] < Millisecond * 300
+      queue.tail()[1] - queue.head()[1] < Millisecond * 300
     )
 
     const finalTranslate = boundaryCalc(
       momentumCalc(useMomentum)
     )
 
-    useMomentum ? durationSetter(swipeDuration()) : durationSetter(defaultDuration)
+    useMomentum ? durationSetter(props.swipeDuration) : durationSetter(defaultDuration)
 
     translateSetter(finalTranslate)
 
@@ -339,13 +345,13 @@ export default (props: PickerProps) => {
 
     } else {
 
-      const [theLastDistance] = queue.getLast()
+      const [theLastDistance] = queue.tail()
 
       const [secondLastDistance] = queue.value().slice(-2)[0]
 
       const lastMove = theLastDistance - secondLastDistance;
 
-      return calcApproximate((currentTranslate - lastMove * 5), getDirection(queue)) * lineHeight
+      return calcApproximate(currentTranslate - (lastMove) * 5, lineHeight)
 
     }
   }
@@ -361,48 +367,55 @@ export default (props: PickerProps) => {
 
 
   return (
-    <div class="solidMobile-picker">
-      <div
-        ref={setMaskEl}
-        onPointerMove={pointerMove}
-        onPointerUp={pointerUp}
-        onPointerDown={pointerDown}
-        class="solidMobile-picker-mask">
-      </div>
-      <div
-        class="solidMobile-picker-reference"></div>
-      <For each={allCols()}>
-        {
-          (cols, i) => (
-            <div
-              style={{
-                flex: `0 0 ${100 / colCount()}%`,
-                "transition-duration": `${allDuration()[i()]}ms`,
-                transform: `translate(0,${allTranslate()[i()]}px)`
-              }}
-              class="solidMobile-picker-content">
-              {
-                <>
-                  <Index each={(placeHolderItems()[i()][0])}>
-                    {() => (<p class="solidMobile-picker-content-item"></p>)}
-                  </Index>
-                  <For each={cols}>
-                    {(item, index) => (
-                      <p
-                        style={calcStyle(index(), allTranslate()[i()], itemCount(), lineHeight, disabled())}
-                        class="solidMobile-picker-content-item"> {item.text} </p>
-                    )}
-                  </For>
-                  <Index each={(placeHolderItems()[i()][1])}>
-                    {() => (<p class="solidMobile-picker-content-item"></p>)}
-                  </Index>
-                </>
-              }
-            </div>
-          )
-        }
-      </For>
-    </div>
+    <>
+      <Overlay show={props.overlay}>
+        <div ref={setOverlay} class="solidMobile-picker-overlay"></div>
+      </Overlay>
+      <Portal mount={props.overlay ? overlay() : document.documentElement}>
+        <div class="solidMobile-picker">
+          <div
+            ref={setMaskEl}
+            onPointerMove={pointerMove}
+            onPointerUp={pointerUp}
+            onPointerDown={pointerDown}
+            class="solidMobile-picker-mask">
+          </div>
+          <div
+            class="solidMobile-picker-reference"></div>
+          <For each={allCols()}>
+            {
+              (cols, i) => (
+                <div
+                  style={{
+                    flex: `0 0 ${100 / colCount()}%`,
+                    "transition-duration": `${allDuration()[i()]}ms`,
+                    transform: `translate(0,${allTranslate()[i()]}px)`
+                  }}
+                  class="solidMobile-picker-content">
+                  {
+                    <>
+                      <Index each={(placeHolderItems()[i()][0])}>
+                        {() => (<p class="solidMobile-picker-content-item"></p>)}
+                      </Index>
+                      <For each={cols}>
+                        {(item, index) => (
+                          <p
+                            style={calcStyle(index(), allTranslate()[i()], props.visibleItemCount, lineHeight, disabled())}
+                            class="solidMobile-picker-content-item"> {item.text} </p>
+                        )}
+                      </For>
+                      <Index each={(placeHolderItems()[i()][1])}>
+                        {() => (<p class="solidMobile-picker-content-item"></p>)}
+                      </Index>
+                    </>
+                  }
+                </div>
+              )
+            }
+          </For>
+        </div>
+      </Portal>
+    </>
   )
 
 }

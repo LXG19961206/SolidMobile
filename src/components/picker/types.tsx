@@ -20,5 +20,6 @@ export interface PickerProps {
   swipeDuration?: number,
   useMomentum?: boolean,
   onChange?: (value: (number | string) []) => unknown,
-  resetChildrenPos?: boolean
+  resetChildrenPos?: boolean,
+  overlay: boolean
 }

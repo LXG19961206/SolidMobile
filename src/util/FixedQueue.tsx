@@ -43,11 +43,11 @@ export class FixedQueue<T = unknown> {
     return this._value.toString()
   }
 
-  getLast () {
+  tail () {
     return this._value[this._value.length - 1]
   }
 
-  getFirst () {
+  head () {
     return this._value[0]
   }
 

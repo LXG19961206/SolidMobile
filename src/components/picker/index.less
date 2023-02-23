@@ -4,6 +4,17 @@
   --solidMobile-picker-content-zIndex: 2;
   --solidMobile-picker-content-item-lineHeight: 50px;
   --solidMobile-picker-content-duration-noraml: 500ms;
+  --solidMobile-picker-content-background: #fff;
+
+}
+
+.solidMobile-picker-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  .solidMobile-picker {
+  }
 }
 
 
@@ -11,6 +22,8 @@
   max-height: var(--solidMobile-picker-min-height);
   display: flex;
   position: fixed;
+  background: var(--solidMobile-picker-content-background);
+  z-index: 100;
   bottom: 0;
   width: 100%;
   min-height: var(--solidMobile-picker-min-height);
@@ -50,7 +63,7 @@
     margin: 0;
     text-align: center;
     box-sizing: border-box;
-    font-size: var(--solidMobile-font-md);
+    font-size: calc(var(--solidMobile-font-md) + 1px);
     transition: all var(--solidMobile-picker-content-duration-noraml) cubic-bezier(.23,1,.68,1);
     &-item {
       height: var(--solidMobile-picker-content-item-lineHeight);
