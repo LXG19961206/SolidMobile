@@ -17,6 +17,7 @@ export default (props: Partial<ButtonProps>) => {
 
 
   const classList = () => ({
+    'solidMobild_actived': true,
     'solidMobile-button': true,
     [`solidMobile-button-${props.size || 'normal'}`]: true,
     [`solidMobile-button-${props.type || 'custom'}`]: true,
@@ -33,6 +34,7 @@ export default (props: Partial<ButtonProps>) => {
       {...useNativeEventFilter(props)}
       ref={buttonElementReference}
       onClick={props.action}
+      onTouchStart={props.action}
       type={props.nativeType}
       style={{ ...(props.style || {}) as JSX.CSSProperties, background: props.color, color: props.textColor }}
       disabled={props.loadingStatus || props.disabled || false}

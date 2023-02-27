@@ -10,10 +10,10 @@ import Test5 from './test/test6'
 const App = () => {
   return (
     <>
-      {/* <Test1></Test1> */}
+      <Test1></Test1>
       {/* <Test2></Test2> */}
       {/* <Test3></Test3> */}
-      <Test5></Test5>
+      {/* <Test5></Test5> */}
     </>
   )
 };
