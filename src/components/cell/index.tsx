@@ -11,7 +11,8 @@ export default (props: Partial<CellProps>) => {
     'solidMobile-cell-item': true,
     'solidMobile-cell-item-normal': !props.size || props.size === SizeDict.normal,
     'solidMobile-cell-item-small': props.size === SizeDict.small,
-    'solidMobile-cell-item-large': props.size === SizeDict.large
+    'solidMobile-cell-item-large': props.size === SizeDict.large,
+    "solidMobild_actived": true
   })
 
   return (
