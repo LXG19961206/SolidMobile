@@ -98,6 +98,8 @@ export default (preProps: PickerProps) => {
     props.optionHeight?.toString()
   )
 
+  const [bindValGetter, bindValSetter] = props.bind || []
+
   const queue = new FixedQueue<[number, number, boolean]>(30)
 
   const colCount = createMemo(() => getColCount(props.columns))
@@ -196,6 +198,7 @@ export default (preProps: PickerProps) => {
 
     }))
 
+
   colAccessors().forEach(([getter], idx) => {
 
     createRenderEffect(
@@ -233,6 +236,44 @@ export default (preProps: PickerProps) => {
       })
     )
   })
+
+
+  bindValGetter && createEffect(on(bindValGetter, (
+    newVal, oldVal
+  ) => {
+
+    if (newVal && newVal.length && !Object.is(newVal, oldVal)) {
+
+
+      (async function () {
+
+        let i = 0
+
+        while (i < newVal.length) {
+
+          const val = newVal[i]
+
+          const source = allCols()[i] 
+
+          const idx = source.findIndex(item => item.value === val)
+
+          if (idx === -1) break
+
+          idxAccessors()[i][1](idx)
+
+          translateAccessors()[i][1](idx * lineHeight * -1)
+
+          i ++
+
+          await Promise.resolve()
+
+        }
+      })()
+
+
+    }
+
+  }))
 
 
   const pointerDown = (evt: PointerEvent) => {
@@ -315,6 +356,8 @@ export default (preProps: PickerProps) => {
       setDisabled(true)
 
       props.onChange?.call(void 0, currentValue())
+
+      bindValSetter?.call(void 0, currentValue())
 
     }, (useMomentum ? durationGetter() : 300 * Millisecond) * 0.5)
 

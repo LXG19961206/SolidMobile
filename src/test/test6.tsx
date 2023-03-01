@@ -132,9 +132,12 @@ createEffect(on(val, (val, val2, val3) => {
   setCol3(fn())
 }))
 
+const [bindCity, setCity] = createSignal(['130000', '130300', '130302'])
+
 export default () => {
   return (
     <Picker
+      bind={[bindCity, setCity]}
       onChange={setVal}
       resetChildrenPos
       columns={city}

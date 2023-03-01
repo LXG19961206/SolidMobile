@@ -1,4 +1,4 @@
-import { JSXElement } from "solid-js"
+import { Accessor, JSXElement, Setter } from "solid-js"
 import { BasePropsAndAttrs } from "../common/types"
 
 export type PickerOptions = {
@@ -10,6 +10,7 @@ export type PickerOptions = {
 }
 
 export interface PickerProps {
+  bind?: [Accessor<(number|string) []>, Setter<(number | string )[]> ],
   columns: PickerOptions [] | Array<PickerOptions []>,
   title?: string | JSXElement,
   confirmText?: string | JSXElement,
