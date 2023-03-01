@@ -17,7 +17,7 @@ export default (props: Partial<ButtonProps>) => {
 
 
   const classList = () => ({
-    'solidMobild_actived': true,
+    'solidMobild_activable': true,
     'solidMobile-button': true,
     [`solidMobile-button-${props.size || 'normal'}`]: true,
     [`solidMobile-button-${props.type || 'custom'}`]: true,
