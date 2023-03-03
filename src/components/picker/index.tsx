@@ -253,7 +253,7 @@ export default (preProps: PickerProps) => {
 
           const val = newVal[i]
 
-          const source = allCols()[i] 
+          const source = allCols()[i]
 
           const idx = source.findIndex(item => item.value === val)
 
@@ -263,7 +263,7 @@ export default (preProps: PickerProps) => {
 
           translateAccessors()[i][1](idx * lineHeight * -1)
 
-          i ++
+          i++
 
           await Promise.resolve()
 
@@ -438,13 +438,14 @@ export default (preProps: PickerProps) => {
                   {
                     <>
                       <Index each={(placeHolderItems()[i()][0])}>
-                        {() => (<p class="solidMobile-picker-content-item"></p>)}
+                        {() => ( <p class="solidMobile-picker-content-item"></p> )}
                       </Index>
                       <For each={cols}>
                         {(item, index) => (
                           <p
                             style={calcStyle(index(), allTranslate()[i()], props.visibleItemCount, lineHeight, disabled())}
-                            class="solidMobile-picker-content-item"> {item.text} </p>
+                            class="solidMobile-picker-content-item"> {item.text} 
+                          </p>
                         )}
                       </For>
                       <Index each={(placeHolderItems()[i()][1])}>

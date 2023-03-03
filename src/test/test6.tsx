@@ -132,7 +132,7 @@ createEffect(on(val, (val, val2, val3) => {
   setCol3(fn())
 }))
 
-const [bindCity, setCity] = createSignal(['130000', '130300', '130302'])
+const [bindCity, setCity] = createSignal(['1230000', '130300', '130302'])
 
 export default () => {
   return (
