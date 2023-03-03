@@ -1,4 +1,4 @@
-import { isArray, range, round } from 'lodash'
+import { isArray, isString, range, round } from 'lodash'
 import { PickerOptions, PickerProps } from './types'
 import {
   createEffect,
@@ -76,6 +76,24 @@ const calcStyle = (
       opacity: disabled ? 0.6 - (Math.abs(idx - currentIdx) * 0.1) : ''
     }
   }
+}
+
+const genPlaceHolderItems = (
+  placeholders: string | string[],
+  index: number,
+  isFlat: boolean,
+  totalCount: number
+):PickerOptions => {
+  return ({
+    ...{
+      text: isString(placeholders) ? placeholders : (placeholders as string [])[index], 
+      value: ''
+    },
+    ...(index + 1 < totalCount && !isFlat)
+      ? { children: [genPlaceHolderItems(placeholders, index + 1, isFlat, totalCount)] }
+      : {}
+  })
+
 }
 
 const defaultDuration = Millisecond * 400
@@ -173,16 +191,28 @@ export default (preProps: PickerProps) => {
         const [idxGetter, _] = idxAccessors()[currentDepth]
 
         const finalIndex = idxRangeFix(
-          idxGetter(), target.length - 1
+          idxGetter() - 1, target.length - 1
         )
 
         if (isFlat) {
 
-          setter((props.columns as PickerOptions[][])[currentDepth])
+          !props.placeholders
+            ? setter((props.columns as PickerOptions[][])[currentDepth])
+            : setter([
+              genPlaceHolderItems(props.placeholders, currentDepth, isFlat, colCount()),
+              ...(props.columns as PickerOptions[][])[currentDepth]
+            ])
 
         } else {
 
-          setter(target as PickerOptions[])
+          const showPlaceholder = currentDepth === 0 || (allCurrentIdxs()[currentDepth - 1])
+
+          !props.placeholders
+            ? setter(target as PickerOptions[])
+            : setter([
+              genPlaceHolderItems(props.placeholders, currentDepth, false, colCount()),
+              ...(showPlaceholder ? target as PickerOptions[] : [])
+            ])
 
           if (currentDepth + 1 <= colCount() && (target as PickerOptions[])[finalIndex]) {
 
@@ -438,13 +468,13 @@ export default (preProps: PickerProps) => {
                   {
                     <>
                       <Index each={(placeHolderItems()[i()][0])}>
-                        {() => ( <p class="solidMobile-picker-content-item"></p> )}
+                        {() => (<p class="solidMobile-picker-content-item"></p>)}
                       </Index>
                       <For each={cols}>
                         {(item, index) => (
                           <p
                             style={calcStyle(index(), allTranslate()[i()], props.visibleItemCount, lineHeight, disabled())}
-                            class="solidMobile-picker-content-item"> {item.text} 
+                            class="solidMobile-picker-content-item"> {item.text}
                           </p>
                         )}
                       </For>

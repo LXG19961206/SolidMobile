@@ -77,6 +77,8 @@ const cols2 = [
 
 const [val, setVal] = createSignal([0, 0, 0])
 
+
+
 const years = createMemo(() => {
   return range(20).map(item => ({
     text: 2005 + item + '年',
@@ -137,10 +139,10 @@ const [bindCity, setCity] = createSignal(['1230000', '130300', '130302'])
 export default () => {
   return (
     <Picker
-      bind={[bindCity, setCity]}
       onChange={setVal}
+      placeholders="请选择"
       resetChildrenPos
-      columns={city}
+      columns={[years(), month(), col3()]}
     ></Picker>
   )
 }

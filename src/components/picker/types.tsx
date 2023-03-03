@@ -22,5 +22,6 @@ export interface PickerProps {
   useMomentum?: boolean,
   onChange?: (value: (number | string) []) => unknown,
   resetChildrenPos?: boolean,
-  overlay?: boolean
+  overlay?: boolean,
+  placeholders?: string | string []
 }
