@@ -191,7 +191,7 @@ export default (preProps: PickerProps) => {
         const [idxGetter, _] = idxAccessors()[currentDepth]
 
         const finalIndex = idxRangeFix(
-          idxGetter() - 1, target.length - 1
+          idxGetter() - +!!props.placeholders, target.length - 1
         )
 
         if (isFlat) {
