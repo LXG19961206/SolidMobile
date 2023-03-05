@@ -11,7 +11,7 @@ export type PickerOptions = {
 
 export interface PickerProps {
   bind?: [Accessor<(number|string) []>, Setter<(number | string )[]> ],
-  columns: PickerOptions [] | Array<PickerOptions []>,
+  columns?: PickerOptions [] | Array<PickerOptions []>,
   title?: string | JSXElement,
   confirmText?: string | JSXElement,
   cancelText?: string | JSXElement,

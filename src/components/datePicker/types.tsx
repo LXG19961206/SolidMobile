@@ -1,4 +1,4 @@
-import { JSXElement } from "solid-js"
+import { PickerProps } from "../picker/types";
 
 export const datePickerType = {
   year: 'year',
@@ -6,26 +6,9 @@ export const datePickerType = {
   day: 'day'
 } as const
 
-export interface DatePickerProps {
 
-  type: keyof typeof datePickerType
-
-  minDate: string
-
-  maxDate: string
-
-  titie: string | JSXElement
-
-  confirmButtonText: string | JSXElement
-
-  visibleItemCount?: number
-
-  ratio?: number
-
-  optionHeight?: number
-
-  swipeDuration?: number
-
-  useMomentum?: boolean
-
+export interface DatePickerProps extends PickerProps {
+  type?: keyof typeof datePickerType,
+  startDate?: `${string}-${string}-${string}`,
+  endDate?: `${string}-${string}-${string}`,
 }

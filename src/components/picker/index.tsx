@@ -21,13 +21,13 @@ import './index.less'
 
 const getColCount = (cols: PickerProps['columns']) => {
   // if get a empty list, return 0
-  if (!cols.length) {
+  if (!cols!.length) {
 
     return 0
 
   } else if ((cols as Array<unknown>).every(isArray)) {
 
-    return cols.length
+    return cols!.length
 
   } else {
 
@@ -175,7 +175,7 @@ export default (preProps: PickerProps) => {
 
   const [disabled, setDisabled] = createSignal(true)
 
-  const isTree = () => !isArray(props.columns[0])
+  const isTree = () => !isArray(props.columns![0])
 
   let releaser: () => unknown
 
@@ -194,7 +194,7 @@ export default (preProps: PickerProps) => {
         const [idxGetter, _] = idxAccessors()[currentDepth]
 
         const finalIndex = idxRangeFix(
-          idxGetter() - +!!props.placeholders, target.length - 1
+          idxGetter() - +!!props.placeholders, target!.length - 1
         )
 
         if (isFlat) {
@@ -276,7 +276,6 @@ export default (preProps: PickerProps) => {
   ) => {
 
     if (newVal && newVal.length && !Object.is(newVal, oldVal)) {
-
 
       (async function () {
 
@@ -425,7 +424,9 @@ export default (preProps: PickerProps) => {
       value / -lineHeight, currentItems.length - 1
     )
 
-    isDownDirection = isDownDirection || (Math.abs(queue.tail()[3]) - Math.abs(queue.head()[3])) > 0
+    isDownDirection = isDownDirection || (
+      queue.tail() && queue.head() && (Math.abs(queue.tail()[3]) - Math.abs(queue.head()[3])) > 0
+    )
 
     if (value > 0) {
 
