@@ -143,7 +143,7 @@ export default () => {
       onChange={setVal}
       placeholders="请选择"
       resetChildrenPos
-      columns={[years(), month(), col3()]}
+      columns={city}
     ></Picker>
   )
 }

@@ -3,7 +3,7 @@
   --solidMobile-picker-min-height: 350px;
   --solidMobile-picker-content-zIndex: 2;
   --solidMobile-picker-content-item-lineHeight: 50px;
-  --solidMobile-picker-content-duration-noraml: 500ms;
+  --solidMobile-picker-content-duration-noraml: 0.5s;
   --solidMobile-picker-content-background: #fff;
   --solidMobile-picker-title-background: #ffffff;
   --solidMobile-picker-confirm-color: var(--solidMobile-theme-primary);
@@ -89,15 +89,13 @@
     position: absolute;
   }
   &-content {
-    transform-style: preserve-3d;
     backface-visibility: hidden;
     padding: 0;
-    z-index: 1;
     margin: 0;
     text-align: center;
     box-sizing: border-box;
     font-size: calc(var(--solidMobile-font-md) + 1px);
-    transition: all var(--solidMobile-picker-content-duration-noraml) cubic-bezier(.23,1,.68,1);
+    transition: all var(--solidMobile-picker-content-duration-noraml)  cubic-bezier(0.215, 0.610, 0.355, 1);
     &-item {
       height: var(--solidMobile-picker-content-item-lineHeight);
       line-height: var(--solidMobile-picker-content-item-lineHeight);

@@ -96,15 +96,15 @@ const genPlaceHolderItems = (
 
 }
 
-const defaultDuration = Millisecond * 400
+const defaultDuration = 0.4
 
-const moveDuration = Millisecond * 50
+const moveDuration = 0.05
 
 export default (preProps: PickerProps) => {
 
   const props = mergeProps({
-    swipeDuration: Second * 1,
-    ratio: 2,
+    swipeDuration: 1,
+    ratio: 1.5,
     visibleItemCount: 7,
     cancelText: '取消',
     confirmText: '确认',
@@ -326,7 +326,7 @@ export default (preProps: PickerProps) => {
   }
 
 
-  const setTranslateAndIdx = (value: number) => {
+  const setTranslateAndIdx = async (value: number) => {
 
     const [_, translateSetter] = translateAccessors()[targetIdx()]
 
@@ -335,6 +335,7 @@ export default (preProps: PickerProps) => {
     translateSetter(value)
 
     idxSetter(-value / lineHeight)
+
   }
 
   const pointerMove = (evt: PointerEvent) => {
@@ -357,7 +358,11 @@ export default (preProps: PickerProps) => {
 
   }
 
-  const pointerUp = (evt: PointerEvent) => {
+  const pointerUp = async (evt: PointerEvent) => {
+
+    setTranslateAndIdx(allTranslate()[targetIdx()])
+
+    setDisabled(true)
 
     const [durationGetter, durationSetter] = durationAccessors()[targetIdx()]
 
@@ -366,7 +371,9 @@ export default (preProps: PickerProps) => {
       queue.tail()[1] - queue.head()[1] < Millisecond * 300
     )
 
-    durationSetter(defaultDuration)
+    durationSetter(
+      useMomentum ? props.swipeDuration : defaultDuration
+    )
 
     const finalTranslate = flow(momentumCalc, boundaryCalc, disabledFixed)(useMomentum)
 
@@ -381,8 +388,6 @@ export default (preProps: PickerProps) => {
     setTimeout(() => {
 
       const [curItem, curVal] = getCurrentItemAndVal()
-
-      setDisabled(true)
 
       props.onChange?.call(void 0, curItem, curVal)
 
@@ -445,6 +450,7 @@ export default (preProps: PickerProps) => {
   const momentumCalc = (
     enableMomentum: boolean
   ): number => {
+
     const currentTranslate = allTranslate()[targetIdx()];
 
     if (!enableMomentum) {
@@ -517,8 +523,8 @@ export default (preProps: PickerProps) => {
                 <div
                   style={{
                     flex: `0 0 ${100 / colCount()}%`,
-                    "transition-duration": `${allDuration()[i()]}ms`,
-                    transform: `translate(0,${allTranslate()[i()]}px)`
+                    "transition-duration": `${allDuration()[i()]}s`,
+                    transform: `translate3D(0,${allTranslate()[i()]}px,0)`
                   }}
                   class="solidMobile-picker-content">
                   {
