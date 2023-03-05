@@ -20,7 +20,9 @@ export interface PickerProps {
   optionHeight?: number,
   swipeDuration?: number,
   useMomentum?: boolean,
-  onChange?: (value: (number | string) []) => unknown,
+  onChange?: (current: PickerOptions [],value: (number | string) []) => unknown,
+  onConfirm?: (current: PickerOptions [],value: (number | string) []) => unknown,
+  onCancel?: (current: PickerOptions [],value: (number | string) []) => unknown,
   resetChildrenPos?: boolean,
   overlay?: boolean,
   placeholders?: string | string []

@@ -87,9 +87,10 @@ const years = createMemo(() => {
 })
 
 const month = createMemo(() => {
-  return range(12).map(item => ({
+  return range(12).map((item, i) => ({
     text: item + 1 + '月',
-    value: item + 1
+    value: item + 1,
+    disabled: i < 6
   }))
 })
 

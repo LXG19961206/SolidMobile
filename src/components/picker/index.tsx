@@ -1,4 +1,4 @@
-import { isArray, isString, range, round } from 'lodash'
+import { isArray, isString, range, round, flow, curryRight } from 'lodash'
 import { PickerOptions, PickerProps } from './types'
 import {
   createEffect,
@@ -43,7 +43,7 @@ const getColCount = (cols: PickerProps['columns']) => {
   }
 }
 
-const calcApproximate = (num: number, lineHeight: number) => round(num / lineHeight) * lineHeight
+const calcApproximate = curryRight((num: number, lineHeight: number) => round(num / lineHeight) * lineHeight)
 
 
 const idxRangeFix = (idx: number, maxIdx: number) => {
@@ -83,10 +83,10 @@ const genPlaceHolderItems = (
   index: number,
   isFlat: boolean,
   totalCount: number
-):PickerOptions => {
+): PickerOptions => {
   return ({
     ...{
-      text: isString(placeholders) ? placeholders : (placeholders as string [])[index], 
+      text: isString(placeholders) ? placeholders : (placeholders as string[])[index],
       value: ''
     },
     ...(index + 1 < totalCount && !isFlat)
@@ -106,6 +106,9 @@ export default (preProps: PickerProps) => {
     swipeDuration: Second * 1,
     ratio: 2,
     visibleItemCount: 7,
+    cancelText: '取消',
+    confirmText: '确认',
+    title: '请选择',
     overlay: true,
     optionHeight: (
       getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-picker-content-item-lineHeight') || 50
@@ -118,7 +121,7 @@ export default (preProps: PickerProps) => {
 
   const [bindValGetter, bindValSetter] = props.bind || []
 
-  const queue = new FixedQueue<[number, number, boolean]>(30)
+  const queue = new FixedQueue<[number, number, boolean, number]>(30)
 
   const colCount = createMemo(() => getColCount(props.columns))
 
@@ -322,6 +325,18 @@ export default (preProps: PickerProps) => {
 
   }
 
+
+  const setTranslateAndIdx = (value: number) => {
+
+    const [_, translateSetter] = translateAccessors()[targetIdx()]
+
+    const [__, idxSetter] = idxAccessors()[targetIdx()]
+
+    translateSetter(value)
+
+    idxSetter(-value / lineHeight)
+  }
+
   const pointerMove = (evt: PointerEvent) => {
 
     if (disabled()) return
@@ -332,11 +347,11 @@ export default (preProps: PickerProps) => {
 
     const chunkDistance = (evt.clientY - lastPosY) * props.ratio
 
-    queue.push([chunkDistance, evt.timeStamp, false])
-
     const [translateGetter, translateSetter] = translateAccessors()[targetIdx()]
 
     translateSetter(translateGetter() + chunkDistance)
+
+    queue.push([chunkDistance, evt.timeStamp, false, translateGetter()])
 
     lastPosY = evt.clientY
 
@@ -344,38 +359,20 @@ export default (preProps: PickerProps) => {
 
   const pointerUp = (evt: PointerEvent) => {
 
-    const [translateGetter, translateSetter] = translateAccessors()[targetIdx()]
-
     const [durationGetter, durationSetter] = durationAccessors()[targetIdx()]
-
-    const [_, idxSetter] = idxAccessors()[targetIdx()]
-
-
-
-    translateSetter(
-      calcApproximate(translateGetter(), lineHeight)
-    )
-
-    idxSetter(
-      -translateGetter() / lineHeight
-    )
 
     const useMomentum = (
       queue.length > 2 &&
       queue.tail()[1] - queue.head()[1] < Millisecond * 300
     )
 
-    const finalTranslate = boundaryCalc(
-      momentumCalc(useMomentum)
-    )
+    durationSetter(defaultDuration)
 
-    useMomentum ? durationSetter(props.swipeDuration) : durationSetter(defaultDuration)
+    const finalTranslate = flow(momentumCalc, boundaryCalc, disabledFixed)(useMomentum)
 
-    translateSetter(finalTranslate)
+    setTranslateAndIdx(finalTranslate)
 
     !useMomentum && setDisabled(true)
-
-    idxSetter(-(translateGetter() / lineHeight))
 
     setCurrentVal(
       allCurrentIdxs().map((selectedIdx, i) => allCols()[i][selectedIdx].value)
@@ -383,11 +380,13 @@ export default (preProps: PickerProps) => {
 
     setTimeout(() => {
 
+      const [curItem, curVal] = getCurrentItemAndVal()
+
       setDisabled(true)
 
-      props.onChange?.call(void 0, currentValue())
+      props.onChange?.call(void 0, curItem, curVal)
 
-      bindValSetter?.call(void 0, currentValue())
+      bindValSetter?.call(void 0, curVal)
 
     }, (useMomentum ? durationGetter() : 300 * Millisecond) * 0.5)
 
@@ -395,6 +394,12 @@ export default (preProps: PickerProps) => {
 
   }
 
+  const getCurrentItemAndVal = (): [PickerOptions[], (string | number)[]] => {
+    return [
+      allCols().map((cols, i) => cols[allCurrentIdxs()[i]]),
+      currentValue()
+    ]
+  }
 
 
   const boundaryCalc = (
@@ -407,6 +412,36 @@ export default (preProps: PickerProps) => {
 
   }
 
+  const disabledFixed = (value: number, isDownDirection?: boolean): number => {
+
+    const currentItems = allCols()[targetIdx()]
+
+    const idx = idxRangeFix(
+      value / -lineHeight, currentItems.length - 1
+    )
+
+    isDownDirection = isDownDirection || (Math.abs(queue.tail()[3]) - Math.abs(queue.head()[3])) > 0
+
+    if (value > 0) {
+
+      return disabledFixed(0, false)
+
+    } else if (value < currentItems.length * -lineHeight) {
+
+      return disabledFixed(-lineHeight * currentItems.length + lineHeight, true)
+
+    } else if (allCols()[targetIdx()][idx].disabled) {
+
+      return isDownDirection ? disabledFixed(value - lineHeight) : disabledFixed(value + lineHeight)
+
+    } else {
+
+      return value
+
+    }
+
+  }
+
   const momentumCalc = (
     enableMomentum: boolean
   ): number => {
@@ -414,7 +449,7 @@ export default (preProps: PickerProps) => {
 
     if (!enableMomentum) {
 
-      return currentTranslate
+      return calcApproximate(currentTranslate, lineHeight)
 
     } else {
 
@@ -427,6 +462,14 @@ export default (preProps: PickerProps) => {
       return calcApproximate(currentTranslate - (lastMove) * 5, lineHeight)
 
     }
+  }
+
+  const cancel = () => {
+    props.onCancel?.call(void 0, ...getCurrentItemAndVal())
+  }
+
+  const confirm = () => {
+    props.onConfirm?.call(void 0, ...getCurrentItemAndVal())
   }
 
   onMount(() => {
@@ -446,6 +489,19 @@ export default (preProps: PickerProps) => {
       </Overlay>
       <Portal mount={props.overlay ? overlay() : document.documentElement}>
         <div class="solidMobile-picker">
+          <div class="solidMobile-picker-topArea">
+            <p
+              onClick={cancel}
+              class="solidMobile-picker-topArea-cancel"> {props.cancelText}
+            </p>
+            <p
+              class="solidMobile-picker-topArea-title"> {props.title}
+            </p>
+            <p
+              onClick={confirm}
+              class="solidMobile-picker-topArea-confirm"> {props.confirmText}
+            </p>
+          </div>
           <div
             ref={setMaskEl}
             onPointerMove={pointerMove}
@@ -474,7 +530,11 @@ export default (preProps: PickerProps) => {
                         {(item, index) => (
                           <p
                             style={calcStyle(index(), allTranslate()[i()], props.visibleItemCount, lineHeight, disabled())}
-                            class="solidMobile-picker-content-item"> {item.text}
+                            classList={{
+                              [`${item.className}`]: true,
+                              "solidMobile-picker-content-item-disabled": item.disabled,
+                              "solidMobile-picker-content-item": true
+                            }}> {item.text}
                           </p>
                         )}
                       </For>
