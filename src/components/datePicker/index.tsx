@@ -25,15 +25,14 @@ const rangeFix = (
   day: number,
   max: number,
   min: number,
-) => {
-  return (
-    day > min
-      ? range(day - min + 1).map((_, idx) => min + idx)
-      : day > max
-        ? range(max).map((_, idx) => idx + 1)
-        : range(day).map((_, idx) => idx + 1)
-  )
-}
+) => (
+  day > min
+    ? range(day - min + 1).map((_, idx) => min + idx)
+    : day > max
+      ? range(max).map((_, idx) => idx + 1)
+      : range(day).map((_, idx) => idx + 1)
+)
+
 
 
 
@@ -82,23 +81,10 @@ export default (preProps: DatePickerProps) => {
     ).map(item => ({ value: item, text: item + '日' }))
   ))
 
-  createEffect(on(date, ([year, month, day], oldVal) => {
-    if (
-      oldVal
-      && [year, month, day].every((item, i) => Object.is(item, oldVal[i]))
-    ) {
-      setDate([year, month, day])
-    }
-  }, { defer: true }))
-
-
-
-
   return (
     <Picker
+      { ...preProps }
       bind={[date, setDate]}
-      placeholders="请选择"
-      resetChildrenPos
       columns={[years(), month(), day()]}
     ></Picker>
   )
