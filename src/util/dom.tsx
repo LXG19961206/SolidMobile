@@ -48,6 +48,8 @@ export const disableIosDBClickZoom = () => {
 
   return () => {
 
+    alreadyWork = false
+
     document.removeEventListener(HTMLNativeEvent.touchStart, touchStartListener)
 
     document.removeEventListener(HTMLNativeEvent.touchEnd, touchEndListener)
