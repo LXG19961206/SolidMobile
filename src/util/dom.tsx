@@ -24,9 +24,9 @@ export const disableIOSElasticScroll = () => {
 
 let lastTouchEnd = 0, alreadyWork = false
 
-const touchStartListener = (event: TouchEvent) => event.touches.length > 1 && event.preventDefault()
+const disableZoomTouchStartListener = (event: TouchEvent) => event.touches.length > 1 && event.preventDefault()
 
-const touchEndListener = (event: TouchEvent) => {
+const disableZoomTouchEndListener = (event: TouchEvent) => {
 
   const now = +new Date()
 
@@ -42,17 +42,17 @@ export const disableIosDBClickZoom = () => {
 
   alreadyWork = true
 
-  document.addEventListener(HTMLNativeEvent.touchStart, touchStartListener)
+  document.addEventListener(HTMLNativeEvent.touchStart, disableZoomTouchStartListener)
 
-  document.addEventListener(HTMLNativeEvent.touchEnd, touchEndListener, false)
+  document.addEventListener(HTMLNativeEvent.touchEnd, disableZoomTouchEndListener, false)
 
   return () => {
 
     alreadyWork = false
 
-    document.removeEventListener(HTMLNativeEvent.touchStart, touchStartListener)
+    document.removeEventListener(HTMLNativeEvent.touchStart, disableZoomTouchStartListener)
 
-    document.removeEventListener(HTMLNativeEvent.touchEnd, touchEndListener)
+    document.removeEventListener(HTMLNativeEvent.touchEnd, disableZoomTouchEndListener)
 
   }
 
