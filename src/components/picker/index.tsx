@@ -1,4 +1,4 @@
-import { isArray, isString, range, round, flow, curryRight } from 'lodash'
+import { isArray, isString, range, round, flow, curryRight, isNil } from 'lodash'
 import { PickerOptions, PickerProps } from './types'
 import {
   createEffect,
@@ -13,11 +13,12 @@ import {
   createRenderEffect
 } from 'solid-js'
 import { Portal } from 'solid-js/web'
-import { disabledIOSElasticScroll } from '../../util/dom'
+import { disableIosDBClickZoom, disableIOSElasticScroll, placeholderFn } from '../../util/dom'
 import { FixedQueue } from '../../util/FixedQueue'
 import { Millisecond, Second } from '../../dict/time'
 import Overlay from '../overlay'
 import './index.less'
+
 
 const getColCount = (cols: PickerProps['columns']) => {
   // if get a empty list, return 0
@@ -177,7 +178,7 @@ export default (preProps: PickerProps) => {
 
   const isTree = () => !isArray(props.columns![0])
 
-  let releaser: () => unknown
+  let releaser: () => unknown, zoomReleaser: () => unknown
 
   let lastPosY: number = 0
 
@@ -398,12 +399,10 @@ export default (preProps: PickerProps) => {
 
   }
 
-  const getCurrentItemAndVal = (): [PickerOptions[], (string | number)[]] => {
-    return [
-      allCols().map((cols, i) => cols[allCurrentIdxs()[i]]),
-      currentValue()
-    ]
-  }
+  const getCurrentItemAndVal = (): [PickerOptions[], (string | number)[]] => ([
+    allCols().map((cols, i) => cols[allCurrentIdxs()[i]]),
+    currentValue()
+  ])
 
 
   const boundaryCalc = (
@@ -424,9 +423,9 @@ export default (preProps: PickerProps) => {
       value / -lineHeight, currentItems.length - 1
     )
 
-    isDownDirection = isDownDirection || (
-      queue.tail() && queue.head() && (Math.abs(queue.tail()[3]) - Math.abs(queue.head()[3])) > 0
-    )
+    isDownDirection = isNil(isDownDirection) 
+      ? (queue.length >= 2 && (Math.abs(queue.tail()[3]) - Math.abs(queue.head()[3])) > 0) 
+      : isDownDirection
 
     if (value > 0) {
 
@@ -434,7 +433,7 @@ export default (preProps: PickerProps) => {
 
     } else if (value < currentItems.length * -lineHeight) {
 
-      return disabledFixed(-lineHeight * currentItems.length + lineHeight, true)
+      return disabledFixed(lineHeight * (1 - currentItems.length), true)
 
     } else if (allCols()[targetIdx()][idx].disabled) {
 
@@ -449,7 +448,9 @@ export default (preProps: PickerProps) => {
   }
 
   const momentumCalc = (
+
     enableMomentum: boolean
+
   ): number => {
 
     const currentTranslate = allTranslate()[targetIdx()];
@@ -462,7 +463,7 @@ export default (preProps: PickerProps) => {
 
       const [theLastDistance] = queue.tail()
 
-      const [secondLastDistance] = queue.value().slice(-2)[0]
+      const [secondLastDistance] = queue.at(-2)
 
       const lastMove = theLastDistance - secondLastDistance;
 
@@ -480,11 +481,17 @@ export default (preProps: PickerProps) => {
   }
 
   onMount(() => {
-    releaser = disabledIOSElasticScroll()
+    
+    releaser = disableIOSElasticScroll()
+
+    zoomReleaser = disableIosDBClickZoom()
+
   })
 
   onCleanup(() => {
-    releaser()
+
+    [releaser, zoomReleaser].forEach(clearEffectFn => clearEffectFn())
+
   })
 
 
@@ -499,6 +506,7 @@ export default (preProps: PickerProps) => {
           <div class="solidMobile-picker-topArea">
             <p
               onClick={cancel}
+              onTouchStart={placeholderFn}
               class="solidMobile-picker-topArea-cancel"> {props.cancelText}
             </p>
             <p
@@ -506,6 +514,7 @@ export default (preProps: PickerProps) => {
             </p>
             <p
               onClick={confirm}
+              onTouchStart={placeholderFn}
               class="solidMobile-picker-topArea-confirm"> {props.confirmText}
             </p>
           </div>

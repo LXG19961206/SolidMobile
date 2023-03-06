@@ -23,7 +23,7 @@ export const HTMLNativeEvent = {
   pagehide: 'pagehide',
   pageshow: 'pageshow'
   // TODO
-}
+} as const
 
 export const JavaScriptNativeType = {
   string: 'string',
