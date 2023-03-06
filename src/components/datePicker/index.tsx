@@ -1,4 +1,4 @@
-import { range, zipObject } from 'lodash'
+import { range } from 'lodash'
 import { createMemo, createSignal, createEffect, on, mergeProps } from 'solid-js'
 import { DatePickerProps } from './types'
 import Picker from '../picker'
