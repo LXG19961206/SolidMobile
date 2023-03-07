@@ -58,8 +58,6 @@ export const Row = (props: Partial<RowProps>) => {
       addItemsGutter(wrapper() ,props.gutter)
     }
   })
-
-
   return (
     <div
       ref={setWrapper}

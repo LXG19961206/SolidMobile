@@ -2,12 +2,12 @@ import { Accessor, Setter } from "solid-js";
 import { BasePropsAndAttrs } from "../common/types";
 
 export interface CascaderProps extends BasePropsAndAttrs {
-  title: string,
-  placeholder: string,
-  textColor: string,
-  textActive: string,
+  title?: string,
+  placeholder?: string,
+  textColor?: string,
+  textActive?: string,
   source: CascaderSource [],
-  closeable: boolean,
+  closeable?: boolean,
   value?: CascaderSource['value'] [],
   bind?: [
     Accessor<CascaderSource['value'] []>,
@@ -16,9 +16,10 @@ export interface CascaderProps extends BasePropsAndAttrs {
 }
 
 export type CascaderSource = {
-  name: string,
+  name?: string,
+  text?: string,
   value: string | number,
-  class: string,
+  className?: string,
   children?: CascaderSource [],
-  disabled: boolean
+  disabled?: boolean
 }
