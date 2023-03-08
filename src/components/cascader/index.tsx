@@ -1,6 +1,8 @@
 import { create, isNil, range } from 'lodash'
-import { createMemo, createSignal, mergeProps, For, createEffect, on } from 'solid-js'
+import { createMemo, createSignal, mergeProps, For, createEffect, on, Show } from 'solid-js'
 import { CascaderSource, CascaderProps } from './types'
+import ActionSheet from '../actionSheet'
+import Icon from '../icon'
 import './index.less'
 
 const getColCount = (cols: CascaderSource[]) => {
@@ -18,6 +20,8 @@ const getColCount = (cols: CascaderSource[]) => {
 
 export default (preProps: CascaderProps) => {
 
+  const [show, setShowState] = createSignal(true)
+
   const props = mergeProps(preProps)
 
   const colAccessors = createMemo(
@@ -28,11 +32,14 @@ export default (preProps: CascaderProps) => {
     () => range(getColCount(props.source)).map(() => createSignal<number>(0))
   )
 
+  const allCols = createMemo(() => colAccessors().map(([getter]) => getter()))
+
   const [currentVal, valSetter] = props.bind || createSignal([])
+
+  const [currentNames, nameSetter] = createSignal<(string | void)[]>(range(allCols().length).map(() => void 0))
 
   const [targetIdx, setTargetIdx] = createSignal(0)
 
-  const allCols = createMemo(() => colAccessors().map(([getter]) => getter()))
 
   const colCount = createMemo(() => allCols().length)
 
@@ -50,11 +57,11 @@ export default (preProps: CascaderProps) => {
 
         const [idxGetter, _] = idxAccessors()[currentDepth]
 
-        setter(target as CascaderSource [])
-          
+        setter(target as CascaderSource[])
+
         if (currentDepth + 1 <= colCount() && target[idxGetter()]?.children) {
 
-          target = (target as CascaderSource [])[idxGetter()].children!
+          target = (target as CascaderSource[])[idxGetter()].children!
 
           ++currentDepth
 
@@ -63,40 +70,89 @@ export default (preProps: CascaderProps) => {
           break
 
         }
-
-
       }
 
     }))
 
   const change = (targetIdx: number, idx: number) => {
+
     idxAccessors()[targetIdx][1](idx)
-    setTargetIdx(targetIdx + 1)
+
+    if (targetIdx + 1 < colCount()) setTargetIdx(targetIdx + 1)
+
+    const { value, text } = allCols()[targetIdx][idx]
+
+    valSetter([
+      ...currentVal().slice(0, targetIdx),
+      value,
+      ...currentVal().slice(targetIdx + 1)
+    ])
+
+    nameSetter([
+      ...currentNames().slice(0, targetIdx),
+      text || '',
+      ...currentNames().slice(targetIdx + 1)
+    ])
+
   }
 
   return (
-    <div
-      style={{ transform: `translateX(${-targetIdx() * 100}%)` }} 
-      class="solid-mobile-cascader">
-      <For each={allCols()}>
-        {
-          (col, idx) => (
-            <div
-              style={{ left: idx() * 100 + '%' }}
-              class="solid-mobile-cascader-unit">
-              <For each={col}>
-                {(item, i) => (
-                  <div 
-                    onClick={ () => change(idx(), i()) }
-                    class="solid-mobile-cascader-unit-item"> {isNil(item.name) ? item.text : item.name}
-                  </div>
-                )}
-              </For>
-            </div>
-          )
-        }
-      </For>
-    </div>
+    <ActionSheet
+      round
+      bind={[show, setShowState]}
+      overlay>
+      <div class="solid-mobile-cascader-tab">
+        <For each={currentNames()}>
+          {
+            (value, idx) => (
+              <Show
+                when={!isNil(value) || targetIdx() === idx()}>
+                <div
+                  onclick={() => setTargetIdx(idx())}
+                  classList={{
+                    "solid-mobile-cascader-tab-item": true,
+                    "actived": targetIdx() === idx()
+                  }}>
+                  {value || '请选择'}
+                </div>
+              </Show>
+            )
+          }
+        </For>
+      </div>
+      <div
+        style={{ transform: `translateX(${-targetIdx() * 100}%)` }}
+        class="solid-mobile-cascader">
+        <For each={allCols()}>
+          {
+            (col, idx) => (
+              <div
+                style={{ left: idx() * 100 + '%' }}
+                class="solid-mobile-cascader-unit">
+                <For each={col}>
+                  {(item, i) => (
+                    <Show when={targetIdx() === idx()}>
+                      <div
+                        onClick={() => change(idx(), i())}
+                        classList={{
+                          "solidMobild_activable": true,
+                          "solid-mobile-cascader-unit-item": true,
+                          "solid-mobile-cascader-unit-item-actived": allCurrentIdxs()[idx()] === i(),
+                        }}> {isNil(item.name) ? item.text : item.name}
+                        <Show when={allCurrentIdxs()[idx()] === i()}>
+                          <Icon name="tick"></Icon>
+                        </Show>
+                      </div>
+                    </Show>
+                  )}
+                </For>
+              </div>
+            )
+          }
+        </For>
+      </div>
+    </ActionSheet>
+
   )
 
 
