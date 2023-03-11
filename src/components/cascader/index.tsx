@@ -4,6 +4,7 @@ import { CascaderSource, CascaderProps } from './types'
 import ActionSheet from '../actionSheet'
 import Icon from '../icon'
 import './index.less'
+import { useBanZoom } from '../../hooks'
 
 const getColCount = (cols: CascaderSource[]) => {
 
@@ -19,6 +20,8 @@ const getColCount = (cols: CascaderSource[]) => {
 }
 
 export default (preProps: CascaderProps) => {
+
+  useBanZoom()
 
   const [show, setShowState] = createSignal(true)
 
@@ -124,6 +127,7 @@ export default (preProps: CascaderProps) => {
       round
       onClose={props.onClose}
       closeable={props.closeable}
+      lockScroll={false}
       title={props.title}
       bind={[show, setShowState]}
       overlay>

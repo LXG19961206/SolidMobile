@@ -13,6 +13,7 @@ export default (props: OverLayProps) => {
 
 
   createEffect(on(overlayRef, () => {
+    if (!props.disableScroll) return
     const wrapper = overlayRef()
     wrapper && wrapper.addEventListener(
       HTMLNativeEvent.touchMove, (evt: Event) => evt.preventDefault()

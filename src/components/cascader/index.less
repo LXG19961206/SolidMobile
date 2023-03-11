@@ -19,6 +19,7 @@
     color: var(--solidMobile-dark-main);
     margin-right: 16px;
     position: relative;
+    text-align: center;
     &-nil {
       color: var(--solidMobile-dark-secondary);
       font-weight: 300;
@@ -31,7 +32,6 @@
       transform: scale(0);
       height: 3px;
       border-radius: 10%;
-      bottom: -3px;
       transform-origin: left;
     }
     &.actived > &-active-line {
@@ -51,7 +51,6 @@
     color: var(--solidMobile-dark-main);
     width: 100%;
     position: absolute;
-    padding: 0 16px;
     height: inherit;
     overflow: auto;
     bottom: 0;
@@ -61,15 +60,14 @@
       display: none;
     }
     &-item {
+      text-indent: 16px;
       text-align: left;
       line-height: var(--solidMobile-cascader-lineHeight);
       height: var(--solidMobile-cascader-lineHeight);
       display: flex;
-
       &-actived {
         color: var(--solidMobile-theme-primary);
         font-weight: 500;
-        
         & > span {
           flex: 1 1 30%;
           text-align: right;
