@@ -7,7 +7,7 @@ export interface CascaderProps {
   color?: string,
   onChange?: (value: (number | string) []) => unknown,
   onClose?: () => unknown,
-  onClickTab?: (idx: number) => unknown
+  onClickTab?: (idx: number) => unknown,
   textColor?: string,
   textActive?: string,
   source: CascaderSource [],

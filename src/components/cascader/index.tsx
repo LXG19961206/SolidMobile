@@ -25,7 +25,7 @@ export default (preProps: CascaderProps) => {
 
   const [show, setShowState] = createSignal(true)
 
-  const props = mergeProps(preProps)
+  const props = mergeProps({ placeholder: '请选择' },preProps)
 
   const colAccessors = createMemo(
     () => range(getColCount(props.source)).map(() => createSignal<CascaderSource[]>([]))
@@ -144,7 +144,7 @@ export default (preProps: CascaderProps) => {
                     "solid-mobile-cascader-tab-item": true,
                     "actived": targetIdx() === idx()
                   }}>
-                  {value || '请选择'}
+                  { value || props.placeholder }
                   <span
                     style={{ background: props.color }} 
                     class="solid-mobile-cascader-tab-item-active-line"></span>

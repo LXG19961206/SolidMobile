@@ -1,0 +1,13 @@
+.month {
+  display: flex;
+  width: 100%;
+  margin: 10px 0;
+  flex-wrap: wrap;
+  & > span {
+    text-align: center;
+    display: inline-block;
+    flex: 0 0 calc(100% / 7);
+    height: 64px;
+    line-height: 64px;
+  }
+}
