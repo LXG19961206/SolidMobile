@@ -8,7 +8,6 @@ export class FixedDeque<T = unknown> {
     return this._value.length
   }
 
-
   constructor (capacity: number) {
 
     this.capacity = capacity
@@ -77,5 +76,13 @@ export class FixedDeque<T = unknown> {
   }
 
 
+
+}
+
+export class OFixedDeque<T = unknown> extends FixedDeque {
+
+  // set _value (value: T []) {
+    
+  // }
 
 }

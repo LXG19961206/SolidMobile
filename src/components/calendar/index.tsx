@@ -1,7 +1,8 @@
 import { range } from "lodash"
 import { getDays } from "../../util/date"
 import { FixedDeque } from "../../util/FixedDeque"
-import { For } from 'solid-js'
+import { Accessor, createSignal, For } from 'solid-js'
+import { useTouchMoveY } from "../../hooks/touchMoveY"
 import './index.less'
 
 type Year = number
@@ -47,10 +48,18 @@ export default () => {
 
   const [endYear, endMonth] = [2023, 3]
 
-  range(maxCalcCount).forEach((no: number) => dateQueue.addFront(getPreMonthDateInfo(endYear, endMonth, -no)))
+  const [wrapper, setWrapper] = createSignal<HTMLElement>()
+
+  range(maxCalcCount).forEach((no: number) => (
+    dateQueue.addFront(getPreMonthDateInfo(endYear, endMonth, -no))
+  ))
+
+  useTouchMoveY(wrapper as Accessor<HTMLElement>, {
+    
+  })
 
   return (
-    <div>
+    <div ref={setWrapper}>
       <For each={dateQueue._value}>
         {
           (item, idx) => (
