@@ -1,8 +1,9 @@
+import { eq } from 'lodash'
 export class FixedDeque<T = unknown> {
 
   capacity: number
 
-  _value: T []
+  _value = [] as T []
 
   get length () {
     return this._value.length
@@ -11,8 +12,6 @@ export class FixedDeque<T = unknown> {
   constructor (capacity: number) {
 
     this.capacity = capacity
-
-    this._value = []
 
   }
 
@@ -30,6 +29,7 @@ export class FixedDeque<T = unknown> {
       this.rmBack()
 
     }
+
 
     this._value.unshift(item)
     
@@ -79,10 +79,48 @@ export class FixedDeque<T = unknown> {
 
 }
 
-export class OFixedDeque<T = unknown> extends FixedDeque {
+export class ObservableFixedDeque<T = unknown> extends FixedDeque<T> {
 
-  // set _value (value: T []) {
-    
-  // }
+  constructor (
+    capacity: number,
+    onChange: (newVal: T [], oldVal?: T []) => unknown
+  ) {
+
+    super(capacity);
+
+    this._value = new Proxy(this._value, {
+
+      get: (target, key) => {
+
+        const effectMethods = ['push', 'pop', 'shift', 'unshift'] as const
+
+        if (effectMethods.some(item => eq(item, key))) {
+
+          return (...args: unknown []) => {
+            
+            const oldValue = [...this._value]
+
+            Array.prototype[key as keyof typeof Array.prototype].call(
+              this._value, ...args
+            )
+
+            onChange(this._value, oldValue)
+
+          }
+
+        } else {
+
+          return target[key as keyof typeof target]
+
+        }
+
+
+      }
+
+    })
+
+    onChange([])
+
+  }
 
 }

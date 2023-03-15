@@ -1,6 +1,6 @@
 import { range } from "lodash"
 import { getDays } from "../../util/date"
-import { FixedDeque } from "../../util/FixedDeque"
+import { ObservableFixedDeque } from "../../util/FixedDeque"
 import { Accessor, createSignal, For } from 'solid-js'
 import { useTouchMoveY } from "../../hooks/touchMoveY"
 import './index.less'
@@ -44,7 +44,9 @@ export default () => {
 
   const maxCalcCount = 5
 
-  const dateQueue = new FixedDeque<YearMonthAndFirstDay>(maxCalcCount)
+  const [dateSouce, setDateSource] = createSignal<YearMonthAndFirstDay []>([])
+
+  const dateQueue = new ObservableFixedDeque<YearMonthAndFirstDay>(maxCalcCount, setDateSource)
 
   const [endYear, endMonth] = [2023, 3]
 
@@ -60,7 +62,7 @@ export default () => {
 
   return (
     <div ref={setWrapper}>
-      <For each={dateQueue._value}>
+      <For each={dateSouce()}>
         {
           (item, idx) => (
             <div class="month">

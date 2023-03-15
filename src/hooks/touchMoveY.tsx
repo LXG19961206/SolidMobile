@@ -3,8 +3,18 @@ import { Accessor, onCleanup, onMount } from "solid-js"
 import { HTMLNativeEvent } from "../dict/native"
 
 interface TouchMoveOpts {
-  upwardCallback?: (distance: number, lastY: number) => unknown
-  downwardCallback?: (distance: number, lastY: number) => unknown
+  upwardCallback?: (
+    payload: {
+      distance: number,
+      lastY: number,
+      evt: TouchEvent
+    }) => unknown
+
+  downwardCallback?: (
+    distance: number, 
+    lastY: number,
+    evt: TouchEvent
+  ) => unknown
 }
 
 export const useTouchMoveY = (
@@ -12,24 +22,20 @@ export const useTouchMoveY = (
   opts: TouchMoveOpts
 ) => {
 
-  let startY = 0
 
   const touchStart = (
     evt: TouchEvent
   ) => {
-    console.log(evt, 123)
-
-    startY = 0
 
   }
 
   const touchMove = (
     evt: TouchEvent
   ) => {
-    console.log(evt, 456)
+    
   }
 
-  const touchEnd = () => {}
+  const touchEnd = () => { }
 
   onMount(() => {
 
