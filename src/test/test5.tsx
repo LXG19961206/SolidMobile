@@ -53,6 +53,7 @@ export default () => {
       evt.stopImmediatePropagation()
       start = true
       lastPos = evt.clientY
+
     })
 
     el()?.addEventListener('pointermove', (evt) => {
@@ -62,7 +63,6 @@ export default () => {
       evt.stopImmediatePropagation()
 
       if (!start) return
-
 
       distance += (evt.clientY - lastPos) * 1
 
