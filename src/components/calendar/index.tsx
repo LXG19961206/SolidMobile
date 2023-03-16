@@ -57,7 +57,9 @@ export default () => {
   ))
 
   useTouchMoveY(wrapper as Accessor<HTMLElement>, {
-    
+    callback({ chunkMove, distance }) {
+      console.log(chunkMove, distance)
+    }
   })
 
   return (

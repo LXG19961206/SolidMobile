@@ -5,22 +5,20 @@ import { FixedQueue } from "../util/FixedQueue"
 
 type DispatchPayload = {
   distance: number,
+  chunkMove: number,
   lastY: number,
+  isFinish: boolean,
   evt: TouchEvent,
-  getDistanceRecords: () => number [],
-  getPosRecords: () => number [],
-  getMoveRecords: () => number []
+  getDistanceRecords: () => number[],
+  getPosRecords: () => number[],
+  getMoveRecords: () => number[]
 }
 
 interface TouchMoveOpts {
 
   maxRecordCount?: number
 
-  upwardCallback?: (payload: DispatchPayload) => unknown
-
   callback?: (payload: DispatchPayload) => unknown
-
-  downwardCallback?: (payload: DispatchPayload) => unknown
 
 }
 
@@ -33,15 +31,30 @@ export const useTouchMoveY = (
 
   let distanceRecords = new FixedQueue<number>(opts.maxRecordCount || 30),
 
-      posRecoeds = new FixedQueue<number>(opts.maxRecordCount || 30),
-      
-      chunkMoveRecords = new FixedQueue<number>(opts.maxRecordCount || 30)
+    posRecoeds = new FixedQueue<number>(opts.maxRecordCount || 30),
+
+    chunkMoveRecords = new FixedQueue<number>(opts.maxRecordCount || 30)
+
+  const dispatchTouchInfo = (evt: TouchEvent, isFinish: boolean) => {
+    opts.callback?.call(
+      void 0, {
+      distance,
+      isFinish,
+      lastY,
+      evt,
+      chunkMove,
+      getDistanceRecords: () => distanceRecords._value,
+      getMoveRecords: () => chunkMoveRecords._value,
+      getPosRecords: () => posRecoeds._value
+    }
+    )
+  }
 
 
   const touchStart = (
     evt: TouchEvent
   ) => {
-    
+
     distance = chunkMove = lastY = 0
 
     distanceRecords.clear()
@@ -58,29 +71,30 @@ export const useTouchMoveY = (
 
     distanceRecords.push(0)
 
+    dispatchTouchInfo(evt, false)
   }
 
   const touchMove = (
     evt: TouchEvent
   ) => {
-   
+
     const currentY = evt.touches[0].clientY
-    
+
     chunkMove = currentY - lastY
-    
+
+    lastY = currentY
+
     distance += chunkMove;
 
-    (distance < 0 ? opts.downwardCallback : opts.upwardCallback)?.call(
-      void 0, { 
-        distance, lastY, evt,
-        getDistanceRecords: () => distanceRecords._value,
-        getMoveRecords: () => chunkMoveRecords._value,
-        getPosRecords: () => posRecoeds._value
-      }
-    ) 
+    dispatchTouchInfo(evt, false)
+
   }
 
-  const touchEnd = () => { }
+  const touchEnd = (evt: TouchEvent) => {
+
+    dispatchTouchInfo(evt, true)
+
+   }
 
   onMount(() => {
 
