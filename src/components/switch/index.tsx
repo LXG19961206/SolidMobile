@@ -34,13 +34,14 @@ export default (preProps: SwitchProps) => {
       style={{ 
         background: isChecked() ? props.activeColor : props.inactiveColor,
         height: props.size ? `calc(${props.size} + 4px)` : '',
-        width: props.size ? `calc(${props.size} / 0.6)` : '',
+        width: props.size ? `calc(${props.size} / 0.5)` : '',
       }}
       class="solidMobile-switch-wrapper">
       <div
         style={{ 
           height: props.size || '',
-          width: props.size || ''
+          width: props.size || '',
+          right: (!isChecked() && props.size) ? `calc(100% - 2px - ${props.size})` : ''
         }}
         class={ `solidMobile-switch-button  ${isChecked() ? 'actived' : ''}` }>
       </div>
