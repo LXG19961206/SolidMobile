@@ -19,6 +19,8 @@ export default (preProps: SwitchProps) => {
 
   const click = () => {
 
+    if (props.disabled) return
+
     props.toggleOnClick && setCheckedStatus(!isChecked())
 
     props.onClick?.call(void 0, isChecked())
