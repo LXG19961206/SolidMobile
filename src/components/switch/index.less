@@ -1,0 +1,41 @@
+:root {
+  --solidMobile-switch-height: 30px;
+  --solidMobile-switch-button-size: 26px;
+  --solidMobile-switch-width: calc(var(--solidMobile-switch-height) / 0.6);
+  --solidMobile-switch-background: var(--solidMobile-dark-weak);
+  --solidMobile-switch-background-actived: var(--solidMobile-theme-success);
+  --solidMobile-switch-transition: 0.3s all;
+  --solidMobile-switch-button-background: #fff;
+}
+
+.solidMobile-switch-wrapper {
+  height: var(--solidMobile-switch-height);
+  width: var(--solidMobile-switch-width);
+  transition: var(--solidMobile-switch-transition);
+  border-radius: 999em;
+  position: relative;
+  background: var(--solidMobile-switch-background);
+  
+  &-disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+
+  &-actived {
+    background: var(--solidMobile-switch-background-actived);
+  }
+
+  .solidMobile-switch-button {
+    background: var(--solidMobile-switch-button-background);
+    height: var(--solidMobile-switch-button-size);
+    width: var(--solidMobile-switch-button-size);
+    transition: var(--solidMobile-switch-transition);
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    right: calc(100% - 2px - var(--solidMobile-switch-button-size));
+    &.actived {
+      right: 2px;
+    }
+  }
+}

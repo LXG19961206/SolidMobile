@@ -3,10 +3,13 @@ import DatePicker from "../components/datePicker"
 import Cascader from "../components/cascader"
 import city from "./city"
 import Calendar from "../components/calendar"
-
+import Switch from '../components/switch'
+import { createSignal } from "solid-js"
 
 export default () => {
+  const [isChecked, setCheckedStatus] = createSignal(false)
   return (
-    <Calendar></Calendar>
+    <Switch bind={[isChecked, setCheckedStatus]}></Switch>
+    // <Calendar></Calendar>
   )
 }

@@ -63,7 +63,7 @@ export default () => {
   })
 
   return (
-    <div ref={setWrapper}>
+    <div ref={setWrapper} style="height: 100%">
       <For each={dateSouce()}>
         {
           (item, idx) => (
