@@ -1,16 +1,28 @@
-import { isNil, isString, size } from "lodash";
-import { createSignal, mergeProps, on, createMemo, Show } from "solid-js";
+import { isNil, isString } from "lodash";
+import { mergeProps, on, createMemo, createSignal } from "solid-js";
 import { SwitchProps } from "./types";
 import "./index.less"
 
-export default (preProps: SwitchProps) => {
+export default function <V = boolean>(preProps: SwitchProps<V>) {
 
   const props = mergeProps(preProps, {
     size: (isString(preProps.size) || isNil(preProps.size) ? preProps.size : `${preProps.size}px`) as string,
     toggleOnClick: isNil(preProps.toggleOnClick) ? true : preProps.toggleOnClick
   })
 
-  const [isChecked, setCheckedStatus] = props.bind
+  const contradiction = createMemo<V []>(
+    () => !isNil(props.activedValue) && !isNil(props.inactivedValue) 
+      ? [props.activedValue, props.inactivedValue] as V []
+      : [true, false] as V []
+  )
+
+  const toggle = (val: V): V => {
+    return val === contradiction()[0] ? contradiction()[1] : contradiction()[0]
+  }
+
+  const [isChecked, setCheckedStatus] = (
+    createSignal(props.bind[0]() === contradiction()[0])
+  )
 
   const classList = () => ({
     "solidMobile-switch-wrapper-actived": isChecked(),
@@ -21,7 +33,15 @@ export default (preProps: SwitchProps) => {
 
     if (props.disabled) return
 
-    props.toggleOnClick && setCheckedStatus(!isChecked())
+    if (props.toggleOnClick) {
+
+      setCheckedStatus(!isChecked())
+
+      const [getter, setter] = props.bind
+
+      setter(toggle.bind(void 0, getter()))
+
+    }
 
     props.onClick?.call(void 0, isChecked())
 
