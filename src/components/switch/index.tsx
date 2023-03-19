@@ -66,6 +66,7 @@ export default function <V = boolean>(preProps: SwitchProps<V>) {
           right: (!isChecked() && props.size) ? `calc(100% - 2px - ${props.size})` : ''
         }}
         class={ `solidMobile-switch-button  ${isChecked() ? 'actived' : ''}` }>
+          { props.buttonContent }
       </div>
     </div>
   )
