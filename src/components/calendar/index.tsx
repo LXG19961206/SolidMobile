@@ -22,11 +22,9 @@ const getRows = (
   firstDay: number
 ): number => {
 
-  if (!(totalDay % 7)) return totalDay / 7
+  if (!firstDay) return Math.ceil(totalDay / 7)
 
-  const [tempRows, restDays] = [
-    Math.floor(totalDay / 7), totalDay % 7
-  ]
+  const [tempRows, restDays] = [Math.floor(totalDay / 7), totalDay % 7]
   
   return 7 - firstDay >= restDays ? tempRows + 1 : tempRows + 2
 
