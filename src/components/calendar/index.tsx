@@ -13,7 +13,24 @@ type Day = number
 
 type DayCount = number
 
-type YearMonthAndFirstDay = [Year, Month, DayCount, Day]
+type Rows = number
+
+type YearMonthAndFirstDay = [Year, Month, DayCount, Day, Rows]
+
+const getRows = (
+  totalDay: number,
+  firstDay: number
+): number => {
+
+  if (!(totalDay % 7)) return totalDay / 7
+
+  const [tempRows, restDays] = [
+    Math.floor(totalDay / 7), totalDay % 7
+  ]
+  
+  return 7 - firstDay >= restDays ? tempRows + 1 : tempRows + 2
+
+}
 
 const getPreMonthDateInfo = (
   year: number,
@@ -31,11 +48,16 @@ const getPreMonthDateInfo = (
       ? 12 + step + retMonth 
       : step + retMonth
 
+  const totalDay = getDays(retYear, retMonth)
+
+  const firstDay = new Date(`${retYear}/${retMonth}/1`).getDay()
+
   return [
     retYear, 
     retMonth, 
-    getDays(retYear, retMonth),
-    new Date(`${retYear}/${retMonth}/1`).getDay(), 
+    totalDay,
+    firstDay, 
+    getRows(totalDay, firstDay)
   ]
 
 }
@@ -52,32 +74,40 @@ export default () => {
 
   const [wrapper, setWrapper] = createSignal<HTMLElement>()
 
+  const [translateGetter, translateSetter] = createSignal(0) 
+
   range(maxCalcCount).forEach((no: number) => (
     dateQueue.addFront(getPreMonthDateInfo(endYear, endMonth, -no))
   ))
 
   useTouchMoveY(wrapper as Accessor<HTMLElement>, {
     callback({ chunkMove, distance }) {
-      console.log(chunkMove, distance)
+      translateSetter(translateGetter() + chunkMove)
     }
   })
 
   return (
-    <div ref={setWrapper} style="height: 100%">
-      <For each={dateSouce()}>
-        {
-          (item, idx) => (
-            <div class="month">
-              <For each={range(item[3])}>
-                { () => <span>  </span> }
-              </For>
-              <For each={range(item[2])}>
-                { (item) => <span> { item + 1 } </span> }
-              </For>
-            </div>
-          )
-        }
-      </For>
+    <div 
+      ref={setWrapper} 
+      class="solidMobile-calendar-wrapper">
+      <div
+        style={{ transform: `translateY(${translateGetter()}px)` }}
+        class="solidMobile-calendar-content">
+        <For each={dateSouce()}>
+          {
+            (item, idx) => (
+              <div class="month">
+                <For each={range(item[3])}>
+                  { () => <span>  </span> }
+                </For>
+                <For each={range(item[2])}>
+                  { (item) => <span> { item + 1 } </span> }
+                </For>
+              </div>
+            )
+          }
+        </For>
+      </div>
     </div>
   )
 

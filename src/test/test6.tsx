@@ -9,14 +9,14 @@ import { createSignal } from "solid-js"
 export default () => {
   const [isChecked, setCheckedStatus] = createSignal(1)
   return (
-    <>
-      <span> { isChecked() } </span>
-      <Switch  
-        activedValue={1}
-        inactivedValue={0}
-        bind={[isChecked, setCheckedStatus]}
-      ></Switch>
-    </>
-    // <Calendar></Calendar>
+    // <>
+    //   <span> { isChecked() } </span>
+    //   <Switch  
+    //     activedValue={1}
+    //     inactivedValue={0}
+    //     bind={[isChecked, setCheckedStatus]}
+    //   ></Switch>
+    // </>
+    <Calendar></Calendar>
   )
 }
