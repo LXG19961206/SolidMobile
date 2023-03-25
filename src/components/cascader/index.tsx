@@ -4,7 +4,8 @@ import { CascaderSource, CascaderProps } from './types'
 import ActionSheet from '../actionSheet'
 import Icon from '../icon'
 import './index.less'
-import { useBanZoom } from '../../hooks'
+import { useBanZoom, useComponentsEffect } from '../../hooks'
+
 
 const getColCount = (cols: CascaderSource[]) => {
 
