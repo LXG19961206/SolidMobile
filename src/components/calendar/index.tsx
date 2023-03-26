@@ -1,7 +1,7 @@
 import { eq, get, range, throttle, add } from "lodash"
 import { getDays } from "../../util/date"
 import { ObservableFixedDeque } from "../../util/FixedDeque"
-import { Accessor, createMemo, createSignal, For } from 'solid-js'
+import { Accessor, createMemo, createSignal, For, onMount } from 'solid-js'
 import { useTouchMoveY } from "../../hooks/touchMoveY"
 import './index.less'
 import { useComponentsEffect, useBanZoom } from "../../hooks"
@@ -35,7 +35,7 @@ const getRows = (
 }
 
 const inRange = (target: number, min: number, max: number) => (
-  target >= min && target < max
+  target >= min && target <= max
 )
 
 const getPreMonthDateInfo = (
@@ -46,7 +46,7 @@ const getPreMonthDateInfo = (
 
   let [retYear, retMonth] = [year, month]
 
-  retYear = Math.floor(retYear + step / 12)
+  retYear = retYear + Math.ceil((month + step - 12) / 12)
 
   retMonth = month + step > 12
     ? (month + step) % 12
@@ -90,12 +90,9 @@ const generateSource = (
 
 const weekdays = ['日', '一', '二', '三', '四', '五', '六']
 
-
 export default () => {
 
-  useBanZoom()
-
-  const [show,setShow] = createSignal(true)
+  const [show, setShow] = createSignal(true)
 
   const [dateSouce, setDateSource] = createSignal<YearMonthAndFirstDay[]>([])
 
@@ -103,7 +100,11 @@ export default () => {
 
   const [startYear, startMonth] = [2022, 3]
 
+  const [contentEl, setContentEl] = createSignal<HTMLElement>()
+
   const [wrapper, setWrapper] = createSignal<HTMLElement>()
+
+  const [wrapperMaxHeight, setMaxHeight] = createSignal('inherit')
 
   const [currentIdx, setCurrtIdx] = createSignal(0)
 
@@ -115,45 +116,53 @@ export default () => {
     () => range(dateSouce().length).map(_ => createSignal<HTMLElement>())
   )
 
-  const allEls = createMemo(() => refsAccessors().map(([getter]) => getter()))
 
-  const allClientHeight = createMemo(() => allEls().map(item => () => get(item, 'clientHeight')))
+  const recalc = (evt: Event) => {
 
-  useComponentsEffect.addEventListener(
+    const allHeight = Array.prototype.map.call(
+      (evt.target as HTMLElement).childNodes, item => (item as HTMLElement).clientHeight
+    ) as number []
 
-    wrapper as Accessor<HTMLElement>,
+    const allSumHeight = allHeight.map((_, i, arr) => (arr.slice(0, i).reduce(add, 0)))
 
-    HTMLNativeEvent.scroll,
+    const idx = allSumHeight.findIndex((item, i, arr) => (
+      inRange((evt.target as HTMLElement).scrollTop, item, arr[i + 1])
+    ))
 
-    throttle((evt) => {
+    idx > -1 && setCurrtIdx(idx)
 
-      const allHeight = allEls().map(item => get(item, 'clientHeight', 0))
-
-      const allSumHeight = allHeight.map((_, i, arr) => (arr.slice(0, i).reduce(add, 0)))
-
-      setCurrtIdx(
-        allSumHeight.findIndex((item, i, arr) => (
-          inRange((evt.target as HTMLElement).scrollTop, item, arr[i + 1])
-        ))
-      )
-
-    }, Second * 0.2)
-  )
-
+  }
 
   setDateSource(generateSource(
     endYear, endMonth, startYear, startMonth
   ))
 
+  onMount(() => {
+
+    const parentEl = (wrapper()?.parentElement)
+
+    if (!parentEl) return
+
+    const parentMaxHeight = getComputedStyle(parentEl).maxHeight
+
+    setMaxHeight(
+      parentMaxHeight && parentMaxHeight !== 'none' ? 'inherit' : window.innerHeight + 'px'
+    )
+
+  })
+
   return (
-    <ActionSheet
-      bind={[show,setShow]}
-      overlay
-      lockScroll={false}
-      title="日期选择"
-      round
-    >
+    // <ActionSheet
+    //   bind={[show, setShow]}
+    //   closeable
+    //   overlay
+    //   lockScroll={false}
+    //   title="日期选择"
+    //   round
+    // >
       <div
+        ref={setWrapper}
+        style={{ "max-height": wrapperMaxHeight() }}
         class="solidMobile-calendar-wrapper">
         <div class="solidMobile-calendar-header">
           <p class="solidMobile-calendar-header-title"> {currentDateStr} </p>
@@ -164,8 +173,8 @@ export default () => {
           </p>
         </div>
         <div
-          ref={setWrapper}
-          style={{ "max-height": window.innerHeight + 1 + 'px' }}
+          ref={setContentEl}
+          onScroll={recalc}
           class="solidMobile-calendar-content">
           <For each={dateSouce()}>
             {
@@ -181,11 +190,8 @@ export default () => {
                   </p>
                   <div
                     class="month">
-                    <For each={range(item[3])}>
-                      {() => <span>  </span>}
-                    </For>
                     <For each={range(item[2])}>
-                      {(item) => <span> {item + 1} </span>}
+                      {(item) => <span classList={{ actived: Math.random() > 0.5 }} > {item + 1} </span>}
                     </For>
                   </div>
                 </div>
@@ -194,7 +200,7 @@ export default () => {
           </For>
         </div>
       </div>
-    </ActionSheet>
+    // </ActionSheet>
   )
 
 }

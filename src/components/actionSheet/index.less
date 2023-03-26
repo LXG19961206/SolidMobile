@@ -1,5 +1,5 @@
 :root {
-  --solidMobile-actionSheet-max-height: 80%;
+  --solidMobile-actionSheet-max-height: 70vh;
   --solidMobile-actionSheet-min-height: 40%;
   --solidMobile-actionSheet-desc-height: 60px;
   --solidMobile-actionSheet-header-height: 48px;
@@ -11,7 +11,7 @@
   --solidMobile-actionSheet-gap-color: #f7f8fa;
   --solidMobile-actionSheet-gap-height: 8px;
   --solidMobile-actionSheet-desc-color: var(--solidMobile-dark-secondary);
-  --solidMobile-actionSheet-title-fontSize: 18px;
+  --solidMobile-actionSheet-title-fontSize: 16px;
 }
 
 @keyframes ActionSheetShow {
@@ -30,7 +30,7 @@
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
-  max-height: var(--solidMobile-actionSheet-max-height);
+  max-height: calc(var(--solidMobile-actionSheet-max-height) + var(--solidMobile-actionSheet-header-height));
   bottom: 0;
   background: var(--solidMobile-white);
   animation: ActionSheetShow ease-in-out var(--solidMobile-actionSheet-animation);
@@ -38,6 +38,11 @@
   &-overlay {
     width: 100%;
     height: 100%;
+  }
+
+  &-content {
+    max-height: var(--solidMobile-actionSheet-max-height);
+    overflow: auto;
   }
 
   &-custom {
@@ -48,7 +53,6 @@
     width: 100%;
     height: var(--solidMobile-actionSheet-header-height);
     text-align: center;
-    border: 1px solid #f7f8fa;
     position: relative;
     font-size: var(--solidMobile-actionSheet-title-fontSize);
     &-title {

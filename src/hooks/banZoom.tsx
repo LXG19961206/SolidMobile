@@ -1,5 +1,6 @@
 import { onMount, onCleanup } from "solid-js"
 import { disableIosDBClickZoom } from "../util/dom"
+import { isFunction } from 'lodash'
 export const useBanZoom = () => {
   
   let dispose: Function
@@ -10,10 +11,6 @@ export const useBanZoom = () => {
 
   })
 
-  onCleanup(() => {
-
-    dispose()
-    
-  })
+  onCleanup(() => isFunction(dispose) && dispose())
 
 }

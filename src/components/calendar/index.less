@@ -20,7 +20,18 @@
     flex: 0 0 calc(100% / 7);
     height: var(--solidMobile-calendar-items-height);
     line-height: var(--solidMobile-calendar-items-height);
+    // &.actived {
+    //   background: #1989fa;
+    //   color: #fff;
+    //   &:first-child {
+    //     border-radius: 16px 0 0 16px;
+    //   }
+    //   &:last-child {
+    //     border-radius: 0 16px 16px 0;
+    //   }
+    // }
   }
+
 }
 
 
@@ -28,7 +39,10 @@
 .solidMobile-calendar-wrapper {
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   -webkit-overflow-scrolling: touch;
+  max-height: inherit;
   .solidMobile-calendar-header {
     position: sticky;
     z-index: 3;
@@ -54,15 +68,9 @@
     }
   }
   .solidMobile-calendar-content {
-    height: inherit;
-    overflow: scroll;
     -webkit-overflow-scrolling: touch;
-    &::after {
-      content: '';
-      background: var(--solidMobile-calendar-background);
-      display: block;
-      height: calc(var(--solidMobile-calendar-items-height) * 3);
-    }
+    overflow: auto;
+    
   }
   .solidMobile-calendar-content-item {
     padding: calc(var(--solidMobile-calendar-items-gap) * 0.5) 0;

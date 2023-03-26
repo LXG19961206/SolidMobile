@@ -1,4 +1,4 @@
-import { createSignal, Show, For, Accessor, Setter, Switch, Match } from 'solid-js'
+import { createSignal, Show, For, Accessor, Setter, Switch, Match, createMemo, createRenderEffect, on } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import Button from '../button'
 import Icon from '../icon'
@@ -11,11 +11,13 @@ import { MaybeElement } from '../common'
 import { NoLimitFunc } from '../../@types/common'
 import { propDefaultValue } from '../../util/propDefaultValue'
 
+
 let showStatusGetter: Accessor<boolean>,
   showStatusSetter: Setter<boolean>,
   theLastSheetId: number,
   actionSheetGetter: Accessor<HTMLDivElement | void>,
   actionSheetSetter: Setter<HTMLDivElement | void>
+
 
 const close = (duration: number, id: number, beforeClose?: NoLimitFunc) => {
 
@@ -47,12 +49,16 @@ export default (props: ActionSheetProps) => {
     getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-actionSheet-animation-close')
   ) * 1000;
 
+  const titleHeight = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-actionSheet-header-height')
+  )
 
   const textColorVar = () => getComputedStyle(document.documentElement).getPropertyValue('--solidMobile-dark-main');
 
   [showStatusGetter, showStatusSetter] = props.bind;
 
   [actionSheetGetter, actionSheetSetter] = createSignal<HTMLDivElement>()
+
 
   const classList = () => ({
     "solidMobile-actionSheet-round": !!props.round,
@@ -68,6 +74,10 @@ export default (props: ActionSheetProps) => {
     close(duration, theLastSheetId, props.beforeClose)
     props.onClose?.call(void 0)
   }
+
+  const showTitle = createMemo(() => (
+    props.closeable || props.title
+  ))
 
   return (
     <Show when={showStatusGetter() && (props.children || props.items?.length) }>
@@ -88,7 +98,7 @@ export default (props: ActionSheetProps) => {
           style={{ "z-index": props.zIndex }}
           class="solidMobile-actionSheet">
           <Switch>
-            <Match when={props.title || props.closeable}>
+            <Match when={showTitle()}>
               <div class="solidMobile-actionSheet-header">
                 <p class="solidMobile-actionSheet-header-title">
                   {props.title || '标题'}
@@ -109,7 +119,14 @@ export default (props: ActionSheetProps) => {
             </Match>
           </Switch>
           <Show
-            fallback={props.children}
+            fallback={
+              <div 
+                style={{ 
+                  "max-height": (actionSheetGetter()?.clientHeight || 0) - (showTitle() ? titleHeight : 0) + 'px'
+                }}
+                class="solidMobile-actionSheet-content"> {props.children} 
+              </div>
+            }
             when={!props.children}>
             <Show when={props.items && props.items.length}>
               <div class="solidMobile-actionSheet-items">
