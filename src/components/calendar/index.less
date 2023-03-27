@@ -20,16 +20,13 @@
     flex: 0 0 calc(100% / 7);
     height: var(--solidMobile-calendar-items-height);
     line-height: var(--solidMobile-calendar-items-height);
-    // &.actived {
-    //   background: #1989fa;
-    //   color: #fff;
-    //   &:first-child {
-    //     border-radius: 16px 0 0 16px;
-    //   }
-    //   &:last-child {
-    //     border-radius: 0 16px 16px 0;
-    //   }
-    // }
+    background: transparent;
+    transition: .3s all;
+    &.actived {
+      background: #1989fa;
+      color: #fff;
+      border-radius: 16px;
+    }
   }
 
 }

@@ -1,13 +1,8 @@
-import { eq, get, range, throttle, add } from "lodash"
+import { range, add, pickBy } from "lodash"
 import { getDays } from "../../util/date"
-import { ObservableFixedDeque } from "../../util/FixedDeque"
 import { Accessor, createMemo, createSignal, For, onMount } from 'solid-js'
-import { useTouchMoveY } from "../../hooks/touchMoveY"
-import './index.less'
-import { useComponentsEffect, useBanZoom } from "../../hooks"
-import { HTMLNativeEvent } from "../../dict/native"
-import { Second } from "../../dict/time"
 import ActionSheet from "../actionSheet"
+import './index.less'
 
 type Year = number
 
@@ -85,18 +80,17 @@ const generateSource = (
 ).reduce((prev, idx) => [
   getPreMonthDateInfo(endYear, endMonth, -idx),
   ...prev
-], [] as YearMonthAndFirstDay[]
-)
-
+], [] as YearMonthAndFirstDay[])
+ 
 const weekdays = ['日', '一', '二', '三', '四', '五', '六']
 
 export default () => {
 
-  const [show, setShow] = createSignal(true)
-
   const [dateSouce, setDateSource] = createSignal<YearMonthAndFirstDay[]>([])
 
   const [endYear, endMonth] = [2023, 3]
+
+  const [show,setShow] = createSignal(true)
 
   const [startYear, startMonth] = [2022, 3]
 
@@ -108,6 +102,8 @@ export default () => {
 
   const [currentIdx, setCurrtIdx] = createSignal(0)
 
+  const [dateActivedMap, setActiveMap] = createSignal<Record<string, boolean>>({})
+
   const currentDateStr = createMemo(
     () => dateSouce().length ? `${dateSouce()[currentIdx()][0]}年${dateSouce()[currentIdx()][1]}月` : ''
   )
@@ -115,6 +111,20 @@ export default () => {
   const refsAccessors = createMemo(
     () => range(dateSouce().length).map(_ => createSignal<HTMLElement>())
   )
+
+  const select = (
+    year: number | string,
+    month: number | string,
+    day: number | string
+  ) => {
+
+    const date = `${year}/${month}/${day}`
+
+    setActiveMap(prev => pickBy(
+      ({ ...prev, [date]: date in prev ? !prev[date] : true }), Boolean
+    ))
+
+  }
 
 
   const recalc = (evt: Event) => {
@@ -152,14 +162,14 @@ export default () => {
   })
 
   return (
-    // <ActionSheet
-    //   bind={[show, setShow]}
-    //   closeable
-    //   overlay
-    //   lockScroll={false}
-    //   title="日期选择"
-    //   round
-    // >
+    <ActionSheet
+      bind={[show, setShow]}
+      closeable
+      overlay
+      lockScroll={false}
+      title="日期选择"
+      round
+    >
       <div
         ref={setWrapper}
         style={{ "max-height": wrapperMaxHeight() }}
@@ -191,7 +201,14 @@ export default () => {
                   <div
                     class="month">
                     <For each={range(item[2])}>
-                      {(item) => <span classList={{ actived: Math.random() > 0.5 }} > {item + 1} </span>}
+                      {
+                        (dateIdx) => (
+                          <span
+                            onClick={ () => select(item[0], item[1], dateIdx + 1) } 
+                            classList={{ actived: !!dateActivedMap()[`${item[0]}/${item[1]}/${dateIdx + 1}`] }} > {dateIdx + 1} 
+                          </span>
+                        )
+                      }
                     </For>
                   </div>
                 </div>
@@ -200,7 +217,7 @@ export default () => {
           </For>
         </div>
       </div>
-    // </ActionSheet>
+    </ActionSheet>
   )
 
 }
