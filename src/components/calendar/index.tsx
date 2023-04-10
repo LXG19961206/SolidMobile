@@ -1,6 +1,6 @@
 import { range, add, pickBy } from "lodash"
 import { getDays } from "../../util/date"
-import { Accessor, createMemo, createSignal, For, mergeProps, onMount } from 'solid-js'
+import { Accessor, createMemo, createSignal, For, mergeProps, onMount, Switch, Match } from 'solid-js'
 import ActionSheet from "../actionSheet"
 import './index.less'
 import { BaseCalendarProps, CalendarTypeDict } from "./types"
@@ -94,7 +94,7 @@ export default (preProps: Partial<BaseCalendarProps>) => {
     type: CalendarTypeDict.single,
     maxCount: 5
   }, preProps, {
-
+    color: preProps.color || '#1989fa'
   })
 
   const [dateSouce, setDateSource] = createSignal<YearMonthAndFirstDay[]>([])
@@ -175,6 +175,8 @@ export default (preProps: Partial<BaseCalendarProps>) => {
         setDateRangeMap({ start: +new Date(date), end: null })
 
       } else if (currentRange.start) {
+
+        if (currentRange.start === dateTime) return
 
         if (Math.abs(dateTime - currentRange.start) >= props.maxCount * msOfPerday) {
           return Toast({
@@ -303,17 +305,34 @@ export default (preProps: Partial<BaseCalendarProps>) => {
                     class="month">
                     <For each={range(item[2])}>
                       {
-                        (dateIdx) => (
-                          <span
-                            onClick={ () => select(item[0], item[1], dateIdx + 1) } 
-                            classList={{ 
-                              first: dateRangeMap().start === +new Date(`${item[0]}/${item[1]}/${dateIdx + 1}`),
-                              last: dateRangeMap().end === +new Date(`${item[0]}/${item[1]}/${dateIdx + 1}`),
-                              range: rangeTypeDateItems()[+new Date(`${item[0]}/${item[1]}/${dateIdx + 1}`)],
-                              actived: !!dateActivedMap()[`${item[0]}/${item[1]}/${dateIdx + 1}`]
-                            }} > {dateIdx + 1} 
-                          </span>
-                        )
+                        (dateIdx) => {
+                          const timeStr = `${item[0]}/${item[1]}/${dateIdx + 1}`
+                          const currentTime = +new Date(timeStr)
+                          return (
+                            <span
+                              onClick={ () => select(item[0], item[1], dateIdx + 1) } 
+                              style={{ 
+                                background: (rangeTypeDateItems()[currentTime] || !!dateActivedMap()[timeStr]) 
+                                  ? props.color
+                                  : ''
+                              }}
+                              classList={{ 
+                                first: dateRangeMap().start === currentTime,
+                                last: dateRangeMap().end === currentTime,
+                                range: rangeTypeDateItems()[currentTime],
+                                actived: !!dateActivedMap()[timeStr]
+                              }} > 
+                              <Switch fallback={dateIdx + 1}>
+                                <Match when={dateRangeMap().start === currentTime}>
+                                  <span class="text">{dateIdx + 1}</span> <br /> <span class='label'> 开始 </span>
+                                </Match>
+                                <Match when={dateRangeMap().end === currentTime}>
+                                  <span class="text">{dateIdx + 1}</span> <br /> <span class='label'> 结束 </span>
+                                </Match>
+                              </Switch>
+                            </span>
+                          )
+                        }
                       }
                     </For>
                   </div>
