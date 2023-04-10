@@ -35,9 +35,14 @@
       color: #fff;
     }
     &.first {
+      display: block;
       opacity: 1;  
       border-radius: 16px 0 0 16px;
       background: #1989fa;
+      &::after {
+        content: '开始';
+        display: block;
+      }
     }
     &.last {
       opacity: 1;  

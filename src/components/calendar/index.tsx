@@ -18,6 +18,8 @@ type Rows = number
 
 type YearMonthAndFirstDay = [Year, Month, DayCount, Day, Rows]
 
+const msOfPerday = 86400000
+
 const getRows = (
   totalDay: number,
   firstDay: number
@@ -91,7 +93,9 @@ export default (preProps: Partial<BaseCalendarProps>) => {
   const props = mergeProps({
     type: CalendarTypeDict.single,
     maxCount: 5
-  }, preProps)
+  }, preProps, {
+
+  })
 
   const [dateSouce, setDateSource] = createSignal<YearMonthAndFirstDay[]>([])
 
@@ -139,11 +143,13 @@ export default (preProps: Partial<BaseCalendarProps>) => {
 
       if (
         !(date in dateActivedMap()) &&
-        Object.keys(dateActivedMap()).length >= props.maxCount
+        Object.keys(dateActivedMap()).length > props.maxCount
       ) {
+
         return Toast({
           message: `您最多只能选择${props.maxCount}个日期`
         })
+
       }
       
       setActiveMap(prev => pickBy(
@@ -162,11 +168,19 @@ export default (preProps: Partial<BaseCalendarProps>) => {
 
         Promise.resolve().then(select.bind(void 0, year, month, day))
 
+        return
+
       } else if (!currentRange.end && !currentRange.start) {
 
         setDateRangeMap({ start: +new Date(date), end: null })
 
       } else if (currentRange.start) {
+
+        if (Math.abs(dateTime - currentRange.start) >= props.maxCount * msOfPerday) {
+          return Toast({
+            message: `可选日期范围最多为${props.maxCount}天`
+          })
+        }
         
         dateTime >= +new Date(currentRange.start)
           ? setDateRangeMap({ start: currentRange.start, end: dateTime })
@@ -204,7 +218,7 @@ export default (preProps: Partial<BaseCalendarProps>) => {
 
         dict[current!] = true
 
-        current! += 86400000
+        current! += msOfPerday
       }
 
       return dict
