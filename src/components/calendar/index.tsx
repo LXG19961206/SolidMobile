@@ -1,8 +1,10 @@
 import { range, add, pickBy } from "lodash"
 import { getDays } from "../../util/date"
-import { Accessor, createMemo, createSignal, For, onMount } from 'solid-js'
+import { Accessor, createMemo, createSignal, For, mergeProps, onMount } from 'solid-js'
 import ActionSheet from "../actionSheet"
 import './index.less'
+import { BaseCalendarProps, CalendarTypeDict } from "./types"
+import Toast from "../toast"
 
 type Year = number
 
@@ -84,7 +86,12 @@ const generateSource = (
  
 const weekdays = ['日', '一', '二', '三', '四', '五', '六']
 
-export default () => {
+export default (preProps: Partial<BaseCalendarProps>) => {
+
+  const props = mergeProps({
+    type: CalendarTypeDict.single,
+    maxCount: 5
+  }, preProps)
 
   const [dateSouce, setDateSource] = createSignal<YearMonthAndFirstDay[]>([])
 
@@ -104,6 +111,10 @@ export default () => {
 
   const [dateActivedMap, setActiveMap] = createSignal<Record<string, boolean>>({})
 
+  const [dateRangeMap, setDateRangeMap] = createSignal<Record<'start' | 'end', number | null>>({
+    start: null, end: null
+  })
+
   const currentDateStr = createMemo(
     () => dateSouce().length ? `${dateSouce()[currentIdx()][0]}年${dateSouce()[currentIdx()][1]}月` : ''
   )
@@ -120,9 +131,48 @@ export default () => {
 
     const date = `${year}/${month}/${day}`
 
-    setActiveMap(prev => pickBy(
-      ({ ...prev, [date]: date in prev ? !prev[date] : true }), Boolean
-    ))
+    if (props.type === CalendarTypeDict.single) {
+
+      setActiveMap({ [date]: true })
+
+    } else if (props.type === CalendarTypeDict.multiple) {
+
+      if (
+        !(date in dateActivedMap()) &&
+        Object.keys(dateActivedMap()).length >= props.maxCount
+      ) {
+        return Toast({
+          message: `您最多只能选择${props.maxCount}个日期`
+        })
+      }
+      
+      setActiveMap(prev => pickBy(
+        ({ ...prev, [date]: date in prev ? !prev[date] : true }), Boolean
+      ))
+
+    } else {
+
+      const currentRange = dateRangeMap()
+
+      const dateTime = +new Date(date)
+
+      if (!currentRange.end && !currentRange.start) {
+
+        setDateRangeMap({ start: +new Date(date), end: null })
+
+      } else if (currentRange.start) {
+        
+        dateTime >= +new Date(currentRange.start)
+          ? setDateRangeMap({ start: currentRange.start, end: dateTime })
+          : setDateRangeMap({ end: currentRange.start, start: dateTime })
+        
+      }
+
+    }
+
+    props.onChange?.call(void 0, [
+      ...Object.keys(dateActivedMap()).filter(key => !!dateActivedMap()[key])
+    ])
 
   }
 
@@ -205,7 +255,11 @@ export default () => {
                         (dateIdx) => (
                           <span
                             onClick={ () => select(item[0], item[1], dateIdx + 1) } 
-                            classList={{ actived: !!dateActivedMap()[`${item[0]}/${item[1]}/${dateIdx + 1}`] }} > {dateIdx + 1} 
+                            classList={{ 
+                              actived: props.type !== CalendarTypeDict.range 
+                                ? !!dateActivedMap()[`${item[0]}/${item[1]}/${dateIdx + 1}`] 
+                                : +new Date(`${item[0]}/${item[1]}/${dateIdx + 1}`) >= dateRangeMap().start! && +new Date(`${item[0]}/${item[1]}/${dateIdx + 1}`) <= dateRangeMap().end!
+                            }} > {dateIdx + 1} 
                           </span>
                         )
                       }

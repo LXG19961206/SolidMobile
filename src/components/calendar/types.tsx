@@ -16,6 +16,7 @@ export interface BaseCalendarProps {
   rowHeight: number | string,
   formatter: (dateStr: string) => string,
   lazyRender: boolean,
+  maxCount: number,
   showMark: boolean,
   poppable: boolean,
   showTitle: boolean,
@@ -23,6 +24,7 @@ export interface BaseCalendarProps {
   readonly: boolean,
   confirmText: string | JSXElement,
   confirmDisabledText: string | JSXElement,
+  onChange: (selected: string []) => unknown
 }
 
 export interface PopCalendarProps extends BaseCalendarProps {

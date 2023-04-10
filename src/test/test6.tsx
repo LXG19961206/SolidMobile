@@ -17,6 +17,6 @@ export default () => {
     //     bind={[isChecked, setCheckedStatus]}
     //   ></Switch>
     // </>
-    <Calendar></Calendar>
+    <Calendar type='range'></Calendar>
   )
 }
