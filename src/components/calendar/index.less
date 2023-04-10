@@ -7,6 +7,8 @@
   --solidMobile-calendar-mark-color: #f5f5f7;
 }
 
+
+
 .month {
   position: relative;
   z-index: 2;
@@ -26,6 +28,21 @@
       background: #1989fa;
       color: #fff;
       border-radius: 16px;
+    }
+    &.range {
+      border-radius: 0;
+      background: #1989fa70;
+      color: #fff;
+    }
+    &.first {
+      opacity: 1;  
+      border-radius: 16px 0 0 16px;
+      background: #1989fa;
+    }
+    &.last {
+      opacity: 1;  
+      background: #1989fa;
+      border-radius: 0 16px 16px 0;
     }
   }
 

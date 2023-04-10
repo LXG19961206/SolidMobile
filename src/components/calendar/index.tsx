@@ -156,7 +156,13 @@ export default (preProps: Partial<BaseCalendarProps>) => {
 
       const dateTime = +new Date(date)
 
-      if (!currentRange.end && !currentRange.start) {
+      if (currentRange.end && currentRange.start) {
+
+        setDateRangeMap({ start: null, end: null })
+
+        Promise.resolve().then(select.bind(void 0, year, month, day))
+
+      } else if (!currentRange.end && !currentRange.start) {
 
         setDateRangeMap({ start: +new Date(date), end: null })
 
@@ -175,6 +181,37 @@ export default (preProps: Partial<BaseCalendarProps>) => {
     ])
 
   }
+
+  const rangeTypeDateItems = createMemo<Record<number, boolean>>(() => {
+
+    const currentRange = dateRangeMap()
+
+    if (!currentRange.start && !currentRange.end) {
+
+      return {}
+
+    } else if (!currentRange.end) {
+
+      return {
+        [currentRange.start!]: true
+      }
+
+    } else {
+
+      let current = currentRange.start, dict: Record<number, boolean> = {}
+
+      while (current! <= currentRange.end) {
+
+        dict[current!] = true
+
+        current! += 86400000
+      }
+
+      return dict
+
+    }
+
+  })
 
 
   const recalc = (evt: Event) => {
@@ -256,9 +293,10 @@ export default (preProps: Partial<BaseCalendarProps>) => {
                           <span
                             onClick={ () => select(item[0], item[1], dateIdx + 1) } 
                             classList={{ 
-                              actived: props.type !== CalendarTypeDict.range 
-                                ? !!dateActivedMap()[`${item[0]}/${item[1]}/${dateIdx + 1}`] 
-                                : +new Date(`${item[0]}/${item[1]}/${dateIdx + 1}`) >= dateRangeMap().start! && +new Date(`${item[0]}/${item[1]}/${dateIdx + 1}`) <= dateRangeMap().end!
+                              first: dateRangeMap().start === +new Date(`${item[0]}/${item[1]}/${dateIdx + 1}`),
+                              last: dateRangeMap().end === +new Date(`${item[0]}/${item[1]}/${dateIdx + 1}`),
+                              range: rangeTypeDateItems()[+new Date(`${item[0]}/${item[1]}/${dateIdx + 1}`)],
+                              actived: !!dateActivedMap()[`${item[0]}/${item[1]}/${dateIdx + 1}`]
                             }} > {dateIdx + 1} 
                           </span>
                         )
