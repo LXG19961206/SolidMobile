@@ -20,7 +20,6 @@ type YearMonthAndFirstDay = [Year, Month, DayCount, Day, Rows]
 
 const msOfPerday = 86400000
 
-
 const dateFormatter = (maybeDate?: string | Date, offset?: number) => {
 
   const date = maybeDate 
@@ -32,7 +31,7 @@ const dateFormatter = (maybeDate?: string | Date, offset?: number) => {
     date.getMonth() + 1,
     date.getDate()
   ]
-
+  
 }
 
 const getRows = (
