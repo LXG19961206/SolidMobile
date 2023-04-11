@@ -15,6 +15,14 @@
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+  & > .placeholder {
+    margin: 0;
+    padding: 0;
+    flex: 0 0 100%;
+    height: var(--solidMobile-calendar-items-height);
+    line-height: var(--solidMobile-calendar-items-height);
+    background: transparent;
+  }
   & > span {
     text-align: center;
     color: var(--solidMobile-dark-main);

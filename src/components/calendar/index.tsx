@@ -1,6 +1,6 @@
-import { range, add, pickBy } from "lodash"
+import { range, add, pickBy, isString } from "lodash"
 import { getDays } from "../../util/date"
-import { Accessor, createMemo, createSignal, For, mergeProps, onMount, Switch, Match } from 'solid-js'
+import { Show, createMemo, createSignal, For, mergeProps, onMount, Switch, Match } from 'solid-js'
 import ActionSheet from "../actionSheet"
 import './index.less'
 import { BaseCalendarProps, CalendarTypeDict } from "./types"
@@ -19,6 +19,21 @@ type Rows = number
 type YearMonthAndFirstDay = [Year, Month, DayCount, Day, Rows]
 
 const msOfPerday = 86400000
+
+
+const dateFormatter = (maybeDate?: string | Date, offset?: number) => {
+
+  const date = maybeDate 
+    ? new Date(+new Date(isString(maybeDate) ? maybeDate.replace(/-/g, '/') : maybeDate) + (offset || 0))
+    : new Date(+new Date() + (offset || 0))
+
+  return [
+    date.getFullYear(),
+    date.getMonth() + 1,
+    date.getDate()
+  ]
+
+}
 
 const getRows = (
   totalDay: number,
@@ -85,13 +100,14 @@ const generateSource = (
   getPreMonthDateInfo(endYear, endMonth, -idx),
   ...prev
 ], [] as YearMonthAndFirstDay[])
- 
+
 const weekdays = ['日', '一', '二', '三', '四', '五', '六']
 
 export default (preProps: Partial<BaseCalendarProps>) => {
 
   const props = mergeProps({
     type: CalendarTypeDict.single,
+    lazyRender: true,
     maxCount: 5
   }, preProps, {
     color: preProps.color || '#1989fa'
@@ -99,11 +115,13 @@ export default (preProps: Partial<BaseCalendarProps>) => {
 
   const [dateSouce, setDateSource] = createSignal<YearMonthAndFirstDay[]>([])
 
-  const [endYear, endMonth] = [2023, 3]
+  const [endYear, endMonth] = dateFormatter(props.maxDate)
 
-  const [show,setShow] = createSignal(true)
+  const [startYear, startMonth] = dateFormatter(
+    props.minDate, -msOfPerday * 90
+  )
 
-  const [startYear, startMonth] = [2022, 3]
+  const [show, setShow] = createSignal(true)
 
   const [contentEl, setContentEl] = createSignal<HTMLElement>()
 
@@ -151,7 +169,7 @@ export default (preProps: Partial<BaseCalendarProps>) => {
         })
 
       }
-      
+
       setActiveMap(prev => pickBy(
         ({ ...prev, [date]: date in prev ? !prev[date] : true }), Boolean
       ))
@@ -183,11 +201,11 @@ export default (preProps: Partial<BaseCalendarProps>) => {
             message: `可选日期范围最多为${props.maxCount}天`
           })
         }
-        
+
         dateTime >= +new Date(currentRange.start)
           ? setDateRangeMap({ start: currentRange.start, end: dateTime })
           : setDateRangeMap({ end: currentRange.start, start: dateTime })
-        
+
       }
 
     }
@@ -234,7 +252,7 @@ export default (preProps: Partial<BaseCalendarProps>) => {
 
     const allHeight = Array.prototype.map.call(
       (evt.target as HTMLElement).childNodes, item => (item as HTMLElement).clientHeight
-    ) as number []
+    ) as number[]
 
     const allSumHeight = allHeight.map((_, i, arr) => (arr.slice(0, i).reduce(add, 0)))
 
@@ -271,8 +289,7 @@ export default (preProps: Partial<BaseCalendarProps>) => {
       overlay
       lockScroll={false}
       title="日期选择"
-      round
-    >
+      round>
       <div
         ref={setWrapper}
         style={{ "max-height": wrapperMaxHeight() }}
@@ -303,38 +320,49 @@ export default (preProps: Partial<BaseCalendarProps>) => {
                   </p>
                   <div
                     class="month">
-                    <For each={range(item[2])}>
-                      {
-                        (dateIdx) => {
-                          const timeStr = `${item[0]}/${item[1]}/${dateIdx + 1}`
-                          const currentTime = +new Date(timeStr)
-                          return (
-                            <span
-                              onClick={ () => select(item[0], item[1], dateIdx + 1) } 
-                              style={{ 
-                                background: (rangeTypeDateItems()[currentTime] || !!dateActivedMap()[timeStr]) 
-                                  ? props.color
-                                  : ''
-                              }}
-                              classList={{ 
-                                first: dateRangeMap().start === currentTime,
-                                last: dateRangeMap().end === currentTime,
-                                range: rangeTypeDateItems()[currentTime],
-                                actived: !!dateActivedMap()[timeStr]
-                              }} > 
-                              <Switch fallback={dateIdx + 1}>
-                                <Match when={dateRangeMap().start === currentTime}>
-                                  <span class="text">{dateIdx + 1}</span> <br /> <span class='label'> 开始 </span>
-                                </Match>
-                                <Match when={dateRangeMap().end === currentTime}>
-                                  <span class="text">{dateIdx + 1}</span> <br /> <span class='label'> 结束 </span>
-                                </Match>
-                              </Switch>
-                            </span>
-                          )
+                    <Show
+                      fallback={
+                        <For each={range(item[4])}>
+                          { (idx) => (<div class="placeholder"></div>) }
+                        </For>
+                      } 
+                      when={ !props.lazyRender || Math.abs(currentIdx() - idx()) < 2 }>
+                      <For each={range(item[3])}> 
+                        { () => (<span></span>) }
+                      </For>
+                      <For each={range(item[2])}>
+                        {
+                          (dateIdx) => {
+                            const timeStr = `${item[0]}/${item[1]}/${dateIdx + 1}`
+                            const currentTime = +new Date(timeStr)
+                            return (
+                              <span
+                                onClick={() => select(item[0], item[1], dateIdx + 1)}
+                                style={{
+                                  background: (rangeTypeDateItems()[currentTime] || !!dateActivedMap()[timeStr])
+                                    ? props.color
+                                    : ''
+                                }}
+                                classList={{
+                                  first: dateRangeMap().start === currentTime,
+                                  last: dateRangeMap().end === currentTime,
+                                  range: rangeTypeDateItems()[currentTime],
+                                  actived: !!dateActivedMap()[timeStr]
+                                }} >
+                                <Switch fallback={dateIdx + 1}>
+                                  <Match when={dateRangeMap().start === currentTime}>
+                                    <span class="text">{dateIdx + 1}</span> <br /> <span class='label'> 开始 </span>
+                                  </Match>
+                                  <Match when={dateRangeMap().end === currentTime}>
+                                    <span class="text">{dateIdx + 1}</span> <br /> <span class='label'> 结束 </span>
+                                  </Match>
+                                </Switch>
+                              </span>
+                            )
+                          }
                         }
-                      }
-                    </For>
+                      </For>
+                    </Show>
                   </div>
                 </div>
               )
@@ -344,5 +372,4 @@ export default (preProps: Partial<BaseCalendarProps>) => {
       </div>
     </ActionSheet>
   )
-
 }
