@@ -1,6 +1,6 @@
 import { range, add, pickBy, isString } from "lodash"
 import { getDays } from "../../util/date"
-import { Show, createMemo, createSignal, For, mergeProps, onMount, Switch, Match } from 'solid-js'
+import { createEffect, on ,Show, createMemo, createSignal, For, mergeProps, onMount, Switch, Match } from 'solid-js'
 import ActionSheet from "../actionSheet"
 import './index.less'
 import { BaseCalendarProps, CalendarTypeDict } from "./types"
@@ -109,16 +109,14 @@ export default (preProps: Partial<BaseCalendarProps>) => {
     lazyRender: true,
     maxCount: 5
   }, preProps, {
-    color: preProps.color || '#1989fa'
+    color: preProps.color || '#1989fa',
+    minDate: preProps.minDate || new Date((+new Date()) - 30 * msOfPerday),
+    maxDate: preProps.minDate || new Date(),
   })
 
   const [dateSouce, setDateSource] = createSignal<YearMonthAndFirstDay[]>([])
 
-  const [endYear, endMonth] = dateFormatter(props.maxDate)
-
-  const [startYear, startMonth] = dateFormatter(
-    props.minDate, -msOfPerday * 90
-  )
+  
 
   const [show, setShow] = createSignal(true)
 
@@ -160,7 +158,7 @@ export default (preProps: Partial<BaseCalendarProps>) => {
 
       if (
         !(date in dateActivedMap()) &&
-        Object.keys(dateActivedMap()).length > props.maxCount
+        Object.keys(dateActivedMap()).length >= props.maxCount
       ) {
 
         return Toast({
@@ -204,7 +202,7 @@ export default (preProps: Partial<BaseCalendarProps>) => {
         dateTime >= +new Date(currentRange.start)
           ? setDateRangeMap({ start: currentRange.start, end: dateTime })
           : setDateRangeMap({ end: currentRange.start, start: dateTime })
-
+        
       }
 
     }
@@ -263,9 +261,22 @@ export default (preProps: Partial<BaseCalendarProps>) => {
 
   }
 
-  setDateSource(generateSource(
-    endYear, endMonth, startYear, startMonth
-  ))
+  createEffect(
+    on(() => [props.minDate, props.maxDate], (
+      newVal, oldVal
+    ) => {
+
+      if (oldVal && newVal.every((item, i) => Object.is(item, oldVal[i]))) return 
+
+      const [endYear, endMonth] = dateFormatter(props.maxDate)
+
+      const [startYear, startMonth] = dateFormatter(props.minDate)
+    
+      setDateSource(generateSource(
+        endYear, endMonth, startYear, startMonth
+      ))
+    })
+  )
 
   onMount(() => {
 
