@@ -57,3 +57,42 @@ export const disableIosDBClickZoom = () => {
   }
 
 }
+
+export const getVisibilityWithRect = (el?: HTMLElement) => {
+
+  if (!el) return false
+
+  const containerHeight = window.innerHeight || document.documentElement.clientHeight
+
+  const containerWidth = window.innerWidth || document.documentElement.clientWidth
+
+  const rectInstance = el.getBoundingClientRect()
+
+  return ([
+    rectInstance.top > 0,
+    rectInstance.top < containerHeight, // in slight y
+    rectInstance.left > 0,
+    rectInstance.left < containerWidth // in slight x
+  ]).every(Boolean)
+
+}
+
+export const getScrollElement = (el?: HTMLElement) => {
+
+  if (!el) return window
+
+  const isScrollElement = (el: HTMLElement) => el.scrollHeight > el.clientHeight
+
+  let target = el
+
+  while (!isScrollElement(target)) {
+
+    if (!target.parentElement) break
+
+    target = target.parentElement
+
+  }
+
+  return isScrollElement(target) ? target : window
+
+}
