@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import { BadgeDocPage } from '../../../docs/pages/components/Badge/BadgeDocPage';
+import { BadgeDocPage } from '../../../docs-dev/pages/components/Badge/BadgeDocPage';
 
 const meta: Meta = {
   title: '展示组件/Badge 徽标',

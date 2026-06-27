@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "jsx": "preserve",
@@ -18,10 +22,23 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "solid-component": ["src/index.ts"],
-      "solid-component/*": ["src/*"]
+      "solid-component": [
+        "src/index.ts"
+      ],
+      "solid-component/*": [
+        "src/*"
+      ]
     }
   },
-  "include": ["src", "docs"],
-  "exclude": ["node_modules", "dist", "playground", "**/*.test.ts", "**/*.test.tsx"]
+  "include": [
+    "src",
+    "docs-dev"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "playground",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ]
 }

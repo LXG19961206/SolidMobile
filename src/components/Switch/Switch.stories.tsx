@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import { SwitchDocPage } from '../../../docs/pages/components/Switch/SwitchDocPage';
+import { SwitchDocPage } from '../../../docs-dev/pages/components/Switch/SwitchDocPage';
 
 const meta: Meta = {
   title: '表单组件/Switch 开关',

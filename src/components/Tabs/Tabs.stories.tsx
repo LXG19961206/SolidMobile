@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import { TabsDocPage } from '../../../docs/pages/components/Tabs/TabsDocPage';
+import { TabsDocPage } from '../../../docs-dev/pages/components/Tabs/TabsDocPage';
 
 const meta: Meta = {
   title: '导航组件/Tabs 标签页',

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import { LoadingDocPage } from '../../../docs/pages/components/Loading/LoadingDocPage';
+import { LoadingDocPage } from '../../../docs-dev/pages/components/Loading/LoadingDocPage';
 
 const meta: Meta = {
   title: '反馈组件/Loading 加载',

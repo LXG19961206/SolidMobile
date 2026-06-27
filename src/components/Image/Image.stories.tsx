@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import { ImageDocPage } from '../../../docs/pages/components/Image/ImageDocPage';
+import { ImageDocPage } from '../../../docs-dev/pages/components/Image/ImageDocPage';
 
 const meta: Meta = {
   title: '展示组件/Image 图片',

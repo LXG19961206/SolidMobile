@@ -35,6 +35,8 @@
     "dev": "vite serve playground --open",
     "build": "vite build && npm run build:types",
     "build:types": "tsc --emitDeclarationOnly --outDir dist --declaration",
+    "build:docs": "vite build --mode docs --outDir ../docs --base /SolidMobile/",
+    "dev:docs": "vite --mode docs",
     "preview": "vite preview playground",
     "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build -o dist-storybook",

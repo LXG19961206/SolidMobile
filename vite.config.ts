@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => {
 
   // Docs / dev mode
   return {
-    root: 'docs',
+    root: 'docs-dev',
     plugins: [solidPlugin()],
     resolve: {
       alias: {

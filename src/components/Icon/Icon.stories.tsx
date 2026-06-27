@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import { IconDocPage } from '../../../docs/pages/components/Icon/IconDocPage';
+import { IconDocPage } from '../../../docs-dev/pages/components/Icon/IconDocPage';
 
 const meta: Meta = {
   title: '基础组件/Icon 图标',

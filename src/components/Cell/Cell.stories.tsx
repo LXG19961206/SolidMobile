@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import { CellDocPage } from '../../../docs/pages/components/Cell/CellDocPage';
+import { CellDocPage } from '../../../docs-dev/pages/components/Cell/CellDocPage';
 
 const meta: Meta = {
   title: '导航组件/Cell 单元格',

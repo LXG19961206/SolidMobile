@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import { DividerDocPage } from '../../../docs/pages/components/Divider/DividerDocPage';
+import { DividerDocPage } from '../../../docs-dev/pages/components/Divider/DividerDocPage';
 
 const meta: Meta = {
   title: '基础组件/Divider 分割线',

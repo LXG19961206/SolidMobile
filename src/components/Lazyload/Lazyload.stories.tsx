@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import { LazyloadDocPage } from '../../../docs/pages/components/Lazyload/LazyloadDocPage';
+import { LazyloadDocPage } from '../../../docs-dev/pages/components/Lazyload/LazyloadDocPage';
 
 const meta: Meta = {
   title: '展示组件/Lazyload 懒加载',

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import { CenterDocPage } from '../../../docs/pages/components/Center/CenterDocPage';
+import { CenterDocPage } from '../../../docs-dev/pages/components/Center/CenterDocPage';
 
 const meta: Meta = {
   title: '基础组件/Center 居中',

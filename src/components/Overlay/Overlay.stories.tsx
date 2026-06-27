@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import { OverlayDocPage } from '../../../docs/pages/components/Overlay/OverlayDocPage';
+import { OverlayDocPage } from '../../../docs-dev/pages/components/Overlay/OverlayDocPage';
 
 const meta: Meta = {
   title: '反馈组件/Overlay 遮罩层',

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import { ListDocPage } from '../../../docs/pages/components/List/ListDocPage';
+import { ListDocPage } from '../../../docs-dev/pages/components/List/ListDocPage';
 
 const meta: Meta = {
   title: '展示组件/List 列表',

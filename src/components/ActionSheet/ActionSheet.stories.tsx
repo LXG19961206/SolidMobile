@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import { ActionSheetDocPage } from '../../../docs/pages/components/ActionSheet/ActionSheetDocPage';
+import { ActionSheetDocPage } from '../../../docs-dev/pages/components/ActionSheet/ActionSheetDocPage';
 
 const meta: Meta = {
   title: '反馈组件/ActionSheet 动作面板',
