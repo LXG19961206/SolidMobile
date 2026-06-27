@@ -1,0 +1,132 @@
+/* ================================================================
+   Cell & CellGroup
+   ================================================================ */
+
+/* ── CellGroup ── */
+.group {
+  margin-bottom: 1rem;
+}
+
+.groupTitle {
+  padding: 0.5rem 1rem 0.25rem;
+  font-size: 0.8rem;
+  color: var(--sc-color-text-secondary, #969799);
+}
+
+.cells {
+  background: var(--sc-color-background, #fff);
+}
+
+.card {
+  margin: 0 0.75rem;
+  border-radius: var(--sc-border-radius-lg, 12px);
+  overflow: hidden;
+}
+
+.card .cells {
+  border-radius: inherit;
+}
+
+/* ── Cell ── */
+.cell {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  min-height: 48px;
+  box-sizing: border-box;
+  color: var(--sc-color-text, #323233);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  transition: background 0.15s;
+  border-bottom: 1px solid var(--sc-color-border, #dcdee0);
+}
+
+.cell:last-child {
+  border-bottom: none;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:active {
+  background: var(--sc-color-background-secondary, #f7f8fa);
+}
+
+/* Sizes */
+.sm { min-height: 40px; font-size: 0.8125rem; padding: 0 0.75rem; }
+.md { min-height: 48px; font-size: 0.9375rem; }
+.lg { min-height: 56px; font-size: 1rem; }
+
+/* Centered */
+.center {
+  align-items: center;
+}
+
+/* ── Cell inner layout ── */
+.body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.required {
+  color: var(--sc-color-danger, #fc000a);
+  flex-shrink: 0;
+}
+
+.description {
+  font-size: 0.8rem;
+  color: var(--sc-color-text-secondary, #969799);
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.value {
+  flex-shrink: 0;
+  max-width: 50%;
+  text-align: right;
+  color: var(--sc-color-text-secondary, #969799);
+  font-size: 0.875rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 0.75rem;
+}
+
+/* ── Icon ── */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4em;
+  height: 1.4em;
+  margin-right: 0.6rem;
+  flex-shrink: 0;
+  font-size: 1.2em;
+}
+
+/* ── Arrow ── */
+.arrow {
+  display: flex;
+  align-items: center;
+  margin-left: 0.4rem;
+  color: var(--sc-color-text-tertiary, #afaba9);
+  flex-shrink: 0;
+}

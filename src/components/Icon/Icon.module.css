@@ -1,0 +1,28 @@
+/* ===== Icon Base ===== */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  vertical-align: -0.125em;
+  user-select: none;
+  /* Allow color inheritance */
+  color: inherit;
+  /* Ensure crisp rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  shape-rendering: geometricPrecision;
+}
+
+/* Interactive icons (with onClick) get pointer cursor */
+.icon[role="button"],
+.icon[tabindex] {
+  cursor: pointer;
+}
+
+/* Remove focus outline — users should add their own if needed */
+.icon:focus-visible {
+  outline: 2px solid var(--sc-color-focus, rgba(66, 105, 255, 0.4));
+  outline-offset: 2px;
+  border-radius: 2px;
+}

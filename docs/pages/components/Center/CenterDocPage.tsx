@@ -1,0 +1,117 @@
+import { Center } from '../../../../src/components/Center';
+import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
+import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import styles from './CenterDocPage.module.css';
+
+const propsData: PropRow[] = [
+  { name: 'flexX', type: 'boolean', default: '—', required: false, desc: 'Flexbox 水平居中 (justify-content: center)。' },
+  { name: 'flexY', type: 'boolean', default: '—', required: false, desc: 'Flexbox 垂直居中 (align-items: center)。父级需有高度。' },
+  { name: 'text', type: 'boolean', default: '—', required: false, desc: 'text-align: center。适合行内 / 行内块内容。' },
+  { name: 'vertical', type: 'boolean', default: '—', required: false, desc: 'vertical-align: middle。适合行内元素。' },
+  { name: 'position', type: 'boolean', default: '—', required: false, desc: 'absolute + transform 居中。父级需 position: relative。' },
+  { name: 'inline', type: 'boolean', default: 'false', required: false, desc: '行内模式（flex → inline-flex）。' },
+  { name: 'as', type: 'string', default: "'div'", required: false, desc: '渲染的 HTML 标签。' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: '自定义 CSS class。' },
+  { name: 'style', type: 'CSSProperties', default: '—', required: false, desc: '内联样式。' },
+];
+
+const tocItems: TOCItem[] = [
+  { id: 'props', title: '属性 / Props' },
+  { id: 'flex', title: 'Flex 居中' },
+  { id: 'text', title: 'Text 居中' },
+  { id: 'position', title: '绝对居中' },
+];
+
+const Box = (props: { children?: any }) => <div class={styles.demoBox}>{props.children}</div>;
+
+export const CenterDocPage = () => (
+  <DocLayout>
+
+    <div class={styles.page}>
+      <h1 class={styles.h1}>Center 居中</h1>
+      <p class={styles.intro}>
+        解决初级开发者最常见的居中难题。默认无参数时采用 flex 两轴居中，也可以通过布尔参数自由组合五种居中策略。
+      </p>
+
+      {/* Props */}
+      <h2 id="props" class={styles.h2}>属性 / Props</h2>
+      <PropsTable rows={propsData} />
+
+      {/* Flex */}
+      <h2 id="flex" class={styles.h2}>Flex 居中</h2>
+      <DemoBlock
+        title="默认：两轴居中"
+        desc="不传任何参数时，默认 flex 水平 + 垂直居中。这是最常用的场景。"
+        code={`<Center>\n  <div>居中的内容</div>\n</Center>`}
+      >
+        <div class={styles.demoContainer}>
+          <Center><Box>两轴居中</Box></Center>
+        </div>
+      </DemoBlock>
+
+      <DemoBlock
+        title="单轴：flexX"
+        desc="只居中水平方向。"
+        code={`<Center flexX>\n  <div>水平居中</div>\n</Center>`}
+      >
+        <div class={styles.demoContainer}>
+          <Center flexX><Box>水平居中</Box></Center>
+        </div>
+      </DemoBlock>
+
+      <DemoBlock
+        title="单轴：flexY"
+        desc="只居中垂直方向（父级需有高度）。"
+        code={`<div style={{ height: 160 }}>\n  <Center flexY>\n    <div>垂直居中</div>\n  </Center>\n</div>`}
+      >
+        <div class={styles.demoContainer}>
+          <Center flexY><Box>垂直居中</Box></Center>
+        </div>
+      </DemoBlock>
+
+      <DemoBlock
+        title="行内模式"
+        desc="加 inline 变为 inline-flex，不换行。"
+        code={`<Center flexX inline>\n  <span>行内</span>\n</Center>`}
+      >
+        <span>
+          前面文字 <Center flexX inline><span style="background:#1677ff;color:#fff;padding:'2px 8px';border-radius:4px;font-size:0.8rem">行内居中</span></Center> 后面文字
+        </span>
+      </DemoBlock>
+
+      {/* Text */}
+      <h2 id="text" class={styles.h2}>Text 居中</h2>
+      <DemoBlock
+        title="text"
+        desc="text-align: center，适合行内或行内块内容。"
+        code={`<Center text>\n  <span>这段文字会居中</span>\n</Center>`}
+      >
+        <div class={styles.demoContainer}>
+          <Center text><Box>text-align: center</Box></Center>
+        </div>
+      </DemoBlock>
+
+      <DemoBlock
+        title="vertical"
+        desc="vertical-align: middle，适合行内元素对齐。"
+        code={`<div style="line-height: 3">\n  大文字 <Center vertical inline>\n    <span>对齐我</span>\n  </Center>\n</div>`}
+      >
+        <div style="line-height: 3">
+          大文字 <Center vertical inline><Box>对齐我</Box></Center>
+        </div>
+      </DemoBlock>
+
+      {/* Position */}
+      <h2 id="position" class={styles.h2}>绝对居中</h2>
+      <DemoBlock
+        title="position"
+        desc={'absolute + transform 居中。Center 自身作为定位容器，父级只需给高度即可。'}
+        code={`<div style={{ height: 160 }}>\n  <Center position>\n    <div>绝对居中</div>\n  </Center>\n</div>`}
+      >
+        <div class={styles.demoContainer}>
+          <Center position><Box>绝对居中</Box></Center>
+        </div>
+      </DemoBlock>
+    </div>
+  </DocLayout>
+);

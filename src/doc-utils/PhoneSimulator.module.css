@@ -1,0 +1,65 @@
+/* ===== Phone Frame ===== */
+.frame {
+  width: 375px;
+  height: 667px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid var(--sc-color-border, #e5e7eb);
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* ===== Screen ===== */
+.screen {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  /* This transform creates a new containing block for position: fixed children.
+     Overlay, ActionSheet etc. will be trapped inside the phone frame. */
+  transform: translateZ(0);
+}
+:global(html.dark) .screen {
+  background: #1a1d21;
+}
+
+/* Scrollable area */
+.scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.75rem;
+  box-sizing: border-box;
+  cursor: default;
+}
+
+/* ===== Dark mode ===== */
+:global(html.dark) .frame {
+  border-color: var(--sc-color-border, #3a3d42);
+  background: var(--sc-color-background, #1a1d21);
+}
+
+/* ===== Mobile: strip frame, show raw content ===== */
+@media (max-width: 768px) {
+  .frame {
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+  .screen {
+    transform: none;
+    background: transparent;
+    overflow: visible;
+  }
+  .scroll {
+    overflow-y: visible;
+    padding: 0;
+  }
+}

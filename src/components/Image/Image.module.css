@@ -1,0 +1,59 @@
+/* ===== Image ===== */
+.wrapper {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.block {
+  display: block;
+  width: 100%;
+}
+
+.round {
+  border-radius: 50%;
+}
+
+.img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* State: loading / error */
+.state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: var(--sc-color-background-secondary, #f7f8fa);
+  color: var(--sc-color-text-tertiary, #afaba9);
+  font-size: 0.875rem;
+}
+
+/* ── Preview overlay ── */
+.previewOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.95);
+  animation: previewFadeIn 0.2s ease;
+  cursor: pointer;
+}
+
+.previewImg {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+@keyframes previewFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

@@ -1,0 +1,67 @@
+/* ===== Wrapper ===== */
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ===== Switch ===== */
+.switch {
+  --_sw-width: calc(var(--_sw-size) * 1.8);
+  --_sw-padding: 2px;
+  --_sw-knob-size: calc(var(--_sw-size) - var(--_sw-padding) * 2);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: var(--_sw-width);
+  height: var(--_sw-size);
+  padding: var(--_sw-padding);
+  border-radius: var(--_sw-size);
+  background: var(--sc-color-border, #dcdee0);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.2s ease;
+  outline: none;
+  border: none;
+  flex-shrink: 0;
+}
+
+.switch:focus-visible {
+  box-shadow: 0 0 0 3px var(--sc-color-focus, rgba(22, 119, 255, 0.4));
+}
+
+/* ===== States ===== */
+.on {
+  background: var(--sc-color-primary, #1677ff);
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ===== Knob ===== */
+.knob {
+  position: absolute;
+  top: var(--_sw-padding);
+  left: var(--_sw-padding);
+  width: var(--_sw-knob-size);
+  height: var(--_sw-knob-size);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.knobOn {
+  transform: translateX(calc(var(--_sw-width) - var(--_sw-size)));
+}
+
+/* Label next to switch */
+.label {
+  font-size: 0.875rem;
+  color: var(--sc-color-text, #323233);
+  user-select: none;
+}

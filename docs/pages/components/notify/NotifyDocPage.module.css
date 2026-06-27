@@ -1,0 +1,22 @@
+.page { flex: 1; padding: 1.5rem 2rem; max-width: 960px; min-width: 0; font-family: system-ui, -apple-system, sans-serif; color: #1f2937; line-height: 1.6; }
+.h1 { font-size: 1.75rem; font-weight: 700; margin: 0 0 0.25rem; }
+.intro { font-size: 0.9375rem; color: #6b7280; margin: 0 0 2rem; }
+.h2 { font-size: 1.25rem; font-weight: 600; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e5e7eb; }
+.demoGrid { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.demoBtn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.demoBtn:hover { background: #f3f4f6; }
+:global(html.dark) .page { color: #e2e8f0; }
+:global(html.dark) .h1 { color: #f1f5f9; }
+:global(html.dark) .intro { color: #94a3b8; }
+:global(html.dark) .h2 { color: #cbd5e1; border-bottom-color: #334155; }
+:global(html.dark) .demoBtn { background: #1e293b; border-color: #334155; color: #e2e8f0; }
+:global(html.dark) .demoBtn:hover { background: #24282d; }

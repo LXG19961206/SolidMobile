@@ -1,0 +1,25 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  color: var(--sc-color-text-tertiary, #afaba9);
+}
+
+.image {
+  margin-bottom: 1rem;
+  opacity: 0.35;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: var(--sc-color-text-secondary, #969799);
+  text-align: center;
+  line-height: 1.5;
+  max-width: 240px;
+}
+
+.footer {
+  margin-top: 1rem;
+}

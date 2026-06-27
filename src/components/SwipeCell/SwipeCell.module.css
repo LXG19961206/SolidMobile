@@ -1,0 +1,84 @@
+/* ── Custom Properties ── */
+.wrapper {
+  --sc-swipecell-bg: #f8f9fb;
+  --sc-swipecell-action-font-size: 0.9rem;
+  --sc-swipecell-action-padding: 0 16px;
+  --sc-swipecell-action-primary: #1677ff;
+  --sc-swipecell-action-success: #22c55e;
+  --sc-swipecell-action-warning: #f59e0b;
+  --sc-swipecell-action-danger: #ef4444;
+  --sc-swipecell-action-default: #9ca3af;
+}
+
+:global(html.dark) .wrapper {
+  --sc-swipecell-bg: #1e293b;
+  --sc-swipecell-action-default: #64748b;
+}
+
+/* ── Wrapper ── */
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  background: var(--sc-swipecell-bg);
+  border-top: 1px solid var(--sc-color-border, #dcdee0);
+  border-bottom: 1px solid var(--sc-color-border, #dcdee0);
+}
+.wrapper + .wrapper {
+  border-top: none;
+}
+
+/* ── Actions (behind content) ── */
+.actions {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.actionsLeft {
+  left: 0;
+}
+
+.actionsRight {
+  right: 0;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sc-swipecell-action-padding);
+  font-size: var(--sc-swipecell-action-font-size);
+  color: #fff;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  min-width: 60px;
+  box-sizing: border-box;
+}
+
+/* theme colors */
+.actionPrimary { background: var(--sc-swipecell-action-primary); }
+.actionSuccess { background: var(--sc-swipecell-action-success); }
+.actionWarning { background: var(--sc-swipecell-action-warning); }
+.actionDanger { background: var(--sc-swipecell-action-danger); }
+.actionDefault { background: var(--sc-swipecell-action-default); }
+
+/* ── Content layer ── */
+.content {
+  position: relative;
+  z-index: 1;
+  background: var(--sc-swipecell-bg);
+  transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  will-change: transform;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.content:active {
+  cursor: grabbing;
+}

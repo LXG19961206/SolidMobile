@@ -1,0 +1,73 @@
+/* ===== Wrapper ===== */
+.wrapper {
+  position: fixed;
+  left: 50%;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Positions */
+.top    { top: 12%;  transform: translateX(-50%); }
+.middle { top: 50%;  transform: translate(-50%, -50%); }
+.bottom { bottom: 12%; transform: translateX(-50%); }
+
+/* ===== Bubble ===== */
+.bubble {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 70vw;
+  min-width: 120px;
+  padding: 0.625rem 1rem;
+  border-radius: var(--sc-border-radius-md, 8px);
+  /* Toast 作为浮层，始终使用深色背景确保可读性 */
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  /* 暗色模式下加个细微边框，避免和页面背景融为一体 */
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: var(--sc-font-size-sm, 0.875rem);
+  line-height: var(--sc-line-height-tight, 1.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  pointer-events: auto;
+  animation: toastIn 0.25s ease;
+  word-break: break-word;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+/* ===== Icon ===== */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.25em;
+  height: 1.25em;
+  font-size: 1.25em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ===== Loading spinner ===== */
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== Message ===== */
+.message {
+  flex: 1;
+  min-width: 0;
+}

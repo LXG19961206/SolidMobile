@@ -1,0 +1,54 @@
+:root {
+  --solidMobile-titleBar-height: 46px;
+  --solidMobile-titleBar-background: var(--solidMobile-white);
+  --solidMobile-titleBar-color: var(--solidMobile-dark-main);
+}
+
+@media (prefers-color-scheme: dark) {
+  --solidMobile-titleBar-background: var(--solidMobile-dark-main);
+  --solidMobile-titleBar-color: var(--solidMobile-white);
+}
+
+.solidMobile-titleBar {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--solidMobile-titleBar-background);
+  height: var(--solidMobile-titleBar-height);
+  &-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: inherit;
+    color: var(--solidMobile-titleBar-color);
+    .icon { font-size: 22px; }
+    &-left, &-right {
+      padding-left: 10px;
+      flex: 0 0 25%;
+      .text {
+        color: var(--solidMobile-link-color);
+      }
+    }
+    &-right {
+      padding-left: 0;
+      text-align: right;
+      padding-right: 10px;
+      box-sizing: border-box;
+    }
+    &-title {
+      font-weight: var(--solidMobile-font-bold);
+      text-align: center;
+      flex: 0 0 50%;
+    }
+    &-border {
+      border-bottom: 1px solid var(--solidMobile-border-color);
+    }
+  }
+  &-fixed {
+    position: fixed;
+    top: 0;
+  }
+  &-placeholder {
+    height: var(--solidMobile-titleBar-height);
+    background: transparent;
+  }
+}

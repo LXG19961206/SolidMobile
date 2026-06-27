@@ -1,0 +1,67 @@
+.tableWrap {
+  overflow-x: auto;
+  margin-bottom: 0.5rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: top;
+  background: #fff;
+}
+
+.propName {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.8125rem;
+  color: #6366f1;
+  font-weight: 500;
+}
+
+.propType {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.75rem;
+  color: #0891b2;
+  white-space: nowrap;
+}
+
+.propDefault {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* ---- Dark mode ---- */
+:global(html.dark) .table {
+  background: #1e293b;
+  border-color: #334155;
+}
+:global(html.dark) .table th {
+  background: #242c3a;
+  color: #e2e8f0;
+  border-bottom-color: #334155;
+}
+:global(html.dark) .table td {
+  background: #1e293b;
+  border-bottom-color: #334155;
+  color: #cbd5e1;
+}
+:global(html.dark) .propName { color: #a5b4fc; }

@@ -1,0 +1,314 @@
+/* ===== Base ===== */
+.button {
+  --_btn-custom-bg: initial;
+  --_btn-custom-text: initial;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  border: 1px solid transparent;
+  font-family: var(--sc-font-family-base, inherit);
+  font-weight: var(--sc-font-weight-medium, 500);
+  line-height: var(--sc-line-height-tight, 1.25);
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  outline: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    opacity 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button:focus-visible {
+  box-shadow: 0 0 0 3px var(--sc-color-focus, rgba(22, 119, 255, 0.4));
+}
+
+/* ===== Sizes ===== */
+.xs {
+  height: 1.75rem;        /* 28px */
+  padding: 0 0.5rem;
+  font-size: var(--sc-font-size-xs, 0.75rem);
+  border-radius: var(--sc-border-radius-sm, 4px);
+  gap: 0.25rem;
+}
+
+.sm {
+  height: 2rem;           /* 32px */
+  padding: 0 0.75rem;
+  font-size: var(--sc-font-size-xs, 0.75rem);
+  border-radius: var(--sc-border-radius-sm, 4px);
+}
+
+.md {
+  height: 2.5rem;         /* 40px */
+  padding: 0 1rem;
+  font-size: var(--sc-font-size-sm, 0.875rem);
+  border-radius: var(--sc-border-radius-md, 8px);
+}
+
+.lg {
+  height: 3rem;           /* 48px */
+  padding: 0 1.5rem;
+  font-size: var(--sc-font-size-md, 1rem);
+  border-radius: var(--sc-border-radius-lg, 12px);
+}
+
+/* ==============================================================
+   Types — semantic colors (solid fill)
+   Each type defines bg / text / border colors.
+   Outline & ghost variants override bg to transparent.
+   ============================================================== */
+
+/* --- primary --- */
+.primary {
+  background-color: var(--_btn-custom-bg, var(--sc-color-primary, #1677ff));
+  color: var(--_btn-custom-text, var(--sc-color-text-inverse, #fff));
+  border-color: var(--_btn-custom-bg, var(--sc-color-primary, #1677ff));
+}
+.primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-primary-hover, #4995ff);
+  border-color: var(--sc-color-primary-hover, #4995ff);
+}
+.primary:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-primary-active, #005ee2);
+  border-color: var(--sc-color-primary-active, #005ee2);
+}
+
+/* --- secondary --- */
+.secondary {
+  background-color: var(--_btn-custom-bg, var(--sc-color-secondary, #969799));
+  color: var(--_btn-custom-text, var(--sc-color-text-inverse, #fff));
+  border-color: var(--_btn-custom-bg, var(--sc-color-secondary, #969799));
+}
+.secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-secondary-hover, #b0b1b2);
+  border-color: var(--sc-color-secondary-hover, #b0b1b2);
+}
+.secondary:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-secondary-active, #7c7d80);
+  border-color: var(--sc-color-secondary-active, #7c7d80);
+}
+
+/* --- success --- */
+.success {
+  background-color: var(--_btn-custom-bg, var(--sc-color-success, #00d35b));
+  color: var(--_btn-custom-text, var(--sc-color-text-inverse, #fff));
+  border-color: var(--_btn-custom-bg, var(--sc-color-success, #00d35b));
+}
+.success:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-success-hover, #07ff72);
+  border-color: var(--sc-color-success-hover, #07ff72);
+}
+.success:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #00b84d;
+  border-color: #00b84d;
+}
+
+/* --- warning --- */
+.warning {
+  background-color: var(--_btn-custom-bg, var(--sc-color-warning, #ff9162));
+  color: var(--_btn-custom-text, #fff);
+  border-color: var(--_btn-custom-bg, var(--sc-color-warning, #ff9162));
+}
+.warning:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-warning-hover, #ffb595);
+  border-color: var(--sc-color-warning-hover, #ffb595);
+}
+.warning:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #e67a4f;
+  border-color: #e67a4f;
+}
+
+/* --- danger --- */
+.danger {
+  background-color: var(--_btn-custom-bg, var(--sc-color-danger, #fc000a));
+  color: var(--_btn-custom-text, var(--sc-color-text-inverse, #fff));
+  border-color: var(--_btn-custom-bg, var(--sc-color-danger, #fc000a));
+}
+.danger:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-danger-hover, #ff262e);
+  border-color: var(--sc-color-danger-hover, #ff262e);
+}
+.danger:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-danger-active, #d30008);
+  border-color: var(--sc-color-danger-active, #d30008);
+}
+
+/* --- info --- */
+.info {
+  background-color: var(--_btn-custom-bg, var(--sc-color-info, #1677ff));
+  color: var(--_btn-custom-text, var(--sc-color-text-inverse, #fff));
+  border-color: var(--_btn-custom-bg, var(--sc-color-info, #1677ff));
+}
+.info:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-primary-hover, #4995ff);
+  border-color: var(--sc-color-primary-hover, #4995ff);
+}
+.info:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-primary-active, #005ee2);
+  border-color: var(--sc-color-primary-active, #005ee2);
+}
+
+/* ==============================================================
+   Variants — fill styles
+   ============================================================== */
+
+/* --- solid (default) — nothing to override, type classes provide bg --- */
+
+/* --- outline — transparent bg, colored border & text --- */
+.outline {
+  background-color: transparent;
+}
+/* Each type gets its own text/border color when combined with outline */
+.outline.primary {
+  color: var(--_btn-custom-text, var(--sc-color-primary, #1677ff));
+  border-color: var(--sc-color-primary, #1677ff);
+}
+.outline.primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-primary-pale, #dbe2eb);
+}
+.outline.secondary {
+  color: var(--_btn-custom-text, var(--sc-color-secondary, #969799));
+  border-color: var(--sc-color-secondary, #969799);
+}
+.outline.secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-secondary-pale, #e5e5e5);
+}
+.outline.success {
+  color: var(--_btn-custom-text, var(--sc-color-success, #00d35b));
+  border-color: var(--sc-color-success, #00d35b);
+}
+.outline.success:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-success-pale, #cee5d8);
+}
+.outline.warning {
+  color: var(--_btn-custom-text, var(--sc-color-warning, #ff9162));
+  border-color: var(--sc-color-warning, #ff9162);
+}
+.outline.warning:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-warning-pale, #f1e9e5);
+}
+.outline.danger {
+  color: var(--_btn-custom-text, var(--sc-color-danger, #fc000a));
+  border-color: var(--sc-color-danger, #fc000a);
+}
+.outline.danger:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-danger-pale, #e8d5d6);
+}
+.outline.info {
+  color: var(--_btn-custom-text, var(--sc-color-info, #1677ff));
+  border-color: var(--sc-color-info, #1677ff);
+}
+.outline.info:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-primary-pale, #dbe2eb);
+}
+
+/* --- ghost — transparent bg, no border, colored text, hover shows subtle bg --- */
+.ghost {
+  background-color: transparent;
+  border-color: transparent;
+}
+.ghost.primary {
+  color: var(--_btn-custom-text, var(--sc-color-primary, #1677ff));
+}
+.ghost.primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-primary-pale, #dbe2eb);
+}
+.ghost.secondary {
+  color: var(--_btn-custom-text, var(--sc-color-text, #323233));
+}
+.ghost.secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-background-secondary, #f7f8fa);
+}
+.ghost.success {
+  color: var(--_btn-custom-text, var(--sc-color-success, #00d35b));
+}
+.ghost.success:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-success-pale, #cee5d8);
+}
+.ghost.warning {
+  color: var(--_btn-custom-text, var(--sc-color-warning, #ff9162));
+}
+.ghost.warning:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-warning-pale, #f1e9e5);
+}
+.ghost.danger {
+  color: var(--_btn-custom-text, var(--sc-color-danger, #fc000a));
+}
+.ghost.danger:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-danger-pale, #e8d5d6);
+}
+.ghost.info {
+  color: var(--_btn-custom-text, var(--sc-color-info, #1677ff));
+}
+.ghost.info:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--sc-color-primary-pale, #dbe2eb);
+}
+
+/* ==============================================================
+   Modifiers
+   ============================================================== */
+
+.block {
+  display: flex;
+  width: 100%;
+}
+
+.round {
+  border-radius: var(--sc-border-radius-full, 9999px);
+}
+
+.hairline {
+  border-width: 0.5px;
+}
+
+/* ===== State: Disabled & Loading ===== */
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.isLoading {
+  cursor: wait;
+}
+
+/* ===== Link mode ===== */
+a.button {
+  display: inline-flex;
+}
+
+/* ===== Spinner ===== */
+.spinner {
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: btnSpin 0.5s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes btnSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== Internal elements ===== */
+.content {
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 1.2em;
+}

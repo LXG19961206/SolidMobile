@@ -1,0 +1,73 @@
+.root { display: flex; gap: 2rem; align-items: flex-start; }
+.page { flex: 1; padding: 1.5rem 2rem; max-width: 960px; min-width: 0; font-family: system-ui, -apple-system, sans-serif; color: #1f2937; line-height: 1.6; }
+.h1 { font-size: 1.75rem; font-weight: 700; margin: 0 0 0.25rem; }
+.intro { font-size: 0.9375rem; color: #6b7280; margin: 0 0 2rem; }
+.h2 { font-size: 1.25rem; font-weight: 600; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e5e7eb; }
+
+/* ── Card (real content) ── */
+.card {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; background: #fff;
+  border-bottom: 1px solid #f3f4f6;
+}
+.cardBody { flex: 1; min-width: 0; }
+.cardTitle { font-weight: 600; font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cardSub { font-size: 0.8rem; color: #999; margin-top: 2px; }
+
+/* ── Skeleton ── */
+.skeleton {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; border-bottom: 1px solid #f3f4f6;
+}
+.skeletonAvatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+.skeletonLines { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.skeletonLine {
+  height: 14px; border-radius: 4px;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Gallery ── */
+.galleryItem {
+  height: 120px; border-radius: 8px; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.skeletonImage {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+.skeletonTitle {
+  width: 40px; height: 14px; margin-top: 8px; border-radius: 4px;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ── Dark mode ── */
+:global(html.dark) .page { color: var(--sc-color-text, #e2e8f0); }
+:global(html.dark) .h2 { border-bottom-color: #334155; }
+:global(html.dark) .intro { color: #94a3b8; }
+:global(html.dark) .card { background: #1e293b; border-bottom-color: #334155; }
+:global(html.dark) .skeleton { border-bottom-color: #334155; }
+:global(html.dark) .skeletonAvatar,
+:global(html.dark) .skeletonImage {
+  background: linear-gradient(90deg, #334155 25%, #475569 50%, #334155 75%);
+  background-size: 200% 100%;
+}
+:global(html.dark) .skeletonLine,
+:global(html.dark) .skeletonTitle {
+  background: linear-gradient(90deg, #334155 25%, #475569 50%, #334155 75%);
+  background-size: 200% 100%;
+}

@@ -1,0 +1,62 @@
+{
+  "$schema": "./.todo.schema.json",
+  "description": "Features blocked by missing dependencies. Remove entries when the dependency is implemented.",
+  "items": [
+    {
+      "id": "button-icon-string",
+      "feature": "Button `icon` prop accepts a string (icon name) in addition to JSXElement",
+      "blockedBy": "Icon component",
+      "component": "Button",
+      "notes": "Currently `icon` only accepts JSXElement. Once Icon is built, string values should render <Icon name={string} />.",
+      "created": "2026-06-21"
+    },
+    {
+      "id": "button-hairline",
+      "feature": "Button `hairline` variant (0.5px border via pseudo-element)",
+      "blockedBy": "Global hairline mixin or utility CSS class",
+      "component": "Button",
+      "notes": "Needs a reusable approach for sub-pixel borders. Consider a CSS utility class or a shared mixin.",
+      "created": "2026-06-21"
+    },
+    {
+      "id": "icon-component",
+      "feature": "Icon component (SVG sprite-based or inline SVG)",
+      "blockedBy": "Icon asset pipeline (svg sprite generation or icon font)",
+      "component": "Icon",
+      "notes": "Old version uses iconfont.js with <symbol> sprites. Need to decide: inline SVGs, sprite sheet, or icon font for the new version.",
+      "created": "2026-06-21"
+    },
+    {
+      "id": "button-group",
+      "feature": "ButtonGroup — groups multiple buttons with proper spacing and corner radius merging",
+      "blockedBy": "None (can be started)",
+      "component": "ButtonGroup",
+      "notes": "Common pattern: adjacent buttons merge border-radius. Also handles vertical/horizontal layout.",
+      "created": "2026-06-21"
+    },
+    {
+      "id": "loading-component",
+      "feature": "Loading spinner component used by Button, overlay, and other components",
+      "blockedBy": "None (can be started)",
+      "component": "Loading",
+      "notes": "Currently Button has its own spinner CSS. A shared Loading component would be more consistent.",
+      "created": "2026-06-21"
+    },
+    {
+      "id": "overlay-component",
+      "feature": "Overlay/Portal component for modals, action sheets, pickers, toasts",
+      "blockedBy": "None (can be started)",
+      "component": "Overlay",
+      "notes": "Used by ActionSheet, Picker, Toast, Loading (fullscreen). Should support click-to-close and animation.",
+      "created": "2026-06-21"
+    },
+    {
+      "id": "form-context",
+      "feature": "Form context for validation, submit handling, and field registration",
+      "blockedBy": "None (can be started)",
+      "component": "Form",
+      "notes": "Old version uses FormValueContext. Need to design a more complete form state management.",
+      "created": "2026-06-21"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+/* ── Page layout ── */
+.root {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.page {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  max-width: 960px;
+  min-width: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1f2937;
+  line-height: 1.6;
+}
+
+.h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.intro {
+  font-size: 0.9375rem;
+  color: #6b7280;
+  margin: 0 0 2rem;
+  line-height: 1.6;
+}
+
+.h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* ── Demo area ── */
+.demoArea {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid #dcdee0;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn:hover {
+  background: #f7f8fa;
+}
+
+.result {
+  font-size: 0.875rem;
+  color: #6b7280;
+  padding: 0.35rem 0.75rem;
+  background: #f3f4f6;
+  border-radius: 4px;
+}
+
+.result code {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* ---- Dark mode ---- */
+:global(html.dark) .page { color: var(--sc-color-text, #e2e8f0); }
+:global(html.dark) .h1 { color: var(--sc-color-text, #f1f5f9); }
+:global(html.dark) .intro { color: var(--sc-color-text-secondary, #94a3b8); }
+:global(html.dark) .h2 { color: var(--sc-color-text-secondary, #cbd5e1); border-bottom-color: var(--sc-color-border, #334155); }

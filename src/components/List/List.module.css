@@ -1,0 +1,39 @@
+.list {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Footer status ── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  color: var(--sc-color-text-secondary, #969799);
+}
+
+.error {
+  color: var(--sc-color-danger, #fc000a);
+  cursor: pointer;
+}
+
+/* ── Empty wrapper ── */
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+/* ── Virtual list ── */
+.virtualSpacer {
+  position: relative;
+}
+
+.visibleArea {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+}

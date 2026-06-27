@@ -1,0 +1,42 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--sc-color-danger, #fc000a);
+  border-radius: 9999px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
+  box-sizing: border-box;
+  line-height: 1;
+}
+
+.dot {
+  min-width: 8px;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+}
+
+.top-right    { top: 0; right: 0; transform: translate(50%, -50%); }
+.top-left     { top: 0; left: 0;   transform: translate(-50%, -50%); }
+.bottom-right { bottom: 0; right: 0; transform: translate(50%, 50%); }
+.bottom-left  { bottom: 0; left: 0;  transform: translate(-50%, 50%); }
+
+/* standalone mode (no children) */
+.standalone {
+  position: static;
+  transform: none;
+}

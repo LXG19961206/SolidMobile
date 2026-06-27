@@ -1,0 +1,134 @@
+:root {
+  --solidMobile-calendar-title-height: 44px;
+  --solidMobile-calendar-dateweeks-height: 30px;
+  --solidMobile-calendar-items-height: 64px;
+  --solidMobile-calendar-items-gap: 20px;
+  --solidMobile-calendar-background: #ffffff;
+  --solidMobile-calendar-mark-color: #f5f5f7;
+}
+
+
+
+.month {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  & > .placeholder {
+    margin: 0;
+    padding: 0;
+    flex: 0 0 100%;
+    height: var(--solidMobile-calendar-items-height);
+    line-height: var(--solidMobile-calendar-items-height);
+    background: transparent;
+  }
+  & > span {
+    text-align: center;
+    color: var(--solidMobile-dark-main);
+    display: inline-block;
+    flex: 0 0 calc(100% / 7);
+    height: var(--solidMobile-calendar-items-height);
+    line-height: var(--solidMobile-calendar-items-height);
+    background: transparent;
+    transition: .3s all;
+    &.actived {
+      color: #fff;
+      border-radius: 16px;
+    }
+    &.range {
+      border-radius: 0;
+      color: #fff;
+      opacity: .4;
+    }
+    &.first {
+      display: block;
+      opacity: 1;  
+      border-radius: 16px 0 0 16px;
+    }
+    &.last {
+      opacity: 1;  
+      border-radius: 0 16px 16px 0;
+    }
+    &.first, &.last {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 12px;
+      justify-content: center;
+      font-size: 14px;
+      & > .text { font-weight: 500; }
+      & > .label {
+        font-size: 12px;
+      }
+    }
+  }
+
+}
+
+
+
+.solidMobile-calendar-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  -webkit-overflow-scrolling: touch;
+  max-height: inherit;
+  .solidMobile-calendar-header {
+    position: sticky;
+    z-index: 3;
+    background: var(--solidMobile-calendar-background);
+    top: 0;
+    box-shadow: 0 5px 20px  rgba(0, 0, 0, .05);
+    &-title {
+      height: var(--solidMobile-calendar-title-height);
+      line-height: var(--solidMobile-calendar-title-height);
+      font-weight: 500;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
+    &-weekdays {
+      margin: 0;
+      padding: 0;
+      line-height: var(--solidMobile-calendar-dateweeks-height);
+      height: var(--solidMobile-calendar-dateweeks-height);
+      display: flex;
+      justify-content: space-around;
+      font-size: var(--solidMobile-font-md);
+    }
+  }
+  .solidMobile-calendar-content {
+    -webkit-overflow-scrolling: touch;
+    overflow: auto;
+    
+  }
+  .solidMobile-calendar-content-item {
+    padding: calc(var(--solidMobile-calendar-items-gap) * 0.5) 0;
+    background: var(--solidMobile-calendar-background);
+
+    position: relative;
+    &-title {
+      text-align: center;
+      font-weight: 500;
+      margin: 0;
+    }
+    &-mark {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      font-size: calc(var(--solidMobile-calendar-items-height) * 2.2);
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--solidMobile-calendar-mark-color);
+      font-weight: bold;
+    }
+
+  }
+}

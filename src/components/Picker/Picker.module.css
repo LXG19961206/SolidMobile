@@ -1,0 +1,178 @@
+/* ── Custom Properties ── */
+.sheet {
+  --sc-picker-bg: #fff;
+  --sc-picker-header-height: 50px;
+  --sc-picker-item-height: 50px;
+  --sc-picker-text-color: #1f2937;
+  --sc-picker-text-disabled: #9ca3af;
+  --sc-picker-indicator-bg: rgba(0, 0, 0, 0.04);
+  --sc-picker-cancel-color: #6b7280;
+  --sc-picker-confirm-color: #1677ff;
+  --sc-picker-border: #f3f4f6;
+  --sc-picker-radius: 12px;
+  --sc-picker-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  --sc-picker-item-font-size: 1rem;
+  --sc-picker-max-height: 450px;
+  --sc-picker-min-height: 350px;
+}
+
+:global(html.dark) .sheet {
+  --sc-picker-bg: #1e293b;
+  --sc-picker-text-color: #f1f5f9;
+  --sc-picker-text-disabled: #64748b;
+  --sc-picker-indicator-bg: rgba(255, 255, 255, 0.06);
+  --sc-picker-cancel-color: #94a3b8;
+  --sc-picker-border: #334155;
+  --sc-picker-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Sheet ── */
+.sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--sc-picker-bg);
+  box-shadow: var(--sc-picker-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.28s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  /* 高度由 JSX 中的 CSS 变量 --sc-picker-visible-items 动态计算 */
+  height: calc(var(--sc-picker-header-height) + var(--sc-picker-visible-height));
+}
+
+.sheetEnter {
+  transform: translateY(0);
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  height: var(--sc-picker-header-height);
+  min-height: var(--sc-picker-header-height);
+  padding: 0 16px;
+  border-bottom: 1px solid var(--sc-picker-border);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+  background: var(--sc-picker-bg);
+}
+
+.cancelBtn,
+.confirmBtn {
+  flex: 0 0 20%;
+  border: none;
+  background: transparent;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cancelBtn {
+  text-align: left;
+  color: var(--sc-picker-cancel-color);
+}
+
+.confirmBtn {
+  text-align: right;
+  color: var(--sc-picker-confirm-color);
+}
+
+.title {
+  flex: 0 0 60%;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--sc-picker-text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Column Area ── */
+.columns {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  height: var(--sc-picker-visible-height);
+  flex-shrink: 0;
+}
+
+/* ── Indicator (center highlight bar) ── */
+.indicator {
+  position: absolute;
+  top: 50%;
+  left: 1.5%;
+  width: 97%;
+  height: var(--sc-picker-item-height);
+  transform: translateY(-50%);
+  background: var(--sc-picker-indicator-bg);
+  border-radius: 5px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Mask (captures pointer events) ── */
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  cursor: grab;
+  /* transparent — just captures events */
+}
+.mask:active {
+  cursor: grabbing;
+}
+
+/* ── Column ── */
+.column {
+  backface-visibility: hidden;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: var(--sc-picker-item-font-size);
+  transition: transform cubic-bezier(0.215, 0.61, 0.355, 1);
+  will-change: transform;
+}
+
+/* ── Items ── */
+.item {
+  height: var(--sc-picker-item-height);
+  line-height: var(--sc-picker-item-height);
+  padding: 0;
+  margin: 0 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 90%;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  color: var(--sc-picker-text-color);
+}
+
+.itemDisabled {
+  text-decoration: line-through;
+  color: var(--sc-picker-text-disabled);
+}
+
+.itemSelected {
+  opacity: 1;
+  font-weight: 500;
+}
+
+/* ── Placeholder ── */
+.placeholderItem {
+  height: var(--sc-picker-item-height);
+}

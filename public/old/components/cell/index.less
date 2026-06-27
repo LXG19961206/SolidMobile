@@ -1,0 +1,92 @@
+:root {
+  --solidMobile-cell-border-offset: 16px;
+  --solidMobile-cell-value-maxWidth: 250px;
+}
+
+.solidMobile-cell-item {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 var(--solidMobile-cell-border-offset);
+  position: relative;
+  background: #fff;
+
+  &-icon {
+    display: inline-block;
+    margin-left: 3px;
+    margin-right: 3px;
+    transform-origin: center;
+    &-top { transform: rotate(-90deg); }
+    &-bottom { transform: rotate(90deg); }
+    &-left { transform: rotate(180deg); }
+  }
+
+  &-title {
+    color: var(--solidMobile-dark-main);
+  }
+
+  &-detail {
+    color: var(--solidMobile-dark-weak);
+    padding: 5px 0;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  &-value {
+    color: var(--solidMobile-dark-secondary);
+    max-width: var(--solidMobile-cell-value-maxWidth);
+    text-overflow: ellipsis;
+    margin-left: auto;
+  }
+
+  &-normal {
+    .solidMobile-cell-item-icon {
+      height: var(--solidMobile-font-md);
+    }
+    .solidMobile-cell-item-top {
+      height: var(--solidMobile-normal-size);
+      display: flex;
+      align-items: center;
+    }
+    .solidMobile-cell-item-title, .solidMobile-cell-item-value {
+      font-size: var(--solidMobile-font-md);
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .solidMobile-cell-item-detail {
+      font-size: calc(var(--solidMobile-font-md) - 1px);
+    }
+  }
+
+  &-small {
+    .solidMobile-cell-item-icon {
+      height: var(--solidMobile-font-sm);
+    }
+    .solidMobile-cell-item-top {
+      height: var(--solidMobile-small-size);
+    }
+    .solidMobile-cell-item-title, .solidMobile-cell-item-value {
+      line-height: var(--solidMobile-small-size);
+      font-size: var(--solidMobile-font-sm);
+    }
+    .solidMobile-cell-item-detail {
+      font-size: calc(var(--solidMobile-font-sm) - 1px);
+    }
+  }
+
+  &-large {
+    .solidMobile-cell-item-icon {
+      height: var(--solidMobile-font-lg);
+    }
+    .solidMobile-cell-item-top {
+      height: var(--solidMobile-large-size);
+    }
+    .solidMobile-cell-item-title, .solidMobile-cell-item-value {
+      line-height: var(--solidMobile-large-size);
+      font-size: var(--solidMobile-font-lg);
+    }
+    .solidMobile-cell-item-detail {
+      font-size: calc(var(--solidMobile-font-lg) - 1px);
+    }
+  }
+
+}

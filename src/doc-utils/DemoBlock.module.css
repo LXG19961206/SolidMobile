@@ -1,0 +1,165 @@
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+  color: #1f2937;
+}
+
+.desc {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  margin: 0 0 0.75rem;
+}
+
+.demo {
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* In-phone demo blocks */
+.phoneDemo {
+  padding: 1.25rem 0;
+}
+.flush {
+  padding: 0;
+}
+
+.phoneDemo+.phoneDemo::before {
+  content: '';
+  display: block;
+  width: 80%;
+  margin: 0 auto 1.25rem;
+  border-top: 1px solid var(--sc-color-border, #dcdee0);
+}
+
+.phoneDemoTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--sc-color-text, #323233);
+}
+
+.phoneDemoTitle::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sc-color-primary, #1677ff);
+  flex-shrink: 0;
+}
+
+.phoneDemoBody {
+  /* demo content area */
+}
+
+.codeDetails {
+  border: 1px solid #e5e7eb;
+  /* border-top: none; */
+  border-radius: 0 0 8px 8px;
+  background: #fafbfc;
+}
+
+.codeSummary {
+  font-size: 0.75rem;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.codeSummary:hover {
+  color: #374151;
+}
+
+.copyButton {
+  font-size: 0.6875rem;
+  font-family: inherit;
+  color: #6b7280;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: 0.25rem 0.625rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.copyButton:hover {
+  color: #374151;
+  background: #e5e7eb;
+}
+
+.codePre {
+  margin: 0;
+  padding: 0.5rem 1rem 1rem;
+  overflow-x: auto;
+}
+
+.codePre code {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.75rem;
+  white-space: pre;
+  line-height: 1.7;
+}
+
+/* ---- Dark mode ---- */
+:global(html.dark) .section {
+  /* section itself has no background by default */
+}
+
+:global(html.dark) .title {
+  color: #e2e8f0;
+}
+
+:global(html.dark) .desc {
+  color: #94a3b8;
+}
+
+:global(html.dark) .demo {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+:global(html.dark) .codeDetails {
+  border-color: #334155;
+  background: #1e293b;
+}
+
+:global(html.dark) .codeSummary {
+  color: #94a3b8;
+}
+
+:global(html.dark) .codeSummary:hover {
+  color: #e2e8f0;
+}
+
+:global(html.dark) .copyButton {
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+:global(html.dark) .copyButton:hover {
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+:global(html.dark) .phoneDemoTitle {
+  color: #e2e8f0;
+}

@@ -1,0 +1,220 @@
+/* ================================================================
+   ActionSheet — Bottom sheet with overlay
+   ================================================================ */
+
+/* ── Sheet ── */
+.sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  transform: translateY(100%);
+  transition: transform 0.28s ease;
+  z-index: 1;
+  overflow: hidden;
+  outline: none;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.sheet:focus-visible {
+  box-shadow: 0 0 0 3px var(--sc-color-focus, rgba(66, 105, 255, 0.4));
+}
+
+/* Enter / exit */
+.enter {
+  transform: translateY(0);
+}
+
+.exit {
+  transform: translateY(100%);
+}
+
+/* Round top corners */
+.round {
+  border-radius: var(--sc-border-radius-lg, 12px) var(--sc-border-radius-lg, 12px) 0 0;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  min-height: 48px;
+  position: relative;
+  border-bottom: 1px solid var(--sc-color-border, #dcdee0);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: var(--sc-font-size-md, 1rem);
+  font-weight: var(--sc-font-weight-semibold, 600);
+  color: var(--sc-color-text, #1f2937);
+  padding: 0 48px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--sc-color-text-secondary, #666);
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0;
+  transition: background 0.15s;
+}
+
+.closeBtn:hover {
+  background: var(--sc-color-background-secondary, #f7f8fa);
+}
+
+/* ── Description ── */
+.description {
+  padding: 16px;
+  text-align: center;
+  font-size: var(--sc-font-size-sm, 0.875rem);
+  color: var(--sc-color-text-secondary, #4b5563);
+  line-height: 1.5;
+  border-bottom: 1px solid var(--sc-color-border, #dcdee0);
+  flex-shrink: 0;
+}
+
+/* ── Content (children mode) ── */
+.content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+
+/* ── Items ── */
+.items {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  transition: background 0.15s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.item:active:not(.itemDisabled) {
+  background: var(--sc-color-background-secondary, #f7f8fa);
+}
+
+/* Single-line item */
+.itemSingle {
+  height: 50px;
+  min-height: 50px;
+}
+
+/* Two-line item (name + subname) */
+.itemBoth {
+  min-height: 76px;
+  padding: 10px 16px;
+  gap: 4px;
+}
+
+/* Disabled */
+.itemDisabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Loading */
+.itemLoading {
+  cursor: wait;
+}
+
+.itemName {
+  font-size: var(--sc-font-size-md, 1rem);
+  color: var(--sc-color-text, #1f2937);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 16px;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+}
+
+.itemBoth .itemName {
+  padding: 0;
+}
+
+.itemSubname {
+  font-size: var(--sc-font-size-xs, 0.75rem);
+  color: var(--sc-color-text-tertiary, #6b7280);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemSpinner {
+  display: flex;
+  align-items: center;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Cancel ── */
+.cancelGap {
+  height: 8px;
+  background: var(--sc-color-background-secondary, #f7f8fa);
+  flex-shrink: 0;
+}
+
+.cancelBtn {
+  width: 100%;
+  height: 50px;
+  min-height: 50px;
+  border: none;
+  background: #fff;
+  font-size: var(--sc-font-size-md, 1rem);
+  font-weight: var(--sc-font-weight-medium, 500);
+  color: var(--sc-color-text, #1f2937);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cancelBtn:active {
+  background: var(--sc-color-background-secondary, #f7f8fa);
+}
+
+/* ── Safe area ── */
+.safeArea {
+  height: env(safe-area-inset-bottom, 0px);
+  flex-shrink: 0;
+  background: #fff;
+}

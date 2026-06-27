@@ -1,0 +1,28 @@
+:root {
+  --solidMobile-overlay-background: rgba(0,0,0,0.7);
+}
+
+@keyframes showOverlay {
+  0% {
+    background: transparent;
+    opacity: 0;
+  }
+  100% {
+    background: var(--solidMobile-overlay-background);
+    opacity: 1;
+  }
+}
+
+.solidMobile-overlay {
+  background: var(--solidMobile-overlay-background);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  animation: showOverlay ease calc(var(--solidMobile-animation-base) * 2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

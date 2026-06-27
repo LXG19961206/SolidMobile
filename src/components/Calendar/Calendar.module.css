@@ -1,0 +1,181 @@
+/* ── Custom Properties ── */
+.wrapper {
+  --sc-calendar-bg: #fff;
+  --sc-calendar-title-height: 44px;
+  --sc-calendar-weekday-height: 30px;
+  --sc-calendar-day-size: 64px;
+  --sc-calendar-month-gap: 20px;
+  --sc-calendar-mark-color: #f5f5f7;
+  --sc-calendar-text: #1f2937;
+  --sc-calendar-weekday-color: #9ca3af;
+  --sc-calendar-other-month: #d1d5db;
+  --sc-calendar-active-bg: #1677ff;
+  --sc-calendar-active-color: #fff;
+  --sc-calendar-today-border: #1677ff;
+  --sc-calendar-disabled-opacity: 0.3;
+  --sc-calendar-header-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  --sc-calendar-confirm-height: 50px;
+  --sc-calendar-confirm-color: #1677ff;
+
+  display: flex;
+  flex-direction: column;
+  background: var(--sc-calendar-bg);
+  overflow: hidden;
+  user-select: none;
+}
+
+:global(html.dark) .wrapper {
+  --sc-calendar-bg: #1a1d21;
+  --sc-calendar-mark-color: #1f2328;
+  --sc-calendar-text: #e2e8f0;
+  --sc-calendar-weekday-color: #64748b;
+  --sc-calendar-other-month: #475569;
+  --sc-calendar-today-border: #5195ff;
+  --sc-calendar-active-bg: #5195ff;
+  --sc-calendar-active-color: #fff;
+  --sc-calendar-header-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  --sc-calendar-confirm-color: #5195ff;
+}
+/* ── Sticky header ── */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: var(--sc-calendar-bg);
+  box-shadow: var(--sc-calendar-header-shadow);
+  flex-shrink: 0;
+}
+.popupHeader {
+  box-shadow: none;
+}
+.headerTitle {
+  height: var(--sc-calendar-title-height);
+  line-height: var(--sc-calendar-title-height);
+  font-weight: 500;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--sc-calendar-text);
+}
+.weekdays {
+  display: flex;
+  justify-content: space-around;
+  height: var(--sc-calendar-weekday-height);
+  line-height: var(--sc-calendar-weekday-height);
+}
+.weekday {
+  font-size: 0.875rem;
+  color: var(--sc-calendar-weekday-color);
+  flex: 1;
+  text-align: center;
+}
+
+/* ── Scrollable content ── */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Month block ── */
+.monthBlock {
+  position: relative;
+  padding: calc(var(--sc-calendar-month-gap) * 0.5) 0;
+  background: var(--sc-calendar-bg);
+}
+.monthMark {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--sc-calendar-day-size) * 2.2);
+  font-weight: bold;
+  color: var(--sc-calendar-mark-color);
+  pointer-events: none;
+}
+.monthGrid {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ── Day cell ── */
+.day {
+  flex: 0 0 calc(100% / 7);
+  height: var(--sc-calendar-day-size);
+  line-height: var(--sc-calendar-day-size);
+  text-align: center;
+  color: var(--sc-calendar-text);
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+}
+.otherMonth { color: var(--sc-calendar-other-month); pointer-events: none; }
+.disabled { opacity: var(--sc-calendar-disabled-opacity); cursor: not-allowed; pointer-events: none; }
+
+.today::after {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--sc-calendar-today-border);
+  margin-top: 2px;
+}
+
+.active {
+  background: var(--sc-calendar-active-bg);
+  color: var(--sc-calendar-active-color);
+  border-radius: 16px;
+  font-weight: 500;
+}
+
+.inRange {
+  background: color-mix(in srgb, var(--sc-calendar-active-bg) 15%, transparent);
+  border-radius: 0;
+  color: var(--sc-calendar-active-bg);
+}
+.rangeStart, .rangeEnd {
+  background: var(--sc-calendar-active-bg);
+  color: var(--sc-calendar-active-color);
+  font-weight: 500;
+}
+.rangeStart { border-radius: 16px 0 0 16px; }
+.rangeEnd { border-radius: 0 16px 16px 0; }
+.rangeStart.rangeEnd { border-radius: 16px; }
+
+.dayNum { font-size: 0.95rem; font-weight: 500; }
+.dayLabel { font-size: 0.75rem; }
+.lunarText { font-size: 0.65rem; opacity: 0.6; line-height: 1; margin-top: 1px; }
+
+/* ── Confirm ── */
+.confirm {
+  display: flex;
+  padding: 12px 16px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.confirmBtn {
+  flex: 1;
+  height: 44px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sc-calendar-active-bg);
+  color: #fff;
+}
+.confirmBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+

@@ -1,0 +1,60 @@
+/* ===== Center ===== */
+
+/* text-align center */
+.text {
+  text-align: center;
+}
+
+/* vertical-align middle (inline elements) */
+.vertical {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Flexbox horizontal */
+.flexX {
+  display: flex;
+  justify-content: center;
+}
+
+.flexX.inline {
+  display: inline-flex;
+}
+
+/* Flexbox vertical — needs height to be visible */
+.flexY {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.flexY.inline {
+  display: inline-flex;
+  height: auto;
+}
+
+/* Flexbox both */
+.flexX.flexY {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.flexX.flexY.inline {
+  display: inline-flex;
+  height: auto;
+}
+
+/* Absolute centering — Center itself is the containing block */
+.position {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.positionInner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

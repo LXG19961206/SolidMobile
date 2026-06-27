@@ -1,0 +1,302 @@
+<style>
+  /* ── Widen sidebar ── */
+  .sidebar-container,
+  [class*="sidebar-container"],
+  [class*="SidebarContainer"] {
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+  }
+
+  /* ── Make sidebar a flex column: search fixed top, menu scrolls ── */
+  .sidebar-container,
+  [class*="sidebar-container"],
+  [class*="SidebarContainer"] {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: hidden !important;
+    background: #f8f9fb !important;
+  }
+  html.dark .sidebar-container,
+  html.dark [class*="sidebar-container"],
+  html.dark [class*="SidebarContainer"] {
+    background: #141619 !important;
+  }
+
+  /* ── Search bar ── */
+  #sc-search {
+    flex-shrink: 0;
+    display: block;
+    width: calc(100% - 20px);
+    margin: 10px 10px 6px;
+    padding: 7px 10px 7px 32px;
+    font-size: 0.8rem;
+    font-family: inherit;
+    border: none;
+    border-radius: 8px;
+    background-color: #e8ebf0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='7'/%3E%3Cline x1='16' y1='16' x2='21' y2='21'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    color: #1f2937;
+    outline: none;
+    box-sizing: border-box;
+    transition: background-color 0.2s, box-shadow 0.2s;
+  }
+  #sc-search:focus {
+    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(22,119,255,0.2);
+  }
+  #sc-search::placeholder {
+    color: #9ca3af;
+  }
+  html.dark #sc-search {
+    background-color: #1e2126;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='7'/%3E%3Cline x1='16' y1='16' x2='21' y2='21'/%3E%3C/svg%3E");
+    color: #e2e8f0;
+  }
+  html.dark #sc-search:focus {
+    background-color: #24282d;
+    box-shadow: 0 0 0 2px rgba(81,149,255,0.25);
+  }
+
+  /* ── Menu ── */
+  #sc-menu {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 4px 8px 16px;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(0 0% 80% / 0.5) transparent;
+  }
+  #sc-menu::-webkit-scrollbar {
+    width: 4px;
+  }
+  #sc-menu::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  #sc-menu::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 70% / 0.4);
+    border-radius: 2px;
+  }
+  #sc-menu .sc-group {
+    margin-bottom: 2px;
+  }
+  #sc-menu .sc-group.hidden,
+  #sc-menu .sc-item.hidden {
+    display: none !important;
+  }
+  #sc-menu .sc-group-title {
+    padding: 8px 12px 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: default;
+    user-select: none;
+  }
+  #sc-menu .sc-item {
+    display: block;
+    width: 100%;
+    padding: 7px 12px;
+    font-size: 0.825rem;
+    color: #4b5563;
+    text-decoration: none;
+    border: none;
+    border-radius: 6px;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.15s ease;
+    margin-bottom: 1px;
+  }
+  #sc-menu .sc-item:hover {
+    background: rgba(0,0,0,0.05);
+    color: #1f2937;
+  }
+  #sc-menu .sc-item.active {
+    background: rgba(22,119,255,0.08);
+    color: #1677ff;
+    font-weight: 600;
+  }
+  html.dark #sc-menu .sc-group-title {
+    color: #64748b;
+  }
+  html.dark #sc-menu .sc-item {
+    color: #94a3b8;
+  }
+  html.dark #sc-menu .sc-item:hover {
+    background: rgba(255,255,255,0.06);
+    color: #e2e8f0;
+  }
+  html.dark #sc-menu .sc-item.active {
+    background: rgba(81,149,255,0.12);
+    color: #5195ff;
+  }
+</style>
+
+<script>
+(function () {
+  var GROUPS = [
+    {
+      title: '视觉规范',
+      items: [
+        { name: '概览', id: '视觉规范-概览--all' },
+      ],
+    },
+    {
+      title: '基础组件',
+      items: [
+        { name: 'Button 按钮',    id: '基础组件-button-按钮--primary' },
+        { name: 'Icon 图标',      id: '基础组件-icon-图标--primary' },
+        { name: 'Center 居中',    id: '基础组件-center-居中--primary' },
+        { name: 'Divider 分割线', id: '基础组件-divider-分割线--primary' },
+        { name: 'Layout 布局',    id: '基础组件-layout-布局--primary' },
+      ],
+    },
+    {
+      title: '展示组件',
+      items: [
+        { name: 'Avatar 头像',      id: '展示组件-avatar-头像--primary' },
+        { name: 'Badge 徽标',       id: '展示组件-badge-徽标--primary' },
+        { name: 'Tag 标签',         id: '展示组件-tag-标签--primary' },
+        { name: 'Image 图片',       id: '展示组件-image-图片--primary' },
+        { name: 'Empty 空状态',     id: '展示组件-empty-空状态--primary' },
+        { name: 'Lazyload 懒加载',  id: '展示组件-lazyload-懒加载--primary' },
+        { name: 'List 列表',        id: '展示组件-list-列表--primary' },
+      ],
+    },
+    {
+      title: '导航组件',
+      items: [
+        { name: 'Tabs 标签页', id: '导航组件-tabs-标签页--primary' },
+        { name: 'Cell 单元格', id: '导航组件-cell-单元格--primary' },
+      ],
+    },
+    {
+      title: '反馈组件',
+      items: [
+        { name: 'Toast 轻提示',        id: '反馈组件-toast-轻提示--primary' },
+        { name: 'Notify 通知栏',       id: '反馈组件-notify-通知栏--primary' },
+        { name: 'Overlay 遮罩层',      id: '反馈组件-overlay-遮罩层--primary' },
+        { name: 'ActionSheet 动作面板', id: '反馈组件-actionsheet-动作面板--primary' },
+        { name: 'Loading 加载',        id: '反馈组件-loading-加载--primary' },
+      ],
+    },
+    {
+      title: '表单组件',
+      items: [
+        { name: 'Switch 开关', id: '表单组件-switch-开关--primary' },
+      ],
+    },
+  ];
+
+  function buildMenu() {
+    var html = '';
+    for (var g = 0; g < GROUPS.length; g++) {
+      var group = GROUPS[g];
+      html += '<div class="sc-group">';
+      html += '<div class="sc-group-title">' + group.title + '</div>';
+      for (var i = 0; i < group.items.length; i++) {
+        var item = group.items[i];
+        html += '<button class="sc-item" data-sid="' + item.id + '">' + item.name + '</button>';
+      }
+      html += '</div>';
+    }
+    return html;
+  }
+
+  function highlight() {
+    var params = new URLSearchParams(window.location.search);
+    var currentPath = params.get('path') || '';
+    document.querySelectorAll('#sc-menu .sc-item').forEach(function (btn) {
+      var sid = btn.getAttribute('data-sid');
+      btn.classList.toggle('active', currentPath.indexOf(sid) !== -1);
+    });
+  }
+
+  function filterMenu() {
+    var q = (document.getElementById('sc-search') || {}).value || '';
+    q = q.toLowerCase().replace(/\s+/g, '');
+    var groups = document.querySelectorAll('#sc-menu .sc-group');
+    groups.forEach(function (group) {
+      var items = group.querySelectorAll('.sc-item');
+      var visible = 0;
+      items.forEach(function (item) {
+        var text = (item.textContent || '').toLowerCase().replace(/\s+/g, '');
+        var match = !q || text.indexOf(q) !== -1;
+        item.classList.toggle('hidden', !match);
+        if (match) visible++;
+      });
+      group.classList.toggle('hidden', visible === 0);
+    });
+  }
+
+  function inject() {
+    var sidebar = document.querySelector('.sidebar-container, [class*="sidebar-container"], [class*="SidebarContainer"]');
+    if (!sidebar) { setTimeout(inject, 200); return; }
+
+    var existing = document.getElementById('sc-menu');
+    if (existing) existing.remove();
+
+    var search = document.createElement('input');
+    search.id = 'sc-search';
+    search.type = 'text';
+    search.placeholder = '搜索组件...';
+    search.addEventListener('input', filterMenu);
+    sidebar.appendChild(search);
+
+    var menu = document.createElement('div');
+    menu.id = 'sc-menu';
+    menu.innerHTML = buildMenu();
+    sidebar.appendChild(menu);
+
+    menu.querySelectorAll('.sc-item').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var sid = this.getAttribute('data-sid');
+        var url = window.location.origin + window.location.pathname + '?path=/story/' + sid;
+        window.history.pushState({}, '', url);
+        window.dispatchEvent(new PopStateEvent('popstate'));
+      });
+    });
+
+    highlight();
+  }
+
+  var hideStyle = document.createElement('style');
+  hideStyle.id = 'sc-hide-native';
+  hideStyle.textContent = `
+    .sidebar-container > *:not(#sc-menu):not(#sc-search),
+    [class*="sidebar-container"] > *:not(#sc-menu):not(#sc-search),
+    [class*="SidebarContainer"] > *:not(#sc-menu):not(#sc-search),
+    .sidebar-header,
+    [class*="sidebar-header"],
+    [class*="SidebarHeader"],
+    .sidebar-subheading,
+    [class*="sidebar-subheading"],
+    [class*="SidebarSubheading"],
+    #storybook-sidebar > *:not(#sc-menu):not(#sc-search),
+    [id*="storybook-sidebar"] > *:not(#sc-menu):not(#sc-search),
+    [role="tree"],
+    [role="treeitem"],
+    .sidebar-container [role="tree"],
+    .sidebar-container nav {
+      display: none !important;
+    }
+  `;
+  document.head.appendChild(hideStyle);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(inject, 300); });
+  } else {
+    setTimeout(inject, 300);
+  }
+
+  var _pushState = history.pushState;
+  history.pushState = function () { _pushState.apply(this, arguments); highlight(); };
+  window.addEventListener('popstate', highlight);
+  setInterval(highlight, 800);
+})();
+</script>

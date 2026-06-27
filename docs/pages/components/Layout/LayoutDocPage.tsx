@@ -1,0 +1,66 @@
+import { Row, Col } from '../../../../src/components/Layout';
+import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
+import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import css from './LayoutDocPage.module.css';
+
+const rowProps: PropRow[] = [
+  { name: 'gap', type: 'string | number', default: '—', required: false, desc: '列间距。' },
+  { name: 'align', type: "'start' | 'center' | 'end' | 'stretch'", default: '—', required: false, desc: '垂直对齐。' },
+  { name: 'justify', type: "'start' | 'center' | 'end' | 'between' | 'around'", default: '—', required: false, desc: '水平分布。' },
+  { name: 'wrap', type: 'boolean', default: 'false', required: false, desc: '是否换行。' },
+];
+
+const colProps: PropRow[] = [
+  { name: 'span', type: 'number (1-24)', default: '—', required: false, desc: '栅格占位。' },
+  { name: 'offset', type: 'number (1-24)', default: '—', required: false, desc: '左偏移。' },
+];
+
+const tocItems: TOCItem[] = [
+  { id: 'row-props', title: 'Row 属性' },
+  { id: 'col-props', title: 'Col 属性' },
+  { id: 'grid', title: 'Flex 栅格' },
+  { id: 'offset', title: '偏移' },
+  { id: 'gap', title: '间距 & 对齐' },
+];
+
+const Bar = (props: { children: any; color?: string }) => (
+  <div style={{ background: props.color || '#1677ff', color: '#fff', 'text-align': 'center', padding: '8px 0', 'border-radius': '4px', 'font-size': '0.8rem' }}>{props.children}</div>
+);
+
+export const LayoutDocPage = () => (
+  <DocLayout>
+
+    <div class={css.page}>
+      <h1 class={css.h1}>Layout 布局</h1>
+      <p class={css.intro}>基于 flex 的 24 栏栅格系统。Row 为 flex 容器，Col 为 flex 子项，通过 span 控制占宽、offset 控制偏移。</p>
+
+      <h2 id="row-props" class={css.h2}>Row 属性</h2>
+      <PropsTable rows={rowProps} />
+      <h2 id="col-props" class={css.h2}>Col 属性</h2>
+      <PropsTable rows={colProps} />
+
+      <h2 id="grid" class={css.h2}>基础栅格</h2>
+      <DemoBlock title="基础栅格" desc="Col 的 span 取值 1-24，总和超出自动换行。" code={'<Row>\n  <Col span={12}><div>12</div></Col>\n  <Col span={12}><div>12</div></Col>\n</Row>\n<Row>\n  <Col span={8}><div>8</div></Col>\n  <Col span={8}><div>8</div></Col>\n  <Col span={8}><div>8</div></Col>\n</Row>'}>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;width:100%">
+          <Row><Col span={12}><Bar>span=12</Bar></Col><Col span={12}><Bar color="#4995ff">span=12</Bar></Col></Row>
+          <Row><Col span={8}><Bar>span=8</Bar></Col><Col span={8}><Bar color="#4995ff">span=8</Bar></Col><Col span={8}><Bar color="#005ee2">span=8</Bar></Col></Row>
+          <Row><Col span={6}><Bar>6</Bar></Col><Col span={6}><Bar color="#4995ff">6</Bar></Col><Col span={6}><Bar color="#005ee2">6</Bar></Col><Col span={6}><Bar color="#0045cc">6</Bar></Col></Row>
+        </div>
+      </DemoBlock>
+
+      <h2 id="offset" class={css.h2}>偏移</h2>
+      <DemoBlock title="offset" desc="offset 设置左偏移，同样基于 24 栅格。" code={'<Row>\n  <Col span={8} offset={8}><div>居中</div></Col>\n</Row>'}>
+        <Row><Col span={8} offset={8}><Bar>span=8 offset=8</Bar></Col></Row>
+      </DemoBlock>
+
+      <h2 id="gap" class={css.h2}>间距 & 对齐</h2>
+      <DemoBlock title="gap + align" desc="Row 的 gap 控制列间距，align 控制垂直对齐。" code={'<Row gap={16} align="center">\n  <Col span={6}><div>A</div></Col>\n  <Col span={6}><div style={{padding:24}}>B</div></Col>\n  <Col span={6}><div>C</div></Col>\n</Row>'}>
+        <Row gap={16} align="center">
+          <Col span={6}><Bar>短</Bar></Col>
+          <Col span={6}><div style={{ background: '#4995ff', color: '#fff', 'text-align': 'center', padding: '24px 8px', 'border-radius': '4px', 'font-size': '0.8rem' }}>高</div></Col>
+          <Col span={6}><Bar>短</Bar></Col>
+        </Row>
+      </DemoBlock>
+    </div>
+  </DocLayout>
+);

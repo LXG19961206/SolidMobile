@@ -1,0 +1,84 @@
+.layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 1rem 1.5rem;
+}
+
+.left {
+  flex: 1;
+  min-width: 0;
+  max-width: 820px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0;
+  overflow: hidden;
+}
+:global(html.dark) .left {
+  background: #1a1d21;
+  border-color: #3a3d42;
+}
+
+.right {
+  flex-shrink: 0;
+  width: 375px;
+  align-self: stretch;
+  position: relative;
+  margin-left: auto;
+  margin-right: 16px;
+}
+
+.phoneSticky {
+  position: sticky;
+  top: 1rem;
+}
+
+.phoneInner {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Mobile: stack vertically, hide phone, demos render inline via JS */
+@media (max-width: 1024px) {
+  .layout {
+    flex-direction: column;
+  }
+}
+
+/* ── Scrollbar styling ── */
+.layout * {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(0 0% 80% / 0.6) transparent;
+}
+
+.layout *::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.layout *::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.layout *::-webkit-scrollbar-thumb {
+  background: hsl(0 0% 75% / 0.5);
+  border-radius: 3px;
+}
+
+.layout *::-webkit-scrollbar-thumb:hover {
+  background: hsl(0 0% 60% / 0.7);
+}
+
+:global(html.dark) .layout * {
+  scrollbar-color: hsl(0 0% 40% / 0.5) transparent;
+}
+
+:global(html.dark) .layout *::-webkit-scrollbar-thumb {
+  background: hsl(0 0% 40% / 0.45);
+}
+
+:global(html.dark) .layout *::-webkit-scrollbar-thumb:hover {
+  background: hsl(0 0% 50% / 0.6);
+}

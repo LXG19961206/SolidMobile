@@ -1,0 +1,47 @@
+import { Divider } from '../../../../src/components/Divider';
+import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
+import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import css from './DividerDocPage.module.css';
+
+const propsData: PropRow[] = [
+  { name: 'direction', type: "'horizontal' | 'vertical'", default: "'horizontal'", required: false, desc: '方向。' },
+  { name: 'text', type: 'string', default: '—', required: false, desc: '中间文字（仅水平模式）。' },
+  { name: 'dashed', type: 'boolean', default: 'false', required: false, desc: '虚线样式。' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: '线条颜色。' },
+  { name: 'size', type: 'string | number', default: '—', required: false, desc: '线条粗细。' },
+];
+
+const tocItems: TOCItem[] = [
+  { id: 'props', title: '属性 / Props' },
+  { id: 'horizontal', title: '水平分割线' },
+  { id: 'vertical', title: '垂直分割线' },
+];
+
+export const DividerDocPage = () => (
+  <DocLayout>
+
+    <div class={css.page}>
+      <h1 class={css.h1}>Divider 分割线</h1>
+      <p class={css.intro}>将内容分组的视觉分隔线，支持水平/垂直方向、文字和虚线样式。</p>
+
+      <h2 id="props" class={css.h2}>属性 / Props</h2>
+      <PropsTable rows={propsData} />
+
+      <h2 id="horizontal" class={css.h2}>水平分割线</h2>
+      <DemoBlock title="默认" code="<Divider />">
+        <Divider />
+      </DemoBlock>
+      <DemoBlock title="带文字" desc={'text="或者"'} code={'<Divider text="或者" />'}>
+        <Divider text="或者" />
+      </DemoBlock>
+      <DemoBlock title="虚线" code="<Divider dashed />">
+        <Divider dashed />
+      </DemoBlock>
+
+      <h2 id="vertical" class={css.h2}>垂直分割线</h2>
+      <DemoBlock title="垂直方向" desc="direction='vertical'，行内使用。" code={'文字A <Divider direction="vertical" /> 文字B'}>
+        <span>文字A <Divider direction="vertical" /> 文字B</span>
+      </DemoBlock>
+    </div>
+  </DocLayout>
+);

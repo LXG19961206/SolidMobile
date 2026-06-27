@@ -1,0 +1,72 @@
+{
+  "name": "solid-component",
+  "version": "0.0.1",
+  "description": "A Solid.js component library",
+  "type": "module",
+  "license": "MIT",
+  "author": "",
+  "keywords": [
+    "solid-js",
+    "component-library",
+    "ui"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/solid-component.css",
+    "./icons": {
+      "types": "./dist/components/Icon/icons/index.d.ts",
+      "import": "./dist/components/Icon/icons/index.js"
+    }
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "dev": "vite serve playground --open",
+    "build": "vite build && npm run build:types",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist --declaration",
+    "preview": "vite preview playground",
+    "storybook": "storybook dev -p 6006 --no-open",
+    "build-storybook": "storybook build -o dist-storybook",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css,json}\"",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.9.0"
+  },
+  "devDependencies": {
+    "@solidjs/testing-library": "^0.8.10",
+    "@types/node": "^22.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "@vitest/coverage-v8": "^2.1.8",
+    "eslint": "^9.16.0",
+    "eslint-plugin-solid": "^0.14.5",
+    "happy-dom": "^15.11.7",
+    "prettier": "^3.4.2",
+    "prismjs": "^1.30.0",
+    "solid-js": "^1.9.4",
+    "storybook": "^10.4.6",
+    "storybook-solidjs-vite": "^10.5.2",
+    "typescript": "^5.7.2",
+    "vite": "^7.3.5",
+    "vite-plugin-solid": "^2.11.12",
+    "vitest": "^2.1.8"
+  }
+}

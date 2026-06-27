@@ -1,0 +1,68 @@
+.bar {
+  display: flex;
+  align-items: center;
+  height: var(--sc-navbar-height, 46px);
+  padding: 0 var(--sc-navbar-padding, 16px);
+  background: var(--sc-navbar-bg, #fff);
+  color: var(--sc-navbar-color, #1f2937);
+  font-size: var(--sc-navbar-font-size, 1rem);
+  box-sizing: border-box;
+  position: relative;
+  z-index: var(--sc-navbar-zindex, 1000);
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.border {
+  border-bottom: 1px solid var(--sc-navbar-border, #f3f4f6);
+}
+
+.placeholder {
+  height: var(--sc-navbar-height, 46px);
+}
+
+/* ── Slots ── */
+.left {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--sc-navbar-slot-gap, 8px);
+  min-width: var(--sc-navbar-slot-min-width, 48px);
+}
+
+.center {
+  flex: 1;
+  text-align: center;
+  font-weight: var(--sc-navbar-title-weight, 600);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.right {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--sc-navbar-slot-gap, 8px);
+  min-width: var(--sc-navbar-slot-min-width, 48px);
+  justify-content: flex-end;
+}
+
+/* ── Clickable ── */
+.clickable {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Dark mode ── */
+:global(html.dark) .bar {
+  --sc-navbar-bg: #1a1d21;
+  --sc-navbar-color: #f1f5f9;
+  --sc-navbar-border: #3a3d42;
+}

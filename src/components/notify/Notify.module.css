@@ -1,0 +1,61 @@
+/* ===== Notify bar ===== */
+.bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: var(--sc-font-size-xs, 0.8125rem);
+  line-height: 1.4;
+  color: #fff;
+  text-align: center;
+  white-space: pre-line;
+  word-break: break-word;
+  pointer-events: auto;
+  animation: notifyIn 0.25s ease;
+  cursor: default;
+}
+
+.top {
+  top: 0;
+}
+
+.bottom {
+  bottom: 0;
+}
+
+/* ── Type colors ── */
+.primary {
+  background: var(--sc-color-primary, #1677ff);
+}
+.success {
+  background: var(--sc-color-success, #22c55e);
+}
+.warning {
+  background: var(--sc-color-warning, #f59e0b);
+}
+.danger {
+  background: var(--sc-color-danger, #ef4444);
+}
+
+/* ── Clickable ── */
+.clickable {
+  cursor: pointer;
+}
+
+@keyframes notifyIn {
+  from { opacity: 0; transform: translateY(-100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.bottom.notifyIn {
+  animation-name: notifyInBottom;
+}
+
+@keyframes notifyInBottom {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}

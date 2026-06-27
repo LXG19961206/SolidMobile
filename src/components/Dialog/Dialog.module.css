@@ -1,0 +1,125 @@
+/* ── Wrapper: full-screen flex center ── */
+.wrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* ── Card ── */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100vw - 64px);
+  max-height: calc(100vh - 96px);
+  background: var(--sc-dialog-bg, #fff);
+  border-radius: var(--sc-dialog-radius, 16px);
+  box-shadow: var(--sc-dialog-shadow, 0 8px 40px rgba(0, 0, 0, 0.15));
+  overflow: hidden;
+  pointer-events: auto;
+  animation: dialogIn 0.25s ease;
+}
+
+:global(html.dark) .card {
+  --sc-dialog-bg: #1e293b;
+  --sc-dialog-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes dialogIn {
+  from { opacity: 0; transform: scale(0.9) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ── Header ── */
+.header {
+  padding: 24px 24px 0;
+  font-size: var(--sc-dialog-header-size, 1.05rem);
+  font-weight: 600;
+  color: var(--sc-dialog-header-color, #1f2937);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+:global(html.dark) .header {
+  --sc-dialog-header-color: #f1f5f9;
+}
+
+/* ── Body ── */
+.body {
+  padding: 16px 24px;
+  font-size: var(--sc-dialog-body-size, 0.9rem);
+  line-height: 1.6;
+  color: var(--sc-dialog-body-color, #4b5563);
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+:global(html.dark) .body {
+  --sc-dialog-body-color: #94a3b8;
+}
+
+.bodyLeft   { text-align: left; }
+.bodyCenter { text-align: center; }
+.bodyRight  { text-align: right; }
+
+/* ── Footer ── */
+.footer {
+  display: flex;
+  border-top: 1px solid var(--sc-dialog-footer-border, #f3f4f6);
+  flex-shrink: 0;
+}
+
+:global(html.dark) .footer {
+  --sc-dialog-footer-border: #334155;
+}
+
+.btn {
+  flex: 1;
+  height: var(--sc-dialog-btn-height, 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  padding: 0;
+}
+.btn:active { background: var(--sc-dialog-btn-active-bg, #f3f4f6); }
+
+.btn + .btn {
+  border-left: 1px solid var(--sc-dialog-footer-border, #f3f4f6);
+}
+
+.cancelBtn {
+  color: var(--sc-dialog-cancel-color, #4b5563);
+  font-weight: 500;
+}
+
+.confirmBtn {
+  color: var(--sc-dialog-confirm-color, #1677ff);
+  font-weight: 600;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+:global(html.dark) .btn:active {
+  --sc-dialog-btn-active-bg: #334155;
+}
+:global(html.dark) .cancelBtn {
+  --sc-dialog-cancel-color: #94a3b8;
+}
+:global(html.dark) .confirmBtn {
+  --sc-dialog-confirm-color: #5195ff;
+}

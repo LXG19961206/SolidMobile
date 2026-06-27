@@ -1,0 +1,104 @@
+import { createSignal } from 'solid-js';
+import { Tabs, Tab } from '../../../../src/components/Tabs';
+import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
+import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import css from './TabsDocPage.module.css';
+
+const tabsProps: PropRow[] = [
+  { name: 'active', type: 'number | string', default: '—', required: false, desc: '当前激活的 tab（受控）。' },
+  { name: 'defaultActive', type: 'number | string', default: '第一个 tab', required: false, desc: '默认激活的 tab（非受控）。' },
+  { name: 'onChange', type: '(name: number | string) => void', default: '—', required: false, desc: '切换回调。' },
+  { name: 'type', type: "'line' | 'card'", default: "'line'", required: false, desc: '样式风格。' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: '主题色。' },
+  { name: 'background', type: 'string', default: '—', required: false, desc: '标签栏背景色。' },
+  { name: 'duration', type: 'number', default: '0.3', required: false, desc: '动画时长（秒）。' },
+  { name: 'animated', type: 'boolean', default: 'false', required: false, desc: '内容区切换动画。' },
+  { name: 'border', type: 'boolean', default: 'false', required: false, desc: '显示外边框（仅 line）。' },
+  { name: 'sticky', type: 'boolean', default: 'false', required: false, desc: '粘性定位。' },
+  { name: 'lazyRender', type: 'boolean', default: 'true', required: false, desc: '延迟渲染未激活的 tab。' },
+  { name: 'titleActiveColor', type: 'string', default: '—', required: false, desc: '标题选中态颜色。' },
+  { name: 'titleInactiveColor', type: 'string', default: '—', required: false, desc: '标题默认态颜色。' },
+  { name: 'beforeChange', type: '(name) => boolean | Promise<boolean>', default: '—', required: false, desc: '切换前回调，返回 false 阻止切换。' },
+];
+
+const tabProps: PropRow[] = [
+  { name: 'title', type: 'string | JSX.Element', default: '—', required: true, desc: '标签标题。' },
+  { name: 'name', type: 'number | string', default: '—', required: true, desc: '标签标识符（必须唯一）。' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: '是否禁用。' },
+  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: '标签内容。' },
+];
+
+const tocItems: TOCItem[] = [
+  { id: 'tabs-props', title: 'Tabs 属性' },
+  { id: 'tab-props', title: 'Tab 属性' },
+  { id: 'basic', title: '基础用法' },
+  { id: 'styles', title: '样式风格' },
+  { id: 'controlled', title: '受控模式' },
+];
+
+export const TabsDocPage = () => {
+  const [active, setActive] = createSignal('tab1');
+
+  return (
+    <DocLayout>
+
+      <div class={css.page}>
+        <h1 class={css.h1}>Tabs 标签页</h1>
+        <p class={css.intro}>
+          选项卡切换组件。title 支持 string 或 JSX.Element。
+          默认开启 lazyRender，未激活的 tab 不渲染内容。
+        </p>
+
+        <h2 id="tabs-props" class={css.h2}>Tabs 属性</h2>
+        <PropsTable rows={tabsProps} />
+        <h2 id="tab-props" class={css.h2}>Tab 属性</h2>
+        <PropsTable rows={tabProps} />
+
+        <h2 id="basic" class={css.h2}>基础用法</h2>
+        <DemoBlock title="line 模式" desc="type='line'，底部指示条跟随切换。" code={`<Tabs>\n  <Tab title="标签1" name="a"><div>内容1</div></Tab>\n  <Tab title="标签2" name="b"><div>内容2</div></Tab>\n  <Tab title="标签3" name="c"><div>内容3</div></Tab>\n</Tabs>`}>
+          <Tabs>
+            <Tab title="标签1" name="a"><div class={css.demoPanel}>内容 1</div></Tab>
+            <Tab title="标签2" name="b"><div class={css.demoPanel}>内容 2</div></Tab>
+            <Tab title="标签3" name="c"><div class={css.demoPanel}>内容 3</div></Tab>
+          </Tabs>
+        </DemoBlock>
+
+        <DemoBlock title="JSX 标题" desc="title 支持传入任意 JSX。" code={`<Tabs>\n  <Tab title={<span>🔔 通知</span>} name="a"><div>通知内容</div></Tab>\n  <Tab title={<span>⚙ 设置</span>} name="b"><div>设置内容</div></Tab>\n  <Tab title="账号" name="c"><div>账号内容</div></Tab>\n</Tabs>`}>
+          <Tabs>
+            <Tab title={<span>🔔 通知</span>} name="a"><div class={css.demoPanel}>通知内容</div></Tab>
+            <Tab title={<span>⚙ 设置</span>} name="b"><div class={css.demoPanel}>设置内容</div></Tab>
+            <Tab title="账号" name="c"><div class={css.demoPanel}>账号内容</div></Tab>
+          </Tabs>
+        </DemoBlock>
+
+        <h2 id="styles" class={css.h2}>样式风格</h2>
+        <DemoBlock title="card 模式" desc="type='card'，卡片式标签栏。" code={`<Tabs type="card">\n  <Tab title="选项1" name="a"><div>内容 1</div></Tab>\n  <Tab title="选项2" name="b"><div>内容 2</div></Tab>\n  <Tab title="选项3" name="c"><div>内容 3</div></Tab>\n</Tabs>`}>
+          <Tabs type="card">
+            <Tab title="选项1" name="a"><div class={css.demoPanel}>内容 1</div></Tab>
+            <Tab title="选项2" name="b"><div class={css.demoPanel}>内容 2</div></Tab>
+            <Tab title="选项3" name="c"><div class={css.demoPanel}>内容 3</div></Tab>
+          </Tabs>
+        </DemoBlock>
+
+        <DemoBlock title="自定义颜色" desc="color 设置主题色，titleActiveColor / titleInactiveColor 分别控制标题颜色。" code={`<Tabs color="#22c55e" titleActiveColor="#22c55e">\n  <Tab title="绿色主题" name="a"><div>绿色</div></Tab>\n  <Tab title="标签" name="b"><div>标签</div></Tab>\n</Tabs>`}>
+          <Tabs color="#22c55e" titleActiveColor="#22c55e">
+            <Tab title="绿色主题" name="a"><div class={css.demoPanel}>绿色</div></Tab>
+            <Tab title="标签" name="b"><div class={css.demoPanel}>标签</div></Tab>
+          </Tabs>
+        </DemoBlock>
+
+        <h2 id="controlled" class={css.h2}>受控模式</h2>
+        <DemoBlock title="active + onChange" desc="外部管理激活状态，可设置 disabled 禁用选项。" code={`const [active, setActive] = createSignal('tab1');\n\n<Tabs active={active()} onChange={setActive}>\n  <Tab title="Tab1" name="tab1"><div>内容 1</div></Tab>\n  <Tab title="Tab2" name="tab2"><div>内容 2</div></Tab>\n  <Tab title="Tab3（禁用）" name="tab3" disabled><div>内容 3</div></Tab>\n</Tabs>\n\n<div>当前激活: {active()}</div>`}>
+          <Tabs active={active()} onChange={setActive}>
+            <Tab title="Tab1" name="tab1"><div class={css.demoPanel}>内容 1</div></Tab>
+            <Tab title="Tab2" name="tab2"><div class={css.demoPanel}>内容 2</div></Tab>
+            <Tab title="Tab3（禁用）" name="tab3" disabled><div class={css.demoPanel}>内容 3</div></Tab>
+          </Tabs>
+          <div style="margin-top:0.75rem;font-size:0.85rem;color:#6b7280">
+            当前激活: <code>{active()}</code>
+          </div>
+        </DemoBlock>
+      </div>
+    </DocLayout>
+  );
+};

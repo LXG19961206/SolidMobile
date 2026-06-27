@@ -1,0 +1,114 @@
+/* ===== Loading wrapper ===== */
+.loading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--sc-color-text-secondary, #666);
+}
+
+.vertical {
+  flex-direction: column;
+}
+
+/* ===== Text ===== */
+.text {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* ===== Spinner (rotating ring) ===== */
+.spinner {
+  --_spinner-size: 1.2em;
+  width: var(--_spinner-size);
+  height: var(--_spinner-size);
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: loadingSpin 0.6s linear infinite;
+}
+
+/* ===== Circular (arc spinner) ===== */
+.circular {
+  --_size: 1.2em;
+  width: var(--_size);
+  height: var(--_size);
+  border: 2.5px solid transparent;
+  border-top-color: currentColor;
+  border-right-color: currentColor;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: loadingSpin 0.8s linear infinite;
+}
+
+/* ===== Dots (three bouncing dots) ===== */
+.dots {
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+  flex-shrink: 0;
+  height: 1em;
+}
+
+.dot {
+  width: 0.5em;
+  height: 0.5em;
+  background: currentColor;
+  border-radius: 50%;
+  animation: dotBounce 1.2s ease-in-out infinite;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* ===== Overlay mode ===== */
+.overlayContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 32px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 12px;
+  color: #fff;
+}
+
+.overlayContent.horizontal {
+  flex-direction: row;
+  padding: 16px 24px;
+}
+
+.overlayText {
+  font-size: 0.875rem;
+  color: #fff;
+}
+
+/* ===== Custom icon ===== */
+.customIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ===== Keyframes ===== */
+@keyframes loadingSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+  40% {
+    transform: translateY(-0.6em);
+    opacity: 1;
+  }
+}

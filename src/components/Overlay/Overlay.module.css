@@ -1,0 +1,33 @@
+/* ===== Overlay ===== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--sc-overlay-z-index, 999);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0);
+  transition: background var(--sc-overlay-duration, 200ms) ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== Enter animation ===== */
+.enter {
+  background: var(--sc-color-overlay-bg, rgba(0, 0, 0, 0.7));
+}
+
+/* ===== Exit animation ===== */
+.exit {
+  background: rgba(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+/* ===== Content wrapper ===== */
+.content {
+  /* Content is rendered as-is; this wrapper prevents
+     backdrop click from firing on content children. */
+  display: contents;
+}

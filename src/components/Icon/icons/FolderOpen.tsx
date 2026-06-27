@@ -1,0 +1,8 @@
+export function FolderOpen(props: { size?: string | number; color?: string; class?: string; variant?: 'line' | 'fill'; }) {
+  const s = () => typeof props.size === 'number' ? `${props.size}px` : props.size ?? '1em';
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={s()} height={s()}
+      fill="currentColor" color={props.color} class={props.class} aria-hidden="true"
+      innerHTML={props.variant === 'fill' ? '<path d="M3 21C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5H20C20.5523 5 21 5.44772 21 6V9H4V18.996L6 11H22.5L20.1894 20.2425C20.0781 20.6877 19.6781 21 19.2192 21H3Z"/>' : '<path d="M3 21C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5H20C20.5523 5 21 5.44772 21 6V9H19V7H11.5858L9.58579 5H4V16.998L5.5 11H22.5L20.1894 20.2425C20.0781 20.6877 19.6781 21 19.2192 21H3ZM19.9384 13H7.06155L5.56155 19H18.4384L19.9384 13Z"/>'} />
+  );
+}
