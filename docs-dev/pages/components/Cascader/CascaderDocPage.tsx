@@ -1,6 +1,6 @@
 import { createSignal, Show, useContext } from 'solid-js';
 import { Cascader } from '../../../../src/components/Cascader';
-import { Button } from '../../../../src/components/Button';
+import { Cell } from '../../../../src/components/Cell';
 import { Icon } from '../../../../src/components/Icon';
 import { Loading } from '../../../../src/components/Loading';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
@@ -113,14 +113,7 @@ const CascaderDemo = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', gap: '0.5rem', 'align-items': 'center', 'flex-wrap': 'wrap' }}>
-        <Button type="primary" text={val().length ? val().join(' / ') : '选择地区'} onClick={() => setShow(true)} />
-        <Show when={val().length}>
-          <span style={{ 'font-size': '0.8rem', color: '#6b7280' }}>
-            选中: {val().join(' → ')}
-          </span>
-        </Show>
-      </div>
+      <Cell title={val().length ? val().join(' / ') : '选择地区'} clickable onClick={() => setShow(true)} />
       <Cascader
         options={regionOptions}
         show={show()}
@@ -147,7 +140,7 @@ const DisabledCascader = () => {
   ];
   return (
     <>
-      <Button variant="outline" text="选择城市" onClick={() => setShow(true)} />
+      <Cell title="选择城市" clickable onClick={() => setShow(true)} />
       <Cascader options={opts} show={show()} onUpdateShow={setShow} title="城市（部分禁用）" teleport={phoneTarget?.()} />
     </>
   );
@@ -164,7 +157,7 @@ const JsxCascader = () => {
   ];
   return (
     <>
-      <Button variant="outline" text="选择省份" onClick={() => setShow(true)} />
+      <Cell title="选择省份" clickable onClick={() => setShow(true)} />
       <Cascader options={opts} show={show()} onUpdateShow={setShow} title="省份（自定义渲染）" checkmark={<Icon name="check" size={16} color="#1677ff" />} teleport={phoneTarget?.()} />
     </>
   );
@@ -199,7 +192,7 @@ const AsyncCascader = () => {
 
   return (
     <>
-      <Button type="primary" text={val().length ? val().join(' / ') : '选择地区'} onClick={() => setShow(true)} />
+      <Cell title={val().length ? val().join(' / ') : '选择地区'} clickable onClick={() => setShow(true)} />
       <Show when={val().length}><span style="font-size:0.8rem;color:#6b7280">已选: {val().join(' → ')}</span></Show>
       <Cascader
         options={[]}

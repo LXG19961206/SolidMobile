@@ -1,369 +1,247 @@
-import { createSignal, Show, useContext, type Component } from 'solid-js';
+import { createSignal, useContext, type Component } from 'solid-js';
 import { Picker } from '../../../../src/components/Picker';
-import { Button } from '../../../../src/components/Button';
-import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
-import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { Cell, CellGroup } from '../../../../src/components/Cell';
+import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
+import type { PropRow } from '../../../../src/doc-utils';
 import type { PickerOption } from '../../../../src/components/Picker/types';
 
-/* ── Demo Data ── */
+/* ── Data ── */
 
 const cityTree: PickerOption[] = [
-  {
-    text: '北京', value: 'beijing',
-    children: [
-      { text: '海淀区', value: 'haidian' },
-      { text: '朝阳区', value: 'chaoyang' },
-      { text: '东城区', value: 'dongcheng' },
-      { text: '西城区', value: 'xicheng' },
-    ],
-  },
-  {
-    text: '上海', value: 'shanghai',
-    children: [
-      { text: '浦东新区', value: 'pudong' },
-      { text: '静安区', value: 'jingan' },
-      { text: '徐汇区', value: 'xuhui' },
-    ],
-  },
-  {
-    text: '广东', value: 'guangdong',
-    children: [
-      {
-        text: '深圳市', value: 'shenzhen',
-        children: [
-          { text: '南山区', value: 'nanshan' },
-          { text: '福田区', value: 'futian' },
-          { text: '宝安区', value: 'baoan' },
-        ],
-      },
-      {
-        text: '广州市', value: 'guangzhou',
-        children: [
-          { text: '天河区', value: 'tianhe' },
-          { text: '越秀区', value: 'yuexiu' },
-        ],
-      },
-    ],
-  },
+  { text: '北京', value: 'beijing', children: [
+    { text: '海淀区', value: 'haidian' }, { text: '朝阳区', value: 'chaoyang' }, { text: '东城区', value: 'dongcheng' },
+  ]},
+  { text: '上海', value: 'shanghai', children: [
+    { text: '浦东新区', value: 'pudong' }, { text: '静安区', value: 'jingan' },
+  ]},
+  { text: '广东', value: 'guangdong', children: [
+    { text: '深圳市', value: 'shenzhen', children: [
+      { text: '南山区', value: 'nanshan' }, { text: '福田区', value: 'futian' },
+    ]},
+    { text: '广州市', value: 'guangzhou', children: [{ text: '天河区', value: 'tianhe' }]},
+  ]},
 ];
 
 const thisYear = new Date().getFullYear();
-const dateColumns: PickerOption[][] = [
-  Array.from({ length: 10 }, (_, i) => ({
-    text: `${thisYear - 5 + i}年`,
-    value: thisYear - 5 + i,
-  })),
-  Array.from({ length: 12 }, (_, i) => ({
-    text: `${i + 1}月`,
-    value: i + 1,
-  })),
+const dateCols: PickerOption[][] = [
+  Array.from({ length: 10 }, (_, i) => ({ text: `${thisYear - 5 + i}年`, value: thisYear - 5 + i })),
+  Array.from({ length: 12 }, (_, i) => ({ text: `${i + 1}月`, value: i + 1 })),
 ];
 
-const timeColumns: PickerOption[][] = [
-  Array.from({ length: 24 }, (_, i) => ({
-    text: `${i.toString().padStart(2, '0')}时`,
-    value: i,
-  })),
-  Array.from({ length: 60 }, (_, i) => ({
-    text: `${i.toString().padStart(2, '0')}分`,
-    value: i,
-  })),
+const timeCols: PickerOption[][] = [
+  Array.from({ length: 24 }, (_, i) => ({ text: `${String(i).padStart(2, '0')}时`, value: i })),
+  Array.from({ length: 60 }, (_, i) => ({ text: `${String(i).padStart(2, '0')}分`, value: i })),
 ];
 
-const colsWithDisabled: PickerOption[][] = [[
-  { text: '选项 A', value: 'a' },
-  { text: '选项 B (禁用)', value: 'b', disabled: true },
-  { text: '选项 C', value: 'c' },
-  { text: '选项 D (禁用)', value: 'd', disabled: true },
+const colsDisabled: PickerOption[][] = [[
+  { text: '选项 A', value: 'a' }, { text: '选项 B (禁用)', value: 'b', disabled: true },
+  { text: '选项 C', value: 'c' }, { text: '选项 D (禁用)', value: 'd', disabled: true },
   { text: '选项 E', value: 'e' },
 ]];
 
+const deepTree: PickerOption[] = [
+  { text: '电子产品', value: 'e', children: [
+    { text: '手机', value: 'phone', children: [
+      { text: '智能机', value: 'smart', children: [
+        { text: '旗舰', value: 'flagship', children: [
+          { text: '512GB', value: '512' }, { text: '1TB', value: '1tb' },
+        ]},
+      ]},
+    ]},
+  ]},
+  { text: '食品', value: 'food', children: [
+    { text: '零食', value: 'snack', children: [
+      { text: '膨化', value: 'puffed', children: [
+        { text: '原味', value: 'ori', children: [
+          { text: '小包', value: 's' }, { text: '大包', value: 'l' },
+        ]},
+      ]},
+    ]},
+  ]},
+];
+
 function makeFlatCols(n: number): PickerOption[][] {
-  return [Array.from({ length: n }, (_, i) => ({
-    text: `${i + 1}`,
-    value: i + 1,
-  }))];
+  return [Array.from({ length: n }, (_, i) => ({ text: `${i + 1}`, value: i + 1 }))];
 }
 
-/* ── Props Table ── */
+/* ── Props ── */
 
 const propsData: PropRow[] = [
-  { name: 'columns', type: 'PickerOption[] | PickerOption[][]', default: '—', required: true, desc: '数据源。Tree 模式传 PickerOption[]（带 children），Flat 模式传 PickerOption[][]。' },
-  { name: 'value', type: '(string | number)[]', default: '—', required: false, desc: '受控选中值，每列一个。' },
-  { name: 'onChange', type: '(selected: PickerOption[], value: (string|number)[]) => void', default: '—', required: false, desc: '选中值变化回调，手指抬起后触发。' },
-  { name: 'onConfirm', type: '(selected: PickerOption[], value: (string|number)[]) => void', default: '—', required: false, desc: '点击确认按钮。' },
-  { name: 'onCancel', type: '() => void', default: '—', required: false, desc: '点击取消按钮。' },
-  { name: 'show', type: 'boolean', default: '—', required: false, desc: '面板是否可见（受控）。' },
-  { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: '面板可见状态变化回调。' },
-  { name: 'title', type: 'string', default: "'请选择'", required: false, desc: '标题文字。' },
-  { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: '可见行数（奇数）。' },
+  { name: 'columns', type: 'PickerOption[] | PickerOption[][]', default: '—', required: true, desc: 'Tree 或 Flat 模式数据源。' },
+  { name: 'value', type: '(string | number)[]', default: '—', required: false, desc: '受控值。' },
+  { name: 'onChange', type: '(selected, value) => void', default: '—', required: false, desc: '值变化回调。' },
+  { name: 'show', type: 'boolean', default: '—', required: false, desc: '面板可见。' },
+  { name: 'onUpdateShow', type: '(show) => void', default: '—', required: false, desc: '面板关闭回调。' },
+  { name: 'title', type: 'string', default: "'请选择'", required: false, desc: '标题。' },
+  { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: '可见行数。' },
   { name: 'optionHeight', type: 'number', default: '50', required: false, desc: '每行高度(px)。' },
-  { name: 'ratio', type: 'number', default: '1.5', required: false, desc: '触摸滑动灵敏度倍率。' },
-  { name: 'swipeDuration', type: 'number', default: '1', required: false, desc: '惯性动画时长(秒)。' },
+  { name: 'ratio', type: 'number', default: '1.5', required: false, desc: '触摸灵敏度。' },
+  { name: 'swipeDuration', type: 'number', default: '1', required: false, desc: '惯性动画时长(s)。' },
   { name: 'cancelText', type: 'string', default: '跟随 locale', required: false, desc: '取消按钮文字。' },
   { name: 'confirmText', type: 'string', default: '跟随 locale', required: false, desc: '确认按钮文字。' },
-  { name: 'placeholders', type: 'string | string[]', default: '—', required: false, desc: '每列占位选项文本。' },
-  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'Portal 挂载目标。' },
-  { name: 'zIndex', type: 'number | string', default: '2000', required: false, desc: 'z-index。' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: '自定义 CSS class。' },
-  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: '内联样式。' },
+  { name: 'placeholders', type: 'string | string[]', default: '—', required: false, desc: '占位文本。' },
+  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'Portal 目标。' },
 ];
 
-const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'basic', title: '基础用法' },
-  { id: 'flat', title: 'Flat 多列' },
-  { id: 'special', title: '特殊场景' },
-];
+/* ── Demo Components (each a standalone Cell + Picker pair) ── */
 
-/* ── Demo Components ── */
+const phoneCtx = PhoneTargetContext;
 
-/** Tree 级联 — 省市区 */
-const CityPickerDemo: Component = () => {
-  const phoneTarget = useContext(PhoneTargetContext);
+const CityPicker: Component = () => {
+  const phone = useContext(phoneCtx);
   const [show, setShow] = createSignal(false);
   const [val, setVal] = createSignal<(string | number)[]>([]);
-
   return (
     <>
-      <div style={{ display: 'flex', gap: '0.5rem', 'align-items': 'center', 'flex-wrap': 'wrap' }}>
-        <Button type="primary" text={val().length ? val().join(' / ') : '选择城市'} onClick={() => setShow(true)} />
-        <Show when={val().length}>
-          <span style={{ 'font-size': '0.8rem', color: '#6b7280' }}>已选: {val().join(' / ')}</span>
-        </Show>
-      </div>
-      <Picker
-        show={show()}
-        onUpdateShow={setShow}
-        columns={cityTree}
-        title="选择城市"
-        onChange={(_, vals) => setVal(vals)}
-        onConfirm={(_, vals) => { setVal(vals); setShow(false); }}
-        onCancel={() => setShow(false)}
-        teleport={phoneTarget?.()}
-      />
+      <Cell title="Tree 级联" value={val().length ? val().join(' / ') : '请选择'} clickable onClick={() => setShow(true)} />
+      <Picker show={show()} onUpdateShow={setShow} columns={cityTree} title="选择城市"
+        onChange={(_, v) => setVal(v)} onConfirm={(_, v) => { setVal(v); setShow(false); }}
+        onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
   );
 };
 
-/** Flat 多列 — 年月 */
 const DatePickerDemo: Component = () => {
-  const phoneTarget = useContext(PhoneTargetContext);
+  const phone = useContext(phoneCtx);
   const [show, setShow] = createSignal(false);
   const [val, setVal] = createSignal<(string | number)[]>([]);
-
   return (
     <>
-      <div style={{ display: 'flex', gap: '0.5rem', 'align-items': 'center', 'flex-wrap': 'wrap' }}>
-        <Button type="primary" text={val().length ? val().join(' / ') : '选择年月'} onClick={() => setShow(true)} />
-        <Show when={val().length}>
-          <span style={{ 'font-size': '0.8rem', color: '#6b7280' }}>已选: {val().join(' / ')}</span>
-        </Show>
-      </div>
-      <Picker
-        show={show()}
-        onUpdateShow={setShow}
-        columns={dateColumns}
-        title="选择年月"
-        onChange={(_, vals) => setVal(vals)}
-        onConfirm={(_, vals) => { setVal(vals); setShow(false); }}
-        onCancel={() => setShow(false)}
-        teleport={phoneTarget?.()}
-      />
+        <Cell title="Flat 年月" value={val().length ? val().join(' / ') : '请选择'} clickable onClick={() => setShow(true)} />
+      <Picker show={show()} onUpdateShow={setShow} columns={dateCols} title="选择年月"
+        onChange={(_, v) => setVal(v)} onConfirm={(_, v) => { setVal(v); setShow(false); }}
+        onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
   );
 };
 
-/** Flat 多列 — 时分 */
 const TimePickerDemo: Component = () => {
-  const phoneTarget = useContext(PhoneTargetContext);
+  const phone = useContext(phoneCtx);
   const [show, setShow] = createSignal(false);
-
   return (
     <>
-      <Button variant="outline" text="选择时间" onClick={() => setShow(true)} />
-      <Picker
-        show={show()}
-        onUpdateShow={setShow}
-        columns={timeColumns}
-        title="选择时间"
-        onConfirm={() => setShow(false)}
-        onCancel={() => setShow(false)}
-        teleport={phoneTarget?.()}
-      />
+        <Cell title="时分选择" clickable onClick={() => setShow(true)} />
+      <Picker show={show()} onUpdateShow={setShow} columns={timeCols} title="选择时间"
+        onConfirm={() => setShow(false)} onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
   );
 };
 
-/** 禁用项 */
-const DisabledPickerDemo: Component = () => {
-  const phoneTarget = useContext(PhoneTargetContext);
+const DisabledPicker: Component = () => {
+  const phone = useContext(phoneCtx);
   const [show, setShow] = createSignal(false);
-
   return (
     <>
-      <Button variant="outline" text="含禁用项" onClick={() => setShow(true)} />
-      <Picker
-        show={show()}
-        onUpdateShow={setShow}
-        columns={colsWithDisabled}
-        title="选项列表"
-        onConfirm={() => setShow(false)}
-        onCancel={() => setShow(false)}
-        teleport={phoneTarget?.()}
-      />
+        <Cell title="含禁用项" clickable onClick={() => setShow(true)} />
+      <Picker show={show()} onUpdateShow={setShow} columns={colsDisabled} title="选项列表"
+        onConfirm={() => setShow(false)} onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
   );
 };
 
-/** 占位符 */
-const PlaceholderPickerDemo: Component = () => {
-  const phoneTarget = useContext(PhoneTargetContext);
+const PlaceholderPicker: Component = () => {
+  const phone = useContext(phoneCtx);
   const [show, setShow] = createSignal(false);
-
   return (
     <>
-      <Button variant="outline" text="带占位符" onClick={() => setShow(true)} />
-      <Picker
-        show={show()}
-        onUpdateShow={setShow}
-        columns={makeFlatCols(3)}
-        title="请选择数量"
-        placeholders="请选择"
-        onConfirm={() => setShow(false)}
-        onCancel={() => setShow(false)}
-        teleport={phoneTarget?.()}
-      />
+        <Cell title="占位符" clickable onClick={() => setShow(true)} />
+      <Picker show={show()} onUpdateShow={setShow} columns={makeFlatCols(3)} title="请选择" placeholders="请选择"
+        onConfirm={() => setShow(false)} onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
   );
 };
 
-/** 受控值 */
-const ControlledPickerDemo: Component = () => {
-  const phoneTarget = useContext(PhoneTargetContext);
+const DeepPicker: Component = () => {
+  const phone = useContext(phoneCtx);
   const [show, setShow] = createSignal(false);
-  const [val, setVal] = createSignal<(string | number)[]>(['beijing', 'haidian']);
-
+  const [val, setVal] = createSignal<(string | number)[]>([]);
   return (
     <>
-      <div style={{ display: 'flex', gap: '0.5rem', 'align-items': 'center', 'flex-wrap': 'wrap' }}>
-        <Button type="primary" text="预设北京-海淀" onClick={() => setShow(true)} />
-        <Button variant="outline" text="切换到上海-静安" onClick={() => setVal(['shanghai', 'jingan'])} />
-        <Show when={val().length}>
-          <span style={{ 'font-size': '0.8rem', color: '#6b7280' }}>当前: {val().join(' / ')}</span>
-        </Show>
-      </div>
-      <Picker
-        show={show()}
-        onUpdateShow={setShow}
-        columns={cityTree}
-        title="选择城市"
-        value={val()}
-        onChange={(_, vals) => setVal(vals)}
-        onConfirm={() => setShow(false)}
-        onCancel={() => setShow(false)}
-        teleport={phoneTarget?.()}
-      />
+        <Cell title="5 层级联" value={val().length ? `${val().length} 层已选` : '请选择'} clickable onClick={() => setShow(true)} />
+      <Picker show={show()} onUpdateShow={setShow} columns={deepTree} title="逐级选择"
+        onChange={(_, v) => setVal(v)} onConfirm={(_, v) => { setVal(v); setShow(false); }}
+        onCancel={() => setShow(false)} teleport={phone?.()} />
+    </>
+  );
+};
+
+const ControlledPicker: Component = () => {
+  const phone = useContext(phoneCtx);
+  const [show, setShow] = createSignal(false);
+  return (
+    <>
+        <Cell title="受控值（预设 北京/海淀）" clickable onClick={() => setShow(true)} />
+      <Picker show={show()} onUpdateShow={setShow} columns={cityTree} title="选择城市"
+        value={['beijing', 'haidian']} onConfirm={() => setShow(false)} onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
   );
 };
 
 /* ── Code Snippets ── */
 
-const codeTree = `<Picker
-  show={show()}
-  onUpdateShow={setShow}
-  columns={cityTree}
-  title="选择城市"
-  teleport={phoneTarget?.()}
-  onChange={(_, vals) => setVal(vals)}
-  onConfirm={(_, vals) => { setVal(vals); setShow(false); }}
-  onCancel={() => setShow(false)}
-/>`;
+const codeTree = `<Picker columns={cityTree} show={show} onUpdateShow={setShow}
+  title="选择城市" teleport={phone?.()}
+  onChange={(_, v) => setVal(v)}
+  onConfirm={(_, v) => { setVal(v); setShow(false); }} />`;
 
-const codeFlat = `<Picker
-  show={show()}
-  onUpdateShow={setShow}
-  columns={dateColumns}
-  title="选择年月"
-  teleport={phoneTarget?.()}
-  onChange={(_, vals) => setVal(vals)}
-  onConfirm={(_, vals) => { setVal(vals); setShow(false); }}
-  onCancel={() => setShow(false)}
-/>`;
+const codeFlat = `<Picker columns={dateCols} show={show} onUpdateShow={setShow}
+  title="选择年月" teleport={phone?.()} />`;
 
-const codeDisabled = `<Picker
-  show={show()}
-  onUpdateShow={setShow}
-  columns={colsWithDisabled}
-  title="选项列表"
-  teleport={phoneTarget?.()}
-/>`;
+const codeTime = `<Picker columns={timeCols} show={show} onUpdateShow={setShow}
+  title="选择时间" teleport={phone?.()} />`;
 
-const codePlaceholder = `<Picker
-  show={show()}
-  onUpdateShow={setShow}
-  columns={flatCols}
-  title="请选择"
-  placeholders="请选择"
-  teleport={phoneTarget?.()}
-/>`;
+const codeDisabled = `<Picker columns={colsDisabled} show={show} onUpdateShow={setShow}
+  title="选项列表" teleport={phone?.()} />`;
 
-const codeControlled = `<Picker
-  show={show()}
-  onUpdateShow={setShow}
-  columns={cityTree}
-  title="选择城市"
-  value={val()}
-  teleport={phoneTarget?.()}
-  onChange={(_, vals) => setVal(vals)}
-/>`;
+const codePlaceholder = `<Picker columns={flatCols} show={show} onUpdateShow={setShow}
+  title="请选择" placeholders="请选择" teleport={phone?.()} />`;
 
-/* ── Main Doc Page ── */
+const codeDeep = `<Picker columns={deepTree} show={show} onUpdateShow={setShow}
+  title="逐级选择" teleport={phone?.()}
+  onChange={(_, v) => setDeepVal(v)}
+  onConfirm={(_, v) => { setDeepVal(v); setShow(false); }} />`;
 
-export const PickerDocPage: Component = () => {
-  return (
-    <DocLayout>
-      <div style={{ padding: '16px', 'max-width': '960px' }}>
-        {/* ── Props Table ── */}
-        <h2 id="props" style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '16px 0 12px' }}>
-          属性 / Props
-        </h2>
-        <PropsTable rows={propsData} />
+const codeControlled = `<Picker columns={cityTree} show={show} onUpdateShow={setShow}
+  title="选择城市" teleport={phone?.()}
+  value={['beijing', 'haidian']} />`;
 
-        {/* ── Tree 级联 ── */}
-        <h2 id="basic" style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>
-          基础用法
-        </h2>
-        <DemoBlock title="Tree 级联 — 省市区" code={codeTree}>
-          <CityPickerDemo />
-        </DemoBlock>
+/* ── Page ── */
 
-        {/* ── Flat 多列 ── */}
-        <h2 id="flat" style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>
-          Flat 多列独立选择
-        </h2>
-        <DemoBlock title="年月选择" code={codeFlat}>
-          <DatePickerDemo />
-        </DemoBlock>
-        <DemoBlock title="时分选择" code={codeFlat}>
-          <TimePickerDemo />
-        </DemoBlock>
+export const PickerDocPage: Component = () => (
+  <DocLayout>
+    <div style={{ padding: '16px', 'max-width': '960px' }}>
+      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Picker 选择器</h1>
+      <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
+        滚轮选择器，支持 Tree 级联和 Flat 多列。点击 Cell 弹出。
+      </p>
 
-        {/* ── 特殊场景 ── */}
-        <h2 id="special" style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>
-          特殊场景
-        </h2>
-        <DemoBlock title="禁用项 & 跳过" code={codeDisabled}>
-          <DisabledPickerDemo />
-        </DemoBlock>
-        <DemoBlock title="占位符" code={codePlaceholder}>
-          <PlaceholderPickerDemo />
-        </DemoBlock>
-        <DemoBlock title="受控模式" code={codeControlled}>
-          <ControlledPickerDemo />
-        </DemoBlock>
-      </div>
-    </DocLayout>
-  );
-};
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>属性</h2>
+      <PropsTable rows={propsData} />
+
+      {/* Each DemoBlock has groupCode="picker" → merged into one CellGroup in phone */}
+      <DemoBlock title="Tree 级联" desc="省→市→区三级联动。" code={codeTree} groupCode="pickerDemo">
+        <CityPicker />
+      </DemoBlock>
+      <DemoBlock title="Flat 年月" desc="年月独立列。" code={codeFlat} groupCode="pickerDemo">
+        <DatePickerDemo />
+      </DemoBlock>
+      <DemoBlock title="时分选择" desc="时 / 分两列。" code={codeTime} groupCode="pickerDemo">
+        <TimePickerDemo />
+      </DemoBlock>
+      <DemoBlock title="含禁用项" desc="滚动时自动跳过 disabled 项。" code={codeDisabled} groupCode="pickerDemo">
+        <DisabledPicker />
+      </DemoBlock>
+      <DemoBlock title="占位符" desc="顶部显示 '请选择' 占位。" code={codePlaceholder} groupCode="pickerDemo">
+        <PlaceholderPicker />
+      </DemoBlock>
+      <DemoBlock title="5 层级联" desc="电子产品→手机→智能机→旗舰→容量。" code={codeDeep} groupCode="pickerDemo">
+        <DeepPicker />
+      </DemoBlock>
+      <DemoBlock title="受控值" desc="预设 value prop。" code={codeControlled} groupCode="pickerDemo">
+        <ControlledPicker />
+      </DemoBlock>
+
+      <GroupCodePhone />
+    </div>
+  </DocLayout>
+);

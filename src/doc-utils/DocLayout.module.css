@@ -8,7 +8,7 @@
 .left {
   flex: 1;
   min-width: 0;
-  max-width: 820px;
+  max-width: 960px;
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 10px;

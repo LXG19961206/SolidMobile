@@ -40,6 +40,8 @@ export type IconName =
   | 'clipboard'
   | 'close'
   | 'close-circle'
+  | 'eye'
+  | 'eye-off'
   | 'cloud'
   | 'code'
   | 'compass'

@@ -75,3 +75,12 @@ export type { PickerProps, PickerOption } from './Picker';
 
 export { SwipeCell } from './SwipeCell';
 export type { SwipeCellProps, SwipeAction } from './SwipeCell';
+
+export { Form, FormItem, useFormField, useFormContext } from './Form';
+export type { FormValue, FormRule, FormProps, FormItemProps } from './Form';
+
+export { Input } from './Input';
+export type { InputProps, InputType, InputAlign } from './Input';
+
+export { Textarea } from './Textarea';
+export type { TextareaProps } from './Textarea';

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import { NotifyDocPage } from './NotifyDocPage';
+import { NotifyDocPage } from '../../../docs-dev/pages/components/notify/NotifyDocPage';
 
 const meta: Meta = {
   title: '反馈组件/Notify 通知栏',

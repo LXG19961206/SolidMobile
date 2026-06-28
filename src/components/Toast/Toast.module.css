@@ -1,3 +1,9 @@
+/* ===== Custom Properties ===== */
+.wrapper {
+  --sc-toast-bg: rgba(0, 0, 0, 0.7);
+  --sc-toast-text: #fff;
+}
+
 /* ===== Wrapper ===== */
 .wrapper {
   position: fixed;
@@ -23,8 +29,8 @@
   padding: 0.625rem 1rem;
   border-radius: var(--sc-border-radius-md, 8px);
   /* Toast 作为浮层，始终使用深色背景确保可读性 */
-  background: rgba(0, 0, 0, 0.85);
-  color: #fff;
+  background: var(--sc-toast-bg, rgba(0, 0, 0, 0.7));
+  color: var(--sc-toast-text, #fff);
   /* 暗色模式下加个细微边框，避免和页面背景融为一体 */
   border: 1px solid rgba(255, 255, 255, 0.06);
   font-size: var(--sc-font-size-sm, 0.875rem);

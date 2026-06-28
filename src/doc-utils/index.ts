@@ -1,4 +1,4 @@
-export { DemoBlock } from './DemoBlock';
+export { DemoBlock, GroupCodePhone } from './DemoBlock';
 export type { DemoBlockProps } from './DemoBlock';
 export { PropsTable } from './PropsTable';
 export type { PropsTableProps, PropRow } from './PropsTable';

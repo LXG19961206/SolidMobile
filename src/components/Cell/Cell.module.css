@@ -34,11 +34,12 @@
   padding: 0 1rem;
   min-height: 48px;
   box-sizing: border-box;
+	background: var(--sc-color-background, #fff);
   color: var(--sc-color-text, #323233);
   font-size: 0.9375rem;
   line-height: 1.5;
   transition: background 0.15s;
-  border-bottom: 1px solid var(--sc-color-border, #dcdee0);
+  border-bottom: 1px solid var(--sc-color-border, #ebedf0);
 }
 
 .cell:last-child {
@@ -61,6 +62,10 @@
 /* Centered */
 .center {
   align-items: center;
+}
+.flush {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* ── Cell inner layout ── */

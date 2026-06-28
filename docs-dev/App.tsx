@@ -36,6 +36,9 @@ import { ActionSheetDocPage } from './pages/components/ActionSheet/ActionSheetDo
 import { LoadingDocPage } from './pages/components/Loading/LoadingDocPage';
 import { SwitchDocPage } from './pages/components/Switch/SwitchDocPage';
 import { SwipeCellDocPage } from './pages/components/SwipeCell/SwipeCellDocPage';
+import { FormDocPage } from './pages/components/Form/FormDocPage';
+import { InputDocPage } from './pages/components/Input/InputDocPage';
+import { TextareaDocPage } from './pages/components/Textarea/TextareaDocPage';
 import { AllTokens } from '../src/design-tokens/DesignTokenShowcase';
 
 import './App.css';
@@ -111,7 +114,12 @@ const GROUPS: MenuGroup[] = [
   },
   {
     title: '表单组件',
-    items: [{ name: 'Switch 开关', key: 'switch' }],
+    items: [
+      { name: 'Form 表单', key: 'form' },
+      { name: 'Input 输入框', key: 'input' },
+      { name: 'Textarea 多行', key: 'textarea' },
+      { name: 'Switch 开关', key: 'switch' },
+    ],
   },
 ];
 
@@ -143,6 +151,9 @@ const PAGES: Record<string, Component> = {
   loading: LoadingDocPage,
   switch: SwitchDocPage,
   swipecell: SwipeCellDocPage,
+  form: FormDocPage,
+  input: InputDocPage,
+  textarea: TextareaDocPage,
 };
 
 /* ── Code Block ── */

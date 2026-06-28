@@ -1,0 +1,187 @@
+import { createSignal, type Component } from 'solid-js';
+import { Input } from '../../../../src/components/Input';
+import { Form, FormItem } from '../../../../src/components/Form';
+import { Button } from '../../../../src/components/Button';
+import { Cell, CellGroup } from '../../../../src/components/Cell';
+import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
+import type { PropRow } from '../../../../src/doc-utils';
+
+const propsData: PropRow[] = [
+  { name: 'type', type: "'text' | 'number' | 'password' | 'tel' | 'email' | 'url'", default: "'text'", required: false, desc: '输入类型。' },
+  { name: 'value', type: 'string | number', default: '—', required: false, desc: '当前值（受控）。' },
+  { name: 'onChange', type: '(value: string) => void', default: '—', required: false, desc: '值变化回调。' },
+  { name: 'defaultValue', type: 'string', default: '—', required: false, desc: '默认值（非受控）。' },
+  { name: 'placeholder', type: 'string', default: '—', required: false, desc: '占位文本。' },
+  { name: 'maxlength', type: 'number', default: '—', required: false, desc: '最大长度。' },
+  { name: 'clearable', type: 'boolean', default: 'false', required: false, desc: '显示清除按钮。' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: '禁用。' },
+  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: '只读。' },
+  { name: 'showCount', type: 'boolean', default: 'false', required: false, desc: '显示字数统计（需配合 maxlength）。' },
+  { name: 'prefix', type: 'JSX.Element', default: '—', required: false, desc: '左侧图标/文本。' },
+  { name: 'suffix', type: 'JSX.Element', default: '—', required: false, desc: '右侧图标/文本。' },
+  { name: 'align', type: "'left' | 'center' | 'right'", default: "'left'", required: false, desc: '文字对齐。' },
+  { name: 'onBlur', type: '(value: string) => void', default: '—', required: false, desc: '失焦回调。' },
+  { name: 'onFocus', type: '(value: string) => void', default: '—', required: false, desc: '聚焦回调。' },
+  { name: 'onEnter', type: '(value: string) => void', default: '—', required: false, desc: '回车回调。' },
+];
+
+const codeBasic = `<CellGroup>
+  <Cell title="文本" value={<Input placeholder="请输入" />} />
+  <Cell title="密码" value={<Input type="password" placeholder="密码" showPasswordToggle />} />
+  <Cell title="数字" value={<Input type="number" placeholder="数字" />} />
+</CellGroup>`;
+
+const codeClearable = `<CellGroup>
+  <Cell title="清除" value={<Input clearable placeholder="输入点东西试试" />} />
+  <Cell title="预设值" value={<Input clearable defaultValue="点 X 可清除" />} />
+</CellGroup>`;
+
+const codeCount = `<CellGroup>
+  <Cell title="简介" value={<Input showCount maxlength={20} placeholder="最多 20 字" />} />
+  <Cell title="签名" value={<Input showCount maxlength={50} placeholder="个性签名" />} />
+</CellGroup>`;
+
+const codeAffix = `<CellGroup>
+  <Cell title="用户名" value={<Input placeholder="请输入" prefix={<span style="color:#999">@</span>} />} />
+  <Cell title="邮箱" value={<Input placeholder="example" suffix={<span style="color:#999;font-size:0.85rem">@gmail.com</span>} />} />
+</CellGroup>`;
+
+const codeWithForm = `<Form>
+  <FormItem name="username" label="用户名" rules={[{
+    validator: v => (v as string)?.length >= 2,
+    message: '至少 2 个字符',
+  }]}>
+    <Input placeholder="请输入用户名" clearable />
+  </FormItem>
+  <Button type="primary" block nativeType="submit" text="提交" />
+</Form>`;
+
+const SmsDemo: Component = () => {
+  const [countdown, setCountdown] = createSignal(0);
+  let timer: ReturnType<typeof setInterval>;
+
+  const send = () => {
+    if (countdown() > 0) return;
+    setCountdown(60);
+    timer = setInterval(() => {
+      setCountdown(c => {
+        if (c <= 1) { clearInterval(timer); return 0; }
+        return c - 1;
+      });
+    }, 1000);
+  };
+
+  const btn = () => (
+    <span onClick={send} style={{
+      'font-size': '0.8rem', 'white-space': 'nowrap',
+      color: countdown() > 0 ? '#999' : '#1677ff',
+      cursor: countdown() > 0 ? 'default' : 'pointer',
+    }}>
+      {countdown() > 0 ? `${countdown()}s` : '发送验证码'}
+    </span>
+  );
+
+  return (
+    <CellGroup>
+      <Cell title="手机号" value={<Input type="tel" placeholder="请输入手机号" maxlength={11} suffix={btn()} />} />
+    </CellGroup>
+  );
+};
+
+const codeSms = `<CellGroup>
+  <Cell title="手机号" value={<Input type="tel" maxlength={11} suffix={btn()} />} />
+</CellGroup>`;
+
+export const InputDocPage: Component = () => (
+  <DocLayout>
+    <div style={{ padding: '16px', 'max-width': '960px' }}>
+      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Input 输入框</h1>
+      <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
+        文本输入组件。支持多种类型、清除按钮、前后缀、字数统计，可通过 FormItem 接入表单。
+      </p>
+
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>属性</h2>
+      <PropsTable rows={propsData} />
+
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>CSS 变量</h2>
+      <PropsTable rows={[
+        { name: '--sc-input-text-color', type: 'color', default: '--sc-color-text (#323233)', required: false, desc: '文字颜色。' },
+        { name: '--sc-input-placeholder-color', type: 'color', default: '--sc-color-text-secondary', required: false, desc: '占位符颜色。' },
+        { name: '--sc-input-disabled-opacity', type: 'number', default: '0.5', required: false, desc: '禁用态透明度。' },
+        { name: '--sc-input-gap', type: 'dimension', default: '6px', required: false, desc: '内部元素间距。' },
+        { name: '--sc-input-affix-color', type: 'color', default: '--sc-color-text-secondary', required: false, desc: '前后缀颜色。' },
+        { name: '--sc-input-affix-font-size', type: 'dimension', default: '0.9rem', required: false, desc: '前后缀字号。' },
+        { name: '--sc-input-clear-color', type: 'color', default: '--sc-color-text-tertiary', required: false, desc: '清除按钮颜色。' },
+        { name: '--sc-input-clear-hover-color', type: 'color', default: '--sc-color-text-secondary', required: false, desc: '清除按钮悬停色。' },
+        { name: '--sc-input-count-font-size', type: 'dimension', default: '0.75rem', required: false, desc: '计数字号。' },
+        { name: '--sc-input-count-color', type: 'color', default: '--sc-color-text-tertiary', required: false, desc: '计数颜色。' },
+        { name: '--sc-input-error-color', type: 'color', default: '#e01823', required: false, desc: '错误态波浪线颜色。' },
+      ]} />
+
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>基础类型</h2>
+      <DemoBlock title="text / password / number" code={codeBasic}>
+        <CellGroup>
+          <Cell title="文本" value={<Input placeholder="请输入" />} />
+          <Cell title="密码" value={<Input type="password" placeholder="密码" showPasswordToggle />} />
+          <Cell title="数字" value={<Input type="number" placeholder="数字" />} />
+        </CellGroup>
+      </DemoBlock>
+
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>可清除</h2>
+      <DemoBlock title="clearable" desc="输入内容后右侧显示 X 按钮，点击清空。" code={codeClearable}>
+        <CellGroup>
+          <Cell title="清除" value={<Input clearable placeholder="输入点东西试试" />} />
+          <Cell title="预设值" value={<Input clearable defaultValue="点 X 可清除" />} />
+        </CellGroup>
+      </DemoBlock>
+
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>字数统计</h2>
+      <DemoBlock title="showCount + maxlength" code={codeCount}>
+        <CellGroup>
+          <Cell title="简介" value={<Input showCount maxlength={20} placeholder="最多 20 字" />} />
+          <Cell title="签名" value={<Input showCount maxlength={50} placeholder="个性签名" />} />
+        </CellGroup>
+      </DemoBlock>
+
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>前后缀</h2>
+      <DemoBlock title="prefix / suffix" code={codeAffix}>
+        <CellGroup>
+          <Cell title="用户名" value={<Input placeholder="请输入" prefix={<span style={{ color: '#999' }}>@</span>} />} />
+          <Cell title="邮箱" value={<Input placeholder="example" suffix={<span style={{ color: '#999', 'font-size': '0.85rem' }}>@gmail.com</span>} />} />
+        </CellGroup>
+      </DemoBlock>
+
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>状态</h2>
+      <DemoBlock title="disabled / readonly / error" desc="三种状态对比。error 底部出现红色波浪线，适合独立使用时的校验反馈。" code={`<CellGroup>\n  <Cell title="禁用" value={<Input disabled value="不可编辑" />} />\n  <Cell title="只读" value={<Input readonly value="可聚焦复制" />} />\n  <Cell title="错误" value={<Input error value="格式不正确" />} />\n</CellGroup>`}>
+        <CellGroup>
+          <Cell title="禁用" value={<Input disabled value="不可编辑" />} />
+          <Cell title="只读" value={<Input readonly value="可聚焦复制" />} />
+          <Cell title="错误" value={<Input error value="格式不正确" />} />
+        </CellGroup>
+      </DemoBlock>
+
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>验证码</h2>
+      <DemoBlock title="suffix + 倒计时" desc="手机号输入框右侧挂一个发送验证码按钮，点击后 60s 倒计时。" code={codeSms}>
+        <SmsDemo />
+      </DemoBlock>
+
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>配合 Form</h2>
+      <DemoBlock title="FormItem + Input" desc="Input 通过 useFormField() 自动接入 FormItem Context，无需手动传 value/onChange。" code={codeWithForm}>
+        <Form>
+          <FormItem name="username" label="用户名" rules={[{
+            validator: (v: any) => (v as string)?.length >= 2,
+            message: '至少 2 个字符',
+          }]}>
+            <Input placeholder="请输入用户名" clearable />
+          </FormItem>
+          <FormItem name="email" label="邮箱">
+            <Input type="email" placeholder="请输入邮箱" clearable />
+          </FormItem>
+          <div style={{ padding: '12px 1rem' }}>
+            <Button type="primary" block nativeType="submit" text="提交" />
+          </div>
+        </Form>
+      </DemoBlock>
+    </div>
+  </DocLayout>
+);

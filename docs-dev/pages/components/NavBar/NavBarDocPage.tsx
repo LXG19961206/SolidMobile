@@ -50,19 +50,19 @@ export const NavBarDocPage = () => (
         </div>
       </DemoBlock>
 
-      <DemoBlock flush title="基础" desc="最简单的导航栏，只有标题。" code={'<NavBar title="页面标题" />'}>
+      <DemoBlock title="基础" desc="最简单的导航栏，只有标题。" code={'<NavBar title="页面标题" />'}>
         <div class={css.demoBox}><NavBar title="页面标题" /></div>
       </DemoBlock>
 
-      <DemoBlock flush title="返回箭头" desc="设置 backArrow 显示返回图标，onBack 处理点击。" code={'<NavBar title="详情" backArrow onBack={() => history.back()} />'}>
+      <DemoBlock title="返回箭头" desc="设置 backArrow 显示返回图标，onBack 处理点击。" code={'<NavBar title="详情" backArrow onBack={() => history.back()} />'}>
         <div class={css.demoBox}><NavBar title="详情" backArrow onBack={() => { }} /></div>
       </DemoBlock>
 
-      <DemoBlock flush title="右侧操作" desc="right 可传入按钮、图标或任意 JSX。" code={'<NavBar\n  title="编辑资料"\n  backArrow\n  right={<Button size="sm">保存</Button>}\n/>'}>
+      <DemoBlock title="右侧操作" desc="right 可传入按钮、图标或任意 JSX。" code={'<NavBar\n  title="编辑资料"\n  backArrow\n  right={<Button size="sm">保存</Button>}\n/>'}>
         <div class={css.demoBox}><NavBar title="编辑资料" backArrow right={<Button size="sm">保存</Button>} /></div>
       </DemoBlock>
 
-      <DemoBlock flush title="左右自定义" desc="left 和 right 同时自定义，适合复杂操作栏。" code={'<NavBar\n  title="消息"\n  left={<Icon name="settings" size={20} />}\n  right={<Icon name="search" size={20} />}\n/>'}>
+      <DemoBlock title="左右自定义" desc="left 和 right 同时自定义，适合复杂操作栏。" code={'<NavBar\n  title="消息"\n  left={<Icon name="settings" size={20} />}\n  right={<Icon name="search" size={20} />}\n/>'}>
         <div class={css.demoBox}><NavBar title="消息" left={<Icon name="settings" size={20} />} right={<Icon name="search" size={20} />} /></div>
       </DemoBlock>
 

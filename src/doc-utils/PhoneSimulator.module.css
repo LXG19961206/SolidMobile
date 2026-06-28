@@ -6,7 +6,7 @@
   flex-shrink: 0;
   border: 1px solid var(--sc-color-border, #e5e7eb);
   border-radius: 8px;
-  background: #fff;
+  background: #f7f8fa;
 }
 
 /* ===== Screen ===== */
@@ -14,7 +14,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #fff;
+  background: #f7f8fa;
   display: flex;
   flex-direction: column;
   /* This transform creates a new containing block for position: fixed children.

@@ -1,6 +1,6 @@
 import { createSignal, Show, useContext } from 'solid-js';
 import { Calendar } from '../../../../src/components/Calendar';
-import { Button } from '../../../../src/components/Button';
+import { Cell } from '../../../../src/components/Cell';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './CalendarDocPage.module.css';
@@ -60,8 +60,7 @@ const PopupSingle = () => {
   const [date, setDate] = createSignal<Date | null>(null);
   return (
     <>
-      <Button type="primary" text={date() ? fmt(date()!) : '选择日期'} onClick={() => setShow(true)} />
-      <Show when={date()}><span class={css.result}>{fmt(date()!)}</span></Show>
+      <Cell title="单选" value={date() ? fmt(date()!) : '请选择'} clickable onClick={() => setShow(true)} />
       <Calendar show={show()} onUpdateShow={setShow} value={date() || undefined} onChange={(v) => { setDate(v as Date); setShow(false); }} closeable teleport={pt?.()} />
     </>
   );
@@ -73,7 +72,7 @@ const PopupRange = () => {
   const [range, setRange] = createSignal<[Date, Date] | null>(null);
   return (
     <>
-      <Button type="primary" text={range() ? `${fmt(range()![0])} ~ ${fmt(range()![1])}` : '选择日期范围'} onClick={() => setShow(true)} />
+      <Cell title="范围选择" value={range() ? `${fmt(range()![0])} ~ ${fmt(range()![1])}` : '请选择'} clickable onClick={() => setShow(true)} />
       <Calendar type="range" showConfirm show={show()} onUpdateShow={setShow} value={range() || undefined} onChange={(v) => { setRange(v as [Date, Date]); }} closeable teleport={pt?.()} />
     </>
   );
@@ -85,7 +84,7 @@ const PopupColor = () => {
   const [range, setRange] = createSignal<[Date, Date] | null>(null);
   return (
     <>
-      <Button type="primary" text={range() ? `${fmt(range()![0])} ~ ${fmt(range()![1])}` : '自定义颜色'} onClick={() => setShow(true)} />
+      <Cell title="自定义颜色" value={range() ? `${fmt(range()![0])} ~ ${fmt(range()![1])}` : '请选择'} clickable onClick={() => setShow(true)} />
       <Calendar type="range" showConfirm show={show()} onUpdateShow={setShow} value={range() || undefined} onChange={(v) => setRange(v as [Date, Date])} closeable activeColor="#22c55e" dayRender={(d) => d.isToday ? <span style="font-weight:800">今</span> : <>{d.day}</>} teleport={pt?.()} />
     </>
   );
@@ -112,7 +111,7 @@ const PopupHoliday = () => {
   const [date, setDate] = createSignal<Date | null>(null);
   return (
     <>
-      <Button type="primary" text={date() ? fmt(date()!) : '节假日选择'} onClick={() => setShow(true)} />
+      <Cell title="节假日标记" value={date() ? fmt(date()!) : '请选择'} clickable onClick={() => setShow(true)} />
       <Show when={date()}><span class={css.result}>{fmt(date()!)}</span></Show>
       <Calendar
         show={show()} onUpdateShow={setShow}

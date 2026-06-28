@@ -33,6 +33,7 @@ export const Cell: Component<CellProps> = (rawProps) => {
     'size',
     'required',
     'center',
+    'flush',
     'clickable',
     'onClick',
     'class',
@@ -57,6 +58,7 @@ export const Cell: Component<CellProps> = (rawProps) => {
         styles[local.size!],
         local.clickable && styles.clickable,
         local.center && styles.center,
+        local.flush && styles.flush,
         local.class,
       )}
       style={typeof local.style === 'object' ? local.style : undefined}

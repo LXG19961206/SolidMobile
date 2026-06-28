@@ -1,0 +1,71 @@
+/* ── Custom Properties ── */
+.wrapper {
+  --sc-input-text-color: var(--sc-color-text, #323233);
+  --sc-input-placeholder-color: var(--sc-color-text-secondary, #969799);
+  --sc-input-disabled-opacity: 0.5;
+  --sc-input-gap: 6px;
+  --sc-input-affix-color: var(--sc-color-text-secondary, #969799);
+  --sc-input-affix-font-size: 0.9rem;
+  --sc-input-clear-color: var(--sc-color-text-tertiary, #afaba9);
+  --sc-input-clear-hover-color: var(--sc-color-text-secondary, #969799);
+  --sc-input-count-font-size: 0.75rem;
+  --sc-input-count-color: var(--sc-color-text-tertiary, #afaba9);
+  --sc-input-error-color: #e01823;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  gap: var(--sc-input-gap);
+  color: var(--sc-input-text-color);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  padding: 0;
+  line-height: 1.5;
+}
+.input::placeholder { color: var(--sc-input-placeholder-color); }
+
+.align-left { text-align: left; }
+.align-center { text-align: center; }
+.align-right { text-align: right; }
+
+.disabled { opacity: var(--sc-input-disabled-opacity); pointer-events: none; }
+.readonly { pointer-events: none; }
+/* error 状态作用在 wrapper 上，实际波浪线落在 input 文字下方 */
+.error .input { text-decoration: underline wavy var(--sc-input-error-color); text-underline-offset: 4px; }
+
+.prefix, .suffix {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  color: var(--sc-input-affix-color);
+  font-size: var(--sc-input-affix-font-size);
+}
+
+.clear, .toggle {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: var(--sc-input-clear-color);
+  padding: 2px;
+}
+.clear:hover, .toggle:hover { color: var(--sc-input-clear-hover-color); }
+.toggle { font-size: 0.8rem; user-select: none; }
+
+.count {
+  flex-shrink: 0;
+  font-size: var(--sc-input-count-font-size);
+  color: var(--sc-input-count-color);
+}

@@ -185,13 +185,13 @@ export const Cascader: Component<CascaderProps> = (rawProps) => {
     const newIndices = [...selectedIndices().slice(0, depth), idx];
     setSelectedIndices(newIndices);
 
-    // Build value array
+    // Build value array from actual column data (includes async-loaded children)
     const value: (string | number)[] = [];
-    let current = local.options;
-    for (const i of newIndices) {
-      if (current[i]) {
-        value.push(current[i].value);
-        current = current[i].children ?? [];
+    const cols = columns();
+    for (let d = 0; d < newIndices.length; d++) {
+      const idx = newIndices[d];
+      if (cols[d]?.[idx]) {
+        value.push(cols[d][idx].value);
       }
     }
     local.onChange?.(value);

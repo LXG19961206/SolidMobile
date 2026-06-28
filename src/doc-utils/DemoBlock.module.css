@@ -34,11 +34,15 @@
   padding: 0;
 }
 
+.phoneDemo+.phoneDemo {
+  margin-top: 0.5rem;
+}
+
 .phoneDemo+.phoneDemo::before {
   content: '';
   display: block;
   width: 80%;
-  margin: 0 auto 1.25rem;
+  margin: 0 auto 1.5rem;
   border-top: 1px solid var(--sc-color-border, #dcdee0);
 }
 
@@ -54,15 +58,26 @@
 
 .phoneDemoTitle::before {
   content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+  width: 3px;
+  height: 14px;
+  border-radius: 2px;
   background: var(--sc-color-primary, #1677ff);
   flex-shrink: 0;
 }
 
 .phoneDemoBody {
   /* demo content area */
+}
+
+.group-code-title {
+  padding: 0.5rem 1rem 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--sc-color-text-secondary, #969799);
+}
+
+:global(html.dark) .group-code-title {
+  color: #94a3b8;
 }
 
 .codeDetails {

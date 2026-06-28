@@ -3,6 +3,7 @@ import { Lazyload } from '../../../../src/components/Lazyload';
 import { Avatar } from '../../../../src/components/Avatar';
 import { Button } from '../../../../src/components/Button';
 import { Loading } from '../../../../src/components/Loading';
+import { Center } from '../../../../src/components/Center';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './LazyloadDocPage.module.css';
@@ -42,7 +43,7 @@ const DeferredContent = (props: { delay?: number; children: any }) => {
   });
 
   return (
-    <Show when={ready()} fallback={<Loading />}>
+    <Show when={ready()} fallback={<Center><Loading /></Center>}>
       {props.children}
     </Show>
   );

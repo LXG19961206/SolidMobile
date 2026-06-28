@@ -22,6 +22,8 @@ export interface CellProps {
   required?: boolean;
   /** 内容垂直居中 */
   center?: boolean;
+  /** 去除左右内边距，占满整行 */
+  flush?: boolean;
 
   // ── 交互 ──
   /** 是否可点击，默认 false。设为 true 时右侧显示箭头。 */
