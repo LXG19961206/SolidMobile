@@ -241,7 +241,7 @@ export const ListDocPage: Component = () => {
           hideTitle
           flush
         >
-          <Tabs active={activeTab()} onChange={setActiveTab}>
+          <Tabs active={activeTab()} onChange={setActiveTab} style={{ 'margin-top': '8px' }}>
             <Tab title="受控" name="controlled"><ControlledTab /></Tab>
             <Tab title="不受控" name="autoload"><AutoloadTab /></Tab>
             <Tab title="虚拟列表" name="virtual"><VirtualTab /></Tab>

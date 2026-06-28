@@ -8,18 +8,26 @@ import type { PickerOption } from '../../../../src/components/Picker/types';
 /* ── Data ── */
 
 const cityTree: PickerOption[] = [
-  { text: '北京', value: 'beijing', children: [
-    { text: '海淀区', value: 'haidian' }, { text: '朝阳区', value: 'chaoyang' }, { text: '东城区', value: 'dongcheng' },
-  ]},
-  { text: '上海', value: 'shanghai', children: [
-    { text: '浦东新区', value: 'pudong' }, { text: '静安区', value: 'jingan' },
-  ]},
-  { text: '广东', value: 'guangdong', children: [
-    { text: '深圳市', value: 'shenzhen', children: [
-      { text: '南山区', value: 'nanshan' }, { text: '福田区', value: 'futian' },
-    ]},
-    { text: '广州市', value: 'guangzhou', children: [{ text: '天河区', value: 'tianhe' }]},
-  ]},
+  {
+    text: '北京', value: 'beijing', children: [
+      { text: '海淀区', value: 'haidian' }, { text: '朝阳区', value: 'chaoyang' }, { text: '东城区', value: 'dongcheng' },
+    ]
+  },
+  {
+    text: '上海', value: 'shanghai', children: [
+      { text: '浦东新区', value: 'pudong' }, { text: '静安区', value: 'jingan' },
+    ]
+  },
+  {
+    text: '广东', value: 'guangdong', children: [
+      {
+        text: '深圳市', value: 'shenzhen', children: [
+          { text: '南山区', value: 'nanshan' }, { text: '福田区', value: 'futian' },
+        ]
+      },
+      { text: '广州市', value: 'guangzhou', children: [{ text: '天河区', value: 'tianhe' }] },
+    ]
+  },
 ];
 
 const thisYear = new Date().getFullYear();
@@ -40,24 +48,40 @@ const colsDisabled: PickerOption[][] = [[
 ]];
 
 const deepTree: PickerOption[] = [
-  { text: '电子产品', value: 'e', children: [
-    { text: '手机', value: 'phone', children: [
-      { text: '智能机', value: 'smart', children: [
-        { text: '旗舰', value: 'flagship', children: [
-          { text: '512GB', value: '512' }, { text: '1TB', value: '1tb' },
-        ]},
-      ]},
-    ]},
-  ]},
-  { text: '食品', value: 'food', children: [
-    { text: '零食', value: 'snack', children: [
-      { text: '膨化', value: 'puffed', children: [
-        { text: '原味', value: 'ori', children: [
-          { text: '小包', value: 's' }, { text: '大包', value: 'l' },
-        ]},
-      ]},
-    ]},
-  ]},
+  {
+    text: '电子产品', value: 'e', children: [
+      {
+        text: '手机', value: 'phone', children: [
+          {
+            text: '智能机', value: 'smart', children: [
+              {
+                text: '旗舰', value: 'flagship', children: [
+                  { text: '512GB', value: '512' }, { text: '1TB', value: '1tb' },
+                ]
+              },
+            ]
+          },
+        ]
+      },
+    ]
+  },
+  {
+    text: '食品', value: 'food', children: [
+      {
+        text: '零食', value: 'snack', children: [
+          {
+            text: '膨化', value: 'puffed', children: [
+              {
+                text: '原味', value: 'ori', children: [
+                  { text: '小包', value: 's' }, { text: '大包', value: 'l' },
+                ]
+              },
+            ]
+          },
+        ]
+      },
+    ]
+  },
 ];
 
 function makeFlatCols(n: number): PickerOption[][] {
@@ -107,7 +131,7 @@ const DatePickerDemo: Component = () => {
   const [val, setVal] = createSignal<(string | number)[]>([]);
   return (
     <>
-        <Cell title="Flat 年月" value={val().length ? val().join(' / ') : '请选择'} clickable onClick={() => setShow(true)} />
+      <Cell title="Flat 年月" value={val().length ? val().join(' / ') : '请选择'} clickable onClick={() => setShow(true)} />
       <Picker show={show()} onUpdateShow={setShow} columns={dateCols} title="选择年月"
         onChange={(_, v) => setVal(v)} onConfirm={(_, v) => { setVal(v); setShow(false); }}
         onCancel={() => setShow(false)} teleport={phone?.()} />
@@ -120,7 +144,7 @@ const TimePickerDemo: Component = () => {
   const [show, setShow] = createSignal(false);
   return (
     <>
-        <Cell title="时分选择" clickable onClick={() => setShow(true)} />
+      <Cell title="时分选择" clickable onClick={() => setShow(true)} />
       <Picker show={show()} onUpdateShow={setShow} columns={timeCols} title="选择时间"
         onConfirm={() => setShow(false)} onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
@@ -132,7 +156,7 @@ const DisabledPicker: Component = () => {
   const [show, setShow] = createSignal(false);
   return (
     <>
-        <Cell title="含禁用项" clickable onClick={() => setShow(true)} />
+      <Cell title="含禁用项" clickable onClick={() => setShow(true)} />
       <Picker show={show()} onUpdateShow={setShow} columns={colsDisabled} title="选项列表"
         onConfirm={() => setShow(false)} onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
@@ -144,7 +168,7 @@ const PlaceholderPicker: Component = () => {
   const [show, setShow] = createSignal(false);
   return (
     <>
-        <Cell title="占位符" clickable onClick={() => setShow(true)} />
+      <Cell title="占位符" clickable onClick={() => setShow(true)} />
       <Picker show={show()} onUpdateShow={setShow} columns={makeFlatCols(3)} title="请选择" placeholders="请选择"
         onConfirm={() => setShow(false)} onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
@@ -157,7 +181,7 @@ const DeepPicker: Component = () => {
   const [val, setVal] = createSignal<(string | number)[]>([]);
   return (
     <>
-        <Cell title="5 层级联" value={val().length ? `${val().length} 层已选` : '请选择'} clickable onClick={() => setShow(true)} />
+      <Cell title="5 层级联" value={val().length ? `${val().length} 层已选` : '请选择'} clickable onClick={() => setShow(true)} />
       <Picker show={show()} onUpdateShow={setShow} columns={deepTree} title="逐级选择"
         onChange={(_, v) => setVal(v)} onConfirm={(_, v) => { setVal(v); setShow(false); }}
         onCancel={() => setShow(false)} teleport={phone?.()} />
@@ -170,7 +194,7 @@ const ControlledPicker: Component = () => {
   const [show, setShow] = createSignal(false);
   return (
     <>
-        <Cell title="受控值（预设 北京/海淀）" clickable onClick={() => setShow(true)} />
+      <Cell title="受控值（预设 北京/海淀）" clickable onClick={() => setShow(true)} />
       <Picker show={show()} onUpdateShow={setShow} columns={cityTree} title="选择城市"
         value={['beijing', 'haidian']} onConfirm={() => setShow(false)} onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
@@ -219,25 +243,25 @@ export const PickerDocPage: Component = () => (
       <PropsTable rows={propsData} />
 
       {/* Each DemoBlock has groupCode="picker" → merged into one CellGroup in phone */}
-      <DemoBlock title="Tree 级联" desc="省→市→区三级联动。" code={codeTree} groupCode="pickerDemo">
+      <DemoBlock title="多级联动" desc="省→市→区三级联动。" code={codeTree} groupCode="多级联动">
         <CityPicker />
       </DemoBlock>
-      <DemoBlock title="Flat 年月" desc="年月独立列。" code={codeFlat} groupCode="pickerDemo">
+      <DemoBlock title="多级但不联动" desc="比如年月独立列。列之间的选择并不互相关联，采用flat模式以优化性能" code={codeFlat} groupCode="多级但不联动">
         <DatePickerDemo />
       </DemoBlock>
-      <DemoBlock title="时分选择" desc="时 / 分两列。" code={codeTime} groupCode="pickerDemo">
+      <DemoBlock title="时分选择" desc="时 / 分两列。" code={codeTime} groupCode="时分选择">
         <TimePickerDemo />
       </DemoBlock>
-      <DemoBlock title="含禁用项" desc="滚动时自动跳过 disabled 项。" code={codeDisabled} groupCode="pickerDemo">
+      <DemoBlock title="disabled选项" desc="滚动时自动跳过 disabled 项。" code={codeDisabled} groupCode="disabled选项">
         <DisabledPicker />
       </DemoBlock>
-      <DemoBlock title="占位符" desc="顶部显示 '请选择' 占位。" code={codePlaceholder} groupCode="pickerDemo">
+      <DemoBlock title="占位符" desc="顶部显示 '请选择' 占位。" code={codePlaceholder} groupCode="占位符">
         <PlaceholderPicker />
       </DemoBlock>
-      <DemoBlock title="5 层级联" desc="电子产品→手机→智能机→旗舰→容量。" code={codeDeep} groupCode="pickerDemo">
+      <DemoBlock title="理论支持无限层级" desc="电子产品→手机→智能机→旗舰→容量。" code={codeDeep} groupCode="理论支持无限层级">
         <DeepPicker />
       </DemoBlock>
-      <DemoBlock title="受控值" desc="预设 value prop。" code={codeControlled} groupCode="pickerDemo">
+      <DemoBlock title="受控值" desc="预设 value prop。" code={codeControlled} groupCode="受控值">
         <ControlledPicker />
       </DemoBlock>
 

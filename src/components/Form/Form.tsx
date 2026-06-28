@@ -136,8 +136,8 @@ export const Form: Component<FormProps> = (rawProps) => {
     local.onSubmit?.(formValue() as any);
   }
 
-  /* ── Context ── */
-  const ctx = (): any => ({
+  /* ── Context (stable reference, getters for reactive reads) ── */
+  const ctx = {
     formValue,
     setFieldValue,
     initField,
@@ -148,12 +148,12 @@ export const Form: Component<FormProps> = (rawProps) => {
     submit,
     registerRules,
     unregisterRules,
-    disabled: local.disabled,
-    readonly: local.readonly,
-    labelAlign: local.labelAlign,
-    labelWidth: local.labelWidth,
-    colon: local.colon,
-  } as any);
+    get disabled() { return local.disabled; },
+    get readonly() { return local.readonly; },
+    get labelAlign() { return local.labelAlign; },
+    get labelWidth() { return local.labelWidth; },
+    get colon() { return local.colon; },
+  };
 
   /* ── 处理 native form submit ── */
   let formEl!: HTMLFormElement;
@@ -163,7 +163,7 @@ export const Form: Component<FormProps> = (rawProps) => {
   };
 
   return (
-    <FormContext.Provider value={ctx()}>
+    <FormContext.Provider value={ctx}>
       <form
         ref={formEl!}
         class={cn(local.class)}

@@ -45,6 +45,10 @@
 /* error 状态作用在 wrapper 上，实际波浪线落在 input 文字下方 */
 .error .input { text-decoration: underline wavy var(--sc-input-error-color); text-underline-offset: 4px; }
 
+.sm { min-height: 32px; }
+.md { min-height: 40px; }
+.lg { height: 48px; }
+
 .prefix, .suffix {
   flex-shrink: 0;
   display: flex;

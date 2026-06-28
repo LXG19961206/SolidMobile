@@ -2,6 +2,7 @@ import type { JSX } from 'solid-js';
 
 export type InputType = 'text' | 'number' | 'password' | 'tel' | 'email' | 'url';
 export type InputAlign = 'left' | 'center' | 'right';
+export type InputSize = 'sm' | 'md' | 'lg';
 
 export interface InputProps {
   /** 输入类型，默认 'text' */
@@ -30,7 +31,9 @@ export interface InputProps {
   prefix?: JSX.Element;
   /** 右侧图标或文本 */
   suffix?: JSX.Element;
-  /** 输入框高度（如 '48px'），默认跟随 Cell/FormItem */
+  /** 尺寸，sm=32px / md=40px / lg=48px，覆盖 height 默认值 */
+  size?: InputSize;
+  /** 输入框高度（如 '48px'），覆盖 size 的默认高度 */
   height?: string;
   /** 是否显示字数统计（需配合 maxlength） */
   showCount?: boolean;

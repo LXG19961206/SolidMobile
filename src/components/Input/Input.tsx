@@ -24,7 +24,7 @@ export const Input: Component<InputProps> = (rawProps) => {
   const [local, rest] = splitProps(props, [
     'type', 'value', 'onChange', 'defaultValue',
     'placeholder', 'maxlength', 'disabled', 'readonly', 'align',
-    'clearable', 'showPasswordToggle', 'prefix', 'suffix', 'height',
+    'clearable', 'showPasswordToggle', 'prefix', 'suffix', 'size', 'height',
     'showCount', 'onBlur', 'onFocus', 'onEnter', 'onClear', 'error',
     'class', 'style', 'id', 'name', 'autofocus',
   ]);
@@ -108,6 +108,7 @@ export const Input: Component<InputProps> = (rawProps) => {
     <div
       class={cn(
         styles.wrapper,
+        local.size && styles[local.size!],
         local.disabled && styles.disabled,
         local.readonly && styles.readonly,
         local.error && styles.error,

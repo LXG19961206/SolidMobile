@@ -4,7 +4,7 @@ export const messages: LocaleMessages = {
   'zh-CN': {
     designTokens: {
       title: '设计规范',
-      intro: '本文档展示组件库的全局设计规范。所有值均从 defaultConfig 读取，用户可通过 <ProviderConfig> 覆盖。',
+      intro: '本文档展示组件库的全局设计规范，拥有一套默认配置，开箱即用，用户可通过 <ProviderConfig> 覆盖。',
       colors: {
         title: '色彩系统',
         stateBase: 'Base',

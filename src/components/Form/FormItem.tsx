@@ -69,19 +69,19 @@ export const FormItem: Component<FormItemProps> = (rawProps) => {
     }
   }
 
-  /* ── Field Context ── */
-  const fieldCtx = (): FormFieldContextValue => ({
-    name: local.name,
-    value: fieldValue(),
+  /* ── Field Context (stable reference, getters for reactive reads) ── */
+  const fieldCtx: FormFieldContextValue = {
+    get name() { return local.name; },
+    get value() { return fieldValue(); },
     onChange,
     onBlur,
-    error: fieldErr(),
-    required: local.required,
-    disabled: form?.disabled,
-    readonly: form?.readonly,
-  });
+    get error() { return fieldErr(); },
+    get required() { return local.required; },
+    get disabled() { return form?.disabled; },
+    get readonly() { return form?.readonly; },
+  };
 
-  /* ── 标签 ── */
+  /* ── 标签 ──*/
   const label = () => {
     if (!local.label) return undefined;
     return form?.colon ? `${local.label}:` : local.label;
@@ -98,7 +98,7 @@ export const FormItem: Component<FormItemProps> = (rawProps) => {
   const useFlex = () => labelOnTop() || local.contentFlex || local.labelWidth;
 
   return (
-    <FormFieldContext.Provider value={fieldCtx()}>
+    <FormFieldContext.Provider value={fieldCtx}>
       <Show
         when={useFlex()}
         fallback={
@@ -121,7 +121,7 @@ export const FormItem: Component<FormItemProps> = (rawProps) => {
                   {local.required && <span style={{ color: 'var(--sc-color-danger, #e01823)' }}> *</span>}
                 </div>
               </Show>
-              <div style={{ flex: local.contentFlex ? 1 : undefined, 'min-width': 0 }}>{local.children}</div>
+              <div style={{ flex: local.contentFlex ? 1 : undefined, 'min-width': 0, display: local.contentFlex ? 'flex' : undefined }}>{local.children}</div>
             </>
           ) : (
             /* side-by-side with configurable label width + content flex */
@@ -139,7 +139,7 @@ export const FormItem: Component<FormItemProps> = (rawProps) => {
                   {local.required && <span style={{ color: 'var(--sc-color-danger, #e01823)' }}> *</span>}
                 </div>
               </Show>
-              <div style={{ flex: local.contentFlex ? 1 : undefined, 'min-width': 0 }}>{local.children}</div>
+              <div style={{ flex: local.contentFlex ? 1 : undefined, 'min-width': 0, display: local.contentFlex ? 'flex' : undefined }}>{local.children}</div>
             </div>
           )}
           <Show when={description()}>

@@ -1,12 +1,28 @@
 /* ===== Phone Frame ===== */
 .frame {
+  position: relative;
   width: 375px;
-  height: 667px;
+  height: 720px;
   overflow: hidden;
   flex-shrink: 0;
-  border: 1px solid var(--sc-color-border, #e5e7eb);
-  border-radius: 8px;
+  border: 4px solid #1a1a1a;
+  border-radius: 44px;
   background: #f7f8fa;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== Notch ===== */
+.frame::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 30px;
+  background: #1a1a1a;
+  border-radius: 0 0 16px 16px;
+  z-index: 10;
 }
 
 /* ===== Screen ===== */
@@ -20,6 +36,7 @@
   /* This transform creates a new containing block for position: fixed children.
      Overlay, ActionSheet etc. will be trapped inside the phone frame. */
   transform: translateZ(0);
+  padding-top: 8px;
 }
 :global(html.dark) .screen {
   background: #1a1d21;

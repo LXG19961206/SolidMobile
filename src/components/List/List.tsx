@@ -189,6 +189,13 @@ export function List<I>(rawProps: ListProps<I>) {
     });
   };
 
+  // ── Re-check after loading completes ──
+  createEffect(() => {
+    if (loading()) return;
+    // loading just finished or data changed — check if we need more
+    checkBottom();
+  });
+
   // ── Container height tracking (virtual mode) ──
   onMount(() => {
     if (isVirtual() && containerRef) {

@@ -81,7 +81,7 @@ export const NavBar: Component<NavBarProps> = (rawProps) => {
   return (
     <>
       <Show when={local.fixed && local.placeholder}>
-        <div class={styles.placeholder} style={{ height: typeof local.height === 'number' ? `${local.height}px` : local.height }} />
+        <div class={styles.placeholder} style={{ height: typeof local.height === 'number' ? `${local.height}px` : local.height, 'padding-top': 'var(--sc-safe-area-top, 0px)' }} />
       </Show>
       {bar}
     </>

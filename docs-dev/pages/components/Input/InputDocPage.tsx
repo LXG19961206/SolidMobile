@@ -1,5 +1,6 @@
 import { createSignal, type Component } from 'solid-js';
 import { Input } from '../../../../src/components/Input';
+import { Icon } from '../../../../src/components/Icon';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
@@ -45,6 +46,10 @@ const codeAffix = `<CellGroup>
   <Cell title="用户名" value={<Input placeholder="请输入" prefix={<span style="color:#999">@</span>} />} />
   <Cell title="邮箱" value={<Input placeholder="example" suffix={<span style="color:#999;font-size:0.85rem">@gmail.com</span>} />} />
 </CellGroup>`;
+
+const codeSearch = `
+        <Input placeholder="搜索文章" clearable size="md" prefix={<Icon name="search" color="#999" />} style={{ 'border-radius': '16px', border: 'none', padding: '0 16px' }} />
+`;
 
 const codeWithForm = `<Form>
   <FormItem name="username" label="用户名" rules={[{
@@ -150,6 +155,10 @@ export const InputDocPage: Component = () => (
           <Cell title="邮箱" value={<Input placeholder="example" suffix={<span style={{ color: '#999', 'font-size': '0.85rem' }}>@gmail.com</span>} />} />
         </CellGroup>
       </DemoBlock>
+      <DemoBlock title="搜索框" desc="prefix + clearable 实现搜索输入框。" code={codeSearch}>
+        <Input placeholder="搜索文章" clearable size="md" prefix={<Icon name="search" color="#999" />} style={{ 'border-radius': '16px', border: 'none', padding: '0 16px' }} />
+      </DemoBlock>
+
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>状态</h2>
       <DemoBlock title="disabled / readonly / error" desc="三种状态对比。error 底部出现红色波浪线，适合独立使用时的校验反馈。" code={`<CellGroup>\n  <Cell title="禁用" value={<Input disabled value="不可编辑" />} />\n  <Cell title="只读" value={<Input readonly value="可聚焦复制" />} />\n  <Cell title="错误" value={<Input error value="格式不正确" />} />\n</CellGroup>`}>

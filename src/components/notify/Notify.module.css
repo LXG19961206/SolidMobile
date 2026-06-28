@@ -20,7 +20,7 @@
 }
 
 .top {
-  top: 0;
+  top: var(--sc-safe-area-top, 0px);
 }
 
 .bottom {

@@ -6,6 +6,8 @@ import styles from './PhoneSimulator.module.css';
 export interface PhoneSimulatorProps {
   children?: any;
   class?: string;
+  /** 隐藏顶部标题栏 */
+  hideTitle?: boolean;
 }
 
 function getTitle(): string {
@@ -33,10 +35,13 @@ function getTitle(): string {
  */
 export function PhoneSimulator(props: PhoneSimulatorProps) {
   const title = getTitle();
+  /** NavBar 页面自身有 fixed 导航，隐藏模拟器标题避免冲突 */
+  const isNavPage = () => typeof window !== 'undefined' && window.location.hash.includes('navbar');
+  const showTitle = () => title && !props.hideTitle && !isNavPage();
   return (
     <div class={cn(styles.frame, props.class)}>
-      <div class={styles.screen}>
-        <Show when={title}>
+      <div class={styles.screen} style="--sc-safe-area-top: 32px; --sc-safe-area-bottom: 0px;">
+        <Show when={showTitle()}>
           <NavBar title={title} fixed border placeholder />
         </Show>
         <div class={styles.scroll}>

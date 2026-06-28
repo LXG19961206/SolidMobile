@@ -39,6 +39,14 @@ import { SwipeCellDocPage } from './pages/components/SwipeCell/SwipeCellDocPage'
 import { FormDocPage } from './pages/components/Form/FormDocPage';
 import { InputDocPage } from './pages/components/Input/InputDocPage';
 import { TextareaDocPage } from './pages/components/Textarea/TextareaDocPage';
+import { RadioDocPage } from './pages/components/Radio/RadioDocPage';
+import { CheckboxDocPage } from './pages/components/Checkbox/CheckboxDocPage';
+import { DatePickerDocPage } from './pages/components/DatePicker/DatePickerDocPage';
+import { CityPickerDocPage } from './pages/components/CityPicker/CityPickerDocPage';
+import { RateDocPage } from './pages/components/Rate/RateDocPage';
+import { StepperDocPage } from './pages/components/Stepper/StepperDocPage';
+import { SafeAreaDocPage } from './pages/components/SafeArea/SafeAreaDocPage';
+import { SliderDocPage } from './pages/components/Slider/SliderDocPage';
 import { AllTokens } from '../src/design-tokens/DesignTokenShowcase';
 
 import './App.css';
@@ -70,6 +78,7 @@ const GROUPS: MenuGroup[] = [
       { name: 'Center 居中', key: 'center' },
       { name: 'Divider 分割线', key: 'divider' },
       { name: 'Layout 布局', key: 'layout' },
+      { name: 'SafeArea 安全区域', key: 'safearea' },
     ],
   },
   {
@@ -99,6 +108,8 @@ const GROUPS: MenuGroup[] = [
       { name: 'Picker 滚轮选择', key: 'picker' },
       { name: 'Calendar 日历', key: 'calendar' },
       { name: 'Cascader 级联选择', key: 'cascader' },
+      { name: 'DatePicker 日期选择', key: 'datepicker' },
+      { name: 'CityPicker 城市选择', key: 'citypicker' },
     ],
   },
   {
@@ -118,7 +129,12 @@ const GROUPS: MenuGroup[] = [
       { name: 'Form 表单', key: 'form' },
       { name: 'Input 输入框', key: 'input' },
       { name: 'Textarea 多行', key: 'textarea' },
+      { name: 'Radio 单选框', key: 'radio' },
+      { name: 'Checkbox 复选框', key: 'checkbox' },
       { name: 'Switch 开关', key: 'switch' },
+      { name: 'Rate 评分', key: 'rate' },
+      { name: 'Stepper 步进器', key: 'stepper' },
+      { name: 'Slider 滑块', key: 'slider' },
     ],
   },
 ];
@@ -154,6 +170,14 @@ const PAGES: Record<string, Component> = {
   form: FormDocPage,
   input: InputDocPage,
   textarea: TextareaDocPage,
+  radio: RadioDocPage,
+  checkbox: CheckboxDocPage,
+  datepicker: DatePickerDocPage,
+  citypicker: CityPickerDocPage,
+  rate: RateDocPage,
+  stepper: StepperDocPage,
+  safearea: SafeAreaDocPage,
+  slider: SliderDocPage,
 };
 
 /* ── Code Block ── */
@@ -409,7 +433,7 @@ const ConfigDocPage: Component = () => (
   <div class="guide-card">
     <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 0.5rem' }}>ConfigProvider</h1>
     <p style={{ color: '#6b7280', margin: '0 0 2rem' }}>
-      全局配置提供者。放在应用根节点，深层合并默认配置，注入 CSS 变量到 &lt;head&gt;，
+      全局配置提供者。放在应用根节点，深层合并默认配置，注入 CSS 变量，
       并通过 Solid Context 向子组件提供主题、排版、圆角、语言等全局设置。
       不使用时组件按 defaultConfig 运行，无需额外配置。
     </p>
