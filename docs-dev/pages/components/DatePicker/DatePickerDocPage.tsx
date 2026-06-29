@@ -56,7 +56,6 @@ const codeForm = `<Form onSubmit={(v) => { ... }}>
 
 const BasicDemo: Component = () => {
   const phone = useContext(PhoneTargetContext);
-  window.phone = phone;
   const [val, setVal] = createSignal('');
   return (
     <DatePicker value={val()} onChange={setVal} placeholder="点击选择日期" teleport={phone?.()} />
@@ -67,7 +66,6 @@ const BasicDemo: Component = () => {
 
 const RangeDemo: Component = () => {
   const phone = useContext(PhoneTargetContext);
-  window.phone = phone;
   const [val, setVal] = createSignal('');
   return (
     <DatePicker
