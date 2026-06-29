@@ -52,8 +52,11 @@ export const Select: Component<SelectProps> = (rawProps) => {
     if (v !== undefined) setInnerVal(v);
   });
   createEffect(() => {
-    if (field && field.value !== undefined && field.value !== '') {
+    if (!field) return;
+    if (field.value !== undefined && field.value !== null) {
       setInnerVal(field.value as string | number);
+    } else {
+      setInnerVal(undefined);
     }
   });
 

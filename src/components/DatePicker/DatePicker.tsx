@@ -72,10 +72,15 @@ export const DatePicker: Component<DatePickerProps> = (rawProps) => {
   });
 
   createEffect(() => {
-    if (field && typeof field.value === 'string') {
-      const parsed = parseDate(field.value);
-      if (parsed) { setYear(parsed[0]); setMonth(parsed[1]); setDay(parsed[2]); }
+    if (!field) return;
+    const v = field.value;
+    if (v && typeof v === 'string') {
+      const parsed = parseDate(v);
+      if (parsed) { setYear(parsed[0]); setMonth(parsed[1]); setDay(parsed[2]); return; }
     }
+    // 值为空或非有效日期 → 重置为今天
+    const t = new Date();
+    setYear(t.getFullYear()); setMonth(t.getMonth() + 1); setDay(t.getDate());
   });
 
   /* ── Clamp day when year/month changes ── */

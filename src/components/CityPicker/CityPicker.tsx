@@ -59,7 +59,9 @@ export const CityPicker: Component<CityPickerProps> = (rawProps) => {
     if (local.value) setInnerVal(local.value);
   });
   createEffect(() => {
-    if (field && Array.isArray(field.value)) setInnerVal(field.value);
+    if (!field) return;
+    if (Array.isArray(field.value)) setInnerVal(field.value);
+    else setInnerVal([]);
   });
 
   /* ── Display text ── */
