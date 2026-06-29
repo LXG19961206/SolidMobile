@@ -37,11 +37,11 @@
 }
 
 .actionsLeft {
-  left: 0;
+  left: -2px;
 }
 
 .actionsRight {
-  right: 0;
+  right: -2px;
 }
 
 .action {

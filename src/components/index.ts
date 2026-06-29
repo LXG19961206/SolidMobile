@@ -106,5 +106,8 @@ export type { StepperProps } from './Stepper';
 export { Slider } from './Slider';
 export type { SliderProps } from './Slider';
 
+export { Select } from './Select';
+export type { SelectProps } from './Select';
+
 export { SafeArea } from './SafeArea';
 export type { SafeAreaProps } from './SafeArea';

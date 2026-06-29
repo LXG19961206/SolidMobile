@@ -39,6 +39,10 @@ export interface ColorTokens {
   warningDisabled: string;
   warningPale: string;
   info: string;
+  infoHover: string;
+  infoActive: string;
+  infoDisabled: string;
+  infoPale: string;
   // Focus ring
   focus: string;
 }

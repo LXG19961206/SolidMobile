@@ -14,7 +14,7 @@
 }
 
 .cells {
-  background: var(--sc-color-background, #fff);
+  background: var(--sc-color-cell-bg, #fff);
 }
 
 .card {
@@ -27,6 +27,11 @@
   border-radius: inherit;
 }
 
+:global(html.dark) .cells,
+:global(html.dark) .cell {
+  --sc-color-cell-bg: #1a1d21;
+}
+
 /* ── Cell ── */
 .cell {
   display: flex;
@@ -34,7 +39,7 @@
   padding: 0 1rem;
   min-height: 48px;
   box-sizing: border-box;
-	background: var(--sc-color-background, #fff);
+	background: var(--sc-color-cell-bg, #fff);
   color: var(--sc-color-text, #323233);
   font-size: 0.9375rem;
   line-height: 1.5;
@@ -101,6 +106,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.descriptionError {
+  color: var(--sc-color-danger, #e01823);
 }
 
 .value {

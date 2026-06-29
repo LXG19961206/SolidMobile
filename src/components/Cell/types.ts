@@ -10,6 +10,8 @@ export interface CellProps {
   value?: string | JSX.Element;
   /** 标题下方描述 */
   description?: string;
+  /** 描述是否为错误状态（文字变红色） */
+  descriptionError?: boolean;
   /** 自定义内容（设置后 title / value / description 被忽略） */
   children?: JSX.Element;
 

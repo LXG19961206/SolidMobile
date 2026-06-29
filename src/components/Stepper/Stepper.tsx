@@ -13,7 +13,7 @@ const defaultProps: Partial<StepperProps> = {
   max: Infinity,
   step: 1,
   decimalLength: 0,
-  buttonSize: 28,
+  buttonSize: 32,
   inputWidth: 50,
   disabled: false,
   inputDisabled: false,
@@ -61,9 +61,10 @@ export const Stepper: Component<StepperProps> = (rawProps) => {
   }, { defer: false }));
 
   createEffect(on(() => field?.value, (v) => {
-    if (field && typeof v === 'number') {
-      setInnerVal(v);
-      setInputText(String(v));
+    if (field) {
+      const n = typeof v === 'number' ? v : 0;
+      setInnerVal(n);
+      setInputText(String(n));
     }
   }, { defer: false }));
 

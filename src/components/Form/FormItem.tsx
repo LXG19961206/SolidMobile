@@ -107,12 +107,13 @@ export const FormItem: Component<FormItemProps> = (rawProps) => {
             value={local.children as any}
             required={local.required}
             description={description()}
+            descriptionError={!!fieldErr()}
             center
             class={local.class}
           />
         }
       >
-        <div class={local.class} style={{ 'padding': '4px 0' }}>
+        <div class={local.class} style={{ padding: '4px 0 4px 1rem', background: 'var(--sc-color-cell-bg, #fff)', 'border-bottom': '1px solid var(--sc-color-border, #ebedf0)' }}>
           {labelOnTop() ? (
             <>
               <Show when={local.label}>
@@ -121,7 +122,7 @@ export const FormItem: Component<FormItemProps> = (rawProps) => {
                   {local.required && <span style={{ color: 'var(--sc-color-danger, #e01823)' }}> *</span>}
                 </div>
               </Show>
-              <div style={{ flex: local.contentFlex ? 1 : undefined, 'min-width': 0, display: local.contentFlex ? 'flex' : undefined }}>{local.children}</div>
+              <div style={{ flex: local.contentFlex ? 1 : undefined, 'min-width': 0, display: local.contentFlex ? 'flex' : undefined, 'justify-content': local.contentFlex ? 'flex-end' : undefined }}>{local.children}</div>
             </>
           ) : (
             /* side-by-side with configurable label width + content flex */
@@ -139,7 +140,7 @@ export const FormItem: Component<FormItemProps> = (rawProps) => {
                   {local.required && <span style={{ color: 'var(--sc-color-danger, #e01823)' }}> *</span>}
                 </div>
               </Show>
-              <div style={{ flex: local.contentFlex ? 1 : undefined, 'min-width': 0, display: local.contentFlex ? 'flex' : undefined }}>{local.children}</div>
+              <div style={{ flex: local.contentFlex ? 1 : undefined, 'min-width': 0, display: local.contentFlex ? 'flex' : undefined, 'justify-content': local.contentFlex ? 'flex-end' : undefined }}>{local.children}</div>
             </div>
           )}
           <Show when={description()}>

@@ -103,7 +103,7 @@ const defaultProps: Partial<PickerProps> = {
   visibleItemCount: 7,
   ratio: 1.5,
   swipeDuration: 1,
-  title: '请选择',
+  title: undefined,
 };
 
 /* ══════════════════════════════════════════════════════════════════
@@ -161,6 +161,7 @@ export const Picker: Component<PickerProps> = (rawProps) => {
   const isZhCN = () => locale() === 'zh-CN';
   const cancelLabel = () => local.cancelText ?? (isZhCN() ? '取消' : 'Cancel');
   const confirmLabel = () => local.confirmText ?? (isZhCN() ? '确认' : 'Confirm');
+  const titleLabel = () => local.title ?? (isZhCN() ? '请选择' : 'Please select');
 
   /* ── Line Height ── */
   const lineHeight = (): number => {
@@ -584,7 +585,7 @@ export const Picker: Component<PickerProps> = (rawProps) => {
             <button class={styles.cancelBtn} onClick={cancel}>
               {cancelLabel()}
             </button>
-            <span class={styles.title}>{local.title}</span>
+            <span class={styles.title}>{titleLabel()}</span>
             <button class={styles.confirmBtn} onClick={confirm}>
               {confirmLabel()}
             </button>

@@ -145,6 +145,7 @@ export const DatePicker: Component<DatePickerProps> = (rawProps) => {
     const formatted = formatDate(y, m, clampDay(y, m, d));
     local.onChange?.(formatted);
     local.onConfirm?.(formatted);
+    if (field) field.onChange(formatted);
     updateShow(false);
   }
 

@@ -57,7 +57,7 @@ export const Rate: Component<RateProps> = (rawProps) => {
   }, { defer: false }));
 
   createEffect(on(() => field?.value, (v) => {
-    if (field && typeof v === 'number') setInternalVal(v);
+    if (field) setInternalVal(typeof v === 'number' ? v : 0);
   }, { defer: false }));
 
   const currentVal = () => (local.value !== undefined ? local.value : internalVal());
@@ -127,17 +127,16 @@ export const Rate: Component<RateProps> = (rawProps) => {
                 />
               </span>
 
-              {/* ── 上层：品牌色裁剪，与底层同路径保证对齐 ── */}
+              {/* ── 上层：品牌色裁剪，clip-path 精确切半 ── */}
               <span
                 class={styles.layer}
                 style={{
-                  overflow: 'hidden',
-                  width: currentVal() >= idx + 1
-                    ? '100%'
+                  'clip-path': currentVal() >= idx + 1
+                    ? 'none'
                     : local.allowHalf && currentVal() >= idx + HALF
-                      ? '50%'
-                      : '0%',
-                  transition: 'width 0.1s',
+                      ? 'inset(0 50% 0 0)'
+                      : 'inset(0 100% 0 0)',
+                  transition: 'clip-path 0.1s',
                 }}
               >
                 <Icon

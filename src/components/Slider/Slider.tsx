@@ -56,6 +56,7 @@ export const Slider: Component<SliderProps> = (rawProps) => {
     if (!field || v === undefined || v === null) return;
     if (typeof v === 'number') { setVals([v]); updateUI([v]); }
     else if (Array.isArray(v)) { setVals(v.map(Number)); updateUI(v.map(Number)); }
+    else { setVals([0]); updateUI([0]); }
   }, { defer: false }));
 
   const currentVals = () => {

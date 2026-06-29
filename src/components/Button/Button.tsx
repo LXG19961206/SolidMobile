@@ -1,6 +1,6 @@
 import { splitProps, mergeProps, type Component, type JSX } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
-import { cn, contrastText } from '../../utils';
+import { cn, contrastText, deriveColorSet } from '../../utils';
 import { Icon } from '../Icon';
 import type { ButtonProps } from './types';
 import styles from './Button.module.css';
@@ -91,14 +91,16 @@ export const Button: Component<ButtonProps> = (rawProps) => {
     );
 
   // --- Inline styles for custom color overrides ---
+  let colorDerived: ReturnType<typeof deriveColorSet> | null = null;
   const inlineStyle = (): JSX.CSSProperties => {
     const s: JSX.CSSProperties = {};
     if (typeof local.style === 'string') return s;
     if (local.style && typeof local.style === 'object') Object.assign(s, local.style as JSX.CSSProperties);
     if (local.color) {
+      colorDerived = deriveColorSet(local.color);
       s['--_btn-custom-bg'] = local.color;
-      if (local.variant === 'solid') s['background-color'] = local.color;
-      // Auto-compute contrasting text color when user doesn't specify one
+      s['background-color'] = local.color;
+      s['border-color'] = local.color;
       if (!local.textColor) {
         const autoText = contrastText(local.color);
         s['--_btn-custom-text'] = autoText;
@@ -149,6 +151,14 @@ export const Button: Component<ButtonProps> = (rawProps) => {
           })}
       class={classes()}
       style={inlineStyle()}
+      ref={(el: Element) => {
+        if (!colorDerived) return;
+        const d = colorDerived;
+        (el as HTMLElement).style.setProperty('--sc-color-primary-hover', d.hover);
+        (el as HTMLElement).style.setProperty('--sc-color-primary-active', d.active);
+        (el as HTMLElement).style.setProperty('--sc-color-primary-disabled', d.disabled);
+        (el as HTMLElement).style.setProperty('--sc-color-primary-pale', d.pale);
+      }}
       onClick={handleClick}
       {...rest}
     >

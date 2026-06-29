@@ -146,12 +146,12 @@
   border-color: var(--_btn-custom-bg, var(--sc-color-info, #1677ff));
 }
 .info:hover:not(:disabled):not([aria-disabled="true"]) {
-  background-color: var(--sc-color-primary-hover, #4995ff);
-  border-color: var(--sc-color-primary-hover, #4995ff);
+  background-color: var(--sc-color-info-hover, #3678e0);
+  border-color: var(--sc-color-info-hover, #3678e0);
 }
 .info:active:not(:disabled):not([aria-disabled="true"]) {
-  background-color: var(--sc-color-primary-active, #005ee2);
-  border-color: var(--sc-color-primary-active, #005ee2);
+  background-color: var(--sc-color-info-active, #1a4d8a);
+  border-color: var(--sc-color-info-active, #1a4d8a);
 }
 
 /* ==============================================================
@@ -167,51 +167,52 @@
 /* Each type gets its own text/border color when combined with outline */
 .outline.primary {
   color: var(--_btn-custom-text, var(--sc-color-primary, #1677ff));
-  border-color: var(--sc-color-primary, #1677ff);
+  border-color: var(--_btn-custom-bg, var(--sc-color-primary, #1677ff));
 }
 .outline.primary:hover:not(:disabled):not([aria-disabled="true"]) {
   background-color: var(--sc-color-primary-pale, #dbe2eb);
 }
 .outline.secondary {
   color: var(--_btn-custom-text, var(--sc-color-secondary, #969799));
-  border-color: var(--sc-color-secondary, #969799);
+  border-color: var(--_btn-custom-bg, var(--sc-color-secondary, #969799));
 }
 .outline.secondary:hover:not(:disabled):not([aria-disabled="true"]) {
   background-color: var(--sc-color-secondary-pale, #e5e5e5);
 }
 .outline.success {
   color: var(--_btn-custom-text, var(--sc-color-success, #00d35b));
-  border-color: var(--sc-color-success, #00d35b);
+  border-color: var(--_btn-custom-bg, var(--sc-color-success, #00d35b));
 }
 .outline.success:hover:not(:disabled):not([aria-disabled="true"]) {
   background-color: var(--sc-color-success-pale, #cee5d8);
 }
 .outline.warning {
   color: var(--_btn-custom-text, var(--sc-color-warning, #ff9162));
-  border-color: var(--sc-color-warning, #ff9162);
+  border-color: var(--_btn-custom-bg, var(--sc-color-warning, #ff9162));
 }
 .outline.warning:hover:not(:disabled):not([aria-disabled="true"]) {
   background-color: var(--sc-color-warning-pale, #f1e9e5);
 }
 .outline.danger {
   color: var(--_btn-custom-text, var(--sc-color-danger, #fc000a));
-  border-color: var(--sc-color-danger, #fc000a);
+  border-color: var(--_btn-custom-bg, var(--sc-color-danger, #fc000a));
 }
 .outline.danger:hover:not(:disabled):not([aria-disabled="true"]) {
   background-color: var(--sc-color-danger-pale, #e8d5d6);
 }
 .outline.info {
   color: var(--_btn-custom-text, var(--sc-color-info, #1677ff));
-  border-color: var(--sc-color-info, #1677ff);
+  border-color: var(--_btn-custom-bg, var(--sc-color-info, #1677ff));
 }
 .outline.info:hover:not(:disabled):not([aria-disabled="true"]) {
-  background-color: var(--sc-color-primary-pale, #dbe2eb);
+  background-color: var(--sc-color-info-pale, #dbe2eb);
 }
 
 /* --- ghost — transparent bg, no border, colored text, hover shows subtle bg --- */
 .ghost {
   background-color: transparent;
   border-color: transparent;
+  border-style: none;
 }
 .ghost.primary {
   color: var(--_btn-custom-text, var(--sc-color-primary, #1677ff));
@@ -247,7 +248,7 @@
   color: var(--_btn-custom-text, var(--sc-color-info, #1677ff));
 }
 .ghost.info:hover:not(:disabled):not([aria-disabled="true"]) {
-  background-color: var(--sc-color-primary-pale, #dbe2eb);
+  background-color: var(--sc-color-info-pale, #dbe2eb);
 }
 
 /* ==============================================================

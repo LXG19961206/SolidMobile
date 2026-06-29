@@ -1,4 +1,4 @@
-import { createSignal, type Accessor, type Setter } from 'solid-js';
+import { createSignal, onMount, type Accessor, type Setter } from 'solid-js';
 
 export interface UseControllableStateOptions<T> {
   /** Controlled value (if provided, component is controlled) */
@@ -47,4 +47,29 @@ export function useControllableState<T>(
   }) as unknown as Setter<T>;
 
   return [currentValue, setValue];
+}
+
+/**
+ * 禁止移动端双指缩放和双击缩放。
+ * 在文档或移动端 Web 应用的根组件中调用一次即可。
+ *
+ * @example
+ * ```tsx
+ * function App() {
+ *   useDisableZoom();
+ *   return <div>...</div>;
+ * }
+ * ```
+ */
+export function useDisableZoom() {
+  onMount(() => {
+    const meta = document.querySelector('meta[name="viewport"]');
+    if (!meta) {
+      const m = document.createElement('meta');
+      m.name = 'viewport';
+      m.content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no';
+      document.head.appendChild(m);
+    }
+    document.documentElement.style.touchAction = 'manipulation';
+  });
 }

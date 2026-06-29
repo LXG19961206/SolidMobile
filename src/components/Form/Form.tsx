@@ -1,7 +1,7 @@
 import {
   createSignal, createMemo, mergeProps, splitProps,
   type Component,
-  onCleanup,
+  onCleanup, onMount,
 } from 'solid-js';
 import { cn } from '../../utils';
 import { FormContext } from './context';
@@ -29,7 +29,7 @@ export const Form: Component<FormProps> = (rawProps) => {
     'validateOnChange', 'validateOnBlur',
     'disabled', 'readonly',
     'labelAlign', 'labelWidth', 'colon',
-    'class', 'style', 'children',
+    'class', 'style', 'children', 'ref',
   ]);
 
   /* ── 值管理 ── */
@@ -49,8 +49,21 @@ export const Form: Component<FormProps> = (rawProps) => {
     }
   };
 
+  function resetFormValue() {
+    const base = local.defaultValue ? { ...local.defaultValue } : {} as FormValue;
+    // 所有已注册的字段恢复为其初始默认值
+    fieldDefaults.forEach((defaultVal, name) => {
+      if (!(name in base)) base[name] = defaultVal;
+    });
+    setFormValue(base);
+    setFieldErrs({});
+  }
+
   /* ── 字段错误 ── */
   const [fieldErrs, setFieldErrs] = createSignal<Record<string, string | null>>({});
+
+  /* ── 字段默认值记录（用于重置） ── */
+  const fieldDefaults = new Map<string, unknown>();
 
   /* ── 校验规则注册 ── */
   const ruleMap: RuleMap = new Map();
@@ -76,14 +89,14 @@ export const Form: Component<FormProps> = (rawProps) => {
   }
 
   function initField(name: string, defaultValue?: unknown) {
+    // 记录该字段的初始默认值，用于 reset
+    if (!fieldDefaults.has(name)) {
+      fieldDefaults.set(name, defaultValue ?? '');
+    }
     const current = formValue();
     if (!(name in current)) {
       const next = { ...current };
-      if (defaultValue !== undefined) {
-        next[name] = defaultValue;
-      } else {
-        next[name] = '';
-      }
+      next[name] = defaultValue ?? '';
       setFormValue(next);
     }
   }
@@ -139,6 +152,8 @@ export const Form: Component<FormProps> = (rawProps) => {
   /* ── Context (stable reference, getters for reactive reads) ── */
   const ctx = {
     formValue,
+    setFormValue,
+    resetFormValue,
     setFieldValue,
     initField,
     fieldErrs,
@@ -154,6 +169,19 @@ export const Form: Component<FormProps> = (rawProps) => {
     get labelWidth() { return local.labelWidth; },
     get colon() { return local.colon; },
   };
+
+  /* ── Ref callback ── */
+  onMount(() => {
+    local.ref?.({
+      setFormValue: setFormValue as any,
+      resetFormValue,
+      submit,
+      validateAll,
+    });
+  });
+  onCleanup(() => {
+    local.ref?.(null as any);
+  });
 
   /* ── 处理 native form submit ── */
   let formEl!: HTMLFormElement;

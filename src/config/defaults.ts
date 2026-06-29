@@ -86,6 +86,10 @@ export const defaultConfig: SolidComponentConfig = {
 
       // Info (neutral gray)
       info: secondaryGray.base,
+      infoHover: secondaryGray.hover,
+      infoActive: secondaryGray.active,
+      infoDisabled: secondaryGray.disabled,
+      infoPale: secondaryGray.pale,
       focus: primaryBlue.focus,
     },
 
@@ -109,7 +113,7 @@ export const defaultConfig: SolidComponentConfig = {
       text: '#f0f1f3',
       textSecondary: '#9a9ca0',
       textTertiary: '#6b6d70',
-      textInverse: '#1a1d21',
+      textInverse: '#ffffff',
 
       border: '#3a3d42',
       borderHover: '#54575c',
@@ -131,6 +135,10 @@ export const defaultConfig: SolidComponentConfig = {
       warningPale: 'rgba(255, 176, 138, 0.12)',
 
       info: '#8b8e93',
+      infoHover: '#a0a3a8',
+      infoActive: '#7a7d82',
+      infoDisabled: 'rgba(139, 142, 147, 0.35)',
+      infoPale: 'rgba(139, 142, 147, 0.12)',
       focus: 'rgba(81, 149, 255, 0.5)',
     },
   },

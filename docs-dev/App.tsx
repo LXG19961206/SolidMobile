@@ -47,7 +47,9 @@ import { RateDocPage } from './pages/components/Rate/RateDocPage';
 import { StepperDocPage } from './pages/components/Stepper/StepperDocPage';
 import { SafeAreaDocPage } from './pages/components/SafeArea/SafeAreaDocPage';
 import { SliderDocPage } from './pages/components/Slider/SliderDocPage';
+import { SelectDocPage } from './pages/components/Select/SelectDocPage';
 import { AllTokens } from '../src/design-tokens/DesignTokenShowcase';
+import { useDisableZoom } from '../src/hooks';
 
 import './App.css';
 
@@ -135,6 +137,7 @@ const GROUPS: MenuGroup[] = [
       { name: 'Rate 评分', key: 'rate' },
       { name: 'Stepper 步进器', key: 'stepper' },
       { name: 'Slider 滑块', key: 'slider' },
+      { name: 'Select 选择器', key: 'select' },
     ],
   },
 ];
@@ -178,6 +181,7 @@ const PAGES: Record<string, Component> = {
   stepper: StepperDocPage,
   safearea: SafeAreaDocPage,
   slider: SliderDocPage,
+  select: SelectDocPage,
 };
 
 /* ── Code Block ── */
@@ -801,6 +805,7 @@ function applyDark(on: boolean) {
 /* ── App ── */
 
 export function App() {
+  useDisableZoom();
   const initial = parseHash();
   const [section, setSection] = createSignal<Section>(initial.section);
   const [activeKey, setActiveKey] = createSignal(initial.pageKey || 'button');

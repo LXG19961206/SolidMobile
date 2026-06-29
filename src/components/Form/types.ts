@@ -21,6 +21,10 @@ export interface FormRule<V = unknown, T extends FormValue = FormValue> {
 export interface FormContextValue<T extends FormValue = FormValue> {
   /** 当前表单值 */
   formValue: Accessor<T>;
+  /** 整体替换表单值 */
+  setFormValue: (value: T) => void;
+  /** 重置表单值为 defaultValue 或空对象，并清除所有错误 */
+  resetFormValue: () => void;
   /** 更新某个字段 */
   setFieldValue: (name: string, value: unknown) => void;
   /** 初始化空字段（FormItem 挂载时注册） */
@@ -83,6 +87,16 @@ export interface FormProps<T extends FormValue = FormValue> {
   style?: JSX.CSSProperties | string;
   /** 子元素 */
   children?: JSX.Element;
+  /** ref 回调，组件挂载时传入 { setFormValue, resetFormValue, submit, validateAll }，null 时销毁 */
+  ref?: ((api: { setFormValue: (v: T) => void; resetFormValue: () => void; submit: () => void; validateAll: () => Promise<boolean> }) => void) | null;
+}
+
+/** Form ref API */
+export interface FormRef<T extends FormValue = FormValue> {
+  setFormValue: (v: T) => void;
+  resetFormValue: () => void;
+  submit: () => void;
+  validateAll: () => Promise<boolean>;
 }
 
 /** FormFieldContext — FormItem 注入给其子控件的上下文 */

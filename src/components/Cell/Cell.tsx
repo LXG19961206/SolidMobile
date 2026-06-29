@@ -28,6 +28,7 @@ export const Cell: Component<CellProps> = (rawProps) => {
     'title',
     'value',
     'description',
+    'descriptionError',
     'children',
     'icon',
     'size',
@@ -97,7 +98,7 @@ export const Cell: Component<CellProps> = (rawProps) => {
             </Show>
           </div>
           <Show when={local.description}>
-            <span class={styles.description}>{local.description}</span>
+            <span class={cn(styles.description, local.descriptionError && styles.descriptionError)}>{local.description}</span>
           </Show>
         </div>
 

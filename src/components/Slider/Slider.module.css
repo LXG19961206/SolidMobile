@@ -54,7 +54,7 @@
   transform: translate(-50%, -50%);
   cursor: grab;
   transition: box-shadow 0.15s;
-  z-index: 1;
+  z-index: 3;
   box-sizing: border-box;
   display: flex;
   align-items: center;

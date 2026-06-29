@@ -1,11 +1,12 @@
 import {
-  createSignal,
+  createSignal, createEffect, on,
   mergeProps,
   splitProps,
   type Component,
   type JSX,
 } from 'solid-js';
 import { cn } from '../../utils';
+import { useFormField } from '../Form/FormItem';
 import type { SwitchProps } from './types';
 import styles from './Switch.module.css';
 
@@ -55,12 +56,15 @@ export const Switch: Component<SwitchProps> = (rawProps) => {
     'id',
   ]);
 
+  // ── Form field context ──
+  const field = useFormField();
+
   // ── Internal state ──
   // `value` is an alias for `checked`
   const checkedProp = () => local.checked ?? local.value;
-  const isControlled = () => checkedProp() !== undefined;
-  const [internalChecked, setInternalChecked] = createSignal(local.defaultChecked!);
-  const isOn = () => (isControlled() ? checkedProp()! : internalChecked());
+  const isControlled = () => checkedProp() !== undefined || !!field;
+  const [internalChecked, setInternalChecked] = createSignal(local.defaultChecked ?? (field?.value === true));
+  const isOn = () => (isControlled() ? (field ? field.value === true : checkedProp()!) : internalChecked());
 
   // ── Toggle ──
   const toggle = () => {
@@ -70,7 +74,16 @@ export const Switch: Component<SwitchProps> = (rawProps) => {
       setInternalChecked(next);
     }
     local.onChange?.(next);
+    if (field) field.onChange(next);
   };
+
+  // Sync from field context
+  createEffect(on(() => field?.value, (v) => {
+    if (field) {
+      const next = typeof v === 'boolean' ? v : false;
+      if (next !== isOn()) setInternalChecked(next);
+    }
+  }, { defer: false }));
 
   // ── Keyboard ──
   const handleKeyDown = (e: KeyboardEvent) => {
