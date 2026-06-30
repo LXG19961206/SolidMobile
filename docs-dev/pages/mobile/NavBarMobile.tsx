@@ -1,0 +1,104 @@
+import { type Component } from 'solid-js';
+import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+
+export interface NavBarMobileProps {
+  components?: ComponentEntry[];
+  onNavigate?: (key: string) => void;
+}
+import { NavBar } from '../../../src/components/NavBar';
+import { Icon } from '../../../src/components/Icon';
+
+const propsData = [
+  { name: 'title', type: 'string | JSX.Element', desc: '标题' },
+  { name: 'left', type: 'JSX.Element', desc: '左侧内容' },
+  { name: 'right', type: 'JSX.Element', desc: '右侧内容' },
+  { name: 'backArrow', type: 'boolean', desc: '显示返回箭头' },
+  { name: 'onBack', type: '() => void', desc: '返回箭头点击回调' },
+  { name: 'onLeftClick', type: '() => void', desc: '左侧区域点击' },
+  { name: 'onRightClick', type: '() => void', desc: '右侧区域点击' },
+  { name: 'fixed', type: 'boolean', desc: '固定在顶部' },
+  { name: 'placeholder', type: 'boolean', desc: '固定时生成占位元素' },
+  { name: 'border', type: 'boolean', desc: '显示底部边框' },
+  { name: 'background', type: 'string', desc: '背景色' },
+  { name: 'color', type: 'string', desc: '文字颜色' },
+  { name: 'height', type: 'number | string', desc: '自定义高度，默认 46px' },
+];
+
+const CARD = {
+  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
+  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
+  body: { padding: '0 16px 16px' },
+};
+
+export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
+  return (
+    <MobilePreview title="NavBar 导航栏" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+      {/* 基础 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>基础标题</div>
+        <div style={CARD.desc}>仅标题，无左右按钮</div>
+        <div style={CARD.body}>
+          <div style={{ border: '1px solid #f3f4f6', 'border-radius': '8px', overflow: 'hidden' }}>
+            <NavBar title="页面标题" border />
+          </div>
+        </div>
+      </div>
+
+      {/* 返回箭头 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>返回箭头</div>
+        <div style={CARD.desc}>backArrow + onBack 实现返回</div>
+        <div style={CARD.body}>
+          <div style={{ border: '1px solid #f3f4f6', 'border-radius': '8px', overflow: 'hidden' }}>
+            <NavBar title="详情页" backArrow onBack={() => {}} border />
+          </div>
+        </div>
+      </div>
+
+      {/* 左右内容 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>左右内容</div>
+        <div style={CARD.desc}>left / right 插槽自定义</div>
+        <div style={{ ...CARD.body, display: 'flex' as const, 'flex-direction': 'column' as const, gap: '12px' }}>
+          <div style={{ border: '1px solid #f3f4f6', 'border-radius': '8px', overflow: 'hidden' }}>
+            <NavBar
+              title="消息"
+              left={<Icon name="user" size={20} />}
+              right={<Icon name="settings" size={20} />}
+              border
+            />
+          </div>
+          <div style={{ border: '1px solid #f3f4f6', 'border-radius': '8px', overflow: 'hidden' }}>
+            <NavBar
+              title="编辑"
+              left={<span style={{ 'font-size': '0.9rem', color: '#1677ff' }}>取消</span>}
+              right={<span style={{ 'font-size': '0.9rem', color: '#1677ff' }}>完成</span>}
+              border
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* 自定义样式 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>自定义样式</div>
+        <div style={CARD.desc}>background / color 控制外观</div>
+        <div style={CARD.body}>
+          <div style={{ border: '1px solid #f3f4f6', 'border-radius': '8px', overflow: 'hidden' }}>
+            <NavBar title="品牌色导航" background="#1677ff" color="#fff" backArrow onBack={() => {}} />
+          </div>
+        </div>
+      </div>
+
+      {/* 固定模式说明 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>固定模式 fixed</div>
+        <div style={CARD.desc}>
+          设置 fixed + placeholder 后，NavBar 固定在页面顶部，并自动生成等高的占位元素，
+          防止内容被 NavBar 遮挡。
+        </div>
+      </div>
+    </MobilePreview>
+  );
+};

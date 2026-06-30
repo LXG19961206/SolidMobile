@@ -1,0 +1,259 @@
+.shell {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--sc-color-background, #f5f5f5);
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+.shell * {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.15s;
+}
+.navBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px;
+}
+
+/* ── Shared overlay ── */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 10000;
+  transition: background 0.25s;
+  pointer-events: none;
+}
+.overlayVisible {
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
+}
+
+/* ── Left Drawer (component menu) ── */
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(80vw, 300px);
+  background: #fff;
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.15);
+  transform: translateX(-100%);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.drawerOpen {
+  transform: translateX(0);
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--sc-color-border, #ebedf0);
+  flex-shrink: 0;
+}
+
+.drawerTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.drawerCloseBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #6b7280;
+  border-radius: 50%;
+  transition: background 0.15s;
+}
+.drawerCloseBtn:active {
+  background: #f3f4f6;
+}
+
+.drawerBody {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+
+.drawerItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #374151;
+  border-bottom: 1px solid var(--sc-color-border, #f3f4f6);
+  transition: background 0.15s;
+}
+.drawerItem:active {
+  background: var(--sc-color-background-secondary, #f7f8fa);
+}
+
+.drawerItemArrow {
+  color: #d1d5db;
+  flex-shrink: 0;
+}
+
+/* ── Bottom Sheet (props panel) ── */
+
+.sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 60vh;
+  background: #fff;
+  border-radius: 12px 12px 0 0;
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.sheetHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--sc-color-border, #ebedf0);
+  flex-shrink: 0;
+}
+
+.sheetTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.closeBtn {
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 4px 8px;
+}
+
+.sheetBody {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+
+.propsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.propsTable th {
+  text-align: left;
+  padding: 10px 12px;
+  background: #f9fafb;
+  color: #374151;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+}
+
+.propsTable td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: top;
+}
+
+.propName {
+  font-weight: 600;
+  color: #1677ff;
+  white-space: nowrap;
+}
+
+.propType {
+  color: #6b7280;
+  font-size: 0.8rem;
+  font-family: monospace;
+}
+
+.propDesc {
+  color: #374151;
+}
+
+.empty {
+  padding: 32px;
+  text-align: center;
+  color: #9ca3af;
+}
+
+/* ── Dark mode ── */
+
+:global(html.dark) .drawer {
+  background: #1a1d21;
+}
+:global(html.dark) .drawerTitle {
+  color: #e2e8f0;
+}
+:global(html.dark) .drawerItem {
+  color: #e2e8f0;
+  border-color: #1e293b;
+}
+:global(html.dark) .drawerCloseBtn:active {
+  background: #1e293b;
+}
+:global(html.dark) .sheet {
+  background: #1a1d21;
+}
+:global(html.dark) .sheetTitle {
+  color: #e2e8f0;
+}
+:global(html.dark) .propsTable th {
+  background: #1e293b;
+  color: #e2e8f0;
+  border-color: #334155;
+}
+:global(html.dark) .propsTable td {
+  border-color: #1e293b;
+  color: #cbd5e1;
+}
+:global(html.dark) .propType {
+  color: #94a3b8;
+}
+:global(html.dark) .propDesc {
+  color: #cbd5e1;
+}

@@ -1,4 +1,5 @@
 import { createSignal, createMemo, onMount, For, Show, type Component } from 'solid-js';
+import { Dynamic } from 'solid-js/web';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-tsx';
@@ -48,10 +49,111 @@ import { StepperDocPage } from './pages/components/Stepper/StepperDocPage';
 import { SafeAreaDocPage } from './pages/components/SafeArea/SafeAreaDocPage';
 import { SliderDocPage } from './pages/components/Slider/SliderDocPage';
 import { SelectDocPage } from './pages/components/Select/SelectDocPage';
+import { PickerMobile } from './pages/mobile/PickerMobile';
+import { ButtonMobile } from './pages/mobile/ButtonMobile';
+import { IconMobile } from './pages/mobile/IconMobile';
+import { CenterMobile } from './pages/mobile/CenterMobile';
+import { DividerMobile } from './pages/mobile/DividerMobile';
+import { LayoutMobile } from './pages/mobile/LayoutMobile';
+import { SafeAreaMobile } from './pages/mobile/SafeAreaMobile';
+import { AvatarMobile } from './pages/mobile/AvatarMobile';
+import { BadgeMobile } from './pages/mobile/BadgeMobile';
+import { TagMobile } from './pages/mobile/TagMobile';
+import { ImageMobile } from './pages/mobile/ImageMobile';
+import { EmptyMobile } from './pages/mobile/EmptyMobile';
+import { LazyloadMobile } from './pages/mobile/LazyloadMobile';
+import { ListMobile } from './pages/mobile/ListMobile';
+import { SwipeCellMobile } from './pages/mobile/SwipeCellMobile';
+import { TabsMobile } from './pages/mobile/TabsMobile';
+import { NavBarMobile } from './pages/mobile/NavBarMobile';
+import { CellMobile } from './pages/mobile/CellMobile';
+import { CalendarMobile } from './pages/mobile/CalendarMobile';
+import { CascaderMobile } from './pages/mobile/CascaderMobile';
+import { DatePickerMobile } from './pages/mobile/DatePickerMobile';
+import { CityPickerMobile } from './pages/mobile/CityPickerMobile';
+import { ToastMobile } from './pages/mobile/ToastMobile';
+import { NotifyMobile } from './pages/mobile/NotifyMobile';
+import { DialogMobile } from './pages/mobile/DialogMobile';
+import { OverlayMobile } from './pages/mobile/OverlayMobile';
+import { ActionSheetMobile } from './pages/mobile/ActionSheetMobile';
+import { LoadingMobile } from './pages/mobile/LoadingMobile';
+import { FormMobile } from './pages/mobile/FormMobile';
+import { InputMobile } from './pages/mobile/InputMobile';
+import { TextareaMobile } from './pages/mobile/TextareaMobile';
+import { RadioMobile } from './pages/mobile/RadioMobile';
+import { CheckboxMobile } from './pages/mobile/CheckboxMobile';
+import { SwitchMobile } from './pages/mobile/SwitchMobile';
+import { RateMobile } from './pages/mobile/RateMobile';
+import { StepperMobile } from './pages/mobile/StepperMobile';
+import { SliderMobile } from './pages/mobile/SliderMobile';
+import { SelectMobile } from './pages/mobile/SelectMobile';
+import { DesignTokensMobile } from './pages/mobile/DesignTokensMobile';
 import { AllTokens } from '../src/design-tokens/DesignTokenShowcase';
 import { useDisableZoom } from '../src/hooks';
 
 import './App.css';
+
+/* ── Mobile Pages Map (module scope, stable reference) ── */
+
+const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key: string }[]; onNavigate?: (key: string) => void }>> = {
+  'design-tokens': DesignTokensMobile,
+  button: ButtonMobile,
+  icon: IconMobile,
+  center: CenterMobile,
+  divider: DividerMobile,
+  layout: LayoutMobile,
+  safearea: SafeAreaMobile,
+  avatar: AvatarMobile,
+  badge: BadgeMobile,
+  tag: TagMobile,
+  image: ImageMobile,
+  empty: EmptyMobile,
+  lazyload: LazyloadMobile,
+  list: ListMobile,
+  swipecell: SwipeCellMobile,
+  tabs: TabsMobile,
+  navbar: NavBarMobile,
+  cell: CellMobile,
+  picker: PickerMobile,
+  calendar: CalendarMobile,
+  cascader: CascaderMobile,
+  datepicker: DatePickerMobile,
+  citypicker: CityPickerMobile,
+  toast: ToastMobile,
+  notify: NotifyMobile,
+  dialog: DialogMobile,
+  overlay: OverlayMobile,
+  actionsheet: ActionSheetMobile,
+  loading: LoadingMobile,
+  form: FormMobile,
+  input: InputMobile,
+  textarea: TextareaMobile,
+  radio: RadioMobile,
+  checkbox: CheckboxMobile,
+  switch: SwitchMobile,
+  rate: RateMobile,
+  stepper: StepperMobile,
+  slider: SliderMobile,
+  select: SelectMobile,
+};
+
+/* ── Mobile Fallback (module scope, stable reference) ── */
+
+const MobileFallback: Component<{
+  components: { name: string; key: string }[];
+  onNavigate: (key: string) => void;
+}> = (props) => (
+  <div style={{ padding: '16px', background: '#fff', 'min-height': '100vh' }}>
+    <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '0 0 16px' }}>组件 / Components</h2>
+    {props.components.map((c) => (
+      <div style={{ padding: '12px 0', 'border-bottom': '1px solid #f3f4f6', cursor: 'pointer' }}
+        onClick={() => props.onNavigate(c.key)}
+      >
+        {c.name}
+      </div>
+    ))}
+  </div>
+);
 
 /* ── Top Nav Tabs ── */
 
@@ -812,6 +914,8 @@ export function App() {
   const [menuOpen, setMenuOpen] = createSignal(false);
   const [search, setSearch] = createSignal('');
   const [dark, setDark] = createSignal(getDark());
+  const isMobileViewport = () => typeof window !== 'undefined' && window.innerWidth <= 1024;
+  const [mobileView, setMobileView] = createSignal(isMobileViewport());
   const t = useT();
 
   onMount(() => {
@@ -863,7 +967,22 @@ export function App() {
     window.location.hash = buildHash(section(), key);
   };
 
+  // ── 组件列表 → 可用于 mobile 端组件切换 ──
+  const allComponents = () => {
+    const items: { name: string; key: string }[] = [];
+    GROUPS.forEach((g) => g.items.forEach((i) => items.push(i)));
+    return items;
+  };
+
+  // ── Mobile page memos (stable component, driven by signal props) ──
+  const mobileActiveKey = createMemo(() => activeKey());
+  const mobileComps = createMemo(() => allComponents());
+
   return (
+    <Show when={!mobileView()} fallback={
+      <Dynamic component={PAGES_MOBILE[mobileActiveKey()] || MobileFallback}
+        components={mobileComps()} onNavigate={navigateTo} />
+    }>
     <div class="app-shell">
       {/* ══ Top Nav Tabs ══ */}
       <header class="top-nav">
@@ -899,6 +1018,9 @@ export function App() {
           </button>
           <button class="tb-btn" onClick={toggleDark}>
             {dark() ? '☀' : '☾'}
+          </button>
+          <button class="tb-btn" onClick={() => setMobileView(!mobileView())}>
+            {mobileView() ? '文档' : '预览'}
           </button>
         </div>
       </header>
@@ -1003,5 +1125,6 @@ export function App() {
       </div>
       <ToastRenderer />
     </div>
+    </Show>
   );
 }

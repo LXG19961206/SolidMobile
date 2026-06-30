@@ -4,7 +4,7 @@ import {
 } from 'solid-js';
 import { cn } from '../../utils';
 import { Popup } from '../Popup';
-import { useLocale } from '../../i18n';
+import { useLocale, useT } from '../../i18n';
 import { solarToLunar } from '../../utils/lunar';
 import type { CalendarProps, DayInfo } from './types';
 import styles from './Calendar.module.css';
@@ -106,6 +106,7 @@ export const Calendar: Component<CalendarProps> = (rawProps) => {
     'round', 'teleport', 'zIndex', 'class', 'style',
   ]);
 
+  const t = useT();
   const today = new Date();
   const min = () => local.minDate || new Date(+today - 30 * MS_DAY);
   const max = () => local.maxDate || new Date(+today + 30 * MS_DAY);
@@ -303,7 +304,7 @@ export const Calendar: Component<CalendarProps> = (rawProps) => {
             disabled={!rangeStart() || !rangeEnd()}
             onClick={() => { if (rangeStart() && rangeEnd()) { local.onChange?.([rangeStart()!, rangeEnd()!]); if (local.popup) local.onUpdateShow?.(false); } }}
           >
-            {rangeStart() && rangeEnd() ? local.confirmText || '确定' : local.confirmDisabledText || '请选择日期范围'}
+            {rangeStart() && rangeEnd() ? local.confirmText || t('component.calendar.confirmText') : local.confirmDisabledText || t('component.calendar.confirmDisabledText')}
           </button>
         </div>
       </Show>

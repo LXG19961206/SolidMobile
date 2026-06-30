@@ -122,7 +122,6 @@ const CascaderDemo = () => {
         onChange={setVal}
         title="选择地区"
         closeable
-        teleport={phoneTarget?.()}
       />
     </>
   );
@@ -202,7 +201,6 @@ const AsyncCascader = () => {
         title="异步加载地区"
         closeable
         loading={<div style="text-align:center;padding:32px;color:#9ca3af"><Loading size={24} /><div style="margin-top:8px;font-size:0.8rem">加载地区数据中...</div></div>}
-        teleport={phoneTarget?.()}
       />
     </>
   );

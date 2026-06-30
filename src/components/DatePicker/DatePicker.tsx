@@ -6,6 +6,7 @@ import { Picker } from '../Picker';
 import type { PickerOption } from '../Picker';
 import { Cell } from '../Cell';
 import { useFormField } from '../Form/FormItem';
+import { useT } from '../../i18n';
 import { daysInMonth, range, formatDate, parseDate, parseDateRange, clampDay } from './date-utils';
 import type { DatePickerProps, DatePickerType } from './types';
 
@@ -13,8 +14,6 @@ const defaultProps: Partial<DatePickerProps> = {
   startDate: '2014-01-01',
   endDate: '2034-12-31',
   type: 'date',
-  title: '选择日期',
-  placeholder: '请选择日期',
 };
 
 export const DatePicker: Component<DatePickerProps> = (rawProps) => {
@@ -27,6 +26,11 @@ export const DatePicker: Component<DatePickerProps> = (rawProps) => {
     'visibleItemCount', 'optionHeight', 'teleport', 'zIndex',
     'class', 'style',
   ]);
+
+  /* ── i18n ── */
+  const t = useT();
+  const titleText = () => local.title ?? t('component.datePicker.title');
+  const placeholderText = () => local.placeholder ?? t('component.datePicker.placeholder');
 
   /* ── Form field context ── */
   const field = useFormField();
@@ -164,7 +168,7 @@ export const DatePicker: Component<DatePickerProps> = (rawProps) => {
       {/* Trigger - always rendered unless show is externally controlled */}
       <Show when={autoMode()}>
         <Cell
-          title={displayText() || local.placeholder!}
+          title={displayText() || placeholderText()}
           clickable
           onClick={() => updateShow(true)}
           class={local.class}
@@ -184,7 +188,7 @@ export const DatePicker: Component<DatePickerProps> = (rawProps) => {
         onCancel={handleCancel}
         show={isShow()}
         onUpdateShow={updateShow}
-        title={local.title}
+        title={titleText()}
         cancelText={local.cancelText}
         confirmText={local.confirmText}
         visibleItemCount={local.visibleItemCount}

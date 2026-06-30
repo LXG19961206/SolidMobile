@@ -91,20 +91,20 @@ function makeFlatCols(n: number): PickerOption[][] {
 /* ── Props ── */
 
 const propsData: PropRow[] = [
-  { name: 'columns', type: 'PickerOption[] | PickerOption[][]', default: '—', required: true, desc: 'Tree 或 Flat 模式数据源。' },
-  { name: 'value', type: '(string | number)[]', default: '—', required: false, desc: '受控值。' },
-  { name: 'onChange', type: '(selected, value) => void', default: '—', required: false, desc: '值变化回调。' },
-  { name: 'show', type: 'boolean', default: '—', required: false, desc: '面板可见。' },
-  { name: 'onUpdateShow', type: '(show) => void', default: '—', required: false, desc: '面板关闭回调。' },
-  { name: 'title', type: 'string', default: "'请选择'", required: false, desc: '标题。' },
-  { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: '可见行数。' },
-  { name: 'optionHeight', type: 'number', default: '50', required: false, desc: '每行高度(px)。' },
-  { name: 'ratio', type: 'number', default: '1.5', required: false, desc: '触摸灵敏度。' },
-  { name: 'swipeDuration', type: 'number', default: '1', required: false, desc: '惯性动画时长(s)。' },
-  { name: 'cancelText', type: 'string', default: '跟随 locale', required: false, desc: '取消按钮文字。' },
-  { name: 'confirmText', type: 'string', default: '跟随 locale', required: false, desc: '确认按钮文字。' },
-  { name: 'placeholders', type: 'string | string[]', default: '—', required: false, desc: '占位文本。' },
-  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'Portal 目标。' },
+  { name: 'columns', type: 'PickerOption[] | PickerOption[][]', default: '—', required: true, desc: 'component.picker.props.columns' },
+  { name: 'value', type: '(string | number)[]', default: '—', required: false, desc: 'component.picker.props.value' },
+  { name: 'onChange', type: '(selected, value) => void', default: '—', required: false, desc: 'component.picker.props.onChange' },
+  { name: 'show', type: 'boolean', default: '—', required: false, desc: 'component.picker.props.show' },
+  { name: 'onUpdateShow', type: '(show) => void', default: '—', required: false, desc: 'component.picker.props.onUpdateShow' },
+  { name: 'title', type: 'string', default: "'请选择'", required: false, desc: 'component.picker.props.title' },
+  { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: 'component.picker.props.visibleItemCount' },
+  { name: 'optionHeight', type: 'number', default: '50', required: false, desc: 'component.picker.props.optionHeight' },
+  { name: 'ratio', type: 'number', default: '1.5', required: false, desc: 'component.picker.props.ratio' },
+  { name: 'swipeDuration', type: 'number', default: '1', required: false, desc: 'component.picker.props.swipeDuration' },
+  { name: 'cancelText', type: 'string', default: '跟随 locale', required: false, desc: 'component.picker.props.cancelText' },
+  { name: 'confirmText', type: 'string', default: '跟随 locale', required: false, desc: 'component.picker.props.confirmText' },
+  { name: 'placeholders', type: 'string | string[]', default: '—', required: false, desc: 'component.picker.props.placeholders' },
+  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'component.picker.props.teleport' },
 ];
 
 /* ── Demo Components (each a standalone Cell + Picker pair) ── */
@@ -204,29 +204,29 @@ const ControlledPicker: Component = () => {
 /* ── Code Snippets ── */
 
 const codeTree = `<Picker columns={cityTree} show={show} onUpdateShow={setShow}
-  title="选择城市" teleport={phone?.()}
+  title="选择城市"
   onChange={(_, v) => setVal(v)}
   onConfirm={(_, v) => { setVal(v); setShow(false); }} />`;
 
 const codeFlat = `<Picker columns={dateCols} show={show} onUpdateShow={setShow}
-  title="选择年月" teleport={phone?.()} />`;
+  title="选择年月"  />`;
 
 const codeTime = `<Picker columns={timeCols} show={show} onUpdateShow={setShow}
-  title="选择时间" teleport={phone?.()} />`;
+  title="选择时间"  />`;
 
 const codeDisabled = `<Picker columns={colsDisabled} show={show} onUpdateShow={setShow}
-  title="选项列表" teleport={phone?.()} />`;
+  title="选项列表"  />`;
 
 const codePlaceholder = `<Picker columns={flatCols} show={show} onUpdateShow={setShow}
-  title="请选择" placeholders="请选择" teleport={phone?.()} />`;
+  title="请选择" placeholders="请选择"  />`;
 
 const codeDeep = `<Picker columns={deepTree} show={show} onUpdateShow={setShow}
-  title="逐级选择" teleport={phone?.()}
+  title="逐级选择"
   onChange={(_, v) => setDeepVal(v)}
   onConfirm={(_, v) => { setDeepVal(v); setShow(false); }} />`;
 
 const codeControlled = `<Picker columns={cityTree} show={show} onUpdateShow={setShow}
-  title="选择城市" teleport={phone?.()}
+  title="选择城市"
   value={['beijing', 'haidian']} />`;
 
 /* ── Page ── */

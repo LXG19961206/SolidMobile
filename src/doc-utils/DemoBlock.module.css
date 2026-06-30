@@ -178,3 +178,22 @@
 :global(html.dark) .phoneDemoTitle {
   color: #e2e8f0;
 }
+
+/* ── Mobile responsive ── */
+@media (max-width: 1024px) {
+  .demo {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    margin-bottom: 1rem;
+  }
+  .demo {
+    padding: 0.5rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+}

@@ -71,7 +71,7 @@ export function GroupCodePhone() {
     </For>
   );
 
-  const target = () => phoneTarget?.();
+  const target = () => (isMobile?.() ? undefined : phoneTarget?.());
 
   return (
     <Show when={target()} fallback={<>{content()}</>}>

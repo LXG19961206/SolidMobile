@@ -1,0 +1,84 @@
+import { createSignal, type Component } from 'solid-js';
+import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+
+export interface StepperMobileProps {
+  components?: ComponentEntry[];
+  onNavigate?: (key: string) => void;
+}
+import { Stepper } from '../../../src/components/Stepper';
+
+const propsData = [
+  { name: 'value', type: 'number', desc: '当前值' },
+  { name: 'onChange', type: '(value: number) => void', desc: '值变化回调' },
+  { name: 'defaultValue', type: 'number', desc: '默认值（非受控）' },
+  { name: 'min', type: 'number', desc: '最小值' },
+  { name: 'max', type: 'number', desc: '最大值' },
+  { name: 'step', type: 'number', desc: '步长' },
+  { name: 'decimalLength', type: 'number', desc: '小数位数' },
+  { name: 'size', type: 'number | string', desc: '整体尺寸' },
+  { name: 'buttonSize', type: 'number | string', desc: '按钮大小' },
+  { name: 'inputWidth', type: 'number | string', desc: '输入框宽度' },
+  { name: 'disabled', type: 'boolean', desc: '禁用' },
+  { name: 'inputDisabled', type: 'boolean', desc: '仅禁用输入' },
+  { name: 'integer', type: 'boolean', desc: '只允许整数' },
+  { name: 'placeholder', type: 'string', desc: '占位文本' },
+];
+
+const CARD = {
+  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
+  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
+  body: { padding: '0 16px 16px', display: 'flex' as const, 'flex-wrap': 'wrap' as const, gap: '12px', 'align-items': 'center' as const },
+};
+
+export const StepperMobile: Component<StepperMobileProps> = (props) => {
+  const [val, setVal] = createSignal(1);
+
+  return (
+    <MobilePreview title="Stepper 步进器" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+      {/* 基础 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>基础步进</div>
+        <div style={CARD.desc}>通过 +/- 按钮或输入框调整数值</div>
+        <div style={CARD.body}>
+          <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '16px' }}>
+            <Stepper value={val()} onChange={setVal} />
+            <span style={{ 'font-size': '0.85rem', color: '#6b7280' }}>当前: {val()}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* 范围限制 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>范围限制</div>
+        <div style={CARD.desc}>min / max / step 控制取值范围和步长</div>
+        <div style={CARD.body}>
+          <div style={{ display: 'flex' as const, 'flex-direction': 'column' as const, gap: '8px', width: '100%' }}>
+            <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
+              <Stepper defaultValue={5} min={1} max={10} />
+              <span style={{ 'font-size': '0.75rem', color: '#9ca3af' }}>1-10</span>
+            </div>
+            <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
+              <Stepper defaultValue={0} step={5} min={0} max={50} />
+              <span style={{ 'font-size': '0.75rem', color: '#9ca3af' }}>步长5</span>
+            </div>
+            <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
+              <Stepper defaultValue={1.5} step={0.5} decimalLength={1} />
+              <span style={{ 'font-size': '0.75rem', color: '#9ca3af' }}>小数0.5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 禁用 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>禁用 & 只读</div>
+        <div style={CARD.desc}>disabled / inputDisabled</div>
+        <div style={CARD.body}>
+          <Stepper defaultValue={3} disabled />
+          <Stepper defaultValue={3} inputDisabled />
+        </div>
+      </div>
+    </MobilePreview>
+  );
+};

@@ -163,7 +163,6 @@ const cityTree: PickerOption[] = [
 ];
 
 function Demo() {
-  const phone = useContext(PhoneTargetContext);
   const [val, setVal] = createSignal<(string | number)[]>([]);
   return (
     <CellGroup>
@@ -173,7 +172,7 @@ function Demo() {
         value={val()}
         onChange={setVal}
         placeholder="请选择省市区"
-        teleport={phone?.()}
+
       />
     </CellGroup>
   );
@@ -189,12 +188,11 @@ import { PhoneTargetContext } from 'your-package/doc-utils';
 // cityTree 同基础用法示例
 
 function Demo() {
-  const phone = useContext(PhoneTargetContext);
   const [formVal, setFormVal] = createSignal({});
   return (
     <Form onSubmit={(v) => { setFormVal(v); Toast.success(JSON.stringify(v)); }}>
       <FormItem name="region" label="所在地区">
-        <CityPicker columns={cityTree} placeholder="请选择省市区" teleport={phone?.()} />
+        <CityPicker columns={cityTree} placeholder="请选择省市区"  />
       </FormItem>
       <div style={{ padding: '12px 1rem' }}>
         <Button type="primary" block nativeType="submit" text="提交" />
@@ -241,7 +239,6 @@ const deepTree: PickerOption[] = [
 ];
 
 function Demo() {
-  const phone = useContext(PhoneTargetContext);
   const [show, setShow] = createSignal(false);
   const [val, setVal] = createSignal<(string | number)[]>([]);
   return (
@@ -259,7 +256,7 @@ function Demo() {
         show={show()}
         onUpdateShow={setShow}
         title="选择地址"
-        teleport={phone?.()}
+
       />
     </>
   );
@@ -278,7 +275,6 @@ const BasicDemo: Component = () => {
         value={val()}
         onChange={setVal}
         placeholder="请选择省市区"
-        teleport={phone?.()}
       />
     </CellGroup>
   );
@@ -330,7 +326,6 @@ const DeepDemo: Component = () => {
         show={show()}
         onUpdateShow={setShow}
         title="选择地址"
-        teleport={phone?.()}
       />
     </>
   );

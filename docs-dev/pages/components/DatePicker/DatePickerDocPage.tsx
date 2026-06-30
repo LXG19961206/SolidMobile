@@ -20,34 +20,34 @@ const datePickerProps: PropRow[] = [
   { name: 'confirmText', type: 'string', default: '—', required: false, desc: '确认按钮文字。' },
   { name: 'disabledDate', type: '(year, month, day) => boolean', default: '—', required: false, desc: '禁用特定日期。返回 true 则该日不可选。' },
   { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: '可见行数。' },
-  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'Portal 挂载目标。文档环境需传入模拟器容器。' },
+  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'Picker 的 Portal 挂载目标，默认 document.body。' },
   { name: 'show', type: 'boolean', default: '—', required: false, desc: '受控模式：是否显示面板。不传时 DatePicker 自动管理。' },
   { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: '受控模式：面板开关回调。' },
 ];
 
 const codeBasic = `const phone = useContext(PhoneTargetContext);
 
-<DatePicker teleport={phone?.()} />`;
+<DatePicker  />`;
 
 const codeRange = `<DatePicker
   startDate="2024-06-01"
   endDate="2024-09-30"
-  teleport={phone?.()}
+
 />`;
 
-const codeYearMonth = `<DatePicker type="year-month" teleport={phone?.()} />`;
+const codeYearMonth = `<DatePicker type="year-month"  />`;
 
 const codeDisabled = `<DatePicker
   disabledDate={(y, m, d) =>
     // 禁用周末
     [0, 6].includes(new Date(y, m - 1, d).getDay())
   }
-  teleport={phone?.()}
+
 />`;
 
 const codeForm = `<Form onSubmit={(v) => { ... }}>
   <FormItem name="birthday" label="生日">
-    <DatePicker placeholder="请选择出生日期" teleport={phone?.()} />
+    <DatePicker placeholder="请选择出生日期"  />
   </FormItem>
   <Button type="primary" block nativeType="submit" text="提交" />
 </Form>`;
@@ -74,7 +74,6 @@ const RangeDemo: Component = () => {
       startDate="2024-06-01"
       endDate="2024-09-30"
       placeholder="仅 2024-06-01 ~ 2024-09-30"
-      teleport={phone?.()}
     />
   );
 };
@@ -90,7 +89,6 @@ const YearMonthDemo: Component = () => {
       onChange={setVal}
       type="year-month"
       placeholder="选择年月"
-      teleport={phone?.()}
     />
   );
 };
@@ -105,7 +103,6 @@ const DisabledDateDemo: Component = () => {
       value={val()}
       onChange={setVal}
       placeholder="周末不可选"
-      teleport={phone?.()}
       disabledDate={(y, m, d) => [0, 6].includes(new Date(y, m - 1, d).getDay())}
     />
   );

@@ -31,6 +31,7 @@ const formProps: PropRow[] = [
   { name: 'labelAlign', type: "'top' | 'left' | 'right'", default: '—', required: false, desc: '标签对齐。' },
   { name: 'labelWidth', type: 'string', default: '—', required: false, desc: '标签宽度，如 "6em"。' },
   { name: 'colon', type: 'boolean', default: 'false', required: false, desc: '标签后加冒号。' },
+  { name: 'ref', type: '(api: FormRef) => void', default: '—', required: false, desc: '组件挂载回调，接收 { setFormValue, resetFormValue, submit, validateAll }。可用于外部重置表单等场景。' },
 ];
 
 const itemProps: PropRow[] = [

@@ -6,7 +6,7 @@ import { Picker } from '../Picker';
 import type { PickerOption } from '../Picker';
 import { Cell } from '../Cell';
 import { useFormField } from '../Form/FormItem';
-import { useLocale } from '../../i18n';
+import { useLocale, useT } from '../../i18n';
 import type { SelectProps } from './types';
 
 const defaultProps: Partial<SelectProps> = {};
@@ -27,9 +27,9 @@ export const Select: Component<SelectProps> = (rawProps) => {
 
   /* ── i18n ── */
   const locale = useLocale;
-  const isZhCN = () => locale() === 'zh-CN';
-  const titleText = () => local.title ?? (isZhCN() ? '请选择' : 'Please select');
-  const placeholderText = () => local.placeholder ?? (isZhCN() ? '请选择' : 'Please select');
+  const t = useT();
+  const titleText = () => local.title ?? t('component.picker.select');
+  const placeholderText = () => local.placeholder ?? t('component.select.placeholder');
 
   /* ── Show state ── */
   const autoMode = () => local.show === undefined;

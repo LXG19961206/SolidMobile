@@ -6,7 +6,7 @@ import {
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
 import { cn } from '../../utils';
-import { useLocale } from '../../i18n';
+import { useLocale, useT } from '../../i18n';
 import { Overlay } from '../Overlay';
 import type { PickerOption, PickerProps } from './types';
 import styles from './Picker.module.css';
@@ -158,10 +158,10 @@ export const Picker: Component<PickerProps> = (rawProps) => {
 
   /* ── i18n ── */
   const locale = useLocale;
-  const isZhCN = () => locale() === 'zh-CN';
-  const cancelLabel = () => local.cancelText ?? (isZhCN() ? '取消' : 'Cancel');
-  const confirmLabel = () => local.confirmText ?? (isZhCN() ? '确认' : 'Confirm');
-  const titleLabel = () => local.title ?? (isZhCN() ? '请选择' : 'Please select');
+  const t = useT();
+  const cancelLabel = () => local.cancelText ?? t('component.picker.cancel');
+  const confirmLabel = () => local.confirmText ?? t('component.picker.confirm');
+  const titleLabel = () => local.title ?? t('component.picker.select');
 
   /* ── Line Height ── */
   const lineHeight = (): number => {

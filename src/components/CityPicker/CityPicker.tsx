@@ -6,11 +6,10 @@ import { Picker } from '../Picker';
 import type { PickerOption } from '../Picker';
 import { Cell } from '../Cell';
 import { useFormField } from '../Form/FormItem';
+import { useT } from '../../i18n';
 import type { CityPickerProps } from './types';
 
 const defaultProps: Partial<CityPickerProps> = {
-  title: '选择地区',
-  placeholder: '请选择地区',
   separator: ' / ',
 };
 
@@ -41,6 +40,9 @@ export const CityPicker: Component<CityPickerProps> = (rawProps) => {
 
   /* ── Form field context ── */
   const field = useFormField();
+  const t = useT();
+  const titleText = () => local.title ?? t('component.cityPicker.title');
+  const placeholderText = () => local.placeholder ?? t('component.cityPicker.placeholder');
 
   /* ── Show state ── */
   const autoMode = () => local.show === undefined;
@@ -96,7 +98,7 @@ export const CityPicker: Component<CityPickerProps> = (rawProps) => {
       {/* Trigger (auto mode) */}
       <Show when={autoMode()}>
         <Cell
-          title={displayText() || local.placeholder!}
+          title={displayText() || placeholderText()}
           clickable
           onClick={() => updateShow(true)}
           class={local.class}
@@ -116,7 +118,7 @@ export const CityPicker: Component<CityPickerProps> = (rawProps) => {
         onCancel={handleCancel}
         show={isShow()}
         onUpdateShow={updateShow}
-        title={local.title}
+        title={titleText()}
         cancelText={local.cancelText}
         confirmText={local.confirmText}
         visibleItemCount={local.visibleItemCount}
