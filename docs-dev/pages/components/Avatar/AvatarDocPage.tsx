@@ -64,7 +64,7 @@ export const AvatarDocPage = () => (
       </DemoBlock>
 
       <h2 id="shape" class={css.h2}>形状 & 尺寸</h2>
-      <DemoBlock title="方形" desc="square 替代 round，适合品牌 logo。" code={'<Avatar src="logo.png" square size="xl" />\n<Avatar text="品" square color="#1677ff" size="lg" />\n<Avatar icon="computer" square size="md" color="#8b5cf6" />'}>
+      <DemoBlock title="方形" desc="square 替代 round，适合品牌 logo。" code={'<Avatar src="./logo.png" square size="xl" />\n<Avatar text="品" square color="#1677ff" size="lg" />\n<Avatar icon="computer" square size="md" color="#8b5cf6" />'}>
         <div class={css.row}>
           <Avatar src={SRC} square size="xl" />
           <Avatar text="品" square color="#1677ff" size="lg" />

@@ -32,15 +32,15 @@ const CARD = {
 
 /* ── Framework logos (GitHub org avatars) ── */
 
-const VUE_SRC    = 'https://avatars.githubusercontent.com/u/6128107?s=200&v=4';
-const REACT_SRC  = 'https://avatars.githubusercontent.com/u/6412038?s=200&v=4';
-const SOLID_SRC  = 'https://avatars.githubusercontent.com/u/79226042?s=200&v=4';
+const VUE_SRC = 'https://avatars.githubusercontent.com/u/6128107?s=200&v=4';
+const REACT_SRC = 'https://avatars.githubusercontent.com/u/6412038?s=200&v=4';
+const SOLID_SRC = 'https://avatars.githubusercontent.com/u/79226042?s=200&v=4';
 const SVELTE_SRC = 'https://avatars.githubusercontent.com/u/23617963?s=200&v=4';
 
 const LOGOS = [
-  { src: SOLID_SRC,  name: 'Solid',  color: '#3b82f6' },
-  { src: VUE_SRC,    name: 'Vue',    color: '#41b883' },
-  { src: REACT_SRC,  name: 'React',  color: '#61dafb' },
+  { src: SOLID_SRC, name: 'Solid', color: '#3b82f6' },
+  { src: VUE_SRC, name: 'Vue', color: '#41b883' },
+  { src: REACT_SRC, name: 'React', color: '#61dafb' },
   { src: SVELTE_SRC, name: 'Svelte', color: '#ff3e00' },
 ];
 
@@ -60,7 +60,7 @@ export const ImageMobile: Component<ImageMobileProps> = (props) => {
                 background: 'conic-gradient(from 0deg, #1677ff, #22c55e, #f59e0b, #ef4444, #8b5cf6, #1677ff)',
                 opacity: 0.15, position: 'absolute' as const, top: '-5px', left: '-5px',
               }} />
-              <Image src="/logo.jpg" width={72} height={72} fit="cover" round />
+              <Image src="./logo.jpg" width={72} height={72} fit="cover" round />
             </div>
             <span style={{ 'font-size': '1.4rem', color: '#1677ff', 'font-family': 'monospace', 'font-weight': 200, opacity: 0.3 }}>{'}'}</span>
           </div>

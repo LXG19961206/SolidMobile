@@ -132,7 +132,7 @@ const MobileHome: Component<{
           animation: 'sc-logo-pulse 3s ease-in-out infinite',
           position: 'absolute' as const, top: '-5px', left: '-5px',
         }} />
-        <img src="/logo.jpg" alt="solid-mobile" style={{
+        <img src="./logo.jpg" alt="solid-mobile" style={{
           width: '60px', height: '60px', 'border-radius': '50%',
           position: 'relative' as const, 'z-index': 1,
           'box-shadow': '0 2px 8px rgba(0,0,0,0.06)',
@@ -1102,71 +1102,90 @@ export function App() {
         </div>
       </DrawerContext.Provider>
     }>
-    <div class="app-shell">
-      {/* ══ Top Nav Tabs ══ */}
-      <header class="top-nav">
-        <div class="top-nav-brand">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="8" fill="url(#sc-logo-grad2)" />
-            <rect x="6" y="10" width="9" height="12" rx="2.5" fill="#fff" opacity="0.95" />
-            <rect x="17" y="6" width="9" height="16" rx="2.5" fill="#fff" opacity="0.7" />
-            <defs>
-              <linearGradient id="sc-logo-grad2" x1="0" y1="0" x2="32" y2="32">
-                <stop stop-color="#1677ff" />
-                <stop offset="1" stop-color="#5195ff" />
-              </linearGradient>
-            </defs>
-          </svg>
-          <span class="top-nav-title">solid-mobile</span>
-        </div>
-        <nav class="top-nav-tabs">
-          <For each={TOP_TABS}>
-            {(tab) => (
-              <button
-                class={`top-nav-tab ${section() === tab.key ? 'active' : ''}`}
-                onClick={() => switchSection(tab.key as Section)}
-              >
-                {tab.label}
-              </button>
-            )}
-          </For>
-        </nav>
-        <div class="top-nav-actions">
-          <button class="tb-btn" onClick={() => { showI18nNotice(); setGlobalLocale(useLocale() === 'zh-CN' ? 'en-US' : 'zh-CN'); }}>
-            {useLocale() === 'zh-CN' ? 'EN' : '中'}
-          </button>
-          <button class="tb-btn" onClick={toggleDark}>
-            {dark() ? '☀' : '☾'}
-          </button>
-          <button class="tb-btn" onClick={() => setMobileView(!mobileView())}>
-            {mobileView() ? '文档' : '预览'}
-          </button>
-        </div>
-      </header>
+      <div class="app-shell">
+        {/* ══ Top Nav Tabs ══ */}
+        <header class="top-nav">
+          <div class="top-nav-brand">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="8" fill="url(#sc-logo-grad2)" />
+              <rect x="6" y="10" width="9" height="12" rx="2.5" fill="#fff" opacity="0.95" />
+              <rect x="17" y="6" width="9" height="16" rx="2.5" fill="#fff" opacity="0.7" />
+              <defs>
+                <linearGradient id="sc-logo-grad2" x1="0" y1="0" x2="32" y2="32">
+                  <stop stop-color="#1677ff" />
+                  <stop offset="1" stop-color="#5195ff" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <span class="top-nav-title">solid-mobile</span>
+          </div>
+          <nav class="top-nav-tabs">
+            <For each={TOP_TABS}>
+              {(tab) => (
+                <button
+                  class={`top-nav-tab ${section() === tab.key ? 'active' : ''}`}
+                  onClick={() => switchSection(tab.key as Section)}
+                >
+                  {tab.label}
+                </button>
+              )}
+            </For>
+          </nav>
+          <div class="top-nav-actions">
+            <button class="tb-btn" onClick={() => { showI18nNotice(); setGlobalLocale(useLocale() === 'zh-CN' ? 'en-US' : 'zh-CN'); }}>
+              {useLocale() === 'zh-CN' ? 'EN' : '中'}
+            </button>
+            <button class="tb-btn" onClick={toggleDark}>
+              {dark() ? '☀' : '☾'}
+            </button>
+            <button class="tb-btn" onClick={() => setMobileView(!mobileView())}>
+              {mobileView() ? '文档' : '预览'}
+            </button>
+          </div>
+        </header>
 
-      <div class="app-body">
-        {/* ══ Sidebar ══ */}
-        <Show when={showSidebar()}>
-          <aside class={`sidebar ${menuOpen() ? 'open' : ''}`}>
-            <div class="sidebar-brand">
-              <span class="sidebar-brand-text">
-                {section() === 'guide' ? '开发指南' : '组件导航'}
-              </span>
-            </div>
-            <Show when={section() === 'components'}>
-              <input
-                class="sidebar-search"
-                type="text"
-                placeholder="搜索组件..."
-                value={search()}
-                onInput={(e) => setSearch(e.currentTarget.value)}
-              />
-            </Show>
-            <nav class="sidebar-nav">
-              <Show
-                when={section() === 'guide'}
-                fallback={
-                  <For each={compFilteredGroups()}>
+        <div class="app-body">
+          {/* ══ Sidebar ══ */}
+          <Show when={showSidebar()}>
+            <aside class={`sidebar ${menuOpen() ? 'open' : ''}`}>
+              <div class="sidebar-brand">
+                <span class="sidebar-brand-text">
+                  {section() === 'guide' ? '开发指南' : '组件导航'}
+                </span>
+              </div>
+              <Show when={section() === 'components'}>
+                <input
+                  class="sidebar-search"
+                  type="text"
+                  placeholder="搜索组件..."
+                  value={search()}
+                  onInput={(e) => setSearch(e.currentTarget.value)}
+                />
+              </Show>
+              <nav class="sidebar-nav">
+                <Show
+                  when={section() === 'guide'}
+                  fallback={
+                    <For each={compFilteredGroups()}>
+                      {(group) => (
+                        <div class="nav-group">
+                          <div class="nav-group-title">{group.title}</div>
+                          <For each={group.items}>
+                            {(item) => (
+                              <button
+                                class={`nav-item ${activeKey() === item.key ? 'active' : ''}`}
+                                onClick={() => navigateTo(item.key)}
+                              >
+                                {item.name}
+                              </button>
+                            )}
+                          </For>
+                        </div>
+                      )}
+                    </For>
+                  }
+                >
+                  <For each={GUIDE_GROUPS}>
                     {(group) => (
                       <div class="nav-group">
                         <div class="nav-group-title">{group.title}</div>
@@ -1183,68 +1202,49 @@ export function App() {
                       </div>
                     )}
                   </For>
-                }
-              >
-                <For each={GUIDE_GROUPS}>
-                  {(group) => (
-                    <div class="nav-group">
-                      <div class="nav-group-title">{group.title}</div>
-                      <For each={group.items}>
-                        {(item) => (
-                          <button
-                            class={`nav-item ${activeKey() === item.key ? 'active' : ''}`}
-                            onClick={() => navigateTo(item.key)}
-                          >
-                            {item.name}
-                          </button>
-                        )}
-                      </For>
-                    </div>
-                  )}
-                </For>
-              </Show>
-            </nav>
-          </aside>
-          {/* Mobile overlay */}
-          <div class={`sidebar-overlay ${menuOpen() ? 'open' : ''}`} onClick={() => setMenuOpen(false)} />
-        </Show>
-
-        {/* ══ Main Content ══ */}
-        <div class="main-area">
-          {/* Topbar */}
-          <Show when={showSidebar()}>
-            <div class="topbar">
-              <button class="menu-btn" onClick={() => setMenuOpen(!menuOpen())}>☰</button>
-              <span class="topbar-title">
-                {section() === 'guide'
-                  ? GUIDE_GROUPS.flatMap(g => g.items).find(i => i.key === activeKey())?.name || ''
-                  : GROUPS.flatMap(g => g.items).find(i => i.key === activeKey())?.name || ''
-                }
-              </span>
-            </div>
+                </Show>
+              </nav>
+            </aside>
+            {/* Mobile overlay */}
+            <div class={`sidebar-overlay ${menuOpen() ? 'open' : ''}`} onClick={() => setMenuOpen(false)} />
           </Show>
-          <div class="content" classList={{ 'content-full': !showSidebar() }}>
-            {section() === 'guide' ? (
-              <>
-                {(() => {
-                  const P = GUIDE_PAGES[activeKey()];
-                  return P ? <P /> : <div style="padding:2rem">未找到页面: {activeKey()}</div>;
-                })()}
-              </>
-            ) : (
-              <>
-                {(() => {
-                  const C = PAGES[activeKey()];
-                  return C ? <C /> : <div style="padding:2rem">未找到组件: {activeKey()}</div>;
-                })()}
-              </>
-            )}
+
+          {/* ══ Main Content ══ */}
+          <div class="main-area">
+            {/* Topbar */}
+            <Show when={showSidebar()}>
+              <div class="topbar">
+                <button class="menu-btn" onClick={() => setMenuOpen(!menuOpen())}>☰</button>
+                <span class="topbar-title">
+                  {section() === 'guide'
+                    ? GUIDE_GROUPS.flatMap(g => g.items).find(i => i.key === activeKey())?.name || ''
+                    : GROUPS.flatMap(g => g.items).find(i => i.key === activeKey())?.name || ''
+                  }
+                </span>
+              </div>
+            </Show>
+            <div class="content" classList={{ 'content-full': !showSidebar() }}>
+              {section() === 'guide' ? (
+                <>
+                  {(() => {
+                    const P = GUIDE_PAGES[activeKey()];
+                    return P ? <P /> : <div style="padding:2rem">未找到页面: {activeKey()}</div>;
+                  })()}
+                </>
+              ) : (
+                <>
+                  {(() => {
+                    const C = PAGES[activeKey()];
+                    return C ? <C /> : <div style="padding:2rem">未找到组件: {activeKey()}</div>;
+                  })()}
+                </>
+              )}
+            </div>
           </div>
         </div>
+        <ToastRenderer />
+        <DialogRenderer />
       </div>
-      <ToastRenderer />
-      <DialogRenderer />
-    </div>
     </Show>
   );
 }

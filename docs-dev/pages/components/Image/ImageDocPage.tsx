@@ -48,8 +48,8 @@ export const ImageDocPage = () => {
         <PropsTable rows={propsData} />
 
         <h2 id="basic" class={css.h2}>{t('common.basic')}</h2>
-        <DemoBlock title="Logo 展示" desc="solid-mobile 官方 logo。" code={`<Image src="/logo.jpg" width={100} height={100} fit="cover" radius={16} />`}>
-          <Image src="/logo.jpg" width={100} height={100} fit="cover" radius={16} />
+        <DemoBlock title="Logo 展示" desc="solid-mobile 官方 logo。" code={`<Image src="./logo.jpg" width={100} height={100} fit="cover" radius={16} />`}>
+          <Image src="./logo.jpg" width={100} height={100} fit="cover" radius={16} />
         </DemoBlock>
 
         <DemoBlock title="固定尺寸" code={'<Image src="photo.jpg" width={300} height={200} />'}>
