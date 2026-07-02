@@ -2,6 +2,7 @@ import { splitProps, mergeProps, type Component, type JSX } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
 import { cn, contrastText, deriveColorSet } from '../../utils';
 import { Icon } from '../Icon';
+import { emitEvent } from '../../event-bus';
 import type { ButtonProps } from './types';
 import styles from './Button.module.css';
 
@@ -123,6 +124,7 @@ export const Button: Component<ButtonProps> = (rawProps) => {
     if (typeof local.onClick === 'function') {
       local.onClick(e);
     }
+    emitEvent({ component: 'Button', type: 'click', payload: e, timestamp: Date.now() });
   };
 
   // --- Icon rendering ---

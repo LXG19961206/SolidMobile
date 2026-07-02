@@ -5,6 +5,7 @@ import {
 import { cn } from '../../utils';
 import { useFormField } from '../Form/FormItem';
 import type { RadioProps, RadioGroupProps, RadioShape } from './types';
+import { emitEvent } from '../../event-bus';
 import styles from './Radio.module.css';
 
 /* ═══════════════════════════════════════════════════════════
@@ -76,6 +77,7 @@ export const Radio: Component<RadioProps> = (rawProps) => {
       const next = !isChecked();
       if (local.checked === undefined) setSelfChecked(next);
       local.onChange?.(next);
+      emitEvent({ component: 'Radio', type: 'change', payload: next, timestamp: Date.now() });
     } else {
       ctx!.onChange(local.value);
     }
@@ -182,6 +184,7 @@ export const RadioGroup: Component<RadioGroupProps> = (rawProps) => {
     if (!isControlled()) setInnerVal(v);
     if (field) { field.onChange(v); }
     else { local.onChange?.(v); }
+    emitEvent({ component: 'Radio', type: 'change', payload: v, timestamp: Date.now() });
   }
 
   /* ── Context ── */

@@ -5,6 +5,7 @@ import {
 import { cn } from '../../utils';
 import { Icon } from '../Icon';
 import { useFormField } from '../Form/FormItem';
+import { emitEvent } from '../../event-bus';
 import type { InputProps } from './types';
 import styles from './Input.module.css';
 
@@ -57,6 +58,7 @@ export const Input: Component<InputProps> = (rawProps) => {
     } else {
       local.onChange?.(val);
     }
+    emitEvent({ component: 'Input', type: 'change', payload: val, timestamp: Date.now() });
   };
 
   /* ── 密码可见切换 ── */

@@ -4,6 +4,7 @@ import {
 } from 'solid-js';
 import { cn } from '../../utils';
 import { useFormField } from '../Form/FormItem';
+import { emitEvent } from '../../event-bus';
 import type { SliderProps } from './types';
 import styles from './Slider.module.css';
 
@@ -101,6 +102,7 @@ export const Slider: Component<SliderProps> = (rawProps) => {
     const sorted = [...vals].sort((a, b) => a - b);
     setVals(sorted);
     updateUI(sorted);
+    const payload = allCount() === 1 ? sorted[0] : sorted;
     if (allCount() === 1) {
       local.onChange?.(sorted[0]);
       field?.onChange(sorted[0]);
@@ -108,6 +110,7 @@ export const Slider: Component<SliderProps> = (rawProps) => {
       local.onChange?.(sorted);
       field?.onChange(sorted);
     }
+    emitEvent({ component: 'Slider', type: 'change', payload, timestamp: Date.now() });
   }
 
   function calcValue(clientX: number): number {

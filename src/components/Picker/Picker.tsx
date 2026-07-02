@@ -8,6 +8,7 @@ import { Portal } from 'solid-js/web';
 import { cn } from '../../utils';
 import { useLocale, useT } from '../../i18n';
 import { Overlay } from '../Overlay';
+import { emitEvent } from '../../event-bus';
 import type { PickerOption, PickerProps } from './types';
 import styles from './Picker.module.css';
 
@@ -544,6 +545,7 @@ export const Picker: Component<PickerProps> = (rawProps) => {
       const items = allColumns().map((cols, i) => cols[allIdxs()[i]]);
       const vals = allIdxs().map((idx, i) => allColumns()[i][idx]?.value ?? '');
       local.onChange?.call(void 0, items, vals);
+      emitEvent({ component: 'Picker', type: 'change', payload: { items, vals }, timestamp: Date.now() });
     }, duration * 1000 * 0.5);
   }
 
@@ -553,6 +555,7 @@ export const Picker: Component<PickerProps> = (rawProps) => {
 
   function cancel() {
     local.onCancel?.();
+    emitEvent({ component: 'Picker', type: 'cancel', payload: undefined, timestamp: Date.now() });
     local.onUpdateShow?.(false);
   }
 
@@ -560,6 +563,7 @@ export const Picker: Component<PickerProps> = (rawProps) => {
     const items = allColumns().map((cols, i) => cols[allIdxs()[i]]);
     const vals = allIdxs().map((idx, i) => allColumns()[i][idx]?.value ?? '');
     local.onConfirm?.call(void 0, items, vals);
+    emitEvent({ component: 'Picker', type: 'confirm', payload: { items, vals }, timestamp: Date.now() });
     local.onUpdateShow?.(false);
   }
 

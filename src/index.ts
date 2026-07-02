@@ -31,3 +31,7 @@ export type { ToastOptions, ToastHandle, ToastType, ToastPosition } from './comp
 // i18n
 export { LocaleProvider, useLocale, useT, messages } from './i18n';
 export type { Locale, LocaleProviderProps } from './i18n';
+
+// EventBus
+export { emitEvent, setEventBusHandler, getEventBusHandler } from './event-bus';
+export type { EventBusEvent, EventBusHandler, EventBusComponent, EventBusEventType } from './event-bus';

@@ -7,6 +7,7 @@ import { Popup } from '../Popup';
 import { useLocale, useT } from '../../i18n';
 import { solarToLunar } from '../../utils/lunar';
 import type { CalendarProps, DayInfo } from './types';
+import { emitEvent } from '../../event-bus';
 import styles from './Calendar.module.css';
 
 /* ── Date helpers ── */
@@ -111,8 +112,6 @@ export const Calendar: Component<CalendarProps> = (rawProps) => {
   const min = () => local.minDate || new Date(+today - 30 * MS_DAY);
   const max = () => local.maxDate || new Date(+today + 30 * MS_DAY);
 
-  // Auto-select i18n defaults based on locale (props always override).
-  // useLocale() is called inside getters so Solid tracks signal changes.
   const weekdays = () => local.weekdays || (useLocale() === 'en-US'
     ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     : WEEKS);
@@ -123,15 +122,12 @@ export const Calendar: Component<CalendarProps> = (rawProps) => {
     return useLocale() === 'en-US' ? `${m.month}/${m.year}` : `${m.year}年 ${m.month}月`;
   };
 
-  // Generate all months
   const months = createMemo(() => buildMonths(min(), max(), local.firstDayOfWeek!));
 
-  // Selection state
   const [selected, setSelected] = createSignal<Date[]>([]);
   const [rangeStart, setRangeStart] = createSignal<Date | null>(null);
   const [rangeEnd, setRangeEnd] = createSignal<Date | null>(null);
 
-  // Active month (tracked by scroll)
   const [activeIdx, setActiveIdx] = createSignal(0);
   let contentRef!: HTMLDivElement;
   let monthRefs: HTMLDivElement[] = [];
@@ -157,7 +153,6 @@ export const Calendar: Component<CalendarProps> = (rawProps) => {
 
   onCleanup(() => { if (scrollRaf) cancelAnimationFrame(scrollRaf); });
 
-  // Selection logic — only match current-month days
   function isSelected(d: DayInfo) { return d.isCurrentMonth && selected().some(s => sameDay(s, d.date)); }
   function isInRange(d: DayInfo) {
     if (local.type !== 'range' || !d.isCurrentMonth) return false;
@@ -178,6 +173,7 @@ export const Calendar: Component<CalendarProps> = (rawProps) => {
     if (local.type === 'single') {
       setSelected([d.date]);
       local.onChange?.(d.date);
+      emitEvent({ component: 'Calendar', type: 'change', payload: d.date, timestamp: Date.now() });
       if (local.popup) local.onUpdateShow?.(false);
     } else if (local.type === 'multiple') {
       const idx = selected().findIndex(s => sameDay(s, d.date));
@@ -185,11 +181,13 @@ export const Calendar: Component<CalendarProps> = (rawProps) => {
         const next = selected().filter((_, i) => i !== idx);
         setSelected(next);
         local.onChange?.(next);
+        emitEvent({ component: 'Calendar', type: 'change', payload: next, timestamp: Date.now() });
       } else {
         if (local.maxCount && selected().length >= local.maxCount) return;
         const next = [...selected(), d.date];
         setSelected(next);
         local.onChange?.(next);
+        emitEvent({ component: 'Calendar', type: 'change', payload: next, timestamp: Date.now() });
       }
     } else if (local.type === 'range') {
       if (!rangeStart() || (rangeStart() && rangeEnd())) {
@@ -235,7 +233,6 @@ export const Calendar: Component<CalendarProps> = (rawProps) => {
         ...(typeof local.style === 'object' ? local.style : {}),
       }}
     >
-      {/* Sticky header — hidden in popup mode (popup has its own sheet header) */}
       <Show when={!local.popup}>
         <div class={styles.header}>
           <div class={styles.headerTitle}>{titleText()}</div>
@@ -247,7 +244,6 @@ export const Calendar: Component<CalendarProps> = (rawProps) => {
         </div>
       </div>
 
-      {/* Scrollable months */}
       <div ref={contentRef!} class={styles.content} onScroll={onScroll}>
         <For each={months()}>
           {(month, mi) => {
@@ -303,7 +299,6 @@ export const Calendar: Component<CalendarProps> = (rawProps) => {
         </For>
       </div>
 
-      {/* Confirm */}
       <Show when={local.showConfirm && local.type === 'range'}>
         <div class={styles.confirm}>
           <button

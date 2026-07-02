@@ -14,6 +14,7 @@ import { Overlay } from '../Overlay';
 import { Icon } from '../Icon';
 import type { ActionSheetItem, ActionSheetProps } from './types';
 import styles from './ActionSheet.module.css';
+import { emitEvent } from '../../event-bus';
 
 const defaultProps: Partial<ActionSheetProps> = {
   closeOnSelect: true,
@@ -105,6 +106,7 @@ export const ActionSheet: Component<ActionSheetProps> = (rawProps) => {
   const handleItemClick = (item: ActionSheetItem, index: number) => {
     if (item.disabled || item.loading) return;
     local.onSelect?.(item, index);
+    emitEvent({ component: 'ActionSheet', type: 'select', payload: { item, index }, timestamp: Date.now() });
     if (local.closeOnSelect) {
       local.onClose();
     }

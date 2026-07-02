@@ -9,6 +9,7 @@ import { cn } from '../../utils';
 import { useFormField } from '../Form/FormItem';
 import type { SwitchProps } from './types';
 import styles from './Switch.module.css';
+import { emitEvent } from '../../event-bus';
 
 const defaultProps: Partial<SwitchProps> = {
   defaultChecked: false,
@@ -75,6 +76,7 @@ export const Switch: Component<SwitchProps> = (rawProps) => {
     }
     local.onChange?.(next);
     if (field) field.onChange(next);
+    emitEvent({ component: 'Switch', type: 'change', payload: next, timestamp: Date.now() });
   };
 
   // Sync from field context

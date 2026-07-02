@@ -15,6 +15,7 @@ import {
 import { cn } from '../../utils';
 import type { TabsProps, TabProps } from './types';
 import styles from './Tabs.module.css';
+import { emitEvent } from '../../event-bus';
 
 /* ═══════════════════════════════════════════════════════════════════════
    Context — Tab registers itself with parent Tabs
@@ -148,6 +149,7 @@ export const Tabs: Component<TabsProps> = (rawProps) => {
 
     if (!isControlled()) setInternalActive(name);
     local.onChange?.(name);
+    emitEvent({ component: 'Tabs', type: 'change', payload: name, timestamp: Date.now() });
   };
 
   // ── Lazy render set ──

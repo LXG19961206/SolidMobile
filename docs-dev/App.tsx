@@ -90,6 +90,7 @@ import { StepperMobile } from './pages/mobile/StepperMobile';
 import { SliderMobile } from './pages/mobile/SliderMobile';
 import { SelectMobile } from './pages/mobile/SelectMobile';
 import { DesignTokensMobile } from './pages/mobile/DesignTokensMobile';
+import { EventBusMobile } from './pages/mobile/EventBusMobile';
 import { AllTokens } from '../src/design-tokens/DesignTokenShowcase';
 import { useDisableZoom } from '../src/hooks';
 import { DrawerContext } from '../src/doc-utils/mobile/DrawerContext';
@@ -181,6 +182,7 @@ const MobileHome: Component<{
 
 const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key: string }[]; onNavigate?: (key: string) => void; onOpenDrawer?: () => void }>> = {
   home: MobileHome,
+  eventbus: EventBusMobile,
   'design-tokens': DesignTokensMobile,
   button: ButtonMobile,
   icon: IconMobile,
@@ -919,6 +921,7 @@ const GUIDE_GROUPS: MenuGroup[] = [
     items: [
       { name: '全局配置', key: 'config' },
       { name: '视觉规范', key: 'tokens' },
+      { name: 'EventBus 事件总线', key: 'eventbus' },
     ],
   },
   {
@@ -934,6 +937,82 @@ const GUIDE_PAGES: Record<string, Component> = {
   about: AboutPage,
   config: ConfigDocPage,
   tokens: () => <div class="guide-card"><AllTokens /></div>,
+  eventbus: () => (
+    <div class="guide-card">
+      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '0 0 0.5rem' }}>EventBus 事件总线</h1>
+      <p style={{ color: 'var(--sc-color-text-secondary, #6b7280)', margin: '0 0 1.5rem', 'line-height': 1.6 }}>
+        全局事件总线。所有组件触发内置事件时，除执行原有回调外，还会将结构化事件推送至全局总线。
+        适用于埋点遥测、审计日志、AOP 拦截、开发调试等场景。
+      </p>
+
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>如何使用</h2>
+      <p style={{ color: 'var(--sc-color-text-secondary, #6b7280)', margin: '0 0 0.75rem', 'line-height': 1.6 }}>
+        在应用入口调用一次 setEventBusHandler，无需 Provider。未注册时零开销。
+      </p>
+      <div style={{ background: '#1e293b', color: '#e2e8f0', padding: '1rem 1.25rem', 'border-radius': '8px', 'font-size': '0.85rem', overflow: 'auto', 'white-space': 'pre-wrap', 'font-family': 'monospace' }}>
+{`import { setEventBusHandler } from 'solid-component';
+
+setEventBusHandler((event) => {
+  console.log(\`[\${event.component}] \${event.type}\`, event.payload);
+  // 发送到埋点平台 / 审计系统等
+});`}
+      </div>
+
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>适用场景</h2>
+      <ul style={{ color: 'var(--sc-color-text-secondary, #6b7280)', 'line-height': 1.8, 'padding-left': '1.2rem' }}>
+        <li><strong>埋点 / 遥测</strong> — 统计用户行为，分析组件使用频率</li>
+        <li><strong>审计日志</strong> — 记录关键操作，合规追溯</li>
+        <li><strong>AOP 拦截</strong> — 全局前置/后置处理组件事件</li>
+        <li><strong>开发调试</strong> — 实时查看所有组件交互</li>
+      </ul>
+
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>可用事件一览</h2>
+      <div class="guide-table-wrap">
+        <table>
+          <thead>
+            <tr><th>组件</th><th>事件类型</th><th>payload 类型</th></tr>
+          </thead>
+          <tbody>
+            {[
+              ['Button', 'click', 'MouseEvent'],
+              ['Picker', 'change / confirm / cancel', '{ items, vals }'],
+              ['Slider', 'change', 'number | number[]'],
+              ['Input', 'change', 'string'],
+              ['Switch', 'change', 'boolean'],
+              ['Rate', 'change', 'number'],
+              ['Stepper', 'change', 'number'],
+              ['Tabs', 'change', 'string | number'],
+              ['Radio / RadioGroup', 'change', 'boolean / unknown'],
+              ['Checkbox / CheckboxGroup', 'change', 'boolean / unknown[]'],
+              ['Calendar', 'change', 'Date | Date[] | [Date,Date]'],
+              ['Cascader', 'change', '(string | number)[]'],
+              ['Select', 'change / confirm', 'string | number'],
+              ['DatePicker', 'change / confirm', 'string'],
+              ['CityPicker', 'change / confirm', '(string | number)[]'],
+              ['Toast', 'show', 'ToastOptions'],
+              ['Notify', 'show', 'NotifyOptions'],
+              ['Dialog', 'show', 'DialogOptions'],
+              ['ActionSheet', 'select', '{ item, index }'],
+              ['Form', 'submit', 'FormValue'],
+            ].map(([comp, evt, payload]) => (
+              <tr>
+                <td style={{ 'font-weight': 500 }}>{comp}</td>
+                <td style={{ 'font-family': 'monospace', 'font-size': '0.8rem', color: '#1677ff' }}>{evt}</td>
+                <td style={{ 'font-family': 'monospace', 'font-size': '0.75rem', color: 'var(--sc-color-text-secondary, #6b7280)' }}>{payload}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>注意事项</h2>
+      <ul style={{ color: 'var(--sc-color-text-secondary, #6b7280)', 'line-height': 1.8, 'padding-left': '1.2rem' }}>
+        <li>未注册 handler 时 <code>emitEvent</code> 为零开销（仅一次 null 检查）</li>
+        <li>handler 内避免执行耗时操作，建议异步处理</li>
+        <li>payload 类型为 <code>unknown</code>，需根据 component/type 自行窄化</li>
+      </ul>
+    </div>
+  ),
 };
 
 /* ── URL Parsing ── */
@@ -1047,6 +1126,9 @@ export function App() {
   const closeMobileDrawer = () => setMobileDrawerOpen(false);
   const mobileGroups = createMemo(() => [
     { title: '', items: [{ name: '🏠 Home', key: 'home' }] },
+    { title: '指南', items: [
+      { name: '📡 EventBus 事件总线', key: 'eventbus' },
+    ]},
     ...GROUPS,
   ]);
 

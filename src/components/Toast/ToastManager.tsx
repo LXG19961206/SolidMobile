@@ -2,6 +2,7 @@ import { createSignal, For, Show } from 'solid-js';
 import { Portal } from 'solid-js/web';
 import { ToastItem } from './ToastItem';
 import type { ToastOptions, ToastHandle, ToastType } from './types';
+import { emitEvent } from '../../event-bus';
 
 interface ToastEntry extends ToastOptions {
   id: number;
@@ -50,7 +51,9 @@ function add(options: ToastOptions): ToastHandle {
     return [...prev, { ...options, id, stackIndex: same.length }];
   });
 
-  return { id, dismiss: () => remove(id) };
+  const handle: ToastHandle = { id, dismiss: () => remove(id) };
+  emitEvent({ component: 'Toast', type: 'show', payload: options, timestamp: Date.now() });
+  return handle;
 }
 
 /* ---------------------------------------------------------------------- */

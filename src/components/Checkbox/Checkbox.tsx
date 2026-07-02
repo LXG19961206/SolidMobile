@@ -5,6 +5,7 @@ import {
 import { cn } from '../../utils';
 import { useFormField } from '../Form/FormItem';
 import type { CheckboxProps, CheckboxGroupProps, CheckboxShape } from './types';
+import { emitEvent } from '../../event-bus';
 import styles from './Checkbox.module.css';
 
 /* ═══════════════════════════════════════════════════════════
@@ -83,6 +84,7 @@ export const Checkbox: Component<CheckboxProps> = (rawProps) => {
       const next = !isChecked();
       if (local.checked === undefined) setSelfChecked(next);
       local.onChange?.(next);
+      emitEvent({ component: 'Checkbox', type: 'change', payload: next, timestamp: Date.now() });
     } else {
       ctx!.onChange(local.value);
     }
@@ -204,6 +206,7 @@ export const CheckboxGroup: Component<CheckboxGroupProps> = (rawProps) => {
     if (!isControlled()) setInnerVal(next);
     if (field) { field.onChange(next); }
     else { local.onChange?.(next); }
+    emitEvent({ component: 'Checkbox', type: 'change', payload: next, timestamp: Date.now() });
   }
 
   /* ── Context ── */

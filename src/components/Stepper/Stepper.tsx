@@ -4,6 +4,7 @@ import {
 } from 'solid-js';
 import { cn } from '../../utils';
 import { useFormField } from '../Form/FormItem';
+import { emitEvent } from '../../event-bus';
 import type { StepperProps } from './types';
 import styles from './Stepper.module.css';
 
@@ -81,6 +82,7 @@ export const Stepper: Component<StepperProps> = (rawProps) => {
     setInputText(String(formatted));
     local.onChange?.(formatted);
     if (field) field.onChange(formatted);
+    emitEvent({ component: 'Stepper', type: 'change', payload: formatted, timestamp: Date.now() });
   }
 
   const isReadonly = () => !!local.readonly || !!field?.readonly;

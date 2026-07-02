@@ -2,6 +2,7 @@ import { createSignal, For } from 'solid-js';
 import { NotifyItem } from './NotifyItem';
 import type { JSX } from 'solid-js';
 import type { NotifyOptions, NotifyHandle, NotifyType } from './types';
+import { emitEvent } from '../../event-bus';
 
 interface NotifyEntry extends NotifyOptions {
   id: number;
@@ -36,6 +37,7 @@ function add(options: NotifyOptions): NotifyHandle {
     return [...rest, { ...options, id }];
   });
 
+  emitEvent({ component: 'Notify', type: 'show', payload: options, timestamp: Date.now() });
   return { id, dismiss: () => remove(id) };
 }
 

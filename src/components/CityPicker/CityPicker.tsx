@@ -8,6 +8,7 @@ import { Cell } from '../Cell';
 import { useFormField } from '../Form/FormItem';
 import { useT } from '../../i18n';
 import type { CityPickerProps } from './types';
+import { emitEvent } from '../../event-bus';
 
 const defaultProps: Partial<CityPickerProps> = {
   separator: ' / ',
@@ -77,13 +78,16 @@ export const CityPicker: Component<CityPickerProps> = (rawProps) => {
   function handleChange(_items: PickerOption[], vals: (string | number)[]) {
     setInnerVal(vals);
     local.onChange?.(vals);
+    emitEvent({ component: 'CityPicker', type: 'change', payload: vals, timestamp: Date.now() });
     if (field) field.onChange(vals);
   }
 
   function handleConfirm(_items: PickerOption[], vals: (string | number)[]) {
     setInnerVal(vals);
     local.onChange?.(vals);
+    emitEvent({ component: 'CityPicker', type: 'change', payload: vals, timestamp: Date.now() });
     local.onConfirm?.(vals);
+    emitEvent({ component: 'CityPicker', type: 'confirm', payload: vals, timestamp: Date.now() });
     if (field) field.onChange(vals);
     updateShow(false);
   }

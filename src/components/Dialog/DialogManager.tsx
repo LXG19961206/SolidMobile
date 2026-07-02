@@ -1,6 +1,7 @@
 import { createSignal, For } from 'solid-js';
 import { DialogComponent } from './Dialog';
 import type { DialogOptions, DialogHandle } from './types';
+import { emitEvent } from '../../event-bus';
 
 interface DialogEntry extends DialogOptions {
   id: number;
@@ -22,6 +23,7 @@ function add(options: DialogOptions): DialogHandle {
   const id = ++nextId;
   const entry: DialogEntry = { ...options, id, show: true };
   setDialogs((prev) => [...prev, entry]);
+  emitEvent({ component: 'Dialog', type: 'show', payload: options, timestamp: Date.now() });
   return { dismiss: () => update(id, false) };
 }
 

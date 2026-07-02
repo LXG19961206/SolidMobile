@@ -8,6 +8,7 @@ import type { IconName } from '../Icon';
 import { useFormField } from '../Form/FormItem';
 import type { RateProps } from './types';
 import styles from './Rate.module.css';
+import { emitEvent } from '../../event-bus';
 
 const defaultProps: Partial<RateProps> = {
   count: 5,
@@ -82,6 +83,7 @@ export const Rate: Component<RateProps> = (rawProps) => {
     setInternalVal(newVal);
     local.onChange?.(newVal);
     if (field) field.onChange(newVal);
+    emitEvent({ component: 'Rate', type: 'change', payload: newVal, timestamp: Date.now() });
   }
 
   function onStarClick(e: MouseEvent, index: number) {

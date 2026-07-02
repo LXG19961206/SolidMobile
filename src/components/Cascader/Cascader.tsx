@@ -7,6 +7,7 @@ import { cn } from '../../utils';
 import { Overlay } from '../Overlay';
 import { Loading } from '../Loading';
 import type { CascaderProps, CascaderOption } from './types';
+import { emitEvent } from '../../event-bus';
 import styles from './Cascader.module.css';
 
 const defaultProps: Partial<CascaderProps> = {
@@ -195,6 +196,7 @@ export const Cascader: Component<CascaderProps> = (rawProps) => {
       }
     }
     local.onChange?.(value);
+    emitEvent({ component: 'Cascader', type: 'change', payload: value, timestamp: Date.now() });
 
     // Determine effective children (inline or async-loaded)
     const effectiveChildren = option.children ?? loadedChildren()[`${depth}-${idx}`];

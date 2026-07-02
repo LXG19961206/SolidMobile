@@ -5,6 +5,7 @@ import {
 } from 'solid-js';
 import { cn } from '../../utils';
 import { FormContext } from './context';
+import { emitEvent } from '../../event-bus';
 import type { FormValue, FormProps, FormRule } from './types';
 
 const defaultProps: Partial<FormProps> = {
@@ -155,6 +156,7 @@ export const Form: Component<FormProps> = (rawProps) => {
       return;
     }
     local.onSubmit?.(formValue() as any);
+    emitEvent({ component: 'Form', type: 'submit', payload: formValue(), timestamp: Date.now() });
   }
 
   /* ── Context (stable reference, getters for reactive reads) ── */

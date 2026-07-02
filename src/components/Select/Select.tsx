@@ -8,6 +8,7 @@ import { Cell } from '../Cell';
 import { useFormField } from '../Form/FormItem';
 import { useLocale, useT } from '../../i18n';
 import type { SelectProps } from './types';
+import { emitEvent } from '../../event-bus';
 
 const defaultProps: Partial<SelectProps> = {};
 
@@ -84,7 +85,9 @@ export const Select: Component<SelectProps> = (rawProps) => {
     if (v === undefined || v === '') return;
     setInnerVal(v);
     local.onChange?.(v);
+      emitEvent({ component: 'Select', type: 'change', payload: v, timestamp: Date.now() });
     local.onConfirm?.(v);
+      emitEvent({ component: 'Select', type: 'confirm', payload: v, timestamp: Date.now() });
     if (field) field.onChange(v);
     updateShow(false);
   }

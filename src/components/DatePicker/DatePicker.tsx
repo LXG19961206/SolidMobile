@@ -9,6 +9,7 @@ import { useFormField } from '../Form/FormItem';
 import { useT } from '../../i18n';
 import { daysInMonth, range, formatDate, parseDate, parseDateRange, clampDay } from './date-utils';
 import type { DatePickerProps, DatePickerType } from './types';
+import { emitEvent } from '../../event-bus';
 
 const defaultProps: Partial<DatePickerProps> = {
   startDate: '2014-01-01',
@@ -145,6 +146,7 @@ export const DatePicker: Component<DatePickerProps> = (rawProps) => {
     if (local.type !== 'year-month') setDay(d);
     const formatted = formatDate(y, m, clampDay(y, m, d));
     local.onChange?.(formatted);
+    emitEvent({ component: 'DatePicker', type: 'change', payload: formatted, timestamp: Date.now() });
     if (field) field.onChange(formatted);
   }
 
@@ -153,6 +155,7 @@ export const DatePicker: Component<DatePickerProps> = (rawProps) => {
     const y = nums[0]; const m = nums[1]; const d = local.type === 'year-month' ? 1 : nums[2] || 1;
     const formatted = formatDate(y, m, clampDay(y, m, d));
     local.onChange?.(formatted);
+    emitEvent({ component: 'DatePicker', type: 'change', payload: formatted, timestamp: Date.now() });
     local.onConfirm?.(formatted);
     if (field) field.onChange(formatted);
     updateShow(false);
