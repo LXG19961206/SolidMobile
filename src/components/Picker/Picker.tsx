@@ -578,7 +578,9 @@ export const Picker: Component<PickerProps> = (rawProps) => {
   }
 
   function isItemSelected(itemIdx: number, colIdx: number): boolean {
-    return itemIdx === allIdxs()[colIdx];
+    // Track visual position via translateY during CSS transition,
+    // not selectedIdx (which only updates after animation completes)
+    return itemIdx === Math.round(-allTranslates()[colIdx] / lineHeight());
   }
 
   /* ═══════════════════════════════════════════════════════════

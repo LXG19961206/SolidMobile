@@ -150,7 +150,6 @@
 /* ── Items ── */
 .item {
   height: var(--sc-picker-item-height);
-  line-height: var(--sc-picker-item-height);
   padding: 0;
   margin: 0 auto;
   overflow: hidden;
@@ -160,6 +159,9 @@
   opacity: 0.5;
   transition: opacity 0.3s ease;
   color: var(--sc-picker-text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .itemDisabled {
