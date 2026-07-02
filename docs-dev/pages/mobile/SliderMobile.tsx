@@ -24,9 +24,9 @@ const propsData = [
 ];
 
 const CARD = {
-  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
-  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
-  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
+  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: 'var(--sc-doc-card-title, #1f2937)' },
+  desc: { 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', padding: '0 16px 12px' },
   body: { padding: '0 16px 16px', display: 'flex' as const, 'flex-direction': 'column' as const, gap: '16px' },
 };
 
@@ -43,13 +43,13 @@ export const SliderMobile: Component<SliderMobileProps> = (props) => {
         <div style={CARD.desc}>拖动调整数值，当前值实时显示</div>
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
-            <span style={{ 'font-size': '0.8rem', color: '#9ca3af', 'min-width': '24px' }}>0</span>
+            <span style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'min-width': '24px' }}>0</span>
             <div style={{ flex: 1 }}>
               <Slider value={val1()} onChange={setVal1} />
             </div>
-            <span style={{ 'font-size': '0.8rem', color: '#9ca3af', 'min-width': '24px' }}>100</span>
+            <span style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'min-width': '24px' }}>100</span>
           </div>
-          <span style={{ 'font-size': '0.85rem', color: '#6b7280', 'text-align': 'center' }}>当前值: {val1()}</span>
+          <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)', 'text-align': 'center' }}>当前值: {val1()}</span>
         </div>
       </div>
 
@@ -61,7 +61,7 @@ export const SliderMobile: Component<SliderMobileProps> = (props) => {
           <div style={{ padding: '0 12px' }}>
             <Slider value={rangeVal()} onChange={(v) => setRangeVal(v as number[])} count={2} />
           </div>
-          <span style={{ 'font-size': '0.85rem', color: '#6b7280', 'text-align': 'center' }}>
+          <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)', 'text-align': 'center' }}>
             范围: {rangeVal()[0]} - {rangeVal()[1]}
           </span>
         </div>
@@ -73,11 +73,11 @@ export const SliderMobile: Component<SliderMobileProps> = (props) => {
         <div style={CARD.desc}>step 限制精度 / activeColor 自定义颜色</div>
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
-            <span style={{ 'font-size': '0.75rem', color: '#9ca3af' }}>步长5</span>
+            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>步长5</span>
             <div style={{ flex: 1 }}>
               <Slider value={val2()} onChange={setVal2} step={5} />
             </div>
-            <span style={{ 'font-size': '0.8rem', color: '#374151', 'min-width': '28px' }}>{val2()}</span>
+            <span style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-text, #374151)', 'min-width': '28px' }}>{val2()}</span>
           </div>
           <div style={{ padding: '0 12px' }}>
             <Slider value={70} activeColor="#22c55e" />

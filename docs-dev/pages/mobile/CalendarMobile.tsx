@@ -25,9 +25,9 @@ const propsData = [
 ];
 
 const CARD = {
-  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
-  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
-  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
+  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: 'var(--sc-doc-card-title, #1f2937)' },
+  desc: { 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', padding: '0 16px 12px' },
   body: { padding: '0 16px 16px' },
 };
 
@@ -59,7 +59,7 @@ export const CalendarMobile: Component<CalendarMobileProps> = (props) => {
         <div style={CARD.desc}>点击触发按钮弹出日历选择</div>
         <div style={CARD.body}>
           <div
-            style={{ padding: '12px 16px', border: '1px solid #e5e7eb', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: selectedDate() || '#9ca3af' }}
+            style={{ padding: '12px 16px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: selectedDate() || '#9ca3af' }}
             onClick={() => setShow(true)}
           >
             {selectedDate() || '选择日期'}

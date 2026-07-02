@@ -1,4 +1,4 @@
-import { createSignal, type Component } from 'solid-js';
+import { createSignal, Show, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
 
 export interface CascaderMobileProps {
@@ -6,6 +6,9 @@ export interface CascaderMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { Cascader } from '../../../src/components/Cascader';
+import { Cell, CellGroup } from '../../../src/components/Cell';
+import { Icon } from '../../../src/components/Icon';
+import { Loading } from '../../../src/components/Loading';
 import type { CascaderOption } from '../../../src/components/Cascader';
 
 const propsData = [
@@ -14,108 +17,218 @@ const propsData = [
   { name: 'onChange', type: '(value) => void', desc: '值变化回调' },
   { name: 'title', type: 'string | JSX.Element', desc: '标题' },
   { name: 'placeholder', type: 'string', desc: '占位文字' },
-  { name: 'show', type: 'boolean', desc: '是否显示（受控）' },
+  { name: 'closeable', type: 'boolean', desc: '显示关闭按钮' },
+  { name: 'show', type: 'boolean', desc: '受控显示' },
   { name: 'onUpdateShow', type: '(show) => void', desc: '关闭回调' },
-  { name: 'disabled', type: 'boolean', desc: '禁用整个选择器' },
-  { name: 'onLoadChildren', type: '(option) => Promise<CascaderOption[]>', desc: '异步加载子选项' },
+  { name: 'showCheckmark', type: 'boolean', desc: '选中项右侧显示对勾，默认 true' },
+  { name: 'checkmark', type: 'JSX.Element', desc: '自定义选中图标' },
+  { name: 'onLoadChildren', type: '(opt) => Promise<CascaderOption[]>', desc: '异步加载子选项' },
+  { name: 'loading', type: 'JSX.Element', desc: '异步加载时的占位' },
+  { name: 'maxHeight', type: 'number | string', desc: '弹窗固定高度' },
 ];
 
 const CARD = {
-  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
-  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
-  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
+  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: 'var(--sc-doc-card-title, #1f2937)' },
+  desc: { 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', padding: '0 16px 12px' },
   body: { padding: '0 16px 16px' },
 };
 
-const options: CascaderOption[] = [
-  {
-    text: '浙江', value: 'zj', children: [
-      { text: '杭州', value: 'hz', children: [
-        { text: '西湖区', value: 'xh' },
-        { text: '余杭区', value: 'yh' },
-      ]},
-      { text: '宁波', value: 'nb', children: [
-        { text: '海曙区', value: 'hs' },
-        { text: '鄞州区', value: 'yz' },
-      ]},
-    ],
-  },
-  {
-    text: '江苏', value: 'js', children: [
-      { text: '南京', value: 'nj', children: [
-        { text: '玄武区', value: 'xw' },
-        { text: '鼓楼区', value: 'gl' },
-      ]},
-      { text: '苏州', value: 'sz', children: [
-        { text: '姑苏区', value: 'gs' },
-        { text: '工业园区', value: 'yy' },
-      ]},
-    ],
-  },
+/* ── Data ── */
+
+const regionOptions: CascaderOption[] = [
+  { text: '北京', value: 'beijing', children: [
+    { text: '朝阳区', value: 'chaoyang', children: [
+      { text: '望京街道', value: 'wangjing' }, { text: '三里屯街道', value: 'sanlitun' },
+      { text: '国贸', value: 'guomao' }, { text: '双井街道', value: 'shuangjing' },
+    ]},
+    { text: '海淀区', value: 'haidian', children: [
+      { text: '中关村', value: 'zhongguancun' }, { text: '五道口', value: 'wudaokou' },
+      { text: '西二旗', value: 'xierqi' },
+    ]},
+    { text: '西城区', value: 'xicheng' },
+    { text: '东城区', value: 'dongcheng' },
+  ]},
+  { text: '上海', value: 'shanghai', children: [
+    { text: '浦东新区', value: 'pudong', children: [
+      { text: '陆家嘴', value: 'lujiazui' }, { text: '张江', value: 'zhangjiang' },
+    ]},
+    { text: '静安区', value: 'jingan' },
+    { text: '徐汇区', value: 'xuhui' },
+  ]},
+  { text: '广东', value: 'guangdong', children: [
+    { text: '深圳', value: 'shenzhen', children: [
+      { text: '南山区', value: 'nanshan' }, { text: '福田区', value: 'futian' },
+    ]},
+    { text: '广州', value: 'guangzhou', children: [
+      { text: '天河区', value: 'tianhe' }, { text: '越秀区', value: 'yuexiu' },
+    ]},
+  ]},
+  { text: '浙江', value: 'zhejiang', children: [
+    { text: '杭州', value: 'hangzhou', children: [
+      { text: '西湖区', value: 'xihu' }, { text: '余杭区', value: 'yuhang' },
+    ]},
+    { text: '宁波', value: 'ningbo' },
+  ]},
 ];
 
 export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
-  const [show, setShow] = createSignal(false);
-  const [val, setVal] = createSignal<(string | number)[]>([]);
-  const [display, setDisplay] = createSignal('');
+  /* ── 地区选择 ── */
+  const [show1, setShow1] = createSignal(false);
+  const [val1, setVal1] = createSignal<(string | number)[]>([]);
+
+  /* ── 禁用选项 ── */
+  const [show2, setShow2] = createSignal(false);
+  const [val2, setVal2] = createSignal<(string | number)[]>([]);
+  const disabledOpts: CascaderOption[] = [
+    { text: '北京', value: 'beijing' },
+    { text: '上海', value: 'shanghai', disabled: true },
+    { text: '广东', value: 'guangdong' },
+    { text: '浙江', value: 'zhejiang' },
+    { text: '江苏', value: 'jiangsu', disabled: true },
+  ];
+
+  /* ── 自定义渲染 ── */
+  const [show3, setShow3] = createSignal(false);
+  const [val3, setVal3] = createSignal<(string | number)[]>([]);
+  const renderOpts: CascaderOption[] = [
+    { text: '北京', value: 'beijing', render: <span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}><Icon name="map-pin" size={16} /> 北京</span> },
+    { text: '上海', value: 'shanghai', render: <span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}><Icon name="map-pin" size={16} /> 上海</span> },
+    { text: '广东', value: 'guangdong', render: <span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}><Icon name="map-pin" size={16} color="#22c55e" /> 广东</span> },
+    { text: '浙江', value: 'zhejiang', render: <span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}><Icon name="map-pin" size={16} color="#f59e0b" /> 浙江</span> },
+  ];
+
+  /* ── 异步加载 ── */
+  const [show4, setShow4] = createSignal(false);
+  const [val4, setVal4] = createSignal<(string | number)[]>([]);
+
+  const loadChildren = async (option: CascaderOption): Promise<CascaderOption[]> => {
+    await new Promise(r => setTimeout(r, 1000));
+    const map: Record<string, CascaderOption[]> = {
+      __root__: [
+        { text: '北京', value: 'beijing' },
+        { text: '上海', value: 'shanghai' },
+        { text: '广东', value: 'guangdong' },
+      ],
+      beijing: [
+        { text: '朝阳区', value: 'chaoyang' },
+        { text: '海淀区', value: 'haidian' },
+        { text: '东城区', value: 'dongcheng' },
+      ],
+      chaoyang: [
+        { text: '望京街道', value: 'wangjing', isLeaf: true },
+        { text: '三里屯街道', value: 'sanlitun', isLeaf: true },
+        { text: '国贸', value: 'guomao', isLeaf: true },
+      ],
+    };
+    return map[String(option.value)] || [];
+  };
 
   return (
     <MobilePreview title="Cascader 级联选择" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      {/* 基础级联 */}
+      {/* 地区选择 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础三级级联</div>
-        <div style={CARD.desc}>省 → 市 → 区 三级联动</div>
+        <div style={CARD.title}>地区选择</div>
+        <div style={CARD.desc}>三级联动：省 → 区 → 街道。点击顶部 Tab 可回退。</div>
         <div style={CARD.body}>
-          <div
-            style={{ padding: '12px 16px', border: '1px solid #e5e7eb', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: display() || '#9ca3af' }}
-            onClick={() => setShow(true)}
-          >
-            {display() || '请选择地区'}
-          </div>
+          <CellGroup>
+            <Cell
+              title="选择地区"
+              value={val1().length ? val1().join(' / ') : '请选择'}
+              clickable
+              onClick={() => setShow1(true)}
+            />
+          </CellGroup>
           <Cascader
-            options={options}
-            show={show()}
-            onUpdateShow={setShow}
+            options={regionOptions}
+            show={show1()}
+            onUpdateShow={setShow1}
+            value={val1()}
+            onChange={setVal1}
             title="选择地区"
-            placeholder="请选择地区"
-            onChange={(v) => {
-              setVal(v);
-              // build display
-              const parts: string[] = [];
-              let currentOpts = options;
-              for (const vv of v) {
-                const found = currentOpts.find(o => o.value === vv);
-                if (found) { parts.push(found.text); currentOpts = found.children || []; }
-              }
-              setDisplay(parts.join(' / '));
-              setShow(false);
-            }}
+            closeable
           />
         </div>
       </div>
 
       {/* 禁用选项 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>禁用选项 & 禁用整体</div>
-        <div style={CARD.desc}>disabled 选项不可选 / 整体禁用</div>
+        <div style={CARD.title}>禁用选项</div>
+        <div style={CARD.desc}>disabled: true 的选项不可点击。</div>
         <div style={CARD.body}>
-          <div style={{ display: 'flex' as const, 'flex-direction': 'column' as const, gap: '8px' }}>
-            <Cascader
-              options={[
-                { text: '选项 A', value: 'a' },
-                { text: '选项 B (禁用)', value: 'b', disabled: true },
-                { text: '选项 C', value: 'c' },
-              ]}
-              placeholder="含禁用项..."
-              onChange={() => {}}
+          <CellGroup>
+            <Cell
+              title="部分禁用"
+              value={val2().length ? val2().join(' / ') : '请选择'}
+              clickable
+              onClick={() => setShow2(true)}
             />
-            <Cascader
-              options={[{ text: '选项', value: 'x' }]}
-              placeholder="整体禁用"
-              disabled
-              onChange={() => {}}
+          </CellGroup>
+          <Cascader
+            options={disabledOpts}
+            show={show2()}
+            onUpdateShow={setShow2}
+            value={val2()}
+            onChange={setVal2}
+            title="城市（部分禁用）"
+          />
+        </div>
+      </div>
+
+      {/* 自定义渲染 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>自定义渲染</div>
+        <div style={CARD.desc}>render 属性传入 JSX，可带图标、颜色标记。</div>
+        <div style={CARD.body}>
+          <CellGroup>
+            <Cell
+              title="选择省份"
+              value={val3().length ? val3().join(' / ') : '请选择'}
+              clickable
+              onClick={() => setShow3(true)}
             />
-          </div>
+          </CellGroup>
+          <Cascader
+            options={renderOpts}
+            show={show3()}
+            onUpdateShow={setShow3}
+            value={val3()}
+            onChange={setVal3}
+            title="省份（自定义渲染）"
+            checkmark={<Icon name="check" size={16} color="#1677ff" />}
+          />
+        </div>
+      </div>
+
+      {/* 异步加载 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>异步加载</div>
+        <div style={CARD.desc}>options 初始为空，每级由 onLoadChildren 按需拉取，模拟 1s 延迟。</div>
+        <div style={CARD.body}>
+          <CellGroup>
+            <Cell
+              title="选择地区"
+              value={val4().length ? val4().join(' → ') : '请选择'}
+              clickable
+              onClick={() => setShow4(true)}
+            />
+          </CellGroup>
+          <Cascader
+            options={[]}
+            onLoadChildren={loadChildren}
+            show={show4()}
+            onUpdateShow={setShow4}
+            value={val4()}
+            onChange={setVal4}
+            title="异步加载地区"
+            closeable
+            loading={
+              <div style={{ 'text-align': 'center', padding: '32px', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>
+                <Loading size={24} />
+                <div style={{ 'margin-top': '8px', 'font-size': '0.8rem' }}>加载地区数据中...</div>
+              </div>
+            }
+          />
         </div>
       </div>
     </MobilePreview>

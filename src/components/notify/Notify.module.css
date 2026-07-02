@@ -15,7 +15,6 @@
   white-space: pre-line;
   word-break: break-word;
   pointer-events: auto;
-  animation: notifyIn 0.25s ease;
   cursor: default;
 }
 
@@ -25,6 +24,10 @@
 
 .bottom {
   bottom: 0;
+}
+
+.bar:not(.bottom) {
+  top: var(--sc-safe-area-top, 0px);
 }
 
 /* ── Type colors ── */
@@ -46,16 +49,3 @@
   cursor: pointer;
 }
 
-@keyframes notifyIn {
-  from { opacity: 0; transform: translateY(-100%); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.bottom.notifyIn {
-  animation-name: notifyInBottom;
-}
-
-@keyframes notifyInBottom {
-  from { opacity: 0; transform: translateY(100%); }
-  to   { opacity: 1; transform: translateY(0); }
-}

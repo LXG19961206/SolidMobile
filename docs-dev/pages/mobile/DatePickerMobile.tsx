@@ -26,9 +26,9 @@ const propsData = [
 ];
 
 const CARD = {
-  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
-  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
-  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
+  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: 'var(--sc-doc-card-title, #1f2937)' },
+  desc: { 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', padding: '0 16px 12px' },
   body: { padding: '0 16px 16px' },
 };
 
@@ -37,6 +37,8 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
   const [showMonth, setShowMonth] = createSignal(false);
   const [dateVal, setDateVal] = createSignal('');
   const [monthVal, setMonthVal] = createSignal('');
+  const [disabledVal, setDisabledVal] = createSignal('');
+  const [rangeVal, setRangeVal] = createSignal('');
 
   return (
     <MobilePreview title="DatePicker 日期选择" props={propsData} components={props.components} onNavigate={props.onNavigate}>
@@ -46,7 +48,7 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
         <div style={CARD.desc}>滚轮选择年-月-日</div>
         <div style={CARD.body}>
           <div
-            style={{ padding: '12px 16px', border: '1px solid #e5e7eb', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: dateVal() || '#9ca3af' }}
+            style={{ padding: '12px 16px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: dateVal() || '#9ca3af' }}
             onClick={() => setShowDate(true)}
           >
             {dateVal() || '请选择日期'}
@@ -70,7 +72,7 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
         <div style={CARD.desc}>滚轮选择年-月，无日列</div>
         <div style={CARD.body}>
           <div
-            style={{ padding: '12px 16px', border: '1px solid #e5e7eb', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: monthVal() || '#9ca3af' }}
+            style={{ padding: '12px 16px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: monthVal() || '#9ca3af' }}
             onClick={() => setShowMonth(true)}
           >
             {monthVal() || '请选择年月'}
@@ -95,12 +97,13 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
         <div style={CARD.body}>
           <DatePicker
             type="date"
+            value={disabledVal()}
+            onChange={setDisabledVal}
             placeholder="周末不可选"
             disabledDate={(y, m, d) => {
               const date = new Date(y, m - 1, d);
               return date.getDay() === 0 || date.getDay() === 6;
             }}
-            onChange={() => {}}
           />
         </div>
       </div>
@@ -112,10 +115,11 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
         <div style={CARD.body}>
           <DatePicker
             type="date"
+            value={rangeVal()}
+            onChange={setRangeVal}
             placeholder="2025年范围内"
             startDate="2025-01-01"
             endDate="2025-12-31"
-            onChange={() => {}}
           />
         </div>
       </div>

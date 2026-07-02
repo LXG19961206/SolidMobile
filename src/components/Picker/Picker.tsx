@@ -16,7 +16,7 @@ const DEFAULT_DURATION = 0.4;
 const MOVE_DURATION = 0.05;
 const MOMENTUM_WINDOW_MS = 300;
 const QUEUE_CAPACITY = 30;
-const MOMENTUM_EXTRAPOLATE_FACTOR = 1.8;
+const MOMENTUM_EXTRAPOLATE_FACTOR = 10;
 
 /* ── FixedQueue ── */
 class FixedQueue<T> {
@@ -249,9 +249,11 @@ export const Picker: Component<PickerProps> = (rawProps) => {
   const [isScrolling, setIsScrolling] = createSignal(false);
   let lastClientY = 0;
   let scrollGateTimer: ReturnType<typeof setTimeout> | null = null;
+  let pendingFinishTimer: ReturnType<typeof setTimeout> | null = null;
 
   onCleanup(() => {
     if (scrollGateTimer) clearTimeout(scrollGateTimer);
+    if (pendingFinishTimer) clearTimeout(pendingFinishTimer);
   });
 
   /* ═══════════════════════════════════════════════════════════
@@ -420,8 +422,9 @@ export const Picker: Component<PickerProps> = (rawProps) => {
     const d3 = queue.at(len - 3)![0];
     const speed = (d1 + d2 + d3) / 3;
 
-    const extrapolated = current - speed * MOMENTUM_EXTRAPOLATE_FACTOR;
-    const maxDelta = 2 * lineHeight();
+    const extrapolated = current + speed * MOMENTUM_EXTRAPOLATE_FACTOR;
+    // 动态上限：慢滑最少 1 格，快滑最多 8 格
+    const maxDelta = Math.max(1 * lineHeight(), Math.min(Math.abs(speed) * 5, 8 * lineHeight()));
     const clamped = current + Math.max(-maxDelta, Math.min(maxDelta, extrapolated - current));
 
     return snapToLine(clamped, lineHeight());
@@ -432,6 +435,9 @@ export const Picker: Component<PickerProps> = (rawProps) => {
      ═══════════════════════════════════════════════════════════ */
 
   function onPointerDown(evt: PointerEvent) {
+    // 取消上一次未完成的动画回调，防止多次滑动互相干扰
+    if (pendingFinishTimer) { clearTimeout(pendingFinishTimer); pendingFinishTimer = null; }
+
     // 根据触摸 X 坐标计算目标列
     const target = evt.currentTarget as HTMLElement;
     const colWidth = target.clientWidth / colCount();
@@ -441,7 +447,11 @@ export const Picker: Component<PickerProps> = (rawProps) => {
     // 50ms 去抖动：避免轻点确认按钮时误触发滚动
     scrollGateTimer = setTimeout(() => setIsScrolling(true), 50);
 
+    // 立即停止当前列的 CSS transition，snap 到视觉位置防止动画冲突
+    animDuration()[col][1](0);
+    void (evt.currentTarget as HTMLElement).offsetHeight;
     animDuration()[col][1](MOVE_DURATION);
+
     queue.clear();
     lastClientY = evt.clientY;
   }
@@ -455,8 +465,25 @@ export const Picker: Component<PickerProps> = (rawProps) => {
     const col = targetCol();
     const delta = (evt.clientY - lastClientY) * local.ratio!;
 
+    // 方向反转时清空队列，避免惯性计算混入旧方向数据导致抽搐
+    const prevDir = queue.tail()?.[0] ?? 0;
+    if (prevDir !== 0 && (delta > 0) !== (prevDir > 0)) {
+      queue.clear();
+    }
+
     const [getter, setter] = translateY()[col];
-    const newVal = getter() + delta;
+    const items = allColumns()[col];
+    const bottom = (1 - items.length) * lineHeight();
+    const top = 0;
+    let newVal = getter() + delta;
+
+    // 超出边界时带阻尼，允许拖出较大距离再回弹
+    if (newVal > top) {
+      newVal = top + (newVal - top) * 0.7;
+    } else if (newVal < bottom) {
+      newVal = bottom + (newVal - bottom) * 0.7;
+    }
+
     setter(newVal);
 
     queue.push([delta, evt.timeStamp, false, getter()]);
@@ -489,23 +516,35 @@ export const Picker: Component<PickerProps> = (rawProps) => {
       queue.length > 2 &&
       queue.tail()![1] - queue.head()![1] < MOMENTUM_WINDOW_MS;
 
-    animDuration()[col][1](
-      useMomentum ? local.swipeDuration! : DEFAULT_DURATION,
-    );
-
     // 三步管道计算最终位置
     const snapped = momentumCalc(col, useMomentum);
     const bounded = boundaryCalc(col, snapped);
     const final = disabledFixed(col, bounded);
 
-    setTranslateAndIdx(col, final);
+    // 时长与滑动距离成正比，模拟减速过程
+    const overshoot = allTranslates()[col] > 0 || allTranslates()[col] < (1 - allColumns()[col].length) * lineHeight();
+    const travel = Math.abs(final - allTranslates()[col]);
+    const travelItems = travel / lineHeight();
+    const duration = overshoot
+      ? 0.6  // 回弹用固定较长时长，弹簧感
+      : useMomentum
+        ? Math.min(local.swipeDuration! * (1 + travelItems * 0.15), 2.5)
+        : DEFAULT_DURATION;
 
-    // 回调
-    setTimeout(() => {
+    // 先只更新 translateY 触发视觉动画，selectedIdx 等动画结束再更新
+    // 避免 calcStyle 在动画期间用终态位置计算导致中间项闪白
+    animDuration()[col][1](duration);
+    translateY()[col][1](final);
+
+    pendingFinishTimer = setTimeout(() => {
+      pendingFinishTimer = null;
+      selectedIdx()[col][1](Math.round(-final / lineHeight()));
+      animDuration()[col][1](DEFAULT_DURATION);
+
       const items = allColumns().map((cols, i) => cols[allIdxs()[i]]);
       const vals = allIdxs().map((idx, i) => allColumns()[i][idx]?.value ?? '');
       local.onChange?.call(void 0, items, vals);
-    }, ((useMomentum ? local.swipeDuration! : DEFAULT_DURATION) * 1000 * 0.5));
+    }, duration * 1000 * 0.5);
   }
 
   /* ═══════════════════════════════════════════════════════════
@@ -529,26 +568,13 @@ export const Picker: Component<PickerProps> = (rawProps) => {
      ═══════════════════════════════════════════════════════════ */
 
   function calcStyle(itemIdx: number, colIdx: number): Record<string, string | number> {
-    const translate = allTranslates()[colIdx];
-    const currentIdx = Math.round(-translate / lineHeight());
-    const halfVisible = Math.ceil(0.5 * local.visibleItemCount!);
-    const distance = Math.abs(itemIdx - currentIdx);
-
-    if (distance > halfVisible) {
-      return { visibility: 'hidden' };
-    }
-
-    if (distance > 0) {
-      return { opacity: Math.max(0, 0.6 - distance * 0.15) };
-    }
-
+    // 不动态调整 opacity，仅用于判断选中态。
+    // opacity 由 CSS .item / .itemSelected 控制，动画期间不会闪白。
     return {};
   }
 
   function isItemSelected(itemIdx: number, colIdx: number): boolean {
-    const translate = allTranslates()[colIdx];
-    const currentIdx = Math.round(-translate / lineHeight());
-    return itemIdx === currentIdx;
+    return itemIdx === allIdxs()[colIdx];
   }
 
   /* ═══════════════════════════════════════════════════════════

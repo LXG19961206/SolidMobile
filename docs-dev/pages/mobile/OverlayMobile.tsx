@@ -20,9 +20,9 @@ const propsData = [
 ];
 
 const CARD = {
-  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
-  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
-  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
+  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: 'var(--sc-doc-card-title, #1f2937)' },
+  desc: { 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', padding: '0 16px 12px' },
   body: { padding: '0 16px 16px', display: 'flex' as const, 'flex-wrap': 'wrap' as const, gap: '8px' },
 };
 
@@ -35,38 +35,39 @@ export const OverlayMobile: Component<OverlayMobileProps> = (props) => {
       {/* 基础遮罩 */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>基础遮罩</div>
-        <div style={CARD.desc}>半透明遮罩层，点击关闭</div>
+        <div style={CARD.desc}>半透明遮罩层，点击背景关闭</div>
         <div style={CARD.body}>
           <Button size="sm" text="显示遮罩" onClick={() => setShow1(true)} />
           <Overlay open={show1()} onClose={() => setShow1(false)} />
         </div>
       </div>
 
-      {/* 带内容 */}
+      {/* 遮罩 + Loading */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>遮罩 + 内容</div>
-        <div style={CARD.desc}>children 在遮罩上展示内容（如 Loading）</div>
+        <div style={CARD.desc}>在遮罩上放置 Loading 卡片，常用于等待异步操作</div>
         <div style={CARD.body}>
-          <Button size="sm" text="加载遮罩" onClick={() => setShow2(true)} />
-          <Overlay open={show2()} onClose={() => setShow2(false)}>
-            <div style={{ display: 'flex' as const, 'align-items': 'center' as const, 'justify-content': 'center', height: '100%' }}>
-              <div style={{ background: '#fff', padding: '24px 32px', 'border-radius': '12px', 'text-align': 'center' }}>
-                <Loading text="加载中..." />
+          <Button size="sm" text="模拟提交" onClick={() => {
+            setShow2(true);
+            setTimeout(() => setShow2(false), 2000);
+          }} />
+          <Overlay open={show2()} zIndex={1500}>
+            <div style={{
+              background: 'var(--sc-doc-card-bg, #fff)', padding: '32px 40px', 'border-radius': '12px',
+              display: 'flex' as const, 'flex-direction': 'column' as const,
+              'align-items': 'center' as const, gap: '16px',
+              'box-shadow': '0 8px 32px rgba(0,0,0,0.12)',
+            }}>
+              <Loading type="circular" size={36} color="#1677ff" />
+              <div style={{ 'text-align': 'center' }}>
+                <div style={{ 'font-size': '0.9rem', 'font-weight': 600, color: 'var(--sc-doc-card-title, #1f2937)' }}>提交中</div>
+                <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '4px' }}>请稍候...</div>
               </div>
             </div>
           </Overlay>
         </div>
       </div>
 
-      {/* 用途说明 */}
-      <div style={CARD.wrapper}>
-        <div style={CARD.title}>典型用途</div>
-        <div style={CARD.desc}>
-          Overlay 是 Dialog、ActionSheet、Popup 等组件的基础组件。
-          通常不直接使用，而是作为底层遮罩为上层组件提供背景遮罩能力。
-          直接使用时适用于自定义弹出内容的场景。
-        </div>
-      </div>
     </MobilePreview>
   );
 };

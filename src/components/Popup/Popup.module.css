@@ -1,3 +1,4 @@
+.sheet, .closeBtn { -webkit-tap-highlight-color: transparent; }
 /* ── Sheet ── */
 .sheet {
   position: fixed;

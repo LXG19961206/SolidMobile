@@ -13,6 +13,9 @@
   flex: 1;
   min-width: 0;
   box-sizing: border-box;
+  /* gap via padding: Row 设 --sc-row-gap，Col 取一半做左右 padding */
+  padding-left: calc(var(--sc-row-gap, 0px) / 2);
+  padding-right: calc(var(--sc-row-gap, 0px) / 2);
 }
 
 /* align */

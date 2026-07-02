@@ -25,9 +25,9 @@ const propsData = [
 ];
 
 const CARD = {
-  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
-  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
-  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
+  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: 'var(--sc-doc-card-title, #1f2937)' },
+  desc: { 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', padding: '0 16px 12px' },
   body: { padding: '0 16px 16px' },
 };
 
@@ -39,7 +39,7 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
         <div style={CARD.title}>基础标题</div>
         <div style={CARD.desc}>仅标题，无左右按钮</div>
         <div style={CARD.body}>
-          <div style={{ border: '1px solid #f3f4f6', 'border-radius': '8px', overflow: 'hidden' }}>
+          <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
             <NavBar title="页面标题" border />
           </div>
         </div>
@@ -50,7 +50,7 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
         <div style={CARD.title}>返回箭头</div>
         <div style={CARD.desc}>backArrow + onBack 实现返回</div>
         <div style={CARD.body}>
-          <div style={{ border: '1px solid #f3f4f6', 'border-radius': '8px', overflow: 'hidden' }}>
+          <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
             <NavBar title="详情页" backArrow onBack={() => {}} border />
           </div>
         </div>
@@ -61,7 +61,7 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
         <div style={CARD.title}>左右内容</div>
         <div style={CARD.desc}>left / right 插槽自定义</div>
         <div style={{ ...CARD.body, display: 'flex' as const, 'flex-direction': 'column' as const, gap: '12px' }}>
-          <div style={{ border: '1px solid #f3f4f6', 'border-radius': '8px', overflow: 'hidden' }}>
+          <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
             <NavBar
               title="消息"
               left={<Icon name="user" size={20} />}
@@ -69,7 +69,7 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
               border
             />
           </div>
-          <div style={{ border: '1px solid #f3f4f6', 'border-radius': '8px', overflow: 'hidden' }}>
+          <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
             <NavBar
               title="编辑"
               left={<span style={{ 'font-size': '0.9rem', color: '#1677ff' }}>取消</span>}
@@ -85,7 +85,7 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
         <div style={CARD.title}>自定义样式</div>
         <div style={CARD.desc}>background / color 控制外观</div>
         <div style={CARD.body}>
-          <div style={{ border: '1px solid #f3f4f6', 'border-radius': '8px', overflow: 'hidden' }}>
+          <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
             <NavBar title="品牌色导航" background="#1677ff" color="#fff" backArrow onBack={() => {}} />
           </div>
         </div>

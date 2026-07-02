@@ -218,3 +218,17 @@
   flex-shrink: 0;
   background: #fff;
 }
+
+/* ── Dark mode ── */
+:global(html.dark) .sheet,
+:global(html.dark) .cancelBtn,
+:global(html.dark) .safeArea {
+  background: #1a1d21;
+}
+:global(html.dark) .header,
+:global(html.dark) .description {
+  border-color: #334155;
+}
+:global(html.dark) .cancelGap {
+  background: #111418;
+}

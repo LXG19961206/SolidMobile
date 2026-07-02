@@ -139,7 +139,7 @@ export const Textarea: Component<TextareaProps> = (rawProps) => {
       {/* clear */}
       <Show when={local.clearable && currentVal().length > 0 && !local.readonly}>
         <span class={styles.clear} onClick={() => { emit(''); local.onClear?.(); }}>
-          <Icon name="close" size={14} />
+          <Icon name="close-circle" size={16} />
         </span>
       </Show>
 

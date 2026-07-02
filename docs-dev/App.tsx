@@ -8,6 +8,7 @@ import 'prismjs/themes/prism.css';
 import { useT, setGlobalLocale, useLocale } from '../src/i18n';
 import { defaultConfig } from '../src/config/defaults';
 import { generateCSSVars } from '../src/config/css-vars';
+import { DialogAPI } from '../src/components/Dialog/DialogManager';
 
 // Component DocPages
 import { ButtonDocPage } from './pages/components/Button/ButtonDocPage';
@@ -30,6 +31,7 @@ import { CalendarDocPage } from './pages/components/Calendar/CalendarDocPage';
 import { PickerDocPage } from './pages/components/Picker/PickerDocPage';
 import { ToastDocPage } from './pages/components/Toast/ToastDocPage';
 import { ToastRenderer } from '../src/components/Toast';
+import { DialogRenderer } from '../src/components/Dialog/DialogManager';
 import { DialogDocPage } from './pages/components/Dialog/DialogDocPage';
 import { NotifyDocPage } from './pages/components/notify/NotifyDocPage';
 import { OverlayDocPage } from './pages/components/Overlay/OverlayDocPage';
@@ -90,12 +92,95 @@ import { SelectMobile } from './pages/mobile/SelectMobile';
 import { DesignTokensMobile } from './pages/mobile/DesignTokensMobile';
 import { AllTokens } from '../src/design-tokens/DesignTokenShowcase';
 import { useDisableZoom } from '../src/hooks';
+import { DrawerContext } from '../src/doc-utils/mobile/DrawerContext';
+import drawerStyles from '../src/doc-utils/mobile/MobilePreview.module.css';
 
 import './App.css';
 
+/* ── i18n first-switch notice (in-memory, once per session) ── */
+let i18nNoticeShown = false;
+function showI18nNotice() {
+  if (i18nNoticeShown) return;
+  i18nNoticeShown = true;
+  setTimeout(() => {
+    DialogAPI.confirm({
+      title: '🌐 国际化提示 / i18n Notice',
+      message: '国际化目前仅覆盖少量组件，会在第一批组件稳定后逐步完善。敬请期待！\n\nInternationalization (i18n) currently covers only a few components. It will be gradually improved after the first batch of components is finalized. Stay tuned!',
+      confirmText: '知道了 / Got it',
+      showCancelButton: false,
+    });
+  }, 100);
+}
+
+/* ── Mobile Home Page ── */
+
+const MobileHome: Component<{
+  components?: { name: string; key: string }[];
+  onNavigate?: (key: string) => void;
+  onOpenDrawer?: () => void;
+}> = (props) => (
+  <div style={{ padding: '28px 20px', background: 'var(--sc-doc-card-bg, #fff)', 'min-height': '100vh', display: 'flex' as const, 'flex-direction': 'column' as const, 'align-items': 'center' as const }}>
+    <div style={{
+      display: 'flex' as const, 'align-items': 'center' as const, gap: '12px',
+      'margin-bottom': '20px',
+    }}>
+      <span style={{ 'font-size': '1.5rem', color: '#1677ff', 'font-family': 'monospace', 'font-weight': 200, opacity: 0.35 }}>{'{'}</span>
+      <div style={{ position: 'relative' as const }}>
+        <div style={{
+          width: '72px', height: '72px', 'border-radius': '50%',
+          background: 'conic-gradient(from 0deg, #1677ff, #22c55e, #f59e0b, #ef4444, #8b5cf6, #1677ff)',
+          animation: 'sc-logo-pulse 3s ease-in-out infinite',
+          position: 'absolute' as const, top: '-5px', left: '-5px',
+        }} />
+        <img src="/logo.jpg" alt="solid-mobile" style={{
+          width: '60px', height: '60px', 'border-radius': '50%',
+          position: 'relative' as const, 'z-index': 1,
+          'box-shadow': '0 2px 8px rgba(0,0,0,0.06)',
+        }} />
+      </div>
+      <span style={{ 'font-size': '1.5rem', color: '#1677ff', 'font-family': 'monospace', 'font-weight': 200, opacity: 0.35 }}>{'}'}</span>
+    </div>
+    <div style={{ 'font-size': '1.2rem', 'font-weight': 700, color: 'var(--sc-doc-card-title, #1f2937)', 'margin-bottom': '4px' }}>solid-mobile</div>
+    <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'text-align': 'center', 'line-height': 1.6, 'margin-bottom': '16px' }}>
+      A SolidJS mobile UI component library.<br />Simple, performant, customizable.
+    </div>
+
+    {/* Notice */}
+    <div style={{
+      background: 'var(--sc-doc-card-placeholder, #f3f4f6)', 'border-radius': '10px',
+      padding: '14px 16px', width: '100%', 'box-sizing': 'border-box' as const, 'margin-bottom': '20px',
+    }}>
+      <div style={{ 'font-size': '0.78rem', color: 'var(--sc-doc-card-title, #1f2937)', 'line-height': 1.6, 'text-align': 'center' as const }}>
+        移动端文档为精简版本，完整 API 及交互示例请在 PC 设备上查看。
+      </div>
+      <div style={{ 'font-size': '0.68rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'line-height': 1.6, 'text-align': 'center' as const, 'margin-top': '6px' }}>
+        Mobile docs are simplified. For full API reference &amp; interactive examples, please visit on a desktop device.
+      </div>
+    </div>
+    {/* Links */}
+    <div style={{ display: 'flex' as const, gap: '10px', width: '100%' }}>
+      <div
+        style={{ flex: 1, background: '#1677ff', color: '#fff', 'border-radius': '10px', padding: '16px', cursor: 'pointer', 'text-align': 'center' as const }}
+        onClick={() => props.onNavigate?.('design-tokens')}
+      >
+        <div style={{ 'font-size': '1rem', 'font-weight': 600, 'margin-bottom': '4px' }}>Quick Start</div>
+        <div style={{ 'font-size': '0.7rem', opacity: 0.8 }}>视觉规范 & 配置</div>
+      </div>
+      <div
+        style={{ flex: 1, background: 'var(--sc-doc-card-placeholder, #f3f4f6)', 'border-radius': '10px', padding: '16px', cursor: 'pointer', 'text-align': 'center' as const }}
+        onClick={() => props.onNavigate?.('button')}
+      >
+        <div style={{ 'font-size': '1rem', 'font-weight': 600, color: 'var(--sc-doc-card-title, #1f2937)', 'margin-bottom': '4px' }}>Components</div>
+        <div style={{ 'font-size': '0.7rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>Button 起步</div>
+      </div>
+    </div>
+  </div>
+);
+
 /* ── Mobile Pages Map (module scope, stable reference) ── */
 
-const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key: string }[]; onNavigate?: (key: string) => void }>> = {
+const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key: string }[]; onNavigate?: (key: string) => void; onOpenDrawer?: () => void }>> = {
+  home: MobileHome,
   'design-tokens': DesignTokensMobile,
   button: ButtonMobile,
   icon: IconMobile,
@@ -136,24 +221,6 @@ const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key:
   slider: SliderMobile,
   select: SelectMobile,
 };
-
-/* ── Mobile Fallback (module scope, stable reference) ── */
-
-const MobileFallback: Component<{
-  components: { name: string; key: string }[];
-  onNavigate: (key: string) => void;
-}> = (props) => (
-  <div style={{ padding: '16px', background: '#fff', 'min-height': '100vh' }}>
-    <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '0 0 16px' }}>组件 / Components</h2>
-    {props.components.map((c) => (
-      <div style={{ padding: '12px 0', 'border-bottom': '1px solid #f3f4f6', cursor: 'pointer' }}
-        onClick={() => props.onNavigate(c.key)}
-      >
-        {c.name}
-      </div>
-    ))}
-  </div>
-);
 
 /* ── Top Nav Tabs ── */
 
@@ -974,14 +1041,66 @@ export function App() {
     return items;
   };
 
-  // ── Mobile page memos (stable component, driven by signal props) ──
+  // ── Mobile: persistent drawer across page switches ──
+  const [mobileDrawerOpen, setMobileDrawerOpen] = createSignal(false);
+  const openMobileDrawer = () => setMobileDrawerOpen(true);
+  const closeMobileDrawer = () => setMobileDrawerOpen(false);
+  const mobileGroups = createMemo(() => [
+    { title: '', items: [{ name: '🏠 Home', key: 'home' }] },
+    ...GROUPS,
+  ]);
+
+  // ── Mobile page memos ──
   const mobileActiveKey = createMemo(() => activeKey());
-  const mobileComps = createMemo(() => allComponents());
+  const mobilePageComp = () => PAGES_MOBILE[mobileActiveKey()] || MobileHome;
 
   return (
     <Show when={!mobileView()} fallback={
-      <Dynamic component={PAGES_MOBILE[mobileActiveKey()] || MobileFallback}
-        components={mobileComps()} onNavigate={navigateTo} />
+      <DrawerContext.Provider value={openMobileDrawer}>
+        <Dynamic component={mobilePageComp()}
+          components={allComponents()} onNavigate={navigateTo} />
+        <DialogRenderer />
+
+        {/* Persistent drawer — never unmounted, scroll position preserved */}
+        <Show when={mobileDrawerOpen()}>
+          <div
+            class={drawerStyles.overlay}
+            classList={{ [drawerStyles.overlayVisible!]: true }}
+            onClick={closeMobileDrawer}
+          />
+        </Show>
+        <div
+          class={drawerStyles.drawer}
+          classList={{ [drawerStyles.drawerOpen!]: mobileDrawerOpen() }}
+        >
+          <div class={drawerStyles.drawerHeader}>
+            <span class={drawerStyles.drawerTitle}>组件 / Components</span>
+            <button class={drawerStyles.drawerCloseBtn} onClick={closeMobileDrawer}>✕</button>
+          </div>
+          <div class={drawerStyles.drawerBody}>
+            <For each={mobileGroups()}>
+              {(group) => (
+                <>
+                  <Show when={group.title}>
+                    <div class={drawerStyles.drawerGroup}>{group.title}</div>
+                  </Show>
+                  <For each={group.items}>
+                    {(item) => (
+                      <div
+                        class={drawerStyles.drawerItem}
+                        onClick={() => { closeMobileDrawer(); navigateTo(item.key); }}
+                      >
+                        <span>{item.name}</span>
+                        <span class={drawerStyles.drawerItemArrow}>›</span>
+                      </div>
+                    )}
+                  </For>
+                </>
+              )}
+            </For>
+          </div>
+        </div>
+      </DrawerContext.Provider>
     }>
     <div class="app-shell">
       {/* ══ Top Nav Tabs ══ */}
@@ -1013,7 +1132,7 @@ export function App() {
           </For>
         </nav>
         <div class="top-nav-actions">
-          <button class="tb-btn" onClick={() => setGlobalLocale(useLocale() === 'zh-CN' ? 'en-US' : 'zh-CN')}>
+          <button class="tb-btn" onClick={() => { showI18nNotice(); setGlobalLocale(useLocale() === 'zh-CN' ? 'en-US' : 'zh-CN'); }}>
             {useLocale() === 'zh-CN' ? 'EN' : '中'}
           </button>
           <button class="tb-btn" onClick={toggleDark}>
@@ -1124,6 +1243,7 @@ export function App() {
         </div>
       </div>
       <ToastRenderer />
+      <DialogRenderer />
     </div>
     </Show>
   );

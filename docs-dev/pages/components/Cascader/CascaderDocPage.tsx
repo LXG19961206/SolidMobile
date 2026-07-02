@@ -130,6 +130,7 @@ const CascaderDemo = () => {
 const DisabledCascader = () => {
   const phoneTarget = useContext(PhoneTargetContext);
   const [show, setShow] = createSignal(false);
+  const [val, setVal] = createSignal<(string | number)[]>([]);
   const opts: CascaderOption[] = [
     { text: '北京', value: 'beijing' },
     { text: '上海', value: 'shanghai', disabled: true },
@@ -139,8 +140,8 @@ const DisabledCascader = () => {
   ];
   return (
     <>
-      <Cell title="选择城市" clickable onClick={() => setShow(true)} />
-      <Cascader options={opts} show={show()} onUpdateShow={setShow} title="城市（部分禁用）" teleport={phoneTarget?.()} />
+      <Cell title={val().length ? val().join(' / ') : '选择城市'} clickable onClick={() => setShow(true)} />
+      <Cascader options={opts} show={show()} onUpdateShow={setShow} value={val()} onChange={setVal} title="城市（部分禁用）" teleport={phoneTarget?.()} />
     </>
   );
 };
@@ -148,6 +149,7 @@ const DisabledCascader = () => {
 const JsxCascader = () => {
   const phoneTarget = useContext(PhoneTargetContext);
   const [show, setShow] = createSignal(false);
+  const [val, setVal] = createSignal<(string | number)[]>([]);
   const opts: CascaderOption[] = [
     { text: '北京', value: 'beijing', render: <span style="display:flex;align-items:center;gap:8px"><Icon name="map-pin" size={16} /> 北京</span> },
     { text: '上海', value: 'shanghai', render: <span style="display:flex;align-items:center;gap:8px"><Icon name="map-pin" size={16} /> 上海</span> },
@@ -156,8 +158,8 @@ const JsxCascader = () => {
   ];
   return (
     <>
-      <Cell title="选择省份" clickable onClick={() => setShow(true)} />
-      <Cascader options={opts} show={show()} onUpdateShow={setShow} title="省份（自定义渲染）" checkmark={<Icon name="check" size={16} color="#1677ff" />} teleport={phoneTarget?.()} />
+      <Cell title={val().length ? val().join(' / ') : '选择省份'} clickable onClick={() => setShow(true)} />
+      <Cascader options={opts} show={show()} onUpdateShow={setShow} value={val()} onChange={setVal} title="省份（自定义渲染）" checkmark={<Icon name="check" size={16} color="#1677ff" />} teleport={phoneTarget?.()} />
     </>
   );
 };

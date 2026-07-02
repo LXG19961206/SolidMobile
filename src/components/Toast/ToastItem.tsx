@@ -36,7 +36,6 @@ export const ToastItem: Component<ToastItemProps> = (props) => {
       case 'error': return '✕';
       case 'warning': return '!';
       case 'loading': return '↻';
-      case 'info': return 'ℹ';
       default: return null;
     }
   };

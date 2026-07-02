@@ -1,3 +1,8 @@
+/* ── Touch ── */
+.option, .tab {
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* ── Custom Properties ── */
 .sheet {
   --sc-cascader-bg: #fff;

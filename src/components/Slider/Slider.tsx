@@ -139,8 +139,9 @@ export const Slider: Component<SliderProps> = (rawProps) => {
     const i = nearestIdx(v);
     const next = [...arr];
     next[i] = v;
-    dragVal = v;   // ← 存新值，emitValue 排序后 indexOf 才能找到
     emitValue(next);
+    // Track the actual stored value (after potential sort/round) to avoid floating-point drift in onMove
+    dragVal = currentVals()[nearestIdx(v)];
   }
 
   function onMove(e: PointerEvent) {
@@ -148,8 +149,9 @@ export const Slider: Component<SliderProps> = (rawProps) => {
     e.preventDefault();
     const v = calcValue(e.clientX);
     const arr = currentVals();
-    // Find the index of the value we were dragging (it may have moved after sorting)
-    const i = arr.indexOf(dragVal);
+    // Use nearestIdx to find the dragged thumb — indexOf fails when
+    // dragVal has floating-point drift from clamp(), e.g. 50.10000000000001 !== 50.1
+    const i = nearestIdx(dragVal);
     if (i < 0) return;
     const next = [...arr];
     next[i] = v;

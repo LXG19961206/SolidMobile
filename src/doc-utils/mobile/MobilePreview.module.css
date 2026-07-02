@@ -1,3 +1,27 @@
+/* ── Doc card theming (global) ── */
+:root {
+  --sc-doc-card-bg: #fff;
+  --sc-doc-card-title: #1f2937;
+  --sc-doc-card-desc: #6b7280;
+  --sc-doc-card-text: #374151;
+  --sc-doc-card-muted: #9ca3af;
+  --sc-doc-card-border: #ebedf0;
+  --sc-doc-card-divider: #f3f4f6;
+  --sc-doc-card-placeholder: #f3f4f6;
+  --sc-doc-card-demo: #f9fafb;
+}
+:global(html.dark) {
+  --sc-doc-card-bg: #1a1d21;
+  --sc-doc-card-title: #e2e8f0;
+  --sc-doc-card-desc: #94a3b8;
+  --sc-doc-card-text: #cbd5e1;
+  --sc-doc-card-muted: #64748b;
+  --sc-doc-card-border: #334155;
+  --sc-doc-card-divider: #1e293b;
+  --sc-doc-card-placeholder: #1e293b;
+  --sc-doc-card-demo: #1a1d21;
+}
+
 .shell {
   position: fixed;
   inset: 0;
@@ -43,6 +67,7 @@
   z-index: 10000;
   transition: background 0.25s;
   pointer-events: none;
+  -webkit-tap-highlight-color: transparent;
 }
 .overlayVisible {
   background: rgba(0, 0, 0, 0.5);
@@ -98,6 +123,7 @@
   color: #6b7280;
   border-radius: 50%;
   transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
 }
 .drawerCloseBtn:active {
   background: #f3f4f6;
@@ -107,6 +133,15 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   flex: 1;
+}
+
+.drawerGroup {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--sc-doc-card-muted, #9ca3af);
+  padding: 14px 16px 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .drawerItem {
@@ -119,6 +154,7 @@
   color: #374151;
   border-bottom: 1px solid var(--sc-color-border, #f3f4f6);
   transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
 }
 .drawerItem:active {
   background: var(--sc-color-background-secondary, #f7f8fa);
@@ -221,7 +257,6 @@
   color: #9ca3af;
 }
 
-/* ── Dark mode ── */
 
 :global(html.dark) .drawer {
   background: #1a1d21;
@@ -232,6 +267,9 @@
 :global(html.dark) .drawerItem {
   color: #e2e8f0;
   border-color: #1e293b;
+}
+:global(html.dark) .drawerGroup {
+  color: #64748b;
 }
 :global(html.dark) .drawerCloseBtn:active {
   background: #1e293b;
@@ -256,4 +294,43 @@
 }
 :global(html.dark) .propDesc {
   color: #cbd5e1;
+}
+
+/* ── Prev / Next floating buttons ── */
+.navFloat {
+  position: fixed;
+  bottom: 40px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 5000;
+}
+.navFloatBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  width: 42px;
+  padding: 6px 0;
+  border-radius: 10px;
+  border: none;
+  background: var(--sc-doc-card-bg, #fff);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  cursor: pointer;
+  color: var(--sc-doc-card-muted, #9ca3af);
+  transition: transform 0.15s, box-shadow 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.navFloatLabel {
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--sc-doc-card-desc, #6b7280);
+}
+.navFloatBtn:active {
+  transform: scale(0.92);
+}
+:global(html.dark) .navFloatBtn {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }

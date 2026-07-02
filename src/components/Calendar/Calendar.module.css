@@ -1,4 +1,5 @@
 /* ── Custom Properties ── */
+.day { -webkit-tap-highlight-color: transparent; }
 .wrapper {
   --sc-calendar-bg: #fff;
   --sc-calendar-title-height: 44px;
@@ -74,6 +75,7 @@
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
 }
 
 /* ── Month block ── */
@@ -105,7 +107,6 @@
 .day {
   flex: 0 0 calc(100% / 7);
   height: var(--sc-calendar-day-size);
-  line-height: var(--sc-calendar-day-size);
   text-align: center;
   color: var(--sc-calendar-text);
   cursor: pointer;
@@ -117,6 +118,7 @@
   line-height: 1.2;
 }
 .otherMonth { color: var(--sc-calendar-other-month); pointer-events: none; }
+.otherMonth.today::after { display: none; }
 .disabled { opacity: var(--sc-calendar-disabled-opacity); cursor: not-allowed; pointer-events: none; }
 
 .today::after {
@@ -130,7 +132,7 @@
 .active {
   background: var(--sc-calendar-active-bg);
   color: var(--sc-calendar-active-color);
-  border-radius: 16px;
+  border-radius: var(--sc-border-radius-sm, 4px);
   font-weight: 500;
 }
 
@@ -139,13 +141,20 @@
   border-radius: 0;
   color: var(--sc-calendar-active-bg);
 }
-.rangeStart, .rangeEnd {
+.rangeStart {
   background: var(--sc-calendar-active-bg);
   color: var(--sc-calendar-active-color);
   font-weight: 500;
+  border-radius: 50% 0 0 50%;
+  margin-right: -2px;
 }
-.rangeStart { border-radius: 16px 0 0 16px; }
-.rangeEnd { border-radius: 0 16px 16px 0; }
+.rangeEnd {
+  background: var(--sc-calendar-active-bg);
+  color: var(--sc-calendar-active-color);
+  font-weight: 500;
+  border-radius: 0 50% 50% 0;
+  margin-left: -2px;
+}
 .rangeStart.rangeEnd { border-radius: 16px; }
 
 .dayNum { font-size: 0.95rem; font-weight: 500; }

@@ -69,18 +69,33 @@ export const SwipeCell: Component<SwipeCellProps> = (rawProps) => {
     if (scrollGateTimer) clearTimeout(scrollGateTimer);
   });
 
-  /* ── 计算按钮区宽度 ── */
+  /* ── 测量按钮区实际宽度 ── */
+
+  let rightRef: HTMLDivElement | undefined;
+  let leftRef: HTMLDivElement | undefined;
+  const [rightMeasured, setRightMeasured] = createSignal(0);
+  const [leftMeasured, setLeftMeasured] = createSignal(0);
+
+  function measureRight() {
+    if (rightRef) setRightMeasured(rightRef.getBoundingClientRect().width);
+  }
+  function measureLeft() {
+    if (leftRef) setLeftMeasured(leftRef.getBoundingClientRect().width);
+  }
+
   const rightWidth = createMemo(() => {
     if (!local.rightActions?.length) return 0;
     if (local.actionsWidth) return local.actionsWidth;
-    // 估算：每个按钮 min 60px
-    return Math.max(local.rightActions.length * 70, 60);
+    // 触发 getBoundingClientRect 的读取以建立依赖
+    void rightMeasured();
+    return rightMeasured() || 0;
   });
 
   const leftWidth = createMemo(() => {
     if (!local.leftActions?.length) return 0;
     if (local.actionsWidth) return local.actionsWidth;
-    return Math.max(local.leftActions.length * 70, 60);
+    void leftMeasured();
+    return leftMeasured() || 0;
   });
 
   /* ── 关闭 ── */
@@ -105,10 +120,15 @@ export const SwipeCell: Component<SwipeCellProps> = (rawProps) => {
   function onPointerDown(evt: PointerEvent) {
     if (local.disabled) return;
 
-    // 如果已打开，任何触摸都先关闭
-    if (openSide()) {
-      close(true);
-      setIsTracking(false);
+    const side = openSide();
+    if (side) {
+      // 已打开 → 开始跟踪，允许反向滑动关闭
+      setAnimDuration(MOVE_DURATION);
+      queue.clear();
+      lastClientX = evt.clientX;
+      lastClientY = evt.clientY;
+      horizontalIntent = null;
+      setIsTracking(true);
       return;
     }
 
@@ -145,7 +165,32 @@ export const SwipeCell: Component<SwipeCellProps> = (rawProps) => {
     evt.stopPropagation();
     evt.preventDefault();
 
-    // 只允许向左滑（右按钮）或向右滑（左按钮）
+    const side = openSide();
+    if (side) {
+      // 已打开状态，只允许反向滑动关闭
+      if (side === 'right' && dx > 0) {
+        // 右滑关闭（cell 已左滑打开，现在向右滑回去）
+        const newX = translateX() + dx;
+        setTranslateX(Math.min(0, newX));
+        queue.push([dx, evt.timeStamp]);
+        lastClientX = evt.clientX;
+        lastClientY = evt.clientY;
+        return;
+      }
+      if (side === 'left' && dx < 0) {
+        // 左滑关闭（cell 已右滑打开，现在向左滑回去）
+        const newX = translateX() + dx;
+        setTranslateX(Math.max(0, newX));
+        queue.push([dx, evt.timeStamp]);
+        lastClientX = evt.clientX;
+        lastClientY = evt.clientY;
+        return;
+      }
+      // 同向滑动 → 忽略
+      return;
+    }
+
+    // 未打开状态：只允许向左滑（右按钮）或向右滑（左按钮）
     if (dx > 0 && !local.leftActions?.length) return;   // 向右滑但没有左按钮
     if (dx < 0 && !local.rightActions?.length) return;  // 向左滑但没有右按钮
 
@@ -170,6 +215,20 @@ export const SwipeCell: Component<SwipeCellProps> = (rawProps) => {
     setIsTracking(false);
 
     const currentX = translateX();
+    const side = openSide();
+
+    // ── 已打开 → 判断是保持打开还是关闭 ──
+    if (side) {
+      const width = side === 'right' ? rightWidth() : leftWidth();
+      const target = side === 'right' ? -width : width;
+      // 滑回超过一半 → 关闭，否则保持打开
+      if (Math.abs(currentX - target) > width / 2) {
+        close(true);
+      } else {
+        open(side); // snap 回全开
+      }
+      return;
+    }
 
     // 没移动过 → 保持关闭
     if (queue.length === 0) {
@@ -177,7 +236,7 @@ export const SwipeCell: Component<SwipeCellProps> = (rawProps) => {
       return;
     }
 
-    // 判断惯性方向
+    // ── 未打开 → 判断开/关 ──
     const speed = getSpeed();
     const useMomentum = queue.length > 2 &&
       queue.tail()![1] - queue.head()![1] < MOMENTUM_WINDOW;
@@ -235,8 +294,8 @@ export const SwipeCell: Component<SwipeCellProps> = (rawProps) => {
       {/* 左按钮 */}
       <Show when={!!local.leftActions?.length}>
         <div
+          ref={(el) => { leftRef = el; queueMicrotask(measureLeft); }}
           class={cn(styles.actions, styles.actionsLeft)}
-          style={{ width: `${leftWidth()}px` }}
         >
           <For each={local.leftActions}>
             {(action) => (
@@ -259,8 +318,8 @@ export const SwipeCell: Component<SwipeCellProps> = (rawProps) => {
       {/* 右按钮 */}
       <Show when={!!local.rightActions?.length}>
         <div
+          ref={(el) => { rightRef = el; queueMicrotask(measureRight); }}
           class={cn(styles.actions, styles.actionsRight)}
-          style={{ width: `${rightWidth()}px` }}
         >
           <For each={local.rightActions}>
             {(action) => (

@@ -36,9 +36,14 @@
 .close {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
   opacity: 0.6;
   margin-left: 2px;
   font-size: 0.85em;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 .close:hover { opacity: 1; }

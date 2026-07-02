@@ -7,8 +7,8 @@ export interface ActionSheetMobileProps {
 }
 import { ActionSheet } from '../../../src/components/ActionSheet';
 import type { ActionSheetItem } from '../../../src/components/ActionSheet';
-import { Button } from '../../../src/components/Button';
-import { Cell } from '../../../src/components/Cell';
+import { Cell, CellGroup } from '../../../src/components/Cell';
+import { Image } from '../../../src/components/Image';
 
 const propsData = [
   { name: 'open', type: 'boolean', desc: '是否显示（必填）' },
@@ -26,81 +26,151 @@ const propsData = [
 ];
 
 const CARD = {
-  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
-  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
-  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
-  body: { padding: '0 16px 16px', display: 'flex' as const, 'flex-wrap': 'wrap' as const, gap: '8px' },
+  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: 'var(--sc-doc-card-title, #1f2937)' },
+  desc: { 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', padding: '0 16px 12px' },
+  body: { padding: '0 16px 16px' },
 };
 
-const items: ActionSheetItem[] = [
-  { name: '选项一' },
-  { name: '选项二', subname: '描述文字' },
-  { name: '选项三（禁用）', disabled: true },
-  { name: '选项四', loading: true },
+const basicItems: ActionSheetItem[] = [
+  { name: '编辑' },
+  { name: '分享' },
+  { name: '删除' },
+];
+
+const twoLineItems: ActionSheetItem[] = [
+  { name: '从相册选择', subname: '支持 JPG、PNG、HEIC' },
+  { name: '拍照上传', subname: '自动压缩至 2MB 以内' },
+  { name: '从聊天记录选取', subname: '仅支持图片和视频文件' },
+];
+
+const disabledItems: ActionSheetItem[] = [
+  { name: '选项 A' },
+  { name: '选项 B (禁用)', disabled: true },
+  { name: '选项 C' },
+  { name: '选项 D (禁用)', disabled: true },
 ];
 
 export const ActionSheetMobile: Component<ActionSheetMobileProps> = (props) => {
   const [show1, setShow1] = createSignal(false);
   const [show2, setShow2] = createSignal(false);
   const [show3, setShow3] = createSignal(false);
+  const [show4, setShow4] = createSignal(false);
+  const [show5, setShow5] = createSignal(false);
+  const [show6, setShow6] = createSignal(false);
+  const [show7, setShow7] = createSignal(false);
 
   return (
     <MobilePreview title="ActionSheet 动作面板" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      {/* 基础 */}
+      {/* 选项列表 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础选项面板</div>
-        <div style={CARD.desc}>从底部滑出的选项菜单</div>
+        <div style={CARD.title}>选项列表</div>
+        <div style={CARD.desc}>传入 items 数组，底部滑出选项菜单</div>
         <div style={CARD.body}>
-          <Button size="sm" text="弹出面板" onClick={() => setShow1(true)} />
-          <ActionSheet
-            open={show1()}
-            onClose={() => setShow1(false)}
-            items={items}
-            cancelText="取消"
-            onSelect={(item) => { console.log(item.name); }}
-          />
+          <CellGroup>
+            <Cell title="选项列表" clickable onClick={() => setShow1(true)} />
+          </CellGroup>
+          <ActionSheet open={show1()} onClose={() => setShow1(false)} items={basicItems} />
         </div>
       </div>
 
-      {/* 带标题 */}
+      {/* 标题 & 取消 & 描述 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>带标题 & 描述</div>
-        <div style={CARD.desc}>title + description + closeable</div>
+        <div style={CARD.title}>标题 & 描述 & 取消按钮</div>
+        <div style={CARD.desc}>title + closeable + description + cancelText 完整组合</div>
         <div style={CARD.body}>
-          <Button size="sm" text="带标题" onClick={() => setShow2(true)} />
+          <CellGroup>
+            <Cell title="完整头部" clickable onClick={() => setShow2(true)} />
+          </CellGroup>
           <ActionSheet
-            open={show2()}
-            onClose={() => setShow2(false)}
-            title="请选择操作"
-            description="选择一个选项进行操作"
+            open={show2()} onClose={() => setShow2(false)}
+            title="确认删除？"
+            description="删除后数据不可恢复，建议先导出备份。"
             closeable
-            items={[
-              { name: '编辑' },
-              { name: '分享' },
-              { name: '删除' },
-            ]}
+            items={[{ name: '直接删除' }, { name: '导出后删除' }]}
             cancelText="取消"
-            onSelect={(item) => { setShow2(false); }}
+            onSelect={() => setShow2(false)}
           />
         </div>
       </div>
 
-      {/* 自定义 */}
+      {/* 双行选项 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>双行选项</div>
+        <div style={CARD.desc}>name + subname 双行展示，适合带说明的选项</div>
+        <div style={CARD.body}>
+          <CellGroup>
+            <Cell title="上传方式" clickable onClick={() => setShow3(true)} />
+          </CellGroup>
+          <ActionSheet
+            open={show3()} onClose={() => setShow3(false)}
+            title="上传方式"
+            closeable
+            items={twoLineItems}
+            cancelText="取消"
+            onSelect={() => setShow3(false)}
+          />
+        </div>
+      </div>
+
+      {/* 禁用项 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>禁用项</div>
+        <div style={CARD.desc}>disabled: true 的选项显示为灰色，不可点击</div>
+        <div style={CARD.body}>
+          <CellGroup>
+            <Cell title="含禁用项" clickable onClick={() => setShow4(true)} />
+          </CellGroup>
+          <ActionSheet
+            open={show4()} onClose={() => setShow4(false)}
+            items={disabledItems}
+            cancelText="取消"
+          />
+        </div>
+      </div>
+
+      {/* 选中不关闭 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>选中不自动关闭</div>
+        <div style={CARD.desc}>closeOnSelect={false}，适合多选或需要连续操作的场景</div>
+        <div style={CARD.body}>
+          <CellGroup>
+            <Cell title="连续选择" clickable onClick={() => setShow5(true)} />
+          </CellGroup>
+          <ActionSheet
+            open={show5()} onClose={() => setShow5(false)}
+            title="选择标签"
+            closeable
+            closeOnSelect={false}
+            items={[{ name: '前端' }, { name: '后端' }, { name: '设计' }, { name: '产品' }]}
+            cancelText="完成"
+            onSelect={() => {}}
+          />
+        </div>
+      </div>
+
+      {/* 关于 Solid */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>自定义内容</div>
-        <div style={CARD.desc}>children 完全自定义面板内容</div>
+        <div style={CARD.desc}>children 完全自定义面板内容，可放图片、文字等任意元素</div>
         <div style={CARD.body}>
-          <Button size="sm" text="自定义" onClick={() => setShow3(true)} />
+          <CellGroup>
+            <Cell title="关于 SolidJS" clickable onClick={() => setShow6(true)} />
+          </CellGroup>
           <ActionSheet
-            open={show3()}
-            onClose={() => setShow3(false)}
-            title="自定义面板"
+            open={show6()} onClose={() => setShow6(false)}
+            title="About SolidJS"
             closeable
           >
-            <div style={{ padding: '16px' }}>
-              <Cell title="选项 A" clickable onClick={() => setShow3(false)} />
-              <Cell title="选项 B" clickable onClick={() => setShow3(false)} />
-              <Cell title="选项 C" clickable onClick={() => setShow3(false)} />
+            <div style={{ padding: '20px', display: 'flex' as const, 'flex-direction': 'column' as const, 'align-items': 'center' as const, gap: '16px' }}>
+              <Image src="https://avatars.githubusercontent.com/u/79226042?s=200&v=4" width={72} height={72} round />
+              <div style={{ 'text-align': 'center' }}>
+                <div style={{ 'font-size': '1rem', 'font-weight': 600, color: 'var(--sc-doc-card-title, #1f2937)', 'margin-bottom': '8px' }}>SolidJS</div>
+                <div style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', 'line-height': 1.6 }}>
+                  A declarative, efficient and flexible JavaScript library for building user interfaces.
+                  Fine-grained reactivity goes beyond virtual DOM — no diffing, no overhead.
+                </div>
+              </div>
             </div>
           </ActionSheet>
         </div>

@@ -1,4 +1,4 @@
-import { createSignal, For, type Component } from 'solid-js';
+import { createSignal, onMount, For, Show, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
 
 export interface LazyloadMobileProps {
@@ -6,83 +6,177 @@ export interface LazyloadMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { Lazyload } from '../../../src/components/Lazyload';
-import { Image } from '../../../src/components/Image';
 import { Loading } from '../../../src/components/Loading';
+import { Center } from '../../../src/components/Center';
+import { Avatar } from '../../../src/components/Avatar';
+import { Button } from '../../../src/components/Button';
 
 const propsData = [
-  { name: 'active', type: 'boolean', desc: '是否已激活（受控，不传则自动检测）' },
-  { name: 'placeholder', type: 'JSX.Element', desc: '未激活时的占位内容' },
+  { name: 'placeholder', type: 'JSX.Element', desc: '未激活时的骨架占位' },
   { name: 'children', type: 'JSX.Element', desc: '激活后的实际内容' },
-  { name: 'rootMargin', type: 'string', desc: 'Observer rootMargin，默认 50px' },
+  { name: 'active', type: 'boolean', desc: '受控模式：手动控制是否激活' },
+  { name: 'rootMargin', type: 'string', desc: '提前触发距离，默认 50px' },
+  { name: 'height', type: 'number | string', desc: '最小高度，防止加载后布局抖动' },
   { name: 'threshold', type: 'number | number[]', desc: '可见比例阈值，默认 0' },
   { name: 'once', type: 'boolean', desc: '只触发一次，默认 true' },
-  { name: 'height', type: 'number | string', desc: '最小高度，防止布局抖动' },
-  { name: 'as', type: 'string', desc: '渲染标签，默认 div' },
 ];
 
 const CARD = {
-  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
-  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
-  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
+  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: 'var(--sc-doc-card-title, #1f2937)' },
+  desc: { 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', padding: '0 16px 12px' },
   body: { padding: '0 16px 16px' },
 };
 
-const IMAGES = [
-  'https://picsum.photos/id/10/400/300',
-  'https://picsum.photos/id/20/400/300',
-  'https://picsum.photos/id/30/400/300',
-  'https://picsum.photos/id/40/400/300',
-];
+/* ── Deferred content — 模拟网络延迟 ── */
+
+const DeferredContent: Component<{ delay?: number; children: any }> = (props) => {
+  const [ready, setReady] = createSignal(false);
+  onMount(() => {
+    const t = setTimeout(() => setReady(true), props.delay ?? 800);
+  });
+  return (
+    <Show when={ready()} fallback={<Center><Loading size={20} /></Center>}>
+      {props.children}
+    </Show>
+  );
+};
+
+/* ── Skeleton ── */
+
+const Skeleton = () => (
+  <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px', padding: '12px 0' }}>
+    <div style={{ width: '40px', height: '40px', 'border-radius': '50%', background: 'var(--sc-doc-card-placeholder, #e5e7eb)' }} />
+    <div style={{ flex: 1 }}>
+      <div style={{ width: '60%', height: '14px', 'border-radius': '4px', background: 'var(--sc-doc-card-placeholder, #e5e7eb)', 'margin-bottom': '8px' }} />
+      <div style={{ width: '40%', height: '12px', 'border-radius': '4px', background: 'var(--sc-doc-card-placeholder, #e5e7eb)' }} />
+    </div>
+  </div>
+);
+
+const GallerySkeleton = () => (
+  <div style={{ height: '100px', 'border-radius': '8px', background: 'var(--sc-doc-card-placeholder, #e5e7eb)' }} />
+);
+
+/* ── Data ── */
+
+const COLORS = ['#1677ff', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6', '#f97316', '#6366f1', '#84cc16'];
+const TITLES = ['产品设计稿', '前端架构', '数据库 ER 图', 'API 接口规范', '测试用例报告', '部署运维手册', '用户调研分析', '竞品对比', '迭代排期', '季度回顾'];
+const TIMES = ['2 小时前', '昨天', '3 天前', '1 周前', '上周', '2 周前', '1 月前', '刚刚', '5 小时前', '昨天'];
+
+const DocItem: Component<{ idx: number }> = (props) => (
+  <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px', padding: '12px 0', 'border-bottom': '1px solid #f3f4f6' }}>
+    <Avatar size="md" color={COLORS[props.idx % COLORS.length]} text={TITLES[props.idx % TITLES.length][0]} />
+    <div>
+      <div style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>{TITLES[props.idx % TITLES.length]}</div>
+      <div style={{ 'font-size': '0.7rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{TIMES[props.idx % TIMES.length]}</div>
+    </div>
+  </div>
+);
+
+const GalleryItem: Component<{ idx: number }> = (props) => (
+  <div style={{
+    height: '100px', 'border-radius': '8px', background: COLORS[props.idx % COLORS.length],
+    display: 'flex' as const, 'align-items': 'center' as const, 'justify-content': 'center' as const,
+  }}>
+    <Avatar size="lg" color="rgba(255,255,255,0.3)" text={TITLES[props.idx % TITLES.length][0]} />
+  </div>
+);
 
 export const LazyloadMobile: Component<LazyloadMobileProps> = (props) => {
   return (
     <MobilePreview title="Lazyload 懒加载" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      {/* 说明 */}
+      {/* 列表懒加载 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>懒加载机制</div>
+        <div style={CARD.title}>列表懒加载</div>
         <div style={CARD.desc}>
-          基于 IntersectionObserver，元素进入视口时渲染实际内容。
-          rootMargin 默认 50px 提前触发。滚动下方查看效果。
+          顶部固定占位区将列表推出首屏，向下滚动后卡片逐个进入视口触发加载。
+        </div>
+        <div style={CARD.body}>
+          <div style={{ height: '380px', overflow: 'auto' as const, '-webkit-overflow-scrolling': 'touch', border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px' }}>
+            {/* 撑高区域 */}
+            <Center flexX flexY style={{ height: '280px', color: 'var(--sc-doc-card-muted, #9ca3af)', 'text-align': 'center', 'flex-direction': 'column' as const }}>
+              <div style={{ 'font-size': '1rem', 'margin-bottom': '6px' }}>⬇ 向下滚动</div>
+              <div style={{ 'font-size': '0.75rem' }}>下方列表进入视口后加载</div>
+            </Center>
+            {/* 懒加载列表 */}
+            <div style={{ padding: '0 12px' }}>
+              <For each={Array.from({ length: 10 })}>
+                {(_, i) => (
+                  <Lazyload height={60} rootMargin="0px" placeholder={<Skeleton />}>
+                    <DeferredContent>
+                      <DocItem idx={i()} />
+                    </DeferredContent>
+                  </Lazyload>
+                )}
+              </For>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* 图片懒加载 */}
+      {/* 图片画廊懒加载 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>图片懒加载</div>
-        <div style={CARD.desc}>滚动触发加载，占位期间显示 Loading</div>
-        <div style={{ ...CARD.body, display: 'flex' as const, 'flex-direction': 'column' as const, gap: '12px' }}>
-          <For each={IMAGES}>
-            {(src, i) => (
-              <Lazyload
-                height={200}
-                placeholder={
-                  <div style={{ width: '100%', height: '200px', background: '#f3f4f6', 'border-radius': '8px', display: 'flex' as const, 'align-items': 'center' as const, 'justify-content': 'center' }}>
-                    <Loading text={`加载中 ${i() + 1}`} />
-                  </div>
-                }
-              >
-                <Image src={src} width="100%" height={200} fit="cover" radius={8} />
-              </Lazyload>
-            )}
-          </For>
+        <div style={CARD.title}>图片画廊</div>
+        <div style={CARD.desc}>双列网格 + 懒加载。滚动触发彩色卡片逐个出现。</div>
+        <div style={CARD.body}>
+          <div style={{ height: '360px', overflow: 'auto' as const, '-webkit-overflow-scrolling': 'touch', border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px' }}>
+            <Center flexX flexY style={{ height: '240px', color: 'var(--sc-doc-card-muted, #9ca3af)', 'text-align': 'center', 'flex-direction': 'column' as const }}>
+              <div style={{ 'font-size': '1rem', 'margin-bottom': '6px' }}>⬇ 向下滚动</div>
+              <div style={{ 'font-size': '0.75rem' }}>图片卡片进入视口后加载</div>
+            </Center>
+            <div style={{ display: 'grid', 'grid-template-columns': '1fr 1fr', gap: '8px', padding: '8px' }}>
+              <For each={Array.from({ length: 12 })}>
+                {(_, i) => (
+                  <Lazyload height={100} rootMargin="0px" placeholder={<GallerySkeleton />}>
+                    <DeferredContent>
+                      <GalleryItem idx={i()} />
+                    </DeferredContent>
+                  </Lazyload>
+                )}
+              </For>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* 受控模式 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>受控模式</div>
-        <div style={CARD.desc}>active 属性手动控制加载状态</div>
+        <div style={CARD.title}>受控模式 active</div>
+        <div style={CARD.desc}>不依赖滚动，通过按钮手动控制加载。</div>
         <div style={CARD.body}>
-          <Lazyload
-            active
-            placeholder={<div style={{ padding: '40px', 'text-align': 'center', background: '#f3f4f6', 'border-radius': '8px' }}>占位内容</div>}
-          >
-            <div style={{ padding: '40px', 'text-align': 'center', background: '#e8f5e9', 'border-radius': '8px', color: '#22c55e' }}>
-              已激活的真实内容 ✓
-            </div>
-          </Lazyload>
+          <ControlledDemo />
         </div>
       </div>
     </MobilePreview>
+  );
+};
+
+/* ── Controlled Demo ── */
+
+const ControlledDemo: Component = () => {
+  const [loaded, setLoaded] = createSignal(false);
+  return (
+    <div style={{ display: 'flex' as const, 'flex-direction': 'column' as const, gap: '8px' }}>
+      <div style={{ display: 'flex' as const, gap: '8px', 'margin-bottom': '4px' }}>
+        <Button size="sm" text={loaded() ? '已激活' : '点击加载'} onClick={() => setLoaded(true)} />
+        <Button size="sm" variant="outline" text="重置" onClick={() => setLoaded(false)} />
+      </div>
+      <Lazyload active={loaded()} height={60} placeholder={<Skeleton />}>
+        <DeferredContent>
+          <DocItem idx={0} />
+        </DeferredContent>
+      </Lazyload>
+      <Lazyload active={loaded()} height={60} placeholder={<Skeleton />}>
+        <DeferredContent>
+          <DocItem idx={1} />
+        </DeferredContent>
+      </Lazyload>
+      <Lazyload active={loaded()} height={60} placeholder={<Skeleton />}>
+        <DeferredContent>
+          <DocItem idx={2} />
+        </DeferredContent>
+      </Lazyload>
+    </div>
   );
 };

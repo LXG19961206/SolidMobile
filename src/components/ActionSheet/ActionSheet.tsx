@@ -81,7 +81,7 @@ export const ActionSheet: Component<ActionSheetProps> = (rawProps) => {
   // ── Animation state ──
   const [mounted, setMounted] = createSignal(false);
   const [visible, setVisible] = createSignal(false);
-  const duration = 280; // ms, matches CSS transition
+  const duration = 300; // ms, slightly longer than CSS transition (0.28s) for clean finish
 
   createEffect(
     on(
@@ -92,7 +92,7 @@ export const ActionSheet: Component<ActionSheetProps> = (rawProps) => {
           requestAnimationFrame(() => setVisible(true));
         } else {
           setVisible(false);
-          setTimeout(() => setMounted(false), duration);
+          setMounted(false);
         }
       },
     ),
@@ -128,21 +128,20 @@ export const ActionSheet: Component<ActionSheetProps> = (rawProps) => {
     cn(
       styles.sheet,
       visible() && styles.enter,
-      !visible() && mounted() && styles.exit,
+      !visible() && styles.exit,
       local.round && styles.round,
       local.class,
     );
 
   return (
-    <Show when={mounted()}>
-      <Overlay
-        open={true}
-        onClose={handleOverlayClose}
-        zIndex={local.zIndex}
-        lockScroll={local.lockScroll}
-        duration={duration}
-        mount={local.mount}
-      >
+    <Overlay
+      open={mounted()}
+      onClose={handleOverlayClose}
+      zIndex={local.zIndex}
+      lockScroll={local.lockScroll}
+      duration={duration}
+      mount={local.mount}
+    >
         <div
           class={sheetClasses()}
           id={local.id}
@@ -223,6 +222,5 @@ export const ActionSheet: Component<ActionSheetProps> = (rawProps) => {
           <div class={styles.safeArea} />
         </div>
       </Overlay>
-    </Show>
   );
 };

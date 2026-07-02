@@ -24,9 +24,9 @@ const propsData = [
 ];
 
 const CARD = {
-  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
-  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
-  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
+  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: 'var(--sc-doc-card-title, #1f2937)' },
+  desc: { 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', padding: '0 16px 12px' },
   body: { padding: '0 16px 16px', display: 'flex' as const, 'flex-direction': 'column' as const, gap: '12px', 'align-items': 'center' as const },
 };
 
@@ -42,7 +42,7 @@ export const RateMobile: Component<RateMobileProps> = (props) => {
         <div style={CARD.desc}>默认 5 颗星，点击评价</div>
         <div style={CARD.body}>
           <Rate value={val()} onChange={setVal} />
-          <span style={{ 'font-size': '0.85rem', color: '#6b7280' }}>当前: {val()} 分</span>
+          <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>当前: {val()} 分</span>
         </div>
       </div>
 
@@ -52,7 +52,7 @@ export const RateMobile: Component<RateMobileProps> = (props) => {
         <div style={CARD.desc}>允许选中半颗星</div>
         <div style={CARD.body}>
           <Rate value={halfVal()} onChange={setHalfVal} allowHalf />
-          <span style={{ 'font-size': '0.85rem', color: '#6b7280' }}>当前: {halfVal()} 分</span>
+          <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>当前: {halfVal()} 分</span>
         </div>
       </div>
 
@@ -63,11 +63,11 @@ export const RateMobile: Component<RateMobileProps> = (props) => {
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'flex-direction': 'column' as const, 'align-items': 'center' as const, gap: '4px' }}>
             <Rate value={4} readonly />
-            <span style={{ 'font-size': '0.75rem', color: '#9ca3af' }}>只读 (4分)</span>
+            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>只读 (4分)</span>
           </div>
           <div style={{ display: 'flex' as const, 'flex-direction': 'column' as const, 'align-items': 'center' as const, gap: '4px' }}>
             <Rate value={2} disabled />
-            <span style={{ 'font-size': '0.75rem', color: '#9ca3af' }}>禁用 (2分)</span>
+            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>禁用 (2分)</span>
           </div>
         </div>
       </div>

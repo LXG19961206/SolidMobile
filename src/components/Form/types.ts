@@ -81,6 +81,8 @@ export interface FormProps<T extends FormValue = FormValue> {
   labelWidth?: string;
   /** 标签后加冒号 */
   colon?: boolean;
+  /** 提交校验失败时，自动滚动到第一个错误字段 */
+  scrollToError?: boolean;
   /** 自定义类名 */
   class?: string;
   /** 自定义样式 */

@@ -16,9 +16,9 @@ const propsData = [
 ];
 
 const CARD = {
-  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
-  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
-  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
+  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: 'var(--sc-doc-card-title, #1f2937)' },
+  desc: { 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', padding: '0 16px 12px' },
   body: { padding: '0 16px 16px' },
 };
 
@@ -78,13 +78,13 @@ export const DividerMobile: Component<DividerMobileProps> = (props) => {
         <div style={CARD.title}>垂直分割</div>
         <div style={CARD.desc}>direction="vertical"，需父级有高度</div>
         <div style={{ ...CARD.body, display: 'flex' as const, 'align-items': 'center' as const, height: '40px', gap: '12px' }}>
-          <span style={{ color: '#374151' }}>文字一</span>
+          <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>文字一</span>
           <Divider direction="vertical" />
-          <span style={{ color: '#374151' }}>文字二</span>
+          <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>文字二</span>
           <Divider direction="vertical" dashed color="#1677ff" />
-          <span style={{ color: '#374151' }}>文字三</span>
+          <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>文字三</span>
           <Divider direction="vertical" color="#ef4444" size={2} />
-          <span style={{ color: '#374151' }}>文字四</span>
+          <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>文字四</span>
         </div>
       </div>
     </MobilePreview>

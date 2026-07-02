@@ -7,6 +7,11 @@ export const Row: Component<RowProps> = (rawProps) => {
   const props = mergeProps({}, rawProps);
   const [local, rest] = splitProps(props, ['gap', 'align', 'justify', 'wrap', 'children', 'class', 'style']);
 
+  // 用负 margin + CSS 变量替代 gap，避免百分比 span + gap 溢出
+  // Col 通过 padding 实现间距，Row 用负 margin 抵消两端多余的 padding
+  const gapValue = typeof local.gap === 'number' ? `${local.gap}px` : local.gap;
+  const halfGap = gapValue ? (typeof local.gap === 'number' ? `${-local.gap / 2}px` : `calc(${gapValue} / -2)`) : undefined;
+
   return (
     <div
       class={cn(
@@ -17,7 +22,8 @@ export const Row: Component<RowProps> = (rawProps) => {
         local.class,
       )}
       style={{
-        gap: typeof local.gap === 'number' ? `${local.gap}px` : local.gap,
+        '--sc-row-gap': gapValue,
+        ...(halfGap ? { 'margin-left': halfGap, 'margin-right': halfGap } : {}),
         ...(typeof local.style === 'object' ? local.style : {}),
       }}
       {...rest}
@@ -35,11 +41,14 @@ export const Col: Component<ColProps> = (rawProps) => {
     <div
       class={cn(
         styles.col,
-        local.span && styles[`span${local.span}` as keyof typeof styles],
-        local.offset && styles[`offset${local.offset}` as keyof typeof styles],
+        local.span != null && styles[`span${local.span}` as keyof typeof styles],
+        local.offset != null && styles[`offset${local.offset}` as keyof typeof styles],
         local.class,
       )}
-      style={typeof local.style === 'object' ? local.style : undefined}
+      style={{
+        '--sc-row-gap': 'var(--sc-row-gap)',
+        ...(typeof local.style === 'object' ? local.style : {}),
+      }}
       {...rest}
     >
       {local.children}

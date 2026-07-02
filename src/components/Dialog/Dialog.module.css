@@ -1,3 +1,4 @@
+.btn { -webkit-tap-highlight-color: transparent; }
 /* ── Wrapper: full-screen flex center ── */
 .wrapper {
   position: fixed;

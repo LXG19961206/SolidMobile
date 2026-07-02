@@ -108,6 +108,7 @@ export const Input: Component<InputProps> = (rawProps) => {
     <div
       class={cn(
         styles.wrapper,
+        !!field && styles.inForm,
         local.size && styles[local.size!],
         local.disabled && styles.disabled,
         local.readonly && styles.readonly,
@@ -157,7 +158,7 @@ export const Input: Component<InputProps> = (rawProps) => {
       {/* clear */}
       <Show when={local.clearable && currentVal().length > 0 && !local.readonly}>
         <span class={styles.clear} onClick={onClear}>
-          <Icon name="close" size={14} />
+          <Icon name="close-circle" size={16} />
         </span>
       </Show>
 

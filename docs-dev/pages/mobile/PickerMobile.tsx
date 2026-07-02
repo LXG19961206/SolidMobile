@@ -6,103 +6,174 @@ export interface PickerMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { Picker } from '../../../src/components/Picker';
+import { Cell, CellGroup } from '../../../src/components/Cell';
 import type { PickerOption } from '../../../src/components/Picker';
 
+const propsData = [
+  { name: 'columns', type: 'PickerOption[] | PickerOption[][]', desc: '数据源：tree 级联或 flat 多列' },
+  { name: 'value', type: '(string | number)[]', desc: '当前选中值数组' },
+  { name: 'onChange', type: '(items, vals) => void', desc: '滚动停止后回调' },
+  { name: 'onConfirm', type: '(items, vals) => void', desc: '确认回调' },
+  { name: 'onCancel', type: '() => void', desc: '取消回调' },
+  { name: 'show', type: 'boolean', desc: '受控：是否显示面板' },
+  { name: 'onUpdateShow', type: '(show) => void', desc: '面板开关回调' },
+  { name: 'title', type: 'string', desc: '面板标题' },
+  { name: 'visibleItemCount', type: 'number', desc: '可见行数（奇数），默认 7' },
+  { name: 'optionHeight', type: 'number', desc: '每行高度，默认 50px' },
+  { name: 'cancelText', type: 'string', desc: '取消按钮文字' },
+  { name: 'confirmText', type: 'string', desc: '确认按钮文字' },
+  { name: 'placeholders', type: 'string | string[]', desc: '每列占位提示文字' },
+  { name: 'ratio', type: 'number', desc: '触摸灵敏度倍率，默认 1.5' },
+];
+
 const CARD = {
-  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
-  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
-  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
-  body: { padding: '16px' },
-  trigger: { padding: '12px 16px', border: '1px solid #e5e7eb', 'border-radius': '8px', cursor: 'pointer' as const, 'font-size': '0.9rem' },
+  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: 'var(--sc-doc-card-title, #1f2937)' },
+  desc: { 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', padding: '0 16px 12px' },
+  body: { padding: '0 16px 16px' },
 };
+
+/* ── Data ── */
 
 const cityTree: PickerOption[] = [
   {
     text: '北京', value: 'bj', children: [
-      { text: '海淀', value: 'hd' }, { text: '朝阳', value: 'cy' },
-    ]
+      { text: '海淀区', value: 'hd' }, { text: '朝阳区', value: 'cy' }, { text: '东城区', value: 'dc' },
+    ],
   },
   {
     text: '上海', value: 'sh', children: [
-      { text: '浦东', value: 'pd' }, { text: '静安', value: 'ja' },
-    ]
+      { text: '浦东新区', value: 'pd' }, { text: '静安区', value: 'ja' },
+    ],
+  },
+  {
+    text: '广东', value: 'gd', children: [
+      {
+        text: '深圳市', value: 'sz', children: [
+          { text: '南山区', value: 'ns' }, { text: '福田区', value: 'ft' },
+        ],
+      },
+      { text: '广州市', value: 'gz', children: [{ text: '天河区', value: 'th' }] },
+    ],
   },
 ];
 
+const thisYear = new Date().getFullYear();
 const dateCols: PickerOption[][] = [
-  [{ text: '2024年', value: 2024 }, { text: '2025年', value: 2025 }],
-  [{ text: '1月', value: 1 }, { text: '2月', value: 2 }, { text: '3月', value: 3 }],
+  Array.from({ length: 10 }, (_, i) => ({ text: `${thisYear - 5 + i}年`, value: thisYear - 5 + i })),
+  Array.from({ length: 12 }, (_, i) => ({ text: `${i + 1}月`, value: i + 1 })),
+];
+
+const timeCols: PickerOption[][] = [
+  Array.from({ length: 24 }, (_, i) => ({ text: `${String(i).padStart(2, '0')}时`, value: i })),
+  Array.from({ length: 60 }, (_, i) => ({ text: `${String(i).padStart(2, '0')}分`, value: i })),
 ];
 
 const disabledCols: PickerOption[][] = [[
   { text: '选项 A', value: 'a' },
   { text: '选项 B (禁用)', value: 'b', disabled: true },
   { text: '选项 C', value: 'c' },
+  { text: '选项 D (禁用)', value: 'd', disabled: true },
+  { text: '选项 E', value: 'e' },
 ]];
 
-const pickerProps = [
-  { name: 'columns', type: 'PickerOption[] | PickerOption[][]', desc: '数据源，支持 tree 级联或 flat 多列' },
-  { name: 'value', type: '(string | number)[]', desc: '当前选中值' },
-  { name: 'onChange', type: '(items, vals) => void', desc: '值变化回调' },
-  { name: 'onConfirm', type: '(items, vals) => void', desc: '确认回调' },
-  { name: 'title', type: 'string', desc: '面板标题' },
-  { name: 'cancelText', type: 'string', desc: '取消按钮文字' },
-  { name: 'confirmText', type: 'string', desc: '确认按钮文字' },
-  { name: 'show', type: 'boolean', desc: '受控：是否显示面板' },
-  { name: 'onUpdateShow', type: '(show) => void', desc: '面板开关回调' },
-  { name: 'visibleItemCount', type: 'number', desc: '可见行数，默认 7' },
-];
-
 export const PickerMobile: Component<PickerMobileProps> = (props) => {
-  const [showTree, setShowTree] = createSignal(false);
-  const [showFlat, setShowFlat] = createSignal(false);
+  /* ── Tree 级联 ── */
+  const [showCity, setShowCity] = createSignal(false);
+  const [cityVal, setCityVal] = createSignal<(string | number)[]>([]);
+  const [cityLabel, setCityLabel] = createSignal('');
+
+  /* ── Flat 年月 ── */
+  const [showDate, setShowDate] = createSignal(false);
+  const [dateVal, setDateVal] = createSignal<(string | number)[]>([]);
+  const [dateLabel, setDateLabel] = createSignal('');
+
+  /* ── 时分 ── */
+  const [showTime, setShowTime] = createSignal(false);
+
+  /* ── 禁用项 ── */
   const [showDisabled, setShowDisabled] = createSignal(false);
-  const [treeVal, setTreeVal] = createSignal<(string | number)[]>([]);
-  const [flatVal, setFlatVal] = createSignal<(string | number)[]>([]);
   const [disabledVal, setDisabledVal] = createSignal<(string | number)[]>([]);
 
+  /* ── 占位符 ── */
+  const [showPh, setShowPh] = createSignal(false);
+
+  /* ── 受控值 ── */
+  const [showCtrl, setShowCtrl] = createSignal(false);
+
   return (
-    <MobilePreview title="Picker 选择器" props={pickerProps} components={props.components} onNavigate={props.onNavigate}>
-      {/* 多级联动 */}
+    <MobilePreview title="Picker 选择器" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+      {/* Tree 级联 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>多级联动</div>
-        <div style={CARD.desc}>省 → 市 二级 tree 模式</div>
+        <div style={CARD.title}>Tree 级联</div>
+        <div style={CARD.desc}>省 → 市 → 区 三级联动。选中确认后显示完整路径。</div>
         <div style={CARD.body}>
-          <div
-            style={{ ...CARD.trigger, color: treeVal().length ? '#1f2937' : '#9ca3af' }}
-            onClick={() => setShowTree(true)}
-          >
-            {treeVal().length ? treeVal().join(' / ') : '请选择地区'}
-          </div>
+          <CellGroup>
+            <Cell
+              title="选择地区"
+              value={cityLabel() || '请选择'}
+              clickable
+              onClick={() => setShowCity(true)}
+            />
+          </CellGroup>
           <Picker
             columns={cityTree}
-            show={showTree()}
-            onUpdateShow={setShowTree}
-            onChange={(_, v) => setTreeVal(v)}
-            onConfirm={(_, v) => { setTreeVal(v); setShowTree(false); }}
-            onCancel={() => setShowTree(false)}
+            show={showCity()}
+            onUpdateShow={setShowCity}
+            title="选择地区"
+            onChange={(_, v) => setCityVal(v)}
+            onConfirm={(items, _) => {
+              setCityLabel(items.map(i => i.text).join(' / '));
+              setShowCity(false);
+            }}
+            onCancel={() => setShowCity(false)}
           />
         </div>
       </div>
 
-      {/* 多列不联动 */}
+      {/* Flat 年月 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>多列不联动</div>
-        <div style={CARD.desc}>年月独立选择（flat 模式）</div>
+        <div style={CARD.title}>Flat 多列不联动</div>
+        <div style={CARD.desc}>年月两列独立滚动，互不影响。</div>
         <div style={CARD.body}>
-          <div
-            style={{ ...CARD.trigger, color: flatVal().length ? '#1f2937' : '#9ca3af' }}
-            onClick={() => setShowFlat(true)}
-          >
-            {flatVal().length ? `${flatVal()[0]}年 ${flatVal()[1]}月` : '请选择年月'}
-          </div>
+          <CellGroup>
+            <Cell
+              title="选择年月"
+              value={dateLabel() || '请选择'}
+              clickable
+              onClick={() => setShowDate(true)}
+            />
+          </CellGroup>
           <Picker
             columns={dateCols}
-            show={showFlat()}
-            onUpdateShow={setShowFlat}
-            onChange={(_, v) => setFlatVal(v)}
-            onConfirm={(_, v) => { setFlatVal(v); setShowFlat(false); }}
-            onCancel={() => setShowFlat(false)}
+            show={showDate()}
+            onUpdateShow={setShowDate}
+            title="选择年月"
+            onChange={(_, v) => setDateVal(v)}
+            onConfirm={(items, _) => {
+              setDateLabel(items.map(i => i.text).join(' / '));
+              setShowDate(false);
+            }}
+            onCancel={() => setShowDate(false)}
+          />
+        </div>
+      </div>
+
+      {/* 时分选择 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>时分选择</div>
+        <div style={CARD.desc}>24 小时制 + 60 分钟，支持快速滑动惯性。</div>
+        <div style={CARD.body}>
+          <CellGroup>
+            <Cell title="选择时间" clickable onClick={() => setShowTime(true)} />
+          </CellGroup>
+          <Picker
+            columns={timeCols}
+            show={showTime()}
+            onUpdateShow={setShowTime}
+            title="选择时间"
+            onConfirm={() => setShowTime(false)}
+            onCancel={() => setShowTime(false)}
           />
         </div>
       </div>
@@ -110,21 +181,64 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
       {/* 禁用选项 */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>禁用选项</div>
-        <div style={CARD.desc}>disabled 项不可选中</div>
+        <div style={CARD.desc}>disabled 项滚动时自动跳过，不可选中。</div>
         <div style={CARD.body}>
-          <div
-            style={{ ...CARD.trigger, color: disabledVal().length ? '#1f2937' : '#9ca3af' }}
-            onClick={() => setShowDisabled(true)}
-          >
-            {disabledVal().length ? disabledVal() : '请选择'}
-          </div>
+          <CellGroup>
+            <Cell
+              title="含禁用项"
+              value={disabledVal().length ? String(disabledVal()) : '请选择'}
+              clickable
+              onClick={() => setShowDisabled(true)}
+            />
+          </CellGroup>
           <Picker
             columns={disabledCols}
             show={showDisabled()}
             onUpdateShow={setShowDisabled}
+            title="选项列表"
             onChange={(_, v) => setDisabledVal(v)}
             onConfirm={(_, v) => { setDisabledVal(v); setShowDisabled(false); }}
             onCancel={() => setShowDisabled(false)}
+          />
+        </div>
+      </div>
+
+      {/* 占位符 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>占位符 placeholders</div>
+        <div style={CARD.desc}>每列顶部显示占位提示，表示"未选择"状态。</div>
+        <div style={CARD.body}>
+          <CellGroup>
+            <Cell title="占位符模式" clickable onClick={() => setShowPh(true)} />
+          </CellGroup>
+          <Picker
+            columns={[[{ text: '选项 1', value: 1 }, { text: '选项 2', value: 2 }, { text: '选项 3', value: 3 }]]}
+            show={showPh()}
+            onUpdateShow={setShowPh}
+            title="请选择"
+            placeholders="请选择"
+            onConfirm={() => setShowPh(false)}
+            onCancel={() => setShowPh(false)}
+          />
+        </div>
+      </div>
+
+      {/* 受控值 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>受控值 value</div>
+        <div style={CARD.desc}>传入 value prop 预设选中项（北京 / 海淀）</div>
+        <div style={CARD.body}>
+          <CellGroup>
+            <Cell title="预设值" value="北京 / 海淀区" clickable onClick={() => setShowCtrl(true)} />
+          </CellGroup>
+          <Picker
+            columns={cityTree}
+            show={showCtrl()}
+            onUpdateShow={setShowCtrl}
+            title="选择地区"
+            value={['bj', 'hd']}
+            onConfirm={() => setShowCtrl(false)}
+            onCancel={() => setShowCtrl(false)}
           />
         </div>
       </div>

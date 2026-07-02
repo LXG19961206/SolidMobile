@@ -1,5 +1,5 @@
 import {
-  createSignal, createMemo, createEffect, on, onMount,
+  createSignal, createMemo, createEffect, on, onMount, onCleanup,
   Show, For, mergeProps, splitProps, type Component,
 } from 'solid-js';
 import { cn } from '../../utils';
@@ -49,7 +49,7 @@ function buildDays(month: MonthInfo, today: Date, min: Date, max: Date, firstDay
     const info: DayInfo = {
       year: y, month: m, day: d, date,
       isCurrentMonth: isCurrent,
-      isToday: sameDay(date, today),
+      isToday: isCurrent && sameDay(date, today),
       isDisabled: time < minTime || time > maxTime,
     };
     if (lunar && isCurrent) {
@@ -135,20 +135,27 @@ export const Calendar: Component<CalendarProps> = (rawProps) => {
   const [activeIdx, setActiveIdx] = createSignal(0);
   let contentRef!: HTMLDivElement;
   let monthRefs: HTMLDivElement[] = [];
+  let scrollRaf: number | null = null;
 
   function onScroll() {
-    if (!contentRef) return;
-    const st = contentRef.scrollTop;
-    let idx = 0;
-    let acc = 0;
-    for (let i = 0; i < monthRefs.length; i++) {
-      const h = monthRefs[i]?.offsetHeight || 0;
-      if (st < acc + h / 2) { idx = i; break; }
-      acc += h;
-      idx = i;
-    }
-    setActiveIdx(idx);
+    if (scrollRaf) return;
+    scrollRaf = requestAnimationFrame(() => {
+      scrollRaf = null;
+      if (!contentRef) return;
+      const st = contentRef.scrollTop;
+      let idx = 0;
+      let acc = 0;
+      for (let i = 0; i < monthRefs.length; i++) {
+        const h = monthRefs[i]?.offsetHeight || 0;
+        if (st < acc + h / 2) { idx = i; break; }
+        acc += h;
+        idx = i;
+      }
+      setActiveIdx(idx);
+    });
   }
+
+  onCleanup(() => { if (scrollRaf) cancelAnimationFrame(scrollRaf); });
 
   // Selection logic — only match current-month days
   function isSelected(d: DayInfo) { return d.isCurrentMonth && selected().some(s => sameDay(s, d.date)); }

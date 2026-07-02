@@ -40,7 +40,7 @@ export const Stepper: Component<StepperProps> = (rawProps) => {
     'min', 'max', 'step', 'decimalLength',
     'size', 'buttonSize', 'inputWidth',
     'minusIcon', 'plusIcon',
-    'disabled', 'inputDisabled', 'integer', 'allowEmpty',
+    'disabled', 'readonly', 'inputDisabled', 'integer', 'allowEmpty',
     'placeholder',
     'class', 'style',
   ]);
@@ -83,17 +83,20 @@ export const Stepper: Component<StepperProps> = (rawProps) => {
     if (field) field.onChange(formatted);
   }
 
+  const isReadonly = () => !!local.readonly || !!field?.readonly;
+
   function minus() {
-    if (local.disabled) return;
+    if (local.disabled || isReadonly()) return;
     emit(currentVal() - local.step!);
   }
 
   function plus() {
-    if (local.disabled) return;
+    if (local.disabled || isReadonly()) return;
     emit(currentVal() + local.step!);
   }
 
   function handleInput(e: Event) {
+    if (isReadonly()) return;
     const el = e.target as HTMLInputElement;
     let raw = el.value;
 
@@ -140,6 +143,7 @@ export const Stepper: Component<StepperProps> = (rawProps) => {
       class={cn(
         styles.wrapper,
         local.disabled && styles.disabled,
+        isReadonly() && styles.readonly,
         local.class,
       )}
       style={local.style ?? {}}

@@ -1,3 +1,4 @@
+.item { -webkit-tap-highlight-color: transparent; }
 .wrapper {
   display: inline-flex;
   align-items: center;

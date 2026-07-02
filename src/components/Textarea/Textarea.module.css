@@ -28,7 +28,7 @@
   border: none;
   outline: none;
   background: transparent;
-  font-size: inherit;
+  font-size: 14px;
   font-family: inherit;
   color: var(--sc-textarea-text-color);
   padding: 0;

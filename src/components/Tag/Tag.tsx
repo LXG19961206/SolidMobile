@@ -13,18 +13,25 @@ export const Tag: Component<TagProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
   const [local, rest] = splitProps(props, ['type', 'variant', 'size', 'round', 'closeable', 'onClose', 'children', 'class', 'style', 'color']);
 
+  const hasCustomColor = !!local.color;
+
   return (
     <span
       class={cn(
         styles.tag,
         styles[local.variant!],
-        styles[local.type!],
+        !hasCustomColor && styles[local.type!],
         styles[local.size!],
         local.round && styles.round,
         local.class,
       )}
       style={{
-        ...(local.color ? { background: local.color, borderColor: local.color } : {}),
+        ...(hasCustomColor ? {
+          ...(local.variant === 'outline'
+            ? { background: 'transparent', borderColor: local.color, color: local.color }
+            : { background: local.color, borderColor: local.color, color: '#fff' }
+          ),
+        } : {}),
         ...(typeof local.style === 'object' ? local.style : {}),
       }}
       {...rest}

@@ -21,6 +21,8 @@ export interface StepperProps {
   inputWidth?: number | string;
   /** 是否禁用 */
   disabled?: boolean;
+  /** 是否只读 */
+  readonly?: boolean;
   /** 是否禁用输入框 */
   inputDisabled?: boolean;
   /** 是否只允许输入整数 */

@@ -1,3 +1,4 @@
+.tab { -webkit-tap-highlight-color: transparent; }
 /* ===== Tabs ===== */
 .tabs {
   display: flex;

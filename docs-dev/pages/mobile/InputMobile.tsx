@@ -28,10 +28,10 @@ const propsData = [
 ];
 
 const CARD = {
-  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
-  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
-  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
-  body: { padding: '0 16px 16px', display: 'flex' as const, 'flex-direction': 'column' as const, gap: '12px' },
+  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: 'var(--sc-doc-card-title, #1f2937)' },
+  desc: { 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', padding: '0 16px 12px' },
+  body: { padding: '0 16px 16px', display: 'flex' as const, 'flex-direction': 'column' as const, gap: '16px' },
 };
 
 export const InputMobile: Component<InputMobileProps> = (props) => {
@@ -46,10 +46,10 @@ export const InputMobile: Component<InputMobileProps> = (props) => {
         <div style={CARD.desc}>type 控制输入类型</div>
         <div style={CARD.body}>
           <Input placeholder="请输入文字 (text)" />
-          <Input type="number" placeholder="请输入数字 (number)" />
-          <Input type="password" placeholder="请输入密码 (password)" />
-          <Input type="tel" placeholder="请输入手机号 (tel)" />
-          <Input type="email" placeholder="请输入邮箱 (email)" />
+            <Input type="number" placeholder="请输入数字 (number)" />
+            <Input type="password" placeholder="请输入密码 (password)" />
+            <Input type="tel" placeholder="请输入手机号 (tel)" />
+            <Input type="email" placeholder="请输入邮箱 (email)" />
         </div>
       </div>
 
@@ -59,7 +59,7 @@ export const InputMobile: Component<InputMobileProps> = (props) => {
         <div style={CARD.desc}>clearable 显示清除按钮 / showPasswordToggle 切换密码可见</div>
         <div style={CARD.body}>
           <Input placeholder="可清除的输入框" clearable onChange={setText1} value={text1()} />
-          <Input type="password" placeholder="密码（可切换可见）" showPasswordToggle />
+            <Input type="password" placeholder="密码（可切换可见）" showPasswordToggle />
         </div>
       </div>
 
@@ -68,9 +68,9 @@ export const InputMobile: Component<InputMobileProps> = (props) => {
         <div style={CARD.title}>前后缀 & 对齐</div>
         <div style={CARD.desc}>prefix / suffix 装饰 / align 对齐方式</div>
         <div style={CARD.body}>
-          <Input placeholder="搜索内容" prefix={<span style={{ color: '#9ca3af' }}>🔍</span>} />
-          <Input placeholder="右对齐" align="right" />
-          <Input placeholder="居中" align="center" />
+          <Input placeholder="搜索内容" prefix={<span style={{ color: 'var(--sc-doc-card-muted, #9ca3af)' }}>🔍</span>} />
+            <Input placeholder="右对齐" align="right" />
+            <Input placeholder="居中" align="center" />
         </div>
       </div>
 
@@ -89,8 +89,8 @@ export const InputMobile: Component<InputMobileProps> = (props) => {
         <div style={CARD.desc}>disabled / readonly / error 三种状态</div>
         <div style={CARD.body}>
           <Input placeholder="禁用状态" disabled />
-          <Input placeholder="只读状态" readonly value="只读内容" />
-          <Input placeholder="错误状态" error />
+            <Input placeholder="只读状态" readonly value="只读内容" />
+            <Input placeholder="错误状态" error />
         </div>
       </div>
 
@@ -100,8 +100,8 @@ export const InputMobile: Component<InputMobileProps> = (props) => {
         <div style={CARD.desc}>sm=32px / md=40px / lg=48px</div>
         <div style={CARD.body}>
           <Input placeholder="小尺寸 SM" size="sm" />
-          <Input placeholder="中尺寸 MD" size="md" />
-          <Input placeholder="大尺寸 LG" size="lg" />
+            <Input placeholder="中尺寸 MD" size="md" />
+            <Input placeholder="大尺寸 LG" size="lg" />
         </div>
       </div>
     </MobilePreview>

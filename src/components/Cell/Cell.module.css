@@ -1,3 +1,12 @@
+/* ── Global form theming variables (shared with FormItem) ── */
+:root {
+  --sc-color-cell-bg: #fff;
+}
+:global(html.dark) {
+  --sc-color-cell-bg: #1a1d21;
+}
+
+.cell { -webkit-tap-highlight-color: transparent; }
 /* ================================================================
    Cell & CellGroup
    ================================================================ */
@@ -140,6 +149,8 @@
   display: flex;
   align-items: center;
   margin-left: 0.4rem;
-  color: var(--sc-color-text-tertiary, #afaba9);
+  color: var(--sc-color-text-tertiary, #c0c4cc);
   flex-shrink: 0;
+  font-size: 1.2em;
+  line-height: 1;
 }

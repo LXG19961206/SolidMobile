@@ -107,9 +107,7 @@ export const Cell: Component<CellProps> = (rawProps) => {
         </Show>
 
         <Show when={local.clickable}>
-          <span class={styles.arrow}>
-            <Icon name="arrow-right" size={16} />
-          </span>
+          <span class={styles.arrow} aria-hidden="true">›</span>
         </Show>
       </Show>
     </div>

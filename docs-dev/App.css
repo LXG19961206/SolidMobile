@@ -589,3 +589,9 @@ html.dark .content {
     overflow-x: hidden;
   }
 }
+
+/* ── Logo pulse animation ── */
+@keyframes sc-logo-pulse {
+  0%, 100% { opacity: 0.10; }
+  50%      { opacity: 0.22; }
+}

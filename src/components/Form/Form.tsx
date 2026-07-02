@@ -28,7 +28,7 @@ export const Form: Component<FormProps> = (rawProps) => {
     'value', 'onChange', 'defaultValue', 'onSubmit',
     'validateOnChange', 'validateOnBlur',
     'disabled', 'readonly',
-    'labelAlign', 'labelWidth', 'colon',
+    'labelAlign', 'labelWidth', 'colon', 'scrollToError',
     'class', 'style', 'children', 'ref',
   ]);
 
@@ -145,7 +145,15 @@ export const Form: Component<FormProps> = (rawProps) => {
   /* ── 提交 ── */
   async function submit() {
     const ok = await validateAll();
-    if (!ok) return;
+    if (!ok) {
+      if (local.scrollToError && formEl) {
+        const errEl = formEl.querySelector('[data-form-error]');
+        if (errEl) {
+          errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+      return;
+    }
     local.onSubmit?.(formValue() as any);
   }
 

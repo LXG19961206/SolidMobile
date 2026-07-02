@@ -142,6 +142,7 @@ const FullFormDemo: Component = () => {
         onSubmit={(v) => { setFormVal(v); Toast.success('提交: ' + JSON.stringify(v)); }}
         labelWidth="5em"
         colon
+        scrollToError
       >
         {/* ── Input ── */}
         <FormItem name="username" label="用户名" required rules={[{

@@ -18,14 +18,16 @@ const propsData = [
 ];
 
 const CARD = {
-  wrapper: { background: '#fff', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
-  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: '#1f2937' },
-  desc: { 'font-size': '0.8rem', color: '#6b7280', padding: '0 16px 12px' },
+  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
+  title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '16px 16px 4px', color: 'var(--sc-doc-card-title, #1f2937)' },
+  desc: { 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', padding: '0 16px 12px' },
   body: { padding: '0 16px 16px', display: 'flex' as const, 'flex-wrap': 'wrap' as const, gap: '8px', 'align-items': 'center' as const },
 };
 
 export const TagMobile: Component<TagMobileProps> = (props) => {
-  const [visible, setVisible] = createSignal(true);
+  const [closed, setClosed] = createSignal(new Set<string>());
+  const isOpen = (id: string) => !closed().has(id);
+  const close = (id: string) => setClosed(prev => new Set([...prev, id]));
 
   return (
     <MobilePreview title="Tag 标签" props={propsData} components={props.components} onNavigate={props.onNavigate}>
@@ -72,11 +74,12 @@ export const TagMobile: Component<TagMobileProps> = (props) => {
       {/* 可关闭 */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>可关闭 closeable</div>
-        <div style={CARD.desc}>closeable 开启关闭按钮，onClose 处理关闭</div>
+        <div style={CARD.desc}>点击右侧 ✕ 按钮关闭标签，每个标签独立控制。</div>
         <div style={CARD.body}>
-          {visible() && <Tag closeable onClose={() => setVisible(false)}>可关闭</Tag>}
-          <Tag closeable type="primary" onClose={() => {}}>标签一</Tag>
-          <Tag closeable type="success" onClose={() => {}}>标签二</Tag>
+          {isOpen('a') && <Tag closeable onClose={() => close('a')}>可关闭</Tag>}
+          {isOpen('b') && <Tag closeable type="primary" onClose={() => close('b')}>标签一</Tag>}
+          {isOpen('c') && <Tag closeable type="success" onClose={() => close('c')}>标签二</Tag>}
+          {isOpen('d') && <Tag closeable type="danger" onClose={() => close('d')}>标签三</Tag>}
         </div>
       </div>
 
