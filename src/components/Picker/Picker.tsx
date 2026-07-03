@@ -250,11 +250,11 @@ export const Picker: Component<PickerProps> = (rawProps) => {
   const [isScrolling, setIsScrolling] = createSignal(false);
   let lastClientY = 0;
   let scrollGateTimer: ReturnType<typeof setTimeout> | null = null;
-  let pendingFinishTimer: ReturnType<typeof setTimeout> | null = null;
+  let animRafId: number | null = null;
 
   onCleanup(() => {
     if (scrollGateTimer) clearTimeout(scrollGateTimer);
-    if (pendingFinishTimer) clearTimeout(pendingFinishTimer);
+    if (animRafId !== null) cancelAnimationFrame(animRafId);
   });
 
   /* ═══════════════════════════════════════════════════════════
@@ -304,6 +304,15 @@ export const Picker: Component<PickerProps> = (rawProps) => {
           if (depth + 1 <= colCount()) {
             const selected = arr[finalIdx];
             target = selected?.children ?? [];
+          }
+
+          // Tree 模式下，非首列跟随父列变化时重置到第一项
+          // （Effect 3 的受控值同步会随后覆盖，不影响预设 value）
+          if (depth > 0) {
+            const [, idxSetter] = selectedIdx()[depth];
+            const [, transSetter] = translateY()[depth];
+            idxSetter(0);
+            transSetter(0);
           }
         }
 
@@ -380,9 +389,10 @@ export const Picker: Component<PickerProps> = (rawProps) => {
     return value > top ? top : value < bottom ? bottom : value;
   }
 
-  /** 递归跳过 disabled 项 */
-  function disabledFixed(col: number, value: number, isDown?: boolean): number {
+  /** 跳过 disabled 项（带深度保护） */
+  function disabledFixed(col: number, value: number, isDown?: boolean, depth = 0): number {
     const items = allColumns()[col];
+    if (!items.length) return value;
     const idx = clampIdx(Math.round(-value / lineHeight()), items.length - 1);
 
     // 推断方向
@@ -394,17 +404,17 @@ export const Picker: Component<PickerProps> = (rawProps) => {
       }
     }
 
-    if (value > 0) {
-      return disabledFixed(col, 0, false);
-    } else if (value < items.length * -lineHeight()) {
-      return disabledFixed(col, lineHeight() * (1 - items.length), true);
-    } else if (items[idx]?.disabled) {
-      return isDown
-        ? disabledFixed(col, value - lineHeight())
-        : disabledFixed(col, value + lineHeight());
-    } else {
-      return value;
+    // 边界保护 — 递归跳过边界上的禁用项
+    if (value > 0) return disabledFixed(col, 0, true, depth + 1);
+    const bottom = (1 - items.length) * lineHeight();
+    if (value < bottom) return disabledFixed(col, bottom, false, depth + 1);
+
+    // 当前项被禁用 → 向滑动方向找下一个可用项
+    if (items[idx]?.disabled) {
+      if (depth > items.length) return value; // 全禁用，放弃
+      return disabledFixed(col, value + (isDown ? -lineHeight() : lineHeight()), isDown, depth + 1);
     }
+    return value;
   }
 
   /** 惯性计算 / snap
@@ -436,8 +446,8 @@ export const Picker: Component<PickerProps> = (rawProps) => {
      ═══════════════════════════════════════════════════════════ */
 
   function onPointerDown(evt: PointerEvent) {
-    // 取消上一次未完成的动画回调，防止多次滑动互相干扰
-    if (pendingFinishTimer) { clearTimeout(pendingFinishTimer); pendingFinishTimer = null; }
+    // 取消上一次未完成的 rAF 动画
+    if (animRafId !== null) { cancelAnimationFrame(animRafId); animRafId = null; }
 
     // 根据触摸 X 坐标计算目标列
     const target = evt.currentTarget as HTMLElement;
@@ -448,10 +458,11 @@ export const Picker: Component<PickerProps> = (rawProps) => {
     // 50ms 去抖动：避免轻点确认按钮时误触发滚动
     scrollGateTimer = setTimeout(() => setIsScrolling(true), 50);
 
-    // 立即停止当前列的 CSS transition，snap 到视觉位置防止动画冲突
-    animDuration()[col][1](0);
-    void (evt.currentTarget as HTMLElement).offsetHeight;
+    // snap 当前列到最近的整行位置，作为拖拽起点
+    const currentY = allTranslates()[col];
+    const snapped = snapToLine(currentY, lineHeight());
     animDuration()[col][1](MOVE_DURATION);
+    translateY()[col][1](snapped);
 
     queue.clear();
     lastClientY = evt.clientY;
@@ -522,31 +533,41 @@ export const Picker: Component<PickerProps> = (rawProps) => {
     const bounded = boundaryCalc(col, snapped);
     const final = disabledFixed(col, bounded);
 
-    // 时长与滑动距离成正比，模拟减速过程
-    const overshoot = allTranslates()[col] > 0 || allTranslates()[col] < (1 - allColumns()[col].length) * lineHeight();
-    const travel = Math.abs(final - allTranslates()[col]);
-    const travelItems = travel / lineHeight();
-    const duration = overshoot
-      ? 0.6  // 回弹用固定较长时长，弹簧感
-      : useMomentum
-        ? Math.min(local.swipeDuration! * (1 + travelItems * 0.15), 2.5)
-        : DEFAULT_DURATION;
+    const start = allTranslates()[col];
+    const distance = final - start;
+    // 滑动距离越大动画越久，但至少 280ms 保证可见，最多 2s
+    const travelItems = Math.abs(distance) / lineHeight();
+    const duration = Math.max(280, Math.min(
+      (useMomentum ? local.swipeDuration! * 1000 : 400) + travelItems * 40,
+      2000
+    ));
 
-    // 先只更新 translateY 触发视觉动画，selectedIdx 等动画结束再更新
-    // 避免 calcStyle 在动画期间用终态位置计算导致中间项闪白
-    animDuration()[col][1](duration);
-    translateY()[col][1](final);
+    // 无 CSS transition — 用 rAF 逐帧驱动，高亮实时跟踪
+    animDuration()[col][1](0);
 
-    pendingFinishTimer = setTimeout(() => {
-      pendingFinishTimer = null;
-      selectedIdx()[col][1](Math.round(-final / lineHeight()));
-      animDuration()[col][1](DEFAULT_DURATION);
+    const t0 = performance.now();
+    function frame() {
+      const elapsed = performance.now() - t0;
+      const t = Math.min(elapsed / duration, 1);
+      // cubic ease-out: 先快后慢
+      const eased = 1 - Math.pow(1 - t, 3);
+      translateY()[col][1](start + distance * eased);
 
-      const items = allColumns().map((cols, i) => cols[allIdxs()[i]]);
-      const vals = allIdxs().map((idx, i) => allColumns()[i][idx]?.value ?? '');
-      local.onChange?.call(void 0, items, vals);
-      emitEvent({ component: 'Picker', type: 'change', payload: { items, vals }, timestamp: Date.now() });
-    }, duration * 1000 * 0.5);
+      if (t < 1) {
+        animRafId = requestAnimationFrame(frame);
+      } else {
+        // 终态：精确对齐 + 更新 selectedIdx + 回调
+        animRafId = null;
+        translateY()[col][1](final);
+        selectedIdx()[col][1](Math.round(-final / lineHeight()));
+        animDuration()[col][1](DEFAULT_DURATION);
+        const items = allColumns().map((cols, i) => cols[allIdxs()[i]]);
+        const vals = allIdxs().map((idx, i) => allColumns()[i][idx]?.value ?? '');
+        local.onChange?.call(void 0, items, vals);
+        emitEvent({ component: 'Picker', type: 'change', payload: { items, vals }, timestamp: Date.now() });
+      }
+    }
+    animRafId = requestAnimationFrame(frame);
   }
 
   /* ═══════════════════════════════════════════════════════════

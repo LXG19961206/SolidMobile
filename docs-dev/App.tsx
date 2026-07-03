@@ -25,6 +25,7 @@ import { LazyloadDocPage } from './pages/components/Lazyload/LazyloadDocPage';
 import { ListDocPage } from './pages/components/List/ListDocPage';
 import { NavBarDocPage } from './pages/components/NavBar/NavBarDocPage';
 import { TabsDocPage } from './pages/components/Tabs/TabsDocPage';
+import { TabBarDocPage } from './pages/components/TabBar/TabBarDocPage';
 import { CellDocPage } from './pages/components/Cell/CellDocPage';
 import { CascaderDocPage } from './pages/components/Cascader/CascaderDocPage';
 import { CalendarDocPage } from './pages/components/Calendar/CalendarDocPage';
@@ -39,6 +40,7 @@ import { ActionSheetDocPage } from './pages/components/ActionSheet/ActionSheetDo
 import { LoadingDocPage } from './pages/components/Loading/LoadingDocPage';
 import { SwitchDocPage } from './pages/components/Switch/SwitchDocPage';
 import { SwipeCellDocPage } from './pages/components/SwipeCell/SwipeCellDocPage';
+import { SwiperDocPage } from './pages/components/Swiper/SwiperDocPage';
 import { FormDocPage } from './pages/components/Form/FormDocPage';
 import { InputDocPage } from './pages/components/Input/InputDocPage';
 import { TextareaDocPage } from './pages/components/Textarea/TextareaDocPage';
@@ -50,6 +52,8 @@ import { RateDocPage } from './pages/components/Rate/RateDocPage';
 import { StepperDocPage } from './pages/components/Stepper/StepperDocPage';
 import { SafeAreaDocPage } from './pages/components/SafeArea/SafeAreaDocPage';
 import { SliderDocPage } from './pages/components/Slider/SliderDocPage';
+import { UploadDocPage } from './pages/components/Upload/UploadDocPage';
+import { PullRefreshDocPage } from './pages/components/PullRefresh/PullRefreshDocPage';
 import { SelectDocPage } from './pages/components/Select/SelectDocPage';
 import { PickerMobile } from './pages/mobile/PickerMobile';
 import { ButtonMobile } from './pages/mobile/ButtonMobile';
@@ -66,7 +70,9 @@ import { EmptyMobile } from './pages/mobile/EmptyMobile';
 import { LazyloadMobile } from './pages/mobile/LazyloadMobile';
 import { ListMobile } from './pages/mobile/ListMobile';
 import { SwipeCellMobile } from './pages/mobile/SwipeCellMobile';
+import { SwiperMobile } from './pages/mobile/SwiperMobile';
 import { TabsMobile } from './pages/mobile/TabsMobile';
+import { TabBarMobile } from './pages/mobile/TabBarMobile';
 import { NavBarMobile } from './pages/mobile/NavBarMobile';
 import { CellMobile } from './pages/mobile/CellMobile';
 import { CalendarMobile } from './pages/mobile/CalendarMobile';
@@ -89,6 +95,8 @@ import { RateMobile } from './pages/mobile/RateMobile';
 import { StepperMobile } from './pages/mobile/StepperMobile';
 import { SliderMobile } from './pages/mobile/SliderMobile';
 import { SelectMobile } from './pages/mobile/SelectMobile';
+import { UploadMobile } from './pages/mobile/UploadMobile';
+import { PullRefreshMobile } from './pages/mobile/PullRefreshMobile';
 import { DesignTokensMobile } from './pages/mobile/DesignTokensMobile';
 import { EventBusMobile } from './pages/mobile/EventBusMobile';
 import { AllTokens } from '../src/design-tokens/DesignTokenShowcase';
@@ -198,7 +206,9 @@ const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key:
   lazyload: LazyloadMobile,
   list: ListMobile,
   swipecell: SwipeCellMobile,
+  swiper: SwiperMobile,
   tabs: TabsMobile,
+  tabbar: TabBarMobile,
   navbar: NavBarMobile,
   cell: CellMobile,
   picker: PickerMobile,
@@ -222,6 +232,8 @@ const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key:
   stepper: StepperMobile,
   slider: SliderMobile,
   select: SelectMobile,
+  upload: UploadMobile,
+  pullrefresh: PullRefreshMobile,
 };
 
 /* ── Top Nav Tabs ── */
@@ -265,12 +277,15 @@ const GROUPS: MenuGroup[] = [
       { name: 'Lazyload 懒加载', key: 'lazyload' },
       { name: 'List 列表', key: 'list' },
       { name: 'SwipeCell 滑动单元格', key: 'swipecell' },
+      { name: 'Swiper 轮播', key: 'swiper' },
+      { name: 'PullRefresh 下拉刷新', key: 'pullrefresh' },
     ],
   },
   {
     title: '导航组件',
     items: [
       { name: 'Tabs 标签页', key: 'tabs' },
+      { name: 'TabBar 标签栏', key: 'tabbar' },
       { name: 'NavBar 导航栏', key: 'navbar' },
       { name: 'Cell 单元格', key: 'cell' },
     ],
@@ -309,6 +324,7 @@ const GROUPS: MenuGroup[] = [
       { name: 'Stepper 步进器', key: 'stepper' },
       { name: 'Slider 滑块', key: 'slider' },
       { name: 'Select 选择器', key: 'select' },
+      { name: 'Upload 文件上传', key: 'upload' },
     ],
   },
 ];
@@ -329,6 +345,7 @@ const PAGES: Record<string, Component> = {
   list: ListDocPage,
   navbar: NavBarDocPage,
   tabs: TabsDocPage,
+  tabbar: TabBarDocPage,
   cell: CellDocPage,
   picker: PickerDocPage,
   cascader: CascaderDocPage,
@@ -341,6 +358,7 @@ const PAGES: Record<string, Component> = {
   loading: LoadingDocPage,
   switch: SwitchDocPage,
   swipecell: SwipeCellDocPage,
+  swiper: SwiperDocPage,
   form: FormDocPage,
   input: InputDocPage,
   textarea: TextareaDocPage,
@@ -353,6 +371,8 @@ const PAGES: Record<string, Component> = {
   safearea: SafeAreaDocPage,
   slider: SliderDocPage,
   select: SelectDocPage,
+  upload: UploadDocPage,
+  pullrefresh: PullRefreshDocPage,
 };
 
 /* ── Code Block ── */
@@ -462,7 +482,7 @@ const AboutPage: Component = () => (
       希望在保证质量的前提下，尽可能让更多元素可以被配置和定制。
     </p>
     <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '0.75rem' }}>
-      当前已完成了基础组件、展示组件、导航组件、选择器和反馈组件等二十余个组件，
+      当前已完成了基础组件、展示组件、导航组件、选择器和反馈组件等 42 个组件，
       支持 Tree Shaking、暗色模式、ConfigProvider 全局配置，
       并提供了完整的文档和手机模拟器预览。
     </p>
@@ -475,7 +495,7 @@ const AboutPage: Component = () => (
         'Tabs', 'NavBar', 'Cell', 'CellGroup',
         'Picker', 'Calendar', 'Cascader',
         'Toast', 'Notify', 'Dialog', 'Overlay', 'ActionSheet', 'Loading',
-        'Switch',
+        'Switch', 'Upload', 'PullRefresh',
       ].map(name => (
         <span style={{
           padding: '4px 10px', 'font-size': '0.8rem',
@@ -489,7 +509,7 @@ const AboutPage: Component = () => (
 
     <h3 style={{ 'font-size': '0.95rem', 'font-weight': 600, margin: '1.25rem 0 0.5rem' }}>表单组件</h3>
     <div style={{ display: 'flex', 'flex-wrap': 'wrap', gap: '6px', 'margin-bottom': '1rem' }}>
-      {['Input', 'Textarea', 'Form', 'Radio', 'Checkbox', 'DatePicker', 'TimePicker', 'CityPicker', 'Upload'].map(name => (
+      {['Input', 'Textarea', 'Form', 'Radio', 'Checkbox', 'DatePicker', 'TimePicker', 'CityPicker'].map(name => (
         <span style={{
           padding: '4px 10px', 'font-size': '0.8rem',
           background: '#fef3c7', 'border-radius': '4px',
@@ -534,7 +554,7 @@ const AboutPage: Component = () => (
     <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>未来</h2>
     <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
       接下来的重心是补齐表单体系——Input、Textarea、Radio、Checkbox、DatePicker、
-      TimePicker、Upload 等核心表单组件，以及 Form 表单容器的校验与联动。
+      TimePicker 等核心表单组件，以及 Form 表单容器的校验与联动。
       此外还有 Tabbar、Grid 等导航和布局组件，以及 SKU 选择器、LiveRoom 等业务场景组件。
     </p>
     <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '0.75rem' }}>
@@ -950,7 +970,7 @@ const GUIDE_PAGES: Record<string, Component> = {
         在应用入口调用一次 setEventBusHandler，无需 Provider。未注册时零开销。
       </p>
       <div style={{ background: '#1e293b', color: '#e2e8f0', padding: '1rem 1.25rem', 'border-radius': '8px', 'font-size': '0.85rem', overflow: 'auto', 'white-space': 'pre-wrap', 'font-family': 'monospace' }}>
-{`import { setEventBusHandler } from 'solid-component';
+        {`import { setEventBusHandler } from 'solid-component';
 
 setEventBusHandler((event) => {
   console.log(\`[\${event.component}] \${event.type}\`, event.payload);
@@ -1126,9 +1146,11 @@ export function App() {
   const closeMobileDrawer = () => setMobileDrawerOpen(false);
   const mobileGroups = createMemo(() => [
     { title: '', items: [{ name: '🏠 Home', key: 'home' }] },
-    { title: '指南', items: [
-      { name: '📡 EventBus 事件总线', key: 'eventbus' },
-    ]},
+    {
+      title: '指南', items: [
+        { name: '📡 EventBus 事件总线', key: 'eventbus' },
+      ]
+    },
     ...GROUPS,
   ]);
 
@@ -1188,17 +1210,7 @@ export function App() {
         {/* ══ Top Nav Tabs ══ */}
         <header class="top-nav">
           <div class="top-nav-brand">
-            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-              <rect width="32" height="32" rx="8" fill="url(#sc-logo-grad2)" />
-              <rect x="6" y="10" width="9" height="12" rx="2.5" fill="#fff" opacity="0.95" />
-              <rect x="17" y="6" width="9" height="16" rx="2.5" fill="#fff" opacity="0.7" />
-              <defs>
-                <linearGradient id="sc-logo-grad2" x1="0" y1="0" x2="32" y2="32">
-                  <stop stop-color="#1677ff" />
-                  <stop offset="1" stop-color="#5195ff" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <img src="./logo.jpg" alt="solid-mobile" style="width:28px;height:28px;border-radius:6px;display:block" />
             <span class="top-nav-title">solid-mobile</span>
           </div>
           <nav class="top-nav-tabs">
@@ -1219,9 +1231,6 @@ export function App() {
             </button>
             <button class="tb-btn" onClick={toggleDark}>
               {dark() ? '☀' : '☾'}
-            </button>
-            <button class="tb-btn" onClick={() => setMobileView(!mobileView())}>
-              {mobileView() ? '文档' : '预览'}
             </button>
           </div>
         </header>

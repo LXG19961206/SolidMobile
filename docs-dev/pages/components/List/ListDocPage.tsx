@@ -21,6 +21,8 @@ const listProps: PropRow[] = [
   { name: 'offset', type: 'number', default: '100', required: false, desc: '距底部多少 px 触发 onLoad。' },
   { name: 'virtual', type: 'boolean', default: 'false', required: false, desc: '开启虚拟列表。' },
   { name: 'itemHeight', type: 'number', default: '—', required: false, desc: '虚拟列表模式下每项的固定高度(px)。' },
+  { name: "pullRefresh", type: "boolean", default: "false", required: false, desc: "开启下拉刷新，配合 onRefresh。" },
+  { name: "onRefresh", type: "() => Promise<void>", default: "—", required: false, desc: "下拉刷新回调。" },
 ];
 
 const tocItems: TOCItem[] = [
@@ -50,9 +52,8 @@ function genItems(n: number): Item[] {
   }));
 }
 
-/* ── Tab Components — 独立数据源，互不干扰 ── */
+/* ── Tab Components ── */
 
-/** 受控模式 */
 const ControlledTab: Component = () => {
   const phone = useContext(PhoneTargetContext);
   const items = genItems(20);
@@ -78,7 +79,6 @@ const ControlledTab: Component = () => {
   );
 };
 
-/** 不受控模式 — 独立 cursor + finished */
 const AutoloadTab: Component = () => {
   const phone = useContext(PhoneTargetContext);
   const all = genItems(30);
@@ -101,20 +101,10 @@ const AutoloadTab: Component = () => {
 
   return (
     <div class={css.demoList} style="height: 520px">
-      <List
-        onLoad={onLoad}
-        finished={finished()}
-        empty="暂无数据"
-        loadMoreText="加载中..."
-        finishedText="— 没有更多了 —"
-      >
+      <List onLoad={onLoad} finished={finished()} empty="暂无数据" loadMoreText="加载中..." finishedText="— 没有更多了 —">
         {(item: Item) => (
           <SwipeCell rightActions={delAction}>
-            <Cell
-              title={item.name}
-              description={item.desc}
-              icon={<Avatar size="sm" color={item.avatar} text={item.name[0]} />}
-            />
+            <Cell title={item.name} description={item.desc} icon={<Avatar size="sm" color={item.avatar} text={item.name[0]} />} />
           </SwipeCell>
         )}
       </List>
@@ -122,7 +112,6 @@ const AutoloadTab: Component = () => {
   );
 };
 
-/** 虚拟列表模式 — 独立 cursor + finished */
 const VirtualTab: Component = () => {
   const all = genItems(1000);
   const [finished, setFinished] = createSignal(false);
@@ -139,15 +128,7 @@ const VirtualTab: Component = () => {
 
   return (
     <div class={css.demoList} style="height: 520px">
-      <List
-        virtual
-        itemHeight={60}
-        onLoad={onLoad}
-        finished={finished()}
-        empty="暂无数据"
-        loadMoreText="加载中..."
-        finishedText="— 全部加载完成 —"
-      >
+      <List virtual itemHeight={60} onLoad={onLoad} finished={finished()} empty="暂无数据" loadMoreText="加载中..." finishedText="— 全部加载完成 —">
         {(item: Item) => (
           <div style={{ height: '60px', display: 'flex', 'align-items': 'center', padding: '0 1rem', gap: '12px', 'box-sizing': 'border-box' }}>
             <Avatar size="md" color={item.avatar} text={item.name[0]} />
@@ -163,7 +144,6 @@ const VirtualTab: Component = () => {
   );
 };
 
-/** 空数据 */
 const EmptyTab: Component = () => (
   <div class={css.demoList}>
     <List data={[]} empty="暂无记录">
@@ -172,18 +152,32 @@ const EmptyTab: Component = () => (
   </div>
 );
 
+/** 下拉刷新 */
+const PullRefreshTab: Component = () => {
+  const [items, setItems] = createSignal<string[]>(Array.from({ length: 20 }, (_, i) => `Item ${i + 1}`));
+
+  const handleRefresh = async () => {
+    await new Promise((r) => setTimeout(r, 1200));
+    setItems(Array.from({ length: 20 }, (_, i) => `Item ${i + 1} (刷新于 ${Date.now().toString().slice(-5)})`));
+  };
+
+  return (
+    <div class={css.demoList} style="height: 520px">
+      <List data={items()} pullRefresh onRefresh={handleRefresh}>
+        {(item: string) => <Cell title={item} />}
+      </List>
+    </div>
+  );
+};
+
 /* ── Code Snippets ── */
 
 const codes: Record<string, string> = {
   controlled: `<List data={items.slice(0, 6)}>
   {(item) => (
     <SwipeCell rightActions={[{ text: '删除', theme: 'danger' }]}>
-      <Cell
-        title={item.name}
-        description={item.desc}
-        icon={<Avatar size="sm" color={item.avatar} text={item.name[0]} />}
-        clickable
-      />
+      <Cell title={item.name} description={item.desc}
+        icon={<Avatar size="sm" color={item.avatar} text={item.name[0]} />} />
     </SwipeCell>
   )}
 </List>`,
@@ -214,6 +208,14 @@ const codes: Record<string, string> = {
   empty: `<List data={[]} empty="暂无记录">
   {(item) => <Cell title={item.name} />}
 </List>`,
+  pullrefresh: `<List
+  data={items()}
+  pullRefresh
+  onRefresh={handleRefresh}
+  style={{ height: "520px" }}
+>
+  {(item) => <Cell title={item} />}
+</List>`,
 };
 
 /* ── Main ── */
@@ -227,7 +229,7 @@ export const ListDocPage: Component = () => {
         <h1 class={css.h1}>List 列表</h1>
         <p class={css.intro}>
           滚动加载列表组件。支持受控（data）和不受控（onLoad + finished）两种数据模式，
-          可通过 virtual 开启虚拟列表。配合 Cell 和 SwipeCell 构建真实业务列表。
+          可通过 virtual 开启虚拟列表，pullRefresh 开启下拉刷新。
         </p>
 
         <h2 id="props" class={css.h2}>属性 / Props</h2>
@@ -246,6 +248,7 @@ export const ListDocPage: Component = () => {
             <Tab title="不受控" name="autoload"><AutoloadTab /></Tab>
             <Tab title="虚拟列表" name="virtual"><VirtualTab /></Tab>
             <Tab title="空数据" name="empty"><EmptyTab /></Tab>
+            <Tab title="下拉刷新" name="pullrefresh"><PullRefreshTab /></Tab>
           </Tabs>
         </DemoBlock>
       </div>

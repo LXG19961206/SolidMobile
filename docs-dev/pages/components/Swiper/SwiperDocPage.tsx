@@ -1,0 +1,87 @@
+import { type Component } from 'solid-js';
+import { Swiper } from '../../../../src/components/Swiper';
+import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
+import type { PropRow } from '../../../../src/doc-utils';
+
+const propsData: PropRow[] = [
+  { name: 'autoplay', type: 'number | string', default: '—', required: false, desc: '自动轮播间隔 (ms)。' },
+  { name: 'duration', type: 'number | string', default: '500', required: false, desc: '动画时长 (ms)。' },
+  { name: 'initialSwipe', type: 'number | string', default: '0', required: false, desc: '初始位置索引。' },
+  { name: 'width / height', type: 'number | string', default: "100% / '160px'", required: false, desc: '滑块宽高。' },
+  { name: 'loop', type: 'boolean', default: 'true', required: false, desc: '是否循环播放。' },
+  { name: 'showIndicators', type: 'boolean', default: 'true', required: false, desc: '是否显示指示器。' },
+  { name: 'vertical', type: 'boolean', default: 'false', required: false, desc: '纵向滚动。' },
+  { name: 'touchable', type: 'boolean', default: 'true', required: false, desc: '手势滑动。' },
+  { name: 'indicatorColor', type: 'string', default: "'#1989fa'", required: false, desc: '指示器颜色。' },
+  { name: 'indicators', type: '(current, total) => JSX', default: '—', required: false, desc: '自定义指示器渲染函数。' },
+  { name: 'imgUrls', type: 'string[]', default: '—', required: false, desc: '快捷图片数组，传此属性后无需写子组件。' },
+  { name: 'lazyRender', type: 'boolean', default: 'false', required: false, desc: '延迟渲染非当前页。' },
+  { name: 'onChange', type: '(index: number) => void', default: '—', required: false, desc: '切换回调。' },
+];
+
+const IMGS = [
+  'https://picsum.photos/seed/sw1/400/200',
+  'https://picsum.photos/seed/sw2/400/200',
+  'https://picsum.photos/seed/sw3/400/200',
+];
+
+export const SwiperDocPage: Component = () => {
+  return (
+    <DocLayout>
+      <div style={{ padding: '16px', 'max-width': '960px' }}>
+        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Swiper 轮播</h1>
+        <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
+          轮播组件，支持手势滑动、自动播放、循环、纵向滚动、自定义指示器。可通过 imgUrls 快速渲染图片轮播。
+        </p>
+
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Props</h2>
+        <PropsTable rows={propsData} />
+
+        <DemoBlock title="自定义内容" desc="children 传入任意 JSX，不限于图片。" code={`<Swiper height={180} loop autoplay={2500}>\n  <div style="...">Slide 1</div>\n  <div style="...">Slide 2</div>\n  <div style="...">Slide 3</div>\n</Swiper>`}>
+          <Swiper height={180} loop autoplay={2500}>
+            <div style={{ background: 'linear-gradient(135deg, #667eea, #764ba2)', width: '100%', height: '100%', display: 'flex', 'align-items': 'center', 'justify-content': 'center', color: '#fff', 'font-size': '1.2rem', 'font-weight': 600 }}>🚀 SolidJS — Declarative & Efficient</div>
+            <div style={{ background: 'linear-gradient(135deg, #f093fb, #f5576c)', width: '100%', height: '100%', display: 'flex', 'align-items': 'center', 'justify-content': 'center', color: '#fff', 'font-size': '1.2rem', 'font-weight': 600 }}>⚡ Fine-grained Reactivity</div>
+            <div style={{ background: 'linear-gradient(135deg, #4facfe, #00f2fe)', width: '100%', height: '100%', display: 'flex', 'align-items': 'center', 'justify-content': 'center', color: '#fff', 'font-size': '1.2rem', 'font-weight': 600 }}>🎯 No Virtual DOM</div>
+          </Swiper>
+        </DemoBlock>
+
+        <DemoBlock title="imgUrls 图片轮播" desc="imgUrls + autoplay 自动轮播。" code={`<Swiper imgUrls={[...]} height={200} autoplay={3000} />`}>
+          <Swiper imgUrls={IMGS} height={200} autoplay={3000} />
+        </DemoBlock>
+
+        <DemoBlock title="自定义指示器" desc="indicators 传入 (current, total) 渲染函数。" code={`<Swiper\n  imgUrls={imgs}\n  indicators={(cur, tot) => (\n    <div style="display:flex;gap:4px">\n      {Array.from({length:tot}, (_,i) => (\n        <span style={{...i===cur?active:inactive}} />\n      ))}\n    </div>\n  )}\n/>`}>
+          <Swiper
+            imgUrls={IMGS}
+            height={200}
+            indicators={(cur, tot) => (
+              <div style={{ display: 'flex', gap: '4px' }}>
+                {Array.from({ length: tot }, (_, i) => (
+                  <span style={{
+                    width: i === cur ? '16px' : '6px', height: '6px',
+                    'border-radius': '3px', background: i === cur ? '#1677ff' : 'rgba(0,0,0,0.15)',
+                    transition: 'all 0.3s',
+                  }} />
+                ))}
+              </div>
+            )}
+          />
+        </DemoBlock>
+
+        <DemoBlock title="纵向滚动" desc="vertical=true，上下滑动切换。" code={`<Swiper imgUrls={imgs} height={260} vertical />`}>
+          <Swiper imgUrls={IMGS} height={260} vertical />
+        </DemoBlock>
+
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>CSS 变量</h2>
+        <PropsTable rows={[
+          { name: '--sc-swiper-dot-size', type: 'length', default: '6px', required: false, desc: '指示器圆点大小。' },
+          { name: '--sc-swiper-dot-active-width', type: 'length', default: '18px', required: false, desc: '当前指示器宽度。' },
+          { name: '--sc-swiper-dot-color', type: 'color', default: 'rgba(255,255,255,0.5)', required: false, desc: '指示器颜色。' },
+          { name: '--sc-swiper-dot-active-color', type: 'color', default: '#1989fa', required: false, desc: '当前指示器颜色。' },
+          { name: '--sc-swiper-dot-gap', type: 'length', default: '6px', required: false, desc: '指示器间距。' },
+          { name: '--sc-swiper-dot-bottom', type: 'length', default: '10px', required: false, desc: '指示器距底部距离。' },
+          { name: '--sc-swiper-radius', type: 'length', default: '0px', required: false, desc: '轮播容器圆角。' },
+        ]} />
+      </div>
+    </DocLayout>
+  );
+};

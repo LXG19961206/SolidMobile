@@ -1,0 +1,107 @@
+import { createSignal, type Component } from 'solid-js';
+import { PullRefresh } from '../../../../src/components/PullRefresh';
+import { List } from "../../../../src/components/List";
+import { Cell } from "../../../../src/components/Cell";
+import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
+import type { PropRow } from '../../../../src/doc-utils';
+
+/* ── Helper: simulate async refresh ── */
+
+async function mockRefresh(): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, 1200));
+}
+
+const pullRefreshProps: PropRow[] = [
+  { name: 'loading', type: 'boolean', default: '—', required: false, desc: '受控加载状态，传此属性后由你管理 loading。' },
+  { name: 'onRefresh', type: '() => void | Promise<void>', default: '—', required: false, desc: '刷新回调。返回 Promise 时组件自动等待完成后关闭。' },
+  { name: 'pullDistance', type: 'number', default: '80', required: false, desc: '触发刷新的下拉距离 (px)。' },
+  { name: 'headHeight', type: 'number', default: '60', required: false, desc: '顶部刷新提示区高度 (px)。' },
+  { name: 'successDuration', type: 'number', default: '500', required: false, desc: '加载成功后展示成功状态时长 (ms)。' },
+  { name: 'animationDuration', type: 'number', default: '300', required: false, desc: '回弹动画时长 (ms)。' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: '禁用下拉刷新。' },
+  { name: 'pullingText', type: 'string', default: "'下拉刷新'", required: false, desc: '下拉文案。' },
+  { name: 'loosingText', type: 'string', default: "'释放刷新'", required: false, desc: '释放文案。' },
+  { name: 'loadingText', type: 'string', default: "'刷新中...'", required: false, desc: '加载文案。' },
+  { name: 'successText', type: 'string', default: "'刷新成功'", required: false, desc: '成功文案。' },
+];
+
+export const PullRefreshDocPage: Component = () => {
+  const [count, setCount] = createSignal(0);
+  const [items, setItems] = createSignal<string[]>(Array.from({length: 20}, (_, i) => `Item ${i + 1}`));
+
+  async function handleListRefresh() {
+    await new Promise(r => setTimeout(r, 1200));
+    setItems(Array.from({length: 20}, (_, i) => `Item ${i + 1} (刷新于 ${Date.now()})`));
+  }
+
+  return (
+    <DocLayout>
+      <div style={{ padding: '16px', 'max-width': '960px' }}>
+        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>PullRefresh 下拉刷新</h1>
+        <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
+          包裹内容区域，支持下拉手势触发刷新，带阻尼反馈、加载状态和成功提示。
+        </p>
+
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Props</h2>
+        <PropsTable rows={pullRefreshProps} />
+
+        <DemoBlock title="基础用法" desc="下拉触发刷新，松手后自动回弹并加载。" code={`import { PullRefresh } from 'solid-mobile';\n\nfunction Page() {\n  const [list, setList] = createSignal(0);\n\n  return (\n    <PullRefresh\n      onRefresh={async () => {\n        await fetch('/api/refresh');\n        setList(c => c + 1);\n      }}\n    >\n      <List>\n        <Cell>Item {list()}</Cell>\n      </List>\n    </PullRefresh>\n  );\n}`}>
+          <div style={{ background: '#fff', 'border-radius': '8px', padding: '12px', 'text-align': 'center', color: '#969799', 'font-size': '0.8rem' }}>
+            <PullRefresh onRefresh={mockRefresh}>
+              <div style={{ padding: '40px 0' }}>
+                <div style={{ 'font-size': '0.9rem', color: '#323233', 'margin-bottom': '8px' }}>下拉试试</div>
+                <div style={{ 'font-size': '0.75rem' }}>刷新次数: {count()}</div>
+              </div>
+            </PullRefresh>
+          </div>
+        </DemoBlock>
+
+        <DemoBlock title="自定义文案" desc="自定义各状态文案。" code={`<PullRefresh\n  pullingText="再用力一点"\n  loosingText="松手刷新"\n  loadingText="加载中..."\n  successText="加载完成"\n/>`}>
+          <div style={{ background: '#fff', 'border-radius': '8px', padding: '12px', 'text-align': 'center', color: '#969799', 'font-size': '0.8rem' }}>
+            <PullRefresh
+              onRefresh={mockRefresh}
+              pullingText="再用力一点"
+              loosingText="松手刷新"
+              loadingText="加载中..."
+              successText="加载完成"
+            >
+              <div style={{ padding: '40px 0', color: '#323233' }}>
+                自定义文案下拉刷新
+              </div>
+            </PullRefresh>
+          </div>
+        </DemoBlock>
+
+        <DemoBlock title="配合 List" desc="List 内置 pullRefresh 属性，开启后自动集成下拉刷新。" code={`import { List } from "solid-mobile";
+
+function Page() {
+  const [items, setItems] = createSignal(["Item 1", "Item 2"]);
+
+  return (
+    <List
+      data={items()}
+      pullRefresh
+      onRefresh={async () => {
+        const res = await fetch("/api/list");
+        setItems(await res.json());
+      }}
+    >
+      {(item) => <Cell>{item}</Cell>}
+    </List>
+  );
+}`}>
+          <div style={{ background: "#fff", "border-radius": "8px", height: "260px", overflow: "hidden" }}>
+            <List
+              data={items()}
+              pullRefresh
+              onRefresh={handleListRefresh}
+              style={{ height: "260px" }}
+            >
+              {(item) => <Cell>{item}</Cell>}
+            </List>
+          </div>
+        </DemoBlock>
+      </div>
+    </DocLayout>
+  );
+};
