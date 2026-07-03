@@ -40,6 +40,12 @@ export interface ListProps<I> {
   /** 虚拟列表模式下每项的固定高度 (px) */
   itemHeight?: number;
 
+  // ═══ 下拉刷新 ═══
+  /** 开启下拉刷新。开启后需配合 onRefresh 使用 */
+  pullRefresh?: boolean;
+  /** 下拉刷新回调。返回 Promise 时组件自动等待完成 */
+  onRefresh?: () => void | Promise<void>;
+
   // ═══ 其他 ═══
   class?: string;
   style?: JSX.CSSProperties | string;
