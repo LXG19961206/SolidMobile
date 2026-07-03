@@ -1,0 +1,59 @@
+/* ── Custom Properties ── */
+.wrapper {
+  --sc-swiper-dot-size: 6px;
+  --sc-swiper-dot-active-width: 18px;
+  --sc-swiper-dot-color: rgba(255, 255, 255, 0.5);
+  --sc-swiper-dot-active-color: #1989fa;
+  --sc-swiper-dot-gap: 6px;
+  --sc-swiper-dot-bottom: 10px;
+  --sc-swiper-radius: 0px;
+
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--sc-swiper-radius);
+}
+
+.track {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
+
+.trackVertical {
+  flex-direction: column;
+}
+
+.slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.indicators {
+  position: absolute;
+  bottom: var(--sc-swiper-dot-bottom);
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sc-swiper-dot-gap);
+  pointer-events: none;
+}
+
+.dot {
+  width: var(--sc-swiper-dot-size);
+  height: var(--sc-swiper-dot-size);
+  border-radius: 50%;
+  background: var(--sc-swiper-dot-color);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.3s;
+}
+
+.dotActive {
+  width: var(--sc-swiper-dot-active-width);
+  border-radius: calc(var(--sc-swiper-dot-size) / 2);
+  background: var(--sc-swiper-dot-active-color);
+}

@@ -46,6 +46,9 @@ export type { AvatarProps, AvatarSize } from './Avatar';
 export { Tabs, Tab } from './Tabs';
 export type { TabsProps, TabProps } from './Tabs';
 
+export { TabBar, TabBarItem } from './TabBar';
+export type { TabBarProps, TabBarItemProps } from './TabBar';
+
 export { Empty } from './Empty';
 export type { EmptyProps } from './Empty';
 
@@ -111,3 +114,12 @@ export type { SelectProps } from './Select';
 
 export { SafeArea } from './SafeArea';
 export type { SafeAreaProps } from './SafeArea';
+
+export { Swiper } from './Swiper';
+export type { SwiperProps } from './Swiper';
+
+export { Upload } from './Upload';
+export type { UploadProps, UploadFile } from './Upload';
+
+export { PullRefresh } from './PullRefresh';
+export type { PullRefreshProps } from './PullRefresh';

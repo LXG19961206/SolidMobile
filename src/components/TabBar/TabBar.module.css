@@ -1,0 +1,52 @@
+/* ── TabBar ── */
+.tabbar {
+  display: flex;
+  width: 100%;
+  height: var(--sc-tabbar-height, 50px);
+  background: var(--sc-color-cell-bg, #fff);
+  box-sizing: content-box;
+}
+
+.fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.border {
+  border-top: 1px solid var(--sc-color-border, #ebedf0);
+}
+
+/* ── Item ── */
+.item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.2s;
+  padding: 4px 0;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.label {
+  font-size: 0.65rem;
+  line-height: 1;
+}
+
+/* ── Dark mode ── */
+:global(html.dark) .tabbar {
+  background: #1a1d21;
+  border-color: #1e293b;
+}

@@ -187,6 +187,22 @@ export const messages: LocaleMessages = {
           onUpdateShow: '面板开关回调。',
         },
       },
+      // ── Upload ──
+      upload: {
+        upload: '上传',
+        addFile: '添加文件',
+        pending: '等待上传',
+        uploading: '上传中',
+        done: '已完成',
+        error: '上传失败',
+      },
+      // ── PullRefresh ──
+      pullRefresh: {
+        pulling: '下拉刷新',
+        loosing: '释放刷新',
+        loading: '刷新中...',
+        success: '刷新成功',
+      },
       calendar: {
         weekdays: ['日', '一', '二', '三', '四', '五', '六'],
         titleFormatter: (y: number, m: number) => `${y}年 ${m}月`,
@@ -419,7 +435,23 @@ export const messages: LocaleMessages = {
           onUpdateShow: 'Panel visibility callback.',
         },
       },
+      // ── Upload ──
+      upload: {
+        upload: 'Upload',
+        addFile: 'Add File',
+        pending: 'Pending',
+        uploading: 'Uploading',
+        done: 'Completed',
+        error: 'Upload Failed',
+      },
       calendar: {
+      // ── PullRefresh ──
+      pullRefresh: {
+        pulling: 'Pull to refresh',
+        loosing: 'Release to refresh',
+        loading: 'Refreshing...',
+        success: 'Refresh successful',
+      },
         weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         titleFormatter: (y: number, m: number) => `${m}/${y}`,
         startLabel: 'Start',
