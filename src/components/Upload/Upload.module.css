@@ -1,0 +1,295 @@
+/* ── Wrapper / CSS Custom Properties ── */
+.wrapper {
+  --sc-upload-size: 80px;
+  --sc-upload-gap: 8px;
+  --sc-upload-radius: 8px;
+  --sc-upload-bg: var(--sc-color-background-secondary, #f7f8fa);
+  --sc-upload-border-color: var(--sc-color-border, #dcdee0);
+  --sc-upload-text-color: var(--sc-color-text, #323233);
+  --sc-upload-text-muted: var(--sc-color-text-secondary, #969799);
+  --sc-upload-color-primary: var(--sc-color-primary, #1989fa);
+  --sc-upload-color-success: var(--sc-color-success, #07c160);
+  --sc-upload-color-danger: var(--sc-color-danger, #ee0a24);
+  --sc-upload-color-primary-pale: #ecf5ff;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Image type
+   ══════════════════════════════════════════════════════════════════ */
+
+.customList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sc-upload-gap);
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--sc-upload-size));
+  gap: var(--sc-upload-gap);
+  align-items: start;
+}
+
+.imageItem {
+  position: relative;
+  width: var(--sc-upload-size);
+  height: var(--sc-upload-size);
+  border-radius: var(--sc-upload-radius);
+  overflow: hidden;
+  background: var(--sc-upload-bg);
+}
+
+.imageItem > *,
+.imageItem img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Status overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--sc-upload-radius);
+}
+.overlay > span {
+  white-space: nowrap;
+}
+
+/* Delete button */
+.deleteBtn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1;
+}
+.deleteBtn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Non-image fallback in grid */
+.filePlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 0.65rem;
+  color: var(--sc-upload-text-muted);
+  text-align: center;
+  word-break: break-all;
+  padding: 4px;
+}
+
+/* Add button (square for image grid) */
+.addBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: var(--sc-upload-size);
+  height: var(--sc-upload-size);
+  border: 1px dashed var(--sc-upload-border-color);
+  border-radius: var(--sc-upload-radius);
+  background: var(--sc-upload-bg);
+  cursor: pointer;
+  color: var(--sc-upload-text-muted);
+  font-size: 1.5rem;
+  user-select: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.addBtn:hover {
+  border-color: var(--sc-upload-color-primary);
+  color: var(--sc-upload-color-primary);
+  background: var(--sc-upload-color-primary-pale, #ecf5ff);
+}
+
+.addText {
+  font-size: 0.6rem;
+  line-height: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   File type — list
+   ══════════════════════════════════════════════════════════════════ */
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: var(--sc-upload-bg);
+  border-radius: 6px;
+  font-size: 0.8125rem;
+}
+
+.fileIcon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.fileName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--sc-upload-text-color);
+}
+
+.fileSize {
+  flex-shrink: 0;
+  color: var(--sc-upload-text-muted);
+  font-size: 0.7rem;
+}
+
+.fileStatus {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+}
+.statusDone { color: var(--sc-upload-color-success); }
+.statusError { color: var(--sc-upload-color-danger); }
+.statusUploading { color: var(--sc-upload-color-primary); }
+
+.fileDelete {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  color: var(--sc-upload-text-muted);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fileDelete:hover {
+  color: var(--sc-upload-color-danger);
+}
+
+/* File add button (row style) */
+.fileAddRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px dashed var(--sc-upload-border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--sc-upload-text-muted);
+  font-size: 0.8125rem;
+  user-select: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.fileAddRow:hover {
+  border-color: var(--sc-upload-color-primary);
+  color: var(--sc-upload-color-primary);
+}
+
+.fileAddIcon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.fileAddText {
+  font-size: 0.8125rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Disabled state
+   ══════════════════════════════════════════════════════════════════ */
+.addBtn[disabled],
+.fileAddRow[disabled],
+.addBtn.disabled,
+.fileAddRow.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Dark mode
+   ══════════════════════════════════════════════════════════════════ */
+:global(html.dark) .addBtn {
+  background: #2a2d33;
+  border-color: #3a3d42;
+  color: #6b7280;
+}
+:global(html.dark) .addBtn:hover {
+  border-color: var(--sc-upload-color-primary, #1989fa);
+  color: var(--sc-upload-color-primary, #1989fa);
+  background: rgba(25, 137, 250, 0.1);
+}
+
+:global(html.dark) .imageItem,
+:global(html.dark) .fileItem {
+  background: #2a2d33;
+}
+
+:global(html.dark) .fileName {
+  color: #e2e8f0;
+}
+
+:global(html.dark) .fileAddRow {
+  background: #2a2d33;
+  border-color: #3a3d42;
+  color: #6b7280;
+}
+:global(html.dark) .fileAddRow:hover {
+  border-color: var(--sc-upload-color-primary, #1989fa);
+  color: var(--sc-upload-color-primary, #1989fa);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Preview overlay (portaled to body)
+   ══════════════════════════════════════════════════════════════════ */
+.previewOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.95);
+  cursor: pointer;
+}
+
+.previewImg {
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  cursor: default;
+}
