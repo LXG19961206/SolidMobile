@@ -1,9 +1,28 @@
 import { createSignal, createMemo, onMount, For, Show, type Component } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
-// Import doc-i18n FIRST (before any component that uses useT) so that
-// doc-only dictionary keys (demo.*, nav.*, section.*, componentIntro.*)
-// are merged into the module-level messages object BEFORE the app renders.
-import './doc-i18n';
+// Merge doc-only i18n keys into the library's dictionaries.
+// MUST run before any component uses useT().  Doing this inline in
+// the entry module prevents Rollup from tree-shaking the merge.
+import { messages as libMessages } from '../src/i18n/dictionaries';
+import { docMessages } from './doc-dictionaries';
+import type { LocaleMessages } from '../src/i18n/types';
+
+function deepMerge(target: any, source: any): any {
+  for (const key of Object.keys(source)) {
+    if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+      if (!target[key]) target[key] = {};
+      deepMerge(target[key], source[key]);
+    } else {
+      target[key] = source[key];
+    }
+  }
+}
+
+for (const locale of Object.keys(docMessages) as Array<keyof LocaleMessages>) {
+  if (!libMessages[locale]) (libMessages as any)[locale] = {};
+  deepMerge((libMessages as any)[locale], (docMessages as any)[locale]);
+}
+
 import { useT, setGlobalLocale, useLocale } from '../src/i18n';
 import { ProviderConfig } from '../src/config';
 import { deriveColorSet } from '../src/utils/color';

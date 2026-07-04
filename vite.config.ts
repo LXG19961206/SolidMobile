@@ -45,6 +45,15 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: resolve(__dirname, 'docs'),
       emptyOutDir: false,
+      rollupOptions: {
+        treeshake: {
+          moduleSideEffects: (id) => {
+            // doc-i18n merges doc keys into the library's messages object
+            // at import time — Rollup must not tree-shake it.
+            if (id.includes('doc-i18n')) return 'no-treeshake';
+          },
+        },
+      },
     },
     server: {
       host: true,

@@ -34,3 +34,7 @@ for (const locale of Object.keys(docMessages) as Array<keyof LocaleMessages>) {
 // The dictionaries have been mutated in-place so all t() calls
 // automatically include doc keys.
 export { useLocale, useT, setGlobalLocale, LocaleProvider } from '../src/i18n';
+
+// Exported so Rollup cannot tree-shake this module — the merge above
+// is the side-effect we need to preserve.
+export const docI18nReady = true;
