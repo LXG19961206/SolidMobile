@@ -45,32 +45,32 @@ const ToastDocInner: Component = () => {
       <h2 id="methods" class={styles.h2}>方法</h2>
       <PropsTable rows={methodsData} />
 
-      <DemoBlock title="简写方法" desc="点击 Cell 弹出对应类型。" code={`Toast.success('操作成功！');\nToast.error('操作失败');\nToast.info('这是一条消息');`} groupCode="结果反馈">
-        <Cell title="Success" clickable onClick={() => Toast.success('操作成功！', { portalMount: m() })} />
+      <DemoBlock title={t('demo.toastShorthand')} desc="点击 Cell 弹出对应类型。" code={`Toast.success('操作成功！');\nToast.error('操作失败');\nToast.info('这是一条消息');`} groupCode="结果反馈">
+        <Cell title={t('demo.toastSuccess')} clickable onClick={() => Toast.success('操作成功！', { portalMount: m() })} />
       </DemoBlock>
-      <DemoBlock title="Error" code={`Toast.error('操作失败，请重试');`} groupCode="结果反馈">
-        <Cell title="Error" clickable onClick={() => Toast.error('操作失败，请重试', { portalMount: m(), overlay: false })} />
+      <DemoBlock title={t('demo.toastError')} code={`Toast.error('操作失败，请重试');`} groupCode="结果反馈">
+        <Cell title={t('demo.toastError')} clickable onClick={() => Toast.error('操作失败，请重试', { portalMount: m(), overlay: false })} />
       </DemoBlock>
-      <DemoBlock title="Warning" code={`Toast.warning('请注意检查输入');`} groupCode="提示">
-        <Cell title="Warning" clickable onClick={() => Toast.warning('请注意检查输入', { portalMount: m() })} />
+      <DemoBlock title={t('demo.toastWarning')} code={`Toast.warning('请注意检查输入');`} groupCode="提示">
+        <Cell title={t('demo.toastWarning')} clickable onClick={() => Toast.warning('请注意检查输入', { portalMount: m() })} />
       </DemoBlock>
-      <DemoBlock title="Info" code={`Toast.info('这是一条消息');`} groupCode="提示">
-        <Cell title="Info" clickable onClick={() => Toast.info('这是一条消息', { portalMount: m() })} />
+      <DemoBlock title={t('demo.toastInfo')} code={`Toast.info('这是一条消息');`} groupCode="提示">
+        <Cell title={t('demo.toastInfo')} clickable onClick={() => Toast.info('这是一条消息', { portalMount: m() })} />
       </DemoBlock>
-      <DemoBlock title="Loading" code={`const h = Toast.loading('加载中...');\n// 完成后\nh.dismiss();`} groupCode="提示">
+      <DemoBlock title={t('demo.toastLoading')} code={`const h = Toast.loading('加载中...');\n// 完成后\nh.dismiss();`} groupCode="提示">
         <Cell title="Loading（2s 后关闭）" clickable onClick={() => {
           const h = Toast.loading('加载中...', { portalMount: m(), overlay: false });
           setTimeout(() => h.dismiss(), 2000);
         }} />
       </DemoBlock>
-      <DemoBlock title="自定义位置" code={`Toast.success('顶部提示', { position: 'top' });`} groupCode="提示">
+      <DemoBlock title={t('demo.customPosition')} code={`Toast.success('顶部提示', { position: 'top' });`} groupCode="提示">
         <Cell title="顶部弹出" clickable onClick={() => Toast.success('顶部提示', { position: 'top', portalMount: m() })} />
       </DemoBlock>
 
-      <DemoBlock title="遮罩模式" desc="Error / Loading 默认开启 overlay 防止误触。" code={`Toast.error('操作失败', { overlay: true });`} groupCode="遮罩">
+      <DemoBlock title={t('demo.overlayMode')} desc="Error / Loading 默认开启 overlay 防止误触。" code={`Toast.error('操作失败', { overlay: true });`} groupCode="遮罩">
         <Cell title="Error + 遮罩" clickable onClick={() => Toast.error('操作失败，请重试', { portalMount: m() })} />
       </DemoBlock>
-      <DemoBlock title="Loading 遮罩" desc="加载中带遮罩，阻止背景操作。" code={`Toast.loading('加载中...', { overlay: true });`} groupCode="遮罩">
+      <DemoBlock title={t('demo.loadingOverlay')} desc="加载中带遮罩，阻止背景操作。" code={`Toast.loading('加载中...', { overlay: true });`} groupCode="遮罩">
         <Cell title="Loading + 遮罩" clickable onClick={() => Toast.loading('加载中...', { portalMount: m(), overlay: true })} />
       </DemoBlock>
       <GroupCodePhone />

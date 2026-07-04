@@ -58,7 +58,7 @@ export const CellDocPage = () => {
       {/* Basic */}
       <h2 id="basic" class={styles.h2}>基础列表</h2>
       <DemoBlock
-        title="标题 + 值 + 描述"
+        title={t('demo.cellBasic')}
         desc="Cell 由 title（左）、value（右）、description（下）三部分组成。"
         code={`<CellGroup title="基本信息">\n  <Cell title="用户名" value="张三" />\n  <Cell title="手机号" value="138****8888" />\n  <Cell title="简介" description="这是一段描述文字" />\n</CellGroup>`}
       >
@@ -74,7 +74,7 @@ export const CellDocPage = () => {
       {/* Clickable */}
       <h2 id="clickable" class={styles.h2}>可点击</h2>
       <DemoBlock
-        title="clickable"
+        title={t('demo.cellClickable')}
         desc="设置 clickable 后右侧显示箭头，整行可点击。配合 onClick 处理跳转。"
         code={`<CellGroup title="设置">\n  <Cell title="个人资料" clickable onClick={() => {}} />\n  <Cell title="账号安全" clickable />\n  <Cell title="通知设置" clickable value="已开启" />\n</CellGroup>`}
       >
@@ -90,7 +90,7 @@ export const CellDocPage = () => {
       {/* Icon & Required */}
       <h2 id="icon" class={styles.h2}>图标 & 必填</h2>
       <DemoBlock
-        title="icon / required"
+        title={t('demo.cellIconRequired')}
         desc="icon / title / value 均支持字符串或 JSX。required 显示红色星号。"
         code={`<Cell icon="user" title="姓名" required value="张三" />\n<Cell icon="phone" title="手机号" clickable />\n<Cell icon="mail" title="邮箱" value="zhang@example.com" />\n<Cell\n  icon="palette"\n  title="主题色"\n  value={<span><span style={{ width:14,height:14,borderRadius:'50%',background:'#1677ff',display:'inline-block' }} /> 品牌蓝</span>}\n/>`}
       >

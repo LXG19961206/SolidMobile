@@ -51,7 +51,7 @@ const LoadingDocInner = () => {
         {/* Types */}
         <h2 id="types" class={styles.h2}>内置类型</h2>
         <DemoBlock
-          title="spinner / circular / dots"
+          title={t('demo.loadingTypes')}
           desc="三种内置动画：spinner 经典旋转圆环、circular 弧形旋转、dots 三点弹跳。"
           code={`<Loading type="spinner" text="加载中..." />\n<Loading type="circular" text="加载中..." />\n<Loading type="dots" text="加载中..." />`}
         >
@@ -63,7 +63,7 @@ const LoadingDocInner = () => {
         </DemoBlock>
 
         <DemoBlock
-          title="纯动画（无文字）"
+          title={t('demo.loadingPure')}
           desc="不传 text / children 时只显示动画，适合按钮内或行内场景。"
           code={`<Loading />\n<Loading type="circular" />\n<Loading type="dots" />`}
         >
@@ -77,7 +77,7 @@ const LoadingDocInner = () => {
         {/* Size & Color */}
         <h2 id="size-color" class={styles.h2}>尺寸 & 颜色</h2>
         <DemoBlock
-          title="size 和 color"
+          title={t('demo.loadingSizeColor')}
           desc="size 支持数字（px）或 CSS 字符串，color 设置动画颜色。"
           code={`<Loading size={32} color="#1677ff" />\n<Loading size="2rem" color="#22c55e" text="加载中" />\n<Loading size={16} color="#f59e0b" />`}
         >
@@ -91,7 +91,7 @@ const LoadingDocInner = () => {
         {/* Vertical */}
         <h2 id="vertical" class={styles.h2}>纵向布局</h2>
         <DemoBlock
-          title="vertical"
+          title={t('demo.centerVertical')}
           desc="设为 true 时文字显示在动画下方，适合卡片或全屏加载场景。"
           code={`<Loading vertical text="正在加载数据..." />\n<Loading vertical type="dots" text="搜索中..." />`}
         >
@@ -104,7 +104,7 @@ const LoadingDocInner = () => {
         {/* Custom icon */}
         <h2 id="custom" class={styles.h2}>自定义图标</h2>
         <DemoBlock
-          title="icon prop"
+          title={t('demo.loadingIconProp')}
           desc="传入自定义 JSX 替代内置动画。适合配合 Icon 组件实现旋转刷新等交互。"
           code={`<Loading icon={<Icon name="refresh" size={24} />} text="刷新中..." />`}
         >
@@ -123,7 +123,7 @@ const LoadingDocInner = () => {
         {/* Overlay */}
         <h2 id="overlay" class={styles.h2}>全屏遮罩</h2>
         <DemoBlock
-          title="overlay 模式"
+          title={t('demo.loadingOverlayMode')}
           desc="设为 true 时渲染全屏半透明遮罩并锁定滚动，适合阻止用户操作的等待场景。"
           code={`import { createSignal } from 'solid-js';\nimport { Loading } from 'solid-component';\n\nfunction Demo() {\n  const [loading, setLoading] = createSignal(false);\n\n  const handleSubmit = async () => {\n    setLoading(true);\n    await fetchData();\n    setLoading(false);\n  };\n\n  return (\n    <>\n      <button onClick={handleSubmit}>提交</button>\n      {loading() && <Loading overlay text="正在处理..." />}\n    </>\n  );\n}`}
         >

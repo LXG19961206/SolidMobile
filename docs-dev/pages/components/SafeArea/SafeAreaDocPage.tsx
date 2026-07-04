@@ -46,7 +46,7 @@ export const SafeAreaDocPage: Component = () => {
         分别回退到 <code>env(safe-area-inset-top)</code> / <code>env(safe-area-inset-bottom)</code>，最后兜底 <code>0px</code>。
       </p>
 
-      <DemoBlock title="CSS 变量层级" code={codeCSS} hideTitle>
+      <DemoBlock title={t('demo.cssVarLevel')} code={codeCSS} hideTitle>
         <div style={{ padding: '12px', 'font-size': '0.85rem', color: '#6b7280', 'text-align': 'center' }}>
           CSS 变量层级见左侧代码
         </div>
@@ -57,7 +57,7 @@ export const SafeAreaDocPage: Component = () => {
         组件库的 PhoneSimulator 已预设 <code>--sc-safe-area-top: 32px</code> 模拟刘海。
       </p>
 
-      <DemoBlock title="顶部安全区" desc="放在页面顶部，避开刘海和状态栏。" code={codeTop}>
+      <DemoBlock title={t('demo.safeTop')} desc="放在页面顶部，避开刘海和状态栏。" code={codeTop}>
         <div style={{
           background: '#f0f5ff',
           border: '1px dashed #1677ff',
@@ -70,7 +70,7 @@ export const SafeAreaDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      <DemoBlock title="底部安全区" desc="放在页面底部，避开 Home Indicator。" code={codeBottom}>
+      <DemoBlock title={t('demo.safeBottom')} desc="放在页面底部，避开 Home Indicator。" code={codeBottom}>
         <div style={{
           background: '#f0fdf4',
           border: '1px dashed #22c55e',
@@ -88,7 +88,7 @@ export const SafeAreaDocPage: Component = () => {
         SafeArea 最常见的用法是配合 <code>NavBar</code> 和 <code>Tabbar</code> 使用。
       </p>
 
-      <DemoBlock title="页面布局示例" code={codeLayout} hideTitle>
+      <DemoBlock title={t('demo.safeLayout')} code={codeLayout} hideTitle>
         <div style={{ padding: '12px', 'font-size': '0.85rem', color: '#6b7280', 'text-align': 'center' }}>
           NavBar + SafeArea + Tabbar 布局
         </div>

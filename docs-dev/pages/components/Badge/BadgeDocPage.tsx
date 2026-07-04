@@ -35,7 +35,7 @@ export const BadgeDocPage = () => {
       <h2 id="basic" class={css.h2}>基础用法</h2>
 
       <DemoBlock
-        title="配头像"
+        title={t('demo.withAvatar')}
         desc="最常见场景——头像角标表示未读消息。"
         code={`<Badge content={5}>\n  <Avatar size={40} />\n</Badge>\n<Badge dot>\n  <Avatar size={40} />\n</Badge>\n<Badge content={120} max={99}>\n  <Avatar size={48} />\n</Badge>`}
       >
@@ -47,7 +47,7 @@ export const BadgeDocPage = () => {
       </DemoBlock>
 
       <DemoBlock
-        title="配按钮"
+        title={t('demo.withButton')}
         desc="按钮角标提示待处理数量。"
         code={`<Badge content={3}>\n  <Button size="sm">消息</Button>\n</Badge>\n<Badge content={8}>\n  <Button size="sm" variant="outline">订单</Button>\n</Badge>\n<Badge dot>\n  <Button size="sm">系统</Button>\n</Badge>`}
       >
@@ -59,7 +59,7 @@ export const BadgeDocPage = () => {
       </DemoBlock>
 
       <DemoBlock
-        title="配标签页"
+        title={t('demo.withTab')}
         desc="Tab 徽标提示各分类下的数量。"
         code={`<Tabs>\n  <Tab title={<span>全部 <Badge content={12} /></span>} name="all" />\n  <Tab title={<span>待处理 <Badge dot /></span>} name="pending" />\n  <Tab title={<span>已完成 <Badge content={99} max={99} /></span>} name="done" />\n</Tabs>`}
       >
@@ -71,7 +71,7 @@ export const BadgeDocPage = () => {
       </DemoBlock>
 
       <DemoBlock
-        title="独立使用"
+        title={t('demo.standalone')}
         desc="不包裹子元素时原地渲染，适合列表项右侧的状态标记。"
         code={`<div style="display:flex;align-items:center;gap:0.5rem">\n  新消息 <Badge content={99} />\n</div>\n<Badge dot /> 在线`}
       >

@@ -32,8 +32,8 @@ const OverlayDocInner = () => {
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
-      <DemoBlock title="点击遮罩关闭" desc="居中对话框，点击背景关闭。" code={`<Overlay open={open} onClose={...}>...</Overlay>`} groupCode="overlayDemo">
-        <Cell title="点击遮罩关闭" clickable onClick={() => s1s(true)} />
+      <DemoBlock title={t('demo.overlayClose')} desc="居中对话框，点击背景关闭。" code={`<Overlay open={open} onClose={...}>...</Overlay>`} groupCode="overlayDemo">
+        <Cell title={t('demo.overlayClose')} clickable onClick={() => s1s(true)} />
         <Overlay open={s1()} onClose={() => s1s(false)} mount={pm()}>
           <div class={styles.overlayContent}>
             <div class={styles.overlayTitle}>提示</div>
@@ -43,7 +43,7 @@ const OverlayDocInner = () => {
         </Overlay>
       </DemoBlock>
 
-      <DemoBlock title="ActionSheet 内置" desc="ActionSheet 内部使用 Overlay。" code={`<ActionSheet open={open} onClose={...} items={...} />`} groupCode="overlayDemo">
+      <DemoBlock title={t('demo.overlayActionSheet')} desc="ActionSheet 内部使用 Overlay。" code={`<ActionSheet open={open} onClose={...} items={...} />`} groupCode="overlayDemo">
         <Cell title="ActionSheet" clickable onClick={() => s2s(true)} />
         <ActionSheet mount={pm()} open={s2()} onClose={() => s2s(false)} title="选择操作" closeable items={[{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }]} cancelText="取消" />
       </DemoBlock>

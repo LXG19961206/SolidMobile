@@ -130,7 +130,7 @@ export const RateDocPage: Component = () => {
           {Value(colorVal)}
         </DemoBlock>
 
-        <DemoBlock title="自定义数量" desc="count 控制图标总数。" code={codeCount}>
+        <DemoBlock title={t('demo.rateCount')} desc="count 控制图标总数。" code={codeCount}>
           <Rate value={countVal()} onChange={setCountVal} count={8} />
           {Value(countVal)}
         </DemoBlock>
@@ -155,7 +155,7 @@ export const RateDocPage: Component = () => {
           {Value(disableVal)}
         </DemoBlock>
 
-        <DemoBlock title="只读" desc="readonly 状态无法交互。" code={codeReadonly}>
+        <DemoBlock title={t('demo.readonly')} desc="readonly 状态无法交互。" code={codeReadonly}>
           <Rate value={readonlyVal()} onChange={setReadonlyVal} readonly />
           {Value(readonlyVal)}
         </DemoBlock>

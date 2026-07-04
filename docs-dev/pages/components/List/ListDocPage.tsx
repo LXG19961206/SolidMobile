@@ -239,7 +239,7 @@ export const ListDocPage: Component = () => {
 
         <h2 id="demo" class={css.h2}>示例</h2>
         <DemoBlock
-          title="List 使用示例"
+          title={t('demo.listExample')}
           desc="切换 Tab 查看不同模式。每个 Tab 独立管理数据源，互不干扰。"
           code={codes[activeTab()]}
           hideTitle
@@ -250,7 +250,7 @@ export const ListDocPage: Component = () => {
             <Tab title="不受控" name="autoload"><AutoloadTab /></Tab>
             <Tab title="虚拟列表" name="virtual"><VirtualTab /></Tab>
             <Tab title="空数据" name="empty"><EmptyTab /></Tab>
-            <Tab title="下拉刷新" name="pullrefresh"><PullRefreshTab /></Tab>
+            <Tab title={t('demo.refresh')} name="pullrefresh"><PullRefreshTab /></Tab>
           </Tabs>
         </DemoBlock>
       </div>

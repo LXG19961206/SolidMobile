@@ -101,7 +101,7 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title="自定义图标" desc="iconMap 按文件后缀指定图标，支持内置图标名或自定义 JSX。特殊 key image/video/audio 匹配 MIME 类别，* 为兜底。" code={`const iconMap = {\n  pdf: 'file-text',\n  image: 'image',\n  video: 'video',\n  '*': 'file',\n};\n\n<Upload type="file" iconMap={iconMap} />`}>
+        <DemoBlock title={t('demo.customIcon')} desc="iconMap 按文件后缀指定图标，支持内置图标名或自定义 JSX。特殊 key image/video/audio 匹配 MIME 类别，* 为兜底。" code={`const iconMap = {\n  pdf: 'file-text',\n  image: 'image',\n  video: 'video',\n  '*': 'file',\n};\n\n<Upload type="file" iconMap={iconMap} />`}>
           <div style={{ width: '100%' }}>
             <Upload
               type="file"
@@ -117,7 +117,7 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title="限制与校验" desc="maxCount 限制数量，maxSize 限制单文件大小，beforeUpload 自定义校验。" code={`<Upload\n  maxCount={3}\n  maxSize={1024 * 1024}\n  beforeUpload={(f) => f.type.startsWith('image/')}\n/>`}>
+        <DemoBlock title={t('demo.limits')} desc="maxCount 限制数量，maxSize 限制单文件大小，beforeUpload 自定义校验。" code={`<Upload\n  maxCount={3}\n  maxSize={1024 * 1024}\n  beforeUpload={(f) => f.type.startsWith('image/')}\n/>`}>
           <Upload
             maxCount={3}
             maxSize={1024 * 1024}
@@ -125,14 +125,14 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           />
         </DemoBlock>
 
-        <DemoBlock title="受控模式" desc="通过 fileList + onChange 完全接管文件列表。" code={`const [files, setFiles] = createSignal<UploadFile[]>([]);\n\n<Upload\n  fileList={files()}\n  onChange={(list, file) => setFiles(list)}\n/>`}>
+        <DemoBlock title={t('demo.controlled')} desc="通过 fileList + onChange 完全接管文件列表。" code={`const [files, setFiles] = createSignal<UploadFile[]>([]);\n\n<Upload\n  fileList={files()}\n  onChange={(list, file) => setFiles(list)}\n/>`}>
           <Upload
             fileList={fileList()}
             onChange={(list) => setFileList(list)}
           />
         </DemoBlock>
 
-        <DemoBlock title="上传回调" desc="onSuccess / onError 监听单个文件的上传结果，适合做提示或埋点。" code={`<Upload
+        <DemoBlock title={t('demo.callbacks')} desc="onSuccess / onError 监听单个文件的上传结果，适合做提示或埋点。" code={`<Upload
   api={uploadFile}
   onSuccess={(file, url) => Toast.success(\`\${file.name} 上传成功\`)}
   onError={(file, msg) => Toast.error(\`\${file.name} 失败: \${msg}\`)}
@@ -144,7 +144,7 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           />
         </DemoBlock>
 
-        <DemoBlock title="自定义按钮" desc="传入 children 替代默认的 + 按钮。" code={`<Upload>\n  <button style={{ padding: '8px 16px', background: '#1677ff', color: '#fff', 'border-radius': '6px', border: 'none', 'white-space': 'nowrap' }}>\n    + 上传图片\n  </button>\n</Upload>`}>
+        <DemoBlock title={t('demo.customTrigger')} desc="传入 children 替代默认的 + 按钮。" code={`<Upload>\n  <button style={{ padding: '8px 16px', background: '#1677ff', color: '#fff', 'border-radius': '6px', border: 'none', 'white-space': 'nowrap' }}>\n    + 上传图片\n  </button>\n</Upload>`}>
           <Upload>
             <button style={{ padding: '8px 16px', background: '#1677ff', color: '#fff', 'border-radius': '6px', border: 'none', cursor: 'pointer', 'font-size': '0.8125rem', 'white-space': 'nowrap' }}>
               + 上传图片
@@ -152,7 +152,7 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           </Upload>
         </DemoBlock>
 
-        <DemoBlock title="自定义渲染" desc="renderFile + children 完全接管文件项和添加按钮的渲染。" code={`<Upload\n  defaultFileList={[\n    { uid:'1', name:'photo.png', size:20480, type:'image/png', status:'done', url:'/photo.png' },\n  ]}\n  renderFile={(f) => (\n    <div style={{ display:'flex', 'align-items':'center', gap:8, padding:'4px 0' }}>\n      <img src={f.url} style={{ width:40, height:40, 'border-radius':4, 'object-fit':'cover', background:'#f0f0f0' }} />\n      <span style={{ 'font-size':'0.8125rem' }}>{f.name}</span>\n      <span style={{ 'font-size':'0.7rem', color:'#999', 'margin-left':'auto' }}>{fmtSize(f.size)}</span>\n    </div>\n  )}\n>\n  <button style={{ padding:'8px 16px', width:'100%', background:'#f7f8fa', border:'1px dashed #dcdee0', 'border-radius':'6px', color:'#969799', cursor:'pointer' }}>\n    + 选择文件\n  </button>\n</Upload>`}>
+        <DemoBlock title={t('demo.customRender')} desc="renderFile + children 完全接管文件项和添加按钮的渲染。" code={`<Upload\n  defaultFileList={[\n    { uid:'1', name:'photo.png', size:20480, type:'image/png', status:'done', url:'/photo.png' },\n  ]}\n  renderFile={(f) => (\n    <div style={{ display:'flex', 'align-items':'center', gap:8, padding:'4px 0' }}>\n      <img src={f.url} style={{ width:40, height:40, 'border-radius':4, 'object-fit':'cover', background:'#f0f0f0' }} />\n      <span style={{ 'font-size':'0.8125rem' }}>{f.name}</span>\n      <span style={{ 'font-size':'0.7rem', color:'#999', 'margin-left':'auto' }}>{fmtSize(f.size)}</span>\n    </div>\n  )}\n>\n  <button style={{ padding:'8px 16px', width:'100%', background:'#f7f8fa', border:'1px dashed #dcdee0', 'border-radius':'6px', color:'#969799', cursor:'pointer' }}>\n    + 选择文件\n  </button>\n</Upload>`}>
           <Upload
             defaultFileList={[
               { uid: '1', name: 'photo.png', size: 20480, type: 'image/png', status: 'done', url: 'https://picsum.photos/seed/u1/80/80' },

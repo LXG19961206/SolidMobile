@@ -100,7 +100,7 @@ export const ButtonDocPage: Component = () => {
 
       {/* ---- 基础用法 ---- */}
       <h2 id="basic" class={styles.h2}>基础用法</h2>
-      <DemoBlock title="语义色 type" desc={`六种 type：primary / secondary / success / warning / danger / info`}
+      <DemoBlock title={t('demo.semanticType')} desc={`六种 type：primary / secondary / success / warning / danger / info`}
         code={`<Button type="primary" text="Primary" />\n<Button type="secondary" text="Secondary" />\n<Button type="success" text="Success" />\n<Button type="warning" text="Warning" />\n<Button type="danger" text="Danger" />\n<Button type="info" text="Info" />`}
       >
         <div class={styles.row}>
@@ -113,7 +113,7 @@ export const ButtonDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      <DemoBlock title="不同尺寸" desc="四档尺寸：xs (28px) / sm (32px) / md (40px) / lg (48px)"
+      <DemoBlock title={t('demo.customSize')} desc="四档尺寸：xs (28px) / sm (32px) / md (40px) / lg (48px)"
         code={`<Button size="xs">XS</Button>\n<Button size="sm">SM</Button>\n<Button size="md">MD</Button>\n<Button size="lg">LG</Button>`}
       >
         <div class={styles.row}>
@@ -124,7 +124,7 @@ export const ButtonDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      <DemoBlock title="填充方式 variant" desc="solid（实心）、outline（线框）、ghost（透明）三种填充方式，与 type 正交组合。"
+      <DemoBlock title={t('demo.variant')} desc="solid（实心）、outline（线框）、ghost（透明）三种填充方式，与 type 正交组合。"
         code={`<Button type="primary" variant="solid" text="Solid" />\n<Button type="primary" variant="outline" text="Outline" />\n<Button type="primary" variant="ghost" text="Ghost" />`}
       >
         <div class={styles.row}>
@@ -134,7 +134,7 @@ export const ButtonDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      <DemoBlock title="胶囊形状 (round)" desc="完全圆角，适合标签或筛选按钮。"
+      <DemoBlock title={t('demo.round')} desc="完全圆角，适合标签或筛选按钮。"
         code={`<Button type="primary" round text="胶囊" />\n<Button type="primary" variant="outline" round text="Outline" />`}
       >
         <div class={styles.row}>
@@ -146,7 +146,7 @@ export const ButtonDocPage: Component = () => {
 
       {/* ---- 图标 ---- */}
       <h2 id="icons" class={styles.h2}>图标按钮</h2>
-      <DemoBlock title="图标 + 文字" desc={`通过 icon 和 iconPosition 控制。icon 支持字符串（内置图标名）或 JSX。默认图标在左。`}
+      <DemoBlock title={t('demo.iconText')} desc={`通过 icon 和 iconPosition 控制。icon 支持字符串（内置图标名）或 JSX。默认图标在左。`}
         code={`<Button icon="star" text="收藏" />\n<Button icon="arrow-right" text="下一步" iconPosition="right" type="primary" />\n<Button icon="edit" text="编辑" variant="outline" />\n{/* 也支持传入 JSX */}\n<Button icon={<MyCustomIcon />} text="自定义" />`}
       >
         <div class={styles.row}>
@@ -156,7 +156,7 @@ export const ButtonDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      <DemoBlock title="纯图标按钮" desc="纯图标按钮必须设置 aria-label 以保证无障碍访问。"
+      <DemoBlock title={t('demo.iconOnly')} desc="纯图标按钮必须设置 aria-label 以保证无障碍访问。"
         code={`<Button icon="search" aria-label="搜索" variant="ghost" />\n<Button icon="settings" aria-label="设置" variant="ghost" />\n<Button icon="close" aria-label="关闭" variant="ghost" />`}
       >
         <div class={styles.row}>
@@ -190,7 +190,7 @@ export const ButtonDocPage: Component = () => {
 
       {/* ---- 链接模式 ---- */}
       <h2 id="link" class={styles.h2}>链接模式</h2>
-      <DemoBlock title="href 渲染为 a 标签" desc="设置 href 后自动渲染为 <a> 标签，支持 target 控制打开方式。"
+      <DemoBlock title={t('demo.hrefLink')} desc="设置 href 后自动渲染为 <a> 标签，支持 target 控制打开方式。"
         code={`<Button href="https://github.com" target="_blank">打开链接</Button>\n<Button href="/page">跳转页面</Button>`}
       >
         <div class={styles.row}>
@@ -202,7 +202,7 @@ export const ButtonDocPage: Component = () => {
 
       {/* ---- 自定义颜色 ---- */}
       <h2 id="custom-color" class={styles.h2}>自定义颜色</h2>
-      <DemoBlock title="color / textColor" desc="直接覆盖背景色，文字色自动计算对比度。也可手动指定 textColor。"
+      <DemoBlock title={t('demo.colorText')} desc="直接覆盖背景色，文字色自动计算对比度。也可手动指定 textColor。"
         code={`<Button color="#6366f1" text="Indigo" />\n<Button color="#ec4899" text="Pink" />\n<Button color="#f59e0b" text="Amber" />\n<Button color="#10b981" text="Emerald" />`}
       >
         <div class={styles.row}>
@@ -215,7 +215,7 @@ export const ButtonDocPage: Component = () => {
 
       {/* ---- 典型场景 ---- */}
       <h2 id="examples" class={styles.h2}>典型场景</h2>
-      <DemoBlock title="表单操作栏" desc="Primary 主操作 + Outline 取消，右对齐。"
+      <DemoBlock title={t('demo.formActions')} desc="Primary 主操作 + Outline 取消，右对齐。"
         code={`<div style={{ display:'flex', gap:12, justifyContent:'flex-end' }}>\n  <Button variant="outline">取消</Button>\n  <Button type="primary">保存</Button>\n</div>`}
       >
         <div class={styles.row} style={{ 'justify-content': 'flex-end' }}>
@@ -224,7 +224,7 @@ export const ButtonDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      <DemoBlock title="移动端底部操作" desc="block + round + size=lg，适合移动端底部固定区域。"
+      <DemoBlock title={t('demo.mobileActions')} desc="block + round + size=lg，适合移动端底部固定区域。"
         code={`<Button type="primary" block round size="lg">立即购买</Button>\n<Button variant="outline" block>加入购物车</Button>`}
       >
         <div style="width:320px;display:flex;flex-direction:column;gap:0.5rem;">
@@ -236,7 +236,7 @@ export const ButtonDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      <DemoBlock title="危险操作确认" desc="danger 变体用于删除类操作，搭配 outline 取消。"
+      <DemoBlock title={t('demo.dangerConfirm')} desc="danger 变体用于删除类操作，搭配 outline 取消。"
         code={`<Button variant="outline">取消</Button>\n<Button type="danger">确认删除</Button>`}
       >
         <div class={styles.row}>
@@ -246,7 +246,7 @@ export const ButtonDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      <DemoBlock title="表单提交" desc={`nativeType="submit" 配合 form 标签使用。`}
+      <DemoBlock title={t('demo.submit')} desc={`nativeType="submit" 配合 form 标签使用。`}
         code={`<form onSubmit={handleSubmit}>\n  <Button nativeType="submit">提交</Button>\n</form>`}
       >
         <div class={styles.row}>

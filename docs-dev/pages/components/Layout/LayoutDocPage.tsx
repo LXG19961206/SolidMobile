@@ -43,7 +43,7 @@ export const LayoutDocPage = () => {
       <PropsTable rows={colProps} />
 
       <h2 id="grid" class={css.h2}>基础栅格</h2>
-      <DemoBlock title="基础栅格" desc="Col 的 span 取值 1-24，总和超出自动换行。" code={'<Row>\n  <Col span={12}><div>12</div></Col>\n  <Col span={12}><div>12</div></Col>\n</Row>\n<Row>\n  <Col span={8}><div>8</div></Col>\n  <Col span={8}><div>8</div></Col>\n  <Col span={8}><div>8</div></Col>\n</Row>'}>
+      <DemoBlock title={t('demo.layoutGrid')} desc="Col 的 span 取值 1-24，总和超出自动换行。" code={'<Row>\n  <Col span={12}><div>12</div></Col>\n  <Col span={12}><div>12</div></Col>\n</Row>\n<Row>\n  <Col span={8}><div>8</div></Col>\n  <Col span={8}><div>8</div></Col>\n  <Col span={8}><div>8</div></Col>\n</Row>'}>
         <div style="display:flex;flex-direction:column;gap:0.75rem;width:100%">
           <Row><Col span={12}><Bar>span=12</Bar></Col><Col span={12}><Bar color="#4995ff">span=12</Bar></Col></Row>
           <Row><Col span={8}><Bar>span=8</Bar></Col><Col span={8}><Bar color="#4995ff">span=8</Bar></Col><Col span={8}><Bar color="#005ee2">span=8</Bar></Col></Row>
@@ -52,12 +52,12 @@ export const LayoutDocPage = () => {
       </DemoBlock>
 
       <h2 id="offset" class={css.h2}>偏移</h2>
-      <DemoBlock title="offset" desc="offset 设置左偏移，同样基于 24 栅格。" code={'<Row>\n  <Col span={8} offset={8}><div>居中</div></Col>\n</Row>'}>
+      <DemoBlock title={t('demo.layoutOffset')} desc="offset 设置左偏移，同样基于 24 栅格。" code={'<Row>\n  <Col span={8} offset={8}><div>居中</div></Col>\n</Row>'}>
         <Row><Col span={8} offset={8}><Bar>span=8 offset=8</Bar></Col></Row>
       </DemoBlock>
 
       <h2 id="gap" class={css.h2}>间距 & 对齐</h2>
-      <DemoBlock title="gap + align" desc="Row 的 gap 控制列间距，align 控制垂直对齐。" code={'<Row gap={16} align="center">\n  <Col span={6}><div>A</div></Col>\n  <Col span={6}><div style={{padding:24}}>B</div></Col>\n  <Col span={6}><div>C</div></Col>\n</Row>'}>
+      <DemoBlock title={t('demo.layoutGapAlign')} desc="Row 的 gap 控制列间距，align 控制垂直对齐。" code={'<Row gap={16} align="center">\n  <Col span={6}><div>A</div></Col>\n  <Col span={6}><div style={{padding:24}}>B</div></Col>\n  <Col span={6}><div>C</div></Col>\n</Row>'}>
         <Row gap={16} align="center">
           <Col span={6}><Bar>短</Bar></Col>
           <Col span={6}><div style={{ background: '#4995ff', color: '#fff', 'text-align': 'center', padding: '24px 8px', 'border-radius': '4px', 'font-size': '0.8rem' }}>高</div></Col>

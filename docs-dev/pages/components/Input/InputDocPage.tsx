@@ -144,7 +144,7 @@ export const InputDocPage: Component = () => {
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>字数统计</h2>
-      <DemoBlock title="showCount + maxlength" code={codeCount}>
+      <DemoBlock title={t('demo.inputShowCount')} code={codeCount}>
         <CellGroup>
           <Cell title="简介" value={<Input showCount maxlength={20} placeholder="最多 20 字" />} />
           <Cell title="签名" value={<Input showCount maxlength={50} placeholder="个性签名" />} />
@@ -152,33 +152,33 @@ export const InputDocPage: Component = () => {
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>前后缀</h2>
-      <DemoBlock title="prefix / suffix" code={codeAffix}>
+      <DemoBlock title={t('demo.inputAffix')} code={codeAffix}>
         <CellGroup>
           <Cell title="用户名" value={<Input placeholder="请输入" prefix={<span style={{ color: '#999' }}>@</span>} />} />
           <Cell title="邮箱" value={<Input placeholder="example" suffix={<span style={{ color: '#999', 'font-size': '0.85rem' }}>@gmail.com</span>} />} />
         </CellGroup>
       </DemoBlock>
-      <DemoBlock title="搜索框" desc="prefix + clearable 实现搜索输入框。" code={codeSearch}>
+      <DemoBlock title={t('demo.searchInput')} desc="prefix + clearable 实现搜索输入框。" code={codeSearch}>
         <Input placeholder="搜索文章" clearable size="md" prefix={<Icon name="search" color="#999" />} style={{ 'border-radius': '16px', border: 'none', padding: '0 16px' }} />
       </DemoBlock>
 
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>状态</h2>
-      <DemoBlock title="disabled / readonly / error" desc="三种状态对比。error 底部出现红色波浪线，适合独立使用时的校验反馈。" code={`<CellGroup>\n  <Cell title="禁用" value={<Input disabled value="不可编辑" />} />\n  <Cell title="只读" value={<Input readonly value="可聚焦复制" />} />\n  <Cell title="错误" value={<Input error value="格式不正确" />} />\n</CellGroup>`}>
+      <DemoBlock title={t('demo.inputStates')} desc="三种状态对比。error 底部出现红色波浪线，适合独立使用时的校验反馈。" code={`<CellGroup>\n  <Cell title="禁用" value={<Input disabled value="不可编辑" />} />\n  <Cell title={t('demo.readonly')} value={<Input readonly value="可聚焦复制" />} />\n  <Cell title="错误" value={<Input error value="格式不正确" />} />\n</CellGroup>`}>
         <CellGroup>
           <Cell title="禁用" value={<Input disabled value="不可编辑" />} />
-          <Cell title="只读" value={<Input readonly value="可聚焦复制" />} />
+          <Cell title={t('demo.readonly')} value={<Input readonly value="可聚焦复制" />} />
           <Cell title="错误" value={<Input error value="格式不正确" />} />
         </CellGroup>
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>验证码</h2>
-      <DemoBlock title="suffix + 倒计时" desc="手机号输入框右侧挂一个发送验证码按钮，点击后 60s 倒计时。" code={codeSms}>
+      <DemoBlock title={t('demo.inputCountdown')} desc="手机号输入框右侧挂一个发送验证码按钮，点击后 60s 倒计时。" code={codeSms}>
         <SmsDemo />
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>配合 Form</h2>
-      <DemoBlock title="FormItem + Input" desc="Input 通过 useFormField() 自动接入 FormItem Context，无需手动传 value/onChange。" code={codeWithForm}>
+      <DemoBlock title={t('demo.inputForm')} desc="Input 通过 useFormField() 自动接入 FormItem Context，无需手动传 value/onChange。" code={codeWithForm}>
         <Form>
           <FormItem name="username" label="用户名" rules={[{
             validator: (v: any) => (v as string)?.length >= 2,

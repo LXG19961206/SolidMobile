@@ -143,19 +143,19 @@ export const SwipeCellDocPage: Component = () => {
           示例
         </h2>
 
-        <DemoBlock title="右侧按钮（最常见）" code={codeRight}>
+        <DemoBlock title={t('demo.swipeRight')} code={codeRight}>
           <RightActionsDemo />
         </DemoBlock>
 
-        <DemoBlock title="左侧按钮" code={codeLeft}>
+        <DemoBlock title={t('demo.swipeLeft')} code={codeLeft}>
           <LeftActionsDemo />
         </DemoBlock>
 
-        <DemoBlock title="双向按钮" code={codeBoth}>
+        <DemoBlock title={t('demo.swipeBoth')} code={codeBoth}>
           <BothActionsDemo />
         </DemoBlock>
 
-        <DemoBlock title="包裹 Cell" code={codeNested}>
+        <DemoBlock title={t('demo.swipeCellWrap')} code={codeNested}>
           <MultiCellDemo />
         </DemoBlock>
       </div>

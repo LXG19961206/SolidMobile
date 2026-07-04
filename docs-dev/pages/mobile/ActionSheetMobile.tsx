@@ -70,7 +70,7 @@ export const ActionSheetMobile: Component<ActionSheetMobileProps> = (props) => {
         <div style={CARD.desc}>传入 items 数组，底部滑出选项菜单</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title="选项列表" clickable onClick={() => setShow1(true)} />
+            <Cell title={t('demo.actionOptions')} clickable onClick={() => setShow1(true)} />
           </CellGroup>
           <ActionSheet open={show1()} onClose={() => setShow1(false)} items={basicItems} />
         </div>

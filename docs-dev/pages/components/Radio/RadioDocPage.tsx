@@ -285,7 +285,7 @@ export const RadioDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title="独立使用" desc="Radio 脱离 RadioGroup 单独使用，自行管理选中态。" code={`const [checked, setChecked] = createSignal(false);
+        <DemoBlock title={t('demo.standalone')} desc="Radio 脱离 RadioGroup 单独使用，自行管理选中态。" code={`const [checked, setChecked] = createSignal(false);
 <Radio
   value="x"
   label="点击切换"

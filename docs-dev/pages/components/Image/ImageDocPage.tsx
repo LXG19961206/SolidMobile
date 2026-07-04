@@ -48,16 +48,16 @@ export const ImageDocPage = () => {
         <PropsTable rows={propsData} />
 
         <h2 id="basic" class={css.h2}>{t('common.basic')}</h2>
-        <DemoBlock title="Logo 展示" desc="solid-mobile 官方 logo。" code={`<Image src="./logo.jpg" width={100} height={100} fit="cover" radius={16} />`}>
+        <DemoBlock title={t('demo.imageLogo')} desc="solid-mobile 官方 logo。" code={`<Image src="./logo.jpg" width={100} height={100} fit="cover" radius={16} />`}>
           <Image src="./logo.jpg" width={100} height={100} fit="cover" radius={16} />
         </DemoBlock>
 
-        <DemoBlock title="固定尺寸" code={'<Image src="photo.jpg" width={300} height={200} />'}>
+        <DemoBlock title={t('demo.imageFixedSize')} code={'<Image src="photo.jpg" width={300} height={200} />'}>
           <Image src={SRC} width={300} height={200} />
         </DemoBlock>
 
         <h2 id="fit" class={css.h2}>{t('component.image.fit')}</h2>
-        <DemoBlock title="cover / contain / fill" desc="通过 fit 控制 object-fit 行为。容器为正方形，源图 4:3。" code={'<Image src="..." width={100} height={100} fit="cover" />\n<Image src="..." width={100} height={100} fit="contain" />\n<Image src="..." width={100} height={100} fit="fill" />'}>
+        <DemoBlock title={t('demo.imageFit')} desc="通过 fit 控制 object-fit 行为。容器为正方形，源图 4:3。" code={'<Image src="..." width={100} height={100} fit="cover" />\n<Image src="..." width={100} height={100} fit="contain" />\n<Image src="..." width={100} height={100} fit="fill" />'}>
           <div class={css.row}>
             <Image src={SRC} width={100} height={100} fit="cover" />
             <Image src={SRC} width={100} height={100} fit="contain" />
@@ -66,7 +66,7 @@ export const ImageDocPage = () => {
         </DemoBlock>
 
         <h2 id="shape" class={css.h2}>{t('component.image.shape')}</h2>
-        <DemoBlock title="radius / round" desc={t('component.image.shape-desc')} code={'<Image src="..." width={80} height={80} radius={12} />\n<Image src="..." width={80} height={80} round />'}>
+        <DemoBlock title={t('demo.imageRadius')} desc={t('component.image.shape-desc')} code={'<Image src="..." width={80} height={80} radius={12} />\n<Image src="..." width={80} height={80} round />'}>
           <div class={css.row}>
             <Image src={SRC} width={80} height={80} radius={12} />
             <Image src={SRC} width={80} height={80} round />
@@ -74,7 +74,7 @@ export const ImageDocPage = () => {
         </DemoBlock>
 
         <h2 id="preview" class={css.h2}>{t('component.image.preview')}</h2>
-        <DemoBlock title="preview" desc={t('component.image.preview-desc')} code={'<Image src="photo.jpg" width={200} height={150} preview />'}>
+        <DemoBlock title={t('demo.imagePreview')} desc={t('component.image.preview-desc')} code={'<Image src="photo.jpg" width={200} height={150} preview />'}>
           <div class={css.row}>
             <Image src={SRC} width={200} height={150} preview />
           </div>

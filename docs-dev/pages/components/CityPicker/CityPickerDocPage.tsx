@@ -361,7 +361,7 @@ export const CityPickerDocPage: Component = () => {
         Picker 的 tree 模式支持任意深度级联，不限层级数。
       </p>
 
-      <DemoBlock title="省市区街村组（6级）" desc="直接使用 Picker 组件，传入 6 层深度的树形数据即可自动级联。" code={codeDeep}>
+      <DemoBlock title={t('demo.cityDeep6')} desc="直接使用 Picker 组件，传入 6 层深度的树形数据即可自动级联。" code={codeDeep}>
         <DeepDemo />
       </DemoBlock>
     </div>

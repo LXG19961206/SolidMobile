@@ -31,13 +31,13 @@ export const DividerDocPage = () => {
       <PropsTable rows={propsData} />
 
       <h2 id="horizontal" class={css.h2}>水平分割线</h2>
-      <DemoBlock title="默认" code="<Divider />">
+      <DemoBlock title={t('demo.basic')} code="<Divider />">
         <Divider />
       </DemoBlock>
-      <DemoBlock title="带文字" desc={'text="或者"'} code={'<Divider text="或者" />'}>
+      <DemoBlock title={t('demo.dividerText')} desc={'text="或者"'} code={'<Divider text="或者" />'}>
         <Divider text="或者" />
       </DemoBlock>
-      <DemoBlock title="虚线" code="<Divider dashed />">
+      <DemoBlock title={t('demo.dashed')} code="<Divider dashed />">
         <Divider dashed />
       </DemoBlock>
 

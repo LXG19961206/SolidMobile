@@ -40,7 +40,7 @@ export const AvatarDocPage = () => {
       <PropsTable rows={propsData} />
 
       <h2 id="basic" class={css.h2}>基础用法</h2>
-      <DemoBlock title="图片头像" code={'<Avatar src="user.jpg" size="lg" />\n<Avatar src="user.jpg" size="md" />\n<Avatar src="user.jpg" size="sm" />\n<Avatar src="user.jpg" size="xs" />'}>
+      <DemoBlock title={t('demo.avatarImage')} code={'<Avatar src="user.jpg" size="lg" />\n<Avatar src="user.jpg" size="md" />\n<Avatar src="user.jpg" size="sm" />\n<Avatar src="user.jpg" size="xs" />'}>
         <div class={css.row}>
           <Avatar src={SRC} size="lg" />
           <Avatar src={SRC} size="md" />
@@ -50,14 +50,14 @@ export const AvatarDocPage = () => {
       </DemoBlock>
 
       <h2 id="fallback" class={css.h2}>降级策略</h2>
-      <DemoBlock title="图标头像" desc="不传 src 时显示 icon 图标。" code={'<Avatar icon="user" size="md" color="#1677ff" />\n<Avatar icon="star" size="md" color="#f59e0b" />\n<Avatar icon="settings" size="md" color="#22c55e" />'}>
+      <DemoBlock title={t('demo.avatarIcon')} desc="不传 src 时显示 icon 图标。" code={'<Avatar icon="user" size="md" color="#1677ff" />\n<Avatar icon="star" size="md" color="#f59e0b" />\n<Avatar icon="settings" size="md" color="#22c55e" />'}>
         <div class={css.row}>
           <Avatar icon="user" size="md" color="#1677ff" />
           <Avatar icon="star" size="md" color="#f59e0b" />
           <Avatar icon="settings" size="md" color="#22c55e" />
         </div>
       </DemoBlock>
-      <DemoBlock title="文字头像" desc="不传 src 和 icon 时，取 text 的第一个字符。" code={'<Avatar text="张三" color="#f59e0b" />\n<Avatar text="李四" color="#22c55e" />\n<Avatar text="王五" color="#ef4444" />\n<Avatar text="赵" color="#8b5cf6" size="xl" />'}>
+      <DemoBlock title={t('demo.avatarText')} desc="不传 src 和 icon 时，取 text 的第一个字符。" code={'<Avatar text="张三" color="#f59e0b" />\n<Avatar text="李四" color="#22c55e" />\n<Avatar text="王五" color="#ef4444" />\n<Avatar text="赵" color="#8b5cf6" size="xl" />'}>
         <div class={css.row}>
           <Avatar text="张三" color="#f59e0b" />
           <Avatar text="李四" color="#22c55e" />
@@ -67,14 +67,14 @@ export const AvatarDocPage = () => {
       </DemoBlock>
 
       <h2 id="shape" class={css.h2}>形状 & 尺寸</h2>
-      <DemoBlock title="方形" desc="square 替代 round，适合品牌 logo。" code={'<Avatar src="./logo.png" square size="xl" />\n<Avatar text="品" square color="#1677ff" size="lg" />\n<Avatar icon="computer" square size="md" color="#8b5cf6" />'}>
+      <DemoBlock title={t('demo.avatarSquare')} desc="square 替代 round，适合品牌 logo。" code={'<Avatar src="./logo.png" square size="xl" />\n<Avatar text="品" square color="#1677ff" size="lg" />\n<Avatar icon="computer" square size="md" color="#8b5cf6" />'}>
         <div class={css.row}>
           <Avatar src={SRC} square size="xl" />
           <Avatar text="品" square color="#1677ff" size="lg" />
           <Avatar icon="computer" square size="md" color="#8b5cf6" />
         </div>
       </DemoBlock>
-      <DemoBlock title="预设尺寸" desc="xs(24) / sm(32) / md(40) / lg(48) / xl(64)" code={'<Avatar text="A" size="xs" />\n<Avatar text="A" size="sm" />\n<Avatar text="A" size="md" />\n<Avatar text="A" size="lg" />\n<Avatar text="A" size="xl" />'}>
+      <DemoBlock title={t('demo.avatarSize')} desc="xs(24) / sm(32) / md(40) / lg(48) / xl(64)" code={'<Avatar text="A" size="xs" />\n<Avatar text="A" size="sm" />\n<Avatar text="A" size="md" />\n<Avatar text="A" size="lg" />\n<Avatar text="A" size="xl" />'}>
         <div class={css.row}>
           <Avatar text="A" size="xs" />
           <Avatar text="A" size="sm" />

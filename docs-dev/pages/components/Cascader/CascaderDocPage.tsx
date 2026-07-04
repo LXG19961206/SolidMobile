@@ -228,7 +228,7 @@ export const CascaderDocPage = () => {
       <h2 id="demo" class={css.h2}>示例</h2>
 
       <DemoBlock
-        title="地区选择"
+        title={t('demo.cascaderRegion')}
         desc="三级联动选择，选中叶子节点自动关闭。点击顶部 Tab 可回退到已选层级。"
         code={`<Cascader\n  options={options}\n  show={show()}\n  onUpdateShow={setShow}\n  value={val()}\n  onChange={setVal}\n  title="选择地区"\n  closeable\n/>`}
       >
@@ -252,7 +252,7 @@ export const CascaderDocPage = () => {
       </DemoBlock>
 
       <DemoBlock
-        title="异步加载"
+        title={t('demo.asyncLoading')}
         desc="options 初始为空，每级由 onLoadChildren 按需拉取。模拟 2s 网络延迟。"
         code={`const loadChildren = async (option) => {\n  const res = await fetch('/api/areas?parent=' + option.value);\n  return res.json();\n};\n\n<Cascader\n  options={[]}\n  onLoadChildren={loadChildren}\n  show={show()}\n  onUpdateShow={setShow}\n  title="异步加载地区"\n/>`}
       >

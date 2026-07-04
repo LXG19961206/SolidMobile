@@ -35,15 +35,15 @@ export const TagDocPage = () => {
       <PropsTable rows={propsData} />
 
       <h2 id="types" class={css.h2}>语义色</h2>
-      <DemoBlock title="五种 type" code={'<Tag type="primary">Primary</Tag>\n<Tag type="success">Success</Tag>\n<Tag type="warning">Warning</Tag>\n<Tag type="danger">Danger</Tag>\n<Tag type="info">Info</Tag>'}>
+      <DemoBlock title={t('demo.tagTypes')} code={'<Tag type="primary">Primary</Tag>\n<Tag type="success">Success</Tag>\n<Tag type="warning">Warning</Tag>\n<Tag type="danger">Danger</Tag>\n<Tag type="info">Info</Tag>'}>
         <div class={css.row}><Tag type="primary">Primary</Tag><Tag type="success">Success</Tag><Tag type="warning">Warning</Tag><Tag type="danger">Danger</Tag><Tag type="info">Info</Tag></div>
       </DemoBlock>
 
       <h2 id="variants" class={css.h2}>样式变体</h2>
-      <DemoBlock title="outline + round" code={'<Tag variant="outline" round>Outline</Tag>\n<Tag type="danger" variant="outline" round>Danger</Tag>'}>
+      <DemoBlock title={t('demo.tagOutlineRound')} code={'<Tag variant="outline" round>Outline</Tag>\n<Tag type="danger" variant="outline" round>Danger</Tag>'}>
         <div class={css.row}><Tag variant="outline" round>Outline</Tag><Tag type="danger" variant="outline" round>Danger</Tag></div>
       </DemoBlock>
-      <DemoBlock title="尺寸" code={'<Tag size="sm">小号</Tag>\n<Tag size="md">中号</Tag>'}>
+      <DemoBlock title={t('demo.size')} code={'<Tag size="sm">小号</Tag>\n<Tag size="md">中号</Tag>'}>
         <div class={css.row}><Tag size="sm">小号</Tag><Tag size="md">中号</Tag></div>
       </DemoBlock>
 
@@ -54,7 +54,7 @@ export const TagDocPage = () => {
 
       <h2 id="scenes" class={css.h2}>场景示例</h2>
       <DemoBlock
-        title="字典 / 键值对"
+        title={t('demo.tagDict')}
         desc="用 outline variant 模拟 key-value 字典效果。"
         code={`<div style="display:flex;flex-direction:column;gap:8px">\n  <div style="display:flex;align-items:center;gap:8px">\n    <Tag variant="outline">姓名</Tag><span>张三</span>\n  </div>\n  <div style="display:flex;align-items:center;gap:8px">\n    <Tag variant="outline" type="info">状态</Tag><span>在职</span>\n  </div>\n  <div style="display:flex;align-items:center;gap:8px">\n    <Tag variant="outline" type="success">部门</Tag><span>技术部</span>\n  </div>\n</div>`}
       >
@@ -67,7 +67,7 @@ export const TagDocPage = () => {
       </DemoBlock>
 
       <DemoBlock
-        title="标签云"
+        title={t('demo.tagCloud')}
         desc="不同语义色搭配 round 胶囊样式，模拟文章标签或筛选条件。"
         code={`<div style="display:flex;flex-wrap:wrap;gap:6px">\n  <Tag round>前端</Tag>\n  <Tag type="success" round>React</Tag>\n  <Tag type="warning" round>TypeScript</Tag>\n  <Tag type="danger" round>热门</Tag>\n  <Tag type="info" round>2024</Tag>\n</div>`}
       >
@@ -83,7 +83,7 @@ export const TagDocPage = () => {
       </DemoBlock>
 
       <DemoBlock
-        title="筛选条件组"
+        title={t('demo.tagFilter')}
         desc="closeable 标签模拟已选筛选条件，可逐个移除。"
         code={`<div style="display:flex;flex-wrap:wrap;gap:6px">\n  <Tag closeable type="primary">北京</Tag>\n  <Tag closeable type="primary">前端</Tag>\n  <Tag closeable type="primary">3-5年</Tag>\n</div>`}
       >

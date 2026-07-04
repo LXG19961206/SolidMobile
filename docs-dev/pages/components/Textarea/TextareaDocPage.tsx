@@ -73,7 +73,7 @@ export const TextareaDocPage: Component = () => {
       ]} />
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>基础 & 状态</h2>
-      <DemoBlock title="rows / clearable / 各种状态" code={codeStates}>
+      <DemoBlock title={t('demo.textareaStates')} code={codeStates}>
         <div style={{ display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
           <div>
             <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>3 行</div>
@@ -103,7 +103,7 @@ export const TextareaDocPage: Component = () => {
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>自动撑高</h2>
-      <DemoBlock title="autoSize" desc="内容超出时自动扩展高度，可限制最小/最大行数。" code={codeAutoSize}>
+      <DemoBlock title={t('demo.textareaAutoSize')} desc="内容超出时自动扩展高度，可限制最小/最大行数。" code={codeAutoSize}>
         <div style={{ display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
           <div>
             <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>自动撑高</div>
@@ -117,7 +117,7 @@ export const TextareaDocPage: Component = () => {
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>配合 Form</h2>
-      <DemoBlock title="FormItem + Textarea" desc="contentFlex 让 Textarea 自动拉伸撑满剩余宽度。" code={codeWithForm}>
+      <DemoBlock title={t('demo.textareaForm')} desc="contentFlex 让 Textarea 自动拉伸撑满剩余宽度。" code={codeWithForm}>
         <Form>
           <FormItem name="remark" label="备注" contentFlex rules={[{
             validator: (v: any) => (v as string)?.length <= 200,

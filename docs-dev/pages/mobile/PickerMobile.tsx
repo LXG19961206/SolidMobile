@@ -208,7 +208,7 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
             columns={disabledCols}
             show={showDisabled()}
             onUpdateShow={setShowDisabled}
-            title="选项列表"
+            title={t('demo.actionOptions')}
             onChange={(_, v) => setDisabledVal(v)}
             onConfirm={(_, v) => { setDisabledVal(v); setShowDisabled(false); }}
             onCancel={() => setShowDisabled(false)}

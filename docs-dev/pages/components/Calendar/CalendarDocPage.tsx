@@ -61,7 +61,7 @@ const PopupSingle = () => {
   const [date, setDate] = createSignal<Date | null>(null);
   return (
     <>
-      <Cell title="单选" value={date() ? fmt(date()!) : '请选择'} clickable onClick={() => setShow(true)} />
+      <Cell title={t('demo.calendarSingle')} value={date() ? fmt(date()!) : '请选择'} clickable onClick={() => setShow(true)} />
       <Calendar show={show()} onUpdateShow={setShow} value={date() || undefined} onChange={(v) => { setDate(v as Date); setShow(false); }} closeable teleport={pt?.()} />
     </>
   );
@@ -73,7 +73,7 @@ const PopupRange = () => {
   const [range, setRange] = createSignal<[Date, Date] | null>(null);
   return (
     <>
-      <Cell title="范围选择" value={range() ? `${fmt(range()![0])} ~ ${fmt(range()![1])}` : '请选择'} clickable onClick={() => setShow(true)} />
+      <Cell title={t('demo.calendarRange')} value={range() ? `${fmt(range()![0])} ~ ${fmt(range()![1])}` : '请选择'} clickable onClick={() => setShow(true)} />
       <Calendar type="range" showConfirm show={show()} onUpdateShow={setShow} value={range() || undefined} onChange={(v) => { setRange(v as [Date, Date]); }} closeable teleport={pt?.()} />
     </>
   );
@@ -85,7 +85,7 @@ const PopupColor = () => {
   const [range, setRange] = createSignal<[Date, Date] | null>(null);
   return (
     <>
-      <Cell title="自定义颜色" value={range() ? `${fmt(range()![0])} ~ ${fmt(range()![1])}` : '请选择'} clickable onClick={() => setShow(true)} />
+      <Cell title={t('demo.customColor')} value={range() ? `${fmt(range()![0])} ~ ${fmt(range()![1])}` : '请选择'} clickable onClick={() => setShow(true)} />
       <Calendar type="range" showConfirm show={show()} onUpdateShow={setShow} value={range() || undefined} onChange={(v) => setRange(v as [Date, Date])} closeable activeColor="#22c55e" dayRender={(d) => d.isToday ? <span style="font-weight:800">今</span> : <>{d.day}</>} teleport={pt?.()} />
     </>
   );
@@ -112,7 +112,7 @@ const PopupHoliday = () => {
   const [date, setDate] = createSignal<Date | null>(null);
   return (
     <>
-      <Cell title="节假日标记" value={date() ? fmt(date()!) : '请选择'} clickable onClick={() => setShow(true)} />
+      <Cell title={t('demo.calendarHoliday')} value={date() ? fmt(date()!) : '请选择'} clickable onClick={() => setShow(true)} />
       <Show when={date()}><span class={css.result}>{fmt(date()!)}</span></Show>
       <Calendar
         show={show()} onUpdateShow={setShow}
@@ -154,31 +154,31 @@ export const CalendarDocPage = () => {
 
       <h2 id="demo" class={css.h2}>示例</h2>
 
-      <DemoBlock title="单选" desc="弹出模式，标题自动跟随滚动月份。" code={`const [show, setShow] = createSignal(false);\n\n<Calendar\n  show={show()}\n  onUpdateShow={setShow}\n  value={date()}\n  onChange={(v) => { setDate(v); setShow(false); }}\n  closeable\n/>`}>
+      <DemoBlock title={t('demo.calendarSingle')} desc="弹出模式，标题自动跟随滚动月份。" code={`const [show, setShow] = createSignal(false);\n\n<Calendar\n  show={show()}\n  onUpdateShow={setShow}\n  value={date()}\n  onChange={(v) => { setDate(v); setShow(false); }}\n  closeable\n/>`}>
         <PopupSingle />
       </DemoBlock>
 
-      <DemoBlock title="范围选择" desc="range + showConfirm，标题同上动态。若需固定可传 title。" code={`<Calendar\n  type="range"\n  showConfirm\n  show={show()}\n  onUpdateShow={setShow}\n  closeable\n/>`}>
+      <DemoBlock title={t('demo.calendarRange')} desc="range + showConfirm，标题同上动态。若需固定可传 title。" code={`<Calendar\n  type="range"\n  showConfirm\n  show={show()}\n  onUpdateShow={setShow}\n  closeable\n/>`}>
         <PopupRange />
       </DemoBlock>
 
-      <DemoBlock title="自定义颜色 & 渲染" desc="range 模式展示，activeColor 改选中色，dayRender 自定义格子。" code={`<Calendar\n  type="range"\n  showConfirm\n  activeColor="#22c55e"\n  dayRender={(d) => d.isToday ? <strong>今</strong> : d.day}\n  show={show()}\n  onUpdateShow={setShow}\n/>`}>
+      <DemoBlock title={t('demo.calendarCustom')} desc="range 模式展示，activeColor 改选中色，dayRender 自定义格子。" code={`<Calendar\n  type="range"\n  showConfirm\n  activeColor="#22c55e"\n  dayRender={(d) => d.isToday ? <strong>今</strong> : d.day}\n  show={show()}\n  onUpdateShow={setShow}\n/>`}>
         <PopupColor />
       </DemoBlock>
 
       <DemoBlock
-        title="节假日标记"
+        title={t('demo.calendarHoliday')}
         desc="通过 dayRender 自定义格子内容，标记周末和节假日。"
         code={`// 构建特殊日期映射\nconst special = { '2026-6-1': { label: '假', color: '#ef4444' } };\n\n<Calendar\n  dayRender={(d) => {\n    const spec = special[\`$\{d.year}-$\{d.month}-$\{d.day}\`];\n    return (\n      <span>\n        <span>{d.day}</span>\n        {spec && <small style={{color:spec.color}}>{spec.label}</small>}\n      </span>\n    );\n  }}\n  show={show()}\n  onUpdateShow={setShow}\n  title="选择日期"\n/>`}
       >
         <PopupHoliday />
       </DemoBlock>
 
-      <DemoBlock title="平铺模式" desc="popup={false} 直接嵌入页面。" code={'<Calendar popup={false} />'}>
+      <DemoBlock title={t('demo.calendarInline')} desc="popup={false} 直接嵌入页面。" code={'<Calendar popup={false} />'}>
         <Calendar popup={false} />
       </DemoBlock>
 
-      <DemoBlock title="农历 & 节气" desc="lunar={true} 启用农历显示，月初显示月名、其他显示日名，节气日显示节气名。" code={'<Calendar popup={false} lunar />'}>
+      <DemoBlock title={t('demo.calendarLunar')} desc="lunar={true} 启用农历显示，月初显示月名、其他显示日名，节气日显示节气名。" code={'<Calendar popup={false} lunar />'}>
         <Calendar popup={false} lunar />
       </DemoBlock>
     </div>

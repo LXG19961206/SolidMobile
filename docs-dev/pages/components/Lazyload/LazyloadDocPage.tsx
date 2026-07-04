@@ -163,7 +163,7 @@ export const LazyloadDocPage: Component = () => {
         {/* ── 基础用法 ── */}
         <h2 id="basic" class={css.h2}>列表懒加载</h2>
         <DemoBlock
-          title="列表懒加载"
+          title={t('demo.listLazy')}
           desc="上部 320px 是说明区，下面的文档卡片被推出视口。向下滚动后卡片逐个进入视口触发懒加载。"
           code={codeBasic}
         >
@@ -193,7 +193,7 @@ export const LazyloadDocPage: Component = () => {
         {/* ── 受控模式 ── */}
         <h2 id="controlled" class={css.h2}>受控模式</h2>
         <DemoBlock
-          title="active 受控切换"
+          title={t('demo.activeControl')}
           desc="点击按钮触发 active，同样经历 Loading → 显示内容的延迟过程。"
           code={codeControlled}
         >
@@ -203,7 +203,7 @@ export const LazyloadDocPage: Component = () => {
         {/* ── 滚动画廊 ── */}
         <h2 id="scroll" class={css.h2}>滚动画廊</h2>
         <DemoBlock
-          title="图片画廊"
+          title={t('demo.imageGallery')}
           desc="上部 280px 标题区推出网格，向下滚动后彩色卡片逐个触发。"
           code={codeScroll}
         >

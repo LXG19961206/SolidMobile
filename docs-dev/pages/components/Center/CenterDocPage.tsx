@@ -43,7 +43,7 @@ export const CenterDocPage = () => {
       {/* Flex */}
       <h2 id="flex" class={styles.h2}>Flex 居中</h2>
       <DemoBlock
-        title="默认：两轴居中"
+        title={t('demo.centerDefault')}
         desc="不传任何参数时，默认 flex 水平 + 垂直居中。这是最常用的场景。"
         code={`<Center>\n  <div>居中的内容</div>\n</Center>`}
       >
@@ -53,7 +53,7 @@ export const CenterDocPage = () => {
       </DemoBlock>
 
       <DemoBlock
-        title="单轴：flexX"
+        title={t('demo.centerFlexX')}
         desc="只居中水平方向。"
         code={`<Center flexX>\n  <div>水平居中</div>\n</Center>`}
       >
@@ -63,7 +63,7 @@ export const CenterDocPage = () => {
       </DemoBlock>
 
       <DemoBlock
-        title="单轴：flexY"
+        title={t('demo.centerFlexY')}
         desc="只居中垂直方向（父级需有高度）。"
         code={`<div style={{ height: 160 }}>\n  <Center flexY>\n    <div>垂直居中</div>\n  </Center>\n</div>`}
       >
@@ -73,7 +73,7 @@ export const CenterDocPage = () => {
       </DemoBlock>
 
       <DemoBlock
-        title="行内模式"
+        title={t('demo.centerInline')}
         desc="加 inline 变为 inline-flex，不换行。"
         code={`<Center flexX inline>\n  <span>行内</span>\n</Center>`}
       >
@@ -85,7 +85,7 @@ export const CenterDocPage = () => {
       {/* Text */}
       <h2 id="text" class={styles.h2}>Text 居中</h2>
       <DemoBlock
-        title="text"
+        title={t('demo.centerText')}
         desc="text-align: center，适合行内或行内块内容。"
         code={`<Center text>\n  <span>这段文字会居中</span>\n</Center>`}
       >
@@ -95,7 +95,7 @@ export const CenterDocPage = () => {
       </DemoBlock>
 
       <DemoBlock
-        title="vertical"
+        title={t('demo.centerVertical')}
         desc="vertical-align: middle，适合行内元素对齐。"
         code={`<div style="line-height: 3">\n  大文字 <Center vertical inline>\n    <span>对齐我</span>\n  </Center>\n</div>`}
       >
@@ -107,7 +107,7 @@ export const CenterDocPage = () => {
       {/* Position */}
       <h2 id="position" class={styles.h2}>绝对居中</h2>
       <DemoBlock
-        title="position"
+        title={t('demo.centerPosition')}
         desc={'absolute + transform 居中。Center 自身作为定位容器，父级只需给高度即可。'}
         code={`<div style={{ height: 160 }}>\n  <Center position>\n    <div>绝对居中</div>\n  </Center>\n</div>`}
       >
