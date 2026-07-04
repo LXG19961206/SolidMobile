@@ -9,6 +9,7 @@ import { Radio, RadioGroup } from '../../../src/components/Radio';
 import { Form, FormItem } from '../../../src/components/Form';
 import { Button } from '../../../src/components/Button';
 import { Toast, ToastRenderer } from '../../../src/components/Toast';
+import { useT } from '../../doc-i18n';
 
 const propsData = [
   { name: 'Radio.value', type: 'unknown', desc: '标识符，选中时对应 RadioGroup 的 value' },
@@ -53,6 +54,7 @@ const BadIcon = () => (
 );
 
 export const RadioMobile: Component<RadioMobileProps> = (props) => {
+  const t = useT();
   const [basicVal, setBasicVal] = createSignal('a');
   const [disabledVal, setDisabledVal] = createSignal('a');
   const [shapeVal, setShapeVal] = createSignal('a');
@@ -67,8 +69,8 @@ export const RadioMobile: Component<RadioMobileProps> = (props) => {
 
       {/* 基础 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础用法</div>
-        <div style={CARD.desc}>RadioGroup + Radio 组合</div>
+        <div style={CARD.title}>{t('demo.basic')}</div>
+        <div style={CARD.desc}>{t('demo.basicDesc')}</div>
         <div style={CARD.body}>
           <RadioGroup value={basicVal()} onChange={setBasicVal}>
             <Radio value="a" label="选项 A" />
@@ -118,8 +120,8 @@ export const RadioMobile: Component<RadioMobileProps> = (props) => {
 
       {/* 自定义图标 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义图标</div>
-        <div style={CARD.desc}>checkedIcon / uncheckedIcon 传入自定义 SVG</div>
+        <div style={CARD.title}>{t('demo.customIcon')}</div>
+        <div style={CARD.desc}>{t('demo.customIconDesc')}</div>
         <div style={CARD.body}>
           <RadioGroup value={iconVal()} onChange={setIconVal} iconSize="28px" checkedColor="#1677ff">
             <Radio value="like" label="好评" checkedIcon={<LikeIcon />} uncheckedIcon={<LikeIcon />} />

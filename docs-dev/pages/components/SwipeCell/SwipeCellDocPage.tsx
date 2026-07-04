@@ -5,6 +5,7 @@ import { Toast } from '../../../../src/components/Toast';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import type { SwipeAction } from '../../../../src/components/SwipeCell/types';
+import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
   { name: 'rightActions', type: 'SwipeAction[]', default: '—', required: false, desc: '右侧滑出按钮。' },
@@ -124,11 +125,12 @@ const codeNested = `<SwipeCell rightActions={[{ text: '删除', theme: 'danger' 
 /* ── Main ── */
 
 export const SwipeCellDocPage: Component = () => {
+  const t = useT();
   return (
     <DocLayout>
       <div style={{ padding: '16px', 'max-width': '960px' }}>
         <h2 id="props" style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '16px 0 12px' }}>
-          属性 / Props
+          {t('common.props')}
         </h2>
         <PropsTable rows={propsData} />
 

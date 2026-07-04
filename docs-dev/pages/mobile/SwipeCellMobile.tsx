@@ -1,5 +1,6 @@
 import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface SwipeCellMobileProps {
   components?: ComponentEntry[];
@@ -30,6 +31,7 @@ const CARD = {
 const COLORS = ['#1677ff', '#22c55e', '#f59e0b', '#8b5cf6', '#ec4899'];
 
 export const SwipeCellMobile: Component<SwipeCellMobileProps> = (props) => {
+  const t = useT();
   const rightActions: SwipeAction[] = [
     { text: '编辑', theme: 'primary', onClick: () => Toast.success('编辑') },
     { text: '删除', theme: 'danger', onClick: () => Toast.success('删除') },

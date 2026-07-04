@@ -1,5 +1,6 @@
 import { createSignal, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface StepperMobileProps {
   components?: ComponentEntry[];
@@ -32,6 +33,7 @@ const CARD = {
 };
 
 export const StepperMobile: Component<StepperMobileProps> = (props) => {
+  const t = useT();
   const [val, setVal] = createSignal(1);
 
   return (
@@ -50,8 +52,8 @@ export const StepperMobile: Component<StepperMobileProps> = (props) => {
 
       {/* 范围限制 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>范围限制</div>
-        <div style={CARD.desc}>min / max / step 控制取值范围和步长</div>
+        <div style={CARD.title}>{t('demo.range')}</div>
+        <div style={CARD.desc}>{t('demo.rangeDesc')}</div>
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'flex-direction': 'column' as const, gap: '8px', width: '100%' }}>
             <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>

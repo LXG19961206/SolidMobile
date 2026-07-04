@@ -1,5 +1,6 @@
 import { createSignal, For, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface IconMobileProps {
   components?: ComponentEntry[];
@@ -31,6 +32,7 @@ const QUICK_ICONS: IconName[] = [
 ];
 
 export const IconMobile: Component<IconMobileProps> = (props) => {
+  const t = useT();
   const [variant, setVariant] = createSignal<IconVariant>('line');
   const [search, setSearch] = createSignal('');
   const [copiedName, setCopiedName] = createSignal('');

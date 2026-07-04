@@ -1,5 +1,6 @@
 import { createSignal, onMount, For, Show, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface LazyloadMobileProps {
   components?: ComponentEntry[];
@@ -84,6 +85,7 @@ const GalleryItem: Component<{ idx: number }> = (props) => (
 );
 
 export const LazyloadMobile: Component<LazyloadMobileProps> = (props) => {
+  const t = useT();
   return (
     <MobilePreview title="Lazyload 懒加载" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 列表懒加载 */}

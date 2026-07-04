@@ -4,6 +4,7 @@ import { ActionSheet } from '../../../../src/components/ActionSheet';
 import { Cell } from '../../../../src/components/Cell';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 import styles from './OverlayDocPage.module.css';
 
 const propsData: PropRow[] = [
@@ -16,6 +17,7 @@ const propsData: PropRow[] = [
 ];
 
 const OverlayDocInner = () => {
+  const t = useT();
   const phone = useContext(PhoneTargetContext);
   const pm = () => phone?.();
   const [s1, s1s] = createSignal(false);
@@ -27,7 +29,7 @@ const OverlayDocInner = () => {
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Overlay 遮罩层</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px' }}>全屏半透明遮罩，所有弹出层组件的基础设施。</p>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>属性</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
       <DemoBlock title="点击遮罩关闭" desc="居中对话框，点击背景关闭。" code={`<Overlay open={open} onClose={...}>...</Overlay>`} groupCode="overlayDemo">

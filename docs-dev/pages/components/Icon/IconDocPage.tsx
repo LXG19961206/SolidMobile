@@ -2,6 +2,7 @@ import { createSignal, For, type Component } from 'solid-js';
 import { Icon } from '../../../../src/components/Icon';
 import { Button } from '../../../../src/components/Button';
 import type { IconName, IconVariant } from '../../../../src/components/Icon/types';
+import { useT } from '../../../doc-i18n';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import styles from './IconDocPage.module.css';
@@ -108,6 +109,7 @@ const CATEGORIES: Category[] = [
 ];
 
 export const IconDocPage: Component = () => {
+  const t = useT();
   const [search, setSearch] = createSignal('');
   const [variant, setVariant] = createSignal<IconVariant>('line');
   const [size, setSize] = createSignal(24);
@@ -141,7 +143,7 @@ export const IconDocPage: Component = () => {
         </p>
 
         {/* ── Props ── */}
-        <h2 id="props" class={styles.h2}>属性 / Props</h2>
+        <h2 id="props" class={styles.h2}>{t('common.props')}</h2>
         <PropsTable rows={propsData} />
 
         {/* ═══ Usage Examples ═══ */}

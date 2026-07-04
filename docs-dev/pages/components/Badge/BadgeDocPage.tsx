@@ -3,6 +3,7 @@ import { Button } from '../../../../src/components/Button';
 import { Avatar } from '../../../../src/components/Avatar';
 import { Tabs, Tab } from '../../../../src/components/Tabs';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './BadgeDocPage.module.css';
 
@@ -19,14 +20,16 @@ const tocItems: TOCItem[] = [
   { id: 'basic', title: '基础用法' },
 ];
 
-export const BadgeDocPage = () => (
+export const BadgeDocPage = () => {
+  const t = useT();
+  return (
   <DocLayout>
 
     <div class={css.page}>
       <h1 class={css.h1}>Badge 徽标</h1>
       <p class={css.intro}>用于消息数量、状态提示的小型徽标，通常附着在图标、按钮、标签页等组件上。</p>
 
-      <h2 id="props" class={css.h2}>属性 / Props</h2>
+      <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
       <h2 id="basic" class={css.h2}>基础用法</h2>
@@ -80,3 +83,4 @@ export const BadgeDocPage = () => (
     </div>
   </DocLayout>
 );
+};

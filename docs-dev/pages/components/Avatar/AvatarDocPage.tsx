@@ -1,5 +1,6 @@
 import { Avatar } from '../../../../src/components/Avatar';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './AvatarDocPage.module.css';
 
@@ -23,7 +24,9 @@ const tocItems: TOCItem[] = [
 
 const SRC = 'https://picsum.photos/seed/avatar/100/100';
 
-export const AvatarDocPage = () => (
+export const AvatarDocPage = () => {
+  const t = useT();
+  return (
   <DocLayout>
 
     <div class={css.page}>
@@ -33,7 +36,7 @@ export const AvatarDocPage = () => (
         src 加载失败自动降级。
       </p>
 
-      <h2 id="props" class={css.h2}>属性 / Props</h2>
+      <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
       <h2 id="basic" class={css.h2}>基础用法</h2>
@@ -83,3 +86,4 @@ export const AvatarDocPage = () => (
     </div>
   </DocLayout>
 );
+};

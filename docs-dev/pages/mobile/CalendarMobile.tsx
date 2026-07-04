@@ -5,6 +5,7 @@ export interface CalendarMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
+import { useT } from '../../doc-i18n';
 import { Calendar } from '../../../src/components/Calendar';
 
 const propsData = [
@@ -32,6 +33,7 @@ const CARD = {
 };
 
 export const CalendarMobile: Component<CalendarMobileProps> = (props) => {
+  const t = useT();
   const [singleVal, setSingleVal] = createSignal<Date>(new Date());
   const [show, setShow] = createSignal(false);
   const [selectedDate, setSelectedDate] = createSignal('');

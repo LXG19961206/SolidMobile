@@ -3,6 +3,7 @@ import { Calendar } from '../../../../src/components/Calendar';
 import { Cell } from '../../../../src/components/Cell';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 import css from './CalendarDocPage.module.css';
 
 const propsData: PropRow[] = [
@@ -134,15 +135,17 @@ const PopupHoliday = () => {
   );
 };
 
-export const CalendarDocPage = () => (
-  <DocLayout>
+export const CalendarDocPage = () => {
+  const t = useT();
+  return (
+    <DocLayout>
     <div class={css.page}>
       <h1 class={css.h1}>Calendar 日历</h1>
       <p class={css.intro}>
         支持单选和范围选择，默认弹出模式（底部半屏）。也可平铺展示。所有样式通过 CSS 变量控制。
       </p>
 
-      <h2 id="props" class={css.h2}>属性 / Props</h2>
+      <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
       <h2 id="cssvars" class={css.h2}>CSS 变量</h2>
@@ -180,4 +183,5 @@ export const CalendarDocPage = () => (
       </DemoBlock>
     </div>
   </DocLayout>
-);
+  );
+};

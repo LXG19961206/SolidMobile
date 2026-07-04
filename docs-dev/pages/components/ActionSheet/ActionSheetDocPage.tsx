@@ -2,6 +2,7 @@ import { createSignal, useContext } from 'solid-js';
 import { ActionSheet } from '../../../../src/components/ActionSheet';
 import { Cell } from '../../../../src/components/Cell';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 import type { PropRow } from '../../../../src/doc-utils';
 import type { ActionSheetItem } from '../../../../src/components/ActionSheet/types';
 
@@ -36,6 +37,7 @@ const mixedItems: ActionSheetItem[] = [
 /* ── Inner ── */
 
 const ActionSheetDocInner = () => {
+  const t = useT();
   const phone = useContext(PhoneTargetContext);
   const pm = () => phone?.();
   const [s1, s1s] = createSignal(false);
@@ -51,7 +53,7 @@ const ActionSheetDocInner = () => {
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>ActionSheet 动作面板</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px' }}>从底部弹出的选项菜单。</p>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>属性</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
       <DemoBlock title="选项列表" desc="传入 items 数组。" code={`<ActionSheet open={open} onClose={...} items={items} />`} groupCode="基础">
@@ -78,7 +80,7 @@ const ActionSheetDocInner = () => {
         <Cell title="选中不关闭" clickable onClick={() => s6s(true)} />
         <ActionSheet mount={pm()} open={s6()} onClose={() => s6s(false)} title="选择主题色" closeable closeOnSelect={false} items={[{ name: '蓝色' }, { name: '绿色' }, { name: '紫色' }, { name: '橙色' }]} cancelText="确定" />
       </DemoBlock>
-      <DemoBlock title="自定义内容" desc="children 自定义面板。" code={`<ActionSheet open={open} title="自定义面板">...</ActionSheet>`} groupCode="选项样式">
+      <DemoBlock title={t('demo.customRender')} desc={t('demo.customRenderDesc')} code={`<ActionSheet open={open} title="自定义面板">...</ActionSheet>`} groupCode="选项样式">
         <Cell title="自定义内容" clickable onClick={() => s7s(true)} />
         <ActionSheet mount={pm()} open={s7()} onClose={() => s7s(false)} title="自定义面板" closeable>
           <div style={{ padding: '24px', 'text-align': 'center' }}>

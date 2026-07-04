@@ -7,6 +7,7 @@ import { Center } from '../../../../src/components/Center';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './LazyloadDocPage.module.css';
+import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
   { name: 'active', type: 'boolean', default: '—', required: false, desc: '受控模式：外部控制是否激活。' },
@@ -146,6 +147,7 @@ const codeScroll = `<div style={{ height: '400px', overflow: 'auto' }}>
 /* ── Main ── */
 
 export const LazyloadDocPage: Component = () => {
+  const t = useT();
   return (
     <DocLayout>
       <div class={css.page}>
@@ -155,7 +157,7 @@ export const LazyloadDocPage: Component = () => {
           模拟真实网络请求，清晰展示骨架屏 → Loading → 内容的完整生命周期。
         </p>
 
-        <h2 id="props" class={css.h2}>属性 / Props</h2>
+        <h2 id="props" class={css.h2}>{t('common.props')}</h2>
         <PropsTable rows={propsData} />
 
         {/* ── 基础用法 ── */}

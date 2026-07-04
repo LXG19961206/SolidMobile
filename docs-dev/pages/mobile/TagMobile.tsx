@@ -1,5 +1,6 @@
 import { createSignal, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface TagMobileProps {
   components?: ComponentEntry[];
@@ -25,6 +26,7 @@ const CARD = {
 };
 
 export const TagMobile: Component<TagMobileProps> = (props) => {
+  const t = useT();
   const [closed, setClosed] = createSignal(new Set<string>());
   const isOpen = (id: string) => !closed().has(id);
   const close = (id: string) => setClosed(prev => new Set([...prev, id]));
@@ -85,8 +87,8 @@ export const TagMobile: Component<TagMobileProps> = (props) => {
 
       {/* 自定义颜色 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义颜色</div>
-        <div style={CARD.desc}>color 覆盖默认配色</div>
+        <div style={CARD.title}>{t('demo.customColor')}</div>
+        <div style={CARD.desc}>{t('demo.customColorDesc')}</div>
         <div style={CARD.body}>
           <Tag color="#6366f1">Indigo</Tag>
           <Tag color="#ec4899">Pink</Tag>

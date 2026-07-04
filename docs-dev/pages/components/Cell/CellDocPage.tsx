@@ -1,6 +1,7 @@
 import { Cell, CellGroup } from '../../../../src/components/Cell';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 import styles from './CellDocPage.module.css';
 
 const cellProps: PropRow[] = [
@@ -37,8 +38,10 @@ const tocItems: TOCItem[] = [
   { id: 'card', title: '卡片模式' },
 ];
 
-export const CellDocPage = () => (
-  <DocLayout>
+export const CellDocPage = () => {
+  const t = useT();
+  return (
+    <DocLayout>
 
     <div class={styles.page}>
       <h1 class={styles.h1}>Cell / CellGroup 单元格</h1>
@@ -138,4 +141,5 @@ export const CellDocPage = () => (
       </DemoBlock>
     </div>
   </DocLayout>
-);
+  );
+};

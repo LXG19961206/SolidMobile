@@ -1,5 +1,6 @@
 import { createSignal, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface FormMobileProps {
   components?: ComponentEntry[];
@@ -60,6 +61,7 @@ function mockUploadApi(file: File, onProgress?: (pct: number) => void): Promise<
 }
 
 export const FormMobile: Component<FormMobileProps> = (props) => {
+  const t = useT();
   const [basicVal, setBasicVal] = createSignal({});
   const [fullVal, setFullVal] = createSignal({});
   let fullFormRef: any;
@@ -99,8 +101,8 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
 
       {/* 配合 Switch */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>配合其他控件</div>
-        <div style={CARD.desc}>FormItem 可包裹任意有 value/onChange 的组件，如 Switch、Input 等</div>
+        <div style={CARD.title}>{t('demo.withOther')}</div>
+        <div style={CARD.desc}>{t('demo.withOtherDesc')}</div>
         <div style={CARD.body}>
           <Form>
             <FormItem name="agree" label="同意协议">
@@ -140,8 +142,8 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
 
       {/* 综合实例 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>综合实例</div>
-        <div style={CARD.desc}>Input / Textarea / Radio / Checkbox / Rate / Stepper / Slider / Select / DatePicker / Upload / TimePicker 全覆盖</div>
+        <div style={CARD.title}>{t('demo.fullExample')}</div>
+        <div style={CARD.desc}>{t('demo.fullExampleDesc')}</div>
         <div style={CARD.body}>
           <Form
             ref={(r: any) => { fullFormRef = r; }}

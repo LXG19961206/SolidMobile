@@ -6,6 +6,7 @@ import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../.
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
+import { useT } from '../../../doc-i18n';
 import type { PickerOption } from '../../../../src/components/Picker';
 import type { PropRow } from '../../../../src/doc-utils';
 
@@ -331,8 +332,10 @@ const DeepDemo: Component = () => {
   );
 };
 
-export const CityPickerDocPage: Component = () => (
-  <DocLayout>
+export const CityPickerDocPage: Component = () => {
+  const t = useT();
+  return (
+    <DocLayout>
     <div style={{ padding: '16px', 'max-width': '960px' }}>
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>CityPicker 城市选择</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
@@ -343,11 +346,11 @@ export const CityPickerDocPage: Component = () => (
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>CityPicker Props</h2>
       <PropsTable rows={cityPickerProps} />
 
-      <DemoBlock title="基础用法" desc="传入省市区树形数据，配合 Cell 使用。数据需用户自行提供。" code={codeBasic}>
+      <DemoBlock title={t('demo.basic')} desc={t('demo.basicDesc')} code={codeBasic}>
         <BasicDemo />
       </DemoBlock>
 
-      <DemoBlock title="表单中使用" desc="放在 FormItem 中自动集成表单的值管理。" code={codeForm}>
+      <DemoBlock title={t('demo.form')} desc={t('demo.formDesc')} code={codeForm}>
         <FormDemo />
       </DemoBlock>
 
@@ -363,4 +366,5 @@ export const CityPickerDocPage: Component = () => (
       </DemoBlock>
     </div>
   </DocLayout>
-);
+  );
+};

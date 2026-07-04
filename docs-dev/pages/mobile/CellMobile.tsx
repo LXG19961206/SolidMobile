@@ -7,6 +7,7 @@ export interface CellMobileProps {
 }
 import { Cell, CellGroup } from '../../../src/components/Cell';
 import { Icon } from '../../../src/components/Icon';
+import { useT } from '../../doc-i18n';
 import { Switch } from '../../../src/components/Switch';
 
 const propsData = [
@@ -33,6 +34,7 @@ const CARD = {
 };
 
 export const CellMobile: Component<CellMobileProps> = (props) => {
+  const t = useT();
   return (
     <MobilePreview title="Cell 单元格" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 */}

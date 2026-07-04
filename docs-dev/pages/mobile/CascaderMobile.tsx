@@ -9,6 +9,7 @@ import { Cascader } from '../../../src/components/Cascader';
 import { Cell, CellGroup } from '../../../src/components/Cell';
 import { Icon } from '../../../src/components/Icon';
 import { Loading } from '../../../src/components/Loading';
+import { useT } from '../../doc-i18n';
 import type { CascaderOption } from '../../../src/components/Cascader';
 
 const propsData = [
@@ -73,6 +74,7 @@ const regionOptions: CascaderOption[] = [
 ];
 
 export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
+  const t = useT();
   /* ── 地区选择 ── */
   const [show1, setShow1] = createSignal(false);
   const [val1, setVal1] = createSignal<(string | number)[]>([]);
@@ -177,8 +179,8 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
 
       {/* 自定义渲染 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义渲染</div>
-        <div style={CARD.desc}>render 属性传入 JSX，可带图标、颜色标记。</div>
+        <div style={CARD.title}>{t('demo.customRender')}</div>
+        <div style={CARD.desc}>{t('demo.customRenderDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell

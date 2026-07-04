@@ -6,6 +6,7 @@ import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
 import type { PropRow } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 
 const rateProps: PropRow[] = [
   { name: 'value', type: 'number', default: '0', required: false, desc: '当前分值。' },
@@ -91,6 +92,7 @@ const FormDemo: Component = () => {
 };
 
 export const RateDocPage: Component = () => {
+  const t = useT();
   const [basicVal, setBasicVal] = createSignal(3);
   const [colorVal, setColorVal] = createSignal(3);
   const [countVal, setCountVal] = createSignal(2);
@@ -118,12 +120,12 @@ export const RateDocPage: Component = () => {
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Rate Props</h2>
         <PropsTable rows={rateProps} />
 
-        <DemoBlock title="基础用法" desc="默认 5 颗星，受控模式。" code={codeBasic}>
+        <DemoBlock title={t('demo.basic')} desc={t('demo.basicDesc')} code={codeBasic}>
           <Rate value={basicVal()} onChange={setBasicVal} />
           {Value(basicVal)}
         </DemoBlock>
 
-        <DemoBlock title="自定义颜色" desc="通过 color / voidColor 修改选中/未选中颜色。" code={codeColor}>
+        <DemoBlock title={t('demo.customColor')} desc={t('demo.customColorDesc')} code={codeColor}>
           <Rate value={colorVal()} onChange={setColorVal} color="#ff7d00" voidColor="#eee" />
           {Value(colorVal)}
         </DemoBlock>
@@ -138,17 +140,17 @@ export const RateDocPage: Component = () => {
           {Value(sizeVal)}
         </DemoBlock>
 
-        <DemoBlock title="半选" desc="allowHalf 开启半选，点击左侧半区为 0.5 分。" code={codeHalf}>
+        <DemoBlock title={t('demo.half')} desc={t('demo.halfDesc')} code={codeHalf}>
           <Rate value={halfVal()} onChange={setHalfVal} allowHalf />
           {Value(halfVal)}
         </DemoBlock>
 
-        <DemoBlock title="可清除" desc="clearable 开启后再次点击已选中的星会重置为 0。" code={codeClearable}>
+        <DemoBlock title={t('demo.clearable')} desc={t('demo.clearableDesc')} code={codeClearable}>
           <Rate value={clearVal()} onChange={setClearVal} clearable />
           {Value(clearVal)}
         </DemoBlock>
 
-        <DemoBlock title="禁用状态" code={codeDisabled}>
+        <DemoBlock title={t('demo.disabled')} code={codeDisabled}>
           <Rate value={disableVal()} onChange={setDisableVal} disabled />
           {Value(disableVal)}
         </DemoBlock>
@@ -158,12 +160,12 @@ export const RateDocPage: Component = () => {
           {Value(readonlyVal)}
         </DemoBlock>
 
-        <DemoBlock title="自定义图标" desc="icon / voidIcon 传入 Icon 组件支持的图标名。" code={codeCustom}>
+        <DemoBlock title={t('demo.customIcon')} desc={t('demo.customIconDesc')} code={codeCustom}>
           <Rate value={customVal()} onChange={setCustomVal} icon="heart" voidIcon="heart" color="#ff4d4f" voidColor="#f5d0d0" />
           {Value(customVal)}
         </DemoBlock>
 
-        <DemoBlock title="表单中使用" desc="Rate 放在 FormItem 中自动集成表单的值管理。" code={codeForm}>
+        <DemoBlock title={t('demo.form')} desc={t('demo.formDesc')} code={codeForm}>
           <FormDemo />
         </DemoBlock>
       </div>

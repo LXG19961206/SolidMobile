@@ -6,6 +6,7 @@ import { Loading } from '../../../../src/components/Loading';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import type { CascaderOption } from '../../../../src/components/Cascader/types';
+import { useT } from '../../../doc-i18n';
 import css from './CascaderDocPage.module.css';
 
 const regionOptions: CascaderOption[] = [
@@ -208,15 +209,17 @@ const AsyncCascader = () => {
   );
 };
 
-export const CascaderDocPage = () => (
-  <DocLayout>
+export const CascaderDocPage = () => {
+  const t = useT();
+  return (
+    <DocLayout>
     <div class={css.page}>
       <h1 class={css.h1}>Cascader 级联选择器</h1>
       <p class={css.intro}>
         多层级联选择，通过树形数据源逐级展开，支持无限层级。顶部 Tab 显示选中路径，可点击回退。
       </p>
 
-      <h2 id="props" class={css.h2}>属性 / Props</h2>
+      <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
       <h3 style="margin-top:1.5rem;font-size:1rem;font-weight:600">CascaderOption</h3>
@@ -241,8 +244,8 @@ export const CascaderDocPage = () => (
       </DemoBlock>
 
       <DemoBlock
-        title="自定义渲染"
-        desc="通过 render 属性传入 JSX，可带图标、颜色标记等丰富内容。"
+        title={t('demo.customRender')}
+        desc={t('demo.customRenderDesc')}
         code={`const options = [\n  { text: '北京', value: 'beijing',\n    render: <span style="display:flex;align-items:center;gap:8px">\n      <Icon name="map-pin" size={16} /> 北京\n    </span>,\n  },\n  ...\n];`}
       >
         <JsxCascader />
@@ -257,4 +260,5 @@ export const CascaderDocPage = () => (
       </DemoBlock>
     </div>
   </DocLayout>
-);
+  );
+};

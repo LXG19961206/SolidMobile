@@ -7,6 +7,7 @@ export interface NavBarMobileProps {
 }
 import { NavBar } from '../../../src/components/NavBar';
 import { Icon } from '../../../src/components/Icon';
+import { useT } from '../../doc-i18n';
 
 const propsData = [
   { name: 'title', type: 'string | JSX.Element', desc: '标题' },
@@ -32,6 +33,7 @@ const CARD = {
 };
 
 export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
+  const t = useT();
   return (
     <MobilePreview title="NavBar 导航栏" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 */}

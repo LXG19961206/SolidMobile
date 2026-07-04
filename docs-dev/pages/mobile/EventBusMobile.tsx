@@ -1,6 +1,7 @@
 import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
 import { CodeBlock } from '../../../src/doc-utils';
+import { useT } from '../../doc-i18n';
 
 export interface EventBusMobileProps {
   components?: ComponentEntry[];
@@ -55,6 +56,7 @@ const EVENTS_LIST = [
 ];
 
 export const EventBusMobile: Component<EventBusMobileProps> = (props) => {
+  const t = useT();
   return (
     <MobilePreview title="EventBus 事件总线" components={props.components} onNavigate={props.onNavigate}>
       {/* 定位 */}

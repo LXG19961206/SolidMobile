@@ -1,5 +1,6 @@
 import { createSignal, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface TabsMobileProps {
   components?: ComponentEntry[];
@@ -33,6 +34,7 @@ const CARD = {
 };
 
 export const TabsMobile: Component<TabsMobileProps> = (props) => {
+  const t = useT();
   const [active1, setActive1] = createSignal(0);
   const [active2, setActive2] = createSignal(0);
   const [active3, setActive3] = createSignal('a');

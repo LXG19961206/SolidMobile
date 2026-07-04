@@ -1,5 +1,6 @@
 import { Empty } from '../../../../src/components/Empty';
 import { Button } from '../../../../src/components/Button';
+import { useT } from '../../../doc-i18n';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './EmptyDocPage.module.css';
@@ -17,14 +18,16 @@ const tocItems: TOCItem[] = [
   { id: 'custom', title: '自定义' },
 ];
 
-export const EmptyDocPage = () => (
+export const EmptyDocPage = () => {
+  const t = useT();
+  return (
   <DocLayout>
 
     <div class={css.page}>
       <h1 class={css.h1}>Empty 空状态</h1>
       <p class={css.intro}>数据为空时的占位提示。内置三种预设图片，也支持自定义 JSX 和底部操作。</p>
 
-      <h2 id="props" class={css.h2}>属性 / Props</h2>
+      <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
       <h2 id="basic" class={css.h2}>基础用法</h2>
@@ -52,4 +55,5 @@ export const EmptyDocPage = () => (
       </DemoBlock>
     </div>
   </DocLayout>
-);
+  );
+};

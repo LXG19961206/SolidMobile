@@ -5,6 +5,7 @@ export interface DatePickerMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
+import { useT } from '../../doc-i18n';
 import { DatePicker } from '../../../src/components/DatePicker';
 
 const propsData = [
@@ -33,6 +34,7 @@ const CARD = {
 };
 
 export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
+  const t = useT();
   const [showDate, setShowDate] = createSignal(false);
   const [showMonth, setShowMonth] = createSignal(false);
   const [dateVal, setDateVal] = createSignal('');
@@ -94,8 +96,8 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
 
       {/* 带禁用日期 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>禁用特定日期</div>
-        <div style={CARD.desc}>disabledDate 禁用周末（周六=6, 周日=0）</div>
+        <div style={CARD.title}>{t('demo.disabledDate')}</div>
+        <div style={CARD.desc}>{t('demo.disabledDateDesc')}</div>
         <div style={CARD.body}>
           <DatePicker
             type="date"
@@ -128,8 +130,8 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
 
       {/* 日期+时间 datetime */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>日期+时间 datetime</div>
-        <div style={CARD.desc}>type='datetime' 增加时/分/秒三列，格式 YYYY-MM-DD HH:mm:ss</div>
+        <div style={CARD.title}>{t('demo.dateTime')}</div>
+        <div style={CARD.desc}>{t('demo.dateTimeDesc')}</div>
         <div style={CARD.body}>
           <div
             style={{ padding: '12px 16px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: dateTimeVal() || '#9ca3af' }}

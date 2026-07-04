@@ -6,6 +6,7 @@ export interface SliderMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { Slider } from '../../../src/components/Slider';
+import { useT } from '../../doc-i18n';
 
 const propsData = [
   { name: 'value', type: 'number | number[]', desc: '当前值' },
@@ -31,6 +32,7 @@ const CARD = {
 };
 
 export const SliderMobile: Component<SliderMobileProps> = (props) => {
+  const t = useT();
   const [val1, setVal1] = createSignal(50);
   const [val2, setVal2] = createSignal(30);
   const [rangeVal, setRangeVal] = createSignal([20, 60]);

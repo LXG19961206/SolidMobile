@@ -1,5 +1,6 @@
 import { createSignal, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface SwitchMobileProps {
   components?: ComponentEntry[];
@@ -27,6 +28,7 @@ const CARD = {
 };
 
 export const SwitchMobile: Component<SwitchMobileProps> = (props) => {
+  const t = useT();
   const [val1, setVal1] = createSignal(true);
   const [val2, setVal2] = createSignal(false);
 

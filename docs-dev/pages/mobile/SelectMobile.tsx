@@ -6,6 +6,7 @@ export interface SelectMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { Select } from '../../../src/components/Select';
+import { useT } from '../../doc-i18n';
 
 const propsData = [
   { name: 'options', type: '{ text: string; value: string | number }[]', desc: '选项列表' },
@@ -42,6 +43,7 @@ const sizeOpts = [
 ];
 
 export const SelectMobile: Component<SelectMobileProps> = (props) => {
+  const t = useT();
   const [show1, setShow1] = createSignal(false);
   const [show2, setShow2] = createSignal(false);
   const [gender, setGender] = createSignal('');

@@ -5,6 +5,7 @@ export interface ButtonMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
+import { useT } from '../../doc-i18n';
 import { Button } from '../../../src/components/Button';
 import { Icon } from '../../../src/components/Icon';
 
@@ -36,6 +37,7 @@ const CARD = {
 };
 
 export const ButtonMobile: Component<ButtonMobileProps> = (props) => {
+  const t = useT();
   const [loading, setLoading] = createSignal(false);
   const handleLoading = () => {
     setLoading(true);
@@ -128,8 +130,8 @@ export const ButtonMobile: Component<ButtonMobileProps> = (props) => {
 
       {/* 自定义颜色 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义颜色</div>
-        <div style={CARD.desc}>color / textColor 覆盖默认配色</div>
+        <div style={CARD.title}>{t('demo.customColor')}</div>
+        <div style={CARD.desc}>{t('demo.customColorDesc')}</div>
         <div style={CARD.body}>
           <Button color="#6366f1" text="Indigo" />
           <Button color="#ec4899" text="Pink" />

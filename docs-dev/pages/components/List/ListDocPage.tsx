@@ -9,6 +9,7 @@ import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../.
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import type { SwipeAction } from '../../../../src/components/SwipeCell';
 import css from './ListDocPage.module.css';
+import { useT } from '../../../doc-i18n';
 
 const listProps: PropRow[] = [
   { name: 'data', type: 'I[]', default: '—', required: false, desc: '模式 1（受控）：外部管理的数据源。' },
@@ -221,6 +222,7 @@ const codes: Record<string, string> = {
 /* ── Main ── */
 
 export const ListDocPage: Component = () => {
+  const t = useT();
   const [activeTab, setActiveTab] = createSignal('controlled');
 
   return (
@@ -232,7 +234,7 @@ export const ListDocPage: Component = () => {
           可通过 virtual 开启虚拟列表，pullRefresh 开启下拉刷新。
         </p>
 
-        <h2 id="props" class={css.h2}>属性 / Props</h2>
+        <h2 id="props" class={css.h2}>{t('common.props')}</h2>
         <PropsTable rows={listProps} />
 
         <h2 id="demo" class={css.h2}>示例</h2>

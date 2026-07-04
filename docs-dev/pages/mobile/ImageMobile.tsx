@@ -1,5 +1,6 @@
 import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface ImageMobileProps {
   components?: ComponentEntry[];
@@ -45,6 +46,7 @@ const LOGOS = [
 ];
 
 export const ImageMobile: Component<ImageMobileProps> = (props) => {
+  const t = useT();
   return (
     <MobilePreview title="Image 图片" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* Logo 展示 */}

@@ -2,6 +2,7 @@ import { createSignal, type Component } from 'solid-js';
 import { Button } from '../../../../src/components/Button';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 import styles from './ButtonDocPage.module.css';
 
 /* ---------------------------------------------------------------------- */
@@ -49,6 +50,7 @@ const tocItems: TOCItem[] = [
 /* ---------------------------------------------------------------------- */
 
 export const ButtonDocPage: Component = () => {
+  const t = useT();
   const [loading, setLoading] = createSignal(false);
   const handleLoadingDemo = () => {
     setLoading(true);
@@ -63,7 +65,7 @@ export const ButtonDocPage: Component = () => {
         <p class={styles.lead}>通用的操作触发按钮。支持多种变体风格、四种尺寸、图标、加载态、链接模式及自定义颜色。</p>
 
         {/* ---- Props Table ---- */}
-        <h2 id="props" class={styles.h2}>属性 / Props</h2>
+        <h2 id="props" class={styles.h2}>{t('common.props')}</h2>
         <PropsTable rows={propsData} />
 
         <h2 id="css-vars" class={styles.h2}>CSS 变量</h2>
@@ -166,7 +168,7 @@ export const ButtonDocPage: Component = () => {
 
       {/* ---- 状态 ---- */}
       <h2 id="states" class={styles.h2}>状态</h2>
-      <DemoBlock title="加载状态" desc="loading 为 true 时显示旋转动画并禁用交互。点击下方按钮体验。"
+      <DemoBlock title={t('demo.loading')}
         code={`<Button loading={loading} loadingText="提交中..." onClick={submit}>{loading ? '提交中...' : '提交'}</Button>`}
       >
         <div class={styles.row}>
@@ -175,7 +177,7 @@ export const ButtonDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      <DemoBlock title="禁用状态" desc="disabled 为 true 时不可点击，所有变体统一降 opacity 至 50%。"
+      <DemoBlock title={t('demo.disabled')} desc={t('demo.disabledDesc')}
         code={`<Button disabled>Disabled</Button>`}
       >
         <div class={styles.row}>

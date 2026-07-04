@@ -6,6 +6,7 @@ import { Input } from '../../../../src/components/Input';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
 import type { PropRow } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 
 const radioProps: PropRow[] = [
   { name: 'value', type: 'unknown', default: '—', required: true, desc: '标识符，选中时对应 RadioGroup 的 value。' },
@@ -178,6 +179,7 @@ const FormDemo: Component = () => {
 };
 
 export const RadioDocPage: Component = () => {
+  const t = useT();
   const [basicVal, setBasicVal] = createSignal('a');
   const [disabledVal, setDisabledVal] = createSignal('a');
   const [shapeVal, setShapeVal] = createSignal('a');
@@ -203,7 +205,7 @@ export const RadioDocPage: Component = () => {
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>CSS 变量</h2>
         <PropsTable rows={radioCssVars} />
 
-        <DemoBlock title="基础用法" code={codeBasic}>
+        <DemoBlock title={t('demo.basic')} code={codeBasic}>
           <RadioGroup value={basicVal()} onChange={setBasicVal}>
             <Radio value="a" label="选项 A" />
             <Radio value="b" label="选项 B" />
@@ -214,7 +216,7 @@ export const RadioDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title="禁用状态" desc="disabled 属性可设在整个 RadioGroup 或单个 Radio。" code={codeDisabled}>
+        <DemoBlock title={t('demo.disabled')} desc={t('demo.disabledDesc')} code={codeDisabled}>
           <RadioGroup value={disabledVal()} onChange={setDisabledVal}>
             <Radio value="a" label="正常" />
             <Radio value="b" label="禁用" disabled />
@@ -225,7 +227,7 @@ export const RadioDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title="形状" desc="round / square / dot 三种形状。" code={codeShape}>
+        <DemoBlock title={t('demo.shape')} desc={t('demo.shapeDesc')} code={codeShape}>
           <RadioGroup value={shapeVal()} onChange={setShapeVal}>
             <Radio value="a" label="Round（默认）" />
             <Radio value="b" label="Square" shape="square" />
@@ -236,7 +238,7 @@ export const RadioDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title="自定义颜色" desc="通过 checkedColor 修改选中态颜色。" code={codeColor}>
+        <DemoBlock title={t('demo.customColor')} desc={t('demo.customColorDesc')} code={codeColor}>
           <RadioGroup value={colorVal()} onChange={setColorVal} checkedColor="#22c55e">
             <Radio value="a" label="绿色" />
             <Radio value="b" label="绿色" />
@@ -247,7 +249,7 @@ export const RadioDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title="水平排列" desc="direction='horizontal'。" code={codeHorizontal}>
+        <DemoBlock title={t('demo.horizontal')} desc={t('demo.horizontalDesc')} code={codeHorizontal}>
           <RadioGroup direction="horizontal" value={hVal()} onChange={setHVal}>
             <Radio value="a" label="男" />
             <Radio value="b" label="女" />
@@ -257,7 +259,7 @@ export const RadioDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title="自定义图标" desc="通过 checkedIcon / uncheckedIcon 传入自定义 SVG 图标替换默认圆圈。选中/未选中可分别设置不同图标。" code={codeCustomIcon}>
+        <DemoBlock title={t('demo.customIcon')} desc={t('demo.customIconDesc')} code={codeCustomIcon}>
           <RadioGroup value={iconVal()} onChange={setIconVal} iconSize="28px" checkedColor="#1677ff">
             <Radio
               value="like"
@@ -301,7 +303,7 @@ export const RadioDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title="表单中使用" desc="RadioGroup 放在 FormItem 中，自动集成表单的值管理和校验机制。点击提交触发表单内所有 Radio 的值。" code={codeForm}>
+        <DemoBlock title={t('demo.form')} desc={t('demo.formDesc')} code={codeForm}>
           <FormDemo />
         </DemoBlock>
       </div>

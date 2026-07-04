@@ -8,6 +8,7 @@ export interface ListMobileProps {
 import { List } from '../../../src/components/List';
 import { Cell } from '../../../src/components/Cell';
 import { Avatar } from '../../../src/components/Avatar';
+import { useT } from '../../doc-i18n';
 
 const propsData = [
   { name: 'data', type: 'I[]', desc: '受控模式：外部管理的数据源' },
@@ -51,6 +52,7 @@ function genItems(start: number, n: number): ListItem[] {
 }
 
 export const ListMobile: Component<ListMobileProps> = (props) => {
+  const t = useT();
   /* ── 静态数据 ── */
   const staticItems = genItems(0, 5);
 

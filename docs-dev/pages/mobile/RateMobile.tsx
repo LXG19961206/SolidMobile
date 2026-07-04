@@ -6,6 +6,7 @@ export interface RateMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { Rate } from '../../../src/components/Rate';
+import { useT } from '../../doc-i18n';
 
 const propsData = [
   { name: 'value', type: 'number', desc: '当前分值' },
@@ -31,6 +32,7 @@ const CARD = {
 };
 
 export const RateMobile: Component<RateMobileProps> = (props) => {
+  const t = useT();
   const [val, setVal] = createSignal(3);
   const [halfVal, setHalfVal] = createSignal(3.5);
 

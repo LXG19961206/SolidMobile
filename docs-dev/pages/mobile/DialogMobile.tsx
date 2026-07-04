@@ -1,5 +1,6 @@
 import { createSignal, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface DialogMobileProps {
   components?: ComponentEntry[];
@@ -34,6 +35,7 @@ const CARD = {
 };
 
 export const DialogMobile: Component<DialogMobileProps> = (props) => {
+  const t = useT();
   const [showDeclarative, setShowDeclarative] = createSignal(false);
 
   return (

@@ -1,4 +1,5 @@
 import { Divider } from '../../../../src/components/Divider';
+import { useT } from '../../../doc-i18n';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './DividerDocPage.module.css';
@@ -17,14 +18,16 @@ const tocItems: TOCItem[] = [
   { id: 'vertical', title: '垂直分割线' },
 ];
 
-export const DividerDocPage = () => (
+export const DividerDocPage = () => {
+  const t = useT();
+  return (
   <DocLayout>
 
     <div class={css.page}>
       <h1 class={css.h1}>Divider 分割线</h1>
       <p class={css.intro}>将内容分组的视觉分隔线，支持水平/垂直方向、文字和虚线样式。</p>
 
-      <h2 id="props" class={css.h2}>属性 / Props</h2>
+      <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
       <h2 id="horizontal" class={css.h2}>水平分割线</h2>
@@ -44,4 +47,5 @@ export const DividerDocPage = () => (
       </DemoBlock>
     </div>
   </DocLayout>
-);
+  );
+};

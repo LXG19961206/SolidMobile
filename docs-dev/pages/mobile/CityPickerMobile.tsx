@@ -6,6 +6,7 @@ export interface CityPickerMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { CityPicker } from '../../../src/components/CityPicker';
+import { useT } from '../../doc-i18n';
 import type { PickerOption } from '../../../src/components/Picker';
 
 const propsData = [
@@ -65,6 +66,7 @@ const cityData: PickerOption[] = [
 ];
 
 export const CityPickerMobile: Component<CityPickerMobileProps> = (props) => {
+  const t = useT();
   const [show, setShow] = createSignal(false);
   const [val, setVal] = createSignal<(string | number)[]>([]);
   const [display, setDisplay] = createSignal('');

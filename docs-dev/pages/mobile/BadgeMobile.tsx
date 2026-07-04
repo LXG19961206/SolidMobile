@@ -9,6 +9,7 @@ import { Badge } from '../../../src/components/Badge';
 import { Avatar } from '../../../src/components/Avatar';
 import { Button } from '../../../src/components/Button';
 import { Tabs, Tab } from '../../../src/components/Tabs';
+import { useT } from '../../doc-i18n';
 import { Cell, CellGroup } from '../../../src/components/Cell';
 
 const propsData = [
@@ -30,6 +31,7 @@ const CARD = {
 const AVATAR_URL = 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix';
 
 export const BadgeMobile: Component<BadgeMobileProps> = (props) => {
+  const t = useT();
   return (
     <MobilePreview title="Badge 徽标" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 配头像 — 最常见场景 */}

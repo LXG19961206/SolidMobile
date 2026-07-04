@@ -1,5 +1,6 @@
 import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface LayoutMobileProps {
   components?: ComponentEntry[];
@@ -33,6 +34,7 @@ const colBox = (bg: string) => ({
 });
 
 export const LayoutMobile: Component<LayoutMobileProps> = (props) => {
+  const t = useT();
   return (
     <MobilePreview title="Layout 布局" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础栅格 */}

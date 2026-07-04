@@ -8,6 +8,7 @@ export interface OverlayMobileProps {
 import { Overlay } from '../../../src/components/Overlay';
 import { Button } from '../../../src/components/Button';
 import { Loading } from '../../../src/components/Loading';
+import { useT } from '../../doc-i18n';
 
 const propsData = [
   { name: 'open', type: 'boolean', desc: '是否显示遮罩（必填）' },
@@ -27,6 +28,7 @@ const CARD = {
 };
 
 export const OverlayMobile: Component<OverlayMobileProps> = (props) => {
+  const t = useT();
   const [show1, setShow1] = createSignal(false);
   const [show2, setShow2] = createSignal(false);
 

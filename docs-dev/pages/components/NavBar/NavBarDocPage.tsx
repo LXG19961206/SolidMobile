@@ -4,6 +4,7 @@ import { Icon } from '../../../../src/components/Icon';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './NavBarDocPage.module.css';
+import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
   { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: '标题。' },
@@ -27,7 +28,9 @@ const tocItems: TOCItem[] = [
   { id: 'demo', title: '示例' },
 ];
 
-export const NavBarDocPage = () => (
+export const NavBarDocPage = () => {
+  const t = useT();
+  return (
   <DocLayout>
     <div class={css.page}>
       <h1 class={css.h1}>NavBar 导航栏</h1>
@@ -35,7 +38,7 @@ export const NavBarDocPage = () => (
         顶部导航条，提供左中右三区域布局，支持返回箭头、固定定位和占位元素。
       </p>
 
-      <h2 id="props" class={css.h2}>属性 / Props</h2>
+      <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
       <h2 id="demo" class={css.h2}>示例</h2>
@@ -69,4 +72,5 @@ export const NavBarDocPage = () => (
 
     </div>
   </DocLayout>
-);
+  );
+};

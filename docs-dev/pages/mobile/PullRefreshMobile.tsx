@@ -1,6 +1,7 @@
 import { createSignal, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
 import { PullRefresh } from '../../../src/components/PullRefresh';
+import { useT } from '../../doc-i18n';
 
 export interface PullRefreshMobileProps {
   components?: ComponentEntry[];
@@ -33,14 +34,15 @@ async function mockRefresh(): Promise<void> {
 }
 
 export const PullRefreshMobile: Component<PullRefreshMobileProps> = (_props) => {
+  const t = useT();
   const [count, setCount] = createSignal(0);
 
   return (
     <MobilePreview title="PullRefresh 下拉刷新" props={propsData} components={_props.components} onNavigate={_props.onNavigate}>
       {/* 基础用法 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础用法</div>
-        <div style={CARD.desc}>下拉触发刷新，松手后自动回弹。</div>
+        <div style={CARD.title}>{t('demo.basic')}</div>
+        <div style={CARD.desc}>{t('demo.basicDesc')}</div>
         <div style={CARD.body}>
           <PullRefresh onRefresh={mockRefresh}>
             <div style={{ padding: '80px 16px', 'text-align': 'center', color: '#969799', 'font-size': '0.8125rem' }}>

@@ -7,6 +7,7 @@ export interface LoadingMobileProps {
 }
 import { Loading } from '../../../src/components/Loading';
 import { Button } from '../../../src/components/Button';
+import { useT } from '../../doc-i18n';
 
 const propsData = [
   { name: 'type', type: "'spinner' | 'circular' | 'dots'", desc: '内置动画类型，默认 spinner' },
@@ -27,6 +28,7 @@ const CARD = {
 };
 
 export const LoadingMobile: Component<LoadingMobileProps> = (props) => {
+  const t = useT();
   const [showOverlay, setShowOverlay] = createSignal(false);
 
   return (

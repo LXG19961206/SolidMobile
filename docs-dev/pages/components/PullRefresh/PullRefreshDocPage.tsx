@@ -4,6 +4,7 @@ import { List } from "../../../../src/components/List";
 import { Cell } from "../../../../src/components/Cell";
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 
 /* ── Helper: simulate async refresh ── */
 
@@ -26,6 +27,7 @@ const pullRefreshProps: PropRow[] = [
 ];
 
 export const PullRefreshDocPage: Component = () => {
+  const t = useT();
   const [count, setCount] = createSignal(0);
   const [items, setItems] = createSignal<string[]>(Array.from({length: 20}, (_, i) => `Item ${i + 1}`));
 
@@ -42,10 +44,10 @@ export const PullRefreshDocPage: Component = () => {
           包裹内容区域，支持下拉手势触发刷新，带阻尼反馈、加载状态和成功提示。
         </p>
 
-        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Props</h2>
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
         <PropsTable rows={pullRefreshProps} />
 
-        <DemoBlock title="基础用法" desc="下拉触发刷新，松手后自动回弹并加载。" code={`import { PullRefresh } from 'solid-mobile';\n\nfunction Page() {\n  const [list, setList] = createSignal(0);\n\n  return (\n    <PullRefresh\n      onRefresh={async () => {\n        await fetch('/api/refresh');\n        setList(c => c + 1);\n      }}\n    >\n      <List>\n        <Cell>Item {list()}</Cell>\n      </List>\n    </PullRefresh>\n  );\n}`}>
+        <DemoBlock title={t('demo.basic')} desc={t('demo.basicDesc')} code={`import { PullRefresh } from 'solid-mobile';\n\nfunction Page() {\n  const [list, setList] = createSignal(0);\n\n  return (\n    <PullRefresh\n      onRefresh={async () => {\n        await fetch('/api/refresh');\n        setList(c => c + 1);\n      }}\n    >\n      <List>\n        <Cell>Item {list()}</Cell>\n      </List>\n    </PullRefresh>\n  );\n}`}>
           <div style={{ background: '#fff', 'border-radius': '8px', padding: '12px', 'text-align': 'center', color: '#969799', 'font-size': '0.8rem' }}>
             <PullRefresh onRefresh={mockRefresh}>
               <div style={{ padding: '40px 0' }}>

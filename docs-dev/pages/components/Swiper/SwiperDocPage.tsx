@@ -2,6 +2,7 @@ import { type Component } from 'solid-js';
 import { Swiper } from '../../../../src/components/Swiper';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
   { name: 'autoplay', type: 'number | string', default: '—', required: false, desc: '自动轮播间隔 (ms)。' },
@@ -26,6 +27,7 @@ const IMGS = [
 ];
 
 export const SwiperDocPage: Component = () => {
+  const t = useT();
   return (
     <DocLayout>
       <div style={{ padding: '16px', 'max-width': '960px' }}>
@@ -34,10 +36,10 @@ export const SwiperDocPage: Component = () => {
           轮播组件，支持手势滑动、自动播放、循环、纵向滚动、自定义指示器。可通过 imgUrls 快速渲染图片轮播。
         </p>
 
-        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Props</h2>
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
         <PropsTable rows={propsData} />
 
-        <DemoBlock title="自定义内容" desc="children 传入任意 JSX，不限于图片。" code={`<Swiper height={180} loop autoplay={2500}>\n  <div style="...">Slide 1</div>\n  <div style="...">Slide 2</div>\n  <div style="...">Slide 3</div>\n</Swiper>`}>
+        <DemoBlock title={t('demo.customRender')} desc={t('demo.customRenderDesc')} code={`<Swiper height={180} loop autoplay={2500}>\n  <div style="...">Slide 1</div>\n  <div style="...">Slide 2</div>\n  <div style="...">Slide 3</div>\n</Swiper>`}>
           <Swiper height={180} loop autoplay={2500}>
             <div style={{ background: 'linear-gradient(135deg, #667eea, #764ba2)', width: '100%', height: '100%', display: 'flex', 'align-items': 'center', 'justify-content': 'center', color: '#fff', 'font-size': '1.2rem', 'font-weight': 600 }}>🚀 SolidJS — Declarative & Efficient</div>
             <div style={{ background: 'linear-gradient(135deg, #f093fb, #f5576c)', width: '100%', height: '100%', display: 'flex', 'align-items': 'center', 'justify-content': 'center', color: '#fff', 'font-size': '1.2rem', 'font-weight': 600 }}>⚡ Fine-grained Reactivity</div>
@@ -49,7 +51,7 @@ export const SwiperDocPage: Component = () => {
           <Swiper imgUrls={IMGS} height={200} autoplay={3000} />
         </DemoBlock>
 
-        <DemoBlock title="自定义指示器" desc="indicators 传入 (current, total) 渲染函数。" code={`<Swiper\n  imgUrls={imgs}\n  indicators={(cur, tot) => (\n    <div style="display:flex;gap:4px">\n      {Array.from({length:tot}, (_,i) => (\n        <span style={{...i===cur?active:inactive}} />\n      ))}\n    </div>\n  )}\n/>`}>
+        <DemoBlock title={t('demo.indicator')} desc={t('demo.indicatorDesc')} code={`<Swiper\n  imgUrls={imgs}\n  indicators={(cur, tot) => (\n    <div style="display:flex;gap:4px">\n      {Array.from({length:tot}, (_,i) => (\n        <span style={{...i===cur?active:inactive}} />\n      ))}\n    </div>\n  )}\n/>`}>
           <Swiper
             imgUrls={IMGS}
             height={200}

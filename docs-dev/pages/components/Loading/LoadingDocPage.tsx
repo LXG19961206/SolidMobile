@@ -4,6 +4,7 @@ import { Icon } from '../../../../src/components/Icon';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import styles from './LoadingDocPage.module.css';
+import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
   { name: 'text', type: 'string', default: '—', required: false, desc: '加载文字。与 children 二选一，text 优先。' },
@@ -29,6 +30,7 @@ const tocItems: TOCItem[] = [
 ];
 
 const LoadingDocInner = () => {
+  const t = useT();
   const phoneTarget = useContext(PhoneTargetContext);
   const phoneMount = () => phoneTarget?.();
   const [overlayOpen, setOverlayOpen] = createSignal(false);
@@ -43,7 +45,7 @@ const LoadingDocInner = () => {
         </p>
 
         {/* Props */}
-        <h2 id="props" class={styles.h2}>属性 / Props</h2>
+        <h2 id="props" class={styles.h2}>{t('common.props')}</h2>
         <PropsTable rows={propsData} />
 
         {/* Types */}

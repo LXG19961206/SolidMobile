@@ -2,6 +2,7 @@ import { createSignal } from 'solid-js';
 import { Tabs, Tab } from '../../../../src/components/Tabs';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 import css from './TabsDocPage.module.css';
 
 const tabsProps: PropRow[] = [
@@ -37,6 +38,7 @@ const tocItems: TOCItem[] = [
 ];
 
 export const TabsDocPage = () => {
+  const t = useT();
   const [active, setActive] = createSignal('tab1');
 
   return (
@@ -49,9 +51,9 @@ export const TabsDocPage = () => {
           默认开启 lazyRender，未激活的 tab 不渲染内容。
         </p>
 
-        <h2 id="tabs-props" class={css.h2}>Tabs 属性</h2>
+        <h2 id="tabs-props" class={css.h2}>Tabs {t('common.props')}</h2>
         <PropsTable rows={tabsProps} />
-        <h2 id="tab-props" class={css.h2}>Tab 属性</h2>
+        <h2 id="tab-props" class={css.h2}>Tab {t('common.props')}</h2>
         <PropsTable rows={tabProps} />
 
         <h2 id="basic" class={css.h2}>基础用法</h2>
@@ -80,7 +82,7 @@ export const TabsDocPage = () => {
           </Tabs>
         </DemoBlock>
 
-        <DemoBlock title="自定义颜色" desc="color 设置主题色，titleActiveColor / titleInactiveColor 分别控制标题颜色。" code={`<Tabs color="#22c55e" titleActiveColor="#22c55e">\n  <Tab title="绿色主题" name="a"><div>绿色</div></Tab>\n  <Tab title="标签" name="b"><div>标签</div></Tab>\n</Tabs>`}>
+        <DemoBlock title={t('demo.customColor')} desc={t('demo.customColorDesc')} code={`<Tabs color="#22c55e" titleActiveColor="#22c55e">\n  <Tab title="绿色主题" name="a"><div>绿色</div></Tab>\n  <Tab title="标签" name="b"><div>标签</div></Tab>\n</Tabs>`}>
           <Tabs color="#22c55e" titleActiveColor="#22c55e">
             <Tab title="绿色主题" name="a"><div class={css.demoPanel}>绿色</div></Tab>
             <Tab title="标签" name="b"><div class={css.demoPanel}>标签</div></Tab>

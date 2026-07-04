@@ -8,6 +8,7 @@ export interface CheckboxMobileProps {
 import { Checkbox, CheckboxGroup } from '../../../src/components/Checkbox';
 import { Form, FormItem } from '../../../src/components/Form';
 import { Button } from '../../../src/components/Button';
+import { useT } from '../../doc-i18n';
 import { Toast, ToastRenderer } from '../../../src/components/Toast';
 
 const propsData = [
@@ -47,6 +48,7 @@ const HeartIcon = () => (
 );
 
 export const CheckboxMobile: Component<CheckboxMobileProps> = (props) => {
+  const t = useT();
   const [basicVal, setBasicVal] = createSignal<unknown[]>([]);
   const [indetCheck, setIndetCheck] = createSignal(false);
   const [standaloneChecked, setStandaloneChecked] = createSignal(true);

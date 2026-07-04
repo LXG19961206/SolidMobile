@@ -5,6 +5,7 @@ export interface ActionSheetMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
+import { useT } from '../../doc-i18n';
 import { ActionSheet } from '../../../src/components/ActionSheet';
 import type { ActionSheetItem } from '../../../src/components/ActionSheet';
 import { Cell, CellGroup } from '../../../src/components/Cell';
@@ -52,6 +53,7 @@ const disabledItems: ActionSheetItem[] = [
 ];
 
 export const ActionSheetMobile: Component<ActionSheetMobileProps> = (props) => {
+  const t = useT();
   const [show1, setShow1] = createSignal(false);
   const [show2, setShow2] = createSignal(false);
   const [show3, setShow3] = createSignal(false);

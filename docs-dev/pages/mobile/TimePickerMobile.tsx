@@ -1,5 +1,6 @@
 import { createSignal, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 import { TimePicker } from '../../../src/components/TimePicker';
 import { Form, FormItem } from '../../../src/components/Form';
 import { Button } from '../../../src/components/Button';
@@ -31,6 +32,7 @@ const CARD = {
 };
 
 export const TimePickerMobile: Component<TimePickerMobileProps> = (props) => {
+  const t = useT();
   /* ── Basic ── */
   const [basicVal, setBasicVal] = createSignal('');
 
@@ -44,8 +46,8 @@ export const TimePickerMobile: Component<TimePickerMobileProps> = (props) => {
     <MobilePreview title="TimePicker 时间选择" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础用法 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础用法</div>
-        <div style={CARD.desc}>HH:mm:ss 三列，纯数字显示，零国际化成本。</div>
+        <div style={CARD.title}>{t('demo.basic')}</div>
+        <div style={CARD.desc}>{t('demo.basicDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
@@ -60,8 +62,8 @@ export const TimePickerMobile: Component<TimePickerMobileProps> = (props) => {
 
       {/* 受控值 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>受控值</div>
-        <div style={CARD.desc}>通过 value prop 预设时间。</div>
+        <div style={CARD.title}>{t('demo.controlled')}</div>
+        <div style={CARD.desc}>{t('demo.controlledDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell title="预设值" value={ctrlVal()} clickable />

@@ -5,6 +5,7 @@ export interface CenterMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
+import { useT } from '../../doc-i18n';
 import { Center } from '../../../src/components/Center';
 
 const propsData = [
@@ -41,6 +42,7 @@ const chip = {
 };
 
 export const CenterMobile: Component<CenterMobileProps> = (props) => {
+  const t = useT();
   return (
     <MobilePreview title="Center 居中" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* ══ 默认行为：无 props = 完全居中 ══ */}

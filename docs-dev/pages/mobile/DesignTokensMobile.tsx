@@ -1,5 +1,6 @@
 import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 import { useConfig } from '../../../src/config';
 
 const CARD = {
@@ -50,6 +51,7 @@ const surfaceKeys = [
 ] as const;
 
 export const DesignTokensMobile: Component<{ components?: ComponentEntry[]; onNavigate?: (key: string) => void }> = (props) => {
+  const t = useT();
   const config = useConfig();
   const light = () => config.colors.light;
   const dark = () => config.colors.dark;

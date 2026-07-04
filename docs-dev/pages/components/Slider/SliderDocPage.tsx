@@ -5,6 +5,7 @@ import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
 import type { PropRow } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 
 const sliderProps: PropRow[] = [
   { name: 'value', type: 'number | number[]', default: '0', required: false, desc: '当前值。count=1 时为数字，count>1 时为数组。' },
@@ -49,6 +50,7 @@ const codeForm = `<FormItem name="score" label="评分">
 </FormItem>`;
 
 export const SliderDocPage: Component = () => {
+  const t = useT();
   const [basicVal, setBasicVal] = createSignal(30);
   const [rangeVal, setRangeVal] = createSignal([20, 60]);
   const [threeVal, setThreeVal] = createSignal([10, 50, 90]);
@@ -67,7 +69,7 @@ export const SliderDocPage: Component = () => {
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Slider Props</h2>
         <PropsTable rows={sliderProps} />
 
-        <DemoBlock title="基础用法" code={codeBasic}>
+        <DemoBlock title={t('demo.basic')} code={codeBasic}>
           <div style={{ padding: '0 4px' }}>
             <Slider value={basicVal()} onChange={setBasicVal} />
           </div>
@@ -103,7 +105,7 @@ export const SliderDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title="禁用状态" code={codeDisabled}>
+        <DemoBlock title={t('demo.disabled')} code={codeDisabled}>
           <div style={{ padding: '0 4px' }}>
             <Slider value={50} disabled />
           </div>
@@ -118,7 +120,7 @@ export const SliderDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title="表单中使用" desc="Slider 放在 FormItem 中自动集成表单的值管理。" code={codeForm}>
+        <DemoBlock title={t('demo.form')} desc={t('demo.formDesc')} code={codeForm}>
           <Form onSubmit={(v) => { setFormVal(v); Toast.success('提交: ' + JSON.stringify(v)); }}>
             <FormItem name="score" label="评分" contentFlex>
               <div style={{ padding: '12px 4px', flex: '1', 'min-width': '0' }}>

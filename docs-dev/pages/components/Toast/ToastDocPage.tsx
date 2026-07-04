@@ -3,6 +3,7 @@ import { Toast, ToastRenderer } from '../../../../src/components/Toast/ToastMana
 import { Cell } from '../../../../src/components/Cell';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 import styles from './ToastDocPage.module.css';
 
 const propsData: PropRow[] = [
@@ -28,6 +29,7 @@ const methodsData: PropRow[] = [
 /* ── Inner Component (inside DocLayout for context) ── */
 
 const ToastDocInner: Component = () => {
+  const t = useT();
   const phone = useContext(PhoneTargetContext);
   const m = () => phone?.();
 
@@ -37,7 +39,7 @@ const ToastDocInner: Component = () => {
       <h1 class={styles.h1}>Toast 轻提示</h1>
       <p class={styles.lead}>全局的轻量级反馈提示，命令式 API 调用。</p>
 
-      <h2 id="props" class={styles.h2}>属性 / Props</h2>
+      <h2 id="props" class={styles.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
       <h2 id="methods" class={styles.h2}>方法</h2>

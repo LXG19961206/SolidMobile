@@ -1,5 +1,6 @@
 import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface ToastMobileProps {
   components?: ComponentEntry[];
@@ -26,6 +27,7 @@ const CARD = {
 };
 
 export const ToastMobile: Component<ToastMobileProps> = (props) => {
+  const t = useT();
   return (
     <MobilePreview title="Toast 轻提示" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       <ToastRenderer />

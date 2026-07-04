@@ -1,5 +1,6 @@
 import { createSignal, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 import { Upload } from '../../../src/components/Upload';
 import type { UploadFile } from '../../../src/components/Upload';
 import { ToastRenderer, Toast } from '../../../src/components/Toast';
@@ -50,6 +51,7 @@ function mockApi(file: File, onProgress?: (pct: number) => void): Promise<string
 }
 
 export const UploadMobile: Component<UploadMobileProps> = (props) => {
+  const t = useT();
   const [files1, setFiles1] = createSignal<UploadFile[]>([]);
 
   return (
@@ -58,8 +60,8 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
 
       {/* 图片上传 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>图片上传</div>
-        <div style={CARD.desc}>默认 type=image，自动生成缩略图。最多 9 张。</div>
+        <div style={CARD.title}>{t('demo.imageUpload')}</div>
+        <div style={CARD.desc}>{t('demo.imageUploadDesc')}</div>
         <div style={CARD.body}>
           <Upload api={mockApi} maxCount={9} />
         </div>
@@ -67,8 +69,8 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
 
       {/* 文件上传 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>文件上传</div>
-        <div style={CARD.desc}>type=file，展示为文件列表，适合文档、压缩包。</div>
+        <div style={CARD.title}>{t('demo.fileUpload')}</div>
+        <div style={CARD.desc}>{t('demo.fileUploadDesc')}</div>
         <div style={CARD.body}>
           <Upload type="file" api={mockApi} />
         </div>
@@ -76,8 +78,8 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
 
       {/* 自定义图标 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义图标</div>
-        <div style={CARD.desc}>iconMap 按后缀指定图标，image/video/* 可作兜底。</div>
+        <div style={CARD.title}>{t('demo.customIcon')}</div>
+        <div style={CARD.desc}>{t('demo.customIconDesc')}</div>
         <div style={CARD.body}>
           <Upload
             type="file"
@@ -94,8 +96,8 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
 
       {/* 限制 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>限制 & 校验</div>
-        <div style={CARD.desc}>maxCount=3，maxSize=1MB，非图片文件被过滤。</div>
+        <div style={CARD.title}>{t('demo.limits')}</div>
+        <div style={CARD.desc}>{t('demo.limitsDesc')}</div>
         <div style={CARD.body}>
           <Upload
             maxCount={3}
@@ -107,8 +109,8 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
 
       {/* 受控模式 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>受控模式</div>
-        <div style={CARD.desc}>通过 fileList + onChange 接管文件列表。</div>
+        <div style={CARD.title}>{t('demo.controlled')}</div>
+        <div style={CARD.desc}>{t('demo.controlledDesc')}</div>
         <div style={CARD.body}>
           <Upload
             fileList={files1()}
@@ -119,8 +121,8 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
 
       {/* 自定义按钮 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义按钮</div>
-        <div style={CARD.desc}>children 替代默认的 + 按钮。</div>
+        <div style={CARD.title}>{t('demo.customTrigger')}</div>
+        <div style={CARD.desc}>{t('demo.customTriggerDesc')}</div>
         <div style={CARD.body}>
           <Upload>
             <span style={{ display: 'inline-flex', 'align-items': 'center', gap: '4px', padding: '8px 16px', background: '#1677ff', color: '#fff', 'border-radius': '6px', 'font-size': '0.8125rem' }}>
@@ -133,7 +135,7 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
       {/* 设计理念 */}
       <div style={CARD.wrapper}>
         <div style={{ padding: '16px 16px 12px', 'border-bottom': '1px solid var(--sc-color-border, #ebedf0)' }}>
-          <div style={{ 'font-size': '0.85rem', 'font-weight': 600, color: 'var(--sc-color-text, #323233)' }}>设计理念</div>
+          <div style={{ 'font-size': '0.85rem', 'font-weight': 600, color: 'var(--sc-color-text, #323233)' }}>{t('demo.design')}</div>
         </div>
         <div style={{ padding: '12px 16px 16px', 'font-size': '0.8rem', 'line-height': 1.8, color: 'var(--sc-color-text-secondary, #6b7280)' }}>
           <p style={{ margin: '0 0 8px' }}>

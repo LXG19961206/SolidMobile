@@ -4,6 +4,7 @@ import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
+import { useT } from '../../../doc-i18n';
 import type { PropRow } from '../../../../src/doc-utils';
 
 const checkboxProps: PropRow[] = [
@@ -188,6 +189,7 @@ const FormDemo: Component = () => {
 };
 
 export const CheckboxDocPage: Component = () => {
+  const t = useT();
   const [basicVal, setBasicVal] = createSignal<unknown[]>([]);
   const [items, setItems] = createSignal<unknown[]>(['a', 'b']);
   const [indet, setIndet] = createSignal(false);
@@ -209,7 +211,7 @@ export const CheckboxDocPage: Component = () => {
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>CSS 变量</h2>
         <PropsTable rows={checkboxCssVars} />
 
-        <DemoBlock title="基础用法" code={codeBasic}>
+        <DemoBlock title={t('demo.basic')} code={codeBasic}>
           <CheckboxGroup value={basicVal()} onChange={setBasicVal}>
             <Checkbox value="a" label="选项 A" />
             <Checkbox value="b" label="选项 B" />
@@ -220,7 +222,7 @@ export const CheckboxDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title="禁用状态" desc="disabled 可设在整个 CheckboxGroup 或单个 Checkbox。" code={codeDisabled}>
+        <DemoBlock title={t('demo.disabled')} desc={t('demo.disabledDesc')} code={codeDisabled}>
           <CheckboxGroup>
             <Checkbox value="a" label="正常" />
             <Checkbox value="b" label="禁用" disabled />
@@ -228,14 +230,14 @@ export const CheckboxDocPage: Component = () => {
           </CheckboxGroup>
         </DemoBlock>
 
-        <DemoBlock title="形状" desc="square / round 两种形状。Checkbox 默认 square。" code={codeShape}>
+        <DemoBlock title={t('demo.shape')} desc={t('demo.shapeDesc')} code={codeShape}>
           <CheckboxGroup>
             <Checkbox value="a" label="Square（默认）" />
             <Checkbox value="b" label="Round" shape="round" />
           </CheckboxGroup>
         </DemoBlock>
 
-        <DemoBlock title="自定义图标" desc="通过 checkedIcon / uncheckedIcon 传入自定义 SVG 图标替换默认方块。选中/未选中自动切换颜色。" code={codeCustomIcon}>
+        <DemoBlock title={t('demo.customIcon')} desc={t('demo.customIconDesc')} code={codeCustomIcon}>
           <CheckboxGroup checkedColor="#e74c3c" defaultValue={['star']}>
             <Checkbox
               value="star"
@@ -252,7 +254,7 @@ export const CheckboxDocPage: Component = () => {
           </CheckboxGroup>
         </DemoBlock>
 
-        <DemoBlock title="自定义颜色" desc="通过 checkedColor 修改选中态颜色。" code={codeColor}>
+        <DemoBlock title={t('demo.customColor')} desc={t('demo.customColorDesc')} code={codeColor}>
           <CheckboxGroup checkedColor="#22c55e" defaultValue={['a', 'c']}>
             <Checkbox value="a" label="绿色" />
             <Checkbox value="b" label="绿色" />
@@ -263,7 +265,7 @@ export const CheckboxDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title="水平排列" desc="direction='horizontal'，横向排列。" code={codeHorizontal}>
+        <DemoBlock title={t('demo.horizontal')} desc={t('demo.horizontalDesc')} code={codeHorizontal}>
           <CheckboxGroup direction="horizontal" defaultValue={['a']}>
             <Checkbox value="a" label="选项 A" />
             <Checkbox value="b" label="选项 B" />
@@ -271,7 +273,7 @@ export const CheckboxDocPage: Component = () => {
           </CheckboxGroup>
         </DemoBlock>
 
-        <DemoBlock title="半选状态" desc="indeterminate 属性用于实现「全选 / 取消全选」交互。" code={codeIndeterminate}>
+        <DemoBlock title={t('demo.half')} desc={t('demo.halfDesc')} code={codeIndeterminate}>
           <IndeterminateDemo />
         </DemoBlock>
 
@@ -293,7 +295,7 @@ export const CheckboxDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title="表单中使用" desc="CheckboxGroup 放在 FormItem 中，自动集成表单的值管理。" code={codeForm}>
+        <DemoBlock title={t('demo.form')} desc={t('demo.formDesc')} code={codeForm}>
           <FormDemo />
         </DemoBlock>
       </div>

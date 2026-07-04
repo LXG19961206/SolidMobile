@@ -4,6 +4,7 @@ import { Cell } from '../../../../src/components/Cell';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
 import type { NotifyOptions } from '../../../../src/components/notify/types';
+import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
   { name: 'type', type: "'primary' | 'success' | 'warning' | 'danger'", default: "'danger'", required: false, desc: '类型。' },
@@ -18,6 +19,7 @@ const propsData: PropRow[] = [
 ];
 
 const NotifyDocInner: Component = () => {
+  const t = useT();
   const phone = useContext(PhoneTargetContext);
   const m = () => phone?.();
   const noti = (fn: Function, msg: string, opts?: Partial<NotifyOptions>) =>
@@ -29,7 +31,7 @@ const NotifyDocInner: Component = () => {
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Notify 通知栏</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px' }}>顶部/底部弹出式通知栏，命令式 API 调用。</p>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>属性</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
       <DemoBlock title="Primary" desc="主要通知。" code="Notify.primary('这是一条主要通知');" groupCode="基础类型">

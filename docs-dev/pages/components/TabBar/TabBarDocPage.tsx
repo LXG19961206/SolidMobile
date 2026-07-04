@@ -2,6 +2,7 @@ import { createSignal, type Component } from 'solid-js';
 import { TabBar, TabBarItem } from '../../../../src/components/TabBar';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 
 const tabBarProps: PropRow[] = [
   { name: 'value', type: 'number | string', default: '—', required: false, desc: '当前选中标签（受控）。' },
@@ -60,6 +61,7 @@ const AnimatedUserIcon = (p: { active: boolean }) => (
 );
 
 export const TabBarDocPage: Component = () => {
+  const t = useT();
   const [val1, setVal1] = createSignal('home');
   const [val2, setVal2] = createSignal(0);
 
@@ -71,13 +73,13 @@ export const TabBarDocPage: Component = () => {
           移动端底部标签导航栏，支持图标+文字、徽标红点、自定义颜色。一般配合页面容器使用。
         </p>
 
-        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>TabBar Props</h2>
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>TabBar {t('common.props')}</h2>
         <PropsTable rows={tabBarProps} />
 
-        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>TabBarItem Props</h2>
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>TabBarItem {t('common.props')}</h2>
         <PropsTable rows={itemProps} />
 
-        <DemoBlock title="基础用法" desc="icon + label，默认 fixed 固定在底部。" code={`<TabBar value={val()} onChange={setVal}>\n  <TabBarItem name="home" icon="home" label="首页" />\n  <TabBarItem name="cart" icon="shopping-cart" label="购物车" />\n  <TabBarItem name="user" icon="user" label="我的" />\n</TabBar>`}>
+        <DemoBlock title={t('demo.basic')} desc={t('demo.basicDesc')} code={`<TabBar value={val()} onChange={setVal}>\n  <TabBarItem name="home" icon="home" label="首页" />\n  <TabBarItem name="cart" icon="shopping-cart" label="购物车" />\n  <TabBarItem name="user" icon="user" label="我的" />\n</TabBar>`}>
           <div style={{ position: 'relative', height: '60px' }}>
             <TabBar value={val1()} onChange={setVal1} fixed={false}>
               <TabBarItem name="home" icon="home" label="首页" />

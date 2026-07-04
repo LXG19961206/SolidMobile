@@ -1,5 +1,6 @@
 import { createSignal, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface TextareaMobileProps {
   components?: ComponentEntry[];
@@ -30,6 +31,7 @@ const CARD = {
 };
 
 export const TextareaMobile: Component<TextareaMobileProps> = (props) => {
+  const t = useT();
   const [val1, setVal1] = createSignal('');
   const [val2, setVal2] = createSignal('');
 

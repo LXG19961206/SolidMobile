@@ -2,6 +2,7 @@ import { createSignal, Show, useContext, type Component } from 'solid-js';
 import { DialogAPI as Dialog, DialogRenderer } from '../../../../src/components/Dialog/DialogManager';
 import { DialogComponent } from '../../../../src/components/Dialog';
 import { Cell } from '../../../../src/components/Cell';
+import { useT } from '../../../doc-i18n';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import type { DialogOptions } from '../../../../src/components/Dialog/types';
@@ -39,6 +40,7 @@ const tocItems: TOCItem[] = [
 ];
 
 const DialogDocInner: Component = () => {
+  const t = useT();
   const phoneTarget = useContext(PhoneTargetContext);
   const mount = () => phoneTarget?.();
   const [declarativeShow, setDeclarativeShow] = createSignal(false);
@@ -56,7 +58,7 @@ const DialogDocInner: Component = () => {
           既可通过组件声明式调用，也可通过命令式 API 弹出。
         </p>
 
-        <h2 id="props" class={css.h2}>属性 / Props</h2>
+        <h2 id="props" class={css.h2}>{t('common.props')}</h2>
         <PropsTable rows={propsData} />
 
         <h2 id="api" class={css.h2}>命令式 API</h2>

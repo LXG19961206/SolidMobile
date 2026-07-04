@@ -1,6 +1,7 @@
 import { Tag } from '../../../../src/components/Tag';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 import css from './TagDocPage.module.css';
 
 const propsData: PropRow[] = [
@@ -21,14 +22,16 @@ const tocItems: TOCItem[] = [
   { id: 'scenes', title: '场景示例' },
 ];
 
-export const TagDocPage = () => (
-  <DocLayout>
+export const TagDocPage = () => {
+  const t = useT();
+  return (
+    <DocLayout>
 
     <div class={css.page}>
       <h1 class={css.h1}>Tag 标签</h1>
       <p class={css.intro}>用于标记和分类的小型标签，支持多种语义色和填充方式。</p>
 
-      <h2 id="props" class={css.h2}>属性 / Props</h2>
+      <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
       <h2 id="types" class={css.h2}>语义色</h2>
@@ -93,4 +96,5 @@ export const TagDocPage = () => (
       </DemoBlock>
     </div>
   </DocLayout>
-);
+  );
+};

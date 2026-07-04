@@ -5,6 +5,7 @@ export interface AvatarMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
+import { useT } from '../../doc-i18n';
 import { Avatar } from '../../../src/components/Avatar';
 
 const propsData = [
@@ -28,6 +29,7 @@ const CARD = {
 const AVATAR_URL = 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix';
 
 export const AvatarMobile: Component<AvatarMobileProps> = (props) => {
+  const t = useT();
   return (
     <MobilePreview title="Avatar 头像" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 尺寸 */}
@@ -69,8 +71,8 @@ export const AvatarMobile: Component<AvatarMobileProps> = (props) => {
 
       {/* 自定义颜色 & 尺寸 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义颜色</div>
-        <div style={CARD.desc}>color 属性控制背景色，文字自动计算对比度</div>
+        <div style={CARD.title}>{t('demo.customColor')}</div>
+        <div style={CARD.desc}>{t('demo.customColorDesc')}</div>
         <div style={CARD.body}>
           <Avatar size="md" text="A" color="#1677ff" />
           <Avatar size="md" text="B" color="#22c55e" />

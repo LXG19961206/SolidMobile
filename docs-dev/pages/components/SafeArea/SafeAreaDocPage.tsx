@@ -2,6 +2,7 @@ import { type Component } from 'solid-js';
 import { SafeArea } from '../../../../src/components/SafeArea';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 
 const safeAreaProps: PropRow[] = [
   { name: 'position', type: "'top' | 'bottom'", default: "'bottom'", required: false, desc: '安全区域位置。' },
@@ -26,7 +27,9 @@ const codeLayout = `<div style={{ display: 'flex', 'flex-direction': 'column', h
   <SafeArea position="bottom" />
 </div>`;
 
-export const SafeAreaDocPage: Component = () => (
+export const SafeAreaDocPage: Component = () => {
+  const t = useT();
+  return (
   <DocLayout>
     <div style={{ padding: '16px', 'max-width': '960px' }}>
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>SafeArea 安全区域</h1>
@@ -34,7 +37,7 @@ export const SafeAreaDocPage: Component = () => (
         安全区域占位组件，确保内容不被设备的刘海屏、状态栏、Home Indicator 等遮挡。
       </p>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Props</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={safeAreaProps} />
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>实现原理</h2>
@@ -101,4 +104,5 @@ export const SafeAreaDocPage: Component = () => (
       </div>
     </div>
   </DocLayout>
-);
+  );
+};

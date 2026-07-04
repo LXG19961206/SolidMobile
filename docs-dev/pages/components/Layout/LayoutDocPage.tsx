@@ -1,4 +1,5 @@
 import { Row, Col } from '../../../../src/components/Layout';
+import { useT } from '../../../doc-i18n';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './LayoutDocPage.module.css';
@@ -27,7 +28,9 @@ const Bar = (props: { children: any; color?: string }) => (
   <div style={{ background: props.color || '#1677ff', color: '#fff', 'text-align': 'center', padding: '8px 0', 'border-radius': '4px', 'font-size': '0.8rem' }}>{props.children}</div>
 );
 
-export const LayoutDocPage = () => (
+export const LayoutDocPage = () => {
+  const t = useT();
+  return (
   <DocLayout>
 
     <div class={css.page}>
@@ -63,4 +66,5 @@ export const LayoutDocPage = () => (
       </DemoBlock>
     </div>
   </DocLayout>
-);
+  );
+};

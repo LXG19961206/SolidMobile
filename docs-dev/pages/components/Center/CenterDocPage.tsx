@@ -1,6 +1,7 @@
 import { Center } from '../../../../src/components/Center';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { useT } from '../../../doc-i18n';
 import styles from './CenterDocPage.module.css';
 
 const propsData: PropRow[] = [
@@ -24,8 +25,10 @@ const tocItems: TOCItem[] = [
 
 const Box = (props: { children?: any }) => <div class={styles.demoBox}>{props.children}</div>;
 
-export const CenterDocPage = () => (
-  <DocLayout>
+export const CenterDocPage = () => {
+  const t = useT();
+  return (
+    <DocLayout>
 
     <div class={styles.page}>
       <h1 class={styles.h1}>Center 居中</h1>
@@ -34,7 +37,7 @@ export const CenterDocPage = () => (
       </p>
 
       {/* Props */}
-      <h2 id="props" class={styles.h2}>属性 / Props</h2>
+      <h2 id="props" class={styles.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
       {/* Flex */}
@@ -114,4 +117,5 @@ export const CenterDocPage = () => (
       </DemoBlock>
     </div>
   </DocLayout>
-);
+  );
+};

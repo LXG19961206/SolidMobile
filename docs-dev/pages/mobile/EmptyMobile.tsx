@@ -1,5 +1,6 @@
 import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface EmptyMobileProps {
   components?: ComponentEntry[];
@@ -22,6 +23,7 @@ const CARD = {
 };
 
 export const EmptyMobile: Component<EmptyMobileProps> = (props) => {
+  const t = useT();
   return (
     <MobilePreview title="Empty 空状态" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 */}

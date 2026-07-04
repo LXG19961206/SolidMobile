@@ -1,5 +1,6 @@
 import { createSignal, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface TabBarMobileProps {
   components?: ComponentEntry[];
@@ -79,6 +80,7 @@ const AnimatedUserIcon = (p: { active?: boolean }) => (
 );
 
 export const TabBarMobile: Component<TabBarMobileProps> = (props) => {
+  const t = useT();
   const [val1, setVal1] = createSignal('home');
 
   return (
@@ -87,8 +89,8 @@ export const TabBarMobile: Component<TabBarMobileProps> = (props) => {
 
       {/* 基础 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础用法</div>
-        <div style={CARD.desc}>icon + label，默认 fixed 固定在底部</div>
+        <div style={CARD.title}>{t('demo.basic')}</div>
+        <div style={CARD.desc}>{t('demo.basicDesc')}</div>
         <div style={CARD.body}>
           <TabBar value={val1()} onChange={setVal1} fixed={false}>
             <TabBarItem name="home" icon="home" label="首页" />
@@ -113,8 +115,8 @@ export const TabBarMobile: Component<TabBarMobileProps> = (props) => {
 
       {/* 自定义颜色 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义颜色</div>
-        <div style={CARD.desc}>activeColor / inactiveColor 控制选中/未选中色</div>
+        <div style={CARD.title}>{t('demo.customColor')}</div>
+        <div style={CARD.desc}>{t('demo.customColorDesc')}</div>
         <div style={CARD.body}>
           <TabBar defaultValue="a" activeColor="#22c55e" fixed={false}>
             <TabBarItem name="a" icon="home" label="首页" />

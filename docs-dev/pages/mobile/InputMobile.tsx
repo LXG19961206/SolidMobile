@@ -1,5 +1,6 @@
 import { createSignal, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface InputMobileProps {
   components?: ComponentEntry[];
@@ -35,6 +36,7 @@ const CARD = {
 };
 
 export const InputMobile: Component<InputMobileProps> = (props) => {
+  const t = useT();
   const [text1, setText1] = createSignal('');
   const [text2, setText2] = createSignal('');
 

@@ -1,5 +1,6 @@
 import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface SwiperMobileProps {
   components?: ComponentEntry[];
@@ -37,6 +38,7 @@ const IMGS = [
 ];
 
 export const SwiperMobile: Component<SwiperMobileProps> = (props) => {
+  const t = useT();
   return (
     <MobilePreview title="Swiper 轮播" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 自定义内容 */}

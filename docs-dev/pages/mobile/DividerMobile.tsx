@@ -1,5 +1,6 @@
 import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { useT } from '../../doc-i18n';
 
 export interface DividerMobileProps {
   components?: ComponentEntry[];
@@ -23,6 +24,7 @@ const CARD = {
 };
 
 export const DividerMobile: Component<DividerMobileProps> = (props) => {
+  const t = useT();
   return (
     <MobilePreview title="Divider 分割线" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础水平 */}
