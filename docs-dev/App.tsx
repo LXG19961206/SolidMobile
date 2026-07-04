@@ -330,7 +330,7 @@ const GROUPS: MenuGroup[] = [
 ];
 
 const PAGES: Record<string, Component> = {
-  'design-tokens': () => <div style="padding: 1.5rem 2rem; max-width: 960px"><AllTokens /></div>,
+  'design-tokens': () => <div class="guide-card" style="padding: 1.5rem 2rem; max-width: 960px"><AllTokens /></div>,
   button: ButtonDocPage,
   icon: IconDocPage,
   center: CenterDocPage,

@@ -6,7 +6,7 @@ import type { LocaleMessages } from '../src/i18n/types';
 
 export const docMessages: LocaleMessages = {
   'zh-CN': {
-  demo: {
+    demo: {
       actionCustomContent: '自定义内容 (ActionSheet)',
       actionCustomContentDesc: 'children 自定义面板。',
       actionDesc: '描述文字',
@@ -402,8 +402,8 @@ export const docMessages: LocaleMessages = {
       withTabDesc: 'Tab 徽标提示各分类数量。',
       yearMonth: '仅选择年月',
       yearMonthDesc: `type='year-month' 只显示年和月两列。`,
-  },
-  section: {
+    },
+    section: {
       flexCenter: 'Flex 居中',
       textCenter: 'Text 居中',
       posCenter: 'Position 居中',
@@ -443,8 +443,8 @@ export const docMessages: LocaleMessages = {
       withRouter: '与路由配合',
       text: '文案',
       methods: '方法',
-  },
-  componentIntro: {
+    },
+    componentIntro: {
       ActionSheetIntro: '从底部弹出的选项菜单。',
       BadgeIntro: '用于消息数量、状态提示的小型徽标，通常附着在图标、按钮、标签页等组件上。',
       ButtonIntro: '通用的操作触发按钮。支持多种变体风格、四种尺寸、图标、加载态、链接模式及自定义颜色。',
@@ -478,8 +478,8 @@ export const docMessages: LocaleMessages = {
       ToastIntro: '全局的轻量级反馈提示，命令式 API 调用。',
       UploadIntro: '文件选择、预览与上传组件。支持图片缩略图网格和文件列表两种展示模式，通过 api 属性注入上传策略。',
       notifyIntro: '顶部/底部弹出式通知栏，命令式 API 调用。',
-  },
-  common: {
+    },
+    common: {
       and: '和',
       cssVars: 'CSS 变量',
       events: '事件 / Events',
@@ -494,11 +494,11 @@ export const docMessages: LocaleMessages = {
       viewCode: '查看代码',
       propsTable: {
       },
-  },
+    },
   },
 
   'en-US': {
-  demo: {
+    demo: {
       actionCustomContent: `Custom`,
       actionCustomContentDesc: `Custom content.`,
       actionDesc: `Description`,
@@ -894,8 +894,8 @@ export const docMessages: LocaleMessages = {
       withTabDesc: `With tab.`,
       yearMonth: `Year-Month`,
       yearMonthDesc: `Year-month only mode.`,
-  },
-  section: {
+    },
+    section: {
       absoluteCenter: `Absolute Center`,
       autoSize: `Auto Size`,
       basicAndStates: `Basic & States`,
@@ -935,7 +935,7 @@ export const docMessages: LocaleMessages = {
       verticalDivider: `Vertical Divider`,
       verticalLayout: `Vertical Layout`,
       withRouter: `With Router`,
-  },
+    },
     componentIntro: {
       ActionSheetIntro: 'Bottom sheet action menu.',
       AvatarIntro: 'User avatar with fallback: image to icon to first letter.',
@@ -977,22 +977,22 @@ export const docMessages: LocaleMessages = {
       ToastIntro: 'Global lightweight feedback. Imperative API.',
       UploadIntro: 'File selection, preview, upload. Image grid and file list.',
       notifyIntro: 'Top/bottom notification bar. Imperative API.',
-  },  },
-  common: {
-      and: '和',
-      cssVars: 'CSS 变量',
-      events: '事件 / Events',
-      cellProps: 'Cell 属性',
-      cellGroupProps: 'CellGroup 属性',
-      colProps: 'Col 属性',
-      rowProps: 'Row 属性',
-      examples: '示例',
-      props: '属性 / Props',
-      copyCode: '复制代码',
-      copied: '已复制!',
-      viewCode: '查看代码',
-      propsTable: {
-      },
+    },
   },
+  common: {
+    and: '和',
+    cssVars: 'CSS 变量',
+    events: '事件 / Events',
+    cellProps: 'Cell 属性',
+    cellGroupProps: 'CellGroup 属性',
+    colProps: 'Col 属性',
+    rowProps: 'Row 属性',
+    examples: '示例',
+    props: '属性 / Props',
+    copyCode: '复制代码',
+    copied: '已复制!',
+    viewCode: '查看代码',
+    propsTable: {
+    },
   },
 };
