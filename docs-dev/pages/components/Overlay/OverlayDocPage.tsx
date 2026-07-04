@@ -48,8 +48,8 @@ const OverlayDocInner = () => {
         <ActionSheet mount={pm()} open={s2()} onClose={() => s2s(false)} title="选择操作" closeable items={[{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }]} cancelText="取消" />
       </DemoBlock>
 
-      <DemoBlock title="不锁定滚动" desc="lockScroll={false}" code={`<Overlay open={open} onClose={...} lockScroll={false}>...</Overlay>`} groupCode="overlayDemo">
-        <Cell title="不锁定滚动" clickable onClick={() => s3s(true)} />
+      <DemoBlock title={t('demo.noScrollLock')} desc="lockScroll={false}" code={`<Overlay open={open} onClose={...} lockScroll={false}>...</Overlay>`} groupCode="overlayDemo">
+        <Cell title={t('demo.noScrollLock')} clickable onClick={() => s3s(true)} />
         <Overlay open={s3()} onClose={() => s3s(false)} lockScroll={false} mount={pm()}>
           <div class={styles.overlayContent}>
             <div class={styles.overlayTitle}>可滚动</div>

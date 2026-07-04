@@ -48,7 +48,7 @@ export const TagDocPage = () => {
       </DemoBlock>
 
       <h2 id="closeable" class={css.h2}>可关闭</h2>
-      <DemoBlock title="closeable" code={'<Tag closeable onClose={() => {}}>可关闭</Tag>'}>
+      <DemoBlock title={t('demo.closable')} code={'<Tag closeable onClose={() => {}}>可关闭</Tag>'}>
         <Tag closeable>可关闭</Tag>
       </DemoBlock>
 

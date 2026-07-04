@@ -135,7 +135,7 @@ export const RateDocPage: Component = () => {
           {Value(countVal)}
         </DemoBlock>
 
-        <DemoBlock title="自定义大小" desc="size 图标大小，gutter 间距。" code={codeSize}>
+        <DemoBlock title={t('demo.customSizeDemo')} desc="size 图标大小，gutter 间距。" code={codeSize}>
           <Rate value={sizeVal()} onChange={setSizeVal} size={28} gutter={8} />
           {Value(sizeVal)}
         </DemoBlock>

@@ -136,7 +136,7 @@ export const InputDocPage: Component = () => {
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>可清除</h2>
-      <DemoBlock title="clearable" desc="输入内容后右侧显示 X 按钮，点击清空。" code={codeClearable}>
+      <DemoBlock title={t('demo.clearable')} desc="输入内容后右侧显示 X 按钮，点击清空。" code={codeClearable}>
         <CellGroup>
           <Cell title="清除" value={<Input clearable placeholder="输入点东西试试" />} />
           <Cell title="预设值" value={<Input clearable defaultValue="点 X 可清除" />} />
