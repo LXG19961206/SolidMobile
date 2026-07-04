@@ -7,6 +7,8 @@ import './doc-i18n';
 import { useT, setGlobalLocale, useLocale } from '../src/i18n';
 import { defaultConfig } from '../src/config/defaults';
 import { generateCSSVars } from '../src/config/css-vars';
+import { ProviderConfig } from '../src/config';
+import { Button, Tag } from '../src/components';
 import { DialogAPI } from '../src/components/Dialog/DialogManager';
 
 // Component DocPages
@@ -186,7 +188,8 @@ const MobileHome: Component<{
       </div>
     </div>
   </div>
-);
+  );
+};
 
 /* ── Mobile Pages Map (module scope, stable reference) ── */
 
@@ -416,7 +419,8 @@ function App() {
   );
 }`} />
   </div>
-);
+  );
+};
 
 /* ── About Page ── */
 
@@ -549,7 +553,8 @@ const AboutPage: Component = () => (
       如果你碰巧用到了，欢迎提 issue 或者 PR。
     </p>
   </div>
-);
+  );
+};
 
 /* ── ConfigProvider Doc Page ── */
 
@@ -607,7 +612,11 @@ const radiusRows = [
   ['full', '9999px'],
 ];
 
-const ConfigDocPage: Component = () => (
+const ConfigDocPage: Component = () => {
+  const [demoColor, setDemoColor] = createSignal('#1677ff');
+  const presets = ['#1677ff', '#e01823', '#00b42a', '#f5a623', '#8b5cf6'];
+
+  return (
   <div class="guide-card">
     <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 0.5rem' }}>ConfigProvider</h1>
     <p style={{ color: '#6b7280', margin: '0 0 2rem' }}>
@@ -741,6 +750,33 @@ const ConfigDocPage: Component = () => (
 >
   <App />
 </ProviderConfig>`} />
+
+    <h2 style={SECTION_H2}>动态切换主题色</h2>
+    <p style={{ color: '#6b7280', margin: '0 0 1rem' }}>
+      点击下方色块切换主色，下方组件即时响应主题变更。
+    </p>
+    <div style={{ display: 'flex', gap: '10px', 'margin-bottom': '1.5rem' }}>
+      {presets.map(c => (
+        <div
+          onClick={() => setDemoColor(c)}
+          style={{
+            width: '36px', height: '36px', 'border-radius': '50%', background: c,
+            cursor: 'pointer', border: demoColor() === c ? '3px solid #323233' : '3px solid transparent',
+            transition: 'border 0.2s',
+          }}
+        />
+      ))}
+    </div>
+    <ProviderConfig config={{ colors: { light: { primary: demoColor() } } }}>
+      <div style={{ display: 'flex', gap: '12px', 'flex-wrap': 'wrap', 'align-items': 'center' }}>
+        <Button type="primary">主色按钮</Button>
+        <Button variant="outline">线框按钮</Button>
+        <Button type="danger">危险按钮</Button>
+        <Tag type="primary">主色标签</Tag>
+        <Tag type="success">成功标签</Tag>
+        <Tag type="warning">警告标签</Tag>
+      </div>
+    </ProviderConfig>
 
     <h2 style={SECTION_H2}>ProviderConfig Props</h2>
     <div class="guide-table-wrap">
@@ -908,7 +944,8 @@ function MyComp() {
   console.log(cfg.locale);               // 'zh-CN'
 }`} />
   </div>
-);
+  );
+};
 
 /* ── Dev Guide Sidebar ── */
 
