@@ -237,10 +237,7 @@ const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key:
 
 /* ── Top Nav Tabs ── */
 
-const TOP_TABS = [
-  { key: 'guide', label: '开发指南' },
-  { key: 'components', label: '组件文档' },
-];
+// Moved inside component for t() access
 
 /* ── Sidebar Menus ── */
 
@@ -250,81 +247,78 @@ interface MenuGroup {
 }
 
 const GROUPS: MenuGroup[] = [
-  {
-    title: '视觉规范',
-    items: [{ name: '概览', key: 'design-tokens' }],
-  },
+  { title: '视觉规范', items: [{ name: '概览', key: 'design-tokens' }] },
   {
     title: '基础组件',
     items: [
-      { name: 'Button 按钮', key: 'button' },
-      { name: 'Icon 图标', key: 'icon' },
-      { name: 'Center 居中', key: 'center' },
-      { name: 'Divider 分割线', key: 'divider' },
-      { name: 'Layout 布局', key: 'layout' },
-      { name: 'SafeArea 安全区域', key: 'safearea' },
+      { name: 'Button', key: 'button' },
+      { name: 'Icon', key: 'icon' },
+      { name: 'Center', key: 'center' },
+      { name: 'Divider', key: 'divider' },
+      { name: 'Layout', key: 'layout' },
+      { name: 'SafeArea', key: 'safearea' },
     ],
   },
   {
     title: '展示组件',
     items: [
-      { name: 'Avatar 头像', key: 'avatar' },
-      { name: 'Badge 徽标', key: 'badge' },
-      { name: 'Tag 标签', key: 'tag' },
-      { name: 'Image 图片', key: 'image' },
-      { name: 'Empty 空状态', key: 'empty' },
-      { name: 'Lazyload 懒加载', key: 'lazyload' },
-      { name: 'List 列表', key: 'list' },
-      { name: 'SwipeCell 滑动单元格', key: 'swipecell' },
-      { name: 'Swiper 轮播', key: 'swiper' },
-      { name: 'PullRefresh 下拉刷新', key: 'pullrefresh' },
+      { name: 'Avatar', key: 'avatar' },
+      { name: 'Badge', key: 'badge' },
+      { name: 'Tag', key: 'tag' },
+      { name: 'Image', key: 'image' },
+      { name: 'Empty', key: 'empty' },
+      { name: 'Lazyload', key: 'lazyload' },
+      { name: 'List', key: 'list' },
+      { name: 'SwipeCell', key: 'swipecell' },
+      { name: 'Swiper', key: 'swiper' },
+      { name: 'PullRefresh', key: 'pullrefresh' },
     ],
   },
   {
     title: '导航组件',
     items: [
-      { name: 'Tabs 标签页', key: 'tabs' },
-      { name: 'TabBar 标签栏', key: 'tabbar' },
-      { name: 'NavBar 导航栏', key: 'navbar' },
-      { name: 'Cell 单元格', key: 'cell' },
+      { name: 'Tabs', key: 'tabs' },
+      { name: 'TabBar', key: 'tabbar' },
+      { name: 'NavBar', key: 'navbar' },
+      { name: 'Cell', key: 'cell' },
     ],
   },
   {
     title: '选择器',
     items: [
-      { name: 'Picker 滚轮选择', key: 'picker' },
-      { name: 'Calendar 日历', key: 'calendar' },
-      { name: 'Cascader 级联选择', key: 'cascader' },
-      { name: 'DatePicker 日期选择', key: 'datepicker' },
-      { name: 'CityPicker 城市选择', key: 'citypicker' },
-      { name: 'TimePicker 时间选择', key: 'timepicker' },
+      { name: 'Picker', key: 'picker' },
+      { name: 'Calendar', key: 'calendar' },
+      { name: 'Cascader', key: 'cascader' },
+      { name: 'DatePicker', key: 'datepicker' },
+      { name: 'CityPicker', key: 'citypicker' },
+      { name: 'TimePicker', key: 'timepicker' },
     ],
   },
   {
     title: '反馈组件',
     items: [
-      { name: 'Toast 轻提示', key: 'toast' },
-      { name: 'Notify 通知栏', key: 'notify' },
-      { name: 'Dialog 弹窗', key: 'dialog' },
-      { name: 'Overlay 遮罩层', key: 'overlay' },
-      { name: 'ActionSheet 动作面板', key: 'actionsheet' },
-      { name: 'Loading 加载', key: 'loading' },
+      { name: 'Toast', key: 'toast' },
+      { name: 'Notify', key: 'notify' },
+      { name: 'Dialog', key: 'dialog' },
+      { name: 'Overlay', key: 'overlay' },
+      { name: 'ActionSheet', key: 'actionsheet' },
+      { name: 'Loading', key: 'loading' },
     ],
   },
   {
     title: '表单组件',
     items: [
-      { name: 'Form 表单', key: 'form' },
-      { name: 'Input 输入框', key: 'input' },
-      { name: 'Textarea 多行', key: 'textarea' },
-      { name: 'Radio 单选框', key: 'radio' },
-      { name: 'Checkbox 复选框', key: 'checkbox' },
-      { name: 'Switch 开关', key: 'switch' },
-      { name: 'Rate 评分', key: 'rate' },
-      { name: 'Stepper 步进器', key: 'stepper' },
-      { name: 'Slider 滑块', key: 'slider' },
-      { name: 'Select 选择器', key: 'select' },
-      { name: 'Upload 文件上传', key: 'upload' },
+      { name: 'Form', key: 'form' },
+      { name: 'Input', key: 'input' },
+      { name: 'Textarea', key: 'textarea' },
+      { name: 'Radio', key: 'radio' },
+      { name: 'Checkbox', key: 'checkbox' },
+      { name: 'Switch', key: 'switch' },
+      { name: 'Rate', key: 'rate' },
+      { name: 'Stepper', key: 'stepper' },
+      { name: 'Slider', key: 'slider' },
+      { name: 'Select', key: 'select' },
+      { name: 'Upload', key: 'upload' },
     ],
   },
 ];
@@ -1127,6 +1121,11 @@ export function App() {
   const [mobileView, setMobileView] = createSignal(isMobileViewport());
   const t = useT();
 
+  const topTabs = createMemo(() => [
+    { key: 'guide' as Section, label: t('nav.guides') },
+    { key: 'components' as Section, label: t('nav.components') },
+  ]);
+
   onMount(() => {
     applyDark(dark());
     if (!document.getElementById('sc-docs-css-vars')) {
@@ -1148,10 +1147,19 @@ export function App() {
     setMenuOpen(false);
   });
 
+  /** Localize group titles & item names via nav dictionary */
+  const localizeGroups = (groups: MenuGroup[]) =>
+    groups.map(g => ({
+      ...g,
+      title: t(`nav.${['视觉规范','基础组件','展示组件','导航组件','选择器','反馈组件','表单组件','开始','定制','关于项目'].includes(g.title) ? g.title : ''}`) || g.title,
+      items: g.items.map(i => ({ ...i, name: i.name })),
+    }));
+
   const compFilteredGroups = createMemo(() => {
     const q = search().toLowerCase().replace(/\s+/g, '');
-    if (!q) return GROUPS;
-    return GROUPS.map(g => ({
+    const groups = localizeGroups(GROUPS);
+    if (!q) return groups;
+    return groups.map(g => ({
       ...g,
       items: g.items.filter(i =>
         i.name.toLowerCase().replace(/\s+/g, '').includes(q) ||
@@ -1159,6 +1167,8 @@ export function App() {
       ),
     })).filter(g => g.items.length > 0);
   });
+
+  const guideGroups = createMemo(() => localizeGroups(GUIDE_GROUPS));
 
   const showSidebar = () => section() === 'components' || section() === 'guide';
 
@@ -1257,7 +1267,7 @@ export function App() {
             <span class="top-nav-title">solid-mobile</span>
           </div>
           <nav class="top-nav-tabs">
-            <For each={TOP_TABS}>
+            <For each={topTabs()}>
               {(tab) => (
                 <button
                   class={`top-nav-tab ${section() === tab.key ? 'active' : ''}`}
@@ -1284,7 +1294,7 @@ export function App() {
             <aside class={`sidebar ${menuOpen() ? 'open' : ''}`}>
               <div class="sidebar-brand">
                 <span class="sidebar-brand-text">
-                  {section() === 'guide' ? '开发指南' : '组件导航'}
+                  {section() === 'guide' ? t('nav.guides') : t('nav.components')}
                 </span>
               </div>
               <Show when={section() === 'components'}>
@@ -1319,7 +1329,7 @@ export function App() {
                     </For>
                   }
                 >
-                  <For each={GUIDE_GROUPS}>
+                  <For each={guideGroups()}>
                     {(group) => (
                       <div class="nav-group">
                         <div class="nav-group-title">{group.title}</div>
@@ -1351,8 +1361,8 @@ export function App() {
                 <button class="menu-btn" onClick={() => setMenuOpen(!menuOpen())}>☰</button>
                 <span class="topbar-title">
                   {section() === 'guide'
-                    ? GUIDE_GROUPS.flatMap(g => g.items).find(i => i.key === activeKey())?.name || ''
-                    : GROUPS.flatMap(g => g.items).find(i => i.key === activeKey())?.name || ''
+                    ? guideGroups().flatMap(g => g.items).find(i => i.key === activeKey())?.name || ''
+                    : compFilteredGroups().flatMap(g => g.items).find(i => i.key === activeKey())?.name || ''
                   }
                 </span>
               </div>
