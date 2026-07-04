@@ -41,7 +41,7 @@ export default defineConfig(({ mode }) => {
         'solid-component': resolve(__dirname, 'src'),
       },
     },
-    base: '/SolidMobile/',
+    base: './',
     build: {
       outDir: resolve(__dirname, 'docs'),
       emptyOutDir: false,
