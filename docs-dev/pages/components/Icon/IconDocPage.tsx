@@ -138,7 +138,7 @@ export const IconDocPage: Component = () => {
       <div class={styles.page}>
         <h1 class={styles.h1}>Icon 图标</h1>
         <p class={styles.intro}>
-          {t(\'componentIntro.IconIntro\')}
+          {t('componentIntro.IconIntro')}
         </p>
 
         {/* ── Props ── */}

@@ -25,7 +25,7 @@ export const DividerDocPage = () => {
 
     <div class={css.page}>
       <h1 class={css.h1}>Divider 分割线</h1>
-      <p class={css.intro}>{t(\'componentIntro.DividerIntro\')}</p>
+      <p class={css.intro}>{t('componentIntro.DividerIntro')}</p>
 
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />

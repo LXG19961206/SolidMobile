@@ -54,7 +54,7 @@ const DialogDocInner: Component = () => {
       <div class={css.page}>
         <h1 class={css.h1}>Dialog 弹窗</h1>
         <p class={css.intro}>
-          {t(\'componentIntro.DialogIntro\')}
+          {t('componentIntro.DialogIntro')}
         </p>
 
         <h2 id="props" class={css.h2}>{t('common.props')}</h2>

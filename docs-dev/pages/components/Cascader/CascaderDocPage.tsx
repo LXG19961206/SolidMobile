@@ -216,7 +216,7 @@ export const CascaderDocPage = () => {
     <div class={css.page}>
       <h1 class={css.h1}>Cascader 级联选择器</h1>
       <p class={css.intro}>
-        {t(\'componentIntro.CascaderIntro\')}
+        {t('componentIntro.CascaderIntro')}
       </p>
 
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>

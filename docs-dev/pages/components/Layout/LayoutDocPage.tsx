@@ -35,7 +35,7 @@ export const LayoutDocPage = () => {
 
     <div class={css.page}>
       <h1 class={css.h1}>Layout 布局</h1>
-      <p class={css.intro}>{t(\'componentIntro.LayoutIntro\')}</p>
+      <p class={css.intro}>{t('componentIntro.LayoutIntro')}</p>
 
       <h2 id="row-props" class={css.h2}>{t('common.rowProps')}</h2>
       <PropsTable rows={rowProps} />

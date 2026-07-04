@@ -29,7 +29,7 @@ export const TagDocPage = () => {
 
     <div class={css.page}>
       <h1 class={css.h1}>Tag 标签</h1>
-      <p class={css.intro}>{t(\'componentIntro.TagIntro\')}</p>
+      <p class={css.intro}>{t('componentIntro.TagIntro')}</p>
 
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />

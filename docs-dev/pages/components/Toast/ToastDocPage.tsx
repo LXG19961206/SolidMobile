@@ -37,7 +37,7 @@ const ToastDocInner: Component = () => {
     <div class={styles.page}>
       <ToastRenderer />
       <h1 class={styles.h1}>Toast 轻提示</h1>
-      <p class={styles.lead}>{t(\'componentIntro.ToastIntro\')}</p>
+      <p class={styles.lead}>{t('componentIntro.ToastIntro')}</p>
 
       <h2 id="props" class={styles.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />

@@ -46,7 +46,7 @@ export const CellDocPage = () => {
     <div class={styles.page}>
       <h1 class={styles.h1}>Cell / CellGroup 单元格</h1>
       <p class={styles.intro}>
-        {t(\'componentIntro.CellIntro\')}
+        {t('componentIntro.CellIntro')}
       </p>
 
       <h2 id="cell-props" class={styles.h2}>{t('common.cellProps')}</h2>

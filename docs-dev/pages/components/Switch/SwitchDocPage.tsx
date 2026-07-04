@@ -39,7 +39,7 @@ export const SwitchDocPage = () => {
       <div class={styles.page}>
         <h1 class={styles.h1}>Switch 开关</h1>
         <p class={styles.intro}>
-          {t(\'componentIntro.SwitchIntro\')}
+          {t('componentIntro.SwitchIntro')}
         </p>
 
         {/* Props */}

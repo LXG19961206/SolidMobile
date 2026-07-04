@@ -41,7 +41,7 @@ const LoadingDocInner = () => {
       <div class={styles.page}>
         <h1 class={styles.h1}>Loading 加载</h1>
         <p class={styles.intro}>
-          {t(\'componentIntro.LoadingIntro\')}
+          {t('componentIntro.LoadingIntro')}
         </p>
 
         {/* Props */}

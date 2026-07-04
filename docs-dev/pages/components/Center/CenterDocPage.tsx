@@ -33,7 +33,7 @@ export const CenterDocPage = () => {
     <div class={styles.page}>
       <h1 class={styles.h1}>Center 居中</h1>
       <p class={styles.intro}>
-        {t(\'componentIntro.CenterIntro\')}
+        {t('componentIntro.CenterIntro')}
       </p>
 
       {/* Props */}

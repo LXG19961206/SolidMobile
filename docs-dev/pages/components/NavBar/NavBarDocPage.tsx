@@ -35,7 +35,7 @@ export const NavBarDocPage = () => {
     <div class={css.page}>
       <h1 class={css.h1}>NavBar 导航栏</h1>
       <p class={css.intro}>
-        {t(\'componentIntro.NavBarIntro\')}
+        {t('componentIntro.NavBarIntro')}
       </p>
 
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>

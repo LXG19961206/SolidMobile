@@ -27,7 +27,7 @@ export const BadgeDocPage = () => {
 
     <div class={css.page}>
       <h1 class={css.h1}>Badge 徽标</h1>
-      <p class={css.intro}>{t(\'componentIntro.BadgeIntro\')}</p>
+      <p class={css.intro}>{t('componentIntro.BadgeIntro')}</p>
 
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />

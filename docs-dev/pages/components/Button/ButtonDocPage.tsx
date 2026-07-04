@@ -62,7 +62,7 @@ export const ButtonDocPage: Component = () => {
 
       <div class={styles.page}>
         <h1 class={styles.h1}>Button 按钮</h1>
-        <p class={styles.lead}>{t(\'componentIntro.ButtonIntro\')}</p>
+        <p class={styles.lead}>{t('componentIntro.ButtonIntro')}</p>
 
         {/* ---- Props Table ---- */}
         <h2 id="props" class={styles.h2}>{t('common.props')}</h2>

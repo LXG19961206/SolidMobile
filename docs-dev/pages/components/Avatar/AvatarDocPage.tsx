@@ -32,7 +32,7 @@ export const AvatarDocPage = () => {
     <div class={css.page}>
       <h1 class={css.h1}>Avatar 头像</h1>
       <p class={css.intro}>
-        {t(\'componentIntro.AvatarIntro\')}
+        {t('componentIntro.AvatarIntro')}
       </p>
 
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>

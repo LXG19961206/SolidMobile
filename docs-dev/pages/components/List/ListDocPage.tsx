@@ -230,7 +230,7 @@ export const ListDocPage: Component = () => {
       <div class={css.page}>
         <h1 class={css.h1}>List 列表</h1>
         <p class={css.intro}>
-          {t(\'componentIntro.ListIntro\')}
+          {t('componentIntro.ListIntro')}
         </p>
 
         <h2 id="props" class={css.h2}>{t('common.props')}</h2>

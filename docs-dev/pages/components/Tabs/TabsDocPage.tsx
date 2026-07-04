@@ -47,7 +47,7 @@ export const TabsDocPage = () => {
       <div class={css.page}>
         <h1 class={css.h1}>Tabs 标签页</h1>
         <p class={css.intro}>
-          {t(\'componentIntro.TabsIntro\')}
+          {t('componentIntro.TabsIntro')}
         </p>
 
         <h2 id="tabs-props" class={css.h2}>Tabs {t('common.props')}</h2>

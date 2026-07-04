@@ -81,10 +81,10 @@ export const ImageDocPage = () => {
         </DemoBlock>
 
         <h2 id="state" class={css.h2}>{t('component.image.state')}</h2>
-        <DemoBlock title={t('component.image.placeholder')} desc="加载中显示占位内容，可自定义。" code={'<Image src="..." width={200} height={150} placeholder={<div style={{background:\'#f3f4f6\'}}>加载中...</div>} />'}>
+        <DemoBlock title={t('component.image.placeholder')} desc="加载中显示占位内容，可自定义。" code={'<Image src="..." width={200} height={150} placeholder={<div style={{background:'#f3f4f6'}}>加载中...</div>} />'}>
           <Image src={SRC} width={200} height={150} placeholder={<div style="display:flex;align-items:center;justify-content:center;width:200px;height:150px;background:#f3f4f6;color:#999;font-size:0.8rem">加载中...</div>} />
         </DemoBlock>
-        <DemoBlock title={t('component.image.fallback')} desc="加载失败时显示兜底内容。" code={'<Image src="invalid.jpg" width={200} height={150} fallback={<div style={{background:\'#f3f4f6\',color:\'#ef4444\'}}>加载失败</div>} />'}>
+        <DemoBlock title={t('component.image.fallback')} desc="加载失败时显示兜底内容。" code={'<Image src="invalid.jpg" width={200} height={150} fallback={<div style={{background:'#f3f4f6',color:'#ef4444'}}>加载失败</div>} />'}>
           <Image src="invalid.jpg" width={200} height={150} fallback={<div style="display:flex;align-items:center;justify-content:center;width:200px;height:150px;background:#f3f4f6;color:#ef4444;font-size:0.8rem">加载失败</div>} />
         </DemoBlock>
       </div>
