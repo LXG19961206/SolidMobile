@@ -154,6 +154,7 @@ export const messages: LocaleMessages = {
       datePicker: {
         title: '选择日期',
         placeholder: '请选择日期',
+        units: { year: '年', month: '月', day: '日' },
       },
       // ── CityPicker ──
       cityPicker: {
@@ -168,6 +169,10 @@ export const messages: LocaleMessages = {
       cascader: {
         placeholder: '请选择',
       },
+      list: { loading: '加载中...', finished: '没有更多了', empty: '暂无数据', error: '加载失败，点击重试' },
+      loading: { label: '加载中' },
+      stepper: { decrement: '减', increment: '加' },
+      tag: { close: '关闭' },
       // ── Dialog ──
       dialog: {
         confirmText: '确认',
@@ -199,6 +204,7 @@ export const messages: LocaleMessages = {
         uploading: '上传中',
         done: '已完成',
         error: '上传失败',
+        retry: '重试',
       },
       // ── PullRefresh ──
       pullRefresh: {
@@ -406,6 +412,7 @@ export const messages: LocaleMessages = {
       datePicker: {
         title: 'Select Date',
         placeholder: 'Please select a date',
+        units: { year: '', month: '', day: '' },
       },
       // ── CityPicker ──
       cityPicker: {
@@ -420,6 +427,10 @@ export const messages: LocaleMessages = {
       cascader: {
         placeholder: 'Please select',
       },
+      list: { loading: 'Loading...', finished: 'No more', empty: 'No data', error: 'Load failed, tap to retry' },
+      loading: { label: 'Loading' },
+      stepper: { decrement: 'Decrease', increment: 'Increase' },
+      tag: { close: 'Close' },
       // ── Dialog ──
       dialog: {
         confirmText: 'OK',
@@ -451,8 +462,8 @@ export const messages: LocaleMessages = {
         uploading: 'Uploading',
         done: 'Completed',
         error: 'Upload Failed',
+        retry: 'Retry',
       },
-      calendar: {
       // ── PullRefresh ──
       pullRefresh: {
         pulling: 'Pull to refresh',
@@ -460,6 +471,7 @@ export const messages: LocaleMessages = {
         loading: 'Refreshing...',
         success: 'Refresh successful',
       },
+      calendar: {
         weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         titleFormatter: (y: number, m: number) => `${m}/${y}`,
         startLabel: 'Start',
@@ -470,8 +482,7 @@ export const messages: LocaleMessages = {
         confirmDisabled: 'Select a date range',
         placeholder: 'Select Date',
       },
-    },
-    image: {
+      image: {
       title: 'Image',
       intro: 'Enhanced image component with lazy loading, placeholder, fallback, fit modes, and shapes.',
       fit: 'Fit Mode',
@@ -503,4 +514,5 @@ export const messages: LocaleMessages = {
       },
     },
   },
+}
 }

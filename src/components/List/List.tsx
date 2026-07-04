@@ -15,12 +15,11 @@ import { Empty } from '../Empty';
 import { Loading } from '../Loading';
 import { PullRefresh } from '../PullRefresh';
 import type { ListProps } from './types';
+import { useT } from '../../i18n';
 import styles from './List.module.css';
 
 const defaultProps: Partial<ListProps<any>> = {
   offset: 100,
-  loadMoreText: '加载中...',
-  finishedText: '没有更多了',
 };
 
 const OVERSCAN = 5;
@@ -33,6 +32,10 @@ export function List<I>(rawProps: ListProps<I>) {
     'offset', 'virtual', 'itemHeight',
     'pullRefresh', 'onRefresh', 'class', 'style',
   ]);
+
+  const t = useT();
+  const loadMoreLabel = () => local.loadMoreText ?? t('component.list.loading');
+  const finishedLabel = () => local.finishedText ?? t('component.list.finished');
 
   const isControlled = () => local.data !== undefined;
   const isVirtual = () => !!local.virtual && !!local.itemHeight;
@@ -180,7 +183,7 @@ export function List<I>(rawProps: ListProps<I>) {
     if (typeof local.empty === 'string') {
       return <Empty description={local.empty} />;
     }
-    return local.empty || <Empty description="暂无数据" />;
+    return local.empty || <Empty description={t('component.list.empty')} />;
   };
 
   const renderFooter = () => (
@@ -191,12 +194,12 @@ export function List<I>(rawProps: ListProps<I>) {
       >
         <Show when={error()} fallback={
           <Show when={local.finished} fallback={
-            <span><Loading type="dots" size={16} /> {local.loadMoreText}</span>
+            <span><Loading type="dots" size={16} /> {loadMoreLabel()}</span>
           }>
-            <span>{local.finishedText}</span>
+            <span>{finishedLabel()}</span>
           </Show>
         }>
-          <span>{local.errorText || '加载失败，点击重试'}</span>
+          <span>{local.errorText || t('component.list.error')}</span>
         </Show>
       </div>
     </Show>

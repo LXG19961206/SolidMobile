@@ -4,6 +4,7 @@ import {
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
 import { cn } from '../../utils';
+import { useT } from '../../i18n';
 import { Overlay } from '../Overlay';
 import { Loading } from '../Loading';
 import type { DialogProps } from './types';
@@ -14,8 +15,6 @@ const defaultProps: Partial<DialogProps> = {
   messageAlign: 'center',
   showConfirmButton: true,
   showCancelButton: false,
-  confirmText: '确认',
-  cancelText: '取消',
   zIndex: 2000,
   overlay: true,
   lockScroll: true,
@@ -46,6 +45,10 @@ export const DialogComponent: Component<DialogProps> = (rawProps) => {
     'onConfirm', 'onCancel', 'onClose', 'onUpdateShow',
     'class', 'style',
   ]);
+
+  const t = useT();
+  const confirmLabel = () => local.confirmText ?? t('component.dialog.confirmText');
+  const cancelLabel = () => local.cancelText ?? t('component.dialog.cancelText');
 
   const [internalShow, setInternalShow] = createSignal(local.show);
   const [closing, setClosing] = createSignal(false);
@@ -139,7 +142,7 @@ export const DialogComponent: Component<DialogProps> = (rawProps) => {
                         disabled={local.cancelDisabled}
                         onClick={() => dismiss('cancel')}
                       >
-                        {local.cancelText}
+                        {cancelLabel()}
                       </button>
                     </Show>
                     <Show when={local.showConfirmButton}>
@@ -148,7 +151,7 @@ export const DialogComponent: Component<DialogProps> = (rawProps) => {
                         disabled={local.confirmDisabled || confirmLoading()}
                         onClick={() => dismiss('confirm')}
                       >
-                        {confirmLoading() ? <Loading size={18} /> : local.confirmText}
+                        {confirmLoading() ? <Loading size={18} /> : confirmLabel()}
                       </button>
                     </Show>
                   </div>

@@ -8,10 +8,10 @@ import { Overlay } from '../Overlay';
 import { Loading } from '../Loading';
 import type { CascaderProps, CascaderOption } from './types';
 import { emitEvent } from '../../event-bus';
+import { useT } from '../../i18n';
 import styles from './Cascader.module.css';
 
 const defaultProps: Partial<CascaderProps> = {
-  placeholder: '请选择',
   zIndex: 2000,
   showCheckmark: true,
 };
@@ -31,6 +31,9 @@ export const Cascader: Component<CascaderProps> = (rawProps) => {
     'name', 'required', 'disabled', 'readonly', 'onLoadChildren', 'loading',
     'onFocus', 'onBlur', 'class', 'style',
   ]);
+
+  const t = useT();
+  const placeholderLabel = () => local.placeholder ?? t('component.cascader.placeholder');
 
   const [internalShow, setInternalShow] = createSignal(local.show ?? false);
   const [animated, setAnimated] = createSignal(false);
@@ -95,7 +98,7 @@ export const Cascader: Component<CascaderProps> = (rawProps) => {
     });
     // Add placeholder for next unselected level
     if (selectedIndices().length < cols.length) {
-      path.push(local.placeholder!);
+      path.push(placeholderLabel());
     }
     return path;
   });

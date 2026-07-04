@@ -30,7 +30,7 @@ export const DatePicker: Component<DatePickerProps> = (rawProps) => {
 
   /* ── i18n ── */
   const t = useT();
-  const titleText = () => local.title ?? t('component.datePicker.title');
+  const titleText = () => local.title ?? t('component.datePicker.panelTitle');
   const placeholderText = () => local.placeholder ?? t('component.datePicker.placeholder');
 
   /* ── Form field context ── */
@@ -114,7 +114,8 @@ export const DatePicker: Component<DatePickerProps> = (rawProps) => {
   const yearOptions = createMemo(() => {
     const [sy] = startParts(); const [ey] = endParts();
     const withUnit = local.type !== 'datetime';
-    return range(sy, ey).map((y) => ({ text: withUnit ? `${y}年` : `${y}`, value: y }));
+    const unit = t('component.datePicker.units.year');
+    return range(sy, ey).map((y) => ({ text: withUnit ? `${y}${unit}` : `${y}`, value: y }));
   });
 
   const monthOptions = createMemo(() => {
@@ -123,7 +124,8 @@ export const DatePicker: Component<DatePickerProps> = (rawProps) => {
     if (y === sy) startM = sm;
     if (y === ey) endM = em;
     const withUnit = local.type !== 'datetime';
-    return range(startM, endM).map((m) => ({ text: withUnit ? `${m}月` : String(m).padStart(2, '0'), value: m }));
+    const unit = t('component.datePicker.units.month');
+    return range(startM, endM).map((m) => ({ text: withUnit ? `${m}${unit}` : String(m).padStart(2, '0'), value: m }));
   });
 
   const dayOptions = createMemo(() => {
@@ -133,8 +135,9 @@ export const DatePicker: Component<DatePickerProps> = (rawProps) => {
     if (y === sy && m === sm) startD = sd;
     if (y === ey && m === em) endD = ed;
     const withUnit = local.type !== 'datetime';
+    const unit = t('component.datePicker.units.day');
     return range(Math.min(startD, maxDay), Math.min(endD, maxDay)).map((d) => ({
-      text: withUnit ? `${d}日` : String(d).padStart(2, '0'),
+      text: withUnit ? `${d}${unit}` : String(d).padStart(2, '0'),
       value: d,
       disabled: local.disabledDate?.(y, m, d) ?? false,
     }));

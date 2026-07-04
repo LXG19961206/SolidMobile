@@ -389,7 +389,7 @@ export const Upload: Component<UploadProps> = (rawProps) => {
                   {/* Error overlay — click to retry */}
                   <Show when={file.status === 'error'}>
                     <div class={styles.overlay} onClick={() => uploadOne(file)}>
-                      <span style={{ cursor: 'pointer' }}>! 重试</span>
+                      <span style={{ cursor: 'pointer' }}>! {t('component.upload.retry')}</span>
                     </div>
                   </Show>
 
