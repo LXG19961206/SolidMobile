@@ -130,12 +130,12 @@ export const RateDocPage: Component = () => {
           {Value(colorVal)}
         </DemoBlock>
 
-        <DemoBlock title={t('demo.rateCount')} desc={t('demoDesc.Rate_c03c81')} code={codeCount}>
+        <DemoBlock title={t('demo.rateCount')} desc={t('demoDesc.rate_count')} code={codeCount}>
           <Rate value={countVal()} onChange={setCountVal} count={8} />
           {Value(countVal)}
         </DemoBlock>
 
-        <DemoBlock title={t('demo.customSizeDemo')} desc={t('demoDesc.Rate_a4dc0c')} code={codeSize}>
+        <DemoBlock title={t('demo.customSizeDemo')} desc={t('demoDesc.rate_size_gutter')} code={codeSize}>
           <Rate value={sizeVal()} onChange={setSizeVal} size={28} gutter={8} />
           {Value(sizeVal)}
         </DemoBlock>
@@ -155,7 +155,7 @@ export const RateDocPage: Component = () => {
           {Value(disableVal)}
         </DemoBlock>
 
-        <DemoBlock title={t('demo.readonly')} desc={t('demoDesc.Rate_5fcde2')} code={codeReadonly}>
+        <DemoBlock title={t('demo.readonly')} desc={t('demoDesc.rate_readonly')} code={codeReadonly}>
           <Rate value={readonlyVal()} onChange={setReadonlyVal} readonly />
           {Value(readonlyVal)}
         </DemoBlock>

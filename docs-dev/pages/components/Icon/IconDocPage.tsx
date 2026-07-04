@@ -150,7 +150,7 @@ export const IconDocPage: Component = () => {
 
         <DemoBlock
           title={t('demo.iconTreeShake')}
-          desc={t('demoDesc.Icon_fd97fe')}
+          desc={t('demoDesc.icon_treeshake')}
           code={`import { Icon } from 'solid-component';\n\n<Icon name="search" size={24} />\n<Icon name="heart" variant="fill" color="#ff4d4f" size={24} />\n<Icon name="star" variant="fill" color="#f59e0b" size={24} />`}
         >
           <div class={styles.demoArea}>
@@ -162,7 +162,7 @@ export const IconDocPage: Component = () => {
 
         <DemoBlock
           title={t('demo.iconDynamic')}
-          desc={t('demoDesc.Icon_a6e05e')}
+          desc={t('demoDesc.使用__lt_icon_name__quot_____quo')}
           code={`import { Icon } from 'solid-component';\n\n<Icon name="check" color="#22c55e" />\n<Icon name="close" color="#ef4444" />\n<Icon name="information" color="#3b82f6" />`}
         >
           <div class={styles.demoArea}>
@@ -187,7 +187,7 @@ export const IconDocPage: Component = () => {
 
         <DemoBlock
           title={t('demo.size')}
-          desc={t('demoDesc.Icon_9ef12f')}
+          desc={t('demoDesc.icon_sizes')}
           code={`<Icon name="star" variant="fill" color="#f59e0b" size={16} />\n<Icon name="star" variant="fill" color="#f59e0b" size={24} />\n<Icon name="star" variant="fill" color="#f59e0b" size={32} />\n<Icon name="star" variant="fill" color="#f59e0b" size="2.5rem" />`}
         >
           <div class={styles.demoArea}>
@@ -200,7 +200,7 @@ export const IconDocPage: Component = () => {
 
         <DemoBlock
           title={t('demo.color')}
-          desc={t('demoDesc.Icon_cb6632')}
+          desc={t('demoDesc.icon_color')}
           code={`<Icon name="star" variant="fill" color="#1677ff" />\n<Icon name="star" variant="fill" color="#22c55e" />\n<Icon name="star" variant="fill" color="#f59e0b" />\n<Icon name="star" variant="fill" color="#ef4444" />`}
         >
           <div class={styles.demoArea}>
@@ -225,7 +225,7 @@ export const IconDocPage: Component = () => {
 
         <DemoBlock
           title={t('demo.iconClickable')}
-          desc={t('demoDesc.Icon_032e64')}
+          desc={t('demoDesc.icon_clickable')}
           code={`<Icon name="close" aria-label="关闭" size={24} style={{ cursor: 'pointer' }} />\n<Icon name="heart" variant="fill" aria-label="收藏" size={24} color="#ff4d4f" style={{ cursor: 'pointer' }} />`}
         >
           <div class={styles.demoArea}>

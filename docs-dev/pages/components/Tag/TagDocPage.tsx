@@ -55,7 +55,7 @@ export const TagDocPage = () => {
       <h2 id="scenes" class={css.h2}>{t('section.scenarios')}</h2>
       <DemoBlock
         title={t('demo.tagDict')}
-        desc={t('demoDesc.Tag_643073')}
+        desc={t('demoDesc.tag_dict')}
         code={`<div style="display:flex;flex-direction:column;gap:8px">\n  <div style="display:flex;align-items:center;gap:8px">\n    <Tag variant="outline">姓名</Tag><span>张三</span>\n  </div>\n  <div style="display:flex;align-items:center;gap:8px">\n    <Tag variant="outline" type="info">状态</Tag><span>在职</span>\n  </div>\n  <div style="display:flex;align-items:center;gap:8px">\n    <Tag variant="outline" type="success">部门</Tag><span>技术部</span>\n  </div>\n</div>`}
       >
         <div style="display:flex;flex-direction:column;gap:8px;font-size:0.85rem">
@@ -68,7 +68,7 @@ export const TagDocPage = () => {
 
       <DemoBlock
         title={t('demo.tagCloud')}
-        desc={t('demoDesc.Tag_fe51cb')}
+        desc={t('demoDesc.tag_cloud')}
         code={`<div style="display:flex;flex-wrap:wrap;gap:6px">\n  <Tag round>前端</Tag>\n  <Tag type="success" round>React</Tag>\n  <Tag type="warning" round>TypeScript</Tag>\n  <Tag type="danger" round>热门</Tag>\n  <Tag type="info" round>2024</Tag>\n</div>`}
       >
         <div style="display:flex;flex-wrap:wrap;gap:6px">
@@ -84,7 +84,7 @@ export const TagDocPage = () => {
 
       <DemoBlock
         title={t('demo.tagFilter')}
-        desc={t('demoDesc.Tag_bdbb47')}
+        desc={t('demoDesc.tag_filter')}
         code={`<div style="display:flex;flex-wrap:wrap;gap:6px">\n  <Tag closeable type="primary">北京</Tag>\n  <Tag closeable type="primary">前端</Tag>\n  <Tag closeable type="primary">3-5年</Tag>\n</div>`}
       >
         <div style="display:flex;flex-wrap:wrap;gap:6px">

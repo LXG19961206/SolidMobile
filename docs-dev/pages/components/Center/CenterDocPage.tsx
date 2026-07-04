@@ -44,7 +44,7 @@ export const CenterDocPage = () => {
       <h2 id="flex" class={styles.h2}>{t('section.flexCenter')}</h2>
       <DemoBlock
         title={t('demo.centerDefault')}
-        desc={t('demoDesc.Center_4b8b37')}
+        desc={t('demoDesc.center_default')}
         code={`<Center>\n  <div>居中的内容</div>\n</Center>`}
       >
         <div class={styles.demoContainer}>
@@ -54,7 +54,7 @@ export const CenterDocPage = () => {
 
       <DemoBlock
         title={t('demo.centerFlexX')}
-        desc={t('demoDesc.Center_19f238')}
+        desc={t('demoDesc.center_horizontal')}
         code={`<Center flexX>\n  <div>水平居中</div>\n</Center>`}
       >
         <div class={styles.demoContainer}>
@@ -64,7 +64,7 @@ export const CenterDocPage = () => {
 
       <DemoBlock
         title={t('demo.centerFlexY')}
-        desc={t('demoDesc.Center_dd3155')}
+        desc={t('demoDesc.center_vertical')}
         code={`<div style={{ height: 160 }}>\n  <Center flexY>\n    <div>垂直居中</div>\n  </Center>\n</div>`}
       >
         <div class={styles.demoContainer}>
@@ -74,7 +74,7 @@ export const CenterDocPage = () => {
 
       <DemoBlock
         title={t('demo.centerInline')}
-        desc={t('demoDesc.Center_82f338')}
+        desc={t('demoDesc.center_inline')}
         code={`<Center flexX inline>\n  <span>行内</span>\n</Center>`}
       >
         <span>
@@ -86,7 +86,7 @@ export const CenterDocPage = () => {
       <h2 id="text" class={styles.h2}>{t('section.textCenter')}</h2>
       <DemoBlock
         title={t('demo.centerText')}
-        desc={t('demoDesc.Center_334839')}
+        desc={t('demoDesc.center_text')}
         code={`<Center text>\n  <span>这段文字会居中</span>\n</Center>`}
       >
         <div class={styles.demoContainer}>
@@ -96,7 +96,7 @@ export const CenterDocPage = () => {
 
       <DemoBlock
         title={t('demo.centerVertical')}
-        desc={t('demoDesc.Center_3ed382')}
+        desc={t('demoDesc.center_vertical_align')}
         code={`<div style="line-height: 3">\n  大文字 <Center vertical inline>\n    <span>对齐我</span>\n  </Center>\n</div>`}
       >
         <div style="line-height: 3">

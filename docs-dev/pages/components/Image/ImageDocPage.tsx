@@ -48,7 +48,7 @@ export const ImageDocPage = () => {
         <PropsTable rows={propsData} />
 
         <h2 id="basic" class={css.h2}>{t('common.basic')}</h2>
-        <DemoBlock title={t('demo.imageLogo')} desc={t('demoDesc.Image_d3eb23')} code={`<Image src="./logo.jpg" width={100} height={100} fit="cover" radius={16} />`}>
+        <DemoBlock title={t('demo.imageLogo')} desc={t('demoDesc.image_logo')} code={`<Image src="./logo.jpg" width={100} height={100} fit="cover" radius={16} />`}>
           <Image src="./logo.jpg" width={100} height={100} fit="cover" radius={16} />
         </DemoBlock>
 
@@ -57,7 +57,7 @@ export const ImageDocPage = () => {
         </DemoBlock>
 
         <h2 id="fit" class={css.h2}>{t('component.image.fit')}</h2>
-        <DemoBlock title={t('demo.imageFit')} desc={t('demoDesc.Image_a208d5')} code={'<Image src="..." width={100} height={100} fit="cover" />\n<Image src="..." width={100} height={100} fit="contain" />\n<Image src="..." width={100} height={100} fit="fill" />'}>
+        <DemoBlock title={t('demo.imageFit')} desc={t('demoDesc.image_fit')} code={'<Image src="..." width={100} height={100} fit="cover" />\n<Image src="..." width={100} height={100} fit="contain" />\n<Image src="..." width={100} height={100} fit="fill" />'}>
           <div class={css.row}>
             <Image src={SRC} width={100} height={100} fit="cover" />
             <Image src={SRC} width={100} height={100} fit="contain" />
@@ -81,10 +81,10 @@ export const ImageDocPage = () => {
         </DemoBlock>
 
         <h2 id="state" class={css.h2}>{t('component.image.state')}</h2>
-        <DemoBlock title={t('component.image.placeholder')} desc={t('demoDesc.Image_3242f6')} code={`<Image src="..." width={200} height={150} placeholder={<div style={{background:'#f3f4f6'}}>加载中...</div>} />`}>
+        <DemoBlock title={t('component.image.placeholder')} desc={t('demoDesc.image_placeholder')} code={`<Image src="..." width={200} height={150} placeholder={<div style={{background:'#f3f4f6'}}>加载中...</div>} />`}>
           <Image src={SRC} width={200} height={150} placeholder={<div style="display:flex;align-items:center;justify-content:center;width:200px;height:150px;background:#f3f4f6;color:#999;font-size:0.8rem">加载中...</div>} />
         </DemoBlock>
-        <DemoBlock title={t('component.image.fallback')} desc={t('demoDesc.Image_414d5a')} code={`<Image src="invalid.jpg" width={200} height={150} fallback={<div style={{background:'#f3f4f6',color:'#ef4444'}}>加载失败</div>} />`}>
+        <DemoBlock title={t('component.image.fallback')} desc={t('demoDesc.image_fallback')} code={`<Image src="invalid.jpg" width={200} height={150} fallback={<div style={{background:'#f3f4f6',color:'#ef4444'}}>加载失败</div>} />`}>
           <Image src="invalid.jpg" width={200} height={150} fallback={<div style="display:flex;align-items:center;justify-content:center;width:200px;height:150px;background:#f3f4f6;color:#ef4444;font-size:0.8rem">加载失败</div>} />
         </DemoBlock>
       </div>

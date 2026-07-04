@@ -78,7 +78,7 @@ export const SliderDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.dualSlider')} desc={t('demoDesc.Slider_a1b9a6')} code={codeRange}>
+        <DemoBlock title={t('demo.dualSlider')} desc={t('demoDesc.slider_range')} code={codeRange}>
           <div style={{ padding: '0 4px' }}>
             <Slider count={2} value={rangeVal()} onChange={setRangeVal} />
           </div>
@@ -87,7 +87,7 @@ export const SliderDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.tripleSlider')} desc={t('demoDesc.Slider_158709')} code={codeThree}>
+        <DemoBlock title={t('demo.tripleSlider')} desc={t('demoDesc.slider_triple')} code={codeThree}>
           <div style={{ padding: '0 4px' }}>
             <Slider count={3} value={threeVal()} onChange={setThreeVal} />
           </div>
@@ -96,7 +96,7 @@ export const SliderDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.customStyle')} desc={t('demoDesc.Slider_e13576')} code={codeCustom}>
+        <DemoBlock title={t('demo.customStyle')} desc={t('demoDesc.slider_custom')} code={codeCustom}>
           <div style={{ padding: '0 4px' }}>
             <Slider value={styleVal()} onChange={setStyleVal} activeColor="#22c55e" barHeight={4} buttonSize={28} />
           </div>
@@ -111,7 +111,7 @@ export const SliderDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.customThumb')} desc={t('demoDesc.Slider_bf6fed')} code={codeCustomThumb}>
+        <DemoBlock title={t('demo.customThumb')} desc={t('demoDesc.slider_thumb')} code={codeCustomThumb}>
           <div style={{ padding: '0 4px' }}>
             <Slider value={customVal()} onChange={setCustomVal} buttonSize={32} thumbRender={(v) => v} />
           </div>

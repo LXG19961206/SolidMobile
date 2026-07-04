@@ -36,7 +36,7 @@ export const BadgeDocPage = () => {
 
       <DemoBlock
         title={t('demo.withAvatar')}
-        desc={t('demoDesc.Badge_f20575')}
+        desc={t('demoDesc.badge_with_avatar')}
         code={`<Badge content={5}>\n  <Avatar size={40} />\n</Badge>\n<Badge dot>\n  <Avatar size={40} />\n</Badge>\n<Badge content={120} max={99}>\n  <Avatar size={48} />\n</Badge>`}
       >
         <div class={css.row} style="gap:1.5rem">
@@ -48,7 +48,7 @@ export const BadgeDocPage = () => {
 
       <DemoBlock
         title={t('demo.withButton')}
-        desc={t('demoDesc.Badge_3ee07b')}
+        desc={t('demoDesc.badge_with_button')}
         code={`<Badge content={3}>\n  <Button size="sm">消息</Button>\n</Badge>\n<Badge content={8}>\n  <Button size="sm" variant="outline">订单</Button>\n</Badge>\n<Badge dot>\n  <Button size="sm">系统</Button>\n</Badge>`}
       >
         <div class={css.row} style="gap:1rem">
@@ -60,7 +60,7 @@ export const BadgeDocPage = () => {
 
       <DemoBlock
         title={t('demo.withTab')}
-        desc={t('demoDesc.Badge_cd529c')}
+        desc={t('demoDesc.badge_with_tab')}
         code={`<Tabs>\n  <Tab title={<span>全部 <Badge content={12} /></span>} name="all" />\n  <Tab title={<span>待处理 <Badge dot /></span>} name="pending" />\n  <Tab title={<span>已完成 <Badge content={99} max={99} /></span>} name="done" />\n</Tabs>`}
       >
         <Tabs>
@@ -72,7 +72,7 @@ export const BadgeDocPage = () => {
 
       <DemoBlock
         title={t('demo.standalone')}
-        desc={t('demoDesc.Badge_05e398')}
+        desc={t('demoDesc.badge_standalone')}
         code={`<div style="display:flex;align-items:center;gap:0.5rem">\n  新消息 <Badge content={99} />\n</div>\n<Badge dot /> 在线`}
       >
         <div class={css.row} style="gap:1.5rem;align-items:center">

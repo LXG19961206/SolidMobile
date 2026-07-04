@@ -101,7 +101,7 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.customIcon')} desc={t('demoDesc.Upload_ab6777')} code={`const iconMap = {\n  pdf: 'file-text',\n  image: 'image',\n  video: 'video',\n  '*': 'file',\n};\n\n<Upload type="file" iconMap={iconMap} />`}>
+        <DemoBlock title={t('demo.customIcon')} desc={t('demoDesc.upload_iconmap')} code={`const iconMap = {\n  pdf: 'file-text',\n  image: 'image',\n  video: 'video',\n  '*': 'file',\n};\n\n<Upload type="file" iconMap={iconMap} />`}>
           <div style={{ width: '100%' }}>
             <Upload
               type="file"
@@ -117,7 +117,7 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.limits')} desc={t('demoDesc.Upload_4bf4f8')} code={`<Upload\n  maxCount={3}\n  maxSize={1024 * 1024}\n  beforeUpload={(f) => f.type.startsWith('image/')}\n/>`}>
+        <DemoBlock title={t('demo.limits')} desc={t('demoDesc.upload_limits')} code={`<Upload\n  maxCount={3}\n  maxSize={1024 * 1024}\n  beforeUpload={(f) => f.type.startsWith('image/')}\n/>`}>
           <Upload
             maxCount={3}
             maxSize={1024 * 1024}
@@ -125,14 +125,14 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           />
         </DemoBlock>
 
-        <DemoBlock title={t('demo.controlled')} desc={t('demoDesc.Upload_144f6a')} code={`const [files, setFiles] = createSignal<UploadFile[]>([]);\n\n<Upload\n  fileList={files()}\n  onChange={(list, file) => setFiles(list)}\n/>`}>
+        <DemoBlock title={t('demo.controlled')} desc={t('demoDesc.upload_controlled')} code={`const [files, setFiles] = createSignal<UploadFile[]>([]);\n\n<Upload\n  fileList={files()}\n  onChange={(list, file) => setFiles(list)}\n/>`}>
           <Upload
             fileList={fileList()}
             onChange={(list) => setFileList(list)}
           />
         </DemoBlock>
 
-        <DemoBlock title={t('demo.callbacks')} desc={t('demoDesc.Upload_5f5797')} code={`<Upload
+        <DemoBlock title={t('demo.callbacks')} desc={t('demoDesc.upload_callbacks')} code={`<Upload
   api={uploadFile}
   onSuccess={(file, url) => Toast.success(\`\${file.name} 上传成功\`)}
   onError={(file, msg) => Toast.error(\`\${file.name} 失败: \${msg}\`)}
@@ -144,7 +144,7 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           />
         </DemoBlock>
 
-        <DemoBlock title={t('demo.customTrigger')} desc={t('demoDesc.Upload_deaef6')} code={`<Upload>\n  <button style={{ padding: '8px 16px', background: '#1677ff', color: '#fff', 'border-radius': '6px', border: 'none', 'white-space': 'nowrap' }}>\n    + 上传图片\n  </button>\n</Upload>`}>
+        <DemoBlock title={t('demo.customTrigger')} desc={t('demoDesc.upload_custom_button')} code={`<Upload>\n  <button style={{ padding: '8px 16px', background: '#1677ff', color: '#fff', 'border-radius': '6px', border: 'none', 'white-space': 'nowrap' }}>\n    + 上传图片\n  </button>\n</Upload>`}>
           <Upload>
             <button style={{ padding: '8px 16px', background: '#1677ff', color: '#fff', 'border-radius': '6px', border: 'none', cursor: 'pointer', 'font-size': '0.8125rem', 'white-space': 'nowrap' }}>
               + 上传图片
@@ -152,7 +152,7 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           </Upload>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.customRender')} desc={t('demoDesc.Upload_b331f5')} code={`<Upload\n  defaultFileList={[\n    { uid:'1', name:'photo.png', size:20480, type:'image/png', status:'done', url:'/photo.png' },\n  ]}\n  renderFile={(f) => (\n    <div style={{ display:'flex', 'align-items':'center', gap:8, padding:'4px 0' }}>\n      <img src={f.url} style={{ width:40, height:40, 'border-radius':4, 'object-fit':'cover', background:'#f0f0f0' }} />\n      <span style={{ 'font-size':'0.8125rem' }}>{f.name}</span>\n      <span style={{ 'font-size':'0.7rem', color:'#999', 'margin-left':'auto' }}>{fmtSize(f.size)}</span>\n    </div>\n  )}\n>\n  <button style={{ padding:'8px 16px', width:'100%', background:'#f7f8fa', border:'1px dashed #dcdee0', 'border-radius':'6px', color:'#969799', cursor:'pointer' }}>\n    + 选择文件\n  </button>\n</Upload>`}>
+        <DemoBlock title={t('demo.customRender')} desc={t('demoDesc.upload_custom_render')} code={`<Upload\n  defaultFileList={[\n    { uid:'1', name:'photo.png', size:20480, type:'image/png', status:'done', url:'/photo.png' },\n  ]}\n  renderFile={(f) => (\n    <div style={{ display:'flex', 'align-items':'center', gap:8, padding:'4px 0' }}>\n      <img src={f.url} style={{ width:40, height:40, 'border-radius':4, 'object-fit':'cover', background:'#f0f0f0' }} />\n      <span style={{ 'font-size':'0.8125rem' }}>{f.name}</span>\n      <span style={{ 'font-size':'0.7rem', color:'#999', 'margin-left':'auto' }}>{fmtSize(f.size)}</span>\n    </div>\n  )}\n>\n  <button style={{ padding:'8px 16px', width:'100%', background:'#f7f8fa', border:'1px dashed #dcdee0', 'border-radius':'6px', color:'#969799', cursor:'pointer' }}>\n    + 选择文件\n  </button>\n</Upload>`}>
           <Upload
             defaultFileList={[
               { uid: '1', name: 'photo.png', size: 20480, type: 'image/png', status: 'done', url: 'https://picsum.photos/seed/u1/80/80' },

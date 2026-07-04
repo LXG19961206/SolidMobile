@@ -277,7 +277,7 @@ export const CheckboxDocPage: Component = () => {
           <IndeterminateDemo />
         </DemoBlock>
 
-        <DemoBlock title={t('demo.minMaxCheck')} desc={t('demoDesc.Checkbox_d4f474')} code={codeMaxMin}>
+        <DemoBlock title={t('demo.minMaxCheck')} desc={t('demoDesc.checkbox_minmax')} code={codeMaxMin}>
           <CheckboxGroup max={2} min={1} defaultValue={['a']}>
             <Checkbox value="a" label="至少选 1 个，最多 2 个" />
             <Checkbox value="b" label="选项 B" />
@@ -285,7 +285,7 @@ export const CheckboxDocPage: Component = () => {
           </CheckboxGroup>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.standalone')} desc={t('demoDesc.Checkbox_3fcd5f')} code={`<Checkbox value="x" label="非受控" defaultChecked />
+        <DemoBlock title={t('demo.standalone')} desc={t('demoDesc.checkbox_standalone')} code={`<Checkbox value="x" label="非受控" defaultChecked />
 <Checkbox value="y" label="受控" checked={val()} onChange={setVal} />`}>
           <Checkbox value="x" label="点击我切换（非受控，defaultChecked）" defaultChecked />
           <div style={{ height: '8px' }} />

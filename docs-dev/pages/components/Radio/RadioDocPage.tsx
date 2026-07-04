@@ -285,7 +285,7 @@ export const RadioDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.standalone')} desc={t('demoDesc.Radio_9e7b07')} code={`const [checked, setChecked] = createSignal(false);
+        <DemoBlock title={t('demo.standalone')} desc={t('demoDesc.radio_standalone')} code={`const [checked, setChecked] = createSignal(false);
 <Radio
   value="x"
   label="点击切换"

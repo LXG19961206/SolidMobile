@@ -64,7 +64,7 @@ export const TabsDocPage = () => {
           </Tabs>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.jsxTitle')} desc={t('demoDesc.Tabs_5b4b6a')} code={`<Tabs>\n  <Tab title={<span>🔔 通知</span>} name="a"><div>通知内容</div></Tab>\n  <Tab title={<span>⚙ 设置</span>} name="b"><div>设置内容</div></Tab>\n  <Tab title="账号" name="c"><div>账号内容</div></Tab>\n</Tabs>`}>
+        <DemoBlock title={t('demo.jsxTitle')} desc={t('demoDesc.tabs_jsx')} code={`<Tabs>\n  <Tab title={<span>🔔 通知</span>} name="a"><div>通知内容</div></Tab>\n  <Tab title={<span>⚙ 设置</span>} name="b"><div>设置内容</div></Tab>\n  <Tab title="账号" name="c"><div>账号内容</div></Tab>\n</Tabs>`}>
           <Tabs>
             <Tab title={<span>🔔 通知</span>} name="a"><div class={css.demoPanel}>通知内容</div></Tab>
             <Tab title={<span>⚙ 设置</span>} name="b"><div class={css.demoPanel}>设置内容</div></Tab>
@@ -89,7 +89,7 @@ export const TabsDocPage = () => {
         </DemoBlock>
 
         <h2 id="controlled" class={css.h2}>{t('demo.controlled')}</h2>
-        <DemoBlock title={t('demo.activeOnChange')} desc={t('demoDesc.Tabs_c45890')} code={`const [active, setActive] = createSignal('tab1');\n\n<Tabs active={active()} onChange={setActive}>\n  <Tab title="Tab1" name="tab1"><div>内容 1</div></Tab>\n  <Tab title="Tab2" name="tab2"><div>内容 2</div></Tab>\n  <Tab title="Tab3（禁用）" name="tab3" disabled><div>内容 3</div></Tab>\n</Tabs>\n\n<div>当前激活: {active()}</div>`}>
+        <DemoBlock title={t('demo.activeOnChange')} desc={t('demoDesc.tabs_controlled')} code={`const [active, setActive] = createSignal('tab1');\n\n<Tabs active={active()} onChange={setActive}>\n  <Tab title="Tab1" name="tab1"><div>内容 1</div></Tab>\n  <Tab title="Tab2" name="tab2"><div>内容 2</div></Tab>\n  <Tab title="Tab3（禁用）" name="tab3" disabled><div>内容 3</div></Tab>\n</Tabs>\n\n<div>当前激活: {active()}</div>`}>
           <Tabs active={active()} onChange={setActive}>
             <Tab title="Tab1" name="tab1"><div class={css.demoPanel}>内容 1</div></Tab>
             <Tab title="Tab2" name="tab2"><div class={css.demoPanel}>内容 2</div></Tab>

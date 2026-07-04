@@ -59,7 +59,7 @@ export const CellDocPage = () => {
       <h2 id="basic" class={styles.h2}>{t('section.basicList')}</h2>
       <DemoBlock
         title={t('demo.cellBasic')}
-        desc={t('demoDesc.Cell_285074')}
+        desc={t('demoDesc.cell_basic')}
         code={`<CellGroup title="基本信息">\n  <Cell title="用户名" value="张三" />\n  <Cell title="手机号" value="138****8888" />\n  <Cell title="简介" description="这是一段描述文字" />\n</CellGroup>`}
       >
         <div class={styles.demo}>
@@ -75,7 +75,7 @@ export const CellDocPage = () => {
       <h2 id="clickable" class={styles.h2}>{t('section.clickable')}</h2>
       <DemoBlock
         title={t('demo.cellClickable')}
-        desc={t('demoDesc.Cell_0451f7')}
+        desc={t('demoDesc.cell_clickable')}
         code={`<CellGroup title="设置">\n  <Cell title="个人资料" clickable onClick={() => {}} />\n  <Cell title="账号安全" clickable />\n  <Cell title="通知设置" clickable value="已开启" />\n</CellGroup>`}
       >
         <div class={styles.demo}>
@@ -91,7 +91,7 @@ export const CellDocPage = () => {
       <h2 id="icon" class={styles.h2}>{t('section.iconRequired')}</h2>
       <DemoBlock
         title={t('demo.cellIconRequired')}
-        desc={t('demoDesc.Cell_35f866')}
+        desc={t('demoDesc.cell_icon_required')}
         code={`<Cell icon="user" title="姓名" required value="张三" />\n<Cell icon="phone" title="手机号" clickable />\n<Cell icon="mail" title="邮箱" value="zhang@example.com" />\n<Cell\n  icon="palette"\n  title="主题色"\n  value={<span><span style={{ width:14,height:14,borderRadius:'50%',background:'#1677ff',display:'inline-block' }} /> 品牌蓝</span>}\n/>`}
       >
         <div class={styles.demo}>
@@ -112,7 +112,7 @@ export const CellDocPage = () => {
       <h2 id="size" class={styles.h2}>{t('demo.size')}</h2>
       <DemoBlock
         title="sm / md / lg"
-        desc={t('demoDesc.Cell_786ca3')}
+        desc={t('demoDesc.cell_sizes')}
         code={`<Cell size="sm" title="小号" />\n<Cell size="md" title="中号" />\n<Cell size="lg" title="大号" />`}
       >
         <div class={styles.demo}>
@@ -128,7 +128,7 @@ export const CellDocPage = () => {
       <h2 id="card" class={styles.h2}>{t('section.cardMode')}</h2>
       <DemoBlock
         title="card"
-        desc={t('demoDesc.Cell_b48e3e')}
+        desc={t('demoDesc.cell_card')}
         code={`<CellGroup title="关于" card>\n  <Cell title="版本号" value="1.0.0" />\n  <Cell title="开源协议" value="MIT" clickable />\n</CellGroup>`}
       >
         <div class={styles.demo} style={{ background: '#eff2f5', padding: '1rem 0', 'border-radius': '8px' }}>

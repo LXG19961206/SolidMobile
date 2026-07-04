@@ -58,7 +58,7 @@ export const PullRefreshDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.pullCustomText')} desc={t('demoDesc.PullRefresh_744757')} code={`<PullRefresh\n  pullingText="再用力一点"\n  loosingText="松手刷新"\n  loadingText="加载中..."\n  successText="加载完成"\n/>`}>
+        <DemoBlock title={t('demo.pullCustomText')} desc={t('demoDesc.pullrefresh_custom_text')} code={`<PullRefresh\n  pullingText="再用力一点"\n  loosingText="松手刷新"\n  loadingText="加载中..."\n  successText="加载完成"\n/>`}>
           <div style={{ background: '#fff', 'border-radius': '8px', padding: '12px', 'text-align': 'center', color: '#969799', 'font-size': '0.8rem' }}>
             <PullRefresh
               onRefresh={mockRefresh}
@@ -74,7 +74,7 @@ export const PullRefreshDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.pullWithList')} desc={t('demoDesc.PullRefresh_771d32')} code={`import { List } from "solid-mobile";
+        <DemoBlock title={t('demo.pullWithList')} desc={t('demoDesc.pullrefresh_with_list')} code={`import { List } from "solid-mobile";
 
 function Page() {
   const [items, setItems] = createSignal(["Item 1", "Item 2"]);

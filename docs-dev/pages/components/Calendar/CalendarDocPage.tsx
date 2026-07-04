@@ -158,31 +158,31 @@ export const CalendarDocPage = () => {
 
       <h2 id="demo" class={css.h2}>{t('demo.examples')}</h2>
 
-      <DemoBlock title={t('demo.calendarSingle')} desc={t('demoDesc.Calendar_30c08e')} code={`const [show, setShow] = createSignal(false);\n\n<Calendar\n  show={show()}\n  onUpdateShow={setShow}\n  value={date()}\n  onChange={(v) => { setDate(v); setShow(false); }}\n  closeable\n/>`}>
+      <DemoBlock title={t('demo.calendarSingle')} desc={t('demoDesc.calendar_single')} code={`const [show, setShow] = createSignal(false);\n\n<Calendar\n  show={show()}\n  onUpdateShow={setShow}\n  value={date()}\n  onChange={(v) => { setDate(v); setShow(false); }}\n  closeable\n/>`}>
         <PopupSingle />
       </DemoBlock>
 
-      <DemoBlock title={t('demo.calendarRange')} desc={t('demoDesc.Calendar_4959ce')} code={`<Calendar\n  type="range"\n  showConfirm\n  show={show()}\n  onUpdateShow={setShow}\n  closeable\n/>`}>
+      <DemoBlock title={t('demo.calendarRange')} desc={t('demoDesc.calendar_range')} code={`<Calendar\n  type="range"\n  showConfirm\n  show={show()}\n  onUpdateShow={setShow}\n  closeable\n/>`}>
         <PopupRange />
       </DemoBlock>
 
-      <DemoBlock title={t('demo.calendarCustom')} desc={t('demoDesc.Calendar_ed7546')} code={`<Calendar\n  type="range"\n  showConfirm\n  activeColor="#22c55e"\n  dayRender={(d) => d.isToday ? <strong>今</strong> : d.day}\n  show={show()}\n  onUpdateShow={setShow}\n/>`}>
+      <DemoBlock title={t('demo.calendarCustom')} desc={t('demoDesc.calendar_custom')} code={`<Calendar\n  type="range"\n  showConfirm\n  activeColor="#22c55e"\n  dayRender={(d) => d.isToday ? <strong>今</strong> : d.day}\n  show={show()}\n  onUpdateShow={setShow}\n/>`}>
         <PopupColor />
       </DemoBlock>
 
       <DemoBlock
         title={t('demo.calendarHoliday')}
-        desc={t('demoDesc.Calendar_fa863a')}
+        desc={t('demoDesc.calendar_holidays')}
         code={`// 构建特殊日期映射\nconst special = { '2026-6-1': { label: '假', color: '#ef4444' } };\n\n<Calendar\n  dayRender={(d) => {\n    const spec = special[\`$\{d.year}-$\{d.month}-$\{d.day}\`];\n    return (\n      <span>\n        <span>{d.day}</span>\n        {spec && <small style={{color:spec.color}}>{spec.label}</small>}\n      </span>\n    );\n  }}\n  show={show()}\n  onUpdateShow={setShow}\n  title="选择日期"\n/>`}
       >
         <PopupHoliday />
       </DemoBlock>
 
-      <DemoBlock title={t('demo.calendarInline')} desc={t('demoDesc.Calendar_311a7e')} code={'<Calendar popup={false} />'}>
+      <DemoBlock title={t('demo.calendarInline')} desc={t('demoDesc.calendar_inline')} code={'<Calendar popup={false} />'}>
         <Calendar popup={false} />
       </DemoBlock>
 
-      <DemoBlock title={t('demo.calendarLunar')} desc={t('demoDesc.Calendar_4863c8')} code={'<Calendar popup={false} lunar />'}>
+      <DemoBlock title={t('demo.calendarLunar')} desc={t('demoDesc.calendar_lunar')} code={'<Calendar popup={false} lunar />'}>
         <Calendar popup={false} lunar />
       </DemoBlock>
     </div>

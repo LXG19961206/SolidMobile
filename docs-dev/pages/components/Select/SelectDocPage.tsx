@@ -105,11 +105,11 @@ export const SelectDocPage: Component = () => {
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Select Props</h2>
       <PropsTable rows={selectProps} />
 
-      <DemoBlock title={t('demo.basic')} desc={t('demoDesc.Select_1bb2e9')} code={codeBasic}>
+      <DemoBlock title={t('demo.basic')} desc={t('demoDesc.select_basic')} code={codeBasic}>
         <BasicDemo />
       </DemoBlock>
 
-      <DemoBlock title={t('demo.form')} desc={t('demoDesc.Select_74fb50')} code={codeForm}>
+      <DemoBlock title={t('demo.form')} desc={t('demoDesc.select_form')} code={codeForm}>
         <FormDemo />
       </DemoBlock>
     </div>

@@ -239,7 +239,7 @@ export const ListDocPage: Component = () => {
         <h2 id="demo" class={css.h2}>{t('demo.examples')}</h2>
         <DemoBlock
           title={t('demo.listExample')}
-          desc={t('demoDesc.List_8254e3')}
+          desc={t('demoDesc.list_example')}
           code={codes[activeTab()]}
           hideTitle
           flush

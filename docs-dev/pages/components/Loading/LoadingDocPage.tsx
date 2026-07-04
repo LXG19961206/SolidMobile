@@ -52,7 +52,7 @@ const LoadingDocInner = () => {
         <h2 id="types" class={styles.h2}>{t('section.builtinTypes')}</h2>
         <DemoBlock
           title={t('demo.loadingTypes')}
-          desc={t('demoDesc.Loading_ba259a')}
+          desc={t('demoDesc.loading_types')}
           code={`<Loading type="spinner" text="加载中..." />\n<Loading type="circular" text="加载中..." />\n<Loading type="dots" text="加载中..." />`}
         >
           <div class={styles.demoArea}>
@@ -64,7 +64,7 @@ const LoadingDocInner = () => {
 
         <DemoBlock
           title={t('demo.loadingPure')}
-          desc={t('demoDesc.Loading_d8df97')}
+          desc={t('demoDesc.loading_pure')}
           code={`<Loading />\n<Loading type="circular" />\n<Loading type="dots" />`}
         >
           <div class={styles.demoArea}>
@@ -78,7 +78,7 @@ const LoadingDocInner = () => {
         <h2 id="size-color" class={styles.h2}>{t('section.sizeColor')}</h2>
         <DemoBlock
           title={t('demo.loadingSizeColor')}
-          desc={t('demoDesc.Loading_960681')}
+          desc={t('demoDesc.loading_size_color')}
           code={`<Loading size={32} color="#1677ff" />\n<Loading size="2rem" color="#22c55e" text="加载中" />\n<Loading size={16} color="#f59e0b" />`}
         >
           <div class={styles.demoArea}>
@@ -92,7 +92,7 @@ const LoadingDocInner = () => {
         <h2 id="vertical" class={styles.h2}>{t('section.verticalLayout')}</h2>
         <DemoBlock
           title={t('demo.centerVertical')}
-          desc={t('demoDesc.Loading_b4bdf2')}
+          desc={t('demoDesc.loading_vertical')}
           code={`<Loading vertical text="正在加载数据..." />\n<Loading vertical type="dots" text="搜索中..." />`}
         >
           <div class={styles.demoArea}>
@@ -105,7 +105,7 @@ const LoadingDocInner = () => {
         <h2 id="custom" class={styles.h2}>{t('demo.customIcon')}</h2>
         <DemoBlock
           title={t('demo.loadingIconProp')}
-          desc={t('demoDesc.Loading_424b16')}
+          desc={t('demoDesc.loading_custom_icon')}
           code={`<Loading icon={<Icon name="refresh" size={24} />} text="刷新中..." />`}
         >
           <div class={styles.demoArea}>
@@ -124,7 +124,7 @@ const LoadingDocInner = () => {
         <h2 id="overlay" class={styles.h2}>{t('section.overlay')}</h2>
         <DemoBlock
           title={t('demo.loadingOverlayMode')}
-          desc={t('demoDesc.Loading_440446')}
+          desc={t('demoDesc.loading_overlay')}
           code={`import { createSignal } from 'solid-js';\nimport { Loading } from 'solid-component';\n\nfunction Demo() {\n  const [loading, setLoading] = createSignal(false);\n\n  const handleSubmit = async () => {\n    setLoading(true);\n    await fetchData();\n    setLoading(false);\n  };\n\n  return (\n    <>\n      <button onClick={handleSubmit}>提交</button>\n      {loading() && <Loading overlay text="正在处理..." />}\n    </>\n  );\n}`}
         >
           <div class={styles.demoArea}>

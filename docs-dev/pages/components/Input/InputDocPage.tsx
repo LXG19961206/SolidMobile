@@ -136,7 +136,7 @@ export const InputDocPage: Component = () => {
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.clearable')}</h2>
-      <DemoBlock title={t('demo.clearable')} desc={t('demoDesc.Input_dbab86')} code={codeClearable}>
+      <DemoBlock title={t('demo.clearable')} desc={t('demoDesc.input_clearable')} code={codeClearable}>
         <CellGroup>
           <Cell title="清除" value={<Input clearable placeholder="输入点东西试试" />} />
           <Cell title="预设值" value={<Input clearable defaultValue="点 X 可清除" />} />
@@ -158,13 +158,13 @@ export const InputDocPage: Component = () => {
           <Cell title="邮箱" value={<Input placeholder="example" suffix={<span style={{ color: '#999', 'font-size': '0.85rem' }}>@gmail.com</span>} />} />
         </CellGroup>
       </DemoBlock>
-      <DemoBlock title={t('demo.searchInput')} desc={t('demoDesc.Input_20bbd4')} code={codeSearch}>
+      <DemoBlock title={t('demo.searchInput')} desc={t('demoDesc.input_search')} code={codeSearch}>
         <Input placeholder="搜索文章" clearable size="md" prefix={<Icon name="search" color="#999" />} style={{ 'border-radius': '16px', border: 'none', padding: '0 16px' }} />
       </DemoBlock>
 
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.states')}</h2>
-      <DemoBlock title={t('demo.inputStates')} desc={t('demoDesc.Input_283b78')} code={`<CellGroup>\n  <Cell title="禁用" value={<Input disabled value="不可编辑" />} />\n  <Cell title={t('demo.readonly')} value={<Input readonly value="可聚焦复制" />} />\n  <Cell title="错误" value={<Input error value="格式不正确" />} />\n</CellGroup>`}>
+      <DemoBlock title={t('demo.inputStates')} desc={t('demoDesc.input_states')} code={`<CellGroup>\n  <Cell title="禁用" value={<Input disabled value="不可编辑" />} />\n  <Cell title={t('demo.readonly')} value={<Input readonly value="可聚焦复制" />} />\n  <Cell title="错误" value={<Input error value="格式不正确" />} />\n</CellGroup>`}>
         <CellGroup>
           <Cell title="禁用" value={<Input disabled value="不可编辑" />} />
           <Cell title={t('demo.readonly')} value={<Input readonly value="可聚焦复制" />} />
@@ -173,12 +173,12 @@ export const InputDocPage: Component = () => {
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.verifyCode')}</h2>
-      <DemoBlock title={t('demo.inputCountdown')} desc={t('demoDesc.Input_ac814c')} code={codeSms}>
+      <DemoBlock title={t('demo.inputCountdown')} desc={t('demoDesc.input_countdown')} code={codeSms}>
         <SmsDemo />
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.form')}</h2>
-      <DemoBlock title={t('demo.inputForm')} desc={t('demoDesc.Input_0a65da')} code={codeWithForm}>
+      <DemoBlock title={t('demo.inputForm')} desc={t('demoDesc.input_form')} code={codeWithForm}>
         <Form>
           <FormItem name="username" label="用户名" rules={[{
             validator: (v: any) => (v as string)?.length >= 2,

@@ -360,7 +360,7 @@ export const CityPickerDocPage: Component = () => {
         Picker 的 tree 模式支持任意深度级联，不限层级数。
       </p>
 
-      <DemoBlock title={t('demo.cityDeep6')} desc={t('demoDesc.CityPicker_3f0c2e')} code={codeDeep}>
+      <DemoBlock title={t('demo.cityDeep6')} desc={t('demoDesc.citypicker_deep')} code={codeDeep}>
         <DeepDemo />
       </DemoBlock>
     </div>

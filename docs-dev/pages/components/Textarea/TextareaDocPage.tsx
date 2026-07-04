@@ -103,7 +103,7 @@ export const TextareaDocPage: Component = () => {
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.autoSize')}</h2>
-      <DemoBlock title={t('demo.textareaAutoSize')} desc={t('demoDesc.Textarea_c9bfb7')} code={codeAutoSize}>
+      <DemoBlock title={t('demo.textareaAutoSize')} desc={t('demoDesc.textarea_autosize')} code={codeAutoSize}>
         <div style={{ display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
           <div>
             <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>自动撑高</div>
@@ -117,7 +117,7 @@ export const TextareaDocPage: Component = () => {
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.form')}</h2>
-      <DemoBlock title={t('demo.textareaForm')} desc={t('demoDesc.Textarea_e79cb8')} code={codeWithForm}>
+      <DemoBlock title={t('demo.textareaForm')} desc={t('demoDesc.textarea_form')} code={codeWithForm}>
         <Form>
           <FormItem name="remark" label="备注" contentFlex rules={[{
             validator: (v: any) => (v as string)?.length <= 200,

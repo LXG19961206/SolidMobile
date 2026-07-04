@@ -50,7 +50,7 @@ export const SwitchDocPage = () => {
         <h2 id="basic" class={styles.h2}>{t('demo.basic')}</h2>
         <DemoBlock
           title={t('demo.basic')}
-          desc={t('demoDesc.Switch_c7b8b5')}
+          desc={t('demoDesc.switch_uncontrolled')}
           code={`<Switch defaultChecked />`}
         >
           <div class={styles.demoArea}>
@@ -92,7 +92,7 @@ export const SwitchDocPage = () => {
         <h2 id="size" class={styles.h2}>{t('demo.size')}</h2>
         <DemoBlock
           title="size"
-          desc={t('demoDesc.Switch_43d05a')}
+          desc={t('demoDesc.switch_size')}
           code={`<Switch size={20} />\n<Switch size={28} defaultChecked />\n<Switch size={36} defaultChecked />\n<Switch size="2.5rem" defaultChecked />`}
         >
           <div class={styles.demoArea}>
@@ -124,7 +124,7 @@ export const SwitchDocPage = () => {
         <h2 id="disabled" class={styles.h2}>{t('demo.disabled')}</h2>
         <DemoBlock
           title="disabled"
-          desc={t('demoDesc.Switch_7019f0')}
+          desc={t('demoDesc.switch_disabled')}
           code={`<Switch disabled />\n<Switch disabled defaultChecked />`}
         >
           <div class={styles.demoArea}>
