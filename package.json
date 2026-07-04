@@ -1,14 +1,22 @@
 {
-  "name": "solid-component",
+  "name": "solid-mobile",
   "version": "0.0.1",
-  "description": "A Solid.js component library",
+  "description": "A Solid.js mobile UI component library with 42+ components, theme system, and i18n support.",
   "type": "module",
   "license": "MIT",
-  "author": "",
+  "author": "LXG19961206",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LXG19961206/solid-component"
+  },
   "keywords": [
     "solid-js",
+    "solidjs",
+    "mobile",
     "component-library",
-    "ui"
+    "ui",
+    "vant",
+    "typescript"
   ],
   "files": [
     "dist"
@@ -22,7 +30,7 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles.css": "./dist/solid-component.css",
+    "./styles.css": "./dist/solid-mobile.css",
     "./icons": {
       "types": "./dist/components/Icon/icons/index.d.ts",
       "import": "./dist/components/Icon/icons/index.js"
