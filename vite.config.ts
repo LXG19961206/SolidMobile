@@ -8,6 +8,7 @@ export default defineConfig(({ mode }) => {
   if (isLibrary) {
     return {
       plugins: [solidPlugin()],
+      publicDir: false,
       build: {
         lib: {
           entry: resolve(__dirname, 'src/index.ts'),
@@ -39,6 +40,11 @@ export default defineConfig(({ mode }) => {
       alias: {
         'solid-component': resolve(__dirname, 'src'),
       },
+    },
+    base: '/SolidMobile/',
+    build: {
+      outDir: resolve(__dirname, 'docs'),
+      emptyOutDir: false,
     },
     server: {
       host: true,
