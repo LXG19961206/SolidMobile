@@ -4,8 +4,8 @@ import { SafeArea } from '../../components/SafeArea';
 import { Icon } from '../../components/Icon';
 import { useLocale, setGlobalLocale, useT } from '../../i18n';
 import { useDrawer } from './DrawerContext';
-import { docThemeColor, persistThemeColor } from '../../../docs-dev/doc-theme';
-import { ThemeColorPicker } from '../../../docs-dev/ThemeColorPicker';
+import { docThemeColor, persistThemeColor } from '../doc-theme';
+import { ThemeColorPicker } from '../ThemeColorPicker';
 import styles from './MobilePreview.module.css';
 
 const DARK_KEY = 'sc-docs-dark-mode';

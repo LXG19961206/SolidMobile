@@ -8,6 +8,7 @@ import {
   mergeProps,
   splitProps,
   type Component,
+  type JSX,
 } from 'solid-js';
 import { cn } from '../../utils';
 import { Overlay } from '../Overlay';

@@ -9,6 +9,7 @@ import { useFormField } from '../Form/FormItem';
 import { emitEvent } from '../../event-bus';
 import { Image } from '../Image';
 import { Icon } from '../Icon';
+import type { IconName } from '../Icon';
 import type { UploadProps, UploadFile } from './types';
 import styles from './Upload.module.css';
 
@@ -272,7 +273,7 @@ export const Upload: Component<UploadProps> = (rawProps) => {
     if (key == null) return <>&#x1F4C4;</>;
 
     if (typeof key === 'string') {
-      return <Icon name={key} size={18} />;
+      return <Icon name={key as IconName} size={18} />;
     }
     return key;
   }

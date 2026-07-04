@@ -42,7 +42,7 @@
   "scripts": {
     "dev": "vite serve playground --open",
     "build": "vite build && npm run build:types",
-    "build:types": "tsc --emitDeclarationOnly --outDir dist --declaration",
+    "build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly --outDir dist --declaration",
     "build:docs": "vite build --mode docs --outDir ../docs --base /SolidMobile/",
     "dev:docs": "vite --mode docs",
     "preview": "vite preview playground",

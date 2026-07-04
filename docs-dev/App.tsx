@@ -7,7 +7,7 @@ import './doc-i18n';
 import { useT, setGlobalLocale, useLocale } from '../src/i18n';
 import { ProviderConfig } from '../src/config';
 import { deriveColorSet } from '../src/utils/color';
-import { docThemeColor, persistThemeColor } from './doc-theme';
+import { docThemeColor, persistThemeColor } from '../src/doc-utils/doc-theme';
 import { Button, Tag } from '../src/components';
 import { DialogAPI } from '../src/components/Dialog/DialogManager';
 
@@ -1267,7 +1267,7 @@ function applyDark(on: boolean) {
   localStorage.setItem(DARK_KEY, on ? '1' : '0');
 }
 
-import { ThemeColorPicker } from './ThemeColorPicker';
+import { ThemeColorPicker } from '../src/doc-utils/ThemeColorPicker';
 
 /* ── App ── */
 

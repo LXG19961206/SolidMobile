@@ -1,6 +1,7 @@
 import { mergeProps, splitProps, Show, type Component } from 'solid-js';
 import { cn } from '../../utils';
 import { Icon } from '../Icon';
+import type { IconName } from '../Icon';
 import type { CellProps } from './types';
 import styles from './Cell.module.css';
 
@@ -47,7 +48,7 @@ export const Cell: Component<CellProps> = (rawProps) => {
     if (!local.icon) return null;
     return (
       <span class={styles.icon}>
-        {typeof local.icon === 'string' ? <Icon name={local.icon} /> : local.icon}
+        {typeof local.icon === 'string' ? <Icon name={local.icon as IconName} /> : local.icon}
       </span>
     );
   };

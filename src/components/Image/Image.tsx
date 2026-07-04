@@ -61,7 +61,7 @@ export const Image: Component<ImageProps> = (rawProps) => {
     if (local.preview && status() === 'loaded') {
       setPreviewOpen(true);
     }
-    local.onClick?.(e as any);
+    (local.onClick as any)?.(e);
   };
 
   const imgEl = (

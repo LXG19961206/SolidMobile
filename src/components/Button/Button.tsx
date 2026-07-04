@@ -2,6 +2,7 @@ import { splitProps, mergeProps, type Component, type JSX } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
 import { cn, contrastText, deriveColorSet } from '../../utils';
 import { Icon } from '../Icon';
+import type { IconName } from '../Icon';
 import { emitEvent } from '../../event-bus';
 import type { ButtonProps } from './types';
 import styles from './Button.module.css';
@@ -136,14 +137,14 @@ export const Button: Component<ButtonProps> = (rawProps) => {
   const renderIcon = () => {
     if (!hasIcon()) return null;
     const iconContent =
-      typeof local.icon === 'string' ? <Icon name={local.icon} /> : local.icon;
+      typeof local.icon === 'string' ? <Icon name={local.icon as IconName} /> : local.icon;
     return <span class={styles.icon}>{iconContent}</span>;
   };
 
   return (
     <Dynamic
       component={tag()}
-      {...(tag() === 'button'
+      {...((tag() === 'button'
         ? {
             type: local.nativeType,
             disabled: isDisabled(),
@@ -155,7 +156,7 @@ export const Button: Component<ButtonProps> = (rawProps) => {
             rel: local.target === '_blank' ? 'noopener noreferrer' : undefined,
             role: 'button',
             'aria-disabled': isDisabled() ? 'true' : undefined,
-          })}
+          }) as any)}
       class={classes()}
       style={inlineStyle()}
       onClick={handleClick}
