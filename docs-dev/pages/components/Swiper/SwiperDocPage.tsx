@@ -47,7 +47,7 @@ export const SwiperDocPage: Component = () => {
           </Swiper>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.imageCarousel')} desc="imgUrls + autoplay 自动轮播。" code={`<Swiper imgUrls={[...]} height={200} autoplay={3000} />`}>
+        <DemoBlock title={t('demo.imageCarousel')} desc={t('demoDesc.Swiper_5504e6')} code={`<Swiper imgUrls={[...]} height={200} autoplay={3000} />`}>
           <Swiper imgUrls={IMGS} height={200} autoplay={3000} />
         </DemoBlock>
 
@@ -69,7 +69,7 @@ export const SwiperDocPage: Component = () => {
           />
         </DemoBlock>
 
-        <DemoBlock title={t('demo.verticalScroll')} desc="vertical=true，上下滑动切换。" code={`<Swiper imgUrls={imgs} height={260} vertical />`}>
+        <DemoBlock title={t('demo.verticalScroll')} desc={t('demoDesc.Swiper_c0396f')} code={`<Swiper imgUrls={imgs} height={260} vertical />`}>
           <Swiper imgUrls={IMGS} height={260} vertical />
         </DemoBlock>
 

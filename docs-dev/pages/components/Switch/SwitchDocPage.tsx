@@ -50,7 +50,7 @@ export const SwitchDocPage = () => {
         <h2 id="basic" class={styles.h2}>{t('demo.basic')}</h2>
         <DemoBlock
           title={t('demo.basic')}
-          desc="不传 checked，组件自行管理开关状态。"
+          desc={t('demoDesc.Switch_c7b8b5')}
           code={`<Switch defaultChecked />`}
         >
           <div class={styles.demoArea}>
@@ -92,7 +92,7 @@ export const SwitchDocPage = () => {
         <h2 id="size" class={styles.h2}>{t('demo.size')}</h2>
         <DemoBlock
           title="size"
-          desc="支持数字（px）或 CSS 字符串，默认 28。"
+          desc={t('demoDesc.Switch_43d05a')}
           code={`<Switch size={20} />\n<Switch size={28} defaultChecked />\n<Switch size={36} defaultChecked />\n<Switch size="2.5rem" defaultChecked />`}
         >
           <div class={styles.demoArea}>
@@ -124,7 +124,7 @@ export const SwitchDocPage = () => {
         <h2 id="disabled" class={styles.h2}>{t('demo.disabled')}</h2>
         <DemoBlock
           title="disabled"
-          desc="禁用后不可点击，整体降低透明度。"
+          desc={t('demoDesc.Switch_7019f0')}
           code={`<Switch disabled />\n<Switch disabled defaultChecked />`}
         >
           <div class={styles.demoArea}>

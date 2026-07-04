@@ -34,22 +34,22 @@ const NotifyDocInner: Component = () => {
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
-      <DemoBlock title={t('demo.toastPrimary')} desc="主要通知。" code="Notify.primary('这是一条主要通知');" groupCode="基础类型">
+      <DemoBlock title={t('demo.toastPrimary')} desc={t('demoDesc.notify_00b669')} code="Notify.primary('这是一条主要通知');" groupCode="基础类型">
         <Cell title={t('demo.toastPrimary')} clickable onClick={() => noti(Notify.primary, '这是一条主要通知')} />
       </DemoBlock>
-      <DemoBlock title={t('demo.toastSuccess')} desc="成功通知。" code="Notify.success('操作成功');" groupCode="基础类型">
+      <DemoBlock title={t('demo.toastSuccess')} desc={t('demoDesc.notify_36fe53')} code="Notify.success('操作成功');" groupCode="基础类型">
         <Cell title={t('demo.toastSuccess')} clickable onClick={() => noti(Notify.success, '操作成功')} />
       </DemoBlock>
-      <DemoBlock title={t('demo.toastWarning')} desc="警告通知。" code="Notify.warning('请注意');" groupCode="提示">
+      <DemoBlock title={t('demo.toastWarning')} desc={t('demoDesc.notify_4e003b')} code="Notify.warning('请注意');" groupCode="提示">
         <Cell title={t('demo.toastWarning')} clickable onClick={() => noti(Notify.warning, '请注意')} />
       </DemoBlock>
-      <DemoBlock title={t('demo.toastDanger')} desc="危险通知。" code="Notify.danger('操作失败');" groupCode="提示">
+      <DemoBlock title={t('demo.toastDanger')} desc={t('demoDesc.notify_012010')} code="Notify.danger('操作失败');" groupCode="提示">
         <Cell title={t('demo.toastDanger')} clickable onClick={() => noti(Notify.danger, '操作失败')} />
       </DemoBlock>
       <DemoBlock title={t('demo.bottomPopup')} desc="position: 'bottom'。" code={`Notify.success('已添加', { position: 'bottom' });`} groupCode="其他">
         <Cell title={t('demo.bottomPopup')} clickable onClick={() => noti(Notify.success, '已添加至购物车', { position: 'bottom' })} />
       </DemoBlock>
-      <DemoBlock title={t('demo.noAutoDismiss')} desc="duration: 0 手动关闭。" code="Notify.primary('点击关闭', { duration: 0 });" groupCode="其他">
+      <DemoBlock title={t('demo.noAutoDismiss')} desc={t('demoDesc.notify_30bbd5')} code="Notify.primary('点击关闭', { duration: 0 });" groupCode="其他">
         <Cell title={t('demo.noAutoDismiss')} clickable onClick={() => Notify.primary('点击任意位置手动关闭', { duration: 0, teleport: m() })} />
       </DemoBlock>
 

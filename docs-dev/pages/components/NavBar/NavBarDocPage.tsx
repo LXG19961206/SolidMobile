@@ -45,7 +45,7 @@ export const NavBarDocPage = () => {
 
       <DemoBlock flush
         title={t('demo.navFixedTop')}
-        desc="fixed + placeholder。手机模拟器的 transform 会创建新的定位上下文，fixed 自动局限在手机屏幕内。"
+        desc={t('demoDesc.NavBar_e337c0')}
         code={`<NavBar title="固定导航" fixed placeholder border />`}
       >
         <div class={css.demoBox}>
@@ -53,19 +53,19 @@ export const NavBarDocPage = () => {
         </div>
       </DemoBlock>
 
-      <DemoBlock title={t('demo.basic')} desc="最简单的导航栏，只有标题。" code={'<NavBar title="页面标题" />'}>
+      <DemoBlock title={t('demo.basic')} desc={t('demoDesc.NavBar_9a25d7')} code={'<NavBar title="页面标题" />'}>
         <div class={css.demoBox}><NavBar title="页面标题" /></div>
       </DemoBlock>
 
-      <DemoBlock title={t('demo.navBackArrow')} desc="设置 backArrow 显示返回图标，onBack 处理点击。" code={'<NavBar title="详情" backArrow onBack={() => history.back()} />'}>
+      <DemoBlock title={t('demo.navBackArrow')} desc={t('demoDesc.NavBar_dc222b')} code={'<NavBar title="详情" backArrow onBack={() => history.back()} />'}>
         <div class={css.demoBox}><NavBar title="详情" backArrow onBack={() => { }} /></div>
       </DemoBlock>
 
-      <DemoBlock title={t('demo.navRightAction')} desc="right 可传入按钮、图标或任意 JSX。" code={'<NavBar\n  title="编辑资料"\n  backArrow\n  right={<Button size="sm">保存</Button>}\n/>'}>
+      <DemoBlock title={t('demo.navRightAction')} desc={t('demoDesc.NavBar_018a97')} code={'<NavBar\n  title="编辑资料"\n  backArrow\n  right={<Button size="sm">保存</Button>}\n/>'}>
         <div class={css.demoBox}><NavBar title="编辑资料" backArrow right={<Button size="sm">保存</Button>} /></div>
       </DemoBlock>
 
-      <DemoBlock title={t('demo.navCustomSides')} desc="left 和 right 同时自定义，适合复杂操作栏。" code={'<NavBar\n  title="消息"\n  left={<Icon name="settings" size={20} />}\n  right={<Icon name="search" size={20} />}\n/>'}>
+      <DemoBlock title={t('demo.navCustomSides')} desc={t('demoDesc.NavBar_85969c')} code={'<NavBar\n  title="消息"\n  left={<Icon name="settings" size={20} />}\n  right={<Icon name="search" size={20} />}\n/>'}>
         <div class={css.demoBox}><NavBar title="消息" left={<Icon name="settings" size={20} />} right={<Icon name="search" size={20} />} /></div>
       </DemoBlock>
 

@@ -45,7 +45,7 @@ const ToastDocInner: Component = () => {
       <h2 id="methods" class={styles.h2}>{t('section.methods')}</h2>
       <PropsTable rows={methodsData} />
 
-      <DemoBlock title={t('demo.toastShorthand')} desc="点击 Cell 弹出对应类型。" code={`Toast.success('操作成功！');\nToast.error('操作失败');\nToast.info('这是一条消息');`} groupCode="结果反馈">
+      <DemoBlock title={t('demo.toastShorthand')} desc={t('demoDesc.Toast_595797')} code={`Toast.success('操作成功！');\nToast.error('操作失败');\nToast.info('这是一条消息');`} groupCode="结果反馈">
         <Cell title={t('demo.toastSuccess')} clickable onClick={() => Toast.success('操作成功！', { portalMount: m() })} />
       </DemoBlock>
       <DemoBlock title={t('demo.toastError')} code={`Toast.error('操作失败，请重试');`} groupCode="结果反馈">
@@ -67,10 +67,10 @@ const ToastDocInner: Component = () => {
         <Cell title="顶部弹出" clickable onClick={() => Toast.success('顶部提示', { position: 'top', portalMount: m() })} />
       </DemoBlock>
 
-      <DemoBlock title={t('demo.overlayMode')} desc="Error / Loading 默认开启 overlay 防止误触。" code={`Toast.error('操作失败', { overlay: true });`} groupCode="遮罩">
+      <DemoBlock title={t('demo.overlayMode')} desc={t('demoDesc.Toast_5aa746')} code={`Toast.error('操作失败', { overlay: true });`} groupCode="遮罩">
         <Cell title="Error + 遮罩" clickable onClick={() => Toast.error('操作失败，请重试', { portalMount: m() })} />
       </DemoBlock>
-      <DemoBlock title={t('demo.loadingOverlay')} desc="加载中带遮罩，阻止背景操作。" code={`Toast.loading('加载中...', { overlay: true });`} groupCode="遮罩">
+      <DemoBlock title={t('demo.loadingOverlay')} desc={t('demoDesc.Toast_ac79b4')} code={`Toast.loading('加载中...', { overlay: true });`} groupCode="遮罩">
         <Cell title="Loading + 遮罩" clickable onClick={() => Toast.loading('加载中...', { portalMount: m(), overlay: true })} />
       </DemoBlock>
       <GroupCodePhone />

@@ -44,7 +44,7 @@ export const CenterDocPage = () => {
       <h2 id="flex" class={styles.h2}>{t('section.flexCenter')}</h2>
       <DemoBlock
         title={t('demo.centerDefault')}
-        desc="不传任何参数时，默认 flex 水平 + 垂直居中。这是最常用的场景。"
+        desc={t('demoDesc.Center_4b8b37')}
         code={`<Center>\n  <div>居中的内容</div>\n</Center>`}
       >
         <div class={styles.demoContainer}>
@@ -54,7 +54,7 @@ export const CenterDocPage = () => {
 
       <DemoBlock
         title={t('demo.centerFlexX')}
-        desc="只居中水平方向。"
+        desc={t('demoDesc.Center_19f238')}
         code={`<Center flexX>\n  <div>水平居中</div>\n</Center>`}
       >
         <div class={styles.demoContainer}>
@@ -64,7 +64,7 @@ export const CenterDocPage = () => {
 
       <DemoBlock
         title={t('demo.centerFlexY')}
-        desc="只居中垂直方向（父级需有高度）。"
+        desc={t('demoDesc.Center_dd3155')}
         code={`<div style={{ height: 160 }}>\n  <Center flexY>\n    <div>垂直居中</div>\n  </Center>\n</div>`}
       >
         <div class={styles.demoContainer}>
@@ -74,7 +74,7 @@ export const CenterDocPage = () => {
 
       <DemoBlock
         title={t('demo.centerInline')}
-        desc="加 inline 变为 inline-flex，不换行。"
+        desc={t('demoDesc.Center_82f338')}
         code={`<Center flexX inline>\n  <span>行内</span>\n</Center>`}
       >
         <span>
@@ -86,7 +86,7 @@ export const CenterDocPage = () => {
       <h2 id="text" class={styles.h2}>{t('section.textCenter')}</h2>
       <DemoBlock
         title={t('demo.centerText')}
-        desc="text-align: center，适合行内或行内块内容。"
+        desc={t('demoDesc.Center_334839')}
         code={`<Center text>\n  <span>这段文字会居中</span>\n</Center>`}
       >
         <div class={styles.demoContainer}>
@@ -96,7 +96,7 @@ export const CenterDocPage = () => {
 
       <DemoBlock
         title={t('demo.centerVertical')}
-        desc="vertical-align: middle，适合行内元素对齐。"
+        desc={t('demoDesc.Center_3ed382')}
         code={`<div style="line-height: 3">\n  大文字 <Center vertical inline>\n    <span>对齐我</span>\n  </Center>\n</div>`}
       >
         <div style="line-height: 3">

@@ -150,7 +150,7 @@ export const IconDocPage: Component = () => {
 
         <DemoBlock
           title={t('demo.iconTreeShake')}
-          desc="从 solid-component/icons 导入单个图标组件，打包工具自动 tree-shake，只打包实际使用的图标。"
+          desc={t('demoDesc.Icon_fd97fe')}
           code={`import { Icon } from 'solid-component';\n\n<Icon name="search" size={24} />\n<Icon name="heart" variant="fill" color="#ff4d4f" size={24} />\n<Icon name="star" variant="fill" color="#f59e0b" size={24} />`}
         >
           <div class={styles.demoArea}>
@@ -162,7 +162,7 @@ export const IconDocPage: Component = () => {
 
         <DemoBlock
           title={t('demo.iconDynamic')}
-          desc="使用 &lt;Icon name=&quot;...&quot; /&gt; 通过 name 属性动态指定图标，适合图标名来自变量、配置或数据库的场景。"
+          desc={t('demoDesc.Icon_a6e05e')}
           code={`import { Icon } from 'solid-component';\n\n<Icon name="check" color="#22c55e" />\n<Icon name="close" color="#ef4444" />\n<Icon name="information" color="#3b82f6" />`}
         >
           <div class={styles.demoArea}>
@@ -174,7 +174,7 @@ export const IconDocPage: Component = () => {
 
         <DemoBlock
           title={t('demo.iconLineFill')}
-          desc="variant='line'（默认）为线性空心风格，variant='fill' 为填充实心风格。"
+          desc={t('demoDesc.Icon_473e84')}
           code={`<Icon name="home" variant="line" size={24} />\n<Icon name="home" variant="fill" size={24} />\n<Icon name="heart" variant="line" size={24} />\n<Icon name="heart" variant="fill" size={24} color="#ff4d4f" />`}
         >
           <div class={styles.demoArea}>
@@ -187,7 +187,7 @@ export const IconDocPage: Component = () => {
 
         <DemoBlock
           title={t('demo.size')}
-          desc="size 支持数字（自动补 px）或任意 CSS 单位字符串。"
+          desc={t('demoDesc.Icon_9ef12f')}
           code={`<Icon name="star" variant="fill" color="#f59e0b" size={16} />\n<Icon name="star" variant="fill" color="#f59e0b" size={24} />\n<Icon name="star" variant="fill" color="#f59e0b" size={32} />\n<Icon name="star" variant="fill" color="#f59e0b" size="2.5rem" />`}
         >
           <div class={styles.demoArea}>
@@ -200,7 +200,7 @@ export const IconDocPage: Component = () => {
 
         <DemoBlock
           title={t('demo.color')}
-          desc="color 属性设置图标颜色，不设置时继承父级文字颜色（currentColor）。"
+          desc={t('demoDesc.Icon_cb6632')}
           code={`<Icon name="star" variant="fill" color="#1677ff" />\n<Icon name="star" variant="fill" color="#22c55e" />\n<Icon name="star" variant="fill" color="#f59e0b" />\n<Icon name="star" variant="fill" color="#ef4444" />`}
         >
           <div class={styles.demoArea}>
@@ -225,7 +225,7 @@ export const IconDocPage: Component = () => {
 
         <DemoBlock
           title={t('demo.iconClickable')}
-          desc="设置 aria-label 和 style 将图标变为可交互按钮，配合 cursor:pointer 提示可点击。"
+          desc={t('demoDesc.Icon_032e64')}
           code={`<Icon name="close" aria-label="关闭" size={24} style={{ cursor: 'pointer' }} />\n<Icon name="heart" variant="fill" aria-label="收藏" size={24} color="#ff4d4f" style={{ cursor: 'pointer' }} />`}
         >
           <div class={styles.demoArea}>

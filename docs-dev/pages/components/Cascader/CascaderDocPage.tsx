@@ -229,7 +229,7 @@ export const CascaderDocPage = () => {
 
       <DemoBlock
         title={t('demo.cascaderRegion')}
-        desc="三级联动选择，选中叶子节点自动关闭。点击顶部 Tab 可回退到已选层级。"
+        desc={t('demoDesc.Cascader_ee3834')}
         code={`<Cascader\n  options={options}\n  show={show()}\n  onUpdateShow={setShow}\n  value={val()}\n  onChange={setVal}\n  title="选择地区"\n  closeable\n/>`}
       >
         <CascaderDemo />
@@ -237,7 +237,7 @@ export const CascaderDocPage = () => {
 
       <DemoBlock
         title="禁用选项"
-        desc="设置 disabled: true 可禁用特定选项，点击无反应。"
+        desc={t('demoDesc.Cascader_39a6d1')}
         code={`const options = [\n  { text: '北京', value: 'beijing' },\n  { text: '上海', value: 'shanghai', disabled: true },\n  { text: '广东', value: 'guangdong' },\n];`}
       >
         <DisabledCascader />
@@ -253,7 +253,7 @@ export const CascaderDocPage = () => {
 
       <DemoBlock
         title={t('demo.asyncLoading')}
-        desc="options 初始为空，每级由 onLoadChildren 按需拉取。模拟 2s 网络延迟。"
+        desc={t('demoDesc.Cascader_0f70da')}
         code={`const loadChildren = async (option) => {\n  const res = await fetch('/api/areas?parent=' + option.value);\n  return res.json();\n};\n\n<Cascader\n  options={[]}\n  onLoadChildren={loadChildren}\n  show={show()}\n  onUpdateShow={setShow}\n  title="异步加载地区"\n/>`}
       >
         <AsyncCascader />

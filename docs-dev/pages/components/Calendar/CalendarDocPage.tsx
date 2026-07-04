@@ -158,31 +158,31 @@ export const CalendarDocPage = () => {
 
       <h2 id="demo" class={css.h2}>{t('demo.examples')}</h2>
 
-      <DemoBlock title={t('demo.calendarSingle')} desc="弹出模式，标题自动跟随滚动月份。" code={`const [show, setShow] = createSignal(false);\n\n<Calendar\n  show={show()}\n  onUpdateShow={setShow}\n  value={date()}\n  onChange={(v) => { setDate(v); setShow(false); }}\n  closeable\n/>`}>
+      <DemoBlock title={t('demo.calendarSingle')} desc={t('demoDesc.Calendar_30c08e')} code={`const [show, setShow] = createSignal(false);\n\n<Calendar\n  show={show()}\n  onUpdateShow={setShow}\n  value={date()}\n  onChange={(v) => { setDate(v); setShow(false); }}\n  closeable\n/>`}>
         <PopupSingle />
       </DemoBlock>
 
-      <DemoBlock title={t('demo.calendarRange')} desc="range + showConfirm，标题同上动态。若需固定可传 title。" code={`<Calendar\n  type="range"\n  showConfirm\n  show={show()}\n  onUpdateShow={setShow}\n  closeable\n/>`}>
+      <DemoBlock title={t('demo.calendarRange')} desc={t('demoDesc.Calendar_4959ce')} code={`<Calendar\n  type="range"\n  showConfirm\n  show={show()}\n  onUpdateShow={setShow}\n  closeable\n/>`}>
         <PopupRange />
       </DemoBlock>
 
-      <DemoBlock title={t('demo.calendarCustom')} desc="range 模式展示，activeColor 改选中色，dayRender 自定义格子。" code={`<Calendar\n  type="range"\n  showConfirm\n  activeColor="#22c55e"\n  dayRender={(d) => d.isToday ? <strong>今</strong> : d.day}\n  show={show()}\n  onUpdateShow={setShow}\n/>`}>
+      <DemoBlock title={t('demo.calendarCustom')} desc={t('demoDesc.Calendar_ed7546')} code={`<Calendar\n  type="range"\n  showConfirm\n  activeColor="#22c55e"\n  dayRender={(d) => d.isToday ? <strong>今</strong> : d.day}\n  show={show()}\n  onUpdateShow={setShow}\n/>`}>
         <PopupColor />
       </DemoBlock>
 
       <DemoBlock
         title={t('demo.calendarHoliday')}
-        desc="通过 dayRender 自定义格子内容，标记周末和节假日。"
+        desc={t('demoDesc.Calendar_fa863a')}
         code={`// 构建特殊日期映射\nconst special = { '2026-6-1': { label: '假', color: '#ef4444' } };\n\n<Calendar\n  dayRender={(d) => {\n    const spec = special[\`$\{d.year}-$\{d.month}-$\{d.day}\`];\n    return (\n      <span>\n        <span>{d.day}</span>\n        {spec && <small style={{color:spec.color}}>{spec.label}</small>}\n      </span>\n    );\n  }}\n  show={show()}\n  onUpdateShow={setShow}\n  title="选择日期"\n/>`}
       >
         <PopupHoliday />
       </DemoBlock>
 
-      <DemoBlock title={t('demo.calendarInline')} desc="popup={false} 直接嵌入页面。" code={'<Calendar popup={false} />'}>
+      <DemoBlock title={t('demo.calendarInline')} desc={t('demoDesc.Calendar_311a7e')} code={'<Calendar popup={false} />'}>
         <Calendar popup={false} />
       </DemoBlock>
 
-      <DemoBlock title={t('demo.calendarLunar')} desc="lunar={true} 启用农历显示，月初显示月名、其他显示日名，节气日显示节气名。" code={'<Calendar popup={false} lunar />'}>
+      <DemoBlock title={t('demo.calendarLunar')} desc={t('demoDesc.Calendar_4863c8')} code={'<Calendar popup={false} lunar />'}>
         <Calendar popup={false} lunar />
       </DemoBlock>
     </div>

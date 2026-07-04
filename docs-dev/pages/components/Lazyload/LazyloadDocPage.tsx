@@ -163,7 +163,7 @@ export const LazyloadDocPage: Component = () => {
         <h2 id="basic" class={css.h2}>{t('section.listLazy')}</h2>
         <DemoBlock
           title={t('demo.listLazy')}
-          desc="上部 320px 是说明区，下面的文档卡片被推出视口。向下滚动后卡片逐个进入视口触发懒加载。"
+          desc={t('demoDesc.Lazyload_c67bf5')}
           code={codeBasic}
         >
           <div style={{ height: '400px', overflow: 'auto', 'border-radius': '8px', border: '1px solid #f3f4f6' }}>
@@ -193,7 +193,7 @@ export const LazyloadDocPage: Component = () => {
         <h2 id="controlled" class={css.h2}>{t('demo.controlled')}</h2>
         <DemoBlock
           title={t('demo.activeControl')}
-          desc="点击按钮触发 active，同样经历 Loading → 显示内容的延迟过程。"
+          desc={t('demoDesc.Lazyload_b57dce')}
           code={codeControlled}
         >
           <ControlledDemo />
@@ -203,7 +203,7 @@ export const LazyloadDocPage: Component = () => {
         <h2 id="scroll" class={css.h2}>{t('section.scrollGallery')}</h2>
         <DemoBlock
           title={t('demo.imageGallery')}
-          desc="上部 280px 标题区推出网格，向下滚动后彩色卡片逐个触发。"
+          desc={t('demoDesc.Lazyload_f92371')}
           code={codeScroll}
         >
           <div style={{ height: '400px', overflow: 'auto', 'border-radius': '8px' }}>

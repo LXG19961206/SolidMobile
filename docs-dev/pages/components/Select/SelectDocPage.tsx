@@ -105,11 +105,11 @@ export const SelectDocPage: Component = () => {
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Select Props</h2>
       <PropsTable rows={selectProps} />
 
-      <DemoBlock title={t('demo.basic')} desc="不传 show 时，Select 自行管理面板开关，点击即可选择。" code={codeBasic}>
+      <DemoBlock title={t('demo.basic')} desc={t('demoDesc.Select_1bb2e9')} code={codeBasic}>
         <BasicDemo />
       </DemoBlock>
 
-      <DemoBlock title={t('demo.form')} desc="放在 FormItem 中自动集成表单的值管理。" code={codeForm}>
+      <DemoBlock title={t('demo.form')} desc={t('demoDesc.Select_74fb50')} code={codeForm}>
         <FormDemo />
       </DemoBlock>
     </div>

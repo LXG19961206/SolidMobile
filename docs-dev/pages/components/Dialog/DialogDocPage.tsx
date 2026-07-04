@@ -86,25 +86,25 @@ const DialogDocInner: Component = () => {
 
         <h2 id="demo" class={css.h2}>{t('demo.examples')}</h2>
 
-        <DemoBlock title={t('demo.dialogAlert')} desc="基础提示，仅确认按钮。" code={`Dialog.alert({\n  title: '提示',\n  message: '操作成功！',\n});`} groupCode="基础弹窗">
+        <DemoBlock title={t('demo.dialogAlert')} desc={t('demoDesc.Dialog_7c0c0c')} code={`Dialog.alert({\n  title: '提示',\n  message: '操作成功！',\n});`} groupCode="基础弹窗">
           <Cell title="弹出提示" clickable onClick={() => show({ title: '提示', message: '操作成功！' })} />
         </DemoBlock>
-        <DemoBlock title={t('demo.dialogConfirm')} desc="带取消按钮，常用于删除确认。" code={`Dialog.confirm({\n  title: '确认删除',\n  message: '此操作不可撤销，确定继续吗？',\n});`} groupCode="基础弹窗">
+        <DemoBlock title={t('demo.dialogConfirm')} desc={t('demoDesc.Dialog_88629b')} code={`Dialog.confirm({\n  title: '确认删除',\n  message: '此操作不可撤销，确定继续吗？',\n});`} groupCode="基础弹窗">
           <Cell title="删除确认" clickable onClick={() => show({ title: '确认删除', message: '此操作不可撤销，确定继续吗？', showCancelButton: true })} />
         </DemoBlock>
-        <DemoBlock title={t('demo.dialogNoTitle')} desc="不传 title 时只展示内容。" code={`Dialog.show({\n  message: '这是一条纯文本消息，没有标题。',\n});`} groupCode="基础弹窗">
+        <DemoBlock title={t('demo.dialogNoTitle')} desc={t('demoDesc.Dialog_2978dd')} code={`Dialog.show({\n  message: '这是一条纯文本消息，没有标题。',\n});`} groupCode="基础弹窗">
           <Cell title="纯消息" clickable onClick={() => show({ message: '这是一条纯文本消息，没有标题。' })} />
         </DemoBlock>
-        <DemoBlock title={t('demo.dialogMultiline')} desc="message 中的 \\n 自动换行。" code={`Dialog.alert({\n  message: '第一行\\n第二行\\n第三行',\n});`} groupCode="基础弹窗">
+        <DemoBlock title={t('demo.dialogMultiline')} desc={t('demoDesc.Dialog_29c178')} code={`Dialog.alert({\n  message: '第一行\\n第二行\\n第三行',\n});`} groupCode="基础弹窗">
           <Cell title={t('demo.dialogMultiline')} clickable onClick={() => show({ message: '第一行\n第二行\n第三行' })} />
         </DemoBlock>
-        <DemoBlock title={t('demo.dialogCustomText')} desc="通过 confirmText / cancelText 自定义按钮文字。" code={`Dialog.confirm({\n  title: '保存草稿',\n  confirmText: '保存',\n  cancelText: '不保存',\n});`} groupCode="高级弹窗">
+        <DemoBlock title={t('demo.dialogCustomText')} desc={t('demoDesc.Dialog_cced09')} code={`Dialog.confirm({\n  title: '保存草稿',\n  confirmText: '保存',\n  cancelText: '不保存',\n});`} groupCode="高级弹窗">
           <Cell title={t('demo.customTrigger')} clickable onClick={() => show({ title: '保存草稿', message: '是否保存当前编辑内容？', showCancelButton: true, confirmText: '保存', cancelText: '不保存' })} />
         </DemoBlock>
-        <DemoBlock title={t('demo.dialogJSX')} desc="message 支持传入 JSX。" code={`Dialog.alert({\n  title: '更新说明',\n  message: <div>...</div>,\n});`} groupCode="高级弹窗">
+        <DemoBlock title={t('demo.dialogJSX')} desc={t('demoDesc.Dialog_ea0953')} code={`Dialog.alert({\n  title: '更新说明',\n  message: <div>...</div>,\n});`} groupCode="高级弹窗">
           <Cell title="更新日志" clickable onClick={() => show({ title: '更新说明', message: (<div><p>v2.0 版本已发布</p></div>) })} />
         </DemoBlock>
-        <DemoBlock title={t('demo.asyncLoading')} desc="onConfirm 异步时自动展示 Loading。" code={`Dialog.confirm({\n  title: '提交确认',\n  onConfirm: async () => { await fetch(...); },\n});`} groupCode="高级弹窗">
+        <DemoBlock title={t('demo.asyncLoading')} desc={t('demoDesc.Dialog_50382e')} code={`Dialog.confirm({\n  title: '提交确认',\n  onConfirm: async () => { await fetch(...); },\n});`} groupCode="高级弹窗">
           <Cell title="异步提交" clickable onClick={() => show({ title: '提交确认', message: '确定要提交吗？提交后不可修改。', showCancelButton: true, confirmText: '提交', onConfirm: () => new Promise(r => setTimeout(r, 1500)) })} />
         </DemoBlock>
 
@@ -112,7 +112,7 @@ const DialogDocInner: Component = () => {
 
         <DemoBlock
           title={t('demo.componentUsage')}
-          desc="通过 show 属性受控显示，适合需要将弹窗嵌入模板的场景。"
+          desc={t('demoDesc.Dialog_601c3b')}
           groupCode="组件方式调用"
           code={`import { createSignal } from 'solid-js';\nimport { DialogComponent } from 'solid-component';\n\nfunction Demo() {\n  const [show, setShow] = createSignal(false);\n\n  return (\n    <>\n      <Button onClick={() => setShow(true)}>打开弹窗</Button>\n      <DialogComponent\n        show={show()}\n        onUpdateShow={setShow}\n        title="组件弹窗"\n        message="这是通过 JSX 组件方式调用的弹窗。"\n        showCancelButton\n        onConfirm={() => { /* ... */ }}\n        onCancel={() => setShow(false)}\n      />\n    </>\n  );\n}`}
         >

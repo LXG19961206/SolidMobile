@@ -56,7 +56,7 @@ const ActionSheetDocInner = () => {
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
-      <DemoBlock title={t('demo.actionOptions')} desc="传入 items 数组。" code={`<ActionSheet open={open} onClose={...} items={items} />`} groupCode="基础">
+      <DemoBlock title={t('demo.actionOptions')} desc={t('demoDesc.ActionSheet_6eebe3')} code={`<ActionSheet open={open} onClose={...} items={items} />`} groupCode="基础">
         <Cell title={t('demo.actionOptions')} clickable onClick={() => s1s(true)} />
         <ActionSheet mount={pm()} open={s1()} onClose={() => s1s(false)} items={basicItems} />
       </DemoBlock>
@@ -64,7 +64,7 @@ const ActionSheetDocInner = () => {
         <Cell title={t('demo.actionTitleCancel')} clickable onClick={() => s2s(true)} />
         <ActionSheet mount={pm()} open={s2()} onClose={() => s2s(false)} title="选择操作" closeable items={basicItems} cancelText="取消" />
       </DemoBlock>
-      <DemoBlock title={t('demo.actionDesc')} desc="description 显示在标题下方。" code={`<ActionSheet open={open} title="确认删除？" description="..." items={items} cancelText="取消" />`} groupCode="基础">
+      <DemoBlock title={t('demo.actionDesc')} desc={t('demoDesc.ActionSheet_d0e1d5')} code={`<ActionSheet open={open} title="确认删除？" description="..." items={items} cancelText="取消" />`} groupCode="基础">
         <Cell title={t('demo.actionDesc')} clickable onClick={() => s3s(true)} />
         <ActionSheet mount={pm()} open={s3()} onClose={() => s3s(false)} title="确认删除？" closeable description="删除后数据不可恢复。" items={[{ name: '直接删除' }, { name: '导出后删除' }]} cancelText="取消" />
       </DemoBlock>

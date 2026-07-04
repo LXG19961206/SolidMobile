@@ -31,7 +31,7 @@ export const EmptyDocPage = () => {
       <PropsTable rows={propsData} />
 
       <h2 id="basic" class={css.h2}>{t('demo.basic')}</h2>
-      <DemoBlock title={t('demo.emptyPreset')} desc="image 支持 'default'（通用）、'network'（网络异常）、'search'（无搜索结果）三种预设。" code={'<Empty description="暂无数据" />\n<Empty description="网络异常" image="network" />\n<Empty description="未找到结果" image="search" />'}>
+      <DemoBlock title={t('demo.emptyPreset')} desc={t('demoDesc.Empty_7e7d97')} code={'<Empty description="暂无数据" />\n<Empty description="网络异常" image="network" />\n<Empty description="未找到结果" image="search" />'}>
         <div style="display:flex;gap:2rem;flex-wrap:wrap">
           <Empty description="暂无数据" />
           <Empty description="网络异常" image="network" />
@@ -40,7 +40,7 @@ export const EmptyDocPage = () => {
       </DemoBlock>
 
       <h2 id="custom-image" class={css.h2}>{t('demo.customImage')}</h2>
-      <DemoBlock title={t('demo.imageCustomJSX')} desc="image 支持传入任意 JSX，不再局限于内置图标。" code={`<Empty\n  image={<img src="/empty.svg" style={{ width: 120 }} />}\n  description="暂无数据"\n/>`}>
+      <DemoBlock title={t('demo.imageCustomJSX')} desc={t('demoDesc.Empty_e1269e')} code={`<Empty\n  image={<img src="/empty.svg" style={{ width: 120 }} />}\n  description="暂无数据"\n/>`}>
         <Empty
           image={<span style={{ 'font-size': '3rem', opacity: 0.35 }}>📭</span>}
           description="暂无数据"
@@ -48,7 +48,7 @@ export const EmptyDocPage = () => {
       </DemoBlock>
 
       <h2 id="custom" class={css.h2}>{t('section.bottomActions')}</h2>
-      <DemoBlock title={t('demo.imageChildrenButton')} desc="children 传入按钮，支持自定义操作。" code={`<Empty description="加载失败" image="network">\n  <Button onClick={retry}>重试</Button>\n</Empty>`}>
+      <DemoBlock title={t('demo.imageChildrenButton')} desc={t('demoDesc.Empty_eb74ab')} code={`<Empty description="加载失败" image="network">\n  <Button onClick={retry}>重试</Button>\n</Empty>`}>
         <Empty description="加载失败，请重试" image="network">
           <Button type="primary" size="sm" text="重试" />
         </Empty>

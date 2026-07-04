@@ -49,14 +49,14 @@ export const AvatarDocPage = () => {
       </DemoBlock>
 
       <h2 id="fallback" class={css.h2}>{t('section.fallback')}</h2>
-      <DemoBlock title={t('demo.avatarIcon')} desc="不传 src 时显示 icon 图标。" code={'<Avatar icon="user" size="md" color="#1677ff" />\n<Avatar icon="star" size="md" color="#f59e0b" />\n<Avatar icon="settings" size="md" color="#22c55e" />'}>
+      <DemoBlock title={t('demo.avatarIcon')} desc={t('demoDesc.Avatar_84c7b4')} code={'<Avatar icon="user" size="md" color="#1677ff" />\n<Avatar icon="star" size="md" color="#f59e0b" />\n<Avatar icon="settings" size="md" color="#22c55e" />'}>
         <div class={css.row}>
           <Avatar icon="user" size="md" color="#1677ff" />
           <Avatar icon="star" size="md" color="#f59e0b" />
           <Avatar icon="settings" size="md" color="#22c55e" />
         </div>
       </DemoBlock>
-      <DemoBlock title={t('demo.avatarText')} desc="不传 src 和 icon 时，取 text 的第一个字符。" code={'<Avatar text="张三" color="#f59e0b" />\n<Avatar text="李四" color="#22c55e" />\n<Avatar text="王五" color="#ef4444" />\n<Avatar text="赵" color="#8b5cf6" size="xl" />'}>
+      <DemoBlock title={t('demo.avatarText')} desc={t('demoDesc.Avatar_2b5e31')} code={'<Avatar text="张三" color="#f59e0b" />\n<Avatar text="李四" color="#22c55e" />\n<Avatar text="王五" color="#ef4444" />\n<Avatar text="赵" color="#8b5cf6" size="xl" />'}>
         <div class={css.row}>
           <Avatar text="张三" color="#f59e0b" />
           <Avatar text="李四" color="#22c55e" />
@@ -66,7 +66,7 @@ export const AvatarDocPage = () => {
       </DemoBlock>
 
       <h2 id="shape" class={css.h2}>{t('section.shapeSize')}</h2>
-      <DemoBlock title={t('demo.avatarSquare')} desc="square 替代 round，适合品牌 logo。" code={'<Avatar src="./logo.png" square size="xl" />\n<Avatar text="品" square color="#1677ff" size="lg" />\n<Avatar icon="computer" square size="md" color="#8b5cf6" />'}>
+      <DemoBlock title={t('demo.avatarSquare')} desc={t('demoDesc.Avatar_8faa2a')} code={'<Avatar src="./logo.png" square size="xl" />\n<Avatar text="品" square color="#1677ff" size="lg" />\n<Avatar icon="computer" square size="md" color="#8b5cf6" />'}>
         <div class={css.row}>
           <Avatar src={SRC} square size="xl" />
           <Avatar text="品" square color="#1677ff" size="lg" />

@@ -42,7 +42,7 @@ export const DividerDocPage = () => {
       </DemoBlock>
 
       <h2 id="vertical" class={css.h2}>{t('section.verticalDivider')}</h2>
-      <DemoBlock title={t('demo.verticalDir')} desc="direction='vertical'，行内使用。" code={'文字A <Divider direction="vertical" /> 文字B'}>
+      <DemoBlock title={t('demo.verticalDir')} desc={t('demoDesc.Divider_9faa97')} code={'文字A <Divider direction="vertical" /> 文字B'}>
         <span>文字A <Divider direction="vertical" /> 文字B</span>
       </DemoBlock>
     </div>

@@ -57,7 +57,7 @@ export const SafeAreaDocPage: Component = () => {
         组件库的 PhoneSimulator 已预设 <code>--sc-safe-area-top: 32px</code> 模拟刘海。
       </p>
 
-      <DemoBlock title={t('demo.safeTop')} desc="放在页面顶部，避开刘海和状态栏。" code={codeTop}>
+      <DemoBlock title={t('demo.safeTop')} desc={t('demoDesc.SafeArea_9008f0')} code={codeTop}>
         <div style={{
           background: '#f0f5ff',
           border: '1px dashed #1677ff',
@@ -70,7 +70,7 @@ export const SafeAreaDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      <DemoBlock title={t('demo.safeBottom')} desc="放在页面底部，避开 Home Indicator。" code={codeBottom}>
+      <DemoBlock title={t('demo.safeBottom')} desc={t('demoDesc.SafeArea_148eb1')} code={codeBottom}>
         <div style={{
           background: '#f0fdf4',
           border: '1px dashed #22c55e',

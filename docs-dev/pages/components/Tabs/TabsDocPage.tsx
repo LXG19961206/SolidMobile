@@ -56,7 +56,7 @@ export const TabsDocPage = () => {
         <PropsTable rows={tabProps} />
 
         <h2 id="basic" class={css.h2}>{t('demo.basic')}</h2>
-        <DemoBlock title={t('demo.lineMode')} desc="type='line'，底部指示条跟随切换。" code={`<Tabs>\n  <Tab title="标签1" name="a"><div>内容1</div></Tab>\n  <Tab title="标签2" name="b"><div>内容2</div></Tab>\n  <Tab title="标签3" name="c"><div>内容3</div></Tab>\n</Tabs>`}>
+        <DemoBlock title={t('demo.lineMode')} desc={t('demoDesc.Tabs_99dfd3')} code={`<Tabs>\n  <Tab title="标签1" name="a"><div>内容1</div></Tab>\n  <Tab title="标签2" name="b"><div>内容2</div></Tab>\n  <Tab title="标签3" name="c"><div>内容3</div></Tab>\n</Tabs>`}>
           <Tabs>
             <Tab title="标签1" name="a"><div class={css.demoPanel}>内容 1</div></Tab>
             <Tab title="标签2" name="b"><div class={css.demoPanel}>内容 2</div></Tab>
@@ -64,7 +64,7 @@ export const TabsDocPage = () => {
           </Tabs>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.jsxTitle')} desc="title 支持传入任意 JSX。" code={`<Tabs>\n  <Tab title={<span>🔔 通知</span>} name="a"><div>通知内容</div></Tab>\n  <Tab title={<span>⚙ 设置</span>} name="b"><div>设置内容</div></Tab>\n  <Tab title="账号" name="c"><div>账号内容</div></Tab>\n</Tabs>`}>
+        <DemoBlock title={t('demo.jsxTitle')} desc={t('demoDesc.Tabs_5b4b6a')} code={`<Tabs>\n  <Tab title={<span>🔔 通知</span>} name="a"><div>通知内容</div></Tab>\n  <Tab title={<span>⚙ 设置</span>} name="b"><div>设置内容</div></Tab>\n  <Tab title="账号" name="c"><div>账号内容</div></Tab>\n</Tabs>`}>
           <Tabs>
             <Tab title={<span>🔔 通知</span>} name="a"><div class={css.demoPanel}>通知内容</div></Tab>
             <Tab title={<span>⚙ 设置</span>} name="b"><div class={css.demoPanel}>设置内容</div></Tab>
@@ -73,7 +73,7 @@ export const TabsDocPage = () => {
         </DemoBlock>
 
         <h2 id="styles" class={css.h2}>{t('section.styles')}</h2>
-        <DemoBlock title={t('demo.cardMode')} desc="type='card'，卡片式标签栏。" code={`<Tabs type="card">\n  <Tab title="选项1" name="a"><div>内容 1</div></Tab>\n  <Tab title="选项2" name="b"><div>内容 2</div></Tab>\n  <Tab title="选项3" name="c"><div>内容 3</div></Tab>\n</Tabs>`}>
+        <DemoBlock title={t('demo.cardMode')} desc={t('demoDesc.Tabs_362ac5')} code={`<Tabs type="card">\n  <Tab title="选项1" name="a"><div>内容 1</div></Tab>\n  <Tab title="选项2" name="b"><div>内容 2</div></Tab>\n  <Tab title="选项3" name="c"><div>内容 3</div></Tab>\n</Tabs>`}>
           <Tabs type="card">
             <Tab title="选项1" name="a"><div class={css.demoPanel}>内容 1</div></Tab>
             <Tab title="选项2" name="b"><div class={css.demoPanel}>内容 2</div></Tab>
@@ -89,7 +89,7 @@ export const TabsDocPage = () => {
         </DemoBlock>
 
         <h2 id="controlled" class={css.h2}>{t('demo.controlled')}</h2>
-        <DemoBlock title={t('demo.activeOnChange')} desc="外部管理激活状态，可设置 disabled 禁用选项。" code={`const [active, setActive] = createSignal('tab1');\n\n<Tabs active={active()} onChange={setActive}>\n  <Tab title="Tab1" name="tab1"><div>内容 1</div></Tab>\n  <Tab title="Tab2" name="tab2"><div>内容 2</div></Tab>\n  <Tab title="Tab3（禁用）" name="tab3" disabled><div>内容 3</div></Tab>\n</Tabs>\n\n<div>当前激活: {active()}</div>`}>
+        <DemoBlock title={t('demo.activeOnChange')} desc={t('demoDesc.Tabs_c45890')} code={`const [active, setActive] = createSignal('tab1');\n\n<Tabs active={active()} onChange={setActive}>\n  <Tab title="Tab1" name="tab1"><div>内容 1</div></Tab>\n  <Tab title="Tab2" name="tab2"><div>内容 2</div></Tab>\n  <Tab title="Tab3（禁用）" name="tab3" disabled><div>内容 3</div></Tab>\n</Tabs>\n\n<div>当前激活: {active()}</div>`}>
           <Tabs active={active()} onChange={setActive}>
             <Tab title="Tab1" name="tab1"><div class={css.demoPanel}>内容 1</div></Tab>
             <Tab title="Tab2" name="tab2"><div class={css.demoPanel}>内容 2</div></Tab>
