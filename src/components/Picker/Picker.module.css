@@ -7,7 +7,7 @@
   --sc-picker-text-disabled: #9ca3af;
   --sc-picker-indicator-bg: rgba(0, 0, 0, 0.04);
   --sc-picker-cancel-color: #6b7280;
-  --sc-picker-confirm-color: #1677ff;
+  --sc-picker-confirm-color: var(--sc-color-primary, #1677ff);
   --sc-picker-border: #f3f4f6;
   --sc-picker-radius: 12px;
   --sc-picker-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);

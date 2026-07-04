@@ -82,7 +82,7 @@ const LoadingDocInner = () => {
           code={`<Loading size={32} color="#1677ff" />\n<Loading size="2rem" color="#22c55e" text="加载中" />\n<Loading size={16} color="#f59e0b" />`}
         >
           <div class={styles.demoArea}>
-            <Loading size={32} color="#1677ff" />
+            <Loading size={32} color="var(--sc-color-primary, #1677ff)" />
             <Loading size="2rem" color="#22c55e" text="加载中" />
             <Loading size={16} color="#f59e0b" />
           </div>
@@ -97,7 +97,7 @@ const LoadingDocInner = () => {
         >
           <div class={styles.demoArea}>
             <Loading vertical text="正在加载数据..." />
-            <Loading vertical type="dots" text="搜索中..." color="#1677ff" />
+            <Loading vertical type="dots" text="搜索中..." color="var(--sc-color-primary, #1677ff)" />
           </div>
         </DemoBlock>
 
@@ -112,7 +112,7 @@ const LoadingDocInner = () => {
             <Loading
               icon={
                 <span style={{ animation: 'spin 0.8s linear infinite', display: 'inline-flex' }}>
-                  <Icon name="refresh" size={24} color="#1677ff" />
+                  <Icon name="refresh" size={24} color="var(--sc-color-primary, #1677ff)" />
                 </span>
               }
               text="刷新中..."

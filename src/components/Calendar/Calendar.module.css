@@ -10,13 +10,13 @@
   --sc-calendar-text: #1f2937;
   --sc-calendar-weekday-color: #9ca3af;
   --sc-calendar-other-month: #d1d5db;
-  --sc-calendar-active-bg: #1677ff;
+  --sc-calendar-active-bg: var(--sc-color-primary, #1677ff);
   --sc-calendar-active-color: #fff;
-  --sc-calendar-today-border: #1677ff;
+  --sc-calendar-today-border: var(--sc-color-primary, #1677ff);
   --sc-calendar-disabled-opacity: 0.3;
   --sc-calendar-header-shadow: 0 5px 20px rgba(0,0,0,0.05);
   --sc-calendar-confirm-height: 50px;
-  --sc-calendar-confirm-color: #1677ff;
+  --sc-calendar-confirm-color: var(--sc-color-primary, #1677ff);
 
   display: flex;
   flex-direction: column;
@@ -31,11 +31,11 @@
   --sc-calendar-text: #e2e8f0;
   --sc-calendar-weekday-color: #64748b;
   --sc-calendar-other-month: #475569;
-  --sc-calendar-today-border: #5195ff;
-  --sc-calendar-active-bg: #5195ff;
+  --sc-calendar-today-border: var(--sc-color-primary, #5195ff);
+  --sc-calendar-active-bg: var(--sc-color-primary, #5195ff);
   --sc-calendar-active-color: #fff;
   --sc-calendar-header-shadow: 0 2px 12px rgba(0,0,0,0.3);
-  --sc-calendar-confirm-color: #5195ff;
+  --sc-calendar-confirm-color: var(--sc-color-primary, #5195ff);
 }
 /* ── Sticky header ── */
 .header {

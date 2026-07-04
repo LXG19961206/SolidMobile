@@ -112,7 +112,7 @@ export const BadgeMobile: Component<BadgeMobileProps> = (props) => {
         <div style={CARD.title}>位置 & 自定义颜色</div>
         <div style={CARD.desc}>四角定位 + 自定义背景色。因 Badge 绝对定位会溢出，此卡片不做 overflow:hidden。</div>
         <div style={{ ...CARD.body, gap: '24px', 'padding-top': '12px', 'padding-bottom': '20px' }}>
-          <Badge content="TR" position="top-right" color="#1677ff">
+          <Badge content="TR" position="top-right" color="var(--sc-color-primary, #1677ff)">
             <div style={{ width: '44px', height: '44px', background: 'var(--sc-doc-card-placeholder, #e5e7eb)', 'border-radius': '10px' }} />
           </Badge>
           <Badge content="TL" position="top-left" color="#22c55e">

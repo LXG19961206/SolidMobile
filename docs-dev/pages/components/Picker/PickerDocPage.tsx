@@ -141,6 +141,7 @@ const DatePickerDemo: Component = () => {
 };
 
 const TimePickerDemo: Component = () => {
+  const t = useT();
   const phone = useContext(phoneCtx);
   const [show, setShow] = createSignal(false);
   const [label, setLabel] = createSignal('');
@@ -156,6 +157,7 @@ const TimePickerDemo: Component = () => {
 };
 
 const DisabledPicker: Component = () => {
+  const t = useT();
   const phone = useContext(phoneCtx);
   const [show, setShow] = createSignal(false);
   const [label, setLabel] = createSignal('');
@@ -171,6 +173,7 @@ const DisabledPicker: Component = () => {
 };
 
 const PlaceholderPicker: Component = () => {
+  const t = useT();
   const phone = useContext(phoneCtx);
   const [show, setShow] = createSignal(false);
   const [label, setLabel] = createSignal('');

@@ -61,9 +61,9 @@
 }
 
 .btnPrimary {
-  background: #1677ff;
+  background: var(--sc-color-primary, #1677ff);
   color: #fff;
-  border-color: #1677ff;
+  border-color: var(--sc-color-primary, #1677ff);
 }
 
 .btnPrimary:hover {

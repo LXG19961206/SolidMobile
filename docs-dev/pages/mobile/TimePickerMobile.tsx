@@ -34,9 +34,11 @@ const CARD = {
 export const TimePickerMobile: Component<TimePickerMobileProps> = (props) => {
   const t = useT();
   /* ── Basic ── */
+  const [basicShow, setBasicShow] = createSignal(false);
   const [basicVal, setBasicVal] = createSignal('');
 
   /* ── Controlled ── */
+  const [ctrlShow, setCtrlShow] = createSignal(false);
   const [ctrlVal, setCtrlVal] = createSignal('09:15:30');
 
   /* ── Form ── */
@@ -50,13 +52,9 @@ export const TimePickerMobile: Component<TimePickerMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.basicDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell
-              title="选择时间"
-              value={basicVal() || '请选择'}
-              clickable
-            />
+            <Cell title="选择时间" value={basicVal() || '请选择'} clickable onClick={() => setBasicShow(true)} />
           </CellGroup>
-          <TimePicker onChange={(v) => setBasicVal(v)} onConfirm={(v) => setBasicVal(v)} />
+          <TimePicker show={basicShow()} onUpdateShow={setBasicShow} onChange={(v) => setBasicVal(v)} onConfirm={(v) => { setBasicVal(v); setBasicShow(false); }} onCancel={() => setBasicShow(false)} />
         </div>
       </div>
 
@@ -66,9 +64,9 @@ export const TimePickerMobile: Component<TimePickerMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.controlledDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title="预设值" value={ctrlVal()} clickable />
+            <Cell title="预设值" value={ctrlVal()} clickable onClick={() => setCtrlShow(true)} />
           </CellGroup>
-          <TimePicker value={ctrlVal()} onChange={(v) => setCtrlVal(v)} onConfirm={(v) => setCtrlVal(v)} />
+          <TimePicker show={ctrlShow()} onUpdateShow={setCtrlShow} value={ctrlVal()} onChange={(v) => setCtrlVal(v)} onConfirm={(v) => { setCtrlVal(v); setCtrlShow(false); }} onCancel={() => setCtrlShow(false)} />
         </div>
       </div>
 

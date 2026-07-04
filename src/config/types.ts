@@ -32,10 +32,12 @@ export interface ColorTokens {
   dangerPale: string;
   success: string;
   successHover: string;
+  successActive: string;
   successDisabled: string;
   successPale: string;
   warning: string;
   warningHover: string;
+  warningActive: string;
   warningDisabled: string;
   warningPale: string;
   info: string;

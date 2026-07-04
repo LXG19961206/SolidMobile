@@ -92,25 +92,30 @@ export const Button: Component<ButtonProps> = (rawProps) => {
     );
 
   // --- Inline styles for custom color overrides ---
-  let colorDerived: ReturnType<typeof deriveColorSet> | null = null;
   const inlineStyle = (): JSX.CSSProperties => {
     const s: JSX.CSSProperties = {};
     if (typeof local.style === 'string') return s;
     if (local.style && typeof local.style === 'object') Object.assign(s, local.style as JSX.CSSProperties);
     if (local.color) {
-      colorDerived = deriveColorSet(local.color);
+      const d = deriveColorSet(local.color);
+      const type = local.type || 'primary';
+
       s['--_btn-custom-bg'] = local.color;
-      s['background-color'] = local.color;
-      s['border-color'] = local.color;
+      // Private derived state variables — these names are guaranteed
+      // collision-free (no global :root variable uses the `--_btn-*` prefix),
+      // so the CSS :active / :hover / :focus-visible rules always resolve
+      // the correct derived color.
+      s['--_btn-hover-bg'] = d.hover;
+      s['--_btn-active-bg'] = d.active;
+      s['--_btn-pale-bg'] = d.pale;
+      s['--_btn-focus-color'] = d.focus;
+
       if (!local.textColor) {
-        const autoText = contrastText(local.color);
-        s['--_btn-custom-text'] = autoText;
-        s['color'] = autoText;
+        s['--_btn-custom-text'] = contrastText(local.color);
       }
     }
     if (local.textColor) {
       s['--_btn-custom-text'] = local.textColor;
-      s['color'] = local.textColor;
     }
     return s;
   };
@@ -153,14 +158,6 @@ export const Button: Component<ButtonProps> = (rawProps) => {
           })}
       class={classes()}
       style={inlineStyle()}
-      ref={(el: Element) => {
-        if (!colorDerived) return;
-        const d = colorDerived;
-        (el as HTMLElement).style.setProperty('--sc-color-primary-hover', d.hover);
-        (el as HTMLElement).style.setProperty('--sc-color-primary-active', d.active);
-        (el as HTMLElement).style.setProperty('--sc-color-primary-disabled', d.disabled);
-        (el as HTMLElement).style.setProperty('--sc-color-primary-pale', d.pale);
-      }}
       onClick={handleClick}
       {...rest}
     >

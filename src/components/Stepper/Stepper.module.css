@@ -73,7 +73,7 @@
 }
 
 .input:focus {
-  border-color: var(--sc-stepper-active-border-color, #1677ff);
+  border-color: var(--sc-stepper-active-border-color, var(--sc-color-primary, #1677ff));
 }
 
 .inputDisabled {

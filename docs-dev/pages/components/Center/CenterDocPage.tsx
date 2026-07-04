@@ -78,7 +78,7 @@ export const CenterDocPage = () => {
         code={`<Center flexX inline>\n  <span>行内</span>\n</Center>`}
       >
         <span>
-          前面文字 <Center flexX inline><span style="background:#1677ff;color:#fff;padding:'2px 8px';border-radius:4px;font-size:0.8rem">行内居中</span></Center> 后面文字
+          前面文字 <Center flexX inline><span style="background:var(--sc-color-primary, #1677ff);color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem">行内居中</span></Center> 后面文字
         </span>
       </DemoBlock>
 

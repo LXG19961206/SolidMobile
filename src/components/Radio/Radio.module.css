@@ -4,8 +4,8 @@
   --sc-radio-disabled-text-color: var(--sc-color-text-tertiary, #afaba9);
   --sc-radio-icon-size: 20px;
   --sc-radio-border-color: #c8c9cc;
-  --sc-radio-checked-border-color: #1989fa;
-  --sc-radio-checked-bg: #1989fa;
+  --sc-radio-checked-border-color: var(--sc-color-primary, #1989fa);
+  --sc-radio-checked-bg: var(--sc-color-primary, #1989fa);
   --sc-radio-disabled-opacity: 0.5;
   --sc-radio-gap: 8px;
   --sc-radio-font-size: 0.9375rem;

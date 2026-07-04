@@ -117,6 +117,7 @@ export const messages: LocaleMessages = {
       // ── DatePicker ──
       datePicker: {
         title: '选择日期',
+        panelTitle: '选择日期',
         placeholder: '请选择日期',
         units: { year: '年', month: '月', day: '日' },
       },
@@ -339,6 +340,7 @@ export const messages: LocaleMessages = {
       // ── DatePicker ──
       datePicker: {
         title: 'Select Date',
+        panelTitle: 'Select Date',
         placeholder: 'Please select a date',
         units: { year: '', month: '', day: '' },
       },

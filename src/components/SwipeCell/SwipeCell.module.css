@@ -3,7 +3,7 @@
   --sc-swipecell-bg: #f8f9fb;
   --sc-swipecell-action-font-size: 0.9rem;
   --sc-swipecell-action-padding: 0 16px;
-  --sc-swipecell-action-primary: #1677ff;
+  --sc-swipecell-action-primary: var(--sc-color-primary, #1677ff);
   --sc-swipecell-action-success: #22c55e;
   --sc-swipecell-action-warning: #f59e0b;
   --sc-swipecell-action-danger: #ef4444;

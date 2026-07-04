@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 html,
 body,
 #root {
@@ -57,7 +62,7 @@ html.dark .top-nav {
 .top-nav-title {
   font-size: 0.95rem;
   font-weight: 700;
-  color: #1677ff;
+  color: var(--sc-color-primary, #1677ff);
 }
 
 .top-nav-tabs {
@@ -87,8 +92,8 @@ html.dark .top-nav {
 }
 
 .top-nav-tab.active {
-  color: #1677ff;
-  border-bottom-color: #1677ff;
+  color: var(--sc-color-primary, #1677ff);
+  border-bottom-color: var(--sc-color-primary, #1677ff);
 }
 
 html.dark .top-nav-tab {
@@ -100,8 +105,8 @@ html.dark .top-nav-tab:hover {
 }
 
 html.dark .top-nav-tab.active {
-  color: #5195ff;
-  border-bottom-color: #5195ff;
+  color: var(--sc-color-primary, #5195ff);
+  border-bottom-color: var(--sc-color-primary, #5195ff);
 }
 
 .top-nav-actions {
@@ -199,7 +204,7 @@ html.dark .sidebar-brand {
 
 .sidebar-search:focus {
   background-color: #fff;
-  box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.2);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--sc-color-primary, #1677ff) 20%, transparent);
 }
 
 html.dark .sidebar-search {
@@ -274,8 +279,8 @@ html.dark .nav-group-title {
 }
 
 .nav-item.active {
-  background: rgba(22, 119, 255, 0.08);
-  color: #1677ff;
+  background: color-mix(in srgb, var(--sc-color-primary, #1677ff) 8%, transparent);
+  color: var(--sc-color-primary, #1677ff);
   font-weight: 600;
 }
 
@@ -289,8 +294,8 @@ html.dark .nav-item:hover {
 }
 
 html.dark .nav-item.active {
-  background: rgba(81, 149, 255, 0.12);
-  color: #5195ff;
+  background: color-mix(in srgb, var(--sc-color-primary, #5195ff) 12%, transparent);
+  color: var(--sc-color-primary, #5195ff);
 }
 
 /* ── Main area ── */

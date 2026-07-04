@@ -51,7 +51,7 @@ export const AvatarDocPage = () => {
       <h2 id="fallback" class={css.h2}>{t('section.fallback')}</h2>
       <DemoBlock title={t('demo.avatarIcon')} desc={t('demoDesc.avatar_icon_fallback')} code={'<Avatar icon="user" size="md" color="#1677ff" />\n<Avatar icon="star" size="md" color="#f59e0b" />\n<Avatar icon="settings" size="md" color="#22c55e" />'}>
         <div class={css.row}>
-          <Avatar icon="user" size="md" color="#1677ff" />
+          <Avatar icon="user" size="md" color="var(--sc-color-primary, #1677ff)" />
           <Avatar icon="star" size="md" color="#f59e0b" />
           <Avatar icon="settings" size="md" color="#22c55e" />
         </div>
@@ -69,7 +69,7 @@ export const AvatarDocPage = () => {
       <DemoBlock title={t('demo.avatarSquare')} desc={t('demoDesc.avatar_square')} code={'<Avatar src="./logo.png" square size="xl" />\n<Avatar text="品" square color="#1677ff" size="lg" />\n<Avatar icon="computer" square size="md" color="#8b5cf6" />'}>
         <div class={css.row}>
           <Avatar src={SRC} square size="xl" />
-          <Avatar text="品" square color="#1677ff" size="lg" />
+          <Avatar text="品" square color="var(--sc-color-primary, #1677ff)" size="lg" />
           <Avatar icon="computer" square size="md" color="#8b5cf6" />
         </div>
       </DemoBlock>

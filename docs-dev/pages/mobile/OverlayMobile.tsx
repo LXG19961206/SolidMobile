@@ -60,7 +60,7 @@ export const OverlayMobile: Component<OverlayMobileProps> = (props) => {
               'align-items': 'center' as const, gap: '16px',
               'box-shadow': '0 8px 32px rgba(0,0,0,0.12)',
             }}>
-              <Loading type="circular" size={36} color="#1677ff" />
+              <Loading type="circular" size={36} color="var(--sc-color-primary, #1677ff)" />
               <div style={{ 'text-align': 'center' }}>
                 <div style={{ 'font-size': '0.9rem', 'font-weight': 600, color: 'var(--sc-doc-card-title, #1f2937)' }}>提交中</div>
                 <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '4px' }}>请稍候...</div>

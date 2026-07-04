@@ -60,6 +60,7 @@ const BasicDemo: Component = () => {
       value={val()}
       onChange={setVal}
       placeholder="点击选择"
+      teleport={phone?.()}
     />
   );
 };
@@ -79,6 +80,7 @@ const FormDemo: Component = () => {
               { text: '上海', value: 'shanghai' },
               { text: '广州', value: 'guangzhou' },
             ]}
+            teleport={phone?.()}
           />
         </FormItem>
         <div style={{ padding: '12px 1rem' }}>

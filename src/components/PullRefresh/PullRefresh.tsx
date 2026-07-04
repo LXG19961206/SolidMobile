@@ -1,5 +1,6 @@
 import {
   createSignal, mergeProps, splitProps, Show, batch,
+  onMount, onCleanup,
   type Component, type JSX,
 } from 'solid-js';
 import { cn } from '../../utils';
@@ -256,6 +257,22 @@ export const PullRefresh: Component<PullRefreshProps> = (rawProps) => {
   };
   const arrowDir = () => effectiveState() === 'loosing' ? styles.arrowUp : styles.arrowDown;
 
+  /* ── Attach touch listeners non-passively ── */
+  // Modern browsers (Chrome 56+) make touchstart/touchmove passive by
+  // default, so e.preventDefault() inside JSX event handlers is a no-op.
+  // We attach them manually with { passive: false } so we can actually
+  // cancel the native scroll / overscroll during a pull gesture.
+  onMount(() => {
+    wrapperEl.addEventListener('touchstart', onTouchStart, { passive: false });
+    wrapperEl.addEventListener('touchmove', onTouchMove, { passive: false });
+    wrapperEl.addEventListener('touchend', onTouchEnd, { passive: false });
+  });
+  onCleanup(() => {
+    wrapperEl.removeEventListener('touchstart', onTouchStart);
+    wrapperEl.removeEventListener('touchmove', onTouchMove);
+    wrapperEl.removeEventListener('touchend', onTouchEnd);
+  });
+
   /* ── Render ── */
 
   return (
@@ -263,9 +280,6 @@ export const PullRefresh: Component<PullRefreshProps> = (rawProps) => {
       ref={wrapperEl!}
       class={cn(styles.wrapper, local.class)}
       style={local.style as JSX.CSSProperties | undefined}
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
       onMouseDown={onMouseDown}
     >
       <div data-pulltrack class={styles.track}>

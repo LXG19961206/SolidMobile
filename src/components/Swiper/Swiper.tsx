@@ -30,7 +30,7 @@ const defaultProps: Partial<SwiperProps> = {
   touchable: true,
   stopPropagation: true,
   lazyRender: false,
-  indicatorColor: '#1989fa',
+  indicatorColor: 'var(--sc-color-primary, #1989fa)',
 };
 
 /* ══════════════════════════════════════════════════════════════════

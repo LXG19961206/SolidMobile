@@ -138,7 +138,7 @@ export const DesignTokensMobile: Component<{ components?: ComponentEntry[]; onNa
           {(['sm', 'md', 'lg', 'full'] as const).map((r) => (
             <div style={{ display: 'flex', 'align-items': 'center', gap: '12px', padding: '8px 0' }}>
               <div style={{
-                width: '40px', height: '40px', background: '#1677ff',
+                width: '40px', height: '40px', background: 'var(--sc-color-primary, #1677ff)',
                 'border-radius': config.borderRadius[r],
               }} />
               <span style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-text, #374151)' }}>{r}</span>

@@ -64,7 +64,7 @@ export const SafeAreaDocPage: Component = () => {
           'border-radius': '8px',
         }}>
           <SafeArea position="top" />
-          <div style={{ padding: '12px', color: '#1677ff', 'font-size': '0.9rem', 'text-align': 'center' }}>
+          <div style={{ padding: '12px', color: 'var(--sc-color-primary, #1677ff)', 'font-size': '0.9rem', 'text-align': 'center' }}>
             顶部内容（SafeArea 已撑开间距）
           </div>
         </div>

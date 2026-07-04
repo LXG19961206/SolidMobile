@@ -32,7 +32,7 @@ export const SafeAreaMobile: Component<SafeAreaMobileProps> = (props) => {
         </div>
         <div style={CARD.body}>
           <div style={{ background: 'var(--sc-doc-card-demo, #f9fafb)', padding: '12px', 'border-radius': '8px' }}>
-            <div style={{ background: '#1677ff', color: '#fff', padding: '8px 0', 'text-align': 'center', 'border-radius': '4px 4px 0 0' }}>
+            <div style={{ background: 'var(--sc-color-primary, #1677ff)', color: '#fff', padding: '8px 0', 'text-align': 'center', 'border-radius': '4px 4px 0 0' }}>
               <SafeArea position="top" />
               <div style={{ padding: '4px 0' }}>顶部安全区域 + 标题</div>
             </div>

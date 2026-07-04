@@ -1,6 +1,7 @@
 import { createSignal, type Component } from 'solid-js';
 import { Stepper } from '../../../../src/components/Stepper';
 import { Cell } from '../../../../src/components/Cell';
+import { Icon } from '../../../../src/components/Icon';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
@@ -38,7 +39,7 @@ const codeDecimal = `<Stepper defaultValue={0} step={0.1} decimalLength={1} />`;
 
 const codeSize = `<Stepper defaultValue={5} size={30} />`;
 
-const codeCustomIcon = `<Stepper defaultValue={0} minusIcon={<span style={{ 'font-size':'20px' }}>➖</span>} plusIcon={<span style={{ 'font-size':'20px' }}>➕</span>} />`;
+const codeCustomIcon = `<Stepper defaultValue={0}\n  minusIcon={\n    <span style={{ transform: 'rotate(180deg)', display: 'inline-flex' }}>\n      <Icon name="heart" variant="fill" color="#333" />\n    </span>\n  }\n  plusIcon={<Icon name="heart" variant="fill" color="#ff4d4f" />}\n/>`;
 
 const codeDisabled = `<Stepper value={3} disabled />`;
 
@@ -85,7 +86,7 @@ export const StepperDocPage: Component = () => {
         </DemoBlock>
 
         <DemoBlock title={t('demo.customIcon')} code={codeCustomIcon} groupCode="Stepper">
-          <Cell title="加减按钮" value={<Stepper defaultValue={0} minusIcon={<span style={{ 'font-size': '20px', 'line-height': '1' }}>➖</span>} plusIcon={<span style={{ 'font-size': '20px', 'line-height': '1' }}>➕</span>} />} />
+          <Cell title="👍 赞 / 👎 踩" value={<Stepper defaultValue={3} minusIcon={<span style={{ transform: 'rotate(180deg)', display: 'inline-flex' }}><Icon name="heart" variant="fill" color="#333" /></span>} plusIcon={<Icon name="heart" variant="fill" color="#ff4d4f" />} />} />
         </DemoBlock>
 
         <DemoBlock title={t('demo.disabled')} code={codeDisabled} groupCode="Stepper">

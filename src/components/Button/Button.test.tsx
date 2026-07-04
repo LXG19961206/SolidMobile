@@ -106,17 +106,16 @@ describe('Button', () => {
   /*  Color Overrides                                                        */
   /* ---------------------------------------------------------------------- */
 
-  it('sets custom background color via style', () => {
+  it('sets custom background color via CSS custom property', () => {
     render(() => <Button color="#ff0000">Red</Button>);
     const btn = screen.getByRole('button');
-    // happy-dom stores as hex, not rgb
-    expect(btn.style.backgroundColor).toMatch(/^#ff0000|rgb\(255,\s*0,\s*0\)$/);
+    expect(btn.style.getPropertyValue('--_btn-custom-bg')).toBe('#ff0000');
   });
 
-  it('sets custom text color via style', () => {
+  it('sets custom text color via CSS custom property', () => {
     render(() => <Button textColor="#00ff00">Green</Button>);
     const btn = screen.getByRole('button');
-    expect(btn.style.color).toMatch(/^#00ff00|rgb\(0,\s*255,\s*0\)$/);
+    expect(btn.style.getPropertyValue('--_btn-custom-text')).toBe('#00ff00');
   });
 
   /* ---------------------------------------------------------------------- */

@@ -67,7 +67,7 @@ export const DividerMobile: Component<DividerMobileProps> = (props) => {
         <div style={CARD.title}>自定义颜色 & 粗细</div>
         <div style={CARD.desc}>color 和 size 属性控制外观</div>
         <div style={CARD.body}>
-          <Divider color="#1677ff" size={2} />
+          <Divider color="var(--sc-color-primary, #1677ff)" size={2} />
           <div style={{ height: '16px' }} />
           <Divider color="#ef4444" text="红色警告" size={2} />
           <div style={{ height: '16px' }} />
@@ -83,7 +83,7 @@ export const DividerMobile: Component<DividerMobileProps> = (props) => {
           <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>文字一</span>
           <Divider direction="vertical" />
           <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>文字二</span>
-          <Divider direction="vertical" dashed color="#1677ff" />
+          <Divider direction="vertical" dashed color="var(--sc-color-primary, #1677ff)" />
           <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>文字三</span>
           <Divider direction="vertical" color="#ef4444" size={2} />
           <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>文字四</span>

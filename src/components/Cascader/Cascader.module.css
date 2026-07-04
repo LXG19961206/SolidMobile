@@ -11,7 +11,7 @@
   --sc-cascader-item-height: 48px;
   --sc-cascader-text-color: #1f2937;
   --sc-cascader-text-secondary: #6b7280;
-  --sc-cascader-active-color: #1677ff;
+  --sc-cascader-active-color: var(--sc-color-primary, #1677ff);
   --sc-cascader-border: #f3f4f6;
   --sc-cascader-radius: 12px;
   --sc-cascader-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
@@ -21,7 +21,7 @@
   --sc-cascader-bg: #1e293b;
   --sc-cascader-text-color: #f1f5f9;
   --sc-cascader-text-secondary: #94a3b8;
-  --sc-cascader-active-color: #5195ff;
+  --sc-cascader-active-color: var(--sc-color-primary, #5195ff);
   --sc-cascader-border: #334155;
   --sc-cascader-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
 }

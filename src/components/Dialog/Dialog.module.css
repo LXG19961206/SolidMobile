@@ -106,7 +106,7 @@
 }
 
 .confirmBtn {
-  color: var(--sc-dialog-confirm-color, #1677ff);
+  color: var(--sc-dialog-confirm-color, var(--sc-color-primary, #1677ff));
   font-weight: 600;
 }
 
@@ -122,5 +122,5 @@
   --sc-dialog-cancel-color: #94a3b8;
 }
 :global(html.dark) .confirmBtn {
-  --sc-dialog-confirm-color: #5195ff;
+  --sc-dialog-confirm-color: var(--sc-color-primary, #5195ff);
 }

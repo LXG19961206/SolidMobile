@@ -49,7 +49,9 @@ export const ImageDocPage = () => {
 
         <h2 id="basic" class={css.h2}>{t('common.basic')}</h2>
         <DemoBlock title={t('demo.imageLogo')} desc={t('demoDesc.image_logo')} code={`<Image src="./logo.jpg" width={100} height={100} fit="cover" radius={16} />`}>
-          <Image src="./logo.jpg" width={100} height={100} fit="cover" radius={16} />
+          <div style={{ display: 'flex', 'justify-content': 'center' }}>
+            <Image src="./logo.jpg" width={100} height={100} fit="cover" radius={16} />
+          </div>
         </DemoBlock>
 
         <DemoBlock title={t('demo.imageFixedSize')} code={'<Image src="photo.jpg" width={300} height={200} />'}>

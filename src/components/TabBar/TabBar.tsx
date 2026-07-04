@@ -28,8 +28,8 @@ const tabBarDefaults: Partial<TabBarProps> = {
   fixed: true,
   border: true,
   zIndex: 1,
-  activeColor: '#1989fa',
-  inactiveColor: '#7d7e80',
+  activeColor: 'var(--sc-color-primary, #1989fa)',
+  inactiveColor: 'var(--sc-color-text-secondary, #7d7e80)',
 };
 
 /* ══════════════════════════════════════════════════════════════════

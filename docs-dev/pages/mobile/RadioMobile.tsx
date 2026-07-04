@@ -123,7 +123,7 @@ export const RadioMobile: Component<RadioMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.customIcon')}</div>
         <div style={CARD.desc}>{t('demo.customIconDesc')}</div>
         <div style={CARD.body}>
-          <RadioGroup value={iconVal()} onChange={setIconVal} iconSize="28px" checkedColor="#1677ff">
+          <RadioGroup value={iconVal()} onChange={setIconVal} iconSize="28px" checkedColor="var(--sc-color-primary, #1677ff)">
             <Radio value="like" label="好评" checkedIcon={<LikeIcon />} uncheckedIcon={<LikeIcon />} />
             <Radio value="normal" label="一般" checkedIcon={<MehIcon />} uncheckedIcon={<MehIcon />} />
             <Radio value="bad" label="差评" checkedIcon={<BadIcon />} uncheckedIcon={<BadIcon />} />

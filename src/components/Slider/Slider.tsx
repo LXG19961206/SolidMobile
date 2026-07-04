@@ -11,7 +11,7 @@ import styles from './Slider.module.css';
 const defaultProps: Partial<SliderProps> = {
   min: 0, max: 100, step: 1, count: 1,
   barHeight: 2, buttonSize: 20,
-  activeColor: '#1989fa', inactiveColor: '#e5e5e5',
+  activeColor: 'var(--sc-color-primary, #1989fa)', inactiveColor: 'var(--sc-color-border, #e5e5e5)',
   reverse: false, disabled: false, readonly: false,
 };
 

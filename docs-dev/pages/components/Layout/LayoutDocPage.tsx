@@ -25,7 +25,7 @@ const tocItems: TOCItem[] = [
 ];
 
 const Bar = (props: { children: any; color?: string }) => (
-  <div style={{ background: props.color || '#1677ff', color: '#fff', 'text-align': 'center', padding: '8px 0', 'border-radius': '4px', 'font-size': '0.8rem' }}>{props.children}</div>
+  <div style={{ background: props.color || 'var(--sc-color-primary, #1677ff)', color: '#fff', 'text-align': 'center', padding: '8px 0', 'border-radius': '4px', 'font-size': '0.8rem' }}>{props.children}</div>
 );
 
 export const LayoutDocPage = () => {
@@ -45,9 +45,9 @@ export const LayoutDocPage = () => {
       <h2 id="grid" class={css.h2}>{t('section.grid')}</h2>
       <DemoBlock title={t('demo.layoutGrid')} desc={t('demoDesc.layout_grid')} code={'<Row>\n  <Col span={12}><div>12</div></Col>\n  <Col span={12}><div>12</div></Col>\n</Row>\n<Row>\n  <Col span={8}><div>8</div></Col>\n  <Col span={8}><div>8</div></Col>\n  <Col span={8}><div>8</div></Col>\n</Row>'}>
         <div style="display:flex;flex-direction:column;gap:0.75rem;width:100%">
-          <Row><Col span={12}><Bar>span=12</Bar></Col><Col span={12}><Bar color="#4995ff">span=12</Bar></Col></Row>
-          <Row><Col span={8}><Bar>span=8</Bar></Col><Col span={8}><Bar color="#4995ff">span=8</Bar></Col><Col span={8}><Bar color="#005ee2">span=8</Bar></Col></Row>
-          <Row><Col span={6}><Bar>6</Bar></Col><Col span={6}><Bar color="#4995ff">6</Bar></Col><Col span={6}><Bar color="#005ee2">6</Bar></Col><Col span={6}><Bar color="#0045cc">6</Bar></Col></Row>
+          <Row><Col span={12}><Bar>span=12</Bar></Col><Col span={12}><Bar color="var(--sc-color-primary-hover, #4995ff)">span=12</Bar></Col></Row>
+          <Row><Col span={8}><Bar>span=8</Bar></Col><Col span={8}><Bar color="var(--sc-color-primary-hover, #4995ff)">span=8</Bar></Col><Col span={8}><Bar color="var(--sc-color-primary-active, #005ee2)">span=8</Bar></Col></Row>
+          <Row><Col span={6}><Bar>6</Bar></Col><Col span={6}><Bar color="var(--sc-color-primary-hover, #4995ff)">6</Bar></Col><Col span={6}><Bar color="var(--sc-color-primary-active, #005ee2)">6</Bar></Col><Col span={6}><Bar color="var(--sc-color-primary-active, #0045cc)">6</Bar></Col></Row>
         </div>
       </DemoBlock>
 
@@ -60,7 +60,7 @@ export const LayoutDocPage = () => {
       <DemoBlock title={t('demo.layoutGapAlign')} desc={t('demoDesc.layout_gap_align')} code={'<Row gap={16} align="center">\n  <Col span={6}><div>A</div></Col>\n  <Col span={6}><div style={{padding:24}}>B</div></Col>\n  <Col span={6}><div>C</div></Col>\n</Row>'}>
         <Row gap={16} align="center">
           <Col span={6}><Bar>短</Bar></Col>
-          <Col span={6}><div style={{ background: '#4995ff', color: '#fff', 'text-align': 'center', padding: '24px 8px', 'border-radius': '4px', 'font-size': '0.8rem' }}>高</div></Col>
+          <Col span={6}><div style={{ background: 'var(--sc-color-primary-hover, #4995ff)', color: '#fff', 'text-align': 'center', padding: '24px 8px', 'border-radius': '4px', 'font-size': '0.8rem' }}>高</div></Col>
           <Col span={6}><Bar>短</Bar></Col>
         </Row>
       </DemoBlock>

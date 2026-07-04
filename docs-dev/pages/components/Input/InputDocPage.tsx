@@ -80,7 +80,7 @@ const SmsDemo: Component = () => {
   const btn = () => (
     <span onClick={send} style={{
       'font-size': '0.8rem', 'white-space': 'nowrap',
-      color: countdown() > 0 ? '#999' : '#1677ff',
+      color: countdown() > 0 ? '#999' : 'var(--sc-color-primary, #1677ff)',
       cursor: countdown() > 0 ? 'default' : 'pointer',
     }}>
       {countdown() > 0 ? `${countdown()}s` : '发送验证码'}

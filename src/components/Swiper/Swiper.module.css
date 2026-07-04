@@ -3,7 +3,7 @@
   --sc-swiper-dot-size: 6px;
   --sc-swiper-dot-active-width: 18px;
   --sc-swiper-dot-color: rgba(255, 255, 255, 0.5);
-  --sc-swiper-dot-active-color: #1989fa;
+  --sc-swiper-dot-active-color: var(--sc-color-primary, #1989fa);
   --sc-swiper-dot-gap: 6px;
   --sc-swiper-dot-bottom: 10px;
   --sc-swiper-radius: 0px;

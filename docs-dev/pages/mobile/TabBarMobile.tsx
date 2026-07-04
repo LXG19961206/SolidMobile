@@ -136,7 +136,7 @@ export const TabBarMobile: Component<TabBarMobileProps> = (props) => {
             <TabBarItem name="b" label="收藏" icon={AnimatedStarIcon} />
             <TabBarItem name="c" label="我的" icon={AnimatedUserIcon} />
           </TabBar>
-          <div style={{ 'font-size': '0.65rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px', 'line-height': 1.5 }}>
+          <div style={{ 'font-size': '0.65rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px', padding: '0 16px', 'line-height': 1.5 }}>
             选中态下 icon 有放大 + 填充动画。icon 属性直接接受 JSX，用户可自由使用 Lottie / Rive / CSS animation 等任意方案。
           </div>
         </div>

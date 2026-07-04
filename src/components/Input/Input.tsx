@@ -100,6 +100,14 @@ export const Input: Component<InputProps> = (rawProps) => {
 
   function handleBlur(e: Event) {
     local.onBlur?.(e);
+    // iOS Safari: after the keyboard dismisses the viewport can get
+    // "stuck" — touches stop scrolling the page for 1–3 seconds.
+    // A micro-scroll on blur forces the viewport to re-attach scrolling.
+    if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+      const sy = window.scrollY;
+      window.scrollTo(0, sy + 1);
+      requestAnimationFrame(() => window.scrollTo(0, sy));
+    }
   }
 
   function handleFocus(e: Event) {
@@ -111,7 +119,6 @@ export const Input: Component<InputProps> = (rawProps) => {
     <div
       class={cn(
         styles.wrapper,
-        !!field && styles.inForm,
         local.size && styles[local.size!],
         local.disabled && styles.disabled,
         local.readonly && styles.readonly,

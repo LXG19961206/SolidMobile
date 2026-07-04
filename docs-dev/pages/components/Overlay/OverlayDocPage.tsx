@@ -2,6 +2,7 @@ import { createSignal, useContext } from 'solid-js';
 import { Overlay } from '../../../../src/components/Overlay';
 import { ActionSheet } from '../../../../src/components/ActionSheet';
 import { Cell } from '../../../../src/components/Cell';
+import { Button } from '../../../../src/components/Button';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
 import { useT } from '../../../doc-i18n';
@@ -38,7 +39,7 @@ const OverlayDocInner = () => {
           <div class={styles.overlayContent}>
             <div class={styles.overlayTitle}>提示</div>
             <div class={styles.overlayBody}>点击遮罩背景或按 Escape 键关闭</div>
-            <button class={`${styles.btn} ${styles.btnPrimary}`} onClick={() => s1s(false)}>知道了</button>
+            <Button type="primary" text="知道了" onClick={() => s1s(false)} />
           </div>
         </Overlay>
       </DemoBlock>
@@ -48,13 +49,13 @@ const OverlayDocInner = () => {
         <ActionSheet mount={pm()} open={s2()} onClose={() => s2s(false)} title="选择操作" closeable items={[{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }]} cancelText="取消" />
       </DemoBlock>
 
-      <DemoBlock title={t('demo.noScrollLock')} desc="lockScroll={false}" code={`<Overlay open={open} onClose={...} lockScroll={false}>...</Overlay>`} groupCode="overlayDemo">
+      <DemoBlock title={t('demo.noScrollLock')} desc={t('demo.noScrollLockDesc')} code={`<Overlay open={open} onClose={...} lockScroll={false}>...</Overlay>`} groupCode="overlayDemo">
         <Cell title={t('demo.noScrollLock')} clickable onClick={() => s3s(true)} />
         <Overlay open={s3()} onClose={() => s3s(false)} lockScroll={false} mount={pm()}>
           <div class={styles.overlayContent}>
             <div class={styles.overlayTitle}>可滚动</div>
             <div class={styles.overlayBody}>此时可以滚动页面</div>
-            <button class={`${styles.btn} ${styles.btnPrimary}`} onClick={() => s3s(false)}>关闭</button>
+            <Button type="primary" text="关闭" onClick={() => s3s(false)} />
           </div>
         </Overlay>
       </DemoBlock>

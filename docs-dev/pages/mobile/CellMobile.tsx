@@ -81,7 +81,7 @@ export const CellMobile: Component<CellMobileProps> = (props) => {
         <div style={CARD.title}>卡片模式 card</div>
         <div style={CARD.desc}>圆角 + 背景色的卡片风格</div>
         <div style={CARD.body}>
-          <CellGroup title="{t('section.cardMode')}" card>
+          <CellGroup title={t('section.cardMode')} card>
             <Cell title="版本" value="v2.0.0" />
             <Cell title="更新日志" clickable onClick={() => {}} />
           </CellGroup>

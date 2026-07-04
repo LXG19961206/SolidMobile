@@ -20,7 +20,6 @@
   min-width: 0;
   gap: var(--sc-input-gap);
   color: var(--sc-input-text-color);
-  border-bottom: 1px solid var(--sc-color-border, #ebedf0);
 }
 
 .input {
@@ -29,6 +28,7 @@
   border: none;
   outline: none;
   background: transparent;
+  caret-color: var(--sc-color-primary, #1677ff);
   font-size: 14px;
   font-family: inherit;
   color: inherit;
@@ -44,8 +44,6 @@
 
 .disabled { opacity: var(--sc-input-disabled-opacity); pointer-events: none; }
 .readonly { pointer-events: none; }
-.inForm { border-bottom: none; }
-
 /* error 状态作用在 wrapper 上，实际波浪线落在 input 文字下方 */
 .error .input { text-decoration: underline wavy var(--sc-input-error-color); text-underline-offset: 4px; }
 

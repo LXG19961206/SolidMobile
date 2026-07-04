@@ -50,8 +50,7 @@ export const CalendarMobile: Component<CalendarMobileProps> = (props) => {
             value={singleVal()}
             onChange={(v) => setSingleVal(v as Date)}
             popup={false}
-            activeColor="#1677ff"
-          />
+                      />
         </div>
       </div>
 
@@ -85,8 +84,7 @@ export const CalendarMobile: Component<CalendarMobileProps> = (props) => {
           <Calendar
             type="range"
             popup={false}
-            activeColor="#1677ff"
-            showConfirm
+                        showConfirm
           />
         </div>
       </div>
@@ -100,8 +98,7 @@ export const CalendarMobile: Component<CalendarMobileProps> = (props) => {
             type="single"
             popup={false}
             lunar
-            activeColor="#1677ff"
-          />
+                      />
         </div>
       </div>
     </MobilePreview>

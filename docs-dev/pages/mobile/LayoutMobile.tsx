@@ -43,21 +43,21 @@ export const LayoutMobile: Component<LayoutMobileProps> = (props) => {
         <div style={CARD.desc}>24 栅格系统，span 占位 1-24</div>
         <div style={CARD.body}>
           <Row gap={8}>
-            <Col span={12}><div style={colBox('#1677ff')}>span=12</div></Col>
-            <Col span={12}><div style={colBox('#5195ff')}>span=12</div></Col>
+            <Col span={12}><div style={colBox('var(--sc-color-primary, #1677ff)')}>span=12</div></Col>
+            <Col span={12}><div style={colBox('var(--sc-color-primary-hover, #5195ff)')}>span=12</div></Col>
           </Row>
           <div style={{ height: '8px' }} />
           <Row gap={8}>
-            <Col span={8}><div style={colBox('#1677ff')}>span=8</div></Col>
-            <Col span={8}><div style={colBox('#5195ff')}>span=8</div></Col>
-            <Col span={8}><div style={colBox('#4096ff')}>span=8</div></Col>
+            <Col span={8}><div style={colBox('var(--sc-color-primary, #1677ff)')}>span=8</div></Col>
+            <Col span={8}><div style={colBox('var(--sc-color-primary-hover, #5195ff)')}>span=8</div></Col>
+            <Col span={8}><div style={colBox('var(--sc-color-primary-hover, #4096ff)')}>span=8</div></Col>
           </Row>
           <div style={{ height: '8px' }} />
           <Row gap={8}>
-            <Col span={6}><div style={colBox('#1677ff')}>6</div></Col>
-            <Col span={6}><div style={colBox('#5195ff')}>6</div></Col>
-            <Col span={6}><div style={colBox('#4096ff')}>6</div></Col>
-            <Col span={6}><div style={colBox('#95b8ff')}>6</div></Col>
+            <Col span={6}><div style={colBox('var(--sc-color-primary, #1677ff)')}>6</div></Col>
+            <Col span={6}><div style={colBox('var(--sc-color-primary-hover, #5195ff)')}>6</div></Col>
+            <Col span={6}><div style={colBox('var(--sc-color-primary-hover, #4096ff)')}>6</div></Col>
+            <Col span={6}><div style={colBox('var(--sc-color-primary-active, #95b8ff)')}>6</div></Col>
           </Row>
         </div>
       </div>
@@ -68,13 +68,13 @@ export const LayoutMobile: Component<LayoutMobileProps> = (props) => {
         <div style={CARD.desc}>Col.offset 向右偏移若干栅格</div>
         <div style={CARD.body}>
           <Row gap={8}>
-            <Col span={8}><div style={colBox('#1677ff')}>span=8</div></Col>
-            <Col span={8} offset={8}><div style={colBox('#5195ff')}>span=8 offset=8</div></Col>
+            <Col span={8}><div style={colBox('var(--sc-color-primary, #1677ff)')}>span=8</div></Col>
+            <Col span={8} offset={8}><div style={colBox('var(--sc-color-primary-hover, #5195ff)')}>span=8 offset=8</div></Col>
           </Row>
           <div style={{ height: '8px' }} />
           <Row gap={8}>
-            <Col span={6} offset={6}><div style={colBox('#1677ff')}>span=6 offset=6</div></Col>
-            <Col span={6} offset={6}><div style={colBox('#5195ff')}>span=6 offset=6</div></Col>
+            <Col span={6} offset={6}><div style={colBox('var(--sc-color-primary, #1677ff)')}>span=6 offset=6</div></Col>
+            <Col span={6} offset={6}><div style={colBox('var(--sc-color-primary-hover, #5195ff)')}>span=6 offset=6</div></Col>
           </Row>
         </div>
       </div>
@@ -87,15 +87,15 @@ export const LayoutMobile: Component<LayoutMobileProps> = (props) => {
           <div style={{ 'margin-bottom': '12px' }}>
             <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-bottom': '4px' }}>justify="between"</div>
             <Row gap={8} justify="between" style={{ background: 'var(--sc-doc-card-demo, #f9fafb)', padding: '8px', 'border-radius': '6px' }}>
-              <Col span={4}><div style={colBox('#1677ff')}>左</div></Col>
-              <Col span={4}><div style={colBox('#5195ff')}>右</div></Col>
+              <Col span={4}><div style={colBox('var(--sc-color-primary, #1677ff)')}>左</div></Col>
+              <Col span={4}><div style={colBox('var(--sc-color-primary-hover, #5195ff)')}>右</div></Col>
             </Row>
           </div>
           <div style={{ 'margin-bottom': '12px' }}>
             <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-bottom': '4px' }}>justify="center"</div>
             <Row gap={8} justify="center" style={{ background: 'var(--sc-doc-card-demo, #f9fafb)', padding: '8px', 'border-radius': '6px' }}>
-              <Col span={5}><div style={colBox('#1677ff')}>中</div></Col>
-              <Col span={5}><div style={colBox('#5195ff')}>中</div></Col>
+              <Col span={5}><div style={colBox('var(--sc-color-primary, #1677ff)')}>中</div></Col>
+              <Col span={5}><div style={colBox('var(--sc-color-primary-hover, #5195ff)')}>中</div></Col>
             </Row>
           </div>
         </div>

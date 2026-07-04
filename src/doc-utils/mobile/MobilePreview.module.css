@@ -159,6 +159,12 @@
 .drawerItem:active {
   background: var(--sc-color-background-secondary, #f7f8fa);
 }
+.drawerItemActive {
+  color: var(--sc-color-primary, #1677ff);
+  font-weight: 600;
+  background: color-mix(in srgb, var(--sc-color-primary, #1677ff) 6%, transparent);
+  border-right: 3px solid var(--sc-color-primary, #1677ff);
+}
 
 .drawerItemArrow {
   color: #d1d5db;
@@ -267,6 +273,9 @@
 :global(html.dark) .drawerItem {
   color: #e2e8f0;
   border-color: #1e293b;
+}
+:global(html.dark) .drawerItemActive {
+  background: color-mix(in srgb, var(--sc-color-primary, #5195ff) 12%, transparent);
 }
 :global(html.dark) .drawerGroup {
   color: #64748b;

@@ -204,7 +204,7 @@ export const IconDocPage: Component = () => {
           code={`<Icon name="star" variant="fill" color="#1677ff" />\n<Icon name="star" variant="fill" color="#22c55e" />\n<Icon name="star" variant="fill" color="#f59e0b" />\n<Icon name="star" variant="fill" color="#ef4444" />`}
         >
           <div class={styles.demoArea}>
-            <Icon name="star" variant="fill" size={28} color="#1677ff" />
+            <Icon name="star" variant="fill" size={28} color="var(--sc-color-primary, #1677ff)" />
             <Icon name="star" variant="fill" size={28} color="#22c55e" />
             <Icon name="star" variant="fill" size={28} color="#f59e0b" />
             <Icon name="star" variant="fill" size={28} color="#ef4444" />

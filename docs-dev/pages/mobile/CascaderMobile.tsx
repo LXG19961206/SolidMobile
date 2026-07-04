@@ -197,7 +197,7 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
             value={val3()}
             onChange={setVal3}
             title="省份（自定义渲染）"
-            checkmark={<Icon name="check" size={16} color="#1677ff" />}
+            checkmark={<Icon name="check" size={16} color="var(--sc-color-primary, #1677ff)" />}
           />
         </div>
       </div>

@@ -25,7 +25,7 @@
   align-items: center;
   gap: 0.5rem;
   max-width: 70vw;
-  min-width: 120px;
+  min-width: 80px;
   padding: 0.625rem 1rem;
   border-radius: var(--sc-border-radius-md, 8px);
   /* Toast 作为浮层，始终使用深色背景确保可读性 */

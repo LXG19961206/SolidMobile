@@ -276,6 +276,7 @@ const BasicDemo: Component = () => {
         value={val()}
         onChange={setVal}
         placeholder="请选择省市区"
+        teleport={phone?.()}
       />
     </CellGroup>
   );
@@ -327,6 +328,7 @@ const DeepDemo: Component = () => {
         show={show()}
         onUpdateShow={setShow}
         title="选择地址"
+        teleport={phone?.()}
       />
     </>
   );

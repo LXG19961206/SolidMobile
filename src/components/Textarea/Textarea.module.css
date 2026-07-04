@@ -28,6 +28,7 @@
   border: none;
   outline: none;
   background: transparent;
+  caret-color: var(--sc-color-primary, #1677ff);
   font-size: 14px;
   font-family: inherit;
   color: var(--sc-textarea-text-color);

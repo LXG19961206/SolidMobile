@@ -4,8 +4,8 @@
   --sc-checkbox-disabled-text-color: var(--sc-color-text-tertiary, #afaba9);
   --sc-checkbox-icon-size: 20px;
   --sc-checkbox-border-color: #c8c9cc;
-  --sc-checkbox-checked-border-color: #1989fa;
-  --sc-checkbox-checked-bg: #1989fa;
+  --sc-checkbox-checked-border-color: var(--sc-color-primary, #1989fa);
+  --sc-checkbox-checked-bg: var(--sc-color-primary, #1989fa);
   --sc-checkbox-disabled-opacity: 0.5;
   --sc-checkbox-gap: 8px;
   --sc-checkbox-font-size: 0.9375rem;

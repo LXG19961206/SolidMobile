@@ -41,7 +41,7 @@ export const ToastMobile: Component<ToastMobileProps> = (props) => {
           <Button type="danger" text="错误" size="sm" onClick={() => Toast.error('操作失败')} />
           <Button type="warning" text="警告" size="sm" onClick={() => Toast.warning('请注意')} />
           <Button size="sm" text="加载" color="#6366f1" onClick={() => { const h = Toast.loading('加载中...'); setTimeout(() => h.dismiss(), 2000); }} />
-          <Button size="sm" text="信息" color="#1677ff" onClick={() => Toast.info('提示信息')} />
+          <Button size="sm" text="信息" color="var(--sc-color-primary, #1677ff)" onClick={() => Toast.info('提示信息')} />
         </div>
       </div>
 

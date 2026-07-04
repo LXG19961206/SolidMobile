@@ -92,7 +92,7 @@ export const CellDocPage = () => {
       <DemoBlock
         title={t('demo.cellIconRequired')}
         desc={t('demoDesc.cell_icon_required')}
-        code={`<Cell icon="user" title="姓名" required value="张三" />\n<Cell icon="phone" title="手机号" clickable />\n<Cell icon="mail" title="邮箱" value="zhang@example.com" />\n<Cell\n  icon="palette"\n  title="主题色"\n  value={<span><span style={{ width:14,height:14,borderRadius:'50%',background:'#1677ff',display:'inline-block' }} /> 品牌蓝</span>}\n/>`}
+        code={`<Cell icon="user" title="姓名" required value="张三" />\n<Cell icon="phone" title="手机号" clickable />\n<Cell icon="mail" title="邮箱" value="zhang@example.com" />\n<Cell\n  icon="palette"\n  title="主题色"\n  value={<span><span style={{ width:14,height:14,borderRadius:'50%',background: 'var(--sc-color-primary, #1677ff)',display:'inline-block' }} /> 品牌蓝</span>}\n/>`}
       >
         <div class={styles.demo}>
           <CellGroup>
@@ -102,7 +102,7 @@ export const CellDocPage = () => {
             <Cell
               icon="palette"
               title="主题色"
-              value={<span style={{ display:'inline-flex','align-items':'center',gap:'0.4rem' }}><span style={{ width:14,height:14,'border-radius':'50%',background:'#1677ff',display:'inline-block' }} /> 品牌蓝</span>}
+              value={<span style={{ display:'inline-flex','align-items':'center',gap:'0.4rem' }}><span style={{ width:14,height:14,'border-radius':'50%',background: 'var(--sc-color-primary, #1677ff)',display:'inline-block' }} /> 品牌蓝</span>}
             />
           </CellGroup>
         </div>

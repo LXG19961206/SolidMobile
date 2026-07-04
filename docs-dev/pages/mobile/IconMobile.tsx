@@ -100,7 +100,7 @@ export const IconMobile: Component<IconMobileProps> = (props) => {
           <Icon name="star" variant="fill" color="#f59e0b" size="2.5rem" />
         </div>
         <div style={{ ...CARD.body, 'padding-top': 0 }}>
-          <Icon name="star" variant="fill" size={28} color="#1677ff" />
+          <Icon name="star" variant="fill" size={28} color="var(--sc-color-primary, #1677ff)" />
           <Icon name="star" variant="fill" size={28} color="#22c55e" />
           <Icon name="star" variant="fill" size={28} color="#f59e0b" />
           <Icon name="star" variant="fill" size={28} color="#ef4444" />
@@ -114,11 +114,11 @@ export const IconMobile: Component<IconMobileProps> = (props) => {
         <div style={CARD.desc}>点击复制 JSX 代码。共 129 个图标，此处展示常用图标。</div>
         <div style={{ padding: '0 16px 12px', display: 'flex' as const, gap: '8px' }}>
           <button
-            style={{ padding: '6px 12px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '6px', background: variant() === 'line' ? '#1677ff' : '#fff', color: variant() === 'line' ? '#fff' : '#374151', cursor: 'pointer', 'font-size': '0.8rem' }}
+            style={{ padding: '6px 12px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '6px', background: variant() === 'line' ? 'var(--sc-color-primary, #1677ff)' : '#fff', color: variant() === 'line' ? '#fff' : '#374151', cursor: 'pointer', 'font-size': '0.8rem' }}
             onClick={() => setVariant('line')}
           >线性</button>
           <button
-            style={{ padding: '6px 12px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '6px', background: variant() === 'fill' ? '#1677ff' : '#fff', color: variant() === 'fill' ? '#fff' : '#374151', cursor: 'pointer', 'font-size': '0.8rem' }}
+            style={{ padding: '6px 12px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '6px', background: variant() === 'fill' ? 'var(--sc-color-primary, #1677ff)' : '#fff', color: variant() === 'fill' ? '#fff' : '#374151', cursor: 'pointer', 'font-size': '0.8rem' }}
             onClick={() => setVariant('fill')}
           >填充</button>
           <input

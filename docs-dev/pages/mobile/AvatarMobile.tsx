@@ -61,7 +61,7 @@ export const AvatarMobile: Component<AvatarMobileProps> = (props) => {
         <div style={CARD.title}>文字 & 图标头像</div>
         <div style={CARD.desc}>无 src 时显示 icon 或 text（取首字符）</div>
         <div style={CARD.body}>
-          <Avatar size="lg" text="张三" color="#1677ff" />
+          <Avatar size="lg" text="张三" color="var(--sc-color-primary, #1677ff)" />
           <Avatar size="lg" text="李四" color="#22c55e" />
           <Avatar size="lg" text="Wang" color="#f59e0b" />
           <Avatar size="lg" icon="user" color="#6366f1" />
@@ -74,7 +74,7 @@ export const AvatarMobile: Component<AvatarMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.customColor')}</div>
         <div style={CARD.desc}>{t('demo.customColorDesc')}</div>
         <div style={CARD.body}>
-          <Avatar size="md" text="A" color="#1677ff" />
+          <Avatar size="md" text="A" color="var(--sc-color-primary, #1677ff)" />
           <Avatar size="md" text="B" color="#22c55e" />
           <Avatar size="md" text="C" color="#ef4444" />
           <Avatar size="md" text="D" color="#f59e0b" />

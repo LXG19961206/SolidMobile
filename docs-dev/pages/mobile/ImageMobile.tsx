@@ -33,10 +33,10 @@ const CARD = {
 
 /* ── Framework logos (GitHub org avatars) ── */
 
-const VUE_SRC = 'https://avatars.githubusercontent.com/u/6128107?s=200&v=4';
-const REACT_SRC = 'https://avatars.githubusercontent.com/u/6412038?s=200&v=4';
-const SOLID_SRC = 'https://avatars.githubusercontent.com/u/79226042?s=200&v=4';
-const SVELTE_SRC = 'https://avatars.githubusercontent.com/u/23617963?s=200&v=4';
+const VUE_SRC = './vue-logo.png';
+const REACT_SRC = './react-logo.png';
+const SOLID_SRC = './solid-logo.png';
+const SVELTE_SRC = './svelte-logo.png';
 
 const LOGOS = [
   { src: SOLID_SRC, name: 'Solid', color: '#3b82f6' },
@@ -55,7 +55,7 @@ export const ImageMobile: Component<ImageMobileProps> = (props) => {
         <div style={CARD.desc}>solid-mobile 官方 logo · 彩色渐变环 + 代码括号</div>
         <div style={{ ...CARD.body, 'align-items': 'center' as const, 'justify-content': 'center' as const }}>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
-            <span style={{ 'font-size': '1.4rem', color: '#1677ff', 'font-family': 'monospace', 'font-weight': 200, opacity: 0.3 }}>{'{'}</span>
+            <span style={{ 'font-size': '1.4rem', color: 'var(--sc-color-primary, #1677ff)', 'font-family': 'monospace', 'font-weight': 200, opacity: 0.3 }}>{'{'}</span>
             <div style={{ position: 'relative' as const }}>
               <div style={{
                 width: '86px', height: '86px', 'border-radius': '50%',
@@ -64,7 +64,7 @@ export const ImageMobile: Component<ImageMobileProps> = (props) => {
               }} />
               <Image src="./logo.jpg" width={72} height={72} fit="cover" round />
             </div>
-            <span style={{ 'font-size': '1.4rem', color: '#1677ff', 'font-family': 'monospace', 'font-weight': 200, opacity: 0.3 }}>{'}'}</span>
+            <span style={{ 'font-size': '1.4rem', color: 'var(--sc-color-primary, #1677ff)', 'font-family': 'monospace', 'font-weight': 200, opacity: 0.3 }}>{'}'}</span>
           </div>
         </div>
       </div>
@@ -142,7 +142,7 @@ export const ImageMobile: Component<ImageMobileProps> = (props) => {
             width={80} height={80} round
             fallback={
               <div style={{
-                width: '80px', height: '80px', background: '#1677ff',
+                width: '80px', height: '80px', background: 'var(--sc-color-primary, #1677ff)',
                 display: 'flex' as const, 'align-items': 'center' as const,
                 'justify-content': 'center' as const, 'border-radius': '50%',
                 color: '#fff', 'font-size': '1.5rem', 'font-weight': 700,

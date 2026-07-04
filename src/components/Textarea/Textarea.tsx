@@ -98,6 +98,11 @@ export const Textarea: Component<TextareaProps> = (rawProps) => {
 
   function handleBlur(e: Event) {
     local.onBlur?.(e);
+    if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+      const sy = window.scrollY;
+      window.scrollTo(0, sy + 1);
+      requestAnimationFrame(() => window.scrollTo(0, sy));
+    }
   }
 
   function handleFocus(e: Event) {

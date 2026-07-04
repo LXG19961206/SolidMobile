@@ -77,6 +77,7 @@ const RangeDemo: Component = () => {
       startDate="2024-06-01"
       endDate="2024-09-30"
       placeholder="仅 2024-06-01 ~ 2024-09-30"
+      teleport={phone?.()}
     />
   );
 };
@@ -92,6 +93,7 @@ const YearMonthDemo: Component = () => {
       onChange={setVal}
       type="year-month"
       placeholder="选择年月"
+      teleport={phone?.()}
     />
   );
 };
@@ -107,6 +109,7 @@ const DisabledDateDemo: Component = () => {
       onChange={setVal}
       placeholder="周末不可选"
       disabledDate={(y, m, d) => [0, 6].includes(new Date(y, m - 1, d).getDay())}
+      teleport={phone?.()}
     />
   );
 };
@@ -122,6 +125,7 @@ const DateTimeDemo: Component = () => {
       onChange={setVal}
       type="datetime"
       placeholder="选择日期时间"
+      teleport={phone?.()}
     />
   );
 };
@@ -177,7 +181,7 @@ export const DatePickerDocPage: Component = () => {
         <DisabledDateDemo />
       </DemoBlock>
 
-      <DemoBlock title={t('demo.datetime')} desc={t('demo.datetimeDesc')} code={codeDateTime}>
+      <DemoBlock title={t('demo.dateTime')} desc={t('demo.dateTimeDesc')} code={codeDateTime}>
         <DateTimeDemo />
       </DemoBlock>
 

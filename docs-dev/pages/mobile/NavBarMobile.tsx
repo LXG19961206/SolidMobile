@@ -74,8 +74,8 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
           <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
             <NavBar
               title="编辑"
-              left={<span style={{ 'font-size': '0.9rem', color: '#1677ff' }}>取消</span>}
-              right={<span style={{ 'font-size': '0.9rem', color: '#1677ff' }}>完成</span>}
+              left={<span style={{ 'font-size': '0.9rem', color: 'var(--sc-color-primary, #1677ff)' }}>取消</span>}
+              right={<span style={{ 'font-size': '0.9rem', color: 'var(--sc-color-primary, #1677ff)' }}>完成</span>}
               border
             />
           </div>

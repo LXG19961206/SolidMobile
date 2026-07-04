@@ -16,8 +16,8 @@ const CARD = {
 };
 
 const note = {
-  background: 'rgba(22,119,255,0.04)',
-  'border-left': '3px solid #1677ff',
+  background: 'color-mix(in srgb, var(--sc-color-primary, #1677ff) 4%, transparent)',
+  'border-left': '3px solid var(--sc-color-primary, #1677ff)',
   padding: '10px 12px',
   'border-radius': '0 6px 6px 0',
   'font-size': '0.8rem',
@@ -118,27 +118,27 @@ setEventBusHandler((event) => {
             <tbody>
               <tr>
                 <td style={{ padding: '5px 4px', 'font-weight': 500 }}>component</td>
-                <td style={{ padding: '5px 4px', color: '#1677ff', 'font-family': 'monospace' }}>string</td>
+                <td style={{ padding: '5px 4px', color: 'var(--sc-color-primary, #1677ff)', 'font-family': 'monospace' }}>string</td>
                 <td style={{ padding: '5px 4px', color: 'var(--sc-doc-card-desc, #6b7280)' }}>触发事件的组件名</td>
               </tr>
               <tr>
                 <td style={{ padding: '5px 4px', 'font-weight': 500 }}>type</td>
-                <td style={{ padding: '5px 4px', color: '#1677ff', 'font-family': 'monospace' }}>string</td>
+                <td style={{ padding: '5px 4px', color: 'var(--sc-color-primary, #1677ff)', 'font-family': 'monospace' }}>string</td>
                 <td style={{ padding: '5px 4px', color: 'var(--sc-doc-card-desc, #6b7280)' }}>change / click / confirm / clear / delete / submit / success / error / refresh / select / show / cancel</td>
               </tr>
               <tr>
                 <td style={{ padding: '5px 4px', 'font-weight': 500 }}>payload</td>
-                <td style={{ padding: '5px 4px', color: '#1677ff', 'font-family': 'monospace' }}>unknown</td>
+                <td style={{ padding: '5px 4px', color: 'var(--sc-color-primary, #1677ff)', 'font-family': 'monospace' }}>unknown</td>
                 <td style={{ padding: '5px 4px', color: 'var(--sc-doc-card-desc, #6b7280)' }}>事件特异数据，因组件/事件类型而异</td>
               </tr>
-              <tr style={{ background: 'rgba(22,119,255,0.04)' }}>
-                <td style={{ padding: '5px 4px', 'font-weight': 600, color: '#1677ff' }}>props</td>
-                <td style={{ padding: '5px 4px', color: '#1677ff', 'font-family': 'monospace' }}>unknown</td>
+              <tr style={{ background: 'color-mix(in srgb, var(--sc-color-primary, #1677ff) 4%, transparent)' }}>
+                <td style={{ padding: '5px 4px', 'font-weight': 600, color: 'var(--sc-color-primary, #1677ff)' }}>props</td>
+                <td style={{ padding: '5px 4px', color: 'var(--sc-color-primary, #1677ff)', 'font-family': 'monospace' }}>unknown</td>
                 <td style={{ padding: '5px 4px', color: 'var(--sc-doc-card-text, #374151)' }}><b>组件触发事件时的 props 快照。</b>可以拿到组件的所有配置信息（placeholder、maxCount、columns 等），用于遥测上下文分析。</td>
               </tr>
               <tr>
                 <td style={{ padding: '5px 4px', 'font-weight': 500 }}>timestamp</td>
-                <td style={{ padding: '5px 4px', color: '#1677ff', 'font-family': 'monospace' }}>number</td>
+                <td style={{ padding: '5px 4px', color: 'var(--sc-color-primary, #1677ff)', 'font-family': 'monospace' }}>number</td>
                 <td style={{ padding: '5px 4px', color: 'var(--sc-doc-card-desc, #6b7280)' }}>毫秒时间戳</td>
               </tr>
             </tbody>
@@ -163,7 +163,7 @@ setEventBusHandler((event) => {
               {EVENTS_LIST.map(([comp, evt, payload]) => (
                 <tr style={{ 'border-bottom': '1px solid var(--sc-doc-card-divider, #f3f4f6)' }}>
                   <td style={{ padding: '5px 4px', color: 'var(--sc-doc-card-text, #374151)', 'font-weight': 500 }}>{comp}</td>
-                  <td style={{ padding: '5px 4px', color: '#1677ff', 'font-family': 'monospace', 'font-size': '0.65rem' }}>{evt}</td>
+                  <td style={{ padding: '5px 4px', color: 'var(--sc-color-primary, #1677ff)', 'font-family': 'monospace', 'font-size': '0.65rem' }}>{evt}</td>
                   <td style={{ padding: '5px 4px', color: 'var(--sc-doc-card-desc, #6b7280)', 'font-family': 'monospace', 'font-size': '0.6rem' }}>{payload}</td>
                 </tr>
               ))}

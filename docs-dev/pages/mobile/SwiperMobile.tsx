@@ -77,7 +77,7 @@ export const SwiperMobile: Component<SwiperMobileProps> = (props) => {
                 {Array.from({ length: tot }, (_, i) => (
                   <span style={{
                     width: i === cur ? '16px' : '6px', height: '6px',
-                    'border-radius': '3px', background: i === cur ? '#1677ff' : 'rgba(0,0,0,0.15)',
+                    'border-radius': '3px', background: i === cur ? 'var(--sc-color-primary, #1677ff)' : 'rgba(0,0,0,0.15)',
                     transition: 'all 0.3s',
                   }} />
                 ))}

@@ -17,7 +17,7 @@ const DEFAULT_DURATION = 0.4;
 const MOVE_DURATION = 0.05;
 const MOMENTUM_WINDOW_MS = 300;
 const QUEUE_CAPACITY = 30;
-const MOMENTUM_EXTRAPOLATE_FACTOR = 5;
+const MOMENTUM_EXTRAPOLATE_FACTOR = 3;
 
 /* ── FixedQueue ── */
 class FixedQueue<T> {
@@ -102,7 +102,7 @@ function genPlaceHolderItems(
 /* ── Default Props ── */
 const defaultProps: Partial<PickerProps> = {
   visibleItemCount: 7,
-  ratio: 1.5,
+  ratio: 1.0,
   swipeDuration: 1,
   title: undefined,
 };
@@ -250,6 +250,7 @@ export const Picker: Component<PickerProps> = (rawProps) => {
   const [isScrolling, setIsScrolling] = createSignal(false);
   let lastClientY = 0;
   let scrollGateTimer: ReturnType<typeof setTimeout> | null = null;
+  let scrollGateMoved = false; // distance-based gate: >3px = scrolling, not a tap
   /** 每列独立的 rAF id，避免滑动某一列时取消另一列的动画 */
   const animRafIds: (number | null)[] = [];
 
@@ -307,13 +308,16 @@ export const Picker: Component<PickerProps> = (rawProps) => {
             target = selected?.children ?? [];
           }
 
-          // Tree 模式下，非首列跟随父列变化时重置到第一项
-          // （Effect 3 的受控值同步会随后覆盖，不影响预设 value）
+          // Tree 模式下，父列切换导致子列数据变化时，若当前索引
+          // 已越界（新 children 比旧 children 少），则重置到第一项。
+          // 子列自身滚动引起的 effect 重入不会误伤。
           if (depth > 0) {
-            const [, idxSetter] = selectedIdx()[depth];
+            const [idxGetter, idxSetter] = selectedIdx()[depth];
             const [, transSetter] = translateY()[depth];
-            idxSetter(0);
-            transSetter(0);
+            if (idxGetter() >= arr.length) {
+              idxSetter(0);
+              transSetter(0);
+            }
           }
         }
 
@@ -463,8 +467,10 @@ export const Picker: Component<PickerProps> = (rawProps) => {
 
     setTargetCol(col);
 
-    // 50ms 去抖动：避免轻点确认按钮时误触发滚动
-    scrollGateTimer = setTimeout(() => setIsScrolling(true), 50);
+    // 去抖动：避免轻点确认 / 取消按钮时误触发滚动。
+    // 30ms 后或手指移动超过 3px 即可认为用户在滑动。
+    scrollGateMoved = false;
+    scrollGateTimer = setTimeout(() => setIsScrolling(true), 30);
 
     // snap 当前列到最近的整行位置，作为拖拽起点
     const currentY = allTranslates()[col];
@@ -477,6 +483,12 @@ export const Picker: Component<PickerProps> = (rawProps) => {
   }
 
   function onPointerMove(evt: PointerEvent) {
+    // Distance gate: if the user has moved >3px, it's definitely a scroll
+    if (!scrollGateMoved && Math.abs(evt.clientY - lastClientY) > 3) {
+      scrollGateMoved = true;
+      if (scrollGateTimer) { clearTimeout(scrollGateTimer); scrollGateTimer = null; }
+      setIsScrolling(true);
+    }
     if (!isScrolling()) return;
 
     evt.stopPropagation();

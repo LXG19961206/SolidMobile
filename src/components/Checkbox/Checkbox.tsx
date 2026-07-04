@@ -92,6 +92,7 @@ export const Checkbox: Component<CheckboxProps> = (rawProps) => {
 
   function onLabelClick(e: MouseEvent) {
     if (local.labelDisabled) return;
+    e.stopPropagation(); // prevent wrapper onClick from double-toggling
     onClick();
   }
 

@@ -5,9 +5,9 @@ import { Dynamic } from 'solid-js/web';
 // are merged into the module-level messages object BEFORE the app renders.
 import './doc-i18n';
 import { useT, setGlobalLocale, useLocale } from '../src/i18n';
-import { defaultConfig } from '../src/config/defaults';
-import { generateCSSVars } from '../src/config/css-vars';
 import { ProviderConfig } from '../src/config';
+import { deriveColorSet } from '../src/utils/color';
+import { docThemeColor, persistThemeColor } from './doc-theme';
 import { Button, Tag } from '../src/components';
 import { DialogAPI } from '../src/components/Dialog/DialogManager';
 
@@ -137,11 +137,11 @@ const MobileHome: Component<{
       display: 'flex' as const, 'align-items': 'center' as const, gap: '12px',
       'margin-bottom': '20px',
     }}>
-      <span style={{ 'font-size': '1.5rem', color: '#1677ff', 'font-family': 'monospace', 'font-weight': 200, opacity: 0.35 }}>{'{'}</span>
+      <span style={{ 'font-size': '1.5rem', color: 'var(--sc-color-primary, #1677ff)', 'font-family': 'monospace', 'font-weight': 200, opacity: 0.35 }}>{'{'}</span>
       <div style={{ position: 'relative' as const }}>
         <div style={{
           width: '72px', height: '72px', 'border-radius': '50%',
-          background: 'conic-gradient(from 0deg, #1677ff, #22c55e, #f59e0b, #ef4444, #8b5cf6, #1677ff)',
+          background: 'conic-gradient(from 0deg, var(--sc-color-primary, #1677ff), #22c55e, #f59e0b, #ef4444, #8b5cf6, var(--sc-color-primary, #1677ff))',
           animation: 'sc-logo-pulse 3s ease-in-out infinite',
           position: 'absolute' as const, top: '-5px', left: '-5px',
         }} />
@@ -151,7 +151,7 @@ const MobileHome: Component<{
           'box-shadow': '0 2px 8px rgba(0,0,0,0.06)',
         }} />
       </div>
-      <span style={{ 'font-size': '1.5rem', color: '#1677ff', 'font-family': 'monospace', 'font-weight': 200, opacity: 0.35 }}>{'}'}</span>
+      <span style={{ 'font-size': '1.5rem', color: 'var(--sc-color-primary, #1677ff)', 'font-family': 'monospace', 'font-weight': 200, opacity: 0.35 }}>{'}'}</span>
     </div>
     <div style={{ 'font-size': '1.2rem', 'font-weight': 700, color: 'var(--sc-doc-card-title, #1f2937)', 'margin-bottom': '4px' }}>solid-mobile</div>
     <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'text-align': 'center', 'line-height': 1.6, 'margin-bottom': '16px' }}>
@@ -173,7 +173,7 @@ const MobileHome: Component<{
     {/* Links */}
     <div style={{ display: 'flex' as const, gap: '10px', width: '100%' }}>
       <div
-        style={{ flex: 1, background: '#1677ff', color: '#fff', 'border-radius': '10px', padding: '16px', cursor: 'pointer', 'text-align': 'center' as const }}
+        style={{ flex: 1, background: 'var(--sc-color-primary, #1677ff)', color: '#fff', 'border-radius': '10px', padding: '16px', cursor: 'pointer', 'text-align': 'center' as const }}
         onClick={() => props.onNavigate?.('design-tokens')}
       >
         <div style={{ 'font-size': '1rem', 'font-weight': 600, 'margin-bottom': '4px' }}>Quick Start</div>
@@ -189,7 +189,6 @@ const MobileHome: Component<{
     </div>
   </div>
 );
-
 /* ── Mobile Pages Map (module scope, stable reference) ── */
 
 const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key: string }[]; onNavigate?: (key: string) => void; onOpenDrawer?: () => void }>> = {
@@ -750,30 +749,29 @@ const ConfigDocPage: Component = () => {
 
       <h2 style={SECTION_H2}>动态切换主题色</h2>
       <p style={{ color: '#6b7280', margin: '0 0 1rem' }}>
-        点击色块切换主色，下方组件即时响应主题变更。
+        点击下方色块切换主色，下方组件即时响应主题变更。
       </p>
-      <div style={{
-        border: '1px solid #e5e7eb', 'border-radius': '12px', padding: '1.5rem',
-        background: '#fafbfc', 'margin-bottom': '1.5rem',
-      }}>
-        <div style={{ display: 'flex', gap: '10px', 'margin-bottom': '1.2rem' }}>
-          {presets.map(c => (
-            <div onClick={() => setDemoColor(c)} style={{
+      <div style={{ display: 'flex', gap: '10px', 'margin-bottom': '1.5rem' }}>
+        {presets.map(c => (
+          <div
+            onClick={() => setDemoColor(c)}
+            style={{
               width: '36px', height: '36px', 'border-radius': '50%', background: c,
               cursor: 'pointer', border: demoColor() === c ? '3px solid #323233' : '3px solid transparent',
               transition: 'border 0.2s',
-            }} />
-          ))}
+            }}
+          />
+        ))}
+      </div>
+      <ProviderConfig config={{ colors: { light: { primary: demoColor() } } }}>
+        <div style={{ display: 'flex', gap: '12px', 'flex-wrap': 'wrap', 'align-items': 'center' }}>
+          <Button type="primary">主色按钮</Button>
+          <Button variant="outline">线框按钮</Button>
+          <Button type="danger">危险按钮</Button>
+          <Tag type="primary">主色标签</Tag>
+          <Tag type="success">成功标签</Tag>
+          <Tag type="warning">警告标签</Tag>
         </div>
-        <ProviderConfig config={{ colors: { light: { primary: demoColor() } } }}>
-          <div style={{ display: 'flex', gap: '12px', 'flex-wrap': 'wrap', 'align-items': 'center' }}>
-            <Button type="primary">Primary</Button>
-            <Button variant="outline" type="primary">Outline</Button>
-            <Button type="danger">Danger</Button>
-            <Tag type="primary">Tag</Tag>
-            <Tag type="success">Success</Tag>
-            <Tag type="warning">Warning</Tag>
-          </div>
       </ProviderConfig>
 
       <h2 style={SECTION_H2}>ProviderConfig Props</h2>
@@ -982,7 +980,7 @@ const GUIDE_PAGES: Record<string, Component> = {
         全局事件总线。所有组件触发内置事件时，除执行原有回调外，还会将结构化事件推送至全局总线。
         适用于埋点遥测、审计日志、AOP 拦截、开发调试等场景。
       </p>
-      <blockquote style="margin:0 0 1.5rem;padding:0.75rem 1rem;border-left:3px solid #1677ff;background:rgba(22,119,255,0.04);border-radius:0 6px 6px 0;color:var(--sc-color-text-secondary,#6b7280);font-size:0.9rem;line-height:1.7">
+      <blockquote style="margin:0 0 1.5rem;padding:0.75rem 1rem;border-left:3px solid var(--sc-color-primary, #1677ff);background:color-mix(in srgb, var(--sc-color-primary, #1677ff) 4%, transparent);border-radius:0 6px 6px 0;color:var(--sc-color-text-secondary,#6b7280);font-size:0.9rem;line-height:1.7">
         <strong>本库的 EventBus 定位为拦截与切面，而非通用消息通道。</strong><br />
         它专为<strong>埋点遥测、审计日志、AOP 拦截</strong>等横切关注点设计，提供一个统一的观测入口。
         我们不建议用它来做组件间通信、状态同步或事件驱动的业务流转——这些场景请走 props、回调或 Form 等显式契约。
@@ -1016,27 +1014,27 @@ setEventBusHandler((event) => {
           <tbody>
             <tr>
               <td style="font-weight:500;font-family:monospace;font-size:0.85rem">component</td>
-              <td style="font-family:monospace;font-size:0.8rem;color:#1677ff">EventBusComponent</td>
+              <td style="font-family:monospace;font-size:0.8rem;color:var(--sc-color-primary, #1677ff)">EventBusComponent</td>
               <td style="font-size:0.85rem;color:var(--sc-color-text-secondary,#6b7280)">触发事件的组件名，如 <code>'Picker'</code>、<code>'Upload'</code></td>
             </tr>
             <tr>
               <td style="font-weight:500;font-family:monospace;font-size:0.85rem">type</td>
-              <td style="font-family:monospace;font-size:0.8rem;color:#1677ff">EventBusEventType</td>
+              <td style="font-family:monospace;font-size:0.8rem;color:var(--sc-color-primary, #1677ff)">EventBusEventType</td>
               <td style="font-size:0.85rem;color:var(--sc-color-text-secondary,#6b7280)">事件类别：<code>change</code> <code>click</code> <code>confirm</code> <code>cancel</code> <code>clear</code> <code>delete</code> <code>submit</code> <code>success</code> <code>error</code> <code>refresh</code> <code>select</code> <code>show</code></td>
             </tr>
             <tr>
               <td style="font-weight:500;font-family:monospace;font-size:0.85rem">payload</td>
-              <td style="font-family:monospace;font-size:0.8rem;color:#1677ff">unknown</td>
+              <td style="font-family:monospace;font-size:0.8rem;color:var(--sc-color-primary, #1677ff)">unknown</td>
               <td style="font-size:0.85rem;color:var(--sc-color-text-secondary,#6b7280)">事件特异数据。不同组件/事件类型的 payload 不同，需根据 <code>component + type</code> 组合窄化类型。详见下方事件一览表。</td>
             </tr>
-            <tr style="background:rgba(22,119,255,0.04)">
-              <td style="font-weight:600;font-family:monospace;font-size:0.85rem;color:#1677ff">props</td>
-              <td style="font-family:monospace;font-size:0.8rem;color:#1677ff">unknown</td>
+            <tr style="background:color-mix(in srgb, var(--sc-color-primary, #1677ff) 4%, transparent)">
+              <td style="font-weight:600;font-family:monospace;font-size:0.85rem;color:var(--sc-color-primary, #1677ff)">props</td>
+              <td style="font-family:monospace;font-size:0.8rem;color:var(--sc-color-primary, #1677ff)">unknown</td>
               <td style="font-size:0.85rem;color:var(--sc-color-text,#323233)"><strong>组件触发事件时的 props 快照。</strong>这是最容易被忽略但价值最高的字段——你可以从 props 中拿到组件的所有配置信息（placeholder、maxCount、columns、disabled 等），无需额外从组件实例读取。用于遥测时分析「用户是在什么配置下触发了这个事件」。</td>
             </tr>
             <tr>
               <td style="font-weight:500;font-family:monospace;font-size:0.85rem">timestamp</td>
-              <td style="font-family:monospace;font-size:0.8rem;color:#1677ff">number</td>
+              <td style="font-family:monospace;font-size:0.8rem;color:var(--sc-color-primary, #1677ff)">number</td>
               <td style="font-size:0.85rem;color:var(--sc-color-text-secondary,#6b7280)">事件发生时间的毫秒时间戳（<code>Date.now()</code>）</td>
             </tr>
           </tbody>
@@ -1146,6 +1144,8 @@ function applyDark(on: boolean) {
   localStorage.setItem(DARK_KEY, on ? '1' : '0');
 }
 
+import { ThemeColorPicker } from './ThemeColorPicker';
+
 /* ── App ── */
 
 export function App() {
@@ -1156,6 +1156,19 @@ export function App() {
   const [menuOpen, setMenuOpen] = createSignal(false);
   const [search, setSearch] = createSignal('');
   const [dark, setDark] = createSignal(getDark());
+  const dynamicConfig = createMemo(() => {
+    const c = docThemeColor();
+    // Dark mode primary: use the hover (lightened) variant so it stays
+    // visible on dark backgrounds, then ProviderConfig auto-derives the
+    // remaining state colors from it.
+    const darkPrimary = deriveColorSet(c).hover;
+    return {
+      colors: {
+        light: { primary: c },
+        dark: { primary: darkPrimary },
+      },
+    };
+  });
   const isMobileViewport = () => typeof window !== 'undefined' && window.innerWidth <= 1024;
   const [mobileView, setMobileView] = createSignal(isMobileViewport());
   const t = useT();
@@ -1167,12 +1180,6 @@ export function App() {
 
   onMount(() => {
     applyDark(dark());
-    if (!document.getElementById('sc-docs-css-vars')) {
-      const style = document.createElement('style');
-      style.id = 'sc-docs-css-vars';
-      style.textContent = generateCSSVars(defaultConfig) + `html.dark body { background: var(--sc-color-background); color: var(--sc-color-text); }`;
-      document.head.appendChild(style);
-    }
   });
 
   const toggleDark = () => {
@@ -1236,14 +1243,35 @@ export function App() {
   const [mobileDrawerOpen, setMobileDrawerOpen] = createSignal(false);
   const openMobileDrawer = () => setMobileDrawerOpen(true);
   const closeMobileDrawer = () => setMobileDrawerOpen(false);
+  // Bilingual labels for the mobile drawer — no i18n needed.
+  const CN: Record<string, string> = {
+    home: '首页', eventbus: '事件总线',
+    button: '按钮', icon: '图标', center: '居中', divider: '分割线', layout: '布局', safearea: '安全区',
+    avatar: '头像', badge: '徽标', tag: '标签', image: '图片', empty: '空状态', lazyload: '懒加载',
+    list: '列表', swipecell: '滑动单元格', swiper: '轮播', pullrefresh: '下拉刷新',
+    tabs: '标签页', tabbar: '标签栏', navbar: '导航栏', cell: '单元格',
+    picker: '选择器', calendar: '日历', cascader: '级联选择', datepicker: '日期选择',
+    citypicker: '城市选择', timepicker: '时间选择',
+    toast: '轻提示', notify: '通知', dialog: '对话框', overlay: '遮罩层', actionsheet: '动作面板', loading: '加载',
+    form: '表单', input: '输入框', textarea: '文本域', radio: '单选框', checkbox: '复选框',
+    switch: '开关', rate: '评分', stepper: '步进器', slider: '滑块', select: '选择器', upload: '上传',
+  };
+
   const mobileGroups = createMemo(() => [
-    { title: '', items: [{ name: '🏠 Home', key: 'home' }] },
+    { title: '', items: [{ name: 'Home 首页', key: 'home' }] },
     {
-      title: '指南', items: [
-        { name: '📡 EventBus 事件总线', key: 'eventbus' },
+      title: '指南 / Guides', items: [
+        { name: 'EventBus 事件总线', key: 'eventbus' },
       ]
     },
-    ...GROUPS,
+    ...GROUPS.map(g => ({
+      ...g,
+      title: `${g.title}`,
+      items: g.items.map(i => ({
+        ...i,
+        name: CN[i.key] ? `${i.name} ${CN[i.key]}` : i.name,
+      })),
+    })),
   ]);
 
   // ── Mobile page memos ──
@@ -1251,7 +1279,8 @@ export function App() {
   const mobilePageComp = () => PAGES_MOBILE[mobileActiveKey()] || MobileHome;
 
   return (
-    <Show when={!mobileView()} fallback={
+    <ProviderConfig config={dynamicConfig()}>
+      <Show when={!mobileView()} fallback={
       <DrawerContext.Provider value={openMobileDrawer}>
         <Dynamic component={mobilePageComp()}
           components={allComponents()} onNavigate={navigateTo} />
@@ -1284,6 +1313,7 @@ export function App() {
                     {(item) => (
                       <div
                         class={drawerStyles.drawerItem}
+                        classList={{ [drawerStyles.drawerItemActive!]: activeKey() === item.key }}
                         onClick={() => { closeMobileDrawer(); navigateTo(item.key); }}
                       >
                         <span>{item.name}</span>
@@ -1318,6 +1348,7 @@ export function App() {
             </For>
           </nav>
           <div class="top-nav-actions">
+            <ThemeColorPicker color={docThemeColor()} onChange={(c) => persistThemeColor(c)} />
             <button class="tb-btn" onClick={() => { showI18nNotice(); setGlobalLocale(useLocale() === 'zh-CN' ? 'en-US' : 'zh-CN'); }}>
               {useLocale() === 'zh-CN' ? 'EN' : '中'}
             </button>
@@ -1429,5 +1460,6 @@ export function App() {
         <DialogRenderer />
       </div>
     </Show>
+    </ProviderConfig>
   );
 }

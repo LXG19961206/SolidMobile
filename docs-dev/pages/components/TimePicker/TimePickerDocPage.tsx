@@ -1,10 +1,10 @@
-import { createSignal, type Component } from 'solid-js';
+import { createSignal, useContext, type Component } from 'solid-js';
 import { TimePicker } from '../../../../src/components/TimePicker';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
 import { useT } from '../../../doc-i18n';
-import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
 
 const propsData: PropRow[] = [
@@ -26,6 +26,7 @@ const propsData: PropRow[] = [
 /* ── Basic demo ── */
 
 const BasicDemo: Component = () => {
+  const phone = useContext(PhoneTargetContext);
   const [val, setVal] = createSignal('');
   return (
     <>
@@ -39,7 +40,7 @@ const BasicDemo: Component = () => {
           }}
         />
       </CellGroup>
-      <TimePicker onChange={(v) => setVal(v)} onConfirm={(v) => setVal(v)} />
+      <TimePicker onChange={(v) => setVal(v)} onConfirm={(v) => setVal(v)} teleport={phone?.()} />
     </>
   );
 };
@@ -49,6 +50,7 @@ const codeBasic = `<TimePicker onChange={(v) => setVal(v)} />`;
 /* ── Controlled value demo ── */
 
 const ControlledDemo: Component = () => {
+  const phone = useContext(PhoneTargetContext);
   const [val, setVal] = createSignal('14:30:00');
   return (
     <>
@@ -59,7 +61,7 @@ const ControlledDemo: Component = () => {
           clickable
         />
       </CellGroup>
-      <TimePicker value={val()} onChange={(v) => setVal(v)} onConfirm={(v) => setVal(v)} />
+      <TimePicker value={val()} onChange={(v) => setVal(v)} onConfirm={(v) => setVal(v)} teleport={phone?.()} />
     </>
   );
 };
@@ -69,15 +71,16 @@ const codeControlled = `<TimePicker value="14:30:00" />`;
 /* ── Form demo ── */
 
 const FormDemo: Component = () => {
+  const phone = useContext(PhoneTargetContext);
   const [formVal, setFormVal] = createSignal({});
   return (
     <>
       <Form onSubmit={(v) => setFormVal(v)} labelWidth="4em">
         <FormItem name="startTime" label="开始时间" required>
-          <TimePicker placeholder="选择开始时间" />
+          <TimePicker placeholder="选择开始时间" teleport={phone?.()} />
         </FormItem>
         <FormItem name="endTime" label="结束时间">
-          <TimePicker placeholder="选择结束时间" />
+          <TimePicker placeholder="选择结束时间" teleport={phone?.()} />
         </FormItem>
         <div style={{ padding: '12px 1rem' }}>
           <Button type="primary" block nativeType="submit" text="提交" />

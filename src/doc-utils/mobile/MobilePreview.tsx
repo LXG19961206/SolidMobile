@@ -2,8 +2,10 @@ import { createSignal, createMemo, Show, type Component } from 'solid-js';
 import { NavBar } from '../../components/NavBar';
 import { SafeArea } from '../../components/SafeArea';
 import { Icon } from '../../components/Icon';
-import { useLocale, setGlobalLocale } from '../../i18n';
+import { useLocale, setGlobalLocale, useT } from '../../i18n';
 import { useDrawer } from './DrawerContext';
+import { docThemeColor, persistThemeColor } from '../../../docs-dev/doc-theme';
+import { ThemeColorPicker } from '../../../docs-dev/ThemeColorPicker';
 import styles from './MobilePreview.module.css';
 
 const DARK_KEY = 'sc-docs-dark-mode';
@@ -49,6 +51,7 @@ export interface MobilePreviewProps {
 export const MobilePreview: Component<MobilePreviewProps> = (props) => {
   const [showProps, setShowProps] = createSignal(false);
   const [isDark, setIsDark] = createSignal(getDark());
+  const t = useT();
   const openDrawer = useDrawer() || props.onOpenDrawer;
 
   const toggleDark = () => {
@@ -98,6 +101,7 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
             <span class={styles.navBtn} onClick={() => setShowProps(!showProps())}>
               <Icon name="information" size={18} />
             </span>
+            <ThemeColorPicker color={docThemeColor()} onChange={(c) => persistThemeColor(c)} />
           </div>
         }
       />
@@ -123,14 +127,13 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
             {props.props?.length ? (
               <table class={styles.propsTable}>
                 <thead>
-                  <tr><th>属性</th><th>类型</th><th>说明</th></tr>
+                  <tr><th>属性</th><th>说明</th></tr>
                 </thead>
                 <tbody>
                   {props.props.map((p) => (
                     <tr>
                       <td class={styles.propName}>{p.name}</td>
-                      <td class={styles.propType}>{p.type}</td>
-                      <td class={styles.propDesc}>{p.desc}</td>
+                      <td class={styles.propDesc}>{t(p.desc) || p.desc}</td>
                     </tr>
                   ))}
                 </tbody>

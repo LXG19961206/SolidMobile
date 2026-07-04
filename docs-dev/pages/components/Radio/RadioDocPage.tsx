@@ -260,7 +260,7 @@ export const RadioDocPage: Component = () => {
         </DemoBlock>
 
         <DemoBlock title={t('demo.customIcon')} desc={t('demo.customIconDesc')} code={codeCustomIcon}>
-          <RadioGroup value={iconVal()} onChange={setIconVal} iconSize="28px" checkedColor="#1677ff">
+          <RadioGroup value={iconVal()} onChange={setIconVal} iconSize="28px" checkedColor="var(--sc-color-primary, #1677ff)">
             <Radio
               value="like"
               label="好评"

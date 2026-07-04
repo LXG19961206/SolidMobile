@@ -144,9 +144,9 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           />
         </DemoBlock>
 
-        <DemoBlock title={t('demo.customTrigger')} desc={t('demoDesc.upload_custom_button')} code={`<Upload>\n  <button style={{ padding: '8px 16px', background: '#1677ff', color: '#fff', 'border-radius': '6px', border: 'none', 'white-space': 'nowrap' }}>\n    + 上传图片\n  </button>\n</Upload>`}>
+        <DemoBlock title={t('demo.customTrigger')} desc={t('demoDesc.upload_custom_button')} code={`<Upload>\n  <button style={{ padding: '8px 16px', background: 'var(--sc-color-primary, #1677ff)', color: '#fff', 'border-radius': '6px', border: 'none', 'white-space': 'nowrap' }}>\n    + 上传图片\n  </button>\n</Upload>`}>
           <Upload>
-            <button style={{ padding: '8px 16px', background: '#1677ff', color: '#fff', 'border-radius': '6px', border: 'none', cursor: 'pointer', 'font-size': '0.8125rem', 'white-space': 'nowrap' }}>
+            <button style={{ padding: '8px 16px', background: 'var(--sc-color-primary, #1677ff)', color: '#fff', 'border-radius': '6px', border: 'none', cursor: 'pointer', 'font-size': '0.8125rem', 'white-space': 'nowrap' }}>
               + 上传图片
             </button>
           </Upload>

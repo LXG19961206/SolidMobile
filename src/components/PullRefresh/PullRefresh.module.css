@@ -1,6 +1,10 @@
 .wrapper {
   overflow: hidden;
   position: relative;
+  /* Prevent scroll-chaining: when the wrapper is pulled past its
+     boundary the overscroll does NOT propagate to ancestor scroll
+     containers (kills the iOS rubber-band effect). */
+  overscroll-behavior: contain;
 }
 
 .track {

@@ -36,7 +36,7 @@ const stage = (h?: string) => ({
 });
 
 const chip = {
-  background: '#1677ff', color: '#fff', padding: '6px 16px',
+  background: 'var(--sc-color-primary, #1677ff)', color: '#fff', padding: '6px 16px',
   'border-radius': '16px', 'font-size': '0.8rem', 'font-weight': 600,
   'white-space': 'nowrap' as const,
 };

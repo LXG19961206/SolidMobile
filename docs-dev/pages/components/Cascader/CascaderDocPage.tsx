@@ -123,6 +123,7 @@ const CascaderDemo = () => {
         onChange={setVal}
         title="选择地区"
         closeable
+        teleport={phoneTarget?.()}
       />
     </>
   );
@@ -160,7 +161,7 @@ const JsxCascader = () => {
   return (
     <>
       <Cell title={val().length ? val().join(' / ') : '选择省份'} clickable onClick={() => setShow(true)} />
-      <Cascader options={opts} show={show()} onUpdateShow={setShow} value={val()} onChange={setVal} title="省份（自定义渲染）" checkmark={<Icon name="check" size={16} color="#1677ff" />} teleport={phoneTarget?.()} />
+      <Cascader options={opts} show={show()} onUpdateShow={setShow} value={val()} onChange={setVal} title="省份（自定义渲染）" checkmark={<Icon name="check" size={16} color="var(--sc-color-primary, #1677ff)" />} teleport={phoneTarget?.()} />
     </>
   );
 };
@@ -203,6 +204,7 @@ const AsyncCascader = () => {
         value={val()} onChange={setVal}
         title="异步加载地区"
         closeable
+        teleport={phoneTarget?.()}
         loading={<div style="text-align:center;padding:32px;color:#9ca3af"><Loading size={24} /><div style="margin-top:8px;font-size:0.8rem">加载地区数据中...</div></div>}
       />
     </>
@@ -252,7 +254,7 @@ export const CascaderDocPage = () => {
       </DemoBlock>
 
       <DemoBlock
-        title={t('demo.asyncLoading')}
+        title={t('demo.cascaderAsync')}
         desc={t('demoDesc.cascader_async')}
         code={`const loadChildren = async (option) => {\n  const res = await fetch('/api/areas?parent=' + option.value);\n  return res.json();\n};\n\n<Cascader\n  options={[]}\n  onLoadChildren={loadChildren}\n  show={show()}\n  onUpdateShow={setShow}\n  title="异步加载地区"\n/>`}
       >

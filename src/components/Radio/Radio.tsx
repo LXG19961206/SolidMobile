@@ -85,6 +85,7 @@ export const Radio: Component<RadioProps> = (rawProps) => {
 
   function onLabelClick(e: MouseEvent) {
     if (local.labelDisabled) return;
+    e.stopPropagation();
     onClick();
   }
 

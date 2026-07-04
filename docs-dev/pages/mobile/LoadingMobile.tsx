@@ -60,7 +60,7 @@ export const LoadingMobile: Component<LoadingMobileProps> = (props) => {
         <div style={CARD.body}>
           <Loading text="加载中..." />
           <Loading text="加载中..." type="circular" vertical />
-          <Loading text="请稍候" type="dots" color="#1677ff" />
+          <Loading text="请稍候" type="dots" color="var(--sc-color-primary, #1677ff)" />
         </div>
       </div>
 
@@ -69,7 +69,7 @@ export const LoadingMobile: Component<LoadingMobileProps> = (props) => {
         <div style={CARD.title}>颜色 & 大小</div>
         <div style={CARD.desc}>color / size 自定义外观</div>
         <div style={CARD.body}>
-          <Loading type="spinner" size={20} color="#1677ff" />
+          <Loading type="spinner" size={20} color="var(--sc-color-primary, #1677ff)" />
           <Loading type="spinner" size={28} color="#22c55e" />
           <Loading type="spinner" size={36} color="#f59e0b" />
           <Loading type="spinner" size={44} color="#ef4444" />

@@ -32,7 +32,7 @@
   position: absolute;
   top: 0;
   height: 100%;
-  background: var(--sc-slider-active-color, #1989fa);
+  background: var(--sc-slider-active-color, var(--sc-color-primary, #1989fa));
   border-radius: 999px;
   pointer-events: none;
 }
@@ -47,7 +47,7 @@
   top: 50%;
   width: var(--sc-slider-button-size, 20px);
   height: var(--sc-slider-button-size, 20px);
-  background: var(--sc-slider-active-color, #1989fa);
+  background: var(--sc-slider-active-color, var(--sc-color-primary, #1989fa));
   border: none;
   border-radius: 50%;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);

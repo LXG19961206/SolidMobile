@@ -125,7 +125,7 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.customTriggerDesc')}</div>
         <div style={CARD.body}>
           <Upload>
-            <span style={{ display: 'inline-flex', 'align-items': 'center', gap: '4px', padding: '8px 16px', background: '#1677ff', color: '#fff', 'border-radius': '6px', 'font-size': '0.8125rem' }}>
+            <span style={{ display: 'inline-flex', 'align-items': 'center', gap: '4px', padding: '8px 16px', background: 'var(--sc-color-primary, #1677ff)', color: '#fff', 'border-radius': '6px', 'font-size': '0.8125rem' }}>
               + 上传图片
             </span>
           </Upload>
@@ -139,19 +139,16 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
         </div>
         <div style={{ padding: '12px 16px 16px', 'font-size': '0.8rem', 'line-height': 1.8, color: 'var(--sc-color-text-secondary, #6b7280)' }}>
           <p style={{ margin: '0 0 8px' }}>
-            Upload 没有 <code>action</code>、<code>headers</code>、<code>data</code> 这些属性。因为请求是业务层的事，不是组件层的事。
+            Upload 没有 <code>action</code>、<code>headers</code>、<code>data</code> 这些属性 —— 因为 HTTP 请求是<strong>业务层</strong>的事，不是组件层的事。
           </p>
           <p style={{ margin: '0 0 8px' }}>
-            传统组件库把 fetch 的参数摊开成 props，然后组件库自己去用这些信息去发起上传请求，看起来省事了，实际反而更加麻烦 ——
-            Headers(Authorization、Content-Type) 、请求方式、 BaseUrl、请求体  ... 在最坏的情况下每种都需要专门配置，这些反而增加了用户的心智负担。
-            并且用户全局的HTTP库的公共配置也无法作用于上传行为。
+            传统组件库把这些参数摊成 props 替你去发请求，看似省事，实则更麻烦：Authorization、Content-Type、BaseURL、超时、重试……每个项目的封装方式都不一样，props 永远列不完。更关键的是，你全局 HTTP 库的拦截器、token 刷新逻辑本来就能正常工作，何必让组件再绕一层？
           </p>
           <p style={{ margin: '0 0 8px' }}>
-            <strong>我们认为这是一种错误的引导。</strong>
+            <strong>Upload 只做一件事：管理文件生命周期。</strong>（选文件 → 校验 → 展示 → 删除）
           </p>
           <p style={{ margin: '0' }}>
-            Upload 只做一件事：<strong>管理文件生命周期</strong>（选文件 → 校验 → 展示 → 删除）。上传策略通过 <code>api</code> 函数注入（控制反转 / IoC），你的 token、拦截器、请求库都不需要绕过组件层。
-            测试时传个 <code>{"async () => ({ url: '...' })"}</code> 就能跑，不需要 mock 任何 HTTP 库。
+            上传策略通过 <code>api</code> 函数注入（控制反转 / IoC）：你写一个返回 Promise 的函数，组件调用它。token、拦截器、请求库都是你自己掌控的，不需要绕过任何组件层逻辑。测试时传个 <code>{"async () => ({ url: '...' })"}</code> 就能跑，零 mock。
           </p>
         </div>
       </div>

@@ -75,12 +75,14 @@ export const defaultConfig: SolidComponentConfig = {
       // Success
       success: successGreen.base,
       successHover: successGreen.hover,
+      successActive: successGreen.active,
       successDisabled: successGreen.disabled,
       successPale: successGreen.pale,
 
       // Warning
       warning: warningOrange.base,
       warningHover: warningOrange.hover,
+      warningActive: warningOrange.active,
       warningDisabled: warningOrange.disabled,
       warningPale: warningOrange.pale,
 
@@ -126,11 +128,13 @@ export const defaultConfig: SolidComponentConfig = {
 
       success: '#33e07a',
       successHover: '#66ea9f',
+      successActive: '#1cb85a',
       successDisabled: 'rgba(51, 224, 122, 0.35)',
       successPale: 'rgba(51, 224, 122, 0.12)',
 
       warning: '#ffb08a',
       warningHover: '#ffc8ad',
+      warningActive: '#cc6e3d',
       warningDisabled: 'rgba(255, 176, 138, 0.35)',
       warningPale: 'rgba(255, 176, 138, 0.12)',
 

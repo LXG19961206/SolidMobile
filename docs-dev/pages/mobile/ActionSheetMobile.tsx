@@ -165,7 +165,7 @@ export const ActionSheetMobile: Component<ActionSheetMobileProps> = (props) => {
             closeable
           >
             <div style={{ padding: '20px', display: 'flex' as const, 'flex-direction': 'column' as const, 'align-items': 'center' as const, gap: '16px' }}>
-              <Image src="https://avatars.githubusercontent.com/u/79226042?s=200&v=4" width={72} height={72} round />
+              <Image src="./solidjs-logo.png" width={72} height={72} round />
               <div style={{ 'text-align': 'center' }}>
                 <div style={{ 'font-size': '1rem', 'font-weight': 600, color: 'var(--sc-doc-card-title, #1f2937)', 'margin-bottom': '8px' }}>SolidJS</div>
                 <div style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', 'line-height': 1.6 }}>
