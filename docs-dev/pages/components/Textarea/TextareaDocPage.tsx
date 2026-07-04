@@ -116,7 +116,7 @@ export const TextareaDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>配合 Form</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.form')}</h2>
       <DemoBlock title={t('demo.textareaForm')} desc="contentFlex 让 Textarea 自动拉伸撑满剩余宽度。" code={codeWithForm}>
         <Form>
           <FormItem name="remark" label="备注" contentFlex rules={[{

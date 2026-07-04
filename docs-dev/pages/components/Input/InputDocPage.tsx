@@ -172,12 +172,12 @@ export const InputDocPage: Component = () => {
         </CellGroup>
       </DemoBlock>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>验证码</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.verifyCode')}</h2>
       <DemoBlock title={t('demo.inputCountdown')} desc="手机号输入框右侧挂一个发送验证码按钮，点击后 60s 倒计时。" code={codeSms}>
         <SmsDemo />
       </DemoBlock>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>配合 Form</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.form')}</h2>
       <DemoBlock title={t('demo.inputForm')} desc="Input 通过 useFormField() 自动接入 FormItem Context，无需手动传 value/onChange。" code={codeWithForm}>
         <Form>
           <FormItem name="username" label="用户名" rules={[{

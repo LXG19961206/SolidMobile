@@ -56,7 +56,7 @@ export const LayoutDocPage = () => {
         <Row><Col span={8} offset={8}><Bar>span=8 offset=8</Bar></Col></Row>
       </DemoBlock>
 
-      <h2 id="gap" class={css.h2}>间距 & 对齐</h2>
+      <h2 id="gap" class={css.h2}>{t('section.gapAlign')}</h2>
       <DemoBlock title={t('demo.layoutGapAlign')} desc="Row 的 gap 控制列间距，align 控制垂直对齐。" code={'<Row gap={16} align="center">\n  <Col span={6}><div>A</div></Col>\n  <Col span={6}><div style={{padding:24}}>B</div></Col>\n  <Col span={6}><div>C</div></Col>\n</Row>'}>
         <Row gap={16} align="center">
           <Col span={6}><Bar>短</Bar></Col>

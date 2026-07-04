@@ -349,7 +349,7 @@ export const FormDocPage: Component = () => {
         <BasicDemo />
       </DemoBlock>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>配合其他控件</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.withOther')}</h2>
       <DemoBlock title={t('demo.switchInput')} desc={t('demo.switchInputDesc')} code={CodeWithOther}>
         <WithOtherDemo />
       </DemoBlock>

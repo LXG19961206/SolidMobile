@@ -49,7 +49,7 @@ export const AvatarDocPage = () => {
         </div>
       </DemoBlock>
 
-      <h2 id="fallback" class={css.h2}>降级策略</h2>
+      <h2 id="fallback" class={css.h2}>{t('section.fallback')}</h2>
       <DemoBlock title={t('demo.avatarIcon')} desc="不传 src 时显示 icon 图标。" code={'<Avatar icon="user" size="md" color="#1677ff" />\n<Avatar icon="star" size="md" color="#f59e0b" />\n<Avatar icon="settings" size="md" color="#22c55e" />'}>
         <div class={css.row}>
           <Avatar icon="user" size="md" color="#1677ff" />

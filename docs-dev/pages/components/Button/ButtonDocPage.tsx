@@ -189,7 +189,7 @@ export const ButtonDocPage: Component = () => {
       </DemoBlock>
 
       {/* ---- 链接模式 ---- */}
-      <h2 id="link" class={styles.h2}>链接模式</h2>
+      <h2 id="link" class={styles.h2}>{t('section.linkMode')}</h2>
       <DemoBlock title={t('demo.hrefLink')} desc="设置 href 后自动渲染为 <a> 标签，支持 target 控制打开方式。"
         code={`<Button href="https://github.com" target="_blank">打开链接</Button>\n<Button href="/page">跳转页面</Button>`}
       >

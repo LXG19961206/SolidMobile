@@ -34,7 +34,7 @@ export const TagDocPage = () => {
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
-      <h2 id="types" class={css.h2}>语义色</h2>
+      <h2 id="types" class={css.h2}>{t('section.semantic')}</h2>
       <DemoBlock title={t('demo.tagTypes')} code={'<Tag type="primary">Primary</Tag>\n<Tag type="success">Success</Tag>\n<Tag type="warning">Warning</Tag>\n<Tag type="danger">Danger</Tag>\n<Tag type="info">Info</Tag>'}>
         <div class={css.row}><Tag type="primary">Primary</Tag><Tag type="success">Success</Tag><Tag type="warning">Warning</Tag><Tag type="danger">Danger</Tag><Tag type="info">Info</Tag></div>
       </DemoBlock>

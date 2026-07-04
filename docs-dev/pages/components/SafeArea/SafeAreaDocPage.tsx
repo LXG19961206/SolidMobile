@@ -83,7 +83,7 @@ export const SafeAreaDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>配合 NavBar / Tabbar 使用</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.withNavBar')}</h2>
       <p style={{ 'line-height': 1.8, color: '#374151' }}>
         SafeArea 最常见的用法是配合 <code>NavBar</code> 和 <code>Tabbar</code> 使用。
       </p>
