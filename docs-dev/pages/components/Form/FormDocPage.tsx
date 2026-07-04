@@ -344,7 +344,7 @@ export const FormDocPage: Component = () => {
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>FormItem Props</h2>
       <PropsTable rows={itemProps} />
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>基础用法</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.basic')}</h2>
       <DemoBlock title={t('demo.submit')} desc={t('demo.submitDesc')} code={CodeBasic}>
         <BasicDemo />
       </DemoBlock>
@@ -354,7 +354,7 @@ export const FormDocPage: Component = () => {
         <WithOtherDemo />
       </DemoBlock>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>综合实例</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.fullExample')}</h2>
       <DemoBlock title={t('demo.allComponents')} desc={t('demo.allComponentsDesc')} code={FullDemoCode}>
         <FullFormDemo />
       </DemoBlock>

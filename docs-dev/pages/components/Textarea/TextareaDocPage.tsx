@@ -60,7 +60,7 @@ export const TextareaDocPage: Component = () => {
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>CSS 变量</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.cssVars')}</h2>
       <PropsTable rows={[
         { name: '--sc-textarea-text-color', type: 'color', default: '--sc-color-text (#323233)', required: false, desc: '文字颜色。' },
         { name: '--sc-textarea-placeholder-color', type: 'color', default: '--sc-color-text-secondary', required: false, desc: '占位符颜色。' },
@@ -72,7 +72,7 @@ export const TextareaDocPage: Component = () => {
         { name: '--sc-textarea-error-color', type: 'color', default: '#e01823', required: false, desc: '错误态波浪线颜色。' },
       ]} />
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>基础 & 状态</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.basicAndStates')}</h2>
       <DemoBlock title={t('demo.textareaStates')} code={codeStates}>
         <div style={{ display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
           <div>
@@ -102,7 +102,7 @@ export const TextareaDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>自动撑高</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.autoSize')}</h2>
       <DemoBlock title={t('demo.textareaAutoSize')} desc="内容超出时自动扩展高度，可限制最小/最大行数。" code={codeAutoSize}>
         <div style={{ display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
           <div>

@@ -41,7 +41,7 @@ export const CenterDocPage = () => {
       <PropsTable rows={propsData} />
 
       {/* Flex */}
-      <h2 id="flex" class={styles.h2}>Flex 居中</h2>
+      <h2 id="flex" class={styles.h2}>{t('section.flexCenter')}</h2>
       <DemoBlock
         title={t('demo.centerDefault')}
         desc="不传任何参数时，默认 flex 水平 + 垂直居中。这是最常用的场景。"
@@ -83,7 +83,7 @@ export const CenterDocPage = () => {
       </DemoBlock>
 
       {/* Text */}
-      <h2 id="text" class={styles.h2}>Text 居中</h2>
+      <h2 id="text" class={styles.h2}>{t('section.textCenter')}</h2>
       <DemoBlock
         title={t('demo.centerText')}
         desc="text-align: center，适合行内或行内块内容。"
@@ -105,7 +105,7 @@ export const CenterDocPage = () => {
       </DemoBlock>
 
       {/* Position */}
-      <h2 id="position" class={styles.h2}>绝对居中</h2>
+      <h2 id="position" class={styles.h2}>{t('section.absoluteCenter')}</h2>
       <DemoBlock
         title={t('demo.centerPosition')}
         desc={'absolute + transform 居中。Center 自身作为定位容器，父级只需给高度即可。'}

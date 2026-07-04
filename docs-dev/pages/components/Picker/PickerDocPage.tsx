@@ -251,7 +251,7 @@ export const PickerDocPage: Component = () => {
         滚轮选择器，支持 Tree 级联和 Flat 多列。点击 Cell 弹出。
       </p>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>属性</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
       {/* Each DemoBlock has groupCode="picker" → merged into one CellGroup in phone */}

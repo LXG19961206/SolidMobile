@@ -39,7 +39,7 @@ export const TagDocPage = () => {
         <div class={css.row}><Tag type="primary">Primary</Tag><Tag type="success">Success</Tag><Tag type="warning">Warning</Tag><Tag type="danger">Danger</Tag><Tag type="info">Info</Tag></div>
       </DemoBlock>
 
-      <h2 id="variants" class={css.h2}>样式变体</h2>
+      <h2 id="variants" class={css.h2}>{t('section.variants')}</h2>
       <DemoBlock title={t('demo.tagOutlineRound')} code={'<Tag variant="outline" round>Outline</Tag>\n<Tag type="danger" variant="outline" round>Danger</Tag>'}>
         <div class={css.row}><Tag variant="outline" round>Outline</Tag><Tag type="danger" variant="outline" round>Danger</Tag></div>
       </DemoBlock>
@@ -47,12 +47,12 @@ export const TagDocPage = () => {
         <div class={css.row}><Tag size="sm">小号</Tag><Tag size="md">中号</Tag></div>
       </DemoBlock>
 
-      <h2 id="closeable" class={css.h2}>可关闭</h2>
+      <h2 id="closeable" class={css.h2}>{t('demo.closable')}</h2>
       <DemoBlock title={t('demo.closable')} code={'<Tag closeable onClose={() => {}}>可关闭</Tag>'}>
         <Tag closeable>可关闭</Tag>
       </DemoBlock>
 
-      <h2 id="scenes" class={css.h2}>场景示例</h2>
+      <h2 id="scenes" class={css.h2}>{t('section.scenarios')}</h2>
       <DemoBlock
         title={t('demo.tagDict')}
         desc="用 outline variant 模拟 key-value 字典效果。"

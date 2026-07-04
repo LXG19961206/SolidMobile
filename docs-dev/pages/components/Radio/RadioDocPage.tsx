@@ -202,7 +202,7 @@ export const RadioDocPage: Component = () => {
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>RadioGroup Props</h2>
         <PropsTable rows={groupProps} />
 
-        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>CSS 变量</h2>
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.cssVars')}</h2>
         <PropsTable rows={radioCssVars} />
 
         <DemoBlock title={t('demo.basic')} code={codeBasic}>

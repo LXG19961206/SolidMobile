@@ -40,7 +40,7 @@ export const SafeAreaDocPage: Component = () => {
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={safeAreaProps} />
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>实现原理</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.implementation')}</h2>
       <p style={{ 'line-height': 1.8, color: '#374151' }}>
         SafeArea 是一个纯样式占位组件。高度读取 CSS 变量 <code>--sc-safe-area-top</code> 或 <code>--sc-safe-area-bottom</code>，
         分别回退到 <code>env(safe-area-inset-top)</code> / <code>env(safe-area-inset-bottom)</code>，最后兜底 <code>0px</code>。

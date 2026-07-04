@@ -69,7 +69,7 @@ export const TextareaMobile: Component<TextareaMobileProps> = (props) => {
       <div style={CARD.wrapper}>
         <div style={CARD.title}>禁用 & 只读 & 错误</div>
         <div style={CARD.body}>
-          <Textarea placeholder="禁用状态" disabled />
+          <Textarea placeholder="{t('demo.disabled')}" disabled />
           <Textarea placeholder="只读状态" readonly value="只读内容" />
           <Textarea placeholder="错误状态" error />
         </div>

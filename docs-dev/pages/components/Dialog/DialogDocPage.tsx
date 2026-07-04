@@ -61,7 +61,7 @@ const DialogDocInner: Component = () => {
         <h2 id="props" class={css.h2}>{t('common.props')}</h2>
         <PropsTable rows={propsData} />
 
-        <h2 id="api" class={css.h2}>命令式 API</h2>
+        <h2 id="api" class={css.h2}>{t('section.imperativeApi')}</h2>
         <DemoBlock
           title={t('demo.dialogRenderer')}
           desc={'命令式调用需要在应用根组件中挂载 <DialogRenderer />。它负责渲染所有通过 Dialog.show() 等命令式方法创建的弹窗实例，本身不产生任何 DOM 节点。'}
@@ -85,7 +85,7 @@ const DialogDocInner: Component = () => {
           <div />
         </DemoBlock>
 
-        <h2 id="demo" class={css.h2}>示例</h2>
+        <h2 id="demo" class={css.h2}>{t('demo.examples')}</h2>
 
         <DemoBlock title={t('demo.dialogAlert')} desc="基础提示，仅确认按钮。" code={`Dialog.alert({\n  title: '提示',\n  message: '操作成功！',\n});`} groupCode="基础弹窗">
           <Cell title="弹出提示" clickable onClick={() => show({ title: '提示', message: '操作成功！' })} />

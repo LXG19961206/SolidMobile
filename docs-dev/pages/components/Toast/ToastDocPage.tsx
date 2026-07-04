@@ -42,7 +42,7 @@ const ToastDocInner: Component = () => {
       <h2 id="props" class={styles.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
-      <h2 id="methods" class={styles.h2}>方法</h2>
+      <h2 id="methods" class={styles.h2}>{t('section.methods')}</h2>
       <PropsTable rows={methodsData} />
 
       <DemoBlock title={t('demo.toastShorthand')} desc="点击 Cell 弹出对应类型。" code={`Toast.success('操作成功！');\nToast.error('操作失败');\nToast.info('这是一条消息');`} groupCode="结果反馈">

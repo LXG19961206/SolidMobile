@@ -90,7 +90,7 @@ export const InputMobile: Component<InputMobileProps> = (props) => {
         <div style={CARD.title}>禁用 & 只读 & 错误</div>
         <div style={CARD.desc}>disabled / readonly / error 三种状态</div>
         <div style={CARD.body}>
-          <Input placeholder="禁用状态" disabled />
+          <Input placeholder="{t('demo.disabled')}" disabled />
             <Input placeholder="只读状态" readonly value="只读内容" />
             <Input placeholder="错误状态" error />
         </div>

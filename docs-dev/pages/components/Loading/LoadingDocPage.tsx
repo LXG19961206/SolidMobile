@@ -49,7 +49,7 @@ const LoadingDocInner = () => {
         <PropsTable rows={propsData} />
 
         {/* Types */}
-        <h2 id="types" class={styles.h2}>内置类型</h2>
+        <h2 id="types" class={styles.h2}>{t('section.builtinTypes')}</h2>
         <DemoBlock
           title={t('demo.loadingTypes')}
           desc="三种内置动画：spinner 经典旋转圆环、circular 弧形旋转、dots 三点弹跳。"
@@ -75,7 +75,7 @@ const LoadingDocInner = () => {
         </DemoBlock>
 
         {/* Size & Color */}
-        <h2 id="size-color" class={styles.h2}>尺寸 & 颜色</h2>
+        <h2 id="size-color" class={styles.h2}>{t('section.sizeColor')}</h2>
         <DemoBlock
           title={t('demo.loadingSizeColor')}
           desc="size 支持数字（px）或 CSS 字符串，color 设置动画颜色。"
@@ -89,7 +89,7 @@ const LoadingDocInner = () => {
         </DemoBlock>
 
         {/* Vertical */}
-        <h2 id="vertical" class={styles.h2}>纵向布局</h2>
+        <h2 id="vertical" class={styles.h2}>{t('section.verticalLayout')}</h2>
         <DemoBlock
           title={t('demo.centerVertical')}
           desc="设为 true 时文字显示在动画下方，适合卡片或全屏加载场景。"
@@ -102,7 +102,7 @@ const LoadingDocInner = () => {
         </DemoBlock>
 
         {/* Custom icon */}
-        <h2 id="custom" class={styles.h2}>自定义图标</h2>
+        <h2 id="custom" class={styles.h2}>{t('demo.customIcon')}</h2>
         <DemoBlock
           title={t('demo.loadingIconProp')}
           desc="传入自定义 JSX 替代内置动画。适合配合 Icon 组件实现旋转刷新等交互。"
@@ -121,7 +121,7 @@ const LoadingDocInner = () => {
         </DemoBlock>
 
         {/* Overlay */}
-        <h2 id="overlay" class={styles.h2}>全屏遮罩</h2>
+        <h2 id="overlay" class={styles.h2}>{t('section.overlay')}</h2>
         <DemoBlock
           title={t('demo.loadingOverlayMode')}
           desc="设为 true 时渲染全屏半透明遮罩并锁定滚动，适合阻止用户操作的等待场景。"

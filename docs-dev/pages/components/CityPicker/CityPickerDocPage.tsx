@@ -354,7 +354,7 @@ export const CityPickerDocPage: Component = () => {
         <FormDemo />
       </DemoBlock>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>深度级联</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.deepCascade')}</h2>
       <p style={{ color: '#6b7280', margin: '0 0 12px', 'line-height': 1.6 }}>
         如果需要更多层级（如省市区街村组），CityPicker 默认只做三级，
         更深的层级建议直接使用 <code>{'<Picker>'}</code> 组件搭配树形数据。

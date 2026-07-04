@@ -148,11 +148,11 @@ export const CalendarDocPage = () => {
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
-      <h2 id="cssvars" class={css.h2}>CSS 变量</h2>
+      <h2 id="cssvars" class={css.h2}>{t('common.cssVars')}</h2>
       <p class={css.intro} style="margin-bottom:1rem">通过 <code>:root</code> 或组件 <code>style</code> 覆盖以下变量。</p>
       <PropsTable rows={cssVarRows} />
 
-      <h2 id="demo" class={css.h2}>示例</h2>
+      <h2 id="demo" class={css.h2}>{t('demo.examples')}</h2>
 
       <DemoBlock title={t('demo.calendarSingle')} desc="弹出模式，标题自动跟随滚动月份。" code={`const [show, setShow] = createSignal(false);\n\n<Calendar\n  show={show()}\n  onUpdateShow={setShow}\n  value={date()}\n  onChange={(v) => { setDate(v); setShow(false); }}\n  closeable\n/>`}>
         <PopupSingle />

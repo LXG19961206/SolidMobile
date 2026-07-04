@@ -49,14 +49,14 @@ export const CellDocPage = () => {
         列表项的基础组件。Cell 展示单行信息，CellGroup 将多个 Cell 归为一组，支持标题、卡片模式。
       </p>
 
-      <h2 id="cell-props" class={styles.h2}>Cell 属性</h2>
+      <h2 id="cell-props" class={styles.h2}>{t('common.cellProps')}</h2>
       <PropsTable rows={cellProps} />
 
-      <h2 id="group-props" class={styles.h2}>CellGroup 属性</h2>
+      <h2 id="group-props" class={styles.h2}>{t('common.cellGroupProps')}</h2>
       <PropsTable rows={groupProps} />
 
       {/* Basic */}
-      <h2 id="basic" class={styles.h2}>基础列表</h2>
+      <h2 id="basic" class={styles.h2}>{t('section.basicList')}</h2>
       <DemoBlock
         title={t('demo.cellBasic')}
         desc="Cell 由 title（左）、value（右）、description（下）三部分组成。"
@@ -72,7 +72,7 @@ export const CellDocPage = () => {
       </DemoBlock>
 
       {/* Clickable */}
-      <h2 id="clickable" class={styles.h2}>可点击</h2>
+      <h2 id="clickable" class={styles.h2}>{t('section.clickable')}</h2>
       <DemoBlock
         title={t('demo.cellClickable')}
         desc="设置 clickable 后右侧显示箭头，整行可点击。配合 onClick 处理跳转。"
@@ -88,7 +88,7 @@ export const CellDocPage = () => {
       </DemoBlock>
 
       {/* Icon & Required */}
-      <h2 id="icon" class={styles.h2}>图标 & 必填</h2>
+      <h2 id="icon" class={styles.h2}>{t('section.iconRequired')}</h2>
       <DemoBlock
         title={t('demo.cellIconRequired')}
         desc="icon / title / value 均支持字符串或 JSX。required 显示红色星号。"
@@ -109,7 +109,7 @@ export const CellDocPage = () => {
       </DemoBlock>
 
       {/* Sizes */}
-      <h2 id="size" class={styles.h2}>尺寸</h2>
+      <h2 id="size" class={styles.h2}>{t('demo.size')}</h2>
       <DemoBlock
         title="sm / md / lg"
         desc="三种尺寸，默认 md（48px）。"
@@ -125,7 +125,7 @@ export const CellDocPage = () => {
       </DemoBlock>
 
       {/* Card mode */}
-      <h2 id="card" class={styles.h2}>卡片模式</h2>
+      <h2 id="card" class={styles.h2}>{t('section.cardMode')}</h2>
       <DemoBlock
         title="card"
         desc="CellGroup 设置 card 获得圆角和独立背景，适合在灰色背景页面上使用。"

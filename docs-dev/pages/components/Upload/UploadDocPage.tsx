@@ -171,9 +171,9 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           </Upload>
         </DemoBlock>
 
-        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>设计理念</h2>
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.design')}</h2>
 
-        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>不做 HTTP 请求</h3>
+        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>{t('section.noHttp')}</h3>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
           Upload 组件<strong>不提供</strong> <code>action</code>、<code>headers</code>、<code>data</code>、<code>withCredentials</code> 等请求相关属性。
           原因很简单：<strong>请求是业务层的事，不是组件层的事。</strong>
@@ -203,7 +203,7 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           </tbody>
         </table>
 
-        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>控制反转（IoC）</h3>
+        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>{t('section.ioc')}</h3>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
           Upload 只做一件事：<strong>管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你通过 <code>api</code> 属性注入：
         </p>

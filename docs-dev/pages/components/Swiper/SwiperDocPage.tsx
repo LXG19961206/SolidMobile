@@ -73,7 +73,7 @@ export const SwiperDocPage: Component = () => {
           <Swiper imgUrls={IMGS} height={260} vertical />
         </DemoBlock>
 
-        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>CSS 变量</h2>
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.cssVars')}</h2>
         <PropsTable rows={[
           { name: '--sc-swiper-dot-size', type: 'length', default: '6px', required: false, desc: '指示器圆点大小。' },
           { name: '--sc-swiper-dot-active-width', type: 'length', default: '18px', required: false, desc: '当前指示器宽度。' },

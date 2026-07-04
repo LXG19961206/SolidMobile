@@ -237,7 +237,7 @@ export const ListDocPage: Component = () => {
         <h2 id="props" class={css.h2}>{t('common.props')}</h2>
         <PropsTable rows={listProps} />
 
-        <h2 id="demo" class={css.h2}>示例</h2>
+        <h2 id="demo" class={css.h2}>{t('demo.examples')}</h2>
         <DemoBlock
           title={t('demo.listExample')}
           desc="切换 Tab 查看不同模式。每个 Tab 独立管理数据源，互不干扰。"

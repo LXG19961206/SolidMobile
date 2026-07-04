@@ -41,7 +41,7 @@ export const NavBarDocPage = () => {
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
-      <h2 id="demo" class={css.h2}>示例</h2>
+      <h2 id="demo" class={css.h2}>{t('demo.examples')}</h2>
 
       <DemoBlock flush
         title={t('demo.navFixedTop')}

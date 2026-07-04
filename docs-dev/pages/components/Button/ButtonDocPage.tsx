@@ -68,7 +68,7 @@ export const ButtonDocPage: Component = () => {
         <h2 id="props" class={styles.h2}>{t('common.props')}</h2>
         <PropsTable rows={propsData} />
 
-        <h2 id="css-vars" class={styles.h2}>CSS 变量</h2>
+        <h2 id="css-vars" class={styles.h2}>{t('common.cssVars')}</h2>
         <PropsTable rows={[
           { name: '--sc-color-primary', type: 'color', default: '#1677ff', required: false, desc: '主色背景（primary 类型）。' },
           { name: '--sc-color-primary-hover', type: 'color', default: '#4995ff', required: false, desc: '主色悬停态。' },
@@ -82,7 +82,7 @@ export const ButtonDocPage: Component = () => {
         ]} />
 
         {/* ---- Events ---- */}
-        <h2 id="events" class={styles.h2}>事件 / Events</h2>
+        <h2 id="events" class={styles.h2}>{t('common.events')}</h2>
       <div class={styles.tableWrap}>
         <table class={styles.table}>
           <thead>
@@ -99,7 +99,7 @@ export const ButtonDocPage: Component = () => {
       </div>
 
       {/* ---- 基础用法 ---- */}
-      <h2 id="basic" class={styles.h2}>基础用法</h2>
+      <h2 id="basic" class={styles.h2}>{t('demo.basic')}</h2>
       <DemoBlock title={t('demo.semanticType')} desc={`六种 type：primary / secondary / success / warning / danger / info`}
         code={`<Button type="primary" text="Primary" />\n<Button type="secondary" text="Secondary" />\n<Button type="success" text="Success" />\n<Button type="warning" text="Warning" />\n<Button type="danger" text="Danger" />\n<Button type="info" text="Info" />`}
       >
@@ -145,7 +145,7 @@ export const ButtonDocPage: Component = () => {
       </DemoBlock>
 
       {/* ---- 图标 ---- */}
-      <h2 id="icons" class={styles.h2}>图标按钮</h2>
+      <h2 id="icons" class={styles.h2}>{t('section.iconButton')}</h2>
       <DemoBlock title={t('demo.iconText')} desc={`通过 icon 和 iconPosition 控制。icon 支持字符串（内置图标名）或 JSX。默认图标在左。`}
         code={`<Button icon="star" text="收藏" />\n<Button icon="arrow-right" text="下一步" iconPosition="right" type="primary" />\n<Button icon="edit" text="编辑" variant="outline" />\n{/* 也支持传入 JSX */}\n<Button icon={<MyCustomIcon />} text="自定义" />`}
       >
@@ -167,7 +167,7 @@ export const ButtonDocPage: Component = () => {
       </DemoBlock>
 
       {/* ---- 状态 ---- */}
-      <h2 id="states" class={styles.h2}>状态</h2>
+      <h2 id="states" class={styles.h2}>{t('section.states')}</h2>
       <DemoBlock title={t('demo.loading')}
         code={`<Button loading={loading} loadingText="提交中..." onClick={submit}>{loading ? '提交中...' : '提交'}</Button>`}
       >
@@ -201,7 +201,7 @@ export const ButtonDocPage: Component = () => {
       </DemoBlock>
 
       {/* ---- 自定义颜色 ---- */}
-      <h2 id="custom-color" class={styles.h2}>自定义颜色</h2>
+      <h2 id="custom-color" class={styles.h2}>{t('demo.customColor')}</h2>
       <DemoBlock title={t('demo.colorText')} desc="直接覆盖背景色，文字色自动计算对比度。也可手动指定 textColor。"
         code={`<Button color="#6366f1" text="Indigo" />\n<Button color="#ec4899" text="Pink" />\n<Button color="#f59e0b" text="Amber" />\n<Button color="#10b981" text="Emerald" />`}
       >
@@ -214,7 +214,7 @@ export const ButtonDocPage: Component = () => {
       </DemoBlock>
 
       {/* ---- 典型场景 ---- */}
-      <h2 id="examples" class={styles.h2}>典型场景</h2>
+      <h2 id="examples" class={styles.h2}>{t('section.typicalScenes')}</h2>
       <DemoBlock title={t('demo.formActions')} desc="Primary 主操作 + Outline 取消，右对齐。"
         code={`<div style={{ display:'flex', gap:12, justifyContent:'flex-end' }}>\n  <Button variant="outline">取消</Button>\n  <Button type="primary">保存</Button>\n</div>`}
       >

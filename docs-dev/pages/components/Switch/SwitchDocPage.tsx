@@ -43,11 +43,11 @@ export const SwitchDocPage = () => {
         </p>
 
         {/* Props */}
-        <h2 id="props" class={styles.h2}>属性 / Props</h2>
+        <h2 id="props" class={styles.h2}>{t('common.props')}</h2>
         <PropsTable rows={propsData} />
 
         {/* Basic */}
-        <h2 id="basic" class={styles.h2}>基础用法</h2>
+        <h2 id="basic" class={styles.h2}>{t('demo.basic')}</h2>
         <DemoBlock
           title={t('demo.basic')}
           desc="不传 checked，组件自行管理开关状态。"
@@ -60,7 +60,7 @@ export const SwitchDocPage = () => {
         </DemoBlock>
 
         {/* Controlled */}
-        <h2 id="controlled" class={styles.h2}>受控模式</h2>
+        <h2 id="controlled" class={styles.h2}>{t('demo.controlled')}</h2>
         <DemoBlock
           title={t('demo.controlled')}
           desc={t('demo.controlledDesc')}
@@ -75,7 +75,7 @@ export const SwitchDocPage = () => {
         </DemoBlock>
 
         {/* Color */}
-        <h2 id="color" class={styles.h2}>自定义颜色</h2>
+        <h2 id="color" class={styles.h2}>{t('demo.customColor')}</h2>
         <DemoBlock
           title={t('demo.customColor')}
           desc={t('demo.customColorDesc')}
@@ -89,7 +89,7 @@ export const SwitchDocPage = () => {
         </DemoBlock>
 
         {/* Size */}
-        <h2 id="size" class={styles.h2}>尺寸</h2>
+        <h2 id="size" class={styles.h2}>{t('demo.size')}</h2>
         <DemoBlock
           title="size"
           desc="支持数字（px）或 CSS 字符串，默认 28。"
@@ -104,7 +104,7 @@ export const SwitchDocPage = () => {
         </DemoBlock>
 
         {/* Text */}
-        <h2 id="text" class={styles.h2}>文案</h2>
+        <h2 id="text" class={styles.h2}>{t('section.text')}</h2>
         <DemoBlock
           title="activeText / inactiveText"
           desc={`文案显示在滑块右侧。如需"左 label + 滑块"布局，Switch 本身是行内元素，在外部包一个 flex 容器即可轻松实现。`}
@@ -121,7 +121,7 @@ export const SwitchDocPage = () => {
         </DemoBlock>
 
         {/* Disabled */}
-        <h2 id="disabled" class={styles.h2}>禁用状态</h2>
+        <h2 id="disabled" class={styles.h2}>{t('demo.disabled')}</h2>
         <DemoBlock
           title="disabled"
           desc="禁用后不可点击，整体降低透明度。"

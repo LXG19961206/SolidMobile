@@ -120,7 +120,7 @@ export const TabBarDocPage: Component = () => {
           </TabBar>
         </DemoBlock>
 
-        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>与路由配合</h2>
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.withRouter')}</h2>
         <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
           组件库不内置路由相关属性，以避免与具体路由方案（solid-router、solid-app-router 等）耦合。
           切换标签时通过 <code>onChange</code> 回调拿到当前 <code>name</code>，自行调用路由跳转。

@@ -37,12 +37,12 @@ export const LayoutDocPage = () => {
       <h1 class={css.h1}>Layout 布局</h1>
       <p class={css.intro}>基于 flex 的 24 栏栅格系统。Row 为 flex 容器，Col 为 flex 子项，通过 span 控制占宽、offset 控制偏移。</p>
 
-      <h2 id="row-props" class={css.h2}>Row 属性</h2>
+      <h2 id="row-props" class={css.h2}>{t('common.rowProps')}</h2>
       <PropsTable rows={rowProps} />
-      <h2 id="col-props" class={css.h2}>Col 属性</h2>
+      <h2 id="col-props" class={css.h2}>{t('common.colProps')}</h2>
       <PropsTable rows={colProps} />
 
-      <h2 id="grid" class={css.h2}>基础栅格</h2>
+      <h2 id="grid" class={css.h2}>{t('section.grid')}</h2>
       <DemoBlock title={t('demo.layoutGrid')} desc="Col 的 span 取值 1-24，总和超出自动换行。" code={'<Row>\n  <Col span={12}><div>12</div></Col>\n  <Col span={12}><div>12</div></Col>\n</Row>\n<Row>\n  <Col span={8}><div>8</div></Col>\n  <Col span={8}><div>8</div></Col>\n  <Col span={8}><div>8</div></Col>\n</Row>'}>
         <div style="display:flex;flex-direction:column;gap:0.75rem;width:100%">
           <Row><Col span={12}><Bar>span=12</Bar></Col><Col span={12}><Bar color="#4995ff">span=12</Bar></Col></Row>
@@ -51,7 +51,7 @@ export const LayoutDocPage = () => {
         </div>
       </DemoBlock>
 
-      <h2 id="offset" class={css.h2}>偏移</h2>
+      <h2 id="offset" class={css.h2}>{t('demo.layoutOffset')}</h2>
       <DemoBlock title={t('demo.layoutOffset')} desc="offset 设置左偏移，同样基于 24 栅格。" code={'<Row>\n  <Col span={8} offset={8}><div>居中</div></Col>\n</Row>'}>
         <Row><Col span={8} offset={8}><Bar>span=8 offset=8</Bar></Col></Row>
       </DemoBlock>

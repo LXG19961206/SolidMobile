@@ -108,10 +108,10 @@ export const InputDocPage: Component = () => {
         文本输入组件。支持多种类型、清除按钮、前后缀、字数统计，可通过 FormItem 接入表单。
       </p>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>属性</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>CSS 变量</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.cssVars')}</h2>
       <PropsTable rows={[
         { name: '--sc-input-text-color', type: 'color', default: '--sc-color-text (#323233)', required: false, desc: '文字颜色。' },
         { name: '--sc-input-placeholder-color', type: 'color', default: '--sc-color-text-secondary', required: false, desc: '占位符颜色。' },
@@ -126,7 +126,7 @@ export const InputDocPage: Component = () => {
         { name: '--sc-input-error-color', type: 'color', default: '#e01823', required: false, desc: '错误态波浪线颜色。' },
       ]} />
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>基础类型</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.basicTypes')}</h2>
       <DemoBlock title={t('demo.basic')} code={codeBasic}>
         <CellGroup>
           <Cell title="文本" value={<Input placeholder="请输入" />} />
@@ -135,7 +135,7 @@ export const InputDocPage: Component = () => {
         </CellGroup>
       </DemoBlock>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>可清除</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.clearable')}</h2>
       <DemoBlock title={t('demo.clearable')} desc="输入内容后右侧显示 X 按钮，点击清空。" code={codeClearable}>
         <CellGroup>
           <Cell title="清除" value={<Input clearable placeholder="输入点东西试试" />} />
@@ -143,7 +143,7 @@ export const InputDocPage: Component = () => {
         </CellGroup>
       </DemoBlock>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>字数统计</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.charCount')}</h2>
       <DemoBlock title={t('demo.inputShowCount')} code={codeCount}>
         <CellGroup>
           <Cell title="简介" value={<Input showCount maxlength={20} placeholder="最多 20 字" />} />
@@ -151,7 +151,7 @@ export const InputDocPage: Component = () => {
         </CellGroup>
       </DemoBlock>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>前后缀</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.affix')}</h2>
       <DemoBlock title={t('demo.inputAffix')} code={codeAffix}>
         <CellGroup>
           <Cell title="用户名" value={<Input placeholder="请输入" prefix={<span style={{ color: '#999' }}>@</span>} />} />
@@ -163,7 +163,7 @@ export const InputDocPage: Component = () => {
       </DemoBlock>
 
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>状态</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.states')}</h2>
       <DemoBlock title={t('demo.inputStates')} desc="三种状态对比。error 底部出现红色波浪线，适合独立使用时的校验反馈。" code={`<CellGroup>\n  <Cell title="禁用" value={<Input disabled value="不可编辑" />} />\n  <Cell title={t('demo.readonly')} value={<Input readonly value="可聚焦复制" />} />\n  <Cell title="错误" value={<Input error value="格式不正确" />} />\n</CellGroup>`}>
         <CellGroup>
           <Cell title="禁用" value={<Input disabled value="不可编辑" />} />

@@ -39,7 +39,7 @@ export const AvatarDocPage = () => {
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
-      <h2 id="basic" class={css.h2}>基础用法</h2>
+      <h2 id="basic" class={css.h2}>{t('demo.basic')}</h2>
       <DemoBlock title={t('demo.avatarImage')} code={'<Avatar src="user.jpg" size="lg" />\n<Avatar src="user.jpg" size="md" />\n<Avatar src="user.jpg" size="sm" />\n<Avatar src="user.jpg" size="xs" />'}>
         <div class={css.row}>
           <Avatar src={SRC} size="lg" />
@@ -66,7 +66,7 @@ export const AvatarDocPage = () => {
         </div>
       </DemoBlock>
 
-      <h2 id="shape" class={css.h2}>形状 & 尺寸</h2>
+      <h2 id="shape" class={css.h2}>{t('section.shapeSize')}</h2>
       <DemoBlock title={t('demo.avatarSquare')} desc="square 替代 round，适合品牌 logo。" code={'<Avatar src="./logo.png" square size="xl" />\n<Avatar text="品" square color="#1677ff" size="lg" />\n<Avatar icon="computer" square size="md" color="#8b5cf6" />'}>
         <div class={css.row}>
           <Avatar src={SRC} square size="xl" />

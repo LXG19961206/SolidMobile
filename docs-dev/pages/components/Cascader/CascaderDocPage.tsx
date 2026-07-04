@@ -225,7 +225,7 @@ export const CascaderDocPage = () => {
       <h3 style="margin-top:1.5rem;font-size:1rem;font-weight:600">CascaderOption</h3>
       <PropsTable rows={optionPropsData} />
 
-      <h2 id="demo" class={css.h2}>示例</h2>
+      <h2 id="demo" class={css.h2}>{t('demo.examples')}</h2>
 
       <DemoBlock
         title={t('demo.cascaderRegion')}

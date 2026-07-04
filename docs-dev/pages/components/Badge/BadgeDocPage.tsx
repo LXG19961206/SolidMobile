@@ -32,7 +32,7 @@ export const BadgeDocPage = () => {
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
-      <h2 id="basic" class={css.h2}>基础用法</h2>
+      <h2 id="basic" class={css.h2}>{t('demo.basic')}</h2>
 
       <DemoBlock
         title={t('demo.withAvatar')}

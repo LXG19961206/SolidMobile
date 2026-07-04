@@ -147,7 +147,7 @@ export const IconDocPage: Component = () => {
         <PropsTable rows={propsData} />
 
         {/* ═══ Usage Examples ═══ */}
-        <h2 id="usage" class={styles.h2}>使用方式</h2>
+        <h2 id="usage" class={styles.h2}>{t('section.usage')}</h2>
 
         <DemoBlock
           title={t('demo.iconTreeShake')}
@@ -238,7 +238,7 @@ export const IconDocPage: Component = () => {
         </DemoBlock>
 
         {/* ═══ Icon Gallery ═══ */}
-        <h2 id="gallery" class={styles.h2}>图标库</h2>
+        <h2 id="gallery" class={styles.h2}>{t('section.iconLibrary')}</h2>
         <p class={styles.intro} style="margin-bottom:1rem">
           共 129 个图标，点击即可复制 JSX 代码。支持搜索和线/填充风格切换。
         </p>
