@@ -100,6 +100,9 @@ export type { DatePickerProps, DatePickerType } from './DatePicker';
 export { CityPicker } from './CityPicker';
 export type { CityPickerProps } from './CityPicker';
 
+export { TimePicker } from './TimePicker';
+export type { TimePickerProps } from './TimePicker';
+
 export { Rate } from './Rate';
 export type { RateProps } from './Rate';
 

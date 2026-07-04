@@ -156,7 +156,7 @@ export const Form: Component<FormProps> = (rawProps) => {
       return;
     }
     local.onSubmit?.(formValue() as any);
-    emitEvent({ component: 'Form', type: 'submit', payload: formValue(), timestamp: Date.now() });
+    emitEvent({ component: 'Form', type: 'submit', payload: formValue(), props: props, timestamp: Date.now() });
   }
 
   /* ── Context (stable reference, getters for reactive reads) ── */

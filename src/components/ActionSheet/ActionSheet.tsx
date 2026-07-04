@@ -106,7 +106,7 @@ export const ActionSheet: Component<ActionSheetProps> = (rawProps) => {
   const handleItemClick = (item: ActionSheetItem, index: number) => {
     if (item.disabled || item.loading) return;
     local.onSelect?.(item, index);
-    emitEvent({ component: 'ActionSheet', type: 'select', payload: { item, index }, timestamp: Date.now() });
+    emitEvent({ component: 'ActionSheet', type: 'select', payload: { item, index }, props: props, timestamp: Date.now() });
     if (local.closeOnSelect) {
       local.onClose();
     }

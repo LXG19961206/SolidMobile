@@ -142,11 +142,14 @@ const DatePickerDemo: Component = () => {
 const TimePickerDemo: Component = () => {
   const phone = useContext(phoneCtx);
   const [show, setShow] = createSignal(false);
+  const [label, setLabel] = createSignal('');
   return (
     <>
-      <Cell title="时分选择" clickable onClick={() => setShow(true)} />
+      <Cell title="时分选择" value={label() || '请选择'} clickable onClick={() => setShow(true)} />
       <Picker show={show()} onUpdateShow={setShow} columns={timeCols} title="选择时间"
-        onConfirm={() => setShow(false)} onCancel={() => setShow(false)} teleport={phone?.()} />
+        onChange={(_, v) => setLabel(`${String(v[0]).padStart(2, '0')}:${String(v[1]).padStart(2, '0')}`)}
+        onConfirm={(_items, v) => { setLabel(`${String(v[0]).padStart(2, '0')}:${String(v[1]).padStart(2, '0')}`); setShow(false); }}
+        onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
   );
 };
@@ -154,11 +157,14 @@ const TimePickerDemo: Component = () => {
 const DisabledPicker: Component = () => {
   const phone = useContext(phoneCtx);
   const [show, setShow] = createSignal(false);
+  const [label, setLabel] = createSignal('');
   return (
     <>
-      <Cell title="含禁用项" clickable onClick={() => setShow(true)} />
+      <Cell title="含禁用项" value={label() || '请选择'} clickable onClick={() => setShow(true)} />
       <Picker show={show()} onUpdateShow={setShow} columns={colsDisabled} title="选项列表"
-        onConfirm={() => setShow(false)} onCancel={() => setShow(false)} teleport={phone?.()} />
+        onChange={(items) => setLabel(String(items[0]?.text ?? ''))}
+        onConfirm={(items) => { setLabel(String(items[0]?.text ?? '')); setShow(false); }}
+        onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
   );
 };
@@ -166,11 +172,14 @@ const DisabledPicker: Component = () => {
 const PlaceholderPicker: Component = () => {
   const phone = useContext(phoneCtx);
   const [show, setShow] = createSignal(false);
+  const [label, setLabel] = createSignal('');
   return (
     <>
-      <Cell title="占位符" clickable onClick={() => setShow(true)} />
+      <Cell title="占位符" value={label() || '请选择'} clickable onClick={() => setShow(true)} />
       <Picker show={show()} onUpdateShow={setShow} columns={makeFlatCols(3)} title="请选择" placeholders="请选择"
-        onConfirm={() => setShow(false)} onCancel={() => setShow(false)} teleport={phone?.()} />
+        onChange={(items, vals) => setLabel(vals[0] ? String(items[0]?.text ?? '') : '')}
+        onConfirm={(items, vals) => { setLabel(vals[0] ? String(items[0]?.text ?? '') : ''); setShow(false); }}
+        onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
   );
 };

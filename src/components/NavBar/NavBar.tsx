@@ -1,6 +1,7 @@
 import { mergeProps, splitProps, Show, type Component } from 'solid-js';
 import { cn } from '../../utils';
 import { Icon } from '../Icon';
+import { emitEvent } from '../../event-bus';
 import type { NavBarProps } from './types';
 import styles from './NavBar.module.css';
 
@@ -53,12 +54,12 @@ export const NavBar: Component<NavBarProps> = (rawProps) => {
       {/* Left */}
       <div class={styles.left}>
         <Show when={local.backArrow}>
-          <span class={styles.clickable} onClick={local.onBack}>
+          <span class={styles.clickable} onClick={() => { local.onBack?.(); emitEvent({ component: 'NavBar', type: 'click', payload: { side: 'left', action: 'back' }, props: props, timestamp: Date.now() }); }}>
             <Icon name="arrow-left" size={22} />
           </span>
         </Show>
         <Show when={local.left}>
-          <span class={styles.clickable} onClick={local.onLeftClick}>
+          <span class={styles.clickable} onClick={() => { local.onLeftClick?.(); emitEvent({ component: 'NavBar', type: 'click', payload: { side: 'left' }, props: props, timestamp: Date.now() }); }}>
             {local.left}
           </span>
         </Show>
@@ -70,7 +71,7 @@ export const NavBar: Component<NavBarProps> = (rawProps) => {
       {/* Right */}
       <div class={styles.right}>
         <Show when={local.right}>
-          <span class={styles.clickable} onClick={local.onRightClick}>
+          <span class={styles.clickable} onClick={() => { local.onRightClick?.(); emitEvent({ component: 'NavBar', type: 'click', payload: { side: 'right' }, props: props, timestamp: Date.now() }); }}>
             {local.right}
           </span>
         </Show>

@@ -90,6 +90,7 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
 
   /* ── 时分 ── */
   const [showTime, setShowTime] = createSignal(false);
+  const [timeLabel, setTimeLabel] = createSignal('');
 
   /* ── 禁用项 ── */
   const [showDisabled, setShowDisabled] = createSignal(false);
@@ -97,6 +98,7 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
 
   /* ── 占位符 ── */
   const [showPh, setShowPh] = createSignal(false);
+  const [phLabel, setPhLabel] = createSignal('');
 
   /* ── 受控值 ── */
   const [showCtrl, setShowCtrl] = createSignal(false);
@@ -165,14 +167,23 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
         <div style={CARD.desc}>24 小时制 + 60 分钟，支持快速滑动惯性。</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title="选择时间" clickable onClick={() => setShowTime(true)} />
+            <Cell
+              title="选择时间"
+              value={timeLabel() || '请选择'}
+              clickable
+              onClick={() => setShowTime(true)}
+            />
           </CellGroup>
           <Picker
             columns={timeCols}
             show={showTime()}
             onUpdateShow={setShowTime}
             title="选择时间"
-            onConfirm={() => setShowTime(false)}
+            onChange={(_, v) => setTimeLabel(`${String(v[0]).padStart(2, '0')}:${String(v[1]).padStart(2, '0')}`)}
+            onConfirm={(_items, v) => {
+              setTimeLabel(`${String(v[0]).padStart(2, '0')}:${String(v[1]).padStart(2, '0')}`);
+              setShowTime(false);
+            }}
             onCancel={() => setShowTime(false)}
           />
         </div>
@@ -209,7 +220,12 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
         <div style={CARD.desc}>每列顶部显示占位提示，表示"未选择"状态。</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title="占位符模式" clickable onClick={() => setShowPh(true)} />
+            <Cell
+              title="占位符模式"
+              value={phLabel() || '请选择'}
+              clickable
+              onClick={() => setShowPh(true)}
+            />
           </CellGroup>
           <Picker
             columns={[[{ text: '选项 1', value: 1 }, { text: '选项 2', value: 2 }, { text: '选项 3', value: 3 }]]}
@@ -217,7 +233,11 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
             onUpdateShow={setShowPh}
             title="请选择"
             placeholders="请选择"
-            onConfirm={() => setShowPh(false)}
+            onChange={(items, vals) => setPhLabel(vals[0] ? String(items[0]?.text ?? '') : '')}
+            onConfirm={(items, vals) => {
+              setPhLabel(vals[0] ? String(items[0]?.text ?? '') : '');
+              setShowPh(false);
+            }}
             onCancel={() => setShowPh(false)}
           />
         </div>

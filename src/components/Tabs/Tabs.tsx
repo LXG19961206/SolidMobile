@@ -149,7 +149,7 @@ export const Tabs: Component<TabsProps> = (rawProps) => {
 
     if (!isControlled()) setInternalActive(name);
     local.onChange?.(name);
-    emitEvent({ component: 'Tabs', type: 'change', payload: name, timestamp: Date.now() });
+    emitEvent({ component: 'Tabs', type: 'change', payload: name, props: props, timestamp: Date.now() });
   };
 
   // ── Lazy render set ──

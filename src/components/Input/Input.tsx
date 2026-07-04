@@ -58,7 +58,7 @@ export const Input: Component<InputProps> = (rawProps) => {
     } else {
       local.onChange?.(val);
     }
-    emitEvent({ component: 'Input', type: 'change', payload: val, timestamp: Date.now() });
+    emitEvent({ component: 'Input', type: 'change', payload: val, props: props, timestamp: Date.now() });
   };
 
   /* ── 密码可见切换 ── */
@@ -90,6 +90,7 @@ export const Input: Component<InputProps> = (rawProps) => {
   function onClear() {
     emit('');
     local.onClear?.();
+    emitEvent({ component: 'Input', type: 'clear', payload: '', props: props, timestamp: Date.now() });
   }
 
   function handleKeyDown(e: KeyboardEvent) {

@@ -4,6 +4,7 @@ import {
 } from 'solid-js';
 import { cn } from '../../utils';
 import { useT } from '../../i18n';
+import { emitEvent } from '../../event-bus';
 import type { PullRefreshProps } from './types';
 import styles from './PullRefresh.module.css';
 
@@ -114,6 +115,7 @@ export const PullRefresh: Component<PullRefreshProps> = (rawProps) => {
 
     try {
       const result = local.onRefresh?.();
+      emitEvent({ component: 'PullRefresh', type: 'refresh', payload: undefined, props: props, timestamp: Date.now() });
       if (result instanceof Promise) {
         loadingPromise = result;
         await result;

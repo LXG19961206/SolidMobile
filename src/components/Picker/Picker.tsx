@@ -17,7 +17,7 @@ const DEFAULT_DURATION = 0.4;
 const MOVE_DURATION = 0.05;
 const MOMENTUM_WINDOW_MS = 300;
 const QUEUE_CAPACITY = 30;
-const MOMENTUM_EXTRAPOLATE_FACTOR = 10;
+const MOMENTUM_EXTRAPOLATE_FACTOR = 5;
 
 /* ── FixedQueue ── */
 class FixedQueue<T> {
@@ -250,11 +250,12 @@ export const Picker: Component<PickerProps> = (rawProps) => {
   const [isScrolling, setIsScrolling] = createSignal(false);
   let lastClientY = 0;
   let scrollGateTimer: ReturnType<typeof setTimeout> | null = null;
-  let animRafId: number | null = null;
+  /** 每列独立的 rAF id，避免滑动某一列时取消另一列的动画 */
+  const animRafIds: (number | null)[] = [];
 
   onCleanup(() => {
     if (scrollGateTimer) clearTimeout(scrollGateTimer);
-    if (animRafId !== null) cancelAnimationFrame(animRafId);
+    animRafIds.forEach((id) => { if (id !== null) cancelAnimationFrame(id); });
   });
 
   /* ═══════════════════════════════════════════════════════════
@@ -445,14 +446,21 @@ export const Picker: Component<PickerProps> = (rawProps) => {
      Pointer Event Handlers
      ═══════════════════════════════════════════════════════════ */
 
-  function onPointerDown(evt: PointerEvent) {
-    // 取消上一次未完成的 rAF 动画
-    if (animRafId !== null) { cancelAnimationFrame(animRafId); animRafId = null; }
-
-    // 根据触摸 X 坐标计算目标列
+  /** 根据触摸 X 坐标计算目标列 */
+  function getCol(evt: PointerEvent): number {
     const target = evt.currentTarget as HTMLElement;
-    const colWidth = target.clientWidth / colCount();
-    const col = Math.floor(evt.offsetX / colWidth);
+    return Math.floor(evt.offsetX / (target.clientWidth / colCount()));
+  }
+
+  function onPointerDown(evt: PointerEvent) {
+    const col = getCol(evt);
+
+    // 只取消当前列上一次未完成的 rAF 动画，不影响其他列
+    if (animRafIds[col] !== null && animRafIds[col] !== undefined) {
+      cancelAnimationFrame(animRafIds[col]!);
+      animRafIds[col] = null;
+    }
+
     setTargetCol(col);
 
     // 50ms 去抖动：避免轻点确认按钮时误触发滚动
@@ -533,6 +541,10 @@ export const Picker: Component<PickerProps> = (rawProps) => {
     const bounded = boundaryCalc(col, snapped);
     const final = disabledFixed(col, bounded);
 
+    // 立刻更新 selectedIdx，让子列在动画开始时就切换到目标父项对应的 children，
+    // 避免动画期间出现「父列滚到 B，子列还显示 A 的 children」的错位问题。
+    selectedIdx()[col][1](Math.round(-final / lineHeight()));
+
     const start = allTranslates()[col];
     const distance = final - start;
     // 滑动距离越大动画越久，但至少 280ms 保证可见，最多 2s
@@ -554,20 +566,20 @@ export const Picker: Component<PickerProps> = (rawProps) => {
       translateY()[col][1](start + distance * eased);
 
       if (t < 1) {
-        animRafId = requestAnimationFrame(frame);
+        animRafIds[col] = requestAnimationFrame(frame);
       } else {
         // 终态：精确对齐 + 更新 selectedIdx + 回调
-        animRafId = null;
+        animRafIds[col] = null;
         translateY()[col][1](final);
         selectedIdx()[col][1](Math.round(-final / lineHeight()));
         animDuration()[col][1](DEFAULT_DURATION);
         const items = allColumns().map((cols, i) => cols[allIdxs()[i]]);
         const vals = allIdxs().map((idx, i) => allColumns()[i][idx]?.value ?? '');
         local.onChange?.call(void 0, items, vals);
-        emitEvent({ component: 'Picker', type: 'change', payload: { items, vals }, timestamp: Date.now() });
+        emitEvent({ component: 'Picker', type: 'change', payload: { items, vals }, props: props, timestamp: Date.now() });
       }
     }
-    animRafId = requestAnimationFrame(frame);
+    animRafIds[col] = requestAnimationFrame(frame);
   }
 
   /* ═══════════════════════════════════════════════════════════
@@ -576,7 +588,7 @@ export const Picker: Component<PickerProps> = (rawProps) => {
 
   function cancel() {
     local.onCancel?.();
-    emitEvent({ component: 'Picker', type: 'cancel', payload: undefined, timestamp: Date.now() });
+    emitEvent({ component: 'Picker', type: 'cancel', payload: undefined, props: props, timestamp: Date.now() });
     local.onUpdateShow?.(false);
   }
 
@@ -584,7 +596,7 @@ export const Picker: Component<PickerProps> = (rawProps) => {
     const items = allColumns().map((cols, i) => cols[allIdxs()[i]]);
     const vals = allIdxs().map((idx, i) => allColumns()[i][idx]?.value ?? '');
     local.onConfirm?.call(void 0, items, vals);
-    emitEvent({ component: 'Picker', type: 'confirm', payload: { items, vals }, timestamp: Date.now() });
+    emitEvent({ component: 'Picker', type: 'confirm', payload: { items, vals }, props: props, timestamp: Date.now() });
     local.onUpdateShow?.(false);
   }
 

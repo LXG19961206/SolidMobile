@@ -110,7 +110,7 @@ export const Slider: Component<SliderProps> = (rawProps) => {
       local.onChange?.(sorted);
       field?.onChange(sorted);
     }
-    emitEvent({ component: 'Slider', type: 'change', payload, timestamp: Date.now() });
+    emitEvent({ component: 'Slider', type: 'change', payload, props: props, timestamp: Date.now() });
   }
 
   function calcValue(clientX: number): number {

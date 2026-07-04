@@ -78,16 +78,16 @@ export const CityPicker: Component<CityPickerProps> = (rawProps) => {
   function handleChange(_items: PickerOption[], vals: (string | number)[]) {
     setInnerVal(vals);
     local.onChange?.(vals);
-    emitEvent({ component: 'CityPicker', type: 'change', payload: vals, timestamp: Date.now() });
+    emitEvent({ component: 'CityPicker', type: 'change', payload: vals, props: props, timestamp: Date.now() });
     if (field) field.onChange(vals);
   }
 
   function handleConfirm(_items: PickerOption[], vals: (string | number)[]) {
     setInnerVal(vals);
     local.onChange?.(vals);
-    emitEvent({ component: 'CityPicker', type: 'change', payload: vals, timestamp: Date.now() });
+    emitEvent({ component: 'CityPicker', type: 'change', payload: vals, props: props, timestamp: Date.now() });
     local.onConfirm?.(vals);
-    emitEvent({ component: 'CityPicker', type: 'confirm', payload: vals, timestamp: Date.now() });
+    emitEvent({ component: 'CityPicker', type: 'confirm', payload: vals, props: props, timestamp: Date.now() });
     if (field) field.onChange(vals);
     updateShow(false);
   }

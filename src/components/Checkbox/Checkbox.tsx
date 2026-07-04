@@ -84,7 +84,7 @@ export const Checkbox: Component<CheckboxProps> = (rawProps) => {
       const next = !isChecked();
       if (local.checked === undefined) setSelfChecked(next);
       local.onChange?.(next);
-      emitEvent({ component: 'Checkbox', type: 'change', payload: next, timestamp: Date.now() });
+      emitEvent({ component: 'Checkbox', type: 'change', payload: next, props: props, timestamp: Date.now() });
     } else {
       ctx!.onChange(local.value);
     }
@@ -206,7 +206,7 @@ export const CheckboxGroup: Component<CheckboxGroupProps> = (rawProps) => {
     if (!isControlled()) setInnerVal(next);
     if (field) { field.onChange(next); }
     else { local.onChange?.(next); }
-    emitEvent({ component: 'Checkbox', type: 'change', payload: next, timestamp: Date.now() });
+    emitEvent({ component: 'Checkbox', type: 'change', payload: next, props: props, timestamp: Date.now() });
   }
 
   /* ── Context ── */

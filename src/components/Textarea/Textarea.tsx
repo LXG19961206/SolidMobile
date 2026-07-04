@@ -5,6 +5,7 @@ import {
 import { cn } from '../../utils';
 import { Icon } from '../Icon';
 import { useFormField } from '../Form/FormItem';
+import { emitEvent } from '../../event-bus';
 import type { TextareaProps } from './types';
 import styles from './Textarea.module.css';
 
@@ -49,6 +50,7 @@ export const Textarea: Component<TextareaProps> = (rawProps) => {
     if (!isControlled()) setInnerVal(val);
     if (field) field.onChange(val);
     else local.onChange?.(val);
+    emitEvent({ component: 'Textarea', type: 'change', payload: val, props: props, timestamp: Date.now() });
   };
 
   /* ── autoSize ── */

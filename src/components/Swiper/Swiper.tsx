@@ -119,7 +119,7 @@ export const Swiper: Component<SwiperProps> = (rawProps) => {
     }
 
     local.onChange?.(target);
-    emitEvent({ component: 'Slider', type: 'change', payload: target, timestamp: Date.now() });
+    emitEvent({ component: 'Swiper', type: 'change', payload: target, props: props, timestamp: Date.now() });
   }
 
   function next() { swipeTo(current() + 1); }

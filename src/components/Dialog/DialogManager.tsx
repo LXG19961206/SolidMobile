@@ -23,7 +23,7 @@ function add(options: DialogOptions): DialogHandle {
   const id = ++nextId;
   const entry: DialogEntry = { ...options, id, show: true };
   setDialogs((prev) => [...prev, entry]);
-  emitEvent({ component: 'Dialog', type: 'show', payload: options, timestamp: Date.now() });
+  emitEvent({ component: 'Dialog', type: 'show', payload: options, props: options, timestamp: Date.now() });
   return { dismiss: () => update(id, false) };
 }
 

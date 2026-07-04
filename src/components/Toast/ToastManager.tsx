@@ -52,7 +52,7 @@ function add(options: ToastOptions): ToastHandle {
   });
 
   const handle: ToastHandle = { id, dismiss: () => remove(id) };
-  emitEvent({ component: 'Toast', type: 'show', payload: options, timestamp: Date.now() });
+  emitEvent({ component: 'Toast', type: 'show', payload: options, props: options, timestamp: Date.now() });
   return handle;
 }
 

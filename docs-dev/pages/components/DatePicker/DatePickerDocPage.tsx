@@ -7,13 +7,13 @@ import { Toast } from '../../../../src/components/Toast';
 import type { PropRow } from '../../../../src/doc-utils';
 
 const datePickerProps: PropRow[] = [
-  { name: 'value', type: 'string', default: '—', required: false, desc: '当前值，格式 YYYY-MM-DD。' },
+  { name: 'value', type: 'string', default: '—', required: false, desc: '当前值，格式 YYYY-MM-DD 或 YYYY-MM-DD HH:mm:ss（datetime 模式）。' },
   { name: 'onChange', type: '(value: string) => void', default: '—', required: false, desc: '值变化回调。' },
   { name: 'onConfirm', type: '(value: string) => void', default: '—', required: false, desc: '确认按钮回调。' },
   { name: 'onCancel', type: '() => void', default: '—', required: false, desc: '取消按钮回调。' },
   { name: 'startDate', type: 'string', default: "'2014-01-01'", required: false, desc: '可选范围起点。' },
   { name: 'endDate', type: 'string', default: "'2034-12-31'", required: false, desc: '可选范围终点。' },
-  { name: 'type', type: "'date' | 'year-month'", default: "'date'", required: false, desc: '选择类型。' },
+  { name: 'type', type: "'date' | 'year-month' | 'datetime'", default: "'date'", required: false, desc: '选择类型。datetime 增加时/分/秒三列。' },
   { name: 'placeholder', type: 'string', default: "'请选择日期'", required: false, desc: '占位文字。' },
   { name: 'title', type: 'string', default: "'选择日期'", required: false, desc: '面板标题。' },
   { name: 'cancelText', type: 'string', default: '—', required: false, desc: '取消按钮文字。' },
@@ -44,6 +44,8 @@ const codeDisabled = `<DatePicker
   }
 
 />`;
+
+const codeDateTime = `<DatePicker type="datetime" placeholder="选择日期时间" />`;
 
 const codeForm = `<Form onSubmit={(v) => { ... }}>
   <FormItem name="birthday" label="生日">
@@ -108,6 +110,21 @@ const DisabledDateDemo: Component = () => {
   );
 };
 
+/* ── DateTime Demo ── */
+
+const DateTimeDemo: Component = () => {
+  const phone = useContext(PhoneTargetContext);
+  const [val, setVal] = createSignal('');
+  return (
+    <DatePicker
+      value={val()}
+      onChange={setVal}
+      type="datetime"
+      placeholder="选择日期时间"
+    />
+  );
+};
+
 /* ── Form Demo ── */
 
 const FormDemo: Component = () => {
@@ -155,6 +172,10 @@ export const DatePickerDocPage: Component = () => (
 
       <DemoBlock title="禁用日期" desc="通过 disabledDate 函数禁用特定日期。以下禁用了所有周末（周六/周日）。" code={codeDisabled}>
         <DisabledDateDemo />
+      </DemoBlock>
+
+      <DemoBlock title="日期+时间（datetime）" desc="type='datetime' 增加时/分/秒三列，支持完整日期时间选择。" code={codeDateTime}>
+        <DateTimeDemo />
       </DemoBlock>
 
       <DemoBlock title="表单中使用" desc="放在 FormItem 中自动集成表单的值管理。" code={codeForm}>

@@ -85,9 +85,9 @@ export const Select: Component<SelectProps> = (rawProps) => {
     if (v === undefined || v === '') return;
     setInnerVal(v);
     local.onChange?.(v);
-      emitEvent({ component: 'Select', type: 'change', payload: v, timestamp: Date.now() });
+      emitEvent({ component: 'Select', type: 'change', payload: v, props: props, timestamp: Date.now() });
     local.onConfirm?.(v);
-      emitEvent({ component: 'Select', type: 'confirm', payload: v, timestamp: Date.now() });
+      emitEvent({ component: 'Select', type: 'confirm', payload: v, props: props, timestamp: Date.now() });
     if (field) field.onChange(v);
     updateShow(false);
   }

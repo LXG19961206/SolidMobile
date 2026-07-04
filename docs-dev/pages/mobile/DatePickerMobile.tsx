@@ -8,11 +8,11 @@ export interface DatePickerMobileProps {
 import { DatePicker } from '../../../src/components/DatePicker';
 
 const propsData = [
-  { name: 'value', type: 'string', desc: '当前值，格式 YYYY-MM-DD 或 YYYY-MM' },
+  { name: 'value', type: 'string', desc: '当前值，格式 YYYY-MM-DD 或 YYYY-MM-DD HH:mm:ss（datetime）' },
   { name: 'onChange', type: '(value: string) => void', desc: '值变化回调' },
   { name: 'onConfirm', type: '(value: string) => void', desc: '确认按钮回调' },
   { name: 'onCancel', type: '() => void', desc: '取消按钮回调' },
-  { name: 'type', type: "'date' | 'year-month'", desc: '选择类型，默认 date' },
+  { name: 'type', type: "'date' | 'year-month' | 'datetime'", desc: '选择类型，datetime 增加时/分/秒' },
   { name: 'startDate', type: 'string', desc: '范围起点，默认 2014-01-01' },
   { name: 'endDate', type: 'string', desc: '范围终点，默认 2034-12-31' },
   { name: 'disabledDate', type: '(y,m,d) => boolean', desc: '禁用特定日期' },
@@ -39,6 +39,8 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
   const [monthVal, setMonthVal] = createSignal('');
   const [disabledVal, setDisabledVal] = createSignal('');
   const [rangeVal, setRangeVal] = createSignal('');
+  const [showDateTime, setShowDateTime] = createSignal(false);
+  const [dateTimeVal, setDateTimeVal] = createSignal('');
 
   return (
     <MobilePreview title="DatePicker 日期选择" props={propsData} components={props.components} onNavigate={props.onNavigate}>
@@ -120,6 +122,30 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
             placeholder="2025年范围内"
             startDate="2025-01-01"
             endDate="2025-12-31"
+          />
+        </div>
+      </div>
+
+      {/* 日期+时间 datetime */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>日期+时间 datetime</div>
+        <div style={CARD.desc}>type='datetime' 增加时/分/秒三列，格式 YYYY-MM-DD HH:mm:ss</div>
+        <div style={CARD.body}>
+          <div
+            style={{ padding: '12px 16px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: dateTimeVal() || '#9ca3af' }}
+            onClick={() => setShowDateTime(true)}
+          >
+            {dateTimeVal() || '请选择日期时间'}
+          </div>
+          <DatePicker
+            type="datetime"
+            show={showDateTime()}
+            onUpdateShow={setShowDateTime}
+            value={dateTimeVal()}
+            onChange={setDateTimeVal}
+            onConfirm={(v) => { setDateTimeVal(v); setShowDateTime(false); }}
+            onCancel={() => setShowDateTime(false)}
+            title="选择日期时间"
           />
         </div>
       </div>

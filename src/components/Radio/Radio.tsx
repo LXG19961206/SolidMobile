@@ -77,7 +77,7 @@ export const Radio: Component<RadioProps> = (rawProps) => {
       const next = !isChecked();
       if (local.checked === undefined) setSelfChecked(next);
       local.onChange?.(next);
-      emitEvent({ component: 'Radio', type: 'change', payload: next, timestamp: Date.now() });
+      emitEvent({ component: 'Radio', type: 'change', payload: next, props: props, timestamp: Date.now() });
     } else {
       ctx!.onChange(local.value);
     }
@@ -184,7 +184,7 @@ export const RadioGroup: Component<RadioGroupProps> = (rawProps) => {
     if (!isControlled()) setInnerVal(v);
     if (field) { field.onChange(v); }
     else { local.onChange?.(v); }
-    emitEvent({ component: 'Radio', type: 'change', payload: v, timestamp: Date.now() });
+    emitEvent({ component: 'Radio', type: 'change', payload: v, props: props, timestamp: Date.now() });
   }
 
   /* ── Context ── */

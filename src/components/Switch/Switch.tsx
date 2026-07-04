@@ -76,7 +76,7 @@ export const Switch: Component<SwitchProps> = (rawProps) => {
     }
     local.onChange?.(next);
     if (field) field.onChange(next);
-    emitEvent({ component: 'Switch', type: 'change', payload: next, timestamp: Date.now() });
+    emitEvent({ component: 'Switch', type: 'change', payload: next, props: props, timestamp: Date.now() });
   };
 
   // Sync from field context

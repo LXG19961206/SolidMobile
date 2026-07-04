@@ -5,6 +5,8 @@ import {
 import { Portal } from 'solid-js/web';
 import { cn } from '../../utils';
 import { useT } from '../../i18n';
+import { useFormField } from '../Form/FormItem';
+import { emitEvent } from '../../event-bus';
 import { Image } from '../Image';
 import { Icon } from '../Icon';
 import type { UploadProps, UploadFile } from './types';
@@ -68,24 +70,37 @@ export const Upload: Component<UploadProps> = (rawProps) => {
 
   const t = useT();
 
+  /* ── Form field context ── */
+  const field = useFormField();
+
   /* ── Preview state ── */
 
   const [previewFile, setPreviewFile] = createSignal<UploadFile | null>(null);
 
-  /* ── File list state (uncontrolled) ── */
+  /* ── File list state (uncontrolled / form-field) ── */
 
-  const isControlled = () => local.fileList !== undefined;
+  /** Controlled when fileList prop or Form field is present. */
+  const isControlled = () => local.fileList !== undefined || field !== undefined;
   const [innerList, setInnerList] = createSignal<UploadFile[]>(local.defaultFileList ?? []);
 
-  /** Current file list (controlled or uncontrolled) */
-  const files = () => (isControlled() ? local.fileList! : innerList());
+  /** Current file list: fileList prop > Form field > inner signal */
+  const files = (): UploadFile[] => {
+    if (local.fileList !== undefined) return local.fileList;
+    if (field) {
+      const v = field.value;
+      return Array.isArray(v) ? (v as UploadFile[]) : [];
+    }
+    return innerList();
+  };
 
   /* ── Hidden input ref ── */
 
   let inputEl!: HTMLInputElement;
 
+  const isDisabled = () => local.disabled || field?.disabled;
+
   function openPicker() {
-    if (local.disabled) return;
+    if (isDisabled()) return;
     inputEl.value = '';
     inputEl.click();
   }
@@ -116,10 +131,13 @@ export const Upload: Component<UploadProps> = (rawProps) => {
 
     if (isControlled()) {
       local.onChange?.(updated, updated.find(f => f.uid === uid)!);
+      if (field) field.onChange(updated);
     } else {
       setInnerList(updated);
       local.onChange?.(updated, updated.find(f => f.uid === uid)!);
+      if (field) field.onChange(updated);
     }
+    emitEvent({ component: 'Upload', type: 'change', payload: updated, props: props, timestamp: Date.now() });
   }
 
   /* ── Upload a single file ── */
@@ -136,10 +154,12 @@ export const Upload: Component<UploadProps> = (rawProps) => {
 
       patchFile(file.uid, { status: 'done', percent: 100, url });
       local.onSuccess?.(file, url);
+      emitEvent({ component: 'Upload', type: 'success', payload: { file, url }, props: props, timestamp: Date.now() });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
       patchFile(file.uid, { status: 'error', error: msg });
       local.onError?.(file, msg);
+      emitEvent({ component: 'Upload', type: 'error', payload: { file, message: msg }, props: props, timestamp: Date.now() });
     }
   }
 
@@ -178,10 +198,14 @@ export const Upload: Component<UploadProps> = (rawProps) => {
 
     if (isControlled()) {
       local.onChange?.(updated, lastNew);
+      if (field) field.onChange(updated);
     } else {
       setInnerList(updated);
       local.onChange?.(updated, lastNew);
+      if (field) field.onChange(updated);
     }
+
+    emitEvent({ component: 'Upload', type: 'change', payload: updated, props: props, timestamp: Date.now() });
 
     // Start uploads concurrently
     if (local.api) {
@@ -210,16 +234,20 @@ export const Upload: Component<UploadProps> = (rawProps) => {
 
     if (isControlled()) {
       local.onChange?.(updated, file);
+      if (field) field.onChange(updated);
     } else {
       setInnerList(updated);
       local.onChange?.(updated, file);
+      if (field) field.onChange(updated);
     }
+    emitEvent({ component: 'Upload', type: 'change', payload: updated, props: props, timestamp: Date.now() });
+    emitEvent({ component: 'Upload', type: 'delete', payload: file, props: props, timestamp: Date.now() });
   }
 
   /* ── Derived ── */
 
   const acceptAttr = () => local.accept ?? (local.type === 'image' ? 'image/*' : undefined);
-  const canAdd = () => !local.disabled && files().length < local.maxCount!;
+  const canAdd = () => !isDisabled() && files().length < local.maxCount!;
 
   /* ── Status text ── */
 

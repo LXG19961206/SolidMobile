@@ -1,10 +1,5 @@
 import { createSignal, createMemo, onMount, For, Show, type Component } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-jsx';
-import 'prismjs/components/prism-tsx';
-import 'prismjs/components/prism-bash';
-import 'prismjs/themes/prism.css';
 import { useT, setGlobalLocale, useLocale } from '../src/i18n';
 import { defaultConfig } from '../src/config/defaults';
 import { generateCSSVars } from '../src/config/css-vars';
@@ -48,6 +43,7 @@ import { RadioDocPage } from './pages/components/Radio/RadioDocPage';
 import { CheckboxDocPage } from './pages/components/Checkbox/CheckboxDocPage';
 import { DatePickerDocPage } from './pages/components/DatePicker/DatePickerDocPage';
 import { CityPickerDocPage } from './pages/components/CityPicker/CityPickerDocPage';
+import { TimePickerDocPage } from './pages/components/TimePicker/TimePickerDocPage';
 import { RateDocPage } from './pages/components/Rate/RateDocPage';
 import { StepperDocPage } from './pages/components/Stepper/StepperDocPage';
 import { SafeAreaDocPage } from './pages/components/SafeArea/SafeAreaDocPage';
@@ -79,6 +75,7 @@ import { CalendarMobile } from './pages/mobile/CalendarMobile';
 import { CascaderMobile } from './pages/mobile/CascaderMobile';
 import { DatePickerMobile } from './pages/mobile/DatePickerMobile';
 import { CityPickerMobile } from './pages/mobile/CityPickerMobile';
+import { TimePickerMobile } from './pages/mobile/TimePickerMobile';
 import { ToastMobile } from './pages/mobile/ToastMobile';
 import { NotifyMobile } from './pages/mobile/NotifyMobile';
 import { DialogMobile } from './pages/mobile/DialogMobile';
@@ -101,6 +98,7 @@ import { DesignTokensMobile } from './pages/mobile/DesignTokensMobile';
 import { EventBusMobile } from './pages/mobile/EventBusMobile';
 import { AllTokens } from '../src/design-tokens/DesignTokenShowcase';
 import { useDisableZoom } from '../src/hooks';
+import { CodeBlock } from '../src/doc-utils';
 import { DrawerContext } from '../src/doc-utils/mobile/DrawerContext';
 import drawerStyles from '../src/doc-utils/mobile/MobilePreview.module.css';
 
@@ -216,6 +214,7 @@ const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key:
   cascader: CascaderMobile,
   datepicker: DatePickerMobile,
   citypicker: CityPickerMobile,
+  timepicker: TimePickerMobile,
   toast: ToastMobile,
   notify: NotifyMobile,
   dialog: DialogMobile,
@@ -298,6 +297,7 @@ const GROUPS: MenuGroup[] = [
       { name: 'Cascader 级联选择', key: 'cascader' },
       { name: 'DatePicker 日期选择', key: 'datepicker' },
       { name: 'CityPicker 城市选择', key: 'citypicker' },
+      { name: 'TimePicker 时间选择', key: 'timepicker' },
     ],
   },
   {
@@ -366,6 +366,7 @@ const PAGES: Record<string, Component> = {
   checkbox: CheckboxDocPage,
   datepicker: DatePickerDocPage,
   citypicker: CityPickerDocPage,
+  timepicker: TimePickerDocPage,
   rate: RateDocPage,
   stepper: StepperDocPage,
   safearea: SafeAreaDocPage,
@@ -373,22 +374,6 @@ const PAGES: Record<string, Component> = {
   select: SelectDocPage,
   upload: UploadDocPage,
   pullrefresh: PullRefreshDocPage,
-};
-
-/* ── Code Block ── */
-
-const CodeBlock = (props: { code: string; lang?: string }) => {
-  const html = () => {
-    const lang = Prism.languages[props.lang || 'tsx'] || Prism.languages.tsx;
-    return Prism.highlight(props.code, lang, props.lang || 'tsx');
-  };
-  return (
-    <div class="doc-code-block">
-      <pre class={`language-${props.lang || 'tsx'}`}>
-        <code class={`language-${props.lang || 'tsx'}`} innerHTML={html()} />
-      </pre>
-    </div>
-  );
 };
 
 /* ── Getting Started Page ── */
@@ -964,29 +949,79 @@ const GUIDE_PAGES: Record<string, Component> = {
         全局事件总线。所有组件触发内置事件时，除执行原有回调外，还会将结构化事件推送至全局总线。
         适用于埋点遥测、审计日志、AOP 拦截、开发调试等场景。
       </p>
+      <blockquote style="margin:0 0 1.5rem;padding:0.75rem 1rem;border-left:3px solid #1677ff;background:rgba(22,119,255,0.04);border-radius:0 6px 6px 0;color:var(--sc-color-text-secondary,#6b7280);font-size:0.9rem;line-height:1.7">
+        <strong>本库的 EventBus 定位为拦截与切面，而非通用消息通道。</strong><br />
+        它专为<strong>埋点遥测、审计日志、AOP 拦截</strong>等横切关注点设计，提供一个统一的观测入口。
+        我们不建议用它来做组件间通信、状态同步或事件驱动的业务流转——这些场景请走 props、回调或 Form 等显式契约。
+        EventBus 在这里的角色是旁路观察者：静默记录发生的一切，不参与、不改变业务逻辑的执行路径。
+      </blockquote>
 
-      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>如何使用</h2>
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>快速开始</h2>
       <p style={{ color: 'var(--sc-color-text-secondary, #6b7280)', margin: '0 0 0.75rem', 'line-height': 1.6 }}>
-        在应用入口调用一次 setEventBusHandler，无需 Provider。未注册时零开销。
+        在应用入口调用一次 <code>setEventBusHandler</code>，无需 Provider、无额外依赖。未注册时 <code>emitEvent</code> 仅做一次 null 检查，零运行时开销。
       </p>
-      <div style={{ background: '#1e293b', color: '#e2e8f0', padding: '1rem 1.25rem', 'border-radius': '8px', 'font-size': '0.85rem', overflow: 'auto', 'white-space': 'pre-wrap', 'font-family': 'monospace' }}>
-        {`import { setEventBusHandler } from 'solid-component';
+
+      <CodeBlock lang="tsx" code={`import { setEventBusHandler } from 'solid-component';
 
 setEventBusHandler((event) => {
-  console.log(\`[\${event.component}] \${event.type}\`, event.payload);
-  // 发送到埋点平台 / 审计系统等
-});`}
+  // event.component  — 组件名，如 'Picker'、'DatePicker'
+  // event.type      — 事件类型，如 'change'、'confirm'、'click'
+  // event.payload   — 事件特异数据（选中值、输入值、文件列表等）
+  // event.props     — 组件收到的最新 props 快照（可用于遥测上下文）
+  // event.timestamp — 毫秒时间戳
+
+  console.log(event.component, event.type, event.payload);
+  // 发送到埋点平台 / 审计系统 / 调试面板
+});`} />
+
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>事件结构</h2>
+      <div class="guide-table-wrap">
+        <table>
+          <thead>
+            <tr><th style="min-width:100px">字段</th><th>类型</th><th>说明</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:500;font-family:monospace;font-size:0.85rem">component</td>
+              <td style="font-family:monospace;font-size:0.8rem;color:#1677ff">EventBusComponent</td>
+              <td style="font-size:0.85rem;color:var(--sc-color-text-secondary,#6b7280)">触发事件的组件名，如 <code>'Picker'</code>、<code>'Upload'</code></td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;font-family:monospace;font-size:0.85rem">type</td>
+              <td style="font-family:monospace;font-size:0.8rem;color:#1677ff">EventBusEventType</td>
+              <td style="font-size:0.85rem;color:var(--sc-color-text-secondary,#6b7280)">事件类别：<code>change</code> <code>click</code> <code>confirm</code> <code>cancel</code> <code>clear</code> <code>delete</code> <code>submit</code> <code>success</code> <code>error</code> <code>refresh</code> <code>select</code> <code>show</code></td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;font-family:monospace;font-size:0.85rem">payload</td>
+              <td style="font-family:monospace;font-size:0.8rem;color:#1677ff">unknown</td>
+              <td style="font-size:0.85rem;color:var(--sc-color-text-secondary,#6b7280)">事件特异数据。不同组件/事件类型的 payload 不同，需根据 <code>component + type</code> 组合窄化类型。详见下方事件一览表。</td>
+            </tr>
+            <tr style="background:rgba(22,119,255,0.04)">
+              <td style="font-weight:600;font-family:monospace;font-size:0.85rem;color:#1677ff">props</td>
+              <td style="font-family:monospace;font-size:0.8rem;color:#1677ff">unknown</td>
+              <td style="font-size:0.85rem;color:var(--sc-color-text,#323233)"><strong>组件触发事件时的 props 快照。</strong>这是最容易被忽略但价值最高的字段——你可以从 props 中拿到组件的所有配置信息（placeholder、maxCount、columns、disabled 等），无需额外从组件实例读取。用于遥测时分析「用户是在什么配置下触发了这个事件」。</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;font-family:monospace;font-size:0.85rem">timestamp</td>
+              <td style="font-family:monospace;font-size:0.8rem;color:#1677ff">number</td>
+              <td style="font-size:0.85rem;color:var(--sc-color-text-secondary,#6b7280)">事件发生时间的毫秒时间戳（<code>Date.now()</code>）</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>适用场景</h2>
       <ul style={{ color: 'var(--sc-color-text-secondary, #6b7280)', 'line-height': 1.8, 'padding-left': '1.2rem' }}>
-        <li><strong>埋点 / 遥测</strong> — 统计用户行为，分析组件使用频率</li>
-        <li><strong>审计日志</strong> — 记录关键操作，合规追溯</li>
-        <li><strong>AOP 拦截</strong> — 全局前置/后置处理组件事件</li>
-        <li><strong>开发调试</strong> — 实时查看所有组件交互</li>
+        <li><strong>埋点 / 遥测</strong> — 利用 <code>event.props</code> 获取组件配置上下文，统计用户行为与组件使用模式</li>
+        <li><strong>审计日志</strong> — 记录关键操作（提交、确认、删除），合规追溯</li>
+        <li><strong>AOP 拦截</strong> — 全局前置/后置处理组件事件，无需侵入业务代码</li>
+        <li><strong>开发调试</strong> — 注册一个 handler 即可实时查看所有组件交互，无需给每个组件加 log</li>
       </ul>
 
       <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>可用事件一览</h2>
+      <p style={{ color: 'var(--sc-color-text-secondary, #6b7280)', margin: '0 0 0.75rem', 'line-height': 1.6, 'font-size': '0.85rem' }}>
+        下表中的 <strong>payload</strong> 是 <code>event.payload</code> 的类型。每一条事件同时携带 <strong>props</strong>（组件 props 快照，类型为对应组件的 Props 接口）和 <strong>timestamp</strong>。
+      </p>
       <div class="guide-table-wrap">
         <table>
           <thead>
@@ -994,26 +1029,33 @@ setEventBusHandler((event) => {
           </thead>
           <tbody>
             {[
+              ['ActionSheet', 'select', '{ item, index }'],
               ['Button', 'click', 'MouseEvent'],
-              ['Picker', 'change / confirm / cancel', '{ items, vals }'],
-              ['Slider', 'change', 'number | number[]'],
-              ['Input', 'change', 'string'],
-              ['Switch', 'change', 'boolean'],
-              ['Rate', 'change', 'number'],
-              ['Stepper', 'change', 'number'],
-              ['Tabs', 'change', 'string | number'],
-              ['Radio / RadioGroup', 'change', 'boolean / unknown'],
-              ['Checkbox / CheckboxGroup', 'change', 'boolean / unknown[]'],
               ['Calendar', 'change', 'Date | Date[] | [Date,Date]'],
               ['Cascader', 'change', '(string | number)[]'],
-              ['Select', 'change / confirm', 'string | number'],
-              ['DatePicker', 'change / confirm', 'string'],
+              ['Checkbox / CheckboxGroup', 'change', 'boolean / unknown[]'],
               ['CityPicker', 'change / confirm', '(string | number)[]'],
-              ['Toast', 'show', 'ToastOptions'],
-              ['Notify', 'show', 'NotifyOptions'],
+              ['DatePicker', 'change / confirm', 'string'],
               ['Dialog', 'show', 'DialogOptions'],
-              ['ActionSheet', 'select', '{ item, index }'],
               ['Form', 'submit', 'FormValue'],
+              ['Input', 'change / clear', 'string'],
+              ['NavBar', 'click', '{ side: "left" | "right", action?: "back" }'],
+              ['Notify', 'show', 'NotifyOptions'],
+              ['Picker', 'change / confirm / cancel', '{ items, vals }'],
+              ['PullRefresh', 'refresh', 'undefined'],
+              ['Radio / RadioGroup', 'change', 'boolean / unknown'],
+              ['Rate', 'change', 'number'],
+              ['Select', 'change / confirm', 'string | number'],
+              ['Slider', 'change', 'number | number[]'],
+              ['Stepper', 'change', 'number'],
+              ['Swiper', 'change', 'number (current index)'],
+              ['Switch', 'change', 'boolean'],
+              ['TabBar', 'change', 'string | number (tab name)'],
+              ['Tabs', 'change', 'string | number'],
+              ['Textarea', 'change', 'string'],
+              ['TimePicker', 'change / confirm', 'string (HH:mm:ss)'],
+              ['Toast', 'show', 'ToastOptions'],
+              ['Upload', 'change / delete / success / error', 'UploadFile[] | { file, url/message }'],
             ].map(([comp, evt, payload]) => (
               <tr>
                 <td style={{ 'font-weight': 500 }}>{comp}</td>
@@ -1029,7 +1071,8 @@ setEventBusHandler((event) => {
       <ul style={{ color: 'var(--sc-color-text-secondary, #6b7280)', 'line-height': 1.8, 'padding-left': '1.2rem' }}>
         <li>未注册 handler 时 <code>emitEvent</code> 为零开销（仅一次 null 检查）</li>
         <li>handler 内避免执行耗时操作，建议异步处理</li>
-        <li>payload 类型为 <code>unknown</code>，需根据 component/type 自行窄化</li>
+        <li><code>event.payload</code> 为事件特异数据（选中值、输入值等），需根据 component/type 自行窄化</li>
+        <li><code>event.props</code> 为组件触发事件时的 props 快照，可用于遥测获取组件的当前配置（如 placeholder、maxCount 等）</li>
       </ul>
     </div>
   ),

@@ -37,7 +37,7 @@ function add(options: NotifyOptions): NotifyHandle {
     return [...rest, { ...options, id }];
   });
 
-  emitEvent({ component: 'Notify', type: 'show', payload: options, timestamp: Date.now() });
+  emitEvent({ component: 'Notify', type: 'show', payload: options, props: options, timestamp: Date.now() });
   return { id, dismiss: () => remove(id) };
 }
 

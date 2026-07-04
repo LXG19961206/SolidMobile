@@ -173,7 +173,7 @@ export const Calendar: Component<CalendarProps> = (rawProps) => {
     if (local.type === 'single') {
       setSelected([d.date]);
       local.onChange?.(d.date);
-      emitEvent({ component: 'Calendar', type: 'change', payload: d.date, timestamp: Date.now() });
+      emitEvent({ component: 'Calendar', type: 'change', payload: d.date, props: props, timestamp: Date.now() });
       if (local.popup) local.onUpdateShow?.(false);
     } else if (local.type === 'multiple') {
       const idx = selected().findIndex(s => sameDay(s, d.date));
@@ -181,13 +181,13 @@ export const Calendar: Component<CalendarProps> = (rawProps) => {
         const next = selected().filter((_, i) => i !== idx);
         setSelected(next);
         local.onChange?.(next);
-        emitEvent({ component: 'Calendar', type: 'change', payload: next, timestamp: Date.now() });
+        emitEvent({ component: 'Calendar', type: 'change', payload: next, props: props, timestamp: Date.now() });
       } else {
         if (local.maxCount && selected().length >= local.maxCount) return;
         const next = [...selected(), d.date];
         setSelected(next);
         local.onChange?.(next);
-        emitEvent({ component: 'Calendar', type: 'change', payload: next, timestamp: Date.now() });
+        emitEvent({ component: 'Calendar', type: 'change', payload: next, props: props, timestamp: Date.now() });
       }
     } else if (local.type === 'range') {
       if (!rangeStart() || (rangeStart() && rangeEnd())) {

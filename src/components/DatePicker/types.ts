@@ -1,9 +1,9 @@
 import type { JSX } from 'solid-js';
 
-export type DatePickerType = 'date' | 'year-month';
+export type DatePickerType = 'date' | 'year-month' | 'datetime';
 
 export interface DatePickerProps {
-  /** 当前值，格式 YYYY-MM-DD 或 YYYY-MM */
+  /** 当前值，格式 YYYY-MM-DD、YYYY-MM 或 YYYY-MM-DD HH:mm:ss */
   value?: string;
   /** 值变化回调 */
   onChange?: (value: string) => void;

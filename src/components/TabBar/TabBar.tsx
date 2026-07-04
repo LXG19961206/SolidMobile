@@ -62,7 +62,7 @@ export const TabBar: Component<TabBarProps> = (rawProps) => {
     }
     if (!isControlled()) setInnerVal(name);
     local.onChange?.(name);
-    emitEvent({ component: 'Tabs', type: 'change', payload: name, timestamp: Date.now() });
+    emitEvent({ component: 'TabBar', type: 'change', payload: name, props: props, timestamp: Date.now() });
   };
 
   const ctx: TabBarContextValue = {

@@ -13,6 +13,9 @@ import { Picker } from '../../../../src/components/Picker';
 import { DatePicker } from '../../../../src/components/DatePicker';
 import { CityPicker } from '../../../../src/components/CityPicker';
 import { Select } from '../../../../src/components/Select';
+import { Upload } from '../../../../src/components/Upload';
+import type { UploadFile } from '../../../../src/components/Upload';
+import { TimePicker } from '../../../../src/components/TimePicker';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
 import { Toast } from '../../../../src/components/Toast';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
@@ -124,6 +127,12 @@ const FullDemoCode = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}>
   <FormItem name="region" label="地区" contentFlex>
     <CityPicker columns={cityTree} placeholder="选择省市区" teleport={phone?.()?.parentElement?.parentElement || undefined} />
   </FormItem>
+  <FormItem name="photos" label="照片" contentFlex>
+    <Upload api={mockUploadApi} maxCount={6} />
+  </FormItem>
+  <FormItem name="time" label="时间" contentFlex>
+    <TimePicker placeholder="选择时间" teleport={phone?.()?.parentElement?.parentElement || undefined} />
+  </FormItem>
   <div style={{ padding: '12px 1rem', display: 'flex', gap: '12px' }}>
     <Button type="primary" block nativeType="submit" text="提交" />
     <Button text="重置" onClick={() => formRef?.resetFormValue()} />
@@ -134,6 +143,18 @@ const FullFormDemo: Component = () => {
   const phone = useContext(PhoneTargetContext);
   const [formVal, setFormVal] = createSignal({});
   let formRef: any;
+
+  /** Mock upload API — simulates progress then returns a blob URL */
+  function mockUploadApi(file: File, onProgress?: (pct: number) => void): Promise<string> {
+    return new Promise((resolve) => {
+      let pct = 0;
+      const timer = setInterval(() => {
+        pct += Math.random() * 30;
+        if (pct >= 100) { pct = 100; clearInterval(timer); resolve(URL.createObjectURL(file)); }
+        onProgress?.(Math.min(pct, 100));
+      }, 200);
+    });
+  }
 
   return (
     <>
@@ -219,6 +240,16 @@ const FullFormDemo: Component = () => {
         {/* ── CityPicker ── */}
         <FormItem name="region" label="地区" contentFlex>
           <CityPicker columns={cityTree} placeholder="选择省市区" teleport={phone?.()?.parentElement?.parentElement || undefined} />
+        </FormItem>
+
+        {/* ── Upload ── */}
+        <FormItem name="photos" label="照片" contentFlex>
+          <Upload api={mockUploadApi} maxCount={6} />
+        </FormItem>
+
+        {/* ── TimePicker ── */}
+        <FormItem name="time" label="时间" contentFlex>
+          <TimePicker placeholder="选择时间" teleport={phone?.()?.parentElement?.parentElement || undefined} />
         </FormItem>
 
         {/* ── Submit ── */}
@@ -321,7 +352,7 @@ export const FormDocPage: Component = () => (
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>综合实例</h2>
-      <DemoBlock title="全组件表单" desc="一个表单里同时使用 Input / Textarea / Radio / Checkbox / Switch / Rate / Stepper / Slider / DatePicker / CityPicker，展示 Form 与各类组件的配合。" code={FullDemoCode}>
+      <DemoBlock title="全组件表单" desc="一个表单里同时使用 Input / Textarea / Radio / Checkbox / Switch / Rate / Stepper / Slider / Select / DatePicker / CityPicker / Upload / TimePicker，展示 Form 与各类组件的配合。" code={FullDemoCode}>
         <FullFormDemo />
       </DemoBlock>
     </div>

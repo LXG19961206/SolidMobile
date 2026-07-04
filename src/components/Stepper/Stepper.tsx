@@ -82,7 +82,7 @@ export const Stepper: Component<StepperProps> = (rawProps) => {
     setInputText(String(formatted));
     local.onChange?.(formatted);
     if (field) field.onChange(formatted);
-    emitEvent({ component: 'Stepper', type: 'change', payload: formatted, timestamp: Date.now() });
+    emitEvent({ component: 'Stepper', type: 'change', payload: formatted, props: props, timestamp: Date.now() });
   }
 
   const isReadonly = () => !!local.readonly || !!field?.readonly;

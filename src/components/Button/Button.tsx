@@ -124,7 +124,7 @@ export const Button: Component<ButtonProps> = (rawProps) => {
     if (typeof local.onClick === 'function') {
       local.onClick(e);
     }
-    emitEvent({ component: 'Button', type: 'click', payload: e, timestamp: Date.now() });
+    emitEvent({ component: 'Button', type: 'click', payload: e, props: props, timestamp: Date.now() });
   };
 
   // --- Icon rendering ---

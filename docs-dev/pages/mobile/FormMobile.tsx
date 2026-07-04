@@ -17,6 +17,8 @@ import { Stepper } from '../../../src/components/Stepper';
 import { Slider } from '../../../src/components/Slider';
 import { Select } from '../../../src/components/Select';
 import { DatePicker } from '../../../src/components/DatePicker';
+import { Upload } from '../../../src/components/Upload';
+import { TimePicker } from '../../../src/components/TimePicker';
 import { Toast, ToastRenderer } from '../../../src/components/Toast';
 
 const propsData = [
@@ -45,6 +47,17 @@ const CARD = {
 };
 
 const cityOpts = [{ text: '北京', value: 'beijing' }, { text: '上海', value: 'shanghai' }, { text: '广州', value: 'guangzhou' }];
+
+function mockUploadApi(file: File, onProgress?: (pct: number) => void): Promise<string> {
+  return new Promise((resolve) => {
+    let pct = 0;
+    const timer = setInterval(() => {
+      pct += Math.random() * 30;
+      if (pct >= 100) { pct = 100; clearInterval(timer); resolve(URL.createObjectURL(file)); }
+      onProgress?.(Math.min(pct, 100));
+    }, 200);
+  });
+}
 
 export const FormMobile: Component<FormMobileProps> = (props) => {
   const [basicVal, setBasicVal] = createSignal({});
@@ -128,7 +141,7 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
       {/* 综合实例 */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>综合实例</div>
-        <div style={CARD.desc}>Input / Textarea / Radio / Checkbox / Rate / Stepper / Slider / Select / DatePicker 全覆盖</div>
+        <div style={CARD.desc}>Input / Textarea / Radio / Checkbox / Rate / Stepper / Slider / Select / DatePicker / Upload / TimePicker 全覆盖</div>
         <div style={CARD.body}>
           <Form
             ref={(r: any) => { fullFormRef = r; }}
@@ -181,6 +194,12 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
             </FormItem>
             <FormItem name="birthday" label="生日" contentFlex>
               <DatePicker placeholder="选择出生日期" />
+            </FormItem>
+            <FormItem name="photos" label="照片" contentFlex>
+              <Upload api={mockUploadApi} maxCount={6} />
+            </FormItem>
+            <FormItem name="time" label="时间" contentFlex>
+              <TimePicker placeholder="选择时间" />
             </FormItem>
             <div style={{ padding: '8px 0', display: 'flex' as const, gap: '8px' }}>
               <Button type="primary" block nativeType="submit" size="sm" text="提交" />

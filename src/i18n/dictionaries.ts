@@ -160,6 +160,10 @@ export const messages: LocaleMessages = {
         title: '选择地区',
         placeholder: '请选择地区',
       },
+      // ── TimePicker ──
+      timePicker: {
+        placeholder: '请选择时间',
+      },
       // ── Cascader ──
       cascader: {
         placeholder: '请选择',
@@ -407,6 +411,10 @@ export const messages: LocaleMessages = {
       cityPicker: {
         title: 'Select Region',
         placeholder: 'Please select a region',
+      },
+      // ── TimePicker ──
+      timePicker: {
+        placeholder: 'Please select a time',
       },
       // ── Cascader ──
       cascader: {

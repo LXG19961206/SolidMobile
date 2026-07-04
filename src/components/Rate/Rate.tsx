@@ -83,7 +83,7 @@ export const Rate: Component<RateProps> = (rawProps) => {
     setInternalVal(newVal);
     local.onChange?.(newVal);
     if (field) field.onChange(newVal);
-    emitEvent({ component: 'Rate', type: 'change', payload: newVal, timestamp: Date.now() });
+    emitEvent({ component: 'Rate', type: 'change', payload: newVal, props: props, timestamp: Date.now() });
   }
 
   function onStarClick(e: MouseEvent, index: number) {
