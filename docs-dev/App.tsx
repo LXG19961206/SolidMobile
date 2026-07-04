@@ -188,8 +188,7 @@ const MobileHome: Component<{
       </div>
     </div>
   </div>
-  );
-};
+);
 
 /* ── Mobile Pages Map (module scope, stable reference) ── */
 
@@ -419,8 +418,7 @@ function App() {
   );
 }`} />
   </div>
-  );
-};
+);
 
 /* ── About Page ── */
 
@@ -553,8 +551,7 @@ const AboutPage: Component = () => (
       如果你碰巧用到了，欢迎提 issue 或者 PR。
     </p>
   </div>
-  );
-};
+);
 
 /* ── ConfigProvider Doc Page ── */
 
@@ -617,20 +614,20 @@ const ConfigDocPage: Component = () => {
   const presets = ['#1677ff', '#e01823', '#00b42a', '#f5a623', '#8b5cf6'];
 
   return (
-  <div class="guide-card">
-    <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 0.5rem' }}>ConfigProvider</h1>
-    <p style={{ color: '#6b7280', margin: '0 0 2rem' }}>
-      全局配置提供者。放在应用根节点，深层合并默认配置，注入 CSS 变量，
-      并通过 Solid Context 向子组件提供主题、排版、圆角、语言等全局设置。
-      不使用时组件按 defaultConfig 运行，无需额外配置。
-    </p>
+    <div class="guide-card">
+      <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 0.5rem' }}>ConfigProvider</h1>
+      <p style={{ color: '#6b7280', margin: '0 0 2rem' }}>
+        全局配置提供者。放在应用根节点，深层合并默认配置，注入 CSS 变量，
+        并通过 Solid Context 向子组件提供主题、排版、圆角、语言等全局设置。
+        不使用时组件按 defaultConfig 运行，无需额外配置。
+      </p>
 
-    <h2 style={SECTION_H2}>全量配置示例</h2>
-    <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
-      以下展示所有可配置项。所有字段均有默认值，<strong>只需传入需要覆盖的部分</strong>，
-      未传字段自动使用 defaultConfig。
-    </p>
-    <CodeBlock lang="tsx" code={`import { ProviderConfig } from 'solid-mobile';
+      <h2 style={SECTION_H2}>全量配置示例</h2>
+      <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
+        以下展示所有可配置项。所有字段均有默认值，<strong>只需传入需要覆盖的部分</strong>，
+        未传字段自动使用 defaultConfig。
+      </p>
+      <CodeBlock lang="tsx" code={`import { ProviderConfig } from 'solid-mobile';
 
 <ProviderConfig
   config={{
@@ -751,172 +748,173 @@ const ConfigDocPage: Component = () => {
   <App />
 </ProviderConfig>`} />
 
-    <h2 style={SECTION_H2}>动态切换主题色</h2>
-    <p style={{ color: '#6b7280', margin: '0 0 1rem' }}>
-      点击下方色块切换主色，下方组件即时响应主题变更。
-    </p>
-    <div style={{ display: 'flex', gap: '10px', 'margin-bottom': '1.5rem' }}>
-      {presets.map(c => (
-        <div
-          onClick={() => setDemoColor(c)}
-          style={{
-            width: '36px', height: '36px', 'border-radius': '50%', background: c,
-            cursor: 'pointer', border: demoColor() === c ? '3px solid #323233' : '3px solid transparent',
-            transition: 'border 0.2s',
-          }}
-        />
-      ))}
-    </div>
-    <ProviderConfig config={{ colors: { light: { primary: demoColor() } } }}>
-      <div style={{ display: 'flex', gap: '12px', 'flex-wrap': 'wrap', 'align-items': 'center' }}>
-        <Button type="primary">主色按钮</Button>
-        <Button variant="outline">线框按钮</Button>
-        <Button type="danger">危险按钮</Button>
-        <Tag type="primary">主色标签</Tag>
-        <Tag type="success">成功标签</Tag>
-        <Tag type="warning">警告标签</Tag>
+      <h2 style={SECTION_H2}>动态切换主题色</h2>
+      <p style={{ color: '#6b7280', margin: '0 0 1rem' }}>
+        点击色块切换主色，下方组件即时响应主题变更。
+      </p>
+      <div style={{
+        border: '1px solid #e5e7eb', 'border-radius': '12px', padding: '1.5rem',
+        background: '#fafbfc', 'margin-bottom': '1.5rem',
+      }}>
+        <div style={{ display: 'flex', gap: '10px', 'margin-bottom': '1.2rem' }}>
+          {presets.map(c => (
+            <div onClick={() => setDemoColor(c)} style={{
+              width: '36px', height: '36px', 'border-radius': '50%', background: c,
+              cursor: 'pointer', border: demoColor() === c ? '3px solid #323233' : '3px solid transparent',
+              transition: 'border 0.2s',
+            }} />
+          ))}
+        </div>
+        <ProviderConfig config={{ colors: { light: { primary: demoColor() } } }}>
+          <div style={{ display: 'flex', gap: '12px', 'flex-wrap': 'wrap', 'align-items': 'center' }}>
+            <Button type="primary">Primary</Button>
+            <Button variant="outline" type="primary">Outline</Button>
+            <Button type="danger">Danger</Button>
+            <Tag type="primary">Tag</Tag>
+            <Tag type="success">Success</Tag>
+            <Tag type="warning">Warning</Tag>
+          </div>
+      </ProviderConfig>
+
+      <h2 style={SECTION_H2}>ProviderConfig Props</h2>
+      <div class="guide-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>属性</th>
+              <th>类型</th>
+              <th>默认值</th>
+              <th>说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style={{ 'font-weight': 600 }}>config</td>
+              <td style={{ color: '#6b7280', 'font-size': '0.8rem' }}>PartialSolidComponentConfig</td>
+              <td style={{ color: '#9ca3af', 'font-size': '0.8rem' }}>—</td>
+              <td>部分配置覆盖，深度合并到 defaultConfig。只传需要改的字段。</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </ProviderConfig>
 
-    <h2 style={SECTION_H2}>ProviderConfig Props</h2>
-    <div class="guide-table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>属性</th>
-            <th>类型</th>
-            <th>默认值</th>
-            <th>说明</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style={{ 'font-weight': 600 }}>config</td>
-            <td style={{ color: '#6b7280', 'font-size': '0.8rem' }}>PartialSolidComponentConfig</td>
-            <td style={{ color: '#9ca3af', 'font-size': '0.8rem' }}>—</td>
-            <td>部分配置覆盖，深度合并到 defaultConfig。只传需要改的字段。</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <h2 style={SECTION_H2}>配置结构 SolidComponentConfig</h2>
 
-    <h2 style={SECTION_H2}>配置结构 SolidComponentConfig</h2>
-
-    <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>顶层字段</h3>
-    <div class="guide-table-wrap">
-      <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.85rem' }}>
-        <thead>
-          <tr style={{ 'border-bottom': '2px solid #e5e7eb', 'text-align': 'left' }}>
-            <th style={{ padding: '8px 12px' }}>字段</th>
-            <th style={{ padding: '8px 12px' }}>类型</th>
-            <th style={{ padding: '8px 12px' }}>默认值</th>
-            <th style={{ padding: '8px 12px' }}>说明</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[
-            ['prefix', 'string', "'sc'", 'CSS 变量前缀。如 primary 生成 --sc-color-primary'],
-            ['darkMode', "'class' | 'media'", "'class'", "暗色模式策略。class → 给 html 加 .dark；media → @media (prefers-color-scheme: dark)"],
-            ['locale', "'zh-CN' | 'en-US'", "'zh-CN'", '内置文本语言'],
-            ['colors', 'ThemeColors', '见下方', '完整色彩系统，含 light / dark 两套色板'],
-            ['typography', 'TypographyConfig', '见下方', '字体族、字号、字重、行高'],
-            ['borderRadius', 'BorderRadiusConfig', '见下方', '圆角尺寸 (sm/md/lg/full)'],
-          ].map(([name, type, def, desc]) => (
-            <tr>
-              <td style={{ 'font-weight': 600 }}>{name}</td>
-              <td style={{ color: '#6b7280', 'font-size': '0.8rem' }}>{type}</td>
-              <td style={{ color: '#9ca3af', 'font-size': '0.8rem' }}>{def}</td>
-              <td>{desc}</td>
+      <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>顶层字段</h3>
+      <div class="guide-table-wrap">
+        <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.85rem' }}>
+          <thead>
+            <tr style={{ 'border-bottom': '2px solid #e5e7eb', 'text-align': 'left' }}>
+              <th style={{ padding: '8px 12px' }}>字段</th>
+              <th style={{ padding: '8px 12px' }}>类型</th>
+              <th style={{ padding: '8px 12px' }}>默认值</th>
+              <th style={{ padding: '8px 12px' }}>说明</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {[
+              ['prefix', 'string', "'sc'", 'CSS 变量前缀。如 primary 生成 --sc-color-primary'],
+              ['darkMode', "'class' | 'media'", "'class'", "暗色模式策略。class → 给 html 加 .dark；media → @media (prefers-color-scheme: dark)"],
+              ['locale', "'zh-CN' | 'en-US'", "'zh-CN'", '内置文本语言'],
+              ['colors', 'ThemeColors', '见下方', '完整色彩系统，含 light / dark 两套色板'],
+              ['typography', 'TypographyConfig', '见下方', '字体族、字号、字重、行高'],
+              ['borderRadius', 'BorderRadiusConfig', '见下方', '圆角尺寸 (sm/md/lg/full)'],
+            ].map(([name, type, def, desc]) => (
+              <tr>
+                <td style={{ 'font-weight': 600 }}>{name}</td>
+                <td style={{ color: '#6b7280', 'font-size': '0.8rem' }}>{type}</td>
+                <td style={{ color: '#9ca3af', 'font-size': '0.8rem' }}>{def}</td>
+                <td>{desc}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-    <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>ColorTokens — 色彩系统</h3>
-    <p style={{ color: '#6b7280', 'font-size': '0.85rem', margin: '0 0 0.75rem' }}>
-      每个语义色包含 5 级变体：base / hover / active / disabled / pale。
-      colors.light 为浅色主题，colors.dark 为暗色主题。
-    </p>
-    <div class="guide-table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Token</th>
-            <th>Light</th>
-            <th>Dark</th>
-            <th>CSS 变量</th>
-          </tr>
-        </thead>
-        <tbody>
-          {colorRows.map(([name, light, dark]) => (
+      <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>ColorTokens — 色彩系统</h3>
+      <p style={{ color: '#6b7280', 'font-size': '0.85rem', margin: '0 0 0.75rem' }}>
+        每个语义色包含 5 级变体：base / hover / active / disabled / pale。
+        colors.light 为浅色主题，colors.dark 为暗色主题。
+      </p>
+      <div class="guide-table-wrap">
+        <table>
+          <thead>
             <tr>
-              <td style={{ 'font-weight': 600 }}>{name}</td>
-              <td style={{ 'font-family': 'monospace', 'font-size': '0.8rem' }}>
-                <span style={{ display: 'inline-block', width: '14px', height: '14px', 'border-radius': '3px', background: light, 'vertical-align': 'middle', 'margin-right': '6px', border: '1px solid rgba(0,0,0,0.1)' }} />
-                {light}
-              </td>
-              <td style={{ 'font-family': 'monospace', 'font-size': '0.8rem' }}>
-                <span style={{ display: 'inline-block', width: '14px', height: '14px', 'border-radius': '3px', background: dark, 'vertical-align': 'middle', 'margin-right': '6px', border: '1px solid rgba(0,0,0,0.1)' }} />
-                {dark}
-              </td>
-              <td style={{ 'font-family': 'monospace', 'font-size': '0.75rem', color: '#6b7280' }}>
-                --sc-color-{name.replace(/[A-Z]/g, m => '-' + m.toLowerCase())}
-              </td>
+              <th>Token</th>
+              <th>Light</th>
+              <th>Dark</th>
+              <th>CSS 变量</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {colorRows.map(([name, light, dark]) => (
+              <tr>
+                <td style={{ 'font-weight': 600 }}>{name}</td>
+                <td style={{ 'font-family': 'monospace', 'font-size': '0.8rem' }}>
+                  <span style={{ display: 'inline-block', width: '14px', height: '14px', 'border-radius': '3px', background: light, 'vertical-align': 'middle', 'margin-right': '6px', border: '1px solid rgba(0,0,0,0.1)' }} />
+                  {light}
+                </td>
+                <td style={{ 'font-family': 'monospace', 'font-size': '0.8rem' }}>
+                  <span style={{ display: 'inline-block', width: '14px', height: '14px', 'border-radius': '3px', background: dark, 'vertical-align': 'middle', 'margin-right': '6px', border: '1px solid rgba(0,0,0,0.1)' }} />
+                  {dark}
+                </td>
+                <td style={{ 'font-family': 'monospace', 'font-size': '0.75rem', color: '#6b7280' }}>
+                  --sc-color-{name.replace(/[A-Z]/g, m => '-' + m.toLowerCase())}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-    <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>TypographyConfig — 排版</h3>
-    <div class="guide-table-wrap">
-      <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.85rem' }}>
-        <thead>
-          <tr style={{ 'border-bottom': '2px solid #e5e7eb', 'text-align': 'left' }}>
-            <th style={{ padding: '8px 12px' }}>字段</th>
-            <th style={{ padding: '8px 12px' }}>值</th>
-          </tr>
-        </thead>
-        <tbody>
-          {typoRows.map(([name, val]) => (
-            <tr>
-              <td style={{ 'font-weight': 600, 'font-family': 'monospace', 'font-size': '0.8rem' }}>{name}</td>
-              <td style={{ 'font-family': 'monospace', 'font-size': '0.8rem' }}>{val}</td>
+      <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>TypographyConfig — 排版</h3>
+      <div class="guide-table-wrap">
+        <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.85rem' }}>
+          <thead>
+            <tr style={{ 'border-bottom': '2px solid #e5e7eb', 'text-align': 'left' }}>
+              <th style={{ padding: '8px 12px' }}>字段</th>
+              <th style={{ padding: '8px 12px' }}>值</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {typoRows.map(([name, val]) => (
+              <tr>
+                <td style={{ 'font-weight': 600, 'font-family': 'monospace', 'font-size': '0.8rem' }}>{name}</td>
+                <td style={{ 'font-family': 'monospace', 'font-size': '0.8rem' }}>{val}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-    <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>BorderRadiusConfig — 圆角</h3>
-    <div class="guide-table-wrap">
-      <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.85rem' }}>
-        <thead>
-          <tr style={{ 'border-bottom': '2px solid #e5e7eb', 'text-align': 'left' }}>
-            <th style={{ padding: '8px 12px' }}>字段</th>
-            <th style={{ padding: '8px 12px' }}>值</th>
-            <th style={{ padding: '8px 12px' }}>CSS 变量</th>
-          </tr>
-        </thead>
-        <tbody>
-          {radiusRows.map(([name, val]) => (
-            <tr>
-              <td style={{ 'font-weight': 600 }}>{name}</td>
-              <td style={{ 'font-family': 'monospace', 'font-size': '0.8rem' }}>{val}</td>
-              <td style={{ 'font-family': 'monospace', 'font-size': '0.75rem', color: '#6b7280' }}>--sc-border-radius-{name}</td>
+      <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>BorderRadiusConfig — 圆角</h3>
+      <div class="guide-table-wrap">
+        <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.85rem' }}>
+          <thead>
+            <tr style={{ 'border-bottom': '2px solid #e5e7eb', 'text-align': 'left' }}>
+              <th style={{ padding: '8px 12px' }}>字段</th>
+              <th style={{ padding: '8px 12px' }}>值</th>
+              <th style={{ padding: '8px 12px' }}>CSS 变量</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {radiusRows.map(([name, val]) => (
+              <tr>
+                <td style={{ 'font-weight': 600 }}>{name}</td>
+                <td style={{ 'font-family': 'monospace', 'font-size': '0.8rem' }}>{val}</td>
+                <td style={{ 'font-family': 'monospace', 'font-size': '0.75rem', color: '#6b7280' }}>--sc-border-radius-{name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-    <h2 style={SECTION_H2}>CSS 变量输出</h2>
-    <p style={{ color: '#6b7280', 'margin': '0 0 0.75rem' }}>
-      ProviderConfig 挂载时调用 generateCSSVars()，注入 &lt;style id="solid-component-theme"&gt; 到 &lt;head&gt;。
-      darkMode='class' 时生成 :root + .dark 两段；darkMode='media' 时生成 :root + @media 查询。
-    </p>
-    <CodeBlock lang="css" code={`:root {
+      <h2 style={SECTION_H2}>CSS 变量输出</h2>
+      <p style={{ color: '#6b7280', 'margin': '0 0 0.75rem' }}>
+        ProviderConfig 挂载时调用 generateCSSVars()，注入 &lt;style id="solid-component-theme"&gt; 到 &lt;head&gt;。
+        darkMode='class' 时生成 :root + .dark 两段；darkMode='media' 时生成 :root + @media 查询。
+      </p>
+      <CodeBlock lang="css" code={`:root {
   color-scheme: light dark;
   --sc-color-primary: #1677ff;
   --sc-color-primary-hover: #4096ff;
@@ -932,18 +930,18 @@ const ConfigDocPage: Component = () => {
   /* ... 暗色覆盖 ... */
 }`} />
 
-    <h2 style={SECTION_H2}>useConfig Hook</h2>
-    <p style={{ color: '#6b7280', 'margin': '0 0 0.75rem' }}>
-      任意子组件内获取当前配置（JS 端读取主题值、做条件逻辑）。
-    </p>
-    <CodeBlock lang="tsx" code={`import { useConfig } from 'solid-mobile';
+      <h2 style={SECTION_H2}>useConfig Hook</h2>
+      <p style={{ color: '#6b7280', 'margin': '0 0 0.75rem' }}>
+        任意子组件内获取当前配置（JS 端读取主题值、做条件逻辑）。
+      </p>
+      <CodeBlock lang="tsx" code={`import { useConfig } from 'solid-mobile';
 
 function MyComp() {
   const cfg = useConfig();
   console.log(cfg.colors.light.primary); // '#1677ff'
   console.log(cfg.locale);               // 'zh-CN'
 }`} />
-  </div>
+    </div>
   );
 };
 
