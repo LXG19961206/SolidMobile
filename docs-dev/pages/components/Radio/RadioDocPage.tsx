@@ -36,15 +36,15 @@ const groupProps: PropRow[] = [
 ];
 
 const radioCssVars: PropRow[] = [
-  { name: '--sc-radio-text-color', type: 'color', default: '--sc-color-text', required: false, desc: '文字颜色。' },
-  { name: '--sc-radio-disabled-text-color', type: 'color', default: '--sc-color-text-tertiary', required: false, desc: '禁用态文字颜色。' },
-  { name: '--sc-radio-icon-size', type: 'length', default: '20px', required: false, desc: '图标大小。' },
-  { name: '--sc-radio-border-color', type: 'color', default: '#c8c9cc', required: false, desc: '边框颜色。' },
-  { name: '--sc-radio-checked-border-color', type: 'color', default: '#1989fa', required: false, desc: '选中态边框颜色。' },
-  { name: '--sc-radio-checked-bg', type: 'color', default: '#1989fa', required: false, desc: '选中态背景色。' },
-  { name: '--sc-radio-disabled-opacity', type: 'number', default: '0.5', required: false, desc: '禁用态透明度。' },
-  { name: '--sc-radio-gap', type: 'length', default: '8px', required: false, desc: '图标与标签间距。' },
-  { name: '--sc-radio-font-size', type: 'length', default: '0.9375rem', required: false, desc: '字号。' },
+  { name: '--sc-radio-text-color', type: 'color', default: '--sc-color-text', required: false, desc: 'cssVars.Radio.__sc_radio_text_color' },
+  { name: '--sc-radio-disabled-text-color', type: 'color', default: '--sc-color-text-tertiary', required: false, desc: 'cssVars.Radio.__sc_radio_disabled_text_color' },
+  { name: '--sc-radio-icon-size', type: 'length', default: '20px', required: false, desc: 'cssVars.Radio.__sc_radio_icon_size' },
+  { name: '--sc-radio-border-color', type: 'color', default: '#c8c9cc', required: false, desc: 'cssVars.Radio.__sc_radio_border_color' },
+  { name: '--sc-radio-checked-border-color', type: 'color', default: '#1989fa', required: false, desc: 'cssVars.Radio.__sc_radio_checked_border_color' },
+  { name: '--sc-radio-checked-bg', type: 'color', default: '#1989fa', required: false, desc: 'cssVars.Radio.__sc_radio_checked_bg' },
+  { name: '--sc-radio-disabled-opacity', type: 'number', default: '0.5', required: false, desc: 'cssVars.Radio.__sc_radio_disabled_opacity' },
+  { name: '--sc-radio-gap', type: 'length', default: '8px', required: false, desc: 'cssVars.Radio.__sc_radio_gap' },
+  { name: '--sc-radio-font-size', type: 'length', default: '0.9375rem', required: false, desc: 'cssVars.Radio.__sc_radio_font_size' },
 ];
 
 const codeBasic = `<RadioGroup value={basicVal()} onChange={setBasicVal}>

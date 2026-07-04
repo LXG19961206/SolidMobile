@@ -70,15 +70,15 @@ export const ButtonDocPage: Component = () => {
 
         <h2 id="css-vars" class={styles.h2}>{t('common.cssVars')}</h2>
         <PropsTable rows={[
-          { name: '--sc-color-primary', type: 'color', default: '#1677ff', required: false, desc: '主色背景（primary 类型）。' },
-          { name: '--sc-color-primary-hover', type: 'color', default: '#4995ff', required: false, desc: '主色悬停态。' },
-          { name: '--sc-color-primary-active', type: 'color', default: '#005ee2', required: false, desc: '主色按下态。' },
-          { name: '--sc-color-primary-pale', type: 'color', default: '—', required: false, desc: '主色浅色背景（ghost/outline 悬停）。' },
-          { name: '--sc-color-text-inverse', type: 'color', default: '#fff', required: false, desc: '按钮文字颜色。' },
-          { name: '--sc-border-radius-sm', type: 'length', default: '4px', required: false, desc: '小圆角（size=sm）。' },
-          { name: '--sc-border-radius-md', type: 'length', default: '8px', required: false, desc: '中圆角（size=md）。' },
-          { name: '--sc-border-radius-lg', type: 'length', default: '12px', required: false, desc: '大圆角（size=lg）。' },
-          { name: '--sc-border-radius-full', type: 'length', default: '999px', required: false, desc: '胶囊圆角（round 模式）。' },
+          { name: '--sc-color-primary', type: 'color', default: '#1677ff', required: false, desc: 'cssVars.Button.__sc_color_primary' },
+          { name: '--sc-color-primary-hover', type: 'color', default: '#4995ff', required: false, desc: 'cssVars.Button.__sc_color_primary_hover' },
+          { name: '--sc-color-primary-active', type: 'color', default: '#005ee2', required: false, desc: 'cssVars.Button.__sc_color_primary_active' },
+          { name: '--sc-color-primary-pale', type: 'color', default: '—', required: false, desc: 'cssVars.Button.__sc_color_primary_pale' },
+          { name: '--sc-color-text-inverse', type: 'color', default: '#fff', required: false, desc: 'cssVars.Button.__sc_color_text_inverse' },
+          { name: '--sc-border-radius-sm', type: 'length', default: '4px', required: false, desc: 'cssVars.Button.__sc_border_radius_sm' },
+          { name: '--sc-border-radius-md', type: 'length', default: '8px', required: false, desc: 'cssVars.Button.__sc_border_radius_md' },
+          { name: '--sc-border-radius-lg', type: 'length', default: '12px', required: false, desc: 'cssVars.Button.__sc_border_radius_lg' },
+          { name: '--sc-border-radius-full', type: 'length', default: '999px', required: false, desc: 'cssVars.Button.__sc_border_radius_full' },
         ]} />
 
         {/* ---- Events ---- */}

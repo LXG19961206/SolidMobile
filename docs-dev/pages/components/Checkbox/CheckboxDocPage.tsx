@@ -42,16 +42,16 @@ const groupProps: PropRow[] = [
 ];
 
 const checkboxCssVars: PropRow[] = [
-  { name: '--sc-checkbox-text-color', type: 'color', default: '--sc-color-text', required: false, desc: '文字颜色。' },
-  { name: '--sc-checkbox-disabled-text-color', type: 'color', default: '--sc-color-text-tertiary', required: false, desc: '禁用态文字颜色。' },
-  { name: '--sc-checkbox-icon-size', type: 'length', default: '20px', required: false, desc: '图标大小。' },
-  { name: '--sc-checkbox-border-color', type: 'color', default: '#c8c9cc', required: false, desc: '边框颜色。' },
-  { name: '--sc-checkbox-checked-border-color', type: 'color', default: '#1989fa', required: false, desc: '选中态边框颜色。' },
-  { name: '--sc-checkbox-checked-bg', type: 'color', default: '#1989fa', required: false, desc: '选中态背景色。' },
-  { name: '--sc-checkbox-disabled-opacity', type: 'number', default: '0.5', required: false, desc: '禁用态透明度。' },
-  { name: '--sc-checkbox-gap', type: 'length', default: '8px', required: false, desc: '图标与标签间距。' },
-  { name: '--sc-checkbox-font-size', type: 'length', default: '0.9375rem', required: false, desc: '字号。' },
-  { name: '--sc-checkbox-border-radius', type: 'length', default: '4px', required: false, desc: 'square 形状圆角。' },
+  { name: '--sc-checkbox-text-color', type: 'color', default: '--sc-color-text', required: false, desc: 'cssVars.Checkbox.__sc_checkbox_text_color' },
+  { name: '--sc-checkbox-disabled-text-color', type: 'color', default: '--sc-color-text-tertiary', required: false, desc: 'cssVars.Checkbox.__sc_checkbox_disabled_text_color' },
+  { name: '--sc-checkbox-icon-size', type: 'length', default: '20px', required: false, desc: 'cssVars.Checkbox.__sc_checkbox_icon_size' },
+  { name: '--sc-checkbox-border-color', type: 'color', default: '#c8c9cc', required: false, desc: 'cssVars.Checkbox.__sc_checkbox_border_color' },
+  { name: '--sc-checkbox-checked-border-color', type: 'color', default: '#1989fa', required: false, desc: 'cssVars.Checkbox.__sc_checkbox_checked_border_color' },
+  { name: '--sc-checkbox-checked-bg', type: 'color', default: '#1989fa', required: false, desc: 'cssVars.Checkbox.__sc_checkbox_checked_bg' },
+  { name: '--sc-checkbox-disabled-opacity', type: 'number', default: '0.5', required: false, desc: 'cssVars.Checkbox.__sc_checkbox_disabled_opacity' },
+  { name: '--sc-checkbox-gap', type: 'length', default: '8px', required: false, desc: 'cssVars.Checkbox.__sc_checkbox_gap' },
+  { name: '--sc-checkbox-font-size', type: 'length', default: '0.9375rem', required: false, desc: 'cssVars.Checkbox.__sc_checkbox_font_size' },
+  { name: '--sc-checkbox-border-radius', type: 'length', default: '4px', required: false, desc: 'cssVars.Checkbox.__sc_checkbox_border_radius' },
 ];
 
 const codeBasic = `<CheckboxGroup value={basicVal()} onChange={setBasicVal}>

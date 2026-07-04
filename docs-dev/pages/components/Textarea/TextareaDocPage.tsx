@@ -62,14 +62,14 @@ export const TextareaDocPage: Component = () => {
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.cssVars')}</h2>
       <PropsTable rows={[
-        { name: '--sc-textarea-text-color', type: 'color', default: '--sc-color-text (#323233)', required: false, desc: '文字颜色。' },
-        { name: '--sc-textarea-placeholder-color', type: 'color', default: '--sc-color-text-secondary', required: false, desc: '占位符颜色。' },
-        { name: '--sc-textarea-border-color', type: 'color', default: '--sc-color-border (#dcdee0)', required: false, desc: '边框颜色。' },
-        { name: '--sc-textarea-border-focus-color', type: 'color', default: '--sc-color-primary (#1677ff)', required: false, desc: '聚焦时边框颜色。' },
-        { name: '--sc-textarea-disabled-opacity', type: 'number', default: '0.5', required: false, desc: '禁用态透明度。' },
-        { name: '--sc-textarea-count-font-size', type: 'dimension', default: '0.75rem', required: false, desc: '计数字号。' },
-        { name: '--sc-textarea-count-color', type: 'color', default: '--sc-color-text-tertiary', required: false, desc: '计数颜色。' },
-        { name: '--sc-textarea-error-color', type: 'color', default: '#e01823', required: false, desc: '错误态波浪线颜色。' },
+        { name: '--sc-textarea-text-color', type: 'color', default: '--sc-color-text (#323233)', required: false, desc: 'cssVars.Textarea.__sc_textarea_text_color' },
+        { name: '--sc-textarea-placeholder-color', type: 'color', default: '--sc-color-text-secondary', required: false, desc: 'cssVars.Textarea.__sc_textarea_placeholder_color' },
+        { name: '--sc-textarea-border-color', type: 'color', default: '--sc-color-border (#dcdee0)', required: false, desc: 'cssVars.Textarea.__sc_textarea_border_color' },
+        { name: '--sc-textarea-border-focus-color', type: 'color', default: '--sc-color-primary (#1677ff)', required: false, desc: 'cssVars.Textarea.__sc_textarea_border_focus_color' },
+        { name: '--sc-textarea-disabled-opacity', type: 'number', default: '0.5', required: false, desc: 'cssVars.Textarea.__sc_textarea_disabled_opacity' },
+        { name: '--sc-textarea-count-font-size', type: 'dimension', default: '0.75rem', required: false, desc: 'cssVars.Textarea.__sc_textarea_count_font_size' },
+        { name: '--sc-textarea-count-color', type: 'color', default: '--sc-color-text-tertiary', required: false, desc: 'cssVars.Textarea.__sc_textarea_count_color' },
+        { name: '--sc-textarea-error-color', type: 'color', default: '#e01823', required: false, desc: 'cssVars.Textarea.__sc_textarea_error_color' },
       ]} />
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.basicAndStates')}</h2>

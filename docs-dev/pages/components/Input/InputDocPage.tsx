@@ -113,17 +113,17 @@ export const InputDocPage: Component = () => {
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.cssVars')}</h2>
       <PropsTable rows={[
-        { name: '--sc-input-text-color', type: 'color', default: '--sc-color-text (#323233)', required: false, desc: '文字颜色。' },
-        { name: '--sc-input-placeholder-color', type: 'color', default: '--sc-color-text-secondary', required: false, desc: '占位符颜色。' },
-        { name: '--sc-input-disabled-opacity', type: 'number', default: '0.5', required: false, desc: '禁用态透明度。' },
-        { name: '--sc-input-gap', type: 'dimension', default: '6px', required: false, desc: '内部元素间距。' },
-        { name: '--sc-input-affix-color', type: 'color', default: '--sc-color-text-secondary', required: false, desc: '前后缀颜色。' },
-        { name: '--sc-input-affix-font-size', type: 'dimension', default: '0.9rem', required: false, desc: '前后缀字号。' },
-        { name: '--sc-input-clear-color', type: 'color', default: '--sc-color-text-tertiary', required: false, desc: '清除按钮颜色。' },
-        { name: '--sc-input-clear-hover-color', type: 'color', default: '--sc-color-text-secondary', required: false, desc: '清除按钮悬停色。' },
-        { name: '--sc-input-count-font-size', type: 'dimension', default: '0.75rem', required: false, desc: '计数字号。' },
-        { name: '--sc-input-count-color', type: 'color', default: '--sc-color-text-tertiary', required: false, desc: '计数颜色。' },
-        { name: '--sc-input-error-color', type: 'color', default: '#e01823', required: false, desc: '错误态波浪线颜色。' },
+        { name: '--sc-input-text-color', type: 'color', default: '--sc-color-text (#323233)', required: false, desc: 'cssVars.Input.__sc_input_text_color' },
+        { name: '--sc-input-placeholder-color', type: 'color', default: '--sc-color-text-secondary', required: false, desc: 'cssVars.Input.__sc_input_placeholder_color' },
+        { name: '--sc-input-disabled-opacity', type: 'number', default: '0.5', required: false, desc: 'cssVars.Input.__sc_input_disabled_opacity' },
+        { name: '--sc-input-gap', type: 'dimension', default: '6px', required: false, desc: 'cssVars.Input.__sc_input_gap' },
+        { name: '--sc-input-affix-color', type: 'color', default: '--sc-color-text-secondary', required: false, desc: 'cssVars.Input.__sc_input_affix_color' },
+        { name: '--sc-input-affix-font-size', type: 'dimension', default: '0.9rem', required: false, desc: 'cssVars.Input.__sc_input_affix_font_size' },
+        { name: '--sc-input-clear-color', type: 'color', default: '--sc-color-text-tertiary', required: false, desc: 'cssVars.Input.__sc_input_clear_color' },
+        { name: '--sc-input-clear-hover-color', type: 'color', default: '--sc-color-text-secondary', required: false, desc: 'cssVars.Input.__sc_input_clear_hover_color' },
+        { name: '--sc-input-count-font-size', type: 'dimension', default: '0.75rem', required: false, desc: 'cssVars.Input.__sc_input_count_font_size' },
+        { name: '--sc-input-count-color', type: 'color', default: '--sc-color-text-tertiary', required: false, desc: 'cssVars.Input.__sc_input_count_color' },
+        { name: '--sc-input-error-color', type: 'color', default: '#e01823', required: false, desc: 'cssVars.Input.__sc_input_error_color' },
       ]} />
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.basicTypes')}</h2>

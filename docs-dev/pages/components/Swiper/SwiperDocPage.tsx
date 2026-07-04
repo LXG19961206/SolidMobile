@@ -75,13 +75,13 @@ export const SwiperDocPage: Component = () => {
 
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.cssVars')}</h2>
         <PropsTable rows={[
-          { name: '--sc-swiper-dot-size', type: 'length', default: '6px', required: false, desc: '指示器圆点大小。' },
-          { name: '--sc-swiper-dot-active-width', type: 'length', default: '18px', required: false, desc: '当前指示器宽度。' },
-          { name: '--sc-swiper-dot-color', type: 'color', default: 'rgba(255,255,255,0.5)', required: false, desc: '指示器颜色。' },
-          { name: '--sc-swiper-dot-active-color', type: 'color', default: '#1989fa', required: false, desc: '当前指示器颜色。' },
-          { name: '--sc-swiper-dot-gap', type: 'length', default: '6px', required: false, desc: '指示器间距。' },
-          { name: '--sc-swiper-dot-bottom', type: 'length', default: '10px', required: false, desc: '指示器距底部距离。' },
-          { name: '--sc-swiper-radius', type: 'length', default: '0px', required: false, desc: '轮播容器圆角。' },
+          { name: '--sc-swiper-dot-size', type: 'length', default: '6px', required: false, desc: 'cssVars.Swiper.__sc_swiper_dot_size' },
+          { name: '--sc-swiper-dot-active-width', type: 'length', default: '18px', required: false, desc: 'cssVars.Swiper.__sc_swiper_dot_active_width' },
+          { name: '--sc-swiper-dot-color', type: 'color', default: 'rgba(255,255,255,0.5)', required: false, desc: 'cssVars.Swiper.__sc_swiper_dot_color' },
+          { name: '--sc-swiper-dot-active-color', type: 'color', default: '#1989fa', required: false, desc: 'cssVars.Swiper.__sc_swiper_dot_active_color' },
+          { name: '--sc-swiper-dot-gap', type: 'length', default: '6px', required: false, desc: 'cssVars.Swiper.__sc_swiper_dot_gap' },
+          { name: '--sc-swiper-dot-bottom', type: 'length', default: '10px', required: false, desc: 'cssVars.Swiper.__sc_swiper_dot_bottom' },
+          { name: '--sc-swiper-radius', type: 'length', default: '0px', required: false, desc: 'cssVars.Swiper.__sc_swiper_radius' },
         ]} />
       </div>
     </DocLayout>

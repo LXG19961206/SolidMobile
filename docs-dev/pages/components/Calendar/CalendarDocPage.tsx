@@ -30,21 +30,21 @@ const propsData: PropRow[] = [
 ];
 
 const cssVarRows: PropRow[] = [
-  { name: '--sc-calendar-bg', type: 'color', default: '#fff', required: false, desc: '日历背景色。' },
-  { name: '--sc-calendar-text', type: 'color', default: '#1f2937', required: false, desc: '日期文字颜色。' },
-  { name: '--sc-calendar-title-height', type: 'dimension', default: '44px', required: false, desc: '月份标题高度。' },
-  { name: '--sc-calendar-weekday-height', type: 'dimension', default: '30px', required: false, desc: '星期栏高度。' },
-  { name: '--sc-calendar-day-size', type: 'dimension', default: '64px', required: false, desc: '日期格子高度。' },
-  { name: '--sc-calendar-month-gap', type: 'dimension', default: '20px', required: false, desc: '月份间距。' },
-  { name: '--sc-calendar-active-bg', type: 'color', default: '#1677ff', required: false, desc: '选中态背景色。' },
-  { name: '--sc-calendar-active-color', type: 'color', default: '#fff', required: false, desc: '选中态文字色。' },
-  { name: '--sc-calendar-today-border', type: 'color', default: '#1677ff', required: false, desc: '今天标记点颜色。' },
-  { name: '--sc-calendar-other-month', type: 'color', default: '#d1d5db', required: false, desc: '非当月日期文字色。' },
-  { name: '--sc-calendar-disabled-opacity', type: 'number', default: '0.3', required: false, desc: '禁用态透明度。' },
-  { name: '--sc-calendar-mark-color', type: 'color', default: '#f5f5f7', required: false, desc: '月份水印数字颜色。' },
-  { name: '--sc-calendar-header-shadow', type: 'shadow', default: '0 5px 20px rgba(0,0,0,0.05)', required: false, desc: '标题栏阴影。' },
-  { name: '--sc-calendar-confirm-height', type: 'dimension', default: '50px', required: false, desc: '确认按钮区高度。' },
-  { name: '--sc-calendar-confirm-color', type: 'color', default: '#1677ff', required: false, desc: '确认按钮颜色。' },
+  { name: '--sc-calendar-bg', type: 'color', default: '#fff', required: false, desc: 'cssVars.Calendar.__sc_calendar_bg' },
+  { name: '--sc-calendar-text', type: 'color', default: '#1f2937', required: false, desc: 'cssVars.Calendar.__sc_calendar_text' },
+  { name: '--sc-calendar-title-height', type: 'dimension', default: '44px', required: false, desc: 'cssVars.Calendar.__sc_calendar_title_height' },
+  { name: '--sc-calendar-weekday-height', type: 'dimension', default: '30px', required: false, desc: 'cssVars.Calendar.__sc_calendar_weekday_height' },
+  { name: '--sc-calendar-day-size', type: 'dimension', default: '64px', required: false, desc: 'cssVars.Calendar.__sc_calendar_day_size' },
+  { name: '--sc-calendar-month-gap', type: 'dimension', default: '20px', required: false, desc: 'cssVars.Calendar.__sc_calendar_month_gap' },
+  { name: '--sc-calendar-active-bg', type: 'color', default: '#1677ff', required: false, desc: 'cssVars.Calendar.__sc_calendar_active_bg' },
+  { name: '--sc-calendar-active-color', type: 'color', default: '#fff', required: false, desc: 'cssVars.Calendar.__sc_calendar_active_color' },
+  { name: '--sc-calendar-today-border', type: 'color', default: '#1677ff', required: false, desc: 'cssVars.Calendar.__sc_calendar_today_border' },
+  { name: '--sc-calendar-other-month', type: 'color', default: '#d1d5db', required: false, desc: 'cssVars.Calendar.__sc_calendar_other_month' },
+  { name: '--sc-calendar-disabled-opacity', type: 'number', default: '0.3', required: false, desc: 'cssVars.Calendar.__sc_calendar_disabled_opacity' },
+  { name: '--sc-calendar-mark-color', type: 'color', default: '#f5f5f7', required: false, desc: 'cssVars.Calendar.__sc_calendar_mark_color' },
+  { name: '--sc-calendar-header-shadow', type: 'shadow', default: '0 5px 20px rgba(0,0,0,0.05)', required: false, desc: 'cssVars.Calendar.__sc_calendar_header_shadow' },
+  { name: '--sc-calendar-confirm-height', type: 'dimension', default: '50px', required: false, desc: 'cssVars.Calendar.__sc_calendar_confirm_height' },
+  { name: '--sc-calendar-confirm-color', type: 'color', default: '#1677ff', required: false, desc: 'cssVars.Calendar.__sc_calendar_confirm_color' },
 ];
 
 const tocItems: TOCItem[] = [
