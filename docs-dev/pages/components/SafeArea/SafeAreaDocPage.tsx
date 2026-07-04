@@ -34,7 +34,7 @@ export const SafeAreaDocPage: Component = () => {
     <div style={{ padding: '16px', 'max-width': '960px' }}>
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>SafeArea 安全区域</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
-        安全区域占位组件，确保内容不被设备的刘海屏、状态栏、Home Indicator 等遮挡。
+        {t(\'componentIntro.SafeAreaIntro\')}
       </p>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>

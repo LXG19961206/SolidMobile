@@ -105,7 +105,7 @@ export const InputDocPage: Component = () => {
     <div style={{ padding: '16px', 'max-width': '960px' }}>
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Input 输入框</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
-        文本输入组件。支持多种类型、清除按钮、前后缀、字数统计，可通过 FormItem 接入表单。
+        {t(\'componentIntro.InputIntro\')}
       </p>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>

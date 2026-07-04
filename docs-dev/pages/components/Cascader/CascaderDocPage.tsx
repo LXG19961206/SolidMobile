@@ -216,7 +216,7 @@ export const CascaderDocPage = () => {
     <div class={css.page}>
       <h1 class={css.h1}>Cascader 级联选择器</h1>
       <p class={css.intro}>
-        多层级联选择，通过树形数据源逐级展开，支持无限层级。顶部 Tab 显示选中路径，可点击回退。
+        {t(\'componentIntro.CascaderIntro\')}
       </p>
 
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>

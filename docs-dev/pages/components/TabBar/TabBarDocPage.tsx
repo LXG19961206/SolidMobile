@@ -70,7 +70,7 @@ export const TabBarDocPage: Component = () => {
       <div style={{ padding: '16px', 'max-width': '960px' }}>
         <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>TabBar 标签栏</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
-          移动端底部标签导航栏，支持图标+文字、徽标红点、自定义颜色。一般配合页面容器使用。
+          {t(\'componentIntro.TabBarIntro\')}
         </p>
 
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>TabBar {t('common.props')}</h2>

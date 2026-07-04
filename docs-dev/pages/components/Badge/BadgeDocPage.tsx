@@ -27,7 +27,7 @@ export const BadgeDocPage = () => {
 
     <div class={css.page}>
       <h1 class={css.h1}>Badge 徽标</h1>
-      <p class={css.intro}>用于消息数量、状态提示的小型徽标，通常附着在图标、按钮、标签页等组件上。</p>
+      <p class={css.intro}>{t(\'componentIntro.BadgeIntro\')}</p>
 
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />

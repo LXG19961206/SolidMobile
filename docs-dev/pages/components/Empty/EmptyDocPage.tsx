@@ -25,7 +25,7 @@ export const EmptyDocPage = () => {
 
     <div class={css.page}>
       <h1 class={css.h1}>Empty 空状态</h1>
-      <p class={css.intro}>数据为空时的占位提示。内置三种预设图片，也支持自定义 JSX 和底部操作。</p>
+      <p class={css.intro}>{t(\'componentIntro.EmptyIntro\')}</p>
 
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />

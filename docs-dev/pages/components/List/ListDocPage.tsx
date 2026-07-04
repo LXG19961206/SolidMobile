@@ -230,8 +230,7 @@ export const ListDocPage: Component = () => {
       <div class={css.page}>
         <h1 class={css.h1}>List 列表</h1>
         <p class={css.intro}>
-          滚动加载列表组件。支持受控（data）和不受控（onLoad + finished）两种数据模式，
-          可通过 virtual 开启虚拟列表，pullRefresh 开启下拉刷新。
+          {t(\'componentIntro.ListIntro\')}
         </p>
 
         <h2 id="props" class={css.h2}>{t('common.props')}</h2>

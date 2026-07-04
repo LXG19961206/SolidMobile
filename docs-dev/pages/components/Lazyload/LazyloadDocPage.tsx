@@ -153,8 +153,7 @@ export const LazyloadDocPage: Component = () => {
       <div class={css.page}>
         <h1 class={css.h1}>Lazyload 懒加载</h1>
         <p class={css.intro}>
-          元素进入视口后才渲染内容。demo 中预留 1s 加载延迟，
-          模拟真实网络请求，清晰展示骨架屏 → Loading → 内容的完整生命周期。
+          {t(\'componentIntro.LazyloadIntro\')}
         </p>
 
         <h2 id="props" class={css.h2}>{t('common.props')}</h2>

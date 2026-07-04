@@ -54,7 +54,7 @@ export const TextareaDocPage: Component = () => {
     <div style={{ padding: '16px', 'max-width': '960px' }}>
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Textarea 多行输入</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
-        多行文本输入组件。支持自动撑高、字数统计、清除按钮，可通过 FormItem 接入表单。
+        {t(\'componentIntro.TextareaIntro\')}
       </p>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>

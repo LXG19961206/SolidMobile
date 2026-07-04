@@ -39,7 +39,7 @@ export const SwitchDocPage = () => {
       <div class={styles.page}>
         <h1 class={styles.h1}>Switch 开关</h1>
         <p class={styles.intro}>
-          在两种状态间切换的交互控件。支持受控 / 非受控模式，自定义尺寸、颜色及禁用状态。
+          {t(\'componentIntro.SwitchIntro\')}
         </p>
 
         {/* Props */}

@@ -41,7 +41,7 @@ export const PullRefreshDocPage: Component = () => {
       <div style={{ padding: '16px', 'max-width': '960px' }}>
         <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>PullRefresh 下拉刷新</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
-          包裹内容区域，支持下拉手势触发刷新，带阻尼反馈、加载状态和成功提示。
+          {t(\'componentIntro.PullRefreshIntro\')}
         </p>
 
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>

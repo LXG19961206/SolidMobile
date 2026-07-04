@@ -35,7 +35,7 @@ export const NavBarDocPage = () => {
     <div class={css.page}>
       <h1 class={css.h1}>NavBar 导航栏</h1>
       <p class={css.intro}>
-        顶部导航条，提供左中右三区域布局，支持返回箭头、固定定位和占位元素。
+        {t(\'componentIntro.NavBarIntro\')}
       </p>
 
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>

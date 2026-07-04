@@ -27,7 +27,7 @@ const OverlayDocInner = () => {
   return (
     <div style={{ padding: '16px', 'max-width': '960px' }}>
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Overlay 遮罩层</h1>
-      <p style={{ color: '#6b7280', margin: '0 0 24px' }}>全屏半透明遮罩，所有弹出层组件的基础设施。</p>
+      <p style={{ color: '#6b7280', margin: '0 0 24px' }}>{t(\'componentIntro.OverlayIntro\')}</p>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />

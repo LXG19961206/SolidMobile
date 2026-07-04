@@ -107,7 +107,7 @@ export const TimePickerDocPage: Component = () => {
     <div style={{ padding: '16px', 'max-width': '960px' }}>
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>TimePicker 时间选择</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
-        HH:mm:ss 三列时间选择器，基于 Picker 封装。自动适配 Form。
+        {t(\'componentIntro.TimePickerIntro\')}
       </p>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>

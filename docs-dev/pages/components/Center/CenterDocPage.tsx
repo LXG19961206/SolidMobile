@@ -33,7 +33,7 @@ export const CenterDocPage = () => {
     <div class={styles.page}>
       <h1 class={styles.h1}>Center 居中</h1>
       <p class={styles.intro}>
-        解决初级开发者最常见的居中难题。默认无参数时采用 flex 两轴居中，也可以通过布尔参数自由组合五种居中策略。
+        {t(\'componentIntro.CenterIntro\')}
       </p>
 
       {/* Props */}

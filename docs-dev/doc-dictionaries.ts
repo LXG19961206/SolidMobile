@@ -407,6 +407,55 @@ export const docMessages: LocaleMessages = {
       yearMonth: '仅选择年月',
       yearMonthDesc: `type='year-month' 只显示年和月两列。`,
   },
+      componentIntro: {
+      ActionSheetIntro: `从底部弹出的选项菜单。`
+      AvatarIntro: `用于用户、联系人等场景。优先级：src（图片）→ icon（图标）→ text（首字符）。
+        src 加载失败自动降级。`
+      BadgeIntro: `用于消息数量、状态提示的小型徽标，通常附着在图标、按钮、标签页等组件上。`
+      ButtonIntro: `通用的操作触发按钮。支持多种变体风格、四种尺寸、图标、加载态、链接模式及自定义颜色。`
+      CalendarIntro: `支持单选和范围选择，默认弹出模式（底部半屏）。也可平铺展示。所有样式通过 CSS 变量控制。`
+      CascaderIntro: `多层级联选择，通过树形数据源逐级展开，支持无限层级。顶部 Tab 显示选中路径，可点击回退。`
+      CellIntro: `列表项的基础组件。Cell 展示单行信息，CellGroup 将多个 Cell 归为一组，支持标题、卡片模式。`
+      CenterIntro: `解决初级开发者最常见的居中难题。默认无参数时采用 flex 两轴居中，也可以通过布尔参数自由组合五种居中策略。`
+      CheckboxIntro: `多选组件，配合 CheckboxGroup 使用。支持多种形状、半选状态和自定义图标。`
+      CityPickerIntro: `省市区级联选择器，基于 Picker 组件封装。
+        组件<b>不内置省市区数据</b>，需用户自行准备并传入 <code>columns</code>。`
+      DialogIntro: `居中模态对话框，支持标题、内容、确认/取消按钮。
+          既可通过组件声明式调用，也可通过命令式 API 弹出。`
+      DividerIntro: `将内容分组的视觉分隔线，支持水平/垂直方向、文字和虚线样式。`
+      EmptyIntro: `数据为空时的占位提示。内置三种预设图片，也支持自定义 JSX 和底部操作。`
+      FormIntro: `表单容器，通过 FormItem 统一管理字段值、校验和提交。`
+      IconIntro: `基于 Remix Icon 精选的 129 个图标，支持线性（line）和填充（fill）两种风格。
+          首选方式是通过 <code>solid-component/icons</code> 按需引入，也可以使用 <code>&lt;Icon name="..." /&gt;</code> 动态调用。`
+      InputIntro: `文本输入组件。支持多种类型、清除按钮、前后缀、字数统计，可通过 FormItem 接入表单。`
+      LayoutIntro: `基于 flex 的 24 栏栅格系统。Row 为 flex 容器，Col 为 flex 子项，通过 span 控制占宽、offset 控制偏移。`
+      LazyloadIntro: `元素进入视口后才渲染内容。demo 中预留 1s 加载延迟，
+          模拟真实网络请求，清晰展示骨架屏 → Loading → 内容的完整生命周期。`
+      ListIntro: `滚动加载列表组件。支持受控（data）和不受控（onLoad + finished）两种数据模式，
+          可通过 virtual 开启虚拟列表，pullRefresh 开启下拉刷新。`
+      LoadingIntro: `展示加载中状态的视觉反馈。内置三种动画类型，支持自定义图标、文字、纵向布局及全屏遮罩模式。`
+      NavBarIntro: `顶部导航条，提供左中右三区域布局，支持返回箭头、固定定位和占位元素。`
+      OverlayIntro: `全屏半透明遮罩，所有弹出层组件的基础设施。`
+      PickerIntro: `滚轮选择器，支持 Tree 级联和 Flat 多列。点击 Cell 弹出。`
+      PullRefreshIntro: `包裹内容区域，支持下拉手势触发刷新，带阻尼反馈、加载状态和成功提示。`
+      RadioIntro: `单选组件，配合 RadioGroup 使用。支持多种形状、自定义图标和颜色。`
+      RateIntro: `评分组件，支持半选、清除、自定义图标和颜色。`
+      SafeAreaIntro: `安全区域占位组件，确保内容不被设备的刘海屏、状态栏、Home Indicator 等遮挡。`
+      SelectIntro: `选项选择器，基于 Picker 组件封装。点击触发区域弹出滚轮选择。`
+      SliderIntro: `滑块组件，支持单滑块、多滑块、自定义颜色和尺寸。`
+      StepperIntro: `步进器，用于增加或减少数量。`
+      SwiperIntro: `轮播组件，支持手势滑动、自动播放、循环、纵向滚动、自定义指示器。可通过 imgUrls 快速渲染图片轮播。`
+      SwitchIntro: `在两种状态间切换的交互控件。支持受控 / 非受控模式，自定义尺寸、颜色及禁用状态。`
+      TabBarIntro: `移动端底部标签导航栏，支持图标+文字、徽标红点、自定义颜色。一般配合页面容器使用。`
+      TabsIntro: `选项卡切换组件。title 支持 string 或 JSX.Element。
+          默认开启 lazyRender，未激活的 tab 不渲染内容。`
+      TagIntro: `用于标记和分类的小型标签，支持多种语义色和填充方式。`
+      TextareaIntro: `多行文本输入组件。支持自动撑高、字数统计、清除按钮，可通过 FormItem 接入表单。`
+      TimePickerIntro: `HH:mm:ss 三列时间选择器，基于 Picker 封装。自动适配 Form。`
+      ToastIntro: `全局的轻量级反馈提示，命令式 API 调用。`
+      UploadIntro: `文件选择、预览与上传组件。支持图片缩略图网格和文件列表两种展示模式，通过 api 属性注入上传策略。`
+      notifyIntro: `顶部/底部弹出式通知栏，命令式 API 调用。`
+    },
   section: {
     flexCenter: 'Flex 居中',
     textCenter: 'Text 居中',

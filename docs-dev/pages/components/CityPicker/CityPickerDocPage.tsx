@@ -339,8 +339,7 @@ export const CityPickerDocPage: Component = () => {
     <div style={{ padding: '16px', 'max-width': '960px' }}>
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>CityPicker 城市选择</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
-        省市区级联选择器，基于 Picker 组件封装。
-        组件<b>不内置省市区数据</b>，需用户自行准备并传入 <code>columns</code>。
+        {t(\'componentIntro.CityPickerIntro\')}
       </p>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>CityPicker Props</h2>

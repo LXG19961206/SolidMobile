@@ -41,7 +41,7 @@ const LoadingDocInner = () => {
       <div class={styles.page}>
         <h1 class={styles.h1}>Loading 加载</h1>
         <p class={styles.intro}>
-          展示加载中状态的视觉反馈。内置三种动画类型，支持自定义图标、文字、纵向布局及全屏遮罩模式。
+          {t(\'componentIntro.LoadingIntro\')}
         </p>
 
         {/* Props */}

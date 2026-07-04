@@ -68,7 +68,7 @@ export const UploadDocPage: Component = () => {
         <ToastRenderer />
         <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Upload 文件上传</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
-          文件选择、预览与上传组件。支持图片缩略图网格和文件列表两种展示模式，通过 api 属性注入上传策略。
+          {t(\'componentIntro.UploadIntro\')}
         </p>
 
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Props</h2>

@@ -138,8 +138,7 @@ export const IconDocPage: Component = () => {
       <div class={styles.page}>
         <h1 class={styles.h1}>Icon 图标</h1>
         <p class={styles.intro}>
-          基于 Remix Icon 精选的 129 个图标，支持线性（line）和填充（fill）两种风格。
-          首选方式是通过 <code>solid-component/icons</code> 按需引入，也可以使用 <code>&lt;Icon name="..." /&gt;</code> 动态调用。
+          {t(\'componentIntro.IconIntro\')}
         </p>
 
         {/* ── Props ── */}

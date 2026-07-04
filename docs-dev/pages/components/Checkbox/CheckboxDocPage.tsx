@@ -199,7 +199,7 @@ export const CheckboxDocPage: Component = () => {
       <div style={{ padding: '16px', 'max-width': '960px' }}>
         <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Checkbox 复选框</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
-          多选组件，配合 CheckboxGroup 使用。支持多种形状、半选状态和自定义图标。
+          {t(\'componentIntro.CheckboxIntro\')}
         </p>
 
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Checkbox Props</h2>

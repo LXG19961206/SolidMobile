@@ -54,8 +54,7 @@ const DialogDocInner: Component = () => {
       <div class={css.page}>
         <h1 class={css.h1}>Dialog 弹窗</h1>
         <p class={css.intro}>
-          居中模态对话框，支持标题、内容、确认/取消按钮。
-          既可通过组件声明式调用，也可通过命令式 API 弹出。
+          {t(\'componentIntro.DialogIntro\')}
         </p>
 
         <h2 id="props" class={css.h2}>{t('common.props')}</h2>

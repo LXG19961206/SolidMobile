@@ -62,7 +62,7 @@ export const ButtonDocPage: Component = () => {
 
       <div class={styles.page}>
         <h1 class={styles.h1}>Button 按钮</h1>
-        <p class={styles.lead}>通用的操作触发按钮。支持多种变体风格、四种尺寸、图标、加载态、链接模式及自定义颜色。</p>
+        <p class={styles.lead}>{t(\'componentIntro.ButtonIntro\')}</p>
 
         {/* ---- Props Table ---- */}
         <h2 id="props" class={styles.h2}>{t('common.props')}</h2>

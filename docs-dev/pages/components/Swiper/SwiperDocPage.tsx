@@ -33,7 +33,7 @@ export const SwiperDocPage: Component = () => {
       <div style={{ padding: '16px', 'max-width': '960px' }}>
         <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Swiper 轮播</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
-          轮播组件，支持手势滑动、自动播放、循环、纵向滚动、自定义指示器。可通过 imgUrls 快速渲染图片轮播。
+          {t(\'componentIntro.SwiperIntro\')}
         </p>
 
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>

@@ -47,8 +47,7 @@ export const TabsDocPage = () => {
       <div class={css.page}>
         <h1 class={css.h1}>Tabs 标签页</h1>
         <p class={css.intro}>
-          选项卡切换组件。title 支持 string 或 JSX.Element。
-          默认开启 lazyRender，未激活的 tab 不渲染内容。
+          {t(\'componentIntro.TabsIntro\')}
         </p>
 
         <h2 id="tabs-props" class={css.h2}>Tabs {t('common.props')}</h2>

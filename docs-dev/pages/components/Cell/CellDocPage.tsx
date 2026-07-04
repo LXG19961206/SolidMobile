@@ -46,7 +46,7 @@ export const CellDocPage = () => {
     <div class={styles.page}>
       <h1 class={styles.h1}>Cell / CellGroup 单元格</h1>
       <p class={styles.intro}>
-        列表项的基础组件。Cell 展示单行信息，CellGroup 将多个 Cell 归为一组，支持标题、卡片模式。
+        {t(\'componentIntro.CellIntro\')}
       </p>
 
       <h2 id="cell-props" class={styles.h2}>{t('common.cellProps')}</h2>

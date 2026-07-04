@@ -35,7 +35,7 @@ export const LayoutDocPage = () => {
 
     <div class={css.page}>
       <h1 class={css.h1}>Layout 布局</h1>
-      <p class={css.intro}>基于 flex 的 24 栏栅格系统。Row 为 flex 容器，Col 为 flex 子项，通过 span 控制占宽、offset 控制偏移。</p>
+      <p class={css.intro}>{t(\'componentIntro.LayoutIntro\')}</p>
 
       <h2 id="row-props" class={css.h2}>{t('common.rowProps')}</h2>
       <PropsTable rows={rowProps} />
