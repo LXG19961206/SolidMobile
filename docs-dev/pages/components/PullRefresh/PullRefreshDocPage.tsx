@@ -13,13 +13,13 @@ async function mockRefresh(): Promise<void> {
 }
 
 const pullRefreshProps: PropRow[] = [
-  { name: 'loading', type: 'boolean', default: '—', required: false, desc: '受控加载状态，传此属性后由你管理 loading。' },
-  { name: 'onRefresh', type: '() => void | Promise<void>', default: '—', required: false, desc: '刷新回调。返回 Promise 时组件自动等待完成后关闭。' },
-  { name: 'pullDistance', type: 'number', default: '80', required: false, desc: '触发刷新的下拉距离 (px)。' },
-  { name: 'headHeight', type: 'number', default: '60', required: false, desc: '顶部刷新提示区高度 (px)。' },
-  { name: 'successDuration', type: 'number', default: '500', required: false, desc: '加载成功后展示成功状态时长 (ms)。' },
-  { name: 'animationDuration', type: 'number', default: '300', required: false, desc: '回弹动画时长 (ms)。' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: '禁用下拉刷新。' },
+  { name: 'loading', type: 'boolean', default: '—', required: false, desc: 'componentProps.PullRefresh.loading' },
+  { name: 'onRefresh', type: '() => void | Promise<void>', default: '—', required: false, desc: 'componentProps.PullRefresh.onRefresh' },
+  { name: 'pullDistance', type: 'number', default: '80', required: false, desc: 'componentProps.PullRefresh.pullDistance' },
+  { name: 'headHeight', type: 'number', default: '60', required: false, desc: 'componentProps.PullRefresh.headHeight' },
+  { name: 'successDuration', type: 'number', default: '500', required: false, desc: 'componentProps.PullRefresh.successDuration' },
+  { name: 'animationDuration', type: 'number', default: '300', required: false, desc: 'componentProps.PullRefresh.animationDuration' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.PullRefresh.disabled' },
   { name: 'pullingText', type: 'string', default: "'下拉刷新'", required: false, desc: '下拉文案。' },
   { name: 'loosingText', type: 'string', default: "'释放刷新'", required: false, desc: '释放文案。' },
   { name: 'loadingText', type: 'string', default: "'刷新中...'", required: false, desc: '加载文案。' },

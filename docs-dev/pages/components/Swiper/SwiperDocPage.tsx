@@ -5,19 +5,19 @@ import type { PropRow } from '../../../../src/doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
-  { name: 'autoplay', type: 'number | string', default: '—', required: false, desc: '自动轮播间隔 (ms)。' },
-  { name: 'duration', type: 'number | string', default: '500', required: false, desc: '动画时长 (ms)。' },
-  { name: 'initialSwipe', type: 'number | string', default: '0', required: false, desc: '初始位置索引。' },
+  { name: 'autoplay', type: 'number | string', default: '—', required: false, desc: 'componentProps.Swiper.autoplay' },
+  { name: 'duration', type: 'number | string', default: '500', required: false, desc: 'componentProps.Swiper.duration' },
+  { name: 'initialSwipe', type: 'number | string', default: '0', required: false, desc: 'componentProps.Swiper.initialSwipe' },
   { name: 'width / height', type: 'number | string', default: "100% / '160px'", required: false, desc: '滑块宽高。' },
-  { name: 'loop', type: 'boolean', default: 'true', required: false, desc: '是否循环播放。' },
-  { name: 'showIndicators', type: 'boolean', default: 'true', required: false, desc: '是否显示指示器。' },
-  { name: 'vertical', type: 'boolean', default: 'false', required: false, desc: '纵向滚动。' },
-  { name: 'touchable', type: 'boolean', default: 'true', required: false, desc: '手势滑动。' },
+  { name: 'loop', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Swiper.loop' },
+  { name: 'showIndicators', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Swiper.showIndicators' },
+  { name: 'vertical', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Swiper.vertical' },
+  { name: 'touchable', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Swiper.touchable' },
   { name: 'indicatorColor', type: 'string', default: "'#1989fa'", required: false, desc: '指示器颜色。' },
-  { name: 'indicators', type: '(current, total) => JSX', default: '—', required: false, desc: '自定义指示器渲染函数。' },
-  { name: 'imgUrls', type: 'string[]', default: '—', required: false, desc: '快捷图片数组，传此属性后无需写子组件。' },
-  { name: 'lazyRender', type: 'boolean', default: 'false', required: false, desc: '延迟渲染非当前页。' },
-  { name: 'onChange', type: '(index: number) => void', default: '—', required: false, desc: '切换回调。' },
+  { name: 'indicators', type: '(current, total) => JSX', default: '—', required: false, desc: 'componentProps.Swiper.indicators' },
+  { name: 'imgUrls', type: 'string[]', default: '—', required: false, desc: 'componentProps.Swiper.imgUrls' },
+  { name: 'lazyRender', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Swiper.lazyRender' },
+  { name: 'onChange', type: '(index: number) => void', default: '—', required: false, desc: 'componentProps.Swiper.onChange' },
 ];
 
 const IMGS = [

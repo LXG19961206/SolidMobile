@@ -110,14 +110,14 @@ const deepTree: PickerOption[] = [
 ];
 
 const cityPickerProps: PropRow[] = [
-  { name: 'columns', type: 'PickerOption[]', default: '—', required: true, desc: '省市区树形数据，用户自行提供。' },
-  { name: 'value', type: '(string \\| number)[]', default: '—', required: false, desc: '当前选中值（每级一个）。' },
-  { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: '值变化回调。' },
-  { name: 'onConfirm', type: '(value) => void', default: '—', required: false, desc: '确认按钮回调。' },
+  { name: 'columns', type: 'PickerOption[]', default: '—', required: true, desc: 'componentProps.CityPicker.columns' },
+  { name: 'value', type: '(string \\| number)[]', default: '—', required: false, desc: 'componentProps.CityPicker.value' },
+  { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: 'componentProps.CityPicker.onChange' },
+  { name: 'onConfirm', type: '(value) => void', default: '—', required: false, desc: 'componentProps.CityPicker.onConfirm' },
   { name: 'placeholder', type: 'string', default: "'请选择地区'", required: false, desc: '占位文字。' },
   { name: 'separator', type: 'string', default: "' / '", required: false, desc: '显示文字分隔符。' },
   { name: 'title', type: 'string', default: "'选择地区'", required: false, desc: '面板标题。' },
-  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'Portal 挂载目标。' },
+  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.CityPicker.teleport' },
 ];
 
 const codeBasic = `import { createSignal, useContext } from 'solid-js';

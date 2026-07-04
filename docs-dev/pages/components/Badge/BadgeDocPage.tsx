@@ -8,11 +8,11 @@ import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './BadgeDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'content', type: 'string | number', default: '—', required: false, desc: '徽标内容。数字超出 max 时显示 max+。' },
-  { name: 'dot', type: 'boolean', default: 'false', required: false, desc: '仅显示小红点。' },
-  { name: 'max', type: 'number', default: '—', required: false, desc: '数字上限，如 99。' },
+  { name: 'content', type: 'string | number', default: '—', required: false, desc: 'componentProps.Badge.content' },
+  { name: 'dot', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Badge.dot' },
+  { name: 'max', type: 'number', default: '—', required: false, desc: 'componentProps.Badge.max' },
   { name: 'position', type: "'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'", default: "'top-right'", required: false, desc: '位置。' },
-  { name: 'color', type: 'string', default: '—', required: false, desc: '自定义背景色。' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.Badge.color' },
 ];
 
 const tocItems: TOCItem[] = [

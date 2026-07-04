@@ -6,10 +6,10 @@ import css from './DividerDocPage.module.css';
 
 const propsData: PropRow[] = [
   { name: 'direction', type: "'horizontal' | 'vertical'", default: "'horizontal'", required: false, desc: '方向。' },
-  { name: 'text', type: 'string', default: '—', required: false, desc: '中间文字（仅水平模式）。' },
-  { name: 'dashed', type: 'boolean', default: 'false', required: false, desc: '虚线样式。' },
-  { name: 'color', type: 'string', default: '—', required: false, desc: '线条颜色。' },
-  { name: 'size', type: 'string | number', default: '—', required: false, desc: '线条粗细。' },
+  { name: 'text', type: 'string', default: '—', required: false, desc: 'componentProps.Divider.text' },
+  { name: 'dashed', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Divider.dashed' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.Divider.color' },
+  { name: 'size', type: 'string | number', default: '—', required: false, desc: 'componentProps.Divider.size' },
 ];
 
 const tocItems: TOCItem[] = [

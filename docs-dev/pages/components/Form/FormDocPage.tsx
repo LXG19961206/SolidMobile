@@ -24,29 +24,29 @@ import type { PickerOption } from '../../../../src/components/Picker';
 import type { PropRow } from '../../../../src/doc-utils';
 
 const formProps: PropRow[] = [
-  { name: 'value', type: 'T', default: '—', required: false, desc: '受控值。' },
-  { name: 'onChange', type: '(value: T) => void', default: '—', required: false, desc: '值变化回调。' },
+  { name: 'value', type: 'T', default: '—', required: false, desc: 'componentProps.Form.value' },
+  { name: 'onChange', type: '(value: T) => void', default: '—', required: false, desc: 'componentProps.Form.onChange' },
   { name: 'defaultValue', type: 'T', default: '{}', required: false, desc: '非受控默认值。' },
-  { name: 'onSubmit', type: '(value: T) => void', default: '—', required: false, desc: '提交回调。' },
-  { name: 'validateOnChange', type: 'boolean', default: 'false', required: false, desc: '字段变化时校验。' },
-  { name: 'validateOnBlur', type: 'boolean', default: 'false', required: false, desc: '字段失焦时校验。' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: '全局禁用。' },
-  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: '全局只读。' },
+  { name: 'onSubmit', type: '(value: T) => void', default: '—', required: false, desc: 'componentProps.Form.onSubmit' },
+  { name: 'validateOnChange', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Form.validateOnChange' },
+  { name: 'validateOnBlur', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Form.validateOnBlur' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Form.disabled' },
+  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Form.readonly' },
   { name: 'labelAlign', type: "'top' | 'left' | 'right'", default: '—', required: false, desc: '标签对齐。' },
-  { name: 'labelWidth', type: 'string', default: '—', required: false, desc: '标签宽度，如 "6em"。' },
-  { name: 'colon', type: 'boolean', default: 'false', required: false, desc: '标签后加冒号。' },
-  { name: 'ref', type: '(api: FormRef) => void', default: '—', required: false, desc: '组件挂载回调，接收 { setFormValue, resetFormValue, submit, validateAll }。可用于外部重置表单等场景。' },
+  { name: 'labelWidth', type: 'string', default: '—', required: false, desc: 'componentProps.Form.labelWidth' },
+  { name: 'colon', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Form.colon' },
+  { name: 'ref', type: '(api: FormRef) => void', default: '—', required: false, desc: 'componentProps.Form.ref' },
 ];
 
 const itemProps: PropRow[] = [
-  { name: 'name', type: 'string', default: '—', required: true, desc: '字段名，对应 formValue 的 key。' },
-  { name: 'label', type: 'string | JSX.Element', default: '—', required: false, desc: '标签文本。' },
-  { name: 'required', type: 'boolean', default: 'false', required: false, desc: '必填标记。' },
-  { name: 'rules', type: 'FormRule[]', default: '—', required: false, desc: '校验规则。' },
-  { name: 'help', type: 'string', default: '—', required: false, desc: '帮助文本（无错误时展示）。' },
+  { name: 'name', type: 'string', default: '—', required: true, desc: 'componentProps.Form.name' },
+  { name: 'label', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.Form.label' },
+  { name: 'required', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Form.required' },
+  { name: 'rules', type: 'FormRule[]', default: '—', required: false, desc: 'componentProps.Form.rules' },
+  { name: 'help', type: 'string', default: '—', required: false, desc: 'componentProps.Form.help' },
   { name: 'labelAlign', type: "'top' | 'left' | 'right'", default: "继承 Form", required: false, desc: '标签对齐方式。' },
   { name: 'labelWidth', type: 'string', default: "继承 Form", required: false, desc: "标签固定宽度。" },
-  { name: 'contentFlex', type: 'boolean', default: 'false', required: false, desc: '内容区 flex: 1 撑满。' },
+  { name: 'contentFlex', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Form.contentFlex' },
 ];
 
 /* ── 示例省市区数据 ── */

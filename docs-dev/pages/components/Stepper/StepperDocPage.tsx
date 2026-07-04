@@ -9,22 +9,22 @@ import type { PropRow } from '../../../../src/doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const stepperProps: PropRow[] = [
-  { name: 'value', type: 'number', default: '—', required: false, desc: '当前值（受控）。' },
-  { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: '值变化回调。' },
-  { name: 'defaultValue', type: 'number', default: '0', required: false, desc: '默认值（非受控）。' },
-  { name: 'size', type: 'number | string', default: '—', required: false, desc: '快捷设置整体尺寸（覆盖 buttonSize/inputWidth 默认值）。' },
-  { name: 'min', type: 'number', default: '0', required: false, desc: '最小值。' },
-  { name: 'max', type: 'number', default: 'Infinity', required: false, desc: '最大值。' },
-  { name: 'step', type: 'number', default: '1', required: false, desc: '步长。' },
-  { name: 'decimalLength', type: 'number', default: '0', required: false, desc: '小数位数。' },
-  { name: 'integer', type: 'boolean', default: 'false', required: false, desc: '整数模式。' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: '禁用。' },
-  { name: 'inputDisabled', type: 'boolean', default: 'false', required: false, desc: '禁用输入框。' },
-  { name: 'buttonSize', type: 'number | string', default: '28px', required: false, desc: '按钮大小。' },
-  { name: 'inputWidth', type: 'number | string', default: '50px', required: false, desc: '输入框宽度。' },
+  { name: 'value', type: 'number', default: '—', required: false, desc: 'componentProps.Stepper.value' },
+  { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: 'componentProps.Stepper.onChange' },
+  { name: 'defaultValue', type: 'number', default: '0', required: false, desc: 'componentProps.Stepper.defaultValue' },
+  { name: 'size', type: 'number | string', default: '—', required: false, desc: 'componentProps.Stepper.size' },
+  { name: 'min', type: 'number', default: '0', required: false, desc: 'componentProps.Stepper.min' },
+  { name: 'max', type: 'number', default: 'Infinity', required: false, desc: 'componentProps.Stepper.max' },
+  { name: 'step', type: 'number', default: '1', required: false, desc: 'componentProps.Stepper.step' },
+  { name: 'decimalLength', type: 'number', default: '0', required: false, desc: 'componentProps.Stepper.decimalLength' },
+  { name: 'integer', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Stepper.integer' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Stepper.disabled' },
+  { name: 'inputDisabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Stepper.inputDisabled' },
+  { name: 'buttonSize', type: 'number | string', default: '28px', required: false, desc: 'componentProps.Stepper.buttonSize' },
+  { name: 'inputWidth', type: 'number | string', default: '50px', required: false, desc: 'componentProps.Stepper.inputWidth' },
   { name: 'minusIcon', type: 'any', default: "'−'", required: false, desc: '自定义减号图标。' },
   { name: 'plusIcon', type: 'any', default: "'+'", required: false, desc: '自定义加号图标。' },
-  { name: 'allowEmpty', type: 'boolean', default: 'false', required: false, desc: '允许空值。' },
+  { name: 'allowEmpty', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Stepper.allowEmpty' },
 ];
 
 const codeBasic = `const [val, setVal] = createSignal(1);

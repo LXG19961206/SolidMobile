@@ -5,14 +5,14 @@ import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './AvatarDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'src', type: 'string', default: '—', required: false, desc: '头像图片地址。' },
-  { name: 'alt', type: 'string', default: '—', required: false, desc: '替代文本（无障碍）。' },
+  { name: 'src', type: 'string', default: '—', required: false, desc: 'componentProps.Avatar.src' },
+  { name: 'alt', type: 'string', default: '—', required: false, desc: 'componentProps.Avatar.alt' },
   { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | number", default: "'md'", required: false, desc: '尺寸，预设或自定义 px。' },
-  { name: 'round', type: 'boolean', default: 'true', required: false, desc: '完全圆形（与 square 互斥）。' },
-  { name: 'square', type: 'boolean | number', default: 'false', required: false, desc: '方形。传数字控制圆角大小。' },
-  { name: 'icon', type: 'IconName', default: '—', required: false, desc: '无 src 或加载失败时显示的图标。' },
-  { name: 'text', type: 'string', default: '—', required: false, desc: '无 src 且无 icon 时的文字（取首字符）。' },
-  { name: 'color', type: 'string', default: '—', required: false, desc: '自定义背景色。' },
+  { name: 'round', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Avatar.round' },
+  { name: 'square', type: 'boolean | number', default: 'false', required: false, desc: 'componentProps.Avatar.square' },
+  { name: 'icon', type: 'IconName', default: '—', required: false, desc: 'componentProps.Avatar.icon' },
+  { name: 'text', type: 'string', default: '—', required: false, desc: 'componentProps.Avatar.text' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.Avatar.color' },
 ];
 
 const tocItems: TOCItem[] = [

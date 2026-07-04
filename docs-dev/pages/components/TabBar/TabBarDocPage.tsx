@@ -5,28 +5,28 @@ import type { PropRow } from '../../../../src/doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const tabBarProps: PropRow[] = [
-  { name: 'value', type: 'number | string', default: '—', required: false, desc: '当前选中标签（受控）。' },
-  { name: 'defaultValue', type: 'number | string', default: '0', required: false, desc: '默认选中（非受控）。' },
-  { name: 'onChange', type: '(name) => void', default: '—', required: false, desc: '切换回调。' },
-  { name: 'fixed', type: 'boolean', default: 'true', required: false, desc: '是否固定在底部。' },
-  { name: 'border', type: 'boolean', default: 'true', required: false, desc: '是否显示外边框。' },
-  { name: 'zIndex', type: 'number | string', default: '1', required: false, desc: '元素 z-index。' },
+  { name: 'value', type: 'number | string', default: '—', required: false, desc: 'componentProps.TabBar.value' },
+  { name: 'defaultValue', type: 'number | string', default: '0', required: false, desc: 'componentProps.TabBar.defaultValue' },
+  { name: 'onChange', type: '(name) => void', default: '—', required: false, desc: 'componentProps.TabBar.onChange' },
+  { name: 'fixed', type: 'boolean', default: 'true', required: false, desc: 'componentProps.TabBar.fixed' },
+  { name: 'border', type: 'boolean', default: 'true', required: false, desc: 'componentProps.TabBar.border' },
+  { name: 'zIndex', type: 'number | string', default: '1', required: false, desc: 'componentProps.TabBar.zIndex' },
   { name: 'height', type: 'number | string', default: "'50px'", required: false, desc: '标签栏高度，占位高度同步变化。' },
   { name: 'activeColor', type: 'string', default: "'#1989fa'", required: false, desc: '选中标签颜色。' },
   { name: 'inactiveColor', type: 'string', default: "'#7d7e80'", required: false, desc: '未选中标签颜色。' },
-  { name: 'safeArea', type: 'boolean', default: 'false', required: false, desc: '底部安全区域占位。' },
-  { name: 'bgColor', type: 'string', default: '—', required: false, desc: '自定义背景色，支持渐变、半透明毛玻璃。' },
-  { name: 'placeholder', type: 'boolean', default: 'false', required: false, desc: 'fixed 时生成等高占位，防止页面内容被遮挡。' },
-  { name: 'beforeChange', type: '(name) => boolean | Promise<boolean>', default: '—', required: false, desc: '切换前回调，返回 false 阻止。' },
+  { name: 'safeArea', type: 'boolean', default: 'false', required: false, desc: 'componentProps.TabBar.safeArea' },
+  { name: 'bgColor', type: 'string', default: '—', required: false, desc: 'componentProps.TabBar.bgColor' },
+  { name: 'placeholder', type: 'boolean', default: 'false', required: false, desc: 'componentProps.TabBar.placeholder' },
+  { name: 'beforeChange', type: '(name) => boolean | Promise<boolean>', default: '—', required: false, desc: 'componentProps.TabBar.beforeChange' },
 ];
 
 const itemProps: PropRow[] = [
-  { name: 'name', type: 'number | string', default: '—', required: true, desc: '标签标识符。' },
-  { name: 'icon', type: 'string | JSX.Element', default: '—', required: false, desc: '图标名或自定义 JSX。' },
-  { name: 'label', type: 'string', default: '—', required: false, desc: '标签文字。' },
-  { name: 'dot', type: 'boolean', default: 'false', required: false, desc: '图标右上角小红点。' },
-  { name: 'badge', type: 'number | string', default: '—', required: false, desc: '图标右上角徽标。' },
-  { name: 'badgeProps', type: 'Record<string, unknown>', default: '—', required: false, desc: '透传 Badge 组件 props。' },
+  { name: 'name', type: 'number | string', default: '—', required: true, desc: 'componentProps.TabBar.name' },
+  { name: 'icon', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.TabBar.icon' },
+  { name: 'label', type: 'string', default: '—', required: false, desc: 'componentProps.TabBar.label' },
+  { name: 'dot', type: 'boolean', default: 'false', required: false, desc: 'componentProps.TabBar.dot' },
+  { name: 'badge', type: 'number | string', default: '—', required: false, desc: 'componentProps.TabBar.badge' },
+  { name: 'badgeProps', type: 'Record<string, unknown>', default: '—', required: false, desc: 'componentProps.TabBar.badgeProps' },
 ];
 
 /* ── Animated SVG icon components (selected state: pop + fill) ── */

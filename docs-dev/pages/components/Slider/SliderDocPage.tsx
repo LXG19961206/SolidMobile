@@ -8,20 +8,20 @@ import type { PropRow } from '../../../../src/doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const sliderProps: PropRow[] = [
-  { name: 'value', type: 'number | number[]', default: '0', required: false, desc: '当前值。count=1 时为数字，count>1 时为数组。' },
-  { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: '值变化回调。' },
-  { name: 'min', type: 'number', default: '0', required: false, desc: '最小值。' },
-  { name: 'max', type: 'number', default: '100', required: false, desc: '最大值。' },
-  { name: 'step', type: 'number', default: '1', required: false, desc: '步长。' },
-  { name: 'count', type: 'number', default: '1', required: false, desc: '滑块数量。1 为单滑块，2 为双滑块，以此类推。' },
-  { name: 'barHeight', type: 'number | string', default: '2px', required: false, desc: '进度条高度。' },
-  { name: 'buttonSize', type: 'number | string', default: '20px', required: false, desc: '滑块按钮大小。' },
-  { name: 'thumbRender', type: '(value, index) => any', default: '—', required: false, desc: '自定义滑块按钮渲染。接收当前值和索引，返回字符串/元素则替换默认样式。' },
-  { name: 'activeColor', type: 'string', default: '#1989fa', required: false, desc: '进度条激活态颜色。' },
-  { name: 'inactiveColor', type: 'string', default: '#e5e5e5', required: false, desc: '进度条非激活态颜色。' },
-  { name: 'reverse', type: 'boolean', default: 'false', required: false, desc: '是否反转。' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: '禁用。' },
-  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: '只读。' },
+  { name: 'value', type: 'number | number[]', default: '0', required: false, desc: 'componentProps.Slider.value' },
+  { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: 'componentProps.Slider.onChange' },
+  { name: 'min', type: 'number', default: '0', required: false, desc: 'componentProps.Slider.min' },
+  { name: 'max', type: 'number', default: '100', required: false, desc: 'componentProps.Slider.max' },
+  { name: 'step', type: 'number', default: '1', required: false, desc: 'componentProps.Slider.step' },
+  { name: 'count', type: 'number', default: '1', required: false, desc: 'componentProps.Slider.count' },
+  { name: 'barHeight', type: 'number | string', default: '2px', required: false, desc: 'componentProps.Slider.barHeight' },
+  { name: 'buttonSize', type: 'number | string', default: '20px', required: false, desc: 'componentProps.Slider.buttonSize' },
+  { name: 'thumbRender', type: '(value, index) => any', default: '—', required: false, desc: 'componentProps.Slider.thumbRender' },
+  { name: 'activeColor', type: 'string', default: '#1989fa', required: false, desc: 'componentProps.Slider.activeColor' },
+  { name: 'inactiveColor', type: 'string', default: '#e5e5e5', required: false, desc: 'componentProps.Slider.inactiveColor' },
+  { name: 'reverse', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Slider.reverse' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Slider.disabled' },
+  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Slider.readonly' },
 ];
 
 const codeBasic = `const [val, setVal] = createSignal(30);

@@ -7,21 +7,21 @@ import type { PropRow } from '../../../../src/doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
-  { name: 'value', type: 'string', default: '—', required: false, desc: '当前值（受控）。' },
-  { name: 'onChange', type: '(value: string) => void', default: '—', required: false, desc: '值变化回调。' },
-  { name: 'defaultValue', type: 'string', default: '—', required: false, desc: '默认值（非受控）。' },
-  { name: 'placeholder', type: 'string', default: '—', required: false, desc: '占位文本。' },
-  { name: 'maxlength', type: 'number', default: '—', required: false, desc: '最大长度。' },
-  { name: 'rows', type: 'number', default: '3', required: false, desc: '可视行数。' },
+  { name: 'value', type: 'string', default: '—', required: false, desc: 'componentProps.Textarea.value' },
+  { name: 'onChange', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.Textarea.onChange' },
+  { name: 'defaultValue', type: 'string', default: '—', required: false, desc: 'componentProps.Textarea.defaultValue' },
+  { name: 'placeholder', type: 'string', default: '—', required: false, desc: 'componentProps.Textarea.placeholder' },
+  { name: 'maxlength', type: 'number', default: '—', required: false, desc: 'componentProps.Textarea.maxlength' },
+  { name: 'rows', type: 'number', default: '3', required: false, desc: 'componentProps.Textarea.rows' },
   { name: 'autoSize', type: 'boolean | { minRows, maxRows }', default: 'false', required: false, desc: '自动撑高，内容超出时扩展。' },
-  { name: 'clearable', type: 'boolean', default: 'false', required: false, desc: '显示清除按钮。' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: '禁用。' },
-  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: '只读。' },
-  { name: 'showCount', type: 'boolean', default: 'false', required: false, desc: '显示字数统计。' },
-  { name: 'error', type: 'boolean', default: 'false', required: false, desc: '错误状态，出现红色波浪线。' },
-  { name: 'onBlur', type: '(e: Event) => void', default: '—', required: false, desc: '失焦回调。' },
-  { name: 'onFocus', type: '(e: Event) => void', default: '—', required: false, desc: '聚焦回调。' },
-  { name: 'onEnter', type: '(e: KeyboardEvent) => void', default: '—', required: false, desc: '回车回调（Shift+Enter 换行）。' },
+  { name: 'clearable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Textarea.clearable' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Textarea.disabled' },
+  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Textarea.readonly' },
+  { name: 'showCount', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Textarea.showCount' },
+  { name: 'error', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Textarea.error' },
+  { name: 'onBlur', type: '(e: Event) => void', default: '—', required: false, desc: 'componentProps.Textarea.onBlur' },
+  { name: 'onFocus', type: '(e: Event) => void', default: '—', required: false, desc: 'componentProps.Textarea.onFocus' },
+  { name: 'onEnter', type: '(e: KeyboardEvent) => void', default: '—', required: false, desc: 'componentProps.Textarea.onEnter' },
 ];
 
 const codeBasic = `<Textarea placeholder="请输入" />

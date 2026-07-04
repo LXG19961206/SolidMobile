@@ -7,20 +7,20 @@ import css from './NavBarDocPage.module.css';
 import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
-  { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: '标题。' },
-  { name: 'left', type: 'JSX.Element', default: '—', required: false, desc: '左侧自定义内容。' },
-  { name: 'right', type: 'JSX.Element', default: '—', required: false, desc: '右侧自定义内容。' },
-  { name: 'backArrow', type: 'boolean', default: 'false', required: false, desc: '是否显示返回箭头。' },
-  { name: 'onBack', type: '() => void', default: '—', required: false, desc: '返回箭头点击回调。' },
-  { name: 'onLeftClick', type: '() => void', default: '—', required: false, desc: '左侧区域点击回调。' },
-  { name: 'onRightClick', type: '() => void', default: '—', required: false, desc: '右侧区域点击回调。' },
-  { name: 'fixed', type: 'boolean', default: 'false', required: false, desc: '是否固定在顶部。' },
-  { name: 'placeholder', type: 'boolean', default: 'false', required: false, desc: '固定时生成占位元素，避免内容被遮挡。' },
-  { name: 'border', type: 'boolean', default: 'false', required: false, desc: '是否显示底部边框。' },
-  { name: 'zIndex', type: 'number | string', default: '1000', required: false, desc: 'z-index。' },
-  { name: 'background', type: 'string', default: '—', required: false, desc: '背景色。' },
-  { name: 'color', type: 'string', default: '—', required: false, desc: '文字颜色。' },
-  { name: 'height', type: 'number | string', default: '46', required: false, desc: '导航栏高度。' },
+  { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.NavBar.title' },
+  { name: 'left', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.NavBar.left' },
+  { name: 'right', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.NavBar.right' },
+  { name: 'backArrow', type: 'boolean', default: 'false', required: false, desc: 'componentProps.NavBar.backArrow' },
+  { name: 'onBack', type: '() => void', default: '—', required: false, desc: 'componentProps.NavBar.onBack' },
+  { name: 'onLeftClick', type: '() => void', default: '—', required: false, desc: 'componentProps.NavBar.onLeftClick' },
+  { name: 'onRightClick', type: '() => void', default: '—', required: false, desc: 'componentProps.NavBar.onRightClick' },
+  { name: 'fixed', type: 'boolean', default: 'false', required: false, desc: 'componentProps.NavBar.fixed' },
+  { name: 'placeholder', type: 'boolean', default: 'false', required: false, desc: 'componentProps.NavBar.placeholder' },
+  { name: 'border', type: 'boolean', default: 'false', required: false, desc: 'componentProps.NavBar.border' },
+  { name: 'zIndex', type: 'number | string', default: '1000', required: false, desc: 'componentProps.NavBar.zIndex' },
+  { name: 'background', type: 'string', default: '—', required: false, desc: 'componentProps.NavBar.background' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.NavBar.color' },
+  { name: 'height', type: 'number | string', default: '46', required: false, desc: 'componentProps.NavBar.height' },
 ];
 
 const tocItems: TOCItem[] = [

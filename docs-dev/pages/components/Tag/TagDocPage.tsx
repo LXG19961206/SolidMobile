@@ -8,10 +8,10 @@ const propsData: PropRow[] = [
   { name: 'type', type: "'primary' | 'success' | 'warning' | 'danger' | 'info'", default: "'primary'", required: false, desc: '语义色。' },
   { name: 'variant', type: "'solid' | 'outline'", default: "'solid'", required: false, desc: '填充方式。' },
   { name: 'size', type: "'sm' | 'md'", default: "'md'", required: false, desc: '尺寸。' },
-  { name: 'round', type: 'boolean', default: 'false', required: false, desc: '胶囊圆角。' },
-  { name: 'closeable', type: 'boolean', default: 'false', required: false, desc: '是否可关闭。' },
-  { name: 'onClose', type: '() => void', default: '—', required: false, desc: '关闭回调。' },
-  { name: 'color', type: 'string', default: '—', required: false, desc: '自定义颜色。' },
+  { name: 'round', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Tag.round' },
+  { name: 'closeable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Tag.closeable' },
+  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.Tag.onClose' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.Tag.color' },
 ];
 
 const tocItems: TOCItem[] = [

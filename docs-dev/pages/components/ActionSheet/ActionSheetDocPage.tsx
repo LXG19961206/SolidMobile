@@ -7,16 +7,16 @@ import type { PropRow } from '../../../../src/doc-utils';
 import type { ActionSheetItem } from '../../../../src/components/ActionSheet/types';
 
 const propsData: PropRow[] = [
-  { name: 'open', type: 'boolean', default: '—', required: true, desc: '是否显示。' },
-  { name: 'onClose', type: '() => void', default: '—', required: true, desc: '关闭回调。' },
-  { name: 'items', type: 'ActionSheetItem[]', default: '—', required: false, desc: '选项列表。' },
-  { name: 'title', type: 'string', default: '—', required: false, desc: '标题文字。' },
-  { name: 'closeable', type: 'boolean', default: 'false', required: false, desc: '关闭图标。' },
-  { name: 'description', type: 'string', default: '—', required: false, desc: '描述文字。' },
-  { name: 'cancelText', type: 'string', default: '—', required: false, desc: '取消按钮文字。' },
-  { name: 'closeOnSelect', type: 'boolean', default: 'true', required: false, desc: '选中后自动关闭。' },
-  { name: 'closeOnOverlayClick', type: 'boolean', default: 'true', required: false, desc: '点击遮罩关闭。' },
-  { name: 'round', type: 'boolean', default: 'true', required: false, desc: '顶部圆角。' },
+  { name: 'open', type: 'boolean', default: '—', required: true, desc: 'componentProps.ActionSheet.open' },
+  { name: 'onClose', type: '() => void', default: '—', required: true, desc: 'componentProps.ActionSheet.onClose' },
+  { name: 'items', type: 'ActionSheetItem[]', default: '—', required: false, desc: 'componentProps.ActionSheet.items' },
+  { name: 'title', type: 'string', default: '—', required: false, desc: 'componentProps.ActionSheet.title' },
+  { name: 'closeable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.ActionSheet.closeable' },
+  { name: 'description', type: 'string', default: '—', required: false, desc: 'componentProps.ActionSheet.description' },
+  { name: 'cancelText', type: 'string', default: '—', required: false, desc: 'componentProps.ActionSheet.cancelText' },
+  { name: 'closeOnSelect', type: 'boolean', default: 'true', required: false, desc: 'componentProps.ActionSheet.closeOnSelect' },
+  { name: 'closeOnOverlayClick', type: 'boolean', default: 'true', required: false, desc: 'componentProps.ActionSheet.closeOnOverlayClick' },
+  { name: 'round', type: 'boolean', default: 'true', required: false, desc: 'componentProps.ActionSheet.round' },
 ];
 
 const basicItems: ActionSheetItem[] = [

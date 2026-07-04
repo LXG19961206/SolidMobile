@@ -6,26 +6,26 @@ import styles from './CellDocPage.module.css';
 
 const cellProps: PropRow[] = [
   { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: '左侧标题。' },
-  { name: 'value', type: 'string | JSX.Element', default: '—', required: false, desc: '右侧内容。' },
-  { name: 'description', type: 'string', default: '—', required: false, desc: '标题下方描述。' },
+  { name: 'value', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.Cell.value' },
+  { name: 'description', type: 'string', default: '—', required: false, desc: 'componentProps.Cell.description' },
   { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: '自定义内容，设置后 title/value/description 被忽略。' },
-  { name: 'icon', type: 'IconName | JSX.Element', default: '—', required: false, desc: '左侧图标，支持字符串或 JSX。' },
+  { name: 'icon', type: 'IconName | JSX.Element', default: '—', required: false, desc: 'componentProps.Cell.icon' },
   { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", required: false, desc: '尺寸。' },
-  { name: 'required', type: 'boolean', default: 'false', required: false, desc: '是否显示必填红色星号。' },
-  { name: 'center', type: 'boolean', default: 'false', required: false, desc: '内容垂直居中。' },
-  { name: 'clickable', type: 'boolean', default: 'false', required: false, desc: '是否可点击，设为 true 时显示右侧箭头。' },
-  { name: 'onClick', type: '() => void', default: '—', required: false, desc: '点击回调（仅 clickable 时生效）。' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: '自定义 CSS class。' },
-  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: '内联样式。' },
+  { name: 'required', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Cell.required' },
+  { name: 'center', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Cell.center' },
+  { name: 'clickable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Cell.clickable' },
+  { name: 'onClick', type: '() => void', default: '—', required: false, desc: 'componentProps.Cell.onClick' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.Cell.class' },
+  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.Cell.style' },
 ];
 
 const groupProps: PropRow[] = [
-  { name: 'title', type: 'string', default: '—', required: false, desc: '分组标题。' },
-  { name: 'card', type: 'boolean', default: 'false', required: false, desc: '卡片模式（圆角 + 背景色）。' },
-  { name: 'border', type: 'boolean', default: 'true', required: false, desc: '是否显示单元格边框。' },
-  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'Cell 子元素。' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: '自定义 CSS class。' },
-  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: '内联样式。' },
+  { name: 'title', type: 'string', default: '—', required: false, desc: 'componentProps.Cell.title' },
+  { name: 'card', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Cell.card' },
+  { name: 'border', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Cell.border' },
+  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Cell.children' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.Cell.class' },
+  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.Cell.style' },
 ];
 
 const tocItems: TOCItem[] = [

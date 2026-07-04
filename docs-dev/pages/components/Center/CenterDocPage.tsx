@@ -5,15 +5,15 @@ import { useT } from '../../../doc-i18n';
 import styles from './CenterDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'flexX', type: 'boolean', default: '—', required: false, desc: 'Flexbox 水平居中 (justify-content: center)。' },
-  { name: 'flexY', type: 'boolean', default: '—', required: false, desc: 'Flexbox 垂直居中 (align-items: center)。父级需有高度。' },
-  { name: 'text', type: 'boolean', default: '—', required: false, desc: 'text-align: center。适合行内 / 行内块内容。' },
-  { name: 'vertical', type: 'boolean', default: '—', required: false, desc: 'vertical-align: middle。适合行内元素。' },
-  { name: 'position', type: 'boolean', default: '—', required: false, desc: 'absolute + transform 居中。父级需 position: relative。' },
-  { name: 'inline', type: 'boolean', default: 'false', required: false, desc: '行内模式（flex → inline-flex）。' },
+  { name: 'flexX', type: 'boolean', default: '—', required: false, desc: 'componentProps.Center.flexX' },
+  { name: 'flexY', type: 'boolean', default: '—', required: false, desc: 'componentProps.Center.flexY' },
+  { name: 'text', type: 'boolean', default: '—', required: false, desc: 'componentProps.Center.text' },
+  { name: 'vertical', type: 'boolean', default: '—', required: false, desc: 'componentProps.Center.vertical' },
+  { name: 'position', type: 'boolean', default: '—', required: false, desc: 'componentProps.Center.position' },
+  { name: 'inline', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Center.inline' },
   { name: 'as', type: 'string', default: "'div'", required: false, desc: '渲染的 HTML 标签。' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: '自定义 CSS class。' },
-  { name: 'style', type: 'CSSProperties', default: '—', required: false, desc: '内联样式。' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.Center.class' },
+  { name: 'style', type: 'CSSProperties', default: '—', required: false, desc: 'componentProps.Center.style' },
 ];
 
 const tocItems: TOCItem[] = [

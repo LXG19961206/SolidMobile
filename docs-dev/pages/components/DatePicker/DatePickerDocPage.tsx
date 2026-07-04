@@ -8,22 +8,22 @@ import { Toast } from '../../../../src/components/Toast';
 import type { PropRow } from '../../../../src/doc-utils';
 
 const datePickerProps: PropRow[] = [
-  { name: 'value', type: 'string', default: '—', required: false, desc: '当前值，格式 YYYY-MM-DD 或 YYYY-MM-DD HH:mm:ss（datetime 模式）。' },
-  { name: 'onChange', type: '(value: string) => void', default: '—', required: false, desc: '值变化回调。' },
-  { name: 'onConfirm', type: '(value: string) => void', default: '—', required: false, desc: '确认按钮回调。' },
-  { name: 'onCancel', type: '() => void', default: '—', required: false, desc: '取消按钮回调。' },
+  { name: 'value', type: 'string', default: '—', required: false, desc: 'componentProps.DatePicker.value' },
+  { name: 'onChange', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.DatePicker.onChange' },
+  { name: 'onConfirm', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.DatePicker.onConfirm' },
+  { name: 'onCancel', type: '() => void', default: '—', required: false, desc: 'componentProps.DatePicker.onCancel' },
   { name: 'startDate', type: 'string', default: "'2014-01-01'", required: false, desc: '可选范围起点。' },
   { name: 'endDate', type: 'string', default: "'2034-12-31'", required: false, desc: '可选范围终点。' },
   { name: 'type', type: "'date' | 'year-month' | 'datetime'", default: "'date'", required: false, desc: '选择类型。datetime 增加时/分/秒三列。' },
   { name: 'placeholder', type: 'string', default: "'请选择日期'", required: false, desc: '占位文字。' },
   { name: 'title', type: 'string', default: "'选择日期'", required: false, desc: '面板标题。' },
-  { name: 'cancelText', type: 'string', default: '—', required: false, desc: '取消按钮文字。' },
-  { name: 'confirmText', type: 'string', default: '—', required: false, desc: '确认按钮文字。' },
-  { name: 'disabledDate', type: '(year, month, day) => boolean', default: '—', required: false, desc: '禁用特定日期。返回 true 则该日不可选。' },
-  { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: '可见行数。' },
-  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'Picker 的 Portal 挂载目标，默认 document.body。' },
-  { name: 'show', type: 'boolean', default: '—', required: false, desc: '受控模式：是否显示面板。不传时 DatePicker 自动管理。' },
-  { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: '受控模式：面板开关回调。' },
+  { name: 'cancelText', type: 'string', default: '—', required: false, desc: 'componentProps.DatePicker.cancelText' },
+  { name: 'confirmText', type: 'string', default: '—', required: false, desc: 'componentProps.DatePicker.confirmText' },
+  { name: 'disabledDate', type: '(year, month, day) => boolean', default: '—', required: false, desc: 'componentProps.DatePicker.disabledDate' },
+  { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: 'componentProps.DatePicker.visibleItemCount' },
+  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.DatePicker.teleport' },
+  { name: 'show', type: 'boolean', default: '—', required: false, desc: 'componentProps.DatePicker.show' },
+  { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: 'componentProps.DatePicker.onUpdateShow' },
 ];
 
 const codeBasic = `const phone = useContext(PhoneTargetContext);

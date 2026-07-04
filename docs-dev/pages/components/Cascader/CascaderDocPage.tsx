@@ -78,28 +78,28 @@ const regionOptions: CascaderOption[] = [
 ];
 
 const propsData: PropRow[] = [
-  { name: 'options', type: 'CascaderOption[]', default: '—', required: true, desc: '级联数据源，见下方 CascaderOption。' },
+  { name: 'options', type: 'CascaderOption[]', default: '—', required: true, desc: 'componentProps.Cascader.options' },
   { name: 'value', type: '(string | number)[]', default: '—', required: false, desc: '当前选中值。' },
-  { name: 'onChange', type: '(value: (string | number)[]) => void', default: '—', required: false, desc: '值变化回调。' },
-  { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: '标题。' },
+  { name: 'onChange', type: '(value: (string | number)[]) => void', default: '—', required: false, desc: 'componentProps.Cascader.onChange' },
+  { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.Cascader.title' },
   { name: 'placeholder', type: 'string', default: "'请选择'", required: false, desc: '未选中的占位文字。' },
-  { name: 'closeable', type: 'boolean', default: 'false', required: false, desc: '是否显示关闭按钮。' },
-  { name: 'show', type: 'boolean', default: '—', required: false, desc: '受控显示。' },
-  { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: '关闭回调。' },
-  { name: 'onClose', type: '() => void', default: '—', required: false, desc: '关闭回调。' },
+  { name: 'closeable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Cascader.closeable' },
+  { name: 'show', type: 'boolean', default: '—', required: false, desc: 'componentProps.Cascader.show' },
+  { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: 'componentProps.Cascader.onUpdateShow' },
+  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.Cascader.onClose' },
   { name: 'maxHeight', type: 'number | string', default: "'40vh'", required: false, desc: '弹窗固定高度。' },
-  { name: 'showCheckmark', type: 'boolean', default: 'true', required: false, desc: '是否在选中项右侧显示对勾。' },
-  { name: 'checkmark', type: 'JSX.Element', default: '—', required: false, desc: '自定义选中图标。' },
-  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: '挂载目标。' },
-  { name: 'zIndex', type: 'number | string', default: '2000', required: false, desc: 'z-index。' },
+  { name: 'showCheckmark', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Cascader.showCheckmark' },
+  { name: 'checkmark', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Cascader.checkmark' },
+  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.Cascader.teleport' },
+  { name: 'zIndex', type: 'number | string', default: '2000', required: false, desc: 'componentProps.Cascader.zIndex' },
 ];
 
 const optionPropsData: PropRow[] = [
-  { name: 'text', type: 'string', default: '—', required: true, desc: '选项显示文本。' },
-  { name: 'value', type: 'string | number', default: '—', required: true, desc: '选项值。' },
-  { name: 'children', type: 'CascaderOption[]', default: '—', required: false, desc: '子选项。' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: '是否禁用该选项。' },
-  { name: 'render', type: 'JSX.Element', default: '—', required: false, desc: '自定义渲染，传入时替代 text。' },
+  { name: 'text', type: 'string', default: '—', required: true, desc: 'componentProps.Cascader.text' },
+  { name: 'value', type: 'string | number', default: '—', required: true, desc: 'componentProps.Cascader.value' },
+  { name: 'children', type: 'CascaderOption[]', default: '—', required: false, desc: 'componentProps.Cascader.children' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Cascader.disabled' },
+  { name: 'render', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Cascader.render' },
 ];
 
 const tocItems: TOCItem[] = [

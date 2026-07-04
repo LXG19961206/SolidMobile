@@ -8,15 +8,15 @@ import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import styles from './IconDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'name', type: 'IconName', default: '—', required: true, desc: '图标名称。' },
+  { name: 'name', type: 'IconName', default: '—', required: true, desc: 'componentProps.Icon.name' },
   { name: 'variant', type: "'line' | 'fill'", default: "'line'", required: false, desc: '线性 / 填充风格。' },
   { name: 'size', type: 'string | number', default: "'1em'", required: false, desc: '尺寸。数字自动补 px。' },
-  { name: 'color', type: 'string', default: '—', required: false, desc: '图标颜色。' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: '自定义 CSS class。' },
-  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: '内联样式。' },
-  { name: 'id', type: 'string', default: '—', required: false, desc: 'DOM id。' },
-  { name: 'aria-label', type: 'string', default: '—', required: false, desc: '无障碍标签，功能性图标需设置。' },
-  { name: 'onClick', type: '(e: MouseEvent) => void', default: '—', required: false, desc: '点击事件。' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.Icon.color' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.Icon.class' },
+  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.Icon.style' },
+  { name: 'id', type: 'string', default: '—', required: false, desc: 'componentProps.Icon.id' },
+  { name: 'aria-label', type: 'string', default: '—', required: false, desc: 'componentProps.Icon.aria-label' },
+  { name: 'onClick', type: '(e: MouseEvent) => void', default: '—', required: false, desc: 'componentProps.Icon.onClick' },
 ];
 
 const tocItems: TOCItem[] = [

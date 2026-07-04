@@ -9,20 +9,20 @@ import type { PropRow } from '../../../../src/doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const rateProps: PropRow[] = [
-  { name: 'value', type: 'number', default: '0', required: false, desc: '当前分值。' },
-  { name: 'onChange', type: '(value: number) => void', default: '—', required: false, desc: '分值变化回调。' },
-  { name: 'count', type: 'number | string', default: '5', required: false, desc: '图标总数。' },
-  { name: 'size', type: 'number | string', default: '20px', required: false, desc: '图标大小。' },
-  { name: 'gutter', type: 'number | string', default: '4px', required: false, desc: '图标间距。' },
-  { name: 'color', type: 'string', default: '#ee0a24', required: false, desc: '选中时的颜色。' },
-  { name: 'voidColor', type: 'string', default: '#c8c9cc', required: false, desc: '未选中时的颜色。' },
-  { name: 'disabledColor', type: 'string', default: '#c8c9cc', required: false, desc: '禁用时的颜色。' },
+  { name: 'value', type: 'number', default: '0', required: false, desc: 'componentProps.Rate.value' },
+  { name: 'onChange', type: '(value: number) => void', default: '—', required: false, desc: 'componentProps.Rate.onChange' },
+  { name: 'count', type: 'number | string', default: '5', required: false, desc: 'componentProps.Rate.count' },
+  { name: 'size', type: 'number | string', default: '20px', required: false, desc: 'componentProps.Rate.size' },
+  { name: 'gutter', type: 'number | string', default: '4px', required: false, desc: 'componentProps.Rate.gutter' },
+  { name: 'color', type: 'string', default: '#ee0a24', required: false, desc: 'componentProps.Rate.color' },
+  { name: 'voidColor', type: 'string', default: '#c8c9cc', required: false, desc: 'componentProps.Rate.voidColor' },
+  { name: 'disabledColor', type: 'string', default: '#c8c9cc', required: false, desc: 'componentProps.Rate.disabledColor' },
   { name: 'icon', type: 'string', default: "'star'", required: false, desc: '选中时的图标名，对应 Icon 的 name 属性。' },
   { name: 'voidIcon', type: 'string', default: "'star'", required: false, desc: '未选中时的图标名。' },
-  { name: 'allowHalf', type: 'boolean', default: 'false', required: false, desc: '是否允许半选。' },
-  { name: 'clearable', type: 'boolean', default: 'false', required: false, desc: '是否允许再次点击后清除。' },
-  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: '只读。' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: '禁用。' },
+  { name: 'allowHalf', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Rate.allowHalf' },
+  { name: 'clearable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Rate.clearable' },
+  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Rate.readonly' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Rate.disabled' },
 ];
 
 const codeBasic = `const [val, setVal] = createSignal(3);

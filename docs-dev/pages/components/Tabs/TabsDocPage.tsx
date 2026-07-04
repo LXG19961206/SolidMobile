@@ -6,27 +6,27 @@ import { useT } from '../../../doc-i18n';
 import css from './TabsDocPage.module.css';
 
 const tabsProps: PropRow[] = [
-  { name: 'active', type: 'number | string', default: '—', required: false, desc: '当前激活的 tab（受控）。' },
-  { name: 'defaultActive', type: 'number | string', default: '第一个 tab', required: false, desc: '默认激活的 tab（非受控）。' },
-  { name: 'onChange', type: '(name: number | string) => void', default: '—', required: false, desc: '切换回调。' },
+  { name: 'active', type: 'number | string', default: '—', required: false, desc: 'componentProps.Tabs.active' },
+  { name: 'defaultActive', type: 'number | string', default: '第一个 tab', required: false, desc: 'componentProps.Tabs.defaultActive' },
+  { name: 'onChange', type: '(name: number | string) => void', default: '—', required: false, desc: 'componentProps.Tabs.onChange' },
   { name: 'type', type: "'line' | 'card'", default: "'line'", required: false, desc: '样式风格。' },
-  { name: 'color', type: 'string', default: '—', required: false, desc: '主题色。' },
-  { name: 'background', type: 'string', default: '—', required: false, desc: '标签栏背景色。' },
-  { name: 'duration', type: 'number', default: '0.3', required: false, desc: '动画时长（秒）。' },
-  { name: 'animated', type: 'boolean', default: 'false', required: false, desc: '内容区切换动画。' },
-  { name: 'border', type: 'boolean', default: 'false', required: false, desc: '显示外边框（仅 line）。' },
-  { name: 'sticky', type: 'boolean', default: 'false', required: false, desc: '粘性定位。' },
-  { name: 'lazyRender', type: 'boolean', default: 'true', required: false, desc: '延迟渲染未激活的 tab。' },
-  { name: 'titleActiveColor', type: 'string', default: '—', required: false, desc: '标题选中态颜色。' },
-  { name: 'titleInactiveColor', type: 'string', default: '—', required: false, desc: '标题默认态颜色。' },
-  { name: 'beforeChange', type: '(name) => boolean | Promise<boolean>', default: '—', required: false, desc: '切换前回调，返回 false 阻止切换。' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.Tabs.color' },
+  { name: 'background', type: 'string', default: '—', required: false, desc: 'componentProps.Tabs.background' },
+  { name: 'duration', type: 'number', default: '0.3', required: false, desc: 'componentProps.Tabs.duration' },
+  { name: 'animated', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Tabs.animated' },
+  { name: 'border', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Tabs.border' },
+  { name: 'sticky', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Tabs.sticky' },
+  { name: 'lazyRender', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Tabs.lazyRender' },
+  { name: 'titleActiveColor', type: 'string', default: '—', required: false, desc: 'componentProps.Tabs.titleActiveColor' },
+  { name: 'titleInactiveColor', type: 'string', default: '—', required: false, desc: 'componentProps.Tabs.titleInactiveColor' },
+  { name: 'beforeChange', type: '(name) => boolean | Promise<boolean>', default: '—', required: false, desc: 'componentProps.Tabs.beforeChange' },
 ];
 
 const tabProps: PropRow[] = [
-  { name: 'title', type: 'string | JSX.Element', default: '—', required: true, desc: '标签标题。' },
-  { name: 'name', type: 'number | string', default: '—', required: true, desc: '标签标识符（必须唯一）。' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: '是否禁用。' },
-  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: '标签内容。' },
+  { name: 'title', type: 'string | JSX.Element', default: '—', required: true, desc: 'componentProps.Tabs.title' },
+  { name: 'name', type: 'number | string', default: '—', required: true, desc: 'componentProps.Tabs.name' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Tabs.disabled' },
+  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Tabs.children' },
 ];
 
 const tocItems: TOCItem[] = [

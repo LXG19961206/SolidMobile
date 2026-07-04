@@ -12,16 +12,16 @@ export interface TimePickerMobileProps {
 }
 
 const propsData = [
-  { name: 'value', type: 'string', desc: '当前选中时间，格式 HH:mm:ss' },
-  { name: 'onChange', type: '(value: string) => void', desc: '滚动停止后回调' },
-  { name: 'onConfirm', type: '(value: string) => void', desc: '确认回调' },
-  { name: 'onCancel', type: '() => void', desc: '取消回调' },
+  { name: 'value', type: 'string', desc: 'componentProps.TimePicker.value' },
+  { name: 'onChange', type: '(value: string) => void', desc: 'componentProps.TimePicker.onChange' },
+  { name: 'onConfirm', type: '(value: string) => void', desc: 'componentProps.TimePicker.onConfirm' },
+  { name: 'onCancel', type: '() => void', desc: 'componentProps.TimePicker.onCancel' },
   { name: 'show', type: 'boolean', desc: '受控：是否显示面板' },
-  { name: 'onUpdateShow', type: '(show: boolean) => void', desc: '面板开关回调' },
+  { name: 'onUpdateShow', type: '(show: boolean) => void', desc: 'componentProps.TimePicker.onUpdateShow' },
   { name: 'placeholder', type: 'string', desc: '未选值时占位文本，默认 "请选择时间"' },
   { name: 'title', type: 'string', desc: '面板标题' },
   { name: 'visibleItemCount', type: 'number', desc: '可见行数，默认 7' },
-  { name: 'optionHeight', type: 'number', desc: '每行高度(px)' },
+  { name: 'optionHeight', type: 'number', desc: 'componentProps.TimePicker.optionHeight' },
 ];
 
 const CARD = {

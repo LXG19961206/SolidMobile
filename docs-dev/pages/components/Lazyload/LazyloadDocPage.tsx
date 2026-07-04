@@ -10,13 +10,13 @@ import css from './LazyloadDocPage.module.css';
 import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
-  { name: 'active', type: 'boolean', default: '—', required: false, desc: '受控模式：外部控制是否激活。' },
-  { name: 'placeholder', type: 'JSX.Element', default: '—', required: false, desc: '未激活时显示的占位内容。' },
-  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: '激活后渲染的实际内容。' },
+  { name: 'active', type: 'boolean', default: '—', required: false, desc: 'componentProps.Lazyload.active' },
+  { name: 'placeholder', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Lazyload.placeholder' },
+  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Lazyload.children' },
   { name: 'rootMargin', type: 'string', default: "'50px'", required: false, desc: '提前触发的距离。' },
-  { name: 'height', type: 'number | string', default: '—', required: false, desc: '最小高度，占位期间撑住布局，避免加载后抖动。' },
-  { name: 'threshold', type: 'number | number[]', default: '0', required: false, desc: '可见比例阈值。' },
-  { name: 'once', type: 'boolean', default: 'true', required: false, desc: '是否只触发一次。' },
+  { name: 'height', type: 'number | string', default: '—', required: false, desc: 'componentProps.Lazyload.height' },
+  { name: 'threshold', type: 'number | number[]', default: '0', required: false, desc: 'componentProps.Lazyload.threshold' },
+  { name: 'once', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Lazyload.once' },
 ];
 
 const tocItems: TOCItem[] = [

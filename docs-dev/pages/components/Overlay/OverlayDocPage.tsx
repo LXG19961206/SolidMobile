@@ -8,12 +8,12 @@ import { useT } from '../../../doc-i18n';
 import styles from './OverlayDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'open', type: 'boolean', default: '—', required: true, desc: '控制遮罩显示/隐藏。' },
-  { name: 'onClose', type: '() => void', default: '—', required: false, desc: '点击背景或按 Escape 时的回调。' },
-  { name: 'zIndex', type: 'number', default: '999', required: false, desc: '自定义层级。' },
-  { name: 'lockScroll', type: 'boolean', default: 'true', required: false, desc: '是否锁定 body 滚动。' },
-  { name: 'mount', type: 'Node', default: 'document.body', required: false, desc: 'Portal 挂载目标。' },
-  { name: 'duration', type: 'number', default: '200', required: false, desc: '进出动画时长（ms）。' },
+  { name: 'open', type: 'boolean', default: '—', required: true, desc: 'componentProps.Overlay.open' },
+  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.Overlay.onClose' },
+  { name: 'zIndex', type: 'number', default: '999', required: false, desc: 'componentProps.Overlay.zIndex' },
+  { name: 'lockScroll', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Overlay.lockScroll' },
+  { name: 'mount', type: 'Node', default: 'document.body', required: false, desc: 'componentProps.Overlay.mount' },
+  { name: 'duration', type: 'number', default: '200', required: false, desc: 'componentProps.Overlay.duration' },
 ];
 
 const OverlayDocInner = () => {

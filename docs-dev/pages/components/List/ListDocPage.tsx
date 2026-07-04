@@ -12,16 +12,16 @@ import css from './ListDocPage.module.css';
 import { useT } from '../../../doc-i18n';
 
 const listProps: PropRow[] = [
-  { name: 'data', type: 'I[]', default: '—', required: false, desc: '模式 1（受控）：外部管理的数据源。' },
-  { name: 'onLoad', type: '() => Promise<I[]>', default: '—', required: false, desc: '模式 2（不受控）：触底时调用，返回值追加到列表。' },
-  { name: 'finished', type: 'boolean', default: 'false', required: false, desc: '模式 2 是否已加载完成。' },
-  { name: 'children', type: '(item: I, index: number) => JSX.Element', default: '—', required: true, desc: '渲染每一项的模板函数。' },
-  { name: 'empty', type: 'string | JSX.Element', default: '—', required: false, desc: '空数据占位。' },
+  { name: 'data', type: 'I[]', default: '—', required: false, desc: 'componentProps.List.data' },
+  { name: 'onLoad', type: '() => Promise<I[]>', default: '—', required: false, desc: 'componentProps.List.onLoad' },
+  { name: 'finished', type: 'boolean', default: 'false', required: false, desc: 'componentProps.List.finished' },
+  { name: 'children', type: '(item: I, index: number) => JSX.Element', default: '—', required: true, desc: 'componentProps.List.children' },
+  { name: 'empty', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.List.empty' },
   { name: 'loadMoreText', type: 'string', default: "'加载中...'", required: false, desc: '加载中底部提示。' },
   { name: 'finishedText', type: 'string', default: "'没有更多了'", required: false, desc: '全部加载完成底部提示。' },
-  { name: 'offset', type: 'number', default: '100', required: false, desc: '距底部多少 px 触发 onLoad。' },
-  { name: 'virtual', type: 'boolean', default: 'false', required: false, desc: '开启虚拟列表。' },
-  { name: 'itemHeight', type: 'number', default: '—', required: false, desc: '虚拟列表模式下每项的固定高度(px)。' },
+  { name: 'offset', type: 'number', default: '100', required: false, desc: 'componentProps.List.offset' },
+  { name: 'virtual', type: 'boolean', default: 'false', required: false, desc: 'componentProps.List.virtual' },
+  { name: 'itemHeight', type: 'number', default: '—', required: false, desc: 'componentProps.List.itemHeight' },
   { name: "pullRefresh", type: "boolean", default: "false", required: false, desc: "开启下拉刷新，配合 onRefresh。" },
   { name: "onRefresh", type: "() => Promise<void>", default: "—", required: false, desc: "下拉刷新回调。" },
 ];

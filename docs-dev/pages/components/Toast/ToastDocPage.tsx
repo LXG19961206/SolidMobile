@@ -7,13 +7,13 @@ import { useT } from '../../../doc-i18n';
 import styles from './ToastDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'message', type: 'string | JSX.Element', default: '—', required: true, desc: '提示消息内容。' },
+  { name: 'message', type: 'string | JSX.Element', default: '—', required: true, desc: 'componentProps.Toast.message' },
   { name: 'type', type: "'success' | 'error' | 'warning' | 'loading' | 'info'", default: '—', required: false, desc: '类型，决定图标和默认样式。' },
   { name: 'position', type: "'top' | 'middle' | 'bottom'", default: "'middle'", required: false, desc: '显示位置。' },
-  { name: 'duration', type: 'number', default: '3000', required: false, desc: '自动关闭的毫秒数，0 表示不自动关闭。' },
-  { name: 'overlay', type: 'boolean', default: 'false', required: false, desc: '是否显示半透明遮罩。' },
-  { name: 'closeOnClick', type: 'boolean', default: 'false', required: false, desc: '点击 toast 自身是否关闭。' },
-  { name: 'onClose', type: '() => void', default: '—', required: false, desc: '关闭时的回调。' },
+  { name: 'duration', type: 'number', default: '3000', required: false, desc: 'componentProps.Toast.duration' },
+  { name: 'overlay', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Toast.overlay' },
+  { name: 'closeOnClick', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Toast.closeOnClick' },
+  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.Toast.onClose' },
 ];
 
 const methodsData: PropRow[] = [

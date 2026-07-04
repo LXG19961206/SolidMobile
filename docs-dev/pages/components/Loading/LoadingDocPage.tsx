@@ -7,17 +7,17 @@ import styles from './LoadingDocPage.module.css';
 import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
-  { name: 'text', type: 'string', default: '—', required: false, desc: '加载文字。与 children 二选一，text 优先。' },
-  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: '子元素，text 未提供时生效。' },
+  { name: 'text', type: 'string', default: '—', required: false, desc: 'componentProps.Loading.text' },
+  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Loading.children' },
   { name: 'type', type: "'spinner' | 'circular' | 'dots'", default: "'spinner'", required: false, desc: '内置动画类型。' },
-  { name: 'size', type: 'string | number', default: '—', required: false, desc: '动画尺寸，数字自动补 px。' },
-  { name: 'color', type: 'string', default: '—', required: false, desc: '动画颜色。' },
-  { name: 'textColor', type: 'string', default: '—', required: false, desc: '文字颜色。' },
-  { name: 'vertical', type: 'boolean', default: 'false', required: false, desc: '文字与动画是否纵向排列。' },
-  { name: 'overlay', type: 'boolean', default: 'false', required: false, desc: '是否为全屏遮罩模式。' },
-  { name: 'icon', type: 'JSX.Element', default: '—', required: false, desc: '自定义图标，设置后忽略 type。' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: '自定义 CSS class。' },
-  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: '内联样式。' },
+  { name: 'size', type: 'string | number', default: '—', required: false, desc: 'componentProps.Loading.size' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.Loading.color' },
+  { name: 'textColor', type: 'string', default: '—', required: false, desc: 'componentProps.Loading.textColor' },
+  { name: 'vertical', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Loading.vertical' },
+  { name: 'overlay', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Loading.overlay' },
+  { name: 'icon', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Loading.icon' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.Loading.class' },
+  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.Loading.style' },
 ];
 
 const tocItems: TOCItem[] = [

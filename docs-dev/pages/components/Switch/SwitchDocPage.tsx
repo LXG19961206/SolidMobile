@@ -6,18 +6,18 @@ import { useT } from '../../../doc-i18n';
 import styles from './SwitchDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'checked', type: 'boolean', default: '—', required: false, desc: '是否打开（受控模式）。' },
-  { name: 'value', type: 'boolean', default: '—', required: false, desc: 'checked 的别名。' },
-  { name: 'defaultChecked', type: 'boolean', default: 'false', required: false, desc: '默认状态（非受控模式）。' },
-  { name: 'onChange', type: '(checked: boolean) => void', default: '—', required: false, desc: '状态变化回调。' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: '是否禁用。' },
-  { name: 'size', type: 'string | number', default: '28', required: false, desc: '尺寸，数字自动补 px。' },
-  { name: 'activeColor', type: 'string', default: '—', required: false, desc: '打开时的背景色。' },
-  { name: 'inactiveColor', type: 'string', default: '—', required: false, desc: '关闭时的背景色。' },
-  { name: 'activeText', type: 'string', default: '—', required: false, desc: '打开时显示的文案，在滑块右侧。' },
-  { name: 'inactiveText', type: 'string', default: '—', required: false, desc: '关闭时显示的文案，在滑块右侧。' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: '自定义 CSS class。' },
-  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: '内联样式。' },
+  { name: 'checked', type: 'boolean', default: '—', required: false, desc: 'componentProps.Switch.checked' },
+  { name: 'value', type: 'boolean', default: '—', required: false, desc: 'componentProps.Switch.value' },
+  { name: 'defaultChecked', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Switch.defaultChecked' },
+  { name: 'onChange', type: '(checked: boolean) => void', default: '—', required: false, desc: 'componentProps.Switch.onChange' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Switch.disabled' },
+  { name: 'size', type: 'string | number', default: '28', required: false, desc: 'componentProps.Switch.size' },
+  { name: 'activeColor', type: 'string', default: '—', required: false, desc: 'componentProps.Switch.activeColor' },
+  { name: 'inactiveColor', type: 'string', default: '—', required: false, desc: 'componentProps.Switch.inactiveColor' },
+  { name: 'activeText', type: 'string', default: '—', required: false, desc: 'componentProps.Switch.activeText' },
+  { name: 'inactiveText', type: 'string', default: '—', required: false, desc: 'componentProps.Switch.inactiveText' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.Switch.class' },
+  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.Switch.style' },
 ];
 
 const tocItems: TOCItem[] = [
