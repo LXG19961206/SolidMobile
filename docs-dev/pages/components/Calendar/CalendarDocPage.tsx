@@ -56,6 +56,7 @@ const tocItems: TOCItem[] = [
 const fmt = (d: Date) => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
 
 const PopupSingle = () => {
+  const t = useT();
   const pt = useContext(PhoneTargetContext);
   const [show, setShow] = createSignal(false);
   const [date, setDate] = createSignal<Date | null>(null);
@@ -68,6 +69,7 @@ const PopupSingle = () => {
 };
 
 const PopupRange = () => {
+  const t = useT();
   const pt = useContext(PhoneTargetContext);
   const [show, setShow] = createSignal(false);
   const [range, setRange] = createSignal<[Date, Date] | null>(null);
@@ -80,6 +82,7 @@ const PopupRange = () => {
 };
 
 const PopupColor = () => {
+  const t = useT();
   const pt = useContext(PhoneTargetContext);
   const [show, setShow] = createSignal(false);
   const [range, setRange] = createSignal<[Date, Date] | null>(null);
@@ -107,6 +110,7 @@ specialDates[`${y}-${m}-1`] = { label: '假', color: '#ef4444' };
 specialDates[`${y}-${m}-15`] = { label: '假', color: '#ef4444' };
 
 const PopupHoliday = () => {
+  const t = useT();
   const pt = useContext(PhoneTargetContext);
   const [show, setShow] = createSignal(false);
   const [date, setDate] = createSignal<Date | null>(null);
