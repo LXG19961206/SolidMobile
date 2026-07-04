@@ -480,6 +480,10 @@ export const docMessages: LocaleMessages = {
       notifyIntro: '顶部/底部弹出式通知栏，命令式 API 调用。',
     },
     nav: {
+      'guide': "开发指南",
+      "config": "全局配置",
+      "tokens": "视觉规范",
+      "eventbus": "事件总线",
       'about': '关于项目',
       'actionsheet': 'ActionSheet 动作面板',
       'avatar': 'Avatar 头像',
@@ -1041,6 +1045,10 @@ export const docMessages: LocaleMessages = {
       notifyIntro: 'Top/bottom notification bar. Imperative API.',
     },
     nav: {
+      'guide': "QuickStart",
+      "config": "ConfigProvider",
+      "tokens": "DesignTokens",
+      "eventbus": "EventBus",
       'about': 'About',
       'actionsheet': 'ActionSheet',
       'avatar': 'Avatar',
