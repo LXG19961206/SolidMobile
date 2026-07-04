@@ -107,7 +107,7 @@ export const SwitchDocPage = () => {
         <h2 id="text" class={styles.h2}>{t('section.text')}</h2>
         <DemoBlock
           title="activeText / inactiveText"
-          desc={t('demoDesc.Switch_f94b0b')}
+          desc={t('demoDesc.switch_text_label')}
           code={`<Switch activeText="ON" inactiveText="OFF" defaultChecked />\n<Switch activeText="开" inactiveText="关" activeColor="#22c55e" />\n{/* 左 label 布局 */}\n<label style={{ display:'flex', alignItems:'center', gap:'0.5rem' }}>\n  <span>开启通知</span>\n  <Switch />\n</label>`}
         >
           <div class={styles.demoArea}>

@@ -31,7 +31,7 @@ export const EmptyDocPage = () => {
       <PropsTable rows={propsData} />
 
       <h2 id="basic" class={css.h2}>{t('demo.basic')}</h2>
-      <DemoBlock title={t('demo.emptyPreset')} desc={t('demoDesc.Empty_7e7d97')} code={'<Empty description="暂无数据" />\n<Empty description="网络异常" image="network" />\n<Empty description="未找到结果" image="search" />'}>
+      <DemoBlock title={t('demo.emptyPreset')} desc={t('demoDesc.empty_presets')} code={'<Empty description="暂无数据" />\n<Empty description="网络异常" image="network" />\n<Empty description="未找到结果" image="search" />'}>
         <div style="display:flex;gap:2rem;flex-wrap:wrap">
           <Empty description="暂无数据" />
           <Empty description="网络异常" image="network" />

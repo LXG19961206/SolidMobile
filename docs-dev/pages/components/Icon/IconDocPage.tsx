@@ -174,7 +174,7 @@ export const IconDocPage: Component = () => {
 
         <DemoBlock
           title={t('demo.iconLineFill')}
-          desc={t('demoDesc.Icon_473e84')}
+          desc={t('demoDesc.icon_with_button')}
           code={`<Icon name="home" variant="line" size={24} />\n<Icon name="home" variant="fill" size={24} />\n<Icon name="heart" variant="line" size={24} />\n<Icon name="heart" variant="fill" size={24} color="#ff4d4f" />`}
         >
           <div class={styles.demoArea}>
@@ -213,7 +213,7 @@ export const IconDocPage: Component = () => {
 
         <DemoBlock
           title={t('demo.iconWithButton')}
-          desc={t('demoDesc.Icon_70f12a')}
+          desc={t('demoDesc.icon_color')}
           code={`<Button icon="add" text="新建" />\n<Button icon="download" text="下载" variant="outline" />\n<Button icon="delete-bin" text="删除" type="danger" variant="outline" />\n{/* 也可以传 JSX: icon={<MyIcon />} */}`}
         >
           <div class={styles.demoArea}>
