@@ -537,7 +537,7 @@ export const docMessages: LocaleMessages = {
       block: `Block`,
       blockDesc: `Block level.`,
       bottomPopup: `Bottom`,
-      bottomPopupDesc: `Bottom popup.`bottom'。`,
+      bottomPopupDesc: `Bottom popup position.`,
       calendarCustom: `Custom`,
       calendarCustomDesc: `Custom color & render.`,
       calendarHoliday: `Holiday`,
