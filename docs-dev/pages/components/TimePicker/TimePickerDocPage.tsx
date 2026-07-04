@@ -3,6 +3,7 @@ import { TimePicker } from '../../../../src/components/TimePicker';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
+import { useT } from '../../doc-i18n';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
 
@@ -99,7 +100,9 @@ const codeForm = `<Form onSubmit={(v) => console.log(v)}>
   <Button type="primary" block nativeType="submit" text="提交" />
 </Form>`;
 
-export const TimePickerDocPage: Component = () => (
+export const TimePickerDocPage: Component = () => {
+  const t = useT();
+  return (
   <DocLayout>
     <div style={{ padding: '16px', 'max-width': '960px' }}>
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>TimePicker 时间选择</h1>
@@ -107,23 +110,21 @@ export const TimePickerDocPage: Component = () => (
         HH:mm:ss 三列时间选择器，基于 Picker 封装。自动适配 Form。
       </p>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>属性</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>基础用法</h2>
-      <DemoBlock title="默认" desc="点击 Cell 弹出选择器，时/分/秒三列独立滚动。" code={codeBasic}>
+      <DemoBlock title={t('demo.basic')} desc={t('demo.basicDesc')} code={codeBasic}>
         <BasicDemo />
       </DemoBlock>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>受控值</h2>
-      <DemoBlock title="预设值" desc="通过 value prop 预设 HH:mm:ss 格式的时间。" code={codeControlled}>
+      <DemoBlock title={t('demo.controlled')} desc={t('demo.controlledDesc')} code={codeControlled}>
         <ControlledDemo />
       </DemoBlock>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>配合 Form</h2>
-      <DemoBlock title="表单中的时间字段" desc="放入 FormItem 自动双向绑定。onSubmit 直接拿到 HH:mm:ss 格式的值。" code={codeForm}>
+      <DemoBlock title={t('demo.form')} desc={t('demo.formDesc')} code={codeForm}>
         <FormDemo />
       </DemoBlock>
     </div>
   </DocLayout>
-);
+  );
+};

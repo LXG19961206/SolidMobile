@@ -8,6 +8,7 @@ export interface PickerMobileProps {
 import { Picker } from '../../../src/components/Picker';
 import { Cell, CellGroup } from '../../../src/components/Cell';
 import type { PickerOption } from '../../../src/components/Picker';
+import { useT } from '../../../doc-i18n';
 
 const propsData = [
   { name: 'columns', type: 'PickerOption[] | PickerOption[][]', desc: '数据源：tree 级联或 flat 多列' },
@@ -78,6 +79,7 @@ const disabledCols: PickerOption[][] = [[
 ]];
 
 export const PickerMobile: Component<PickerMobileProps> = (props) => {
+  const t = useT();
   /* ── Tree 级联 ── */
   const [showCity, setShowCity] = createSignal(false);
   const [cityVal, setCityVal] = createSignal<(string | number)[]>([]);
@@ -107,8 +109,8 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
     <MobilePreview title="Picker 选择器" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* Tree 级联 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>Tree 级联</div>
-        <div style={CARD.desc}>省 → 市 → 区 三级联动。选中确认后显示完整路径。</div>
+        <div style={CARD.title}>{t('demo.cascade')}</div>
+        <div style={CARD.desc}>{t('demo.cascadeDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
@@ -135,8 +137,8 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
 
       {/* Flat 年月 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>Flat 多列不联动</div>
-        <div style={CARD.desc}>年月两列独立滚动，互不影响。</div>
+        <div style={CARD.title}>{t('demo.flat')}</div>
+        <div style={CARD.desc}>{t('demo.flatDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
@@ -163,8 +165,8 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
 
       {/* 时分选择 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>时分选择</div>
-        <div style={CARD.desc}>24 小时制 + 60 分钟，支持快速滑动惯性。</div>
+        <div style={CARD.title}>{t('demo.timeSelect')}</div>
+        <div style={CARD.desc}>{t('demo.timeSelectDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
@@ -191,8 +193,8 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
 
       {/* 禁用选项 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>禁用选项</div>
-        <div style={CARD.desc}>disabled 项滚动时自动跳过，不可选中。</div>
+        <div style={CARD.title}>{t('demo.disabled')}</div>
+        <div style={CARD.desc}>{t('demo.disabledDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
@@ -216,8 +218,8 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
 
       {/* 占位符 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>占位符 placeholders</div>
-        <div style={CARD.desc}>每列顶部显示占位提示，表示"未选择"状态。</div>
+        <div style={CARD.title}>{t('demo.placeholder')}</div>
+        <div style={CARD.desc}>{t('demo.placeholderDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
@@ -245,8 +247,8 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
 
       {/* 受控值 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>受控值 value</div>
-        <div style={CARD.desc}>传入 value prop 预设选中项（北京 / 海淀）</div>
+        <div style={CARD.title}>{t('demo.controlled')}</div>
+        <div style={CARD.desc}>{t('demo.controlledDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell title="预设值" value="北京 / 海淀区" clickable onClick={() => setShowCtrl(true)} />

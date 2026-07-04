@@ -1,6 +1,7 @@
 import { createSignal, type Component, type JSX } from 'solid-js';
 import { Upload } from '../../../../src/components/Upload';
 import type { UploadFile } from '../../../../src/components/Upload';
+import { useT } from '../../doc-i18n';
 import { ToastRenderer, Toast } from '../../../../src/components/Toast';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
@@ -58,6 +59,7 @@ function mockApi(file: File, onProgress?: (pct: number) => void): Promise<string
 }
 
 export const UploadDocPage: Component = () => {
+  const t = useT();
   const [fileList, setFileList] = createSignal<UploadFile[]>([]);
 
   return (
@@ -72,7 +74,7 @@ export const UploadDocPage: Component = () => {
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Props</h2>
         <PropsTable rows={uploadProps} />
 
-        <DemoBlock title="图片上传" desc="默认 type=image，选择后自动生成缩略图。api 需返回图片 URL 用于反显。" code={`// api 返回上传后的文件 URL，组件用于反显和预览
+        <DemoBlock title={t('demo.imageUpload')} desc={t('demo.imageUploadDesc')} code={`// api 返回上传后的文件 URL，组件用于反显和预览
 const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
   const form = new FormData();
   form.append('file', file);
@@ -86,7 +88,7 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           <Upload api={mockApi} maxCount={9} />
         </DemoBlock>
 
-        <DemoBlock title="文件上传" desc="type=file 展示为文件列表，适合文档、压缩包等非图片文件。" code={`const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
+        <DemoBlock title={t('demo.fileUpload')} desc={t('demo.fileUploadDesc')} code={`const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
   const form = new FormData();
   form.append('file', file);
   const res = await fetch('/upload', { method: 'POST', body: form });

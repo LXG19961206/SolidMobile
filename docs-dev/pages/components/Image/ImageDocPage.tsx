@@ -1,4 +1,4 @@
-import { useT } from '../../../../src/i18n';
+import { useT } from '../../doc-i18n';
 import { Image } from '../../../../src/components/Image';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';

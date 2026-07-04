@@ -6,6 +6,7 @@ import { Button } from '../../../../src/components/Button';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
+import { useT } from '../../doc-i18n';
 
 const propsData: PropRow[] = [
   { name: 'type', type: "'text' | 'number' | 'password' | 'tel' | 'email' | 'url'", default: "'text'", required: false, desc: '输入类型。' },
@@ -97,7 +98,9 @@ const codeSms = `<CellGroup>
   <Cell title="手机号" value={<Input type="tel" maxlength={11} suffix={btn()} />} />
 </CellGroup>`;
 
-export const InputDocPage: Component = () => (
+export const InputDocPage: Component = () => {
+  const t = useT();
+  return (
   <DocLayout>
     <div style={{ padding: '16px', 'max-width': '960px' }}>
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Input 输入框</h1>
@@ -124,7 +127,7 @@ export const InputDocPage: Component = () => (
       ]} />
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>基础类型</h2>
-      <DemoBlock title="text / password / number" code={codeBasic}>
+      <DemoBlock title={t('demo.basic')} code={codeBasic}>
         <CellGroup>
           <Cell title="文本" value={<Input placeholder="请输入" />} />
           <Cell title="密码" value={<Input type="password" placeholder="密码" showPasswordToggle />} />
@@ -193,4 +196,5 @@ export const InputDocPage: Component = () => (
       </DemoBlock>
     </div>
   </DocLayout>
-);
+  );
+};

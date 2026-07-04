@@ -2,6 +2,7 @@ import { createSignal } from 'solid-js';
 import { Switch } from '../../../../src/components/Switch';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { useT } from '../../doc-i18n';
 import styles from './SwitchDocPage.module.css';
 
 const propsData: PropRow[] = [
@@ -29,6 +30,7 @@ const tocItems: TOCItem[] = [
 ];
 
 export const SwitchDocPage = () => {
+  const t = useT();
   const [controlledOn, setControlledOn] = createSignal(false);
 
   return (
@@ -47,7 +49,7 @@ export const SwitchDocPage = () => {
         {/* Basic */}
         <h2 id="basic" class={styles.h2}>基础用法</h2>
         <DemoBlock
-          title="非受控模式"
+          title={t('demo.basic')}
           desc="不传 checked，组件自行管理开关状态。"
           code={`<Switch defaultChecked />`}
         >
@@ -60,8 +62,8 @@ export const SwitchDocPage = () => {
         {/* Controlled */}
         <h2 id="controlled" class={styles.h2}>受控模式</h2>
         <DemoBlock
-          title="受控模式"
-          desc="传入 checked（或 value） + onChange，由外部管理状态。"
+          title={t('demo.controlled')}
+          desc={t('demo.controlledDesc')}
           code={`const [on, setOn] = createSignal(false);\n\n<Switch checked={on()} onChange={setOn} />\n{/* value 是 checked 的别名 */}\n<Switch value={on()} onChange={setOn} />`}
         >
           <div class={styles.demoArea}>
@@ -75,8 +77,8 @@ export const SwitchDocPage = () => {
         {/* Color */}
         <h2 id="color" class={styles.h2}>自定义颜色</h2>
         <DemoBlock
-          title="activeColor / inactiveColor"
-          desc="可分别设置开关两种状态下的背景色。"
+          title={t('demo.customColor')}
+          desc={t('demo.customColorDesc')}
           code={`<Switch activeColor="#22c55e" defaultChecked />\n<Switch activeColor="#ef4444" inactiveColor="#fecaca" defaultChecked />`}
         >
           <div class={styles.demoArea}>

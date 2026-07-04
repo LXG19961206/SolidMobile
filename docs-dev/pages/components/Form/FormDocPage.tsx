@@ -17,6 +17,7 @@ import { Upload } from '../../../../src/components/Upload';
 import type { UploadFile } from '../../../../src/components/Upload';
 import { TimePicker } from '../../../../src/components/TimePicker';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
+import { useT } from '../../doc-i18n';
 import { Toast } from '../../../../src/components/Toast';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PickerOption } from '../../../../src/components/Picker';
@@ -327,7 +328,9 @@ const CodeWithOther = `<Form>
 
 /* ── Main ── */
 
-export const FormDocPage: Component = () => (
+export const FormDocPage: Component = () => {
+  const t = useT();
+  return (
   <DocLayout>
     <div style={{ padding: '16px', 'max-width': '960px' }}>
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Form 表单</h1>
@@ -342,19 +345,20 @@ export const FormDocPage: Component = () => (
       <PropsTable rows={itemProps} />
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>基础用法</h2>
-      <DemoBlock title="表单提交 & 校验" desc="带字段校验的表单。用户名少于 2 个字符时提示错误。" code={CodeBasic}>
+      <DemoBlock title={t('demo.submit')} desc={t('demo.submitDesc')} code={CodeBasic}>
         <BasicDemo />
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>配合其他控件</h2>
-      <DemoBlock title="Switch + Input" desc="FormItem 可包裹任意有 value/onChange 的控件。" code={CodeWithOther}>
+      <DemoBlock title={t('demo.switchInput')} desc={t('demo.switchInputDesc')} code={CodeWithOther}>
         <WithOtherDemo />
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>综合实例</h2>
-      <DemoBlock title="全组件表单" desc="一个表单里同时使用 Input / Textarea / Radio / Checkbox / Switch / Rate / Stepper / Slider / Select / DatePicker / CityPicker / Upload / TimePicker，展示 Form 与各类组件的配合。" code={FullDemoCode}>
+      <DemoBlock title={t('demo.allComponents')} desc={t('demo.allComponentsDesc')} code={FullDemoCode}>
         <FullFormDemo />
       </DemoBlock>
     </div>
   </DocLayout>
-);
+  );
+};

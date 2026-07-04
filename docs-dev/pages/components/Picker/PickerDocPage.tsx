@@ -4,6 +4,7 @@ import { Cell, CellGroup } from '../../../../src/components/Cell';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
 import type { PickerOption } from '../../../../src/components/Picker/types';
+import { useT } from '../../doc-i18n';
 
 /* ── Data ── */
 
@@ -240,7 +241,9 @@ const codeControlled = `<Picker columns={cityTree} show={show} onUpdateShow={set
 
 /* ── Page ── */
 
-export const PickerDocPage: Component = () => (
+export const PickerDocPage: Component = () => {
+  const t = useT();
+  return (
   <DocLayout>
     <div style={{ padding: '16px', 'max-width': '960px' }}>
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Picker 选择器</h1>
@@ -252,29 +255,30 @@ export const PickerDocPage: Component = () => (
       <PropsTable rows={propsData} />
 
       {/* Each DemoBlock has groupCode="picker" → merged into one CellGroup in phone */}
-      <DemoBlock title="多级联动" desc="省→市→区三级联动。" code={codeTree} groupCode="多级联动">
+      <DemoBlock title={t('demo.cascade')} desc={t('demo.cascadeDesc')} code={codeTree} groupCode="多级联动">
         <CityPicker />
       </DemoBlock>
-      <DemoBlock title="多级但不联动" desc="比如年月独立列。列之间的选择并不互相关联，采用flat模式以优化性能" code={codeFlat} groupCode="多级但不联动">
+      <DemoBlock title={t('demo.flat')} desc={t('demo.flatDesc')} code={codeFlat} groupCode="多级但不联动">
         <DatePickerDemo />
       </DemoBlock>
-      <DemoBlock title="时分选择" desc="时 / 分两列。" code={codeTime} groupCode="时分选择">
+      <DemoBlock title={t('demo.timeSelect')} desc={t('demo.timeSelectDesc')} code={codeTime} groupCode="时分选择">
         <TimePickerDemo />
       </DemoBlock>
-      <DemoBlock title="disabled选项" desc="滚动时自动跳过 disabled 项。" code={codeDisabled} groupCode="disabled选项">
+      <DemoBlock title={t('demo.disabled')} desc={t('demo.disabledDesc')} code={codeDisabled} groupCode="disabled选项">
         <DisabledPicker />
       </DemoBlock>
-      <DemoBlock title="占位符" desc="顶部显示 '请选择' 占位。" code={codePlaceholder} groupCode="占位符">
+      <DemoBlock title={t('demo.placeholder')} desc={t('demo.placeholderDesc')} code={codePlaceholder} groupCode="占位符">
         <PlaceholderPicker />
       </DemoBlock>
-      <DemoBlock title="理论支持无限层级" desc="电子产品→手机→智能机→旗舰→容量。" code={codeDeep} groupCode="理论支持无限层级">
+      <DemoBlock title={t('demo.deepCascade')} desc={t('demo.deepCascadeDesc')} code={codeDeep} groupCode="理论支持无限层级">
         <DeepPicker />
       </DemoBlock>
-      <DemoBlock title="受控值" desc="预设 value prop。" code={codeControlled} groupCode="受控值">
+      <DemoBlock title={t('demo.controlled')} desc={t('demo.controlledDesc')} code={codeControlled} groupCode="受控值">
         <ControlledPicker />
       </DemoBlock>
 
       <GroupCodePhone />
     </div>
   </DocLayout>
-);
+  );
+};

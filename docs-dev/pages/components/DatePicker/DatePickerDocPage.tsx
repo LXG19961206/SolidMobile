@@ -1,6 +1,7 @@
 import { createSignal, useContext, type Component } from 'solid-js';
 import { DatePicker } from '../../../../src/components/DatePicker';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
+import { useT } from '../../doc-i18n';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
@@ -147,40 +148,43 @@ const FormDemo: Component = () => {
   );
 };
 
-export const DatePickerDocPage: Component = () => (
+export const DatePickerDocPage: Component = () => {
+  const t = useT();
+  return (
   <DocLayout>
     <div style={{ padding: '16px', 'max-width': '960px' }}>
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>DatePicker 日期选择</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
-        日期选择器，基于 Picker 组件封装。点击触发区域弹出滚轮选择。
+        {t('demo.basicDesc')}
       </p>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>DatePicker Props</h2>
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={datePickerProps} />
 
-      <DemoBlock title="基础用法" desc="不传 show 时，DatePicker 自行管理面板开关，点击即可选择。" code={codeBasic}>
+      <DemoBlock title={t('demo.basic')} desc={t('demo.basicDesc')} code={codeBasic}>
         <BasicDemo />
       </DemoBlock>
 
-      <DemoBlock title="限定范围" desc="通过 startDate / endDate 限制可选范围。" code={codeRange}>
+      <DemoBlock title={t('demo.range')} desc={t('demo.rangeDesc')} code={codeRange}>
         <RangeDemo />
       </DemoBlock>
 
-      <DemoBlock title="仅选择年月" desc="type='year-month' 只显示年和月两列。" code={codeYearMonth}>
+      <DemoBlock title={t('demo.yearMonth')} desc={t('demo.yearMonthDesc')} code={codeYearMonth}>
         <YearMonthDemo />
       </DemoBlock>
 
-      <DemoBlock title="禁用日期" desc="通过 disabledDate 函数禁用特定日期。以下禁用了所有周末（周六/周日）。" code={codeDisabled}>
+      <DemoBlock title={t('demo.disabled')} desc={t('demo.disabledDesc')} code={codeDisabled}>
         <DisabledDateDemo />
       </DemoBlock>
 
-      <DemoBlock title="日期+时间（datetime）" desc="type='datetime' 增加时/分/秒三列，支持完整日期时间选择。" code={codeDateTime}>
+      <DemoBlock title={t('demo.datetime')} desc={t('demo.datetimeDesc')} code={codeDateTime}>
         <DateTimeDemo />
       </DemoBlock>
 
-      <DemoBlock title="表单中使用" desc="放在 FormItem 中自动集成表单的值管理。" code={codeForm}>
+      <DemoBlock title={t('demo.form')} desc={t('demo.formDesc')} code={codeForm}>
         <FormDemo />
       </DemoBlock>
     </div>
   </DocLayout>
-);
+  );
+};
