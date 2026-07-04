@@ -1,13 +1,13 @@
 {
   "name": "solid-mobile",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Solid.js mobile UI component library with 42+ components, theme system, and i18n support.",
   "type": "module",
   "license": "MIT",
   "author": "LXG19961206",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LXG19961206/solid-component"
+    "url": "https://github.com/LXG19961206/SolidMobile"
   },
   "keywords": [
     "solid-js",
