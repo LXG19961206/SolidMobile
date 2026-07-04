@@ -1,7 +1,7 @@
 import { createSignal, type Component, type JSX } from 'solid-js';
 import { Upload } from '../../../../src/components/Upload';
 import type { UploadFile } from '../../../../src/components/Upload';
-import { useT } from '../../doc-i18n';
+import { useT } from '../../../doc-i18n';
 import { ToastRenderer, Toast } from '../../../../src/components/Toast';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';

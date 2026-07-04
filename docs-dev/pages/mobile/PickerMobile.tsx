@@ -8,7 +8,7 @@ export interface PickerMobileProps {
 import { Picker } from '../../../src/components/Picker';
 import { Cell, CellGroup } from '../../../src/components/Cell';
 import type { PickerOption } from '../../../src/components/Picker';
-import { useT } from '../../../doc-i18n';
+import { useT } from '../../doc-i18n';
 
 const propsData = [
   { name: 'columns', type: 'PickerOption[] | PickerOption[][]', desc: '数据源：tree 级联或 flat 多列' },

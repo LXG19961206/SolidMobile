@@ -17,7 +17,7 @@ import { Upload } from '../../../../src/components/Upload';
 import type { UploadFile } from '../../../../src/components/Upload';
 import { TimePicker } from '../../../../src/components/TimePicker';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
-import { useT } from '../../doc-i18n';
+import { useT } from '../../../doc-i18n';
 import { Toast } from '../../../../src/components/Toast';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PickerOption } from '../../../../src/components/Picker';

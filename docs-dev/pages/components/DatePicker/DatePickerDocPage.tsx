@@ -1,7 +1,7 @@
 import { createSignal, useContext, type Component } from 'solid-js';
 import { DatePicker } from '../../../../src/components/DatePicker';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
-import { useT } from '../../doc-i18n';
+import { useT } from '../../../doc-i18n';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';

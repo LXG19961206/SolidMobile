@@ -6,7 +6,7 @@ import { Button } from '../../../../src/components/Button';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
 import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
-import { useT } from '../../doc-i18n';
+import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
   { name: 'type', type: "'text' | 'number' | 'password' | 'tel' | 'email' | 'url'", default: "'text'", required: false, desc: '输入类型。' },

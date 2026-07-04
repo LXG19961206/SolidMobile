@@ -4,7 +4,7 @@ import { Cell, CellGroup } from '../../../../src/components/Cell';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
 import type { PickerOption } from '../../../../src/components/Picker/types';
-import { useT } from '../../doc-i18n';
+import { useT } from '../../../doc-i18n';
 
 /* ── Data ── */
 
