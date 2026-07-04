@@ -8,22 +8,22 @@ import { Toast } from '../../../../src/components/Toast';
 import type { PropRow } from '../../../../src/doc-utils';
 
 const datePickerProps: PropRow[] = [
-  { name: 'value', type: 'string', default: '—', required: false, desc: 'componentProps.DatePicker.value' },
-  { name: 'onChange', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.DatePicker.onChange' },
-  { name: 'onConfirm', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.DatePicker.onConfirm' },
-  { name: 'onCancel', type: '() => void', default: '—', required: false, desc: 'componentProps.DatePicker.onCancel' },
-  { name: 'startDate', type: 'string', default: "'2014-01-01'", required: false, desc: '可选范围起点。' },
-  { name: 'endDate', type: 'string', default: "'2034-12-31'", required: false, desc: '可选范围终点。' },
-  { name: 'type', type: "'date' | 'year-month' | 'datetime'", default: "'date'", required: false, desc: '选择类型。datetime 增加时/分/秒三列。' },
-  { name: 'placeholder', type: 'string', default: "'请选择日期'", required: false, desc: '占位文字。' },
-  { name: 'title', type: 'string', default: "'选择日期'", required: false, desc: '面板标题。' },
-  { name: 'cancelText', type: 'string', default: '—', required: false, desc: 'componentProps.DatePicker.cancelText' },
-  { name: 'confirmText', type: 'string', default: '—', required: false, desc: 'componentProps.DatePicker.confirmText' },
-  { name: 'disabledDate', type: '(year, month, day) => boolean', default: '—', required: false, desc: 'componentProps.DatePicker.disabledDate' },
-  { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: 'componentProps.DatePicker.visibleItemCount' },
-  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.DatePicker.teleport' },
-  { name: 'show', type: 'boolean', default: '—', required: false, desc: 'componentProps.DatePicker.show' },
-  { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: 'componentProps.DatePicker.onUpdateShow' },
+  { name: 'value', type: 'string', default: '—', required: false, desc: 'componentProps.datepicker.value' },
+  { name: 'onChange', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.datepicker.onChange' },
+  { name: 'onConfirm', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.datepicker.onConfirm' },
+  { name: 'onCancel', type: '() => void', default: '—', required: false, desc: 'componentProps.datepicker.onCancel' },
+  { name: 'startDate', type: 'string', default: "'2014-01-01'", required: false, desc: 'componentProps.datepicker.startDate' },
+  { name: 'endDate', type: 'string', default: "'2034-12-31'", required: false, desc: 'componentProps.datepicker.endDate' },
+  { name: 'type', type: "'date' | 'year-month' | 'datetime'", default: "'date'", required: false, desc: 'componentProps.datepicker.type' },
+  { name: 'placeholder', type: 'string', default: "'请选择日期'", required: false, desc: 'componentProps.datepicker.placeholder' },
+  { name: 'title', type: 'string', default: "'选择日期'", required: false, desc: 'componentProps.datepicker.title' },
+  { name: 'cancelText', type: 'string', default: '—', required: false, desc: 'componentProps.datepicker.cancelText' },
+  { name: 'confirmText', type: 'string', default: '—', required: false, desc: 'componentProps.datepicker.confirmText' },
+  { name: 'disabledDate', type: '(year, month, day) => boolean', default: '—', required: false, desc: 'componentProps.datepicker.disabledDate' },
+  { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: 'componentProps.datepicker.visibleItemCount' },
+  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.datepicker.teleport' },
+  { name: 'show', type: 'boolean', default: '—', required: false, desc: 'componentProps.datepicker.show' },
+  { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: 'componentProps.datepicker.onUpdateShow' },
 ];
 
 const codeBasic = `const phone = useContext(PhoneTargetContext);

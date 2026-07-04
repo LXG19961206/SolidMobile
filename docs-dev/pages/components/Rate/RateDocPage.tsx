@@ -9,20 +9,20 @@ import type { PropRow } from '../../../../src/doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const rateProps: PropRow[] = [
-  { name: 'value', type: 'number', default: '0', required: false, desc: 'componentProps.Rate.value' },
-  { name: 'onChange', type: '(value: number) => void', default: '—', required: false, desc: 'componentProps.Rate.onChange' },
-  { name: 'count', type: 'number | string', default: '5', required: false, desc: 'componentProps.Rate.count' },
-  { name: 'size', type: 'number | string', default: '20px', required: false, desc: 'componentProps.Rate.size' },
-  { name: 'gutter', type: 'number | string', default: '4px', required: false, desc: 'componentProps.Rate.gutter' },
-  { name: 'color', type: 'string', default: '#ee0a24', required: false, desc: 'componentProps.Rate.color' },
-  { name: 'voidColor', type: 'string', default: '#c8c9cc', required: false, desc: 'componentProps.Rate.voidColor' },
-  { name: 'disabledColor', type: 'string', default: '#c8c9cc', required: false, desc: 'componentProps.Rate.disabledColor' },
-  { name: 'icon', type: 'string', default: "'star'", required: false, desc: '选中时的图标名，对应 Icon 的 name 属性。' },
-  { name: 'voidIcon', type: 'string', default: "'star'", required: false, desc: '未选中时的图标名。' },
-  { name: 'allowHalf', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Rate.allowHalf' },
-  { name: 'clearable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Rate.clearable' },
-  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Rate.readonly' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Rate.disabled' },
+  { name: 'value', type: 'number', default: '0', required: false, desc: 'componentProps.rate.value' },
+  { name: 'onChange', type: '(value: number) => void', default: '—', required: false, desc: 'componentProps.rate.onChange' },
+  { name: 'count', type: 'number | string', default: '5', required: false, desc: 'componentProps.rate.count' },
+  { name: 'size', type: 'number | string', default: '20px', required: false, desc: 'componentProps.rate.size' },
+  { name: 'gutter', type: 'number | string', default: '4px', required: false, desc: 'componentProps.rate.gutter' },
+  { name: 'color', type: 'string', default: '#ee0a24', required: false, desc: 'componentProps.rate.color' },
+  { name: 'voidColor', type: 'string', default: '#c8c9cc', required: false, desc: 'componentProps.rate.voidColor' },
+  { name: 'disabledColor', type: 'string', default: '#c8c9cc', required: false, desc: 'componentProps.rate.disabledColor' },
+  { name: 'icon', type: 'string', default: "'star'", required: false, desc: 'componentProps.rate.icon' },
+  { name: 'voidIcon', type: 'string', default: "'star'", required: false, desc: 'componentProps.rate.voidIcon' },
+  { name: 'allowHalf', type: 'boolean', default: 'false', required: false, desc: 'componentProps.rate.allowHalf' },
+  { name: 'clearable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.rate.clearable' },
+  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: 'componentProps.rate.readonly' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.rate.disabled' },
 ];
 
 const codeBasic = `const [val, setVal] = createSignal(3);

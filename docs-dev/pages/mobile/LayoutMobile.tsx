@@ -9,12 +9,12 @@ export interface LayoutMobileProps {
 import { Row, Col } from '../../../src/components/Layout';
 
 const propsData = [
-  { name: 'Row.gap', type: 'string | number', desc: '列间距，数字自动补 px' },
-  { name: 'Row.align', type: "'start' | 'center' | 'end' | 'stretch' | 'baseline'", desc: '垂直对齐' },
-  { name: 'Row.justify', type: "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'", desc: '水平分布' },
-  { name: 'Row.wrap', type: 'boolean', desc: '是否换行' },
-  { name: 'Col.span', type: 'number', desc: '栅格占位 1-24' },
-  { name: 'Col.offset', type: 'number', desc: '左偏移量' },
+  { name: 'Row.gap', type: 'string | number', desc: 'componentProps.layout.Row.gap' },
+  { name: 'Row.align', type: "'start' | 'center' | 'end' | 'stretch' | 'baseline'", desc: 'componentProps.layout.Row.align' },
+  { name: 'Row.justify', type: "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'", desc: 'componentProps.layout.Row.justify' },
+  { name: 'Row.wrap', type: 'boolean', desc: 'componentProps.layout.Row.wrap' },
+  { name: 'Col.span', type: 'number', desc: 'componentProps.layout.Col.span' },
+  { name: 'Col.offset', type: 'number', desc: 'componentProps.layout.Col.offset' },
 ];
 
 const CARD = {

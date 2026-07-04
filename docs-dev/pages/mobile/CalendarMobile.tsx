@@ -9,20 +9,20 @@ import { useT } from '../../doc-i18n';
 import { Calendar } from '../../../src/components/Calendar';
 
 const propsData = [
-  { name: 'type', type: "'single' | 'multiple' | 'range'", desc: '选择模式，默认 single' },
-  { name: 'value', type: 'Date | Date[] | [Date, Date]', desc: '当前值，按 type 不同' },
-  { name: 'onChange', type: '(value) => void', desc: '值变化回调' },
-  { name: 'minDate', type: 'Date', desc: '最小可选日期' },
-  { name: 'maxDate', type: 'Date', desc: '最大可选日期' },
-  { name: 'defaultDate', type: 'Date', desc: '默认展示月份' },
-  { name: 'firstDayOfWeek', type: 'number', desc: '一周起始日，0=周日' },
-  { name: 'activeColor', type: 'string', desc: '选中态颜色' },
-  { name: 'lunar', type: 'boolean', desc: '显示农历' },
-  { name: 'showConfirm', type: 'boolean', desc: '显示确认按钮' },
-  { name: 'popup', type: 'boolean', desc: '弹出层模式，默认 true' },
-  { name: 'show', type: 'boolean', desc: '弹出层显示（受控）' },
-  { name: 'onUpdateShow', type: '(show) => void', desc: '弹出层关闭回调' },
-  { name: 'title', type: 'string | JSX.Element', desc: '弹出层标题' },
+  { name: 'type', type: "'single' | 'multiple' | 'range'", desc: 'componentProps.calendar.type' },
+  { name: 'value', type: 'Date | Date[] | [Date, Date]', desc: 'componentProps.calendar.value' },
+  { name: 'onChange', type: '(value) => void', desc: 'componentProps.calendar.onChange' },
+  { name: 'minDate', type: 'Date', desc: 'componentProps.calendar.minDate' },
+  { name: 'maxDate', type: 'Date', desc: 'componentProps.calendar.maxDate' },
+  { name: 'defaultDate', type: 'Date', desc: 'componentProps.calendar.defaultDate' },
+  { name: 'firstDayOfWeek', type: 'number', desc: 'componentProps.calendar.firstDayOfWeek' },
+  { name: 'activeColor', type: 'string', desc: 'componentProps.calendar.activeColor' },
+  { name: 'lunar', type: 'boolean', desc: 'componentProps.calendar.lunar' },
+  { name: 'showConfirm', type: 'boolean', desc: 'componentProps.calendar.showConfirm' },
+  { name: 'popup', type: 'boolean', desc: 'componentProps.calendar.popup' },
+  { name: 'show', type: 'boolean', desc: 'componentProps.calendar.show' },
+  { name: 'onUpdateShow', type: '(show) => void', desc: 'componentProps.calendar.onUpdateShow' },
+  { name: 'title', type: 'string | JSX.Element', desc: 'componentProps.calendar.title' },
 ];
 
 const CARD = {

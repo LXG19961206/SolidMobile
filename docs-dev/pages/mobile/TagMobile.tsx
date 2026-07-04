@@ -9,13 +9,13 @@ export interface TagMobileProps {
 import { Tag } from '../../../src/components/Tag';
 
 const propsData = [
-  { name: 'type', type: "'primary' | 'success' | 'warning' | 'danger' | 'info'", desc: '语义色，默认 primary' },
-  { name: 'variant', type: "'solid' | 'outline'", desc: '填充方式，默认 solid' },
-  { name: 'size', type: "'sm' | 'md'", desc: '尺寸，默认 md' },
-  { name: 'round', type: 'boolean', desc: '胶囊圆角' },
-  { name: 'closeable', type: 'boolean', desc: '可关闭，显示 X 按钮' },
-  { name: 'onClose', type: '() => void', desc: '关闭回调' },
-  { name: 'color', type: 'string', desc: '自定义背景色' },
+  { name: 'type', type: "'primary' | 'success' | 'warning' | 'danger' | 'info'", desc: 'componentProps.tag.type' },
+  { name: 'variant', type: "'solid' | 'outline'", desc: 'componentProps.tag.variant' },
+  { name: 'size', type: "'sm' | 'md'", desc: 'componentProps.tag.size' },
+  { name: 'round', type: 'boolean', desc: 'componentProps.tag.round' },
+  { name: 'closeable', type: 'boolean', desc: 'componentProps.tag.closeable' },
+  { name: 'onClose', type: '() => void', desc: 'componentProps.tag.onClose' },
+  { name: 'color', type: 'string', desc: 'componentProps.tag.color' },
 ];
 
 const CARD = {

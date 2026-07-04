@@ -10,9 +10,9 @@ import { Empty } from '../../../src/components/Empty';
 import { Button } from '../../../src/components/Button';
 
 const propsData = [
-  { name: 'description', type: 'string', desc: '描述文字' },
-  { name: 'image', type: "'default' | 'network' | 'search' | JSX.Element", desc: '图片类型或自定义 JSX，默认 default' },
-  { name: 'children', type: 'JSX.Element', desc: '自定义底部内容（如按钮）' },
+  { name: 'description', type: 'string', desc: 'componentProps.empty.description' },
+  { name: 'image', type: "'default' | 'network' | 'search' | JSX.Element", desc: 'componentProps.empty.image' },
+  { name: 'children', type: 'JSX.Element', desc: 'componentProps.empty.children' },
 ];
 
 const CARD = {

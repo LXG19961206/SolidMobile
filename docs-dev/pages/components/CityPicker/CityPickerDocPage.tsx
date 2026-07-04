@@ -110,14 +110,14 @@ const deepTree: PickerOption[] = [
 ];
 
 const cityPickerProps: PropRow[] = [
-  { name: 'columns', type: 'PickerOption[]', default: '—', required: true, desc: 'componentProps.CityPicker.columns' },
-  { name: 'value', type: '(string \\| number)[]', default: '—', required: false, desc: 'componentProps.CityPicker.value' },
-  { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: 'componentProps.CityPicker.onChange' },
-  { name: 'onConfirm', type: '(value) => void', default: '—', required: false, desc: 'componentProps.CityPicker.onConfirm' },
-  { name: 'placeholder', type: 'string', default: "'请选择地区'", required: false, desc: '占位文字。' },
-  { name: 'separator', type: 'string', default: "' / '", required: false, desc: '显示文字分隔符。' },
-  { name: 'title', type: 'string', default: "'选择地区'", required: false, desc: '面板标题。' },
-  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.CityPicker.teleport' },
+  { name: 'columns', type: 'PickerOption[]', default: '—', required: true, desc: 'componentProps.citypicker.columns' },
+  { name: 'value', type: '(string \\| number)[]', default: '—', required: false, desc: 'componentProps.citypicker.value' },
+  { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: 'componentProps.citypicker.onChange' },
+  { name: 'onConfirm', type: '(value) => void', default: '—', required: false, desc: 'componentProps.citypicker.onConfirm' },
+  { name: 'placeholder', type: 'string', default: "'请选择地区'", required: false, desc: 'componentProps.citypicker.placeholder' },
+  { name: 'separator', type: 'string', default: "' / '", required: false, desc: 'componentProps.citypicker.separator' },
+  { name: 'title', type: 'string', default: "'选择地区'", required: false, desc: 'componentProps.citypicker.title' },
+  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.citypicker.teleport' },
 ];
 
 const codeBasic = `import { createSignal, useContext } from 'solid-js';

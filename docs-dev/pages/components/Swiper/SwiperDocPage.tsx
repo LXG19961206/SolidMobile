@@ -5,19 +5,19 @@ import type { PropRow } from '../../../../src/doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
-  { name: 'autoplay', type: 'number | string', default: '—', required: false, desc: 'componentProps.Swiper.autoplay' },
-  { name: 'duration', type: 'number | string', default: '500', required: false, desc: 'componentProps.Swiper.duration' },
-  { name: 'initialSwipe', type: 'number | string', default: '0', required: false, desc: 'componentProps.Swiper.initialSwipe' },
-  { name: 'width / height', type: 'number | string', default: "100% / '160px'", required: false, desc: '滑块宽高。' },
-  { name: 'loop', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Swiper.loop' },
-  { name: 'showIndicators', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Swiper.showIndicators' },
-  { name: 'vertical', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Swiper.vertical' },
-  { name: 'touchable', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Swiper.touchable' },
-  { name: 'indicatorColor', type: 'string', default: "'#1989fa'", required: false, desc: '指示器颜色。' },
-  { name: 'indicators', type: '(current, total) => JSX', default: '—', required: false, desc: 'componentProps.Swiper.indicators' },
-  { name: 'imgUrls', type: 'string[]', default: '—', required: false, desc: 'componentProps.Swiper.imgUrls' },
-  { name: 'lazyRender', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Swiper.lazyRender' },
-  { name: 'onChange', type: '(index: number) => void', default: '—', required: false, desc: 'componentProps.Swiper.onChange' },
+  { name: 'autoplay', type: 'number | string', default: '—', required: false, desc: 'componentProps.swiper.autoplay' },
+  { name: 'duration', type: 'number | string', default: '500', required: false, desc: 'componentProps.swiper.duration' },
+  { name: 'initialSwipe', type: 'number | string', default: '0', required: false, desc: 'componentProps.swiper.initialSwipe' },
+  { name: 'width / height', type: 'number | string', default: "100% / '160px'", required: false, desc: 'componentProps.swiper.width / height' },
+  { name: 'loop', type: 'boolean', default: 'true', required: false, desc: 'componentProps.swiper.loop' },
+  { name: 'showIndicators', type: 'boolean', default: 'true', required: false, desc: 'componentProps.swiper.showIndicators' },
+  { name: 'vertical', type: 'boolean', default: 'false', required: false, desc: 'componentProps.swiper.vertical' },
+  { name: 'touchable', type: 'boolean', default: 'true', required: false, desc: 'componentProps.swiper.touchable' },
+  { name: 'indicatorColor', type: 'string', default: "'#1989fa'", required: false, desc: 'componentProps.swiper.indicatorColor' },
+  { name: 'indicators', type: '(current, total) => JSX', default: '—', required: false, desc: 'componentProps.swiper.indicators' },
+  { name: 'imgUrls', type: 'string[]', default: '—', required: false, desc: 'componentProps.swiper.imgUrls' },
+  { name: 'lazyRender', type: 'boolean', default: 'false', required: false, desc: 'componentProps.swiper.lazyRender' },
+  { name: 'onChange', type: '(index: number) => void', default: '—', required: false, desc: 'componentProps.swiper.onChange' },
 ];
 
 const IMGS = [

@@ -9,7 +9,7 @@ import { SafeArea } from '../../../src/components/SafeArea';
 import { useT } from '../../doc-i18n';
 
 const propsData = [
-  { name: 'position', type: "'top' | 'bottom'", desc: '安全区域位置，默认 top' },
+  { name: 'position', type: "'top' | 'bottom'", desc: 'componentProps.safearea.position' },
 ];
 
 const CARD = {

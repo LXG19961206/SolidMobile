@@ -5,15 +5,15 @@ import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './LayoutDocPage.module.css';
 
 const rowProps: PropRow[] = [
-  { name: 'gap', type: 'string | number', default: '—', required: false, desc: 'componentProps.Layout.gap' },
-  { name: 'align', type: "'start' | 'center' | 'end' | 'stretch'", default: '—', required: false, desc: '垂直对齐。' },
-  { name: 'justify', type: "'start' | 'center' | 'end' | 'between' | 'around'", default: '—', required: false, desc: '水平分布。' },
-  { name: 'wrap', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Layout.wrap' },
+  { name: 'gap', type: 'string | number', default: '—', required: false, desc: 'componentProps.layout.gap' },
+  { name: 'align', type: "'start' | 'center' | 'end' | 'stretch'", default: '—', required: false, desc: 'componentProps.row.align' },
+  { name: 'justify', type: "'start' | 'center' | 'end' | 'between' | 'around'", default: '—', required: false, desc: 'componentProps.row.justify' },
+  { name: 'wrap', type: 'boolean', default: 'false', required: false, desc: 'componentProps.layout.wrap' },
 ];
 
 const colProps: PropRow[] = [
-  { name: 'span', type: 'number (1-24)', default: '—', required: false, desc: 'componentProps.Layout.span' },
-  { name: 'offset', type: 'number (1-24)', default: '—', required: false, desc: 'componentProps.Layout.offset' },
+  { name: 'span', type: 'number (1-24)', default: '—', required: false, desc: 'componentProps.layout.span' },
+  { name: 'offset', type: 'number (1-24)', default: '—', required: false, desc: 'componentProps.layout.offset' },
 ];
 
 const tocItems: TOCItem[] = [

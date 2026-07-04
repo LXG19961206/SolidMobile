@@ -8,24 +8,24 @@ import type { SwipeAction } from '../../../../src/components/SwipeCell/types';
 import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
-  { name: 'rightActions', type: 'SwipeAction[]', default: '—', required: false, desc: 'componentProps.SwipeCell.rightActions' },
-  { name: 'leftActions', type: 'SwipeAction[]', default: '—', required: false, desc: 'componentProps.SwipeCell.leftActions' },
-  { name: 'threshold', type: 'number', default: '30', required: false, desc: 'componentProps.SwipeCell.threshold' },
-  { name: 'actionsWidth', type: 'number', default: '自适应', required: false, desc: 'componentProps.SwipeCell.actionsWidth' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.SwipeCell.disabled' },
-  { name: 'onOpen', type: '() => void', default: '—', required: false, desc: 'componentProps.SwipeCell.onOpen' },
-  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.SwipeCell.onClose' },
-  { name: 'children', type: 'JSX.Element', default: '—', required: true, desc: 'componentProps.SwipeCell.children' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.SwipeCell.class' },
-  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.SwipeCell.style' },
+  { name: 'rightActions', type: 'SwipeAction[]', default: '—', required: false, desc: 'componentProps.swipecell.rightActions' },
+  { name: 'leftActions', type: 'SwipeAction[]', default: '—', required: false, desc: 'componentProps.swipecell.leftActions' },
+  { name: 'threshold', type: 'number', default: '30', required: false, desc: 'componentProps.swipecell.threshold' },
+  { name: 'actionsWidth', type: 'number', default: '自适应', required: false, desc: 'componentProps.swipecell.actionsWidth' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.swipecell.disabled' },
+  { name: 'onOpen', type: '() => void', default: '—', required: false, desc: 'componentProps.swipecell.onOpen' },
+  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.swipecell.onClose' },
+  { name: 'children', type: 'JSX.Element', default: '—', required: true, desc: 'componentProps.swipecell.children' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.swipecell.class' },
+  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.swipecell.style' },
 ];
 
 const actionRows: PropRow[] = [
-  { name: 'text', type: 'string', default: '—', required: true, desc: '按钮文字。' },
-  { name: 'theme', type: "'default' | 'primary' | 'success' | 'warning' | 'danger'", default: "'default'", required: false, desc: '颜色主题。' },
-  { name: 'color', type: 'string', default: '—', required: false, desc: '自定义背景色，优先级高于 theme。' },
-  { name: 'onClick', type: '() => void', default: '—', required: false, desc: '点击回调（自动关闭）。' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.SwipeCell.class' },
+  { name: 'text', type: 'string', default: '—', required: true, desc: 'componentProps.swipecell.text' },
+  { name: 'theme', type: "'default' | 'primary' | 'success' | 'warning' | 'danger'", default: "'default'", required: false, desc: 'componentProps.swipecell.theme' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.swipecell.color' },
+  { name: 'onClick', type: '() => void', default: '—', required: false, desc: 'componentProps.swipecell.onClick' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.swipecell.class' },
 ];
 
 const tocItems: TOCItem[] = [

@@ -9,14 +9,14 @@ import { useT } from '../../doc-i18n';
 import { Center } from '../../../src/components/Center';
 
 const propsData = [
-  { name: 'flexX', type: 'boolean', desc: 'display:flex + justify-content:center。无需父级高度' },
-  { name: 'flexY', type: 'boolean', desc: 'display:flex + align-items:center + height:100%。需父级有明确高度' },
-  { name: 'text', type: 'boolean', desc: 'text-align: center，适合行内/文本' },
-  { name: 'vertical', type: 'boolean', desc: 'inline-block + vertical-align: middle' },
-  { name: 'position', type: 'boolean', desc: 'relative + absolute+transform。Center 自身填充父级，子元素绝对居中' },
-  { name: 'inline', type: 'boolean', desc: '切换为 inline-flex，去掉 height:100%，适合行内场景' },
-  { name: 'as', type: 'string', desc: '渲染标签，默认 div' },
-  { name: '（无 props）', type: '—', desc: '默认行为：flexX + flexY 同时生效，即完全居中' },
+  { name: 'flexX', type: 'boolean', desc: 'componentProps.center.flexX' },
+  { name: 'flexY', type: 'boolean', desc: 'componentProps.center.flexY' },
+  { name: 'text', type: 'boolean', desc: 'componentProps.center.text' },
+  { name: 'vertical', type: 'boolean', desc: 'componentProps.center.vertical' },
+  { name: 'position', type: 'boolean', desc: 'componentProps.center.position' },
+  { name: 'inline', type: 'boolean', desc: 'componentProps.center.inline' },
+  { name: 'as', type: 'string', desc: 'componentProps.center.as' },
+  { name: '（无 props）', type: '—', desc: 'componentProps.center.（无 props）' },
 ];
 
 const CARD = {

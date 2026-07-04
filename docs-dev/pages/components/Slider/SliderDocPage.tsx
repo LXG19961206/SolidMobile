@@ -8,20 +8,20 @@ import type { PropRow } from '../../../../src/doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const sliderProps: PropRow[] = [
-  { name: 'value', type: 'number | number[]', default: '0', required: false, desc: 'componentProps.Slider.value' },
-  { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: 'componentProps.Slider.onChange' },
-  { name: 'min', type: 'number', default: '0', required: false, desc: 'componentProps.Slider.min' },
-  { name: 'max', type: 'number', default: '100', required: false, desc: 'componentProps.Slider.max' },
-  { name: 'step', type: 'number', default: '1', required: false, desc: 'componentProps.Slider.step' },
-  { name: 'count', type: 'number', default: '1', required: false, desc: 'componentProps.Slider.count' },
-  { name: 'barHeight', type: 'number | string', default: '2px', required: false, desc: 'componentProps.Slider.barHeight' },
-  { name: 'buttonSize', type: 'number | string', default: '20px', required: false, desc: 'componentProps.Slider.buttonSize' },
-  { name: 'thumbRender', type: '(value, index) => any', default: '—', required: false, desc: 'componentProps.Slider.thumbRender' },
-  { name: 'activeColor', type: 'string', default: '#1989fa', required: false, desc: 'componentProps.Slider.activeColor' },
-  { name: 'inactiveColor', type: 'string', default: '#e5e5e5', required: false, desc: 'componentProps.Slider.inactiveColor' },
-  { name: 'reverse', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Slider.reverse' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Slider.disabled' },
-  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Slider.readonly' },
+  { name: 'value', type: 'number | number[]', default: '0', required: false, desc: 'componentProps.slider.value' },
+  { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: 'componentProps.slider.onChange' },
+  { name: 'min', type: 'number', default: '0', required: false, desc: 'componentProps.slider.min' },
+  { name: 'max', type: 'number', default: '100', required: false, desc: 'componentProps.slider.max' },
+  { name: 'step', type: 'number', default: '1', required: false, desc: 'componentProps.slider.step' },
+  { name: 'count', type: 'number', default: '1', required: false, desc: 'componentProps.slider.count' },
+  { name: 'barHeight', type: 'number | string', default: '2px', required: false, desc: 'componentProps.slider.barHeight' },
+  { name: 'buttonSize', type: 'number | string', default: '20px', required: false, desc: 'componentProps.slider.buttonSize' },
+  { name: 'thumbRender', type: '(value, index) => any', default: '—', required: false, desc: 'componentProps.slider.thumbRender' },
+  { name: 'activeColor', type: 'string', default: '#1989fa', required: false, desc: 'componentProps.slider.activeColor' },
+  { name: 'inactiveColor', type: 'string', default: '#e5e5e5', required: false, desc: 'componentProps.slider.inactiveColor' },
+  { name: 'reverse', type: 'boolean', default: 'false', required: false, desc: 'componentProps.slider.reverse' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.slider.disabled' },
+  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: 'componentProps.slider.readonly' },
 ];
 
 const codeBasic = `const [val, setVal] = createSignal(30);

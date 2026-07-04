@@ -12,18 +12,18 @@ import css from './ListDocPage.module.css';
 import { useT } from '../../../doc-i18n';
 
 const listProps: PropRow[] = [
-  { name: 'data', type: 'I[]', default: '—', required: false, desc: 'componentProps.List.data' },
-  { name: 'onLoad', type: '() => Promise<I[]>', default: '—', required: false, desc: 'componentProps.List.onLoad' },
-  { name: 'finished', type: 'boolean', default: 'false', required: false, desc: 'componentProps.List.finished' },
-  { name: 'children', type: '(item: I, index: number) => JSX.Element', default: '—', required: true, desc: 'componentProps.List.children' },
-  { name: 'empty', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.List.empty' },
-  { name: 'loadMoreText', type: 'string', default: "'加载中...'", required: false, desc: '加载中底部提示。' },
-  { name: 'finishedText', type: 'string', default: "'没有更多了'", required: false, desc: '全部加载完成底部提示。' },
-  { name: 'offset', type: 'number', default: '100', required: false, desc: 'componentProps.List.offset' },
-  { name: 'virtual', type: 'boolean', default: 'false', required: false, desc: 'componentProps.List.virtual' },
-  { name: 'itemHeight', type: 'number', default: '—', required: false, desc: 'componentProps.List.itemHeight' },
-  { name: "pullRefresh", type: "boolean", default: "false", required: false, desc: "开启下拉刷新，配合 onRefresh。" },
-  { name: "onRefresh", type: "() => Promise<void>", default: "—", required: false, desc: "下拉刷新回调。" },
+  { name: 'data', type: 'I[]', default: '—', required: false, desc: 'componentProps.list.data' },
+  { name: 'onLoad', type: '() => Promise<I[]>', default: '—', required: false, desc: 'componentProps.list.onLoad' },
+  { name: 'finished', type: 'boolean', default: 'false', required: false, desc: 'componentProps.list.finished' },
+  { name: 'children', type: '(item: I, index: number) => JSX.Element', default: '—', required: true, desc: 'componentProps.list.children' },
+  { name: 'empty', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.list.empty' },
+  { name: 'loadMoreText', type: 'string', default: "'加载中...'", required: false, desc: 'componentProps.list.loadMoreText' },
+  { name: 'finishedText', type: 'string', default: "'没有更多了'", required: false, desc: 'componentProps.list.finishedText' },
+  { name: 'offset', type: 'number', default: '100', required: false, desc: 'componentProps.list.offset' },
+  { name: 'virtual', type: 'boolean', default: 'false', required: false, desc: 'componentProps.list.virtual' },
+  { name: 'itemHeight', type: 'number', default: '—', required: false, desc: 'componentProps.list.itemHeight' },
+  { name: "pullRefresh", type: "boolean", default: "false", required: false, desc: 'componentProps.list.pullRefresh' },
+  { name: "onRefresh", type: "() => Promise<void>", default: "—", required: false, desc: 'componentProps.list.onRefresh' },
 ];
 
 const tocItems: TOCItem[] = [

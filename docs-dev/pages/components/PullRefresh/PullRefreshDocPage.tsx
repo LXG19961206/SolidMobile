@@ -13,17 +13,17 @@ async function mockRefresh(): Promise<void> {
 }
 
 const pullRefreshProps: PropRow[] = [
-  { name: 'loading', type: 'boolean', default: '—', required: false, desc: 'componentProps.PullRefresh.loading' },
-  { name: 'onRefresh', type: '() => void | Promise<void>', default: '—', required: false, desc: 'componentProps.PullRefresh.onRefresh' },
-  { name: 'pullDistance', type: 'number', default: '80', required: false, desc: 'componentProps.PullRefresh.pullDistance' },
-  { name: 'headHeight', type: 'number', default: '60', required: false, desc: 'componentProps.PullRefresh.headHeight' },
-  { name: 'successDuration', type: 'number', default: '500', required: false, desc: 'componentProps.PullRefresh.successDuration' },
-  { name: 'animationDuration', type: 'number', default: '300', required: false, desc: 'componentProps.PullRefresh.animationDuration' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.PullRefresh.disabled' },
-  { name: 'pullingText', type: 'string', default: "'下拉刷新'", required: false, desc: '下拉文案。' },
-  { name: 'loosingText', type: 'string', default: "'释放刷新'", required: false, desc: '释放文案。' },
-  { name: 'loadingText', type: 'string', default: "'刷新中...'", required: false, desc: '加载文案。' },
-  { name: 'successText', type: 'string', default: "'刷新成功'", required: false, desc: '成功文案。' },
+  { name: 'loading', type: 'boolean', default: '—', required: false, desc: 'componentProps.pullrefresh.loading' },
+  { name: 'onRefresh', type: '() => void | Promise<void>', default: '—', required: false, desc: 'componentProps.pullrefresh.onRefresh' },
+  { name: 'pullDistance', type: 'number', default: '80', required: false, desc: 'componentProps.pullrefresh.pullDistance' },
+  { name: 'headHeight', type: 'number', default: '60', required: false, desc: 'componentProps.pullrefresh.headHeight' },
+  { name: 'successDuration', type: 'number', default: '500', required: false, desc: 'componentProps.pullrefresh.successDuration' },
+  { name: 'animationDuration', type: 'number', default: '300', required: false, desc: 'componentProps.pullrefresh.animationDuration' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.pullrefresh.disabled' },
+  { name: 'pullingText', type: 'string', default: "'下拉刷新'", required: false, desc: 'componentProps.pullrefresh.pullingText' },
+  { name: 'loosingText', type: 'string', default: "'释放刷新'", required: false, desc: 'componentProps.pullrefresh.loosingText' },
+  { name: 'loadingText', type: 'string', default: "'刷新中...'", required: false, desc: 'componentProps.pullrefresh.loadingText' },
+  { name: 'successText', type: 'string', default: "'刷新成功'", required: false, desc: 'componentProps.pullrefresh.successText' },
 ];
 
 export const PullRefreshDocPage: Component = () => {

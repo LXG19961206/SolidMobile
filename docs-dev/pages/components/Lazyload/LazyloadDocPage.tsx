@@ -10,13 +10,13 @@ import css from './LazyloadDocPage.module.css';
 import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
-  { name: 'active', type: 'boolean', default: '—', required: false, desc: 'componentProps.Lazyload.active' },
-  { name: 'placeholder', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Lazyload.placeholder' },
-  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Lazyload.children' },
-  { name: 'rootMargin', type: 'string', default: "'50px'", required: false, desc: '提前触发的距离。' },
-  { name: 'height', type: 'number | string', default: '—', required: false, desc: 'componentProps.Lazyload.height' },
-  { name: 'threshold', type: 'number | number[]', default: '0', required: false, desc: 'componentProps.Lazyload.threshold' },
-  { name: 'once', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Lazyload.once' },
+  { name: 'active', type: 'boolean', default: '—', required: false, desc: 'componentProps.lazyload.active' },
+  { name: 'placeholder', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.lazyload.placeholder' },
+  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.lazyload.children' },
+  { name: 'rootMargin', type: 'string', default: "'50px'", required: false, desc: 'componentProps.lazyload.rootMargin' },
+  { name: 'height', type: 'number | string', default: '—', required: false, desc: 'componentProps.lazyload.height' },
+  { name: 'threshold', type: 'number | number[]', default: '0', required: false, desc: 'componentProps.lazyload.threshold' },
+  { name: 'once', type: 'boolean', default: 'true', required: false, desc: 'componentProps.lazyload.once' },
 ];
 
 const tocItems: TOCItem[] = [

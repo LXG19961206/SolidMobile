@@ -10,12 +10,12 @@ import { Icon } from '../../../src/components/Icon';
 import type { IconName, IconVariant } from '../../../src/components/Icon/types';
 
 const propsData = [
-  { name: 'name', type: 'IconName', desc: '图标名称（必填）' },
-  { name: 'variant', type: "'line' | 'fill'", desc: '线性 / 填充风格，默认 line' },
-  { name: 'size', type: 'string | number', desc: '尺寸，数字自动补 px，默认 1em' },
-  { name: 'color', type: 'string', desc: '图标颜色' },
-  { name: 'aria-label', type: 'string', desc: '无障碍标签，功能性图标需设置' },
-  { name: 'onClick', type: '(e: MouseEvent) => void', desc: '点击事件' },
+  { name: 'name', type: 'IconName', desc: 'componentProps.icon.name' },
+  { name: 'variant', type: "'line' | 'fill'", desc: 'componentProps.icon.variant' },
+  { name: 'size', type: 'string | number', desc: 'componentProps.icon.size' },
+  { name: 'color', type: 'string', desc: 'componentProps.icon.color' },
+  { name: 'aria-label', type: 'string', desc: 'componentProps.icon.aria-label' },
+  { name: 'onClick', type: '(e: MouseEvent) => void', desc: 'componentProps.icon.onClick' },
 ];
 
 const CARD = {

@@ -11,13 +11,13 @@ import { Loading } from '../../../src/components/Loading';
 import { useT } from '../../doc-i18n';
 
 const propsData = [
-  { name: 'open', type: 'boolean', desc: '是否显示遮罩（必填）' },
-  { name: 'onClose', type: '() => void', desc: '点击遮罩背景回调' },
-  { name: 'zIndex', type: 'number', desc: '自定义 z-index，默认 999' },
-  { name: 'lockScroll', type: 'boolean', desc: '锁定 body 滚动，默认 true' },
-  { name: 'duration', type: 'number', desc: '过渡动画时长(ms)，默认 200' },
-  { name: 'mount', type: 'Node', desc: 'Portal 挂载目标' },
-  { name: 'children', type: 'JSX.Element', desc: '遮罩层内容' },
+  { name: 'open', type: 'boolean', desc: 'componentProps.overlay.open' },
+  { name: 'onClose', type: '() => void', desc: 'componentProps.overlay.onClose' },
+  { name: 'zIndex', type: 'number', desc: 'componentProps.overlay.zIndex' },
+  { name: 'lockScroll', type: 'boolean', desc: 'componentProps.overlay.lockScroll' },
+  { name: 'duration', type: 'number', desc: 'componentProps.overlay.duration' },
+  { name: 'mount', type: 'Node', desc: 'componentProps.overlay.mount' },
+  { name: 'children', type: 'JSX.Element', desc: 'componentProps.overlay.children' },
 ];
 
 const CARD = {

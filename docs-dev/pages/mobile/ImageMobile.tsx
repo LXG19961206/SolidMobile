@@ -9,17 +9,17 @@ export interface ImageMobileProps {
 import { Image } from '../../../src/components/Image';
 
 const propsData = [
-  { name: 'src', type: 'string', desc: '图片地址（必填）' },
-  { name: 'width', type: 'string | number', desc: '宽度' },
-  { name: 'height', type: 'string | number', desc: '高度' },
-  { name: 'fit', type: "'cover' | 'contain' | 'fill' | 'none' | 'scale-down'", desc: '填充方式，默认 fill' },
-  { name: 'radius', type: 'string | number', desc: '圆角大小' },
-  { name: 'round', type: 'boolean', desc: '完全圆形' },
-  { name: 'block', type: 'boolean', desc: '块级元素，占满宽度' },
-  { name: 'lazy', type: 'boolean', desc: '启用懒加载' },
-  { name: 'placeholder', type: 'JSX.Element', desc: '加载中占位' },
-  { name: 'fallback', type: 'JSX.Element', desc: '加载失败兜底' },
-  { name: 'preview', type: 'boolean', desc: '点击预览大图' },
+  { name: 'src', type: 'string', desc: 'componentProps.image.src' },
+  { name: 'width', type: 'string | number', desc: 'componentProps.image.width' },
+  { name: 'height', type: 'string | number', desc: 'componentProps.image.height' },
+  { name: 'fit', type: "'cover' | 'contain' | 'fill' | 'none' | 'scale-down'", desc: 'componentProps.image.fit' },
+  { name: 'radius', type: 'string | number', desc: 'componentProps.image.radius' },
+  { name: 'round', type: 'boolean', desc: 'componentProps.image.round' },
+  { name: 'block', type: 'boolean', desc: 'componentProps.image.block' },
+  { name: 'lazy', type: 'boolean', desc: 'componentProps.image.lazy' },
+  { name: 'placeholder', type: 'JSX.Element', desc: 'componentProps.image.placeholder' },
+  { name: 'fallback', type: 'JSX.Element', desc: 'componentProps.image.fallback' },
+  { name: 'preview', type: 'boolean', desc: 'componentProps.image.preview' },
 ];
 
 const CARD = {

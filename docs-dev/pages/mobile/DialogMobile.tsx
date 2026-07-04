@@ -12,19 +12,19 @@ import { Button } from '../../../src/components/Button';
 import { Cell, CellGroup } from '../../../src/components/Cell';
 
 const propsData = [
-  { name: 'Dialog.alert(opts)', type: 'DialogHandle', desc: '提示弹窗，仅确认按钮' },
-  { name: 'Dialog.confirm(opts)', type: 'DialogHandle', desc: '确认弹窗，确认+取消按钮' },
-  { name: 'Dialog.show(opts)', type: 'DialogHandle', desc: '完整配置弹窗，返回 handle' },
-  { name: 'handle.dismiss()', type: 'void', desc: '手动关闭特定弹窗' },
-  { name: 'Dialog.dismissAll()', type: 'void', desc: '关闭所有弹窗' },
-  { name: 'title', type: 'string | JSX.Element', desc: '标题' },
-  { name: 'message', type: 'string | JSX.Element', desc: '内容，\\n 自动换行' },
-  { name: 'showConfirmButton', type: 'boolean', desc: '显示确认按钮，默认 true' },
-  { name: 'showCancelButton', type: 'boolean', desc: '显示取消按钮，默认 false' },
-  { name: 'confirmText / cancelText', type: 'string', desc: '按钮文字' },
-  { name: 'closeOnClickOverlay', type: 'boolean', desc: '点击遮罩关闭' },
-  { name: 'onConfirm / onCancel', type: '() => void', desc: '确认/取消回调' },
-  { name: 'beforeClose', type: '(action) => boolean', desc: '关闭前回调，返回 false 阻止' },
+  { name: 'Dialog.alert(opts)', type: 'DialogHandle', desc: 'componentProps.dialog.Dialog.alert(opts)' },
+  { name: 'Dialog.confirm(opts)', type: 'DialogHandle', desc: 'componentProps.dialog.Dialog.confirm(opts)' },
+  { name: 'Dialog.show(opts)', type: 'DialogHandle', desc: 'componentProps.dialog.Dialog.show(opts)' },
+  { name: 'handle.dismiss()', type: 'void', desc: 'componentProps.dialog.handle.dismiss()' },
+  { name: 'Dialog.dismissAll()', type: 'void', desc: 'componentProps.dialog.Dialog.dismissAll()' },
+  { name: 'title', type: 'string | JSX.Element', desc: 'componentProps.dialog.title' },
+  { name: 'message', type: 'string | JSX.Element', desc: 'componentProps.dialog.message' },
+  { name: 'showConfirmButton', type: 'boolean', desc: 'componentProps.dialog.showConfirmButton' },
+  { name: 'showCancelButton', type: 'boolean', desc: 'componentProps.dialog.showCancelButton' },
+  { name: 'confirmText / cancelText', type: 'string', desc: 'componentProps.dialog.confirmText / cancelText' },
+  { name: 'closeOnClickOverlay', type: 'boolean', desc: 'componentProps.dialog.closeOnClickOverlay' },
+  { name: 'onConfirm / onCancel', type: '() => void', desc: 'componentProps.dialog.onConfirm / onCancel' },
+  { name: 'beforeClose', type: '(action) => boolean', desc: 'componentProps.dialog.beforeClose' },
 ];
 
 const CARD = {

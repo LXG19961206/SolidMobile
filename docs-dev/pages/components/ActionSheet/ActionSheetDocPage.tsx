@@ -7,16 +7,16 @@ import type { PropRow } from '../../../../src/doc-utils';
 import type { ActionSheetItem } from '../../../../src/components/ActionSheet/types';
 
 const propsData: PropRow[] = [
-  { name: 'open', type: 'boolean', default: '—', required: true, desc: 'componentProps.ActionSheet.open' },
-  { name: 'onClose', type: '() => void', default: '—', required: true, desc: 'componentProps.ActionSheet.onClose' },
-  { name: 'items', type: 'ActionSheetItem[]', default: '—', required: false, desc: 'componentProps.ActionSheet.items' },
-  { name: 'title', type: 'string', default: '—', required: false, desc: 'componentProps.ActionSheet.title' },
-  { name: 'closeable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.ActionSheet.closeable' },
-  { name: 'description', type: 'string', default: '—', required: false, desc: 'componentProps.ActionSheet.description' },
-  { name: 'cancelText', type: 'string', default: '—', required: false, desc: 'componentProps.ActionSheet.cancelText' },
-  { name: 'closeOnSelect', type: 'boolean', default: 'true', required: false, desc: 'componentProps.ActionSheet.closeOnSelect' },
-  { name: 'closeOnOverlayClick', type: 'boolean', default: 'true', required: false, desc: 'componentProps.ActionSheet.closeOnOverlayClick' },
-  { name: 'round', type: 'boolean', default: 'true', required: false, desc: 'componentProps.ActionSheet.round' },
+  { name: 'open', type: 'boolean', default: '—', required: true, desc: 'componentProps.actionsheet.open' },
+  { name: 'onClose', type: '() => void', default: '—', required: true, desc: 'componentProps.actionsheet.onClose' },
+  { name: 'items', type: 'ActionSheetItem[]', default: '—', required: false, desc: 'componentProps.actionsheet.items' },
+  { name: 'title', type: 'string', default: '—', required: false, desc: 'componentProps.actionsheet.title' },
+  { name: 'closeable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.actionsheet.closeable' },
+  { name: 'description', type: 'string', default: '—', required: false, desc: 'componentProps.actionsheet.description' },
+  { name: 'cancelText', type: 'string', default: '—', required: false, desc: 'componentProps.actionsheet.cancelText' },
+  { name: 'closeOnSelect', type: 'boolean', default: 'true', required: false, desc: 'componentProps.actionsheet.closeOnSelect' },
+  { name: 'closeOnOverlayClick', type: 'boolean', default: 'true', required: false, desc: 'componentProps.actionsheet.closeOnOverlayClick' },
+  { name: 'round', type: 'boolean', default: 'true', required: false, desc: 'componentProps.actionsheet.round' },
 ];
 
 const basicItems: ActionSheetItem[] = [

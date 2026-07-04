@@ -9,19 +9,19 @@ import { Rate } from '../../../src/components/Rate';
 import { useT } from '../../doc-i18n';
 
 const propsData = [
-  { name: 'value', type: 'number', desc: '当前分值' },
-  { name: 'onChange', type: '(value: number) => void', desc: '分值变化回调' },
-  { name: 'count', type: 'number | string', desc: '图标总数，默认 5' },
-  { name: 'size', type: 'number | string', desc: '图标大小，默认 px' },
-  { name: 'gutter', type: 'number | string', desc: '图标间距' },
-  { name: 'color', type: 'string', desc: '选中时颜色' },
-  { name: 'voidColor', type: 'string', desc: '未选中时颜色' },
-  { name: 'allowHalf', type: 'boolean', desc: '允许半选' },
-  { name: 'clearable', type: 'boolean', desc: '再次点击清除' },
-  { name: 'readonly', type: 'boolean', desc: '只读' },
-  { name: 'disabled', type: 'boolean', desc: '禁用' },
-  { name: 'icon', type: 'string', desc: '选中图标名' },
-  { name: 'voidIcon', type: 'string', desc: '未选中图标名' },
+  { name: 'value', type: 'number', desc: 'componentProps.rate.value' },
+  { name: 'onChange', type: '(value: number) => void', desc: 'componentProps.rate.onChange' },
+  { name: 'count', type: 'number | string', desc: 'componentProps.rate.count' },
+  { name: 'size', type: 'number | string', desc: 'componentProps.rate.size' },
+  { name: 'gutter', type: 'number | string', desc: 'componentProps.rate.gutter' },
+  { name: 'color', type: 'string', desc: 'componentProps.rate.color' },
+  { name: 'voidColor', type: 'string', desc: 'componentProps.rate.voidColor' },
+  { name: 'allowHalf', type: 'boolean', desc: 'componentProps.rate.allowHalf' },
+  { name: 'clearable', type: 'boolean', desc: 'componentProps.rate.clearable' },
+  { name: 'readonly', type: 'boolean', desc: 'componentProps.rate.readonly' },
+  { name: 'disabled', type: 'boolean', desc: 'componentProps.rate.disabled' },
+  { name: 'icon', type: 'string', desc: 'componentProps.rate.icon' },
+  { name: 'voidIcon', type: 'string', desc: 'componentProps.rate.voidIcon' },
 ];
 
 const CARD = {

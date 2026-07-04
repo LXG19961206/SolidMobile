@@ -11,21 +11,21 @@ export interface UploadMobileProps {
 }
 
 const propsData = [
-  { name: 'type', type: "'image' | 'file'", desc: '展示类型，默认 image。image 缩略图网格，file 文件列表。' },
-  { name: 'accept', type: 'string', desc: '接受的文件类型，同 input[accept]' },
-  { name: 'multiple', type: 'boolean', desc: '是否多选' },
-  { name: 'maxCount', type: 'number', desc: '最大文件数' },
-  { name: 'capture', type: 'string', desc: '调用系统相机：environment | user' },
-  { name: 'api', type: '(file, onProgress?) => Promise<string | undefined>', desc: '上传函数。必须返回文件 URL 用于反显。不传则只管理文件列表。' },
-  { name: 'maxSize', type: 'number', desc: '单文件大小上限 (bytes)' },
-  { name: 'beforeUpload', type: '(file, files) => boolean', desc: '上传前置校验' },
-  { name: 'fileList', type: 'UploadFile[]', desc: '受控文件列表' },
-  { name: 'defaultFileList', type: 'UploadFile[]', desc: '非受控初始列表' },
-  { name: 'onChange', type: '(fileList, file) => void', desc: '列表变化回调' },
-  { name: 'onDelete', type: '(file) => boolean', desc: '删除前回调' },
-  { name: 'disabled', type: 'boolean', desc: '禁用' },
-  { name: 'children', type: 'JSX.Element', desc: '自定义添加按钮' },
-  { name: 'renderFile', type: '(file, index) => JSX', desc: '自定义文件项渲染' },
+  { name: 'type', type: "'image' | 'file'", desc: 'componentProps.upload.type' },
+  { name: 'accept', type: 'string', desc: 'componentProps.upload.accept' },
+  { name: 'multiple', type: 'boolean', desc: 'componentProps.upload.multiple' },
+  { name: 'maxCount', type: 'number', desc: 'componentProps.upload.maxCount' },
+  { name: 'capture', type: 'string', desc: 'componentProps.upload.capture' },
+  { name: 'api', type: '(file, onProgress?) => Promise<string | undefined>', desc: 'componentProps.upload.api' },
+  { name: 'maxSize', type: 'number', desc: 'componentProps.upload.maxSize' },
+  { name: 'beforeUpload', type: '(file, files) => boolean', desc: 'componentProps.upload.beforeUpload' },
+  { name: 'fileList', type: 'UploadFile[]', desc: 'componentProps.upload.fileList' },
+  { name: 'defaultFileList', type: 'UploadFile[]', desc: 'componentProps.upload.defaultFileList' },
+  { name: 'onChange', type: '(fileList, file) => void', desc: 'componentProps.upload.onChange' },
+  { name: 'onDelete', type: '(file) => boolean', desc: 'componentProps.upload.onDelete' },
+  { name: 'disabled', type: 'boolean', desc: 'componentProps.upload.disabled' },
+  { name: 'children', type: 'JSX.Element', desc: 'componentProps.upload.children' },
+  { name: 'renderFile', type: '(file, index) => JSX', desc: 'componentProps.upload.renderFile' },
 ];
 
 const CARD = {

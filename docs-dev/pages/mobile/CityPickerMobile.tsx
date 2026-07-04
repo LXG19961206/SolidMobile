@@ -10,18 +10,18 @@ import { useT } from '../../doc-i18n';
 import type { PickerOption } from '../../../src/components/Picker';
 
 const propsData = [
-  { name: 'columns', type: 'PickerOption[]', desc: '省市区树形数据' },
-  { name: 'value', type: '(string | number)[]', desc: '当前选中值' },
-  { name: 'onChange', type: '(value) => void', desc: '值变化回调' },
-  { name: 'onConfirm', type: '(value) => void', desc: '确认按钮回调' },
-  { name: 'onCancel', type: '() => void', desc: '取消按钮回调' },
-  { name: 'placeholder', type: 'string', desc: '占位文字' },
-  { name: 'separator', type: 'string', desc: '分隔符，默认 " / "' },
-  { name: 'title', type: 'string', desc: '面板标题' },
-  { name: 'cancelText', type: 'string', desc: '取消按钮文字' },
-  { name: 'confirmText', type: 'string', desc: '确认按钮文字' },
-  { name: 'show', type: 'boolean', desc: '是否显示面板（受控）' },
-  { name: 'onUpdateShow', type: '(show) => void', desc: '面板开关回调' },
+  { name: 'columns', type: 'PickerOption[]', desc: 'componentProps.citypicker.columns' },
+  { name: 'value', type: '(string | number)[]', desc: 'componentProps.citypicker.value' },
+  { name: 'onChange', type: '(value) => void', desc: 'componentProps.citypicker.onChange' },
+  { name: 'onConfirm', type: '(value) => void', desc: 'componentProps.citypicker.onConfirm' },
+  { name: 'onCancel', type: '() => void', desc: 'componentProps.citypicker.onCancel' },
+  { name: 'placeholder', type: 'string', desc: 'componentProps.citypicker.placeholder' },
+  { name: 'separator', type: 'string', desc: 'componentProps.citypicker.separator' },
+  { name: 'title', type: 'string', desc: 'componentProps.citypicker.title' },
+  { name: 'cancelText', type: 'string', desc: 'componentProps.citypicker.cancelText' },
+  { name: 'confirmText', type: 'string', desc: 'componentProps.citypicker.confirmText' },
+  { name: 'show', type: 'boolean', desc: 'componentProps.citypicker.show' },
+  { name: 'onUpdateShow', type: '(show) => void', desc: 'componentProps.citypicker.onUpdateShow' },
 ];
 
 const CARD = {

@@ -11,19 +11,19 @@ import { useT } from '../../doc-i18n';
 import { Switch } from '../../../src/components/Switch';
 
 const propsData = [
-  { name: 'Cell.title', type: 'string | JSX.Element', desc: '左侧标题' },
-  { name: 'Cell.value', type: 'string | JSX.Element', desc: '右侧内容' },
-  { name: 'Cell.description', type: 'string', desc: '标题下方描述' },
-  { name: 'Cell.descriptionError', type: 'boolean', desc: '描述错误状态' },
-  { name: 'Cell.icon', type: 'IconName | JSX.Element', desc: '左侧图标' },
-  { name: 'Cell.size', type: "'sm' | 'md' | 'lg'", desc: '尺寸，默认 md' },
-  { name: 'Cell.required', type: 'boolean', desc: '显示必填星号' },
-  { name: 'Cell.center', type: 'boolean', desc: '内容垂直居中' },
-  { name: 'Cell.clickable', type: 'boolean', desc: '可点击，右侧显示箭头' },
-  { name: 'Cell.onClick', type: '() => void', desc: '点击回调' },
-  { name: 'CellGroup.title', type: 'string', desc: '分组标题' },
-  { name: 'CellGroup.card', type: 'boolean', desc: '卡片模式' },
-  { name: 'CellGroup.border', type: 'boolean', desc: '显示边框，默认 true' },
+  { name: 'Cell.title', type: 'string | JSX.Element', desc: 'componentProps.cell.Cell.title' },
+  { name: 'Cell.value', type: 'string | JSX.Element', desc: 'componentProps.cell.Cell.value' },
+  { name: 'Cell.description', type: 'string', desc: 'componentProps.cell.Cell.description' },
+  { name: 'Cell.descriptionError', type: 'boolean', desc: 'componentProps.cell.Cell.descriptionError' },
+  { name: 'Cell.icon', type: 'IconName | JSX.Element', desc: 'componentProps.cell.Cell.icon' },
+  { name: 'Cell.size', type: "'sm' | 'md' | 'lg'", desc: 'componentProps.cell.Cell.size' },
+  { name: 'Cell.required', type: 'boolean', desc: 'componentProps.cell.Cell.required' },
+  { name: 'Cell.center', type: 'boolean', desc: 'componentProps.cell.Cell.center' },
+  { name: 'Cell.clickable', type: 'boolean', desc: 'componentProps.cell.Cell.clickable' },
+  { name: 'Cell.onClick', type: '() => void', desc: 'componentProps.cell.Cell.onClick' },
+  { name: 'CellGroup.title', type: 'string', desc: 'componentProps.cell.CellGroup.title' },
+  { name: 'CellGroup.card', type: 'boolean', desc: 'componentProps.cell.CellGroup.card' },
+  { name: 'CellGroup.border', type: 'boolean', desc: 'componentProps.cell.CellGroup.border' },
 ];
 
 const CARD = {

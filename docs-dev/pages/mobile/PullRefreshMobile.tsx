@@ -9,17 +9,17 @@ export interface PullRefreshMobileProps {
 }
 
 const propsData = [
-  { name: 'loading', type: 'boolean', desc: '受控加载状态' },
-  { name: 'onRefresh', type: '() => void | Promise', desc: '刷新回调' },
-  { name: 'pullDistance', type: 'number', desc: '触发刷新的下拉距离 (px)，默认 80' },
-  { name: 'headHeight', type: 'number', desc: '顶部提示区高度 (px)，默认 60' },
-  { name: 'successDuration', type: 'number', desc: '成功状态展示时长 (ms)，默认 500' },
-  { name: 'animationDuration', type: 'number', desc: '回弹动画时长 (ms)，默认 300' },
-  { name: 'disabled', type: 'boolean', desc: '禁用' },
-  { name: 'pullingText', type: 'string', desc: '下拉文案' },
-  { name: 'loosingText', type: 'string', desc: '释放文案' },
-  { name: 'loadingText', type: 'string', desc: '加载文案' },
-  { name: 'successText', type: 'string', desc: '成功文案' },
+  { name: 'loading', type: 'boolean', desc: 'componentProps.pullrefresh.loading' },
+  { name: 'onRefresh', type: '() => void | Promise', desc: 'componentProps.pullrefresh.onRefresh' },
+  { name: 'pullDistance', type: 'number', desc: 'componentProps.pullrefresh.pullDistance' },
+  { name: 'headHeight', type: 'number', desc: 'componentProps.pullrefresh.headHeight' },
+  { name: 'successDuration', type: 'number', desc: 'componentProps.pullrefresh.successDuration' },
+  { name: 'animationDuration', type: 'number', desc: 'componentProps.pullrefresh.animationDuration' },
+  { name: 'disabled', type: 'boolean', desc: 'componentProps.pullrefresh.disabled' },
+  { name: 'pullingText', type: 'string', desc: 'componentProps.pullrefresh.pullingText' },
+  { name: 'loosingText', type: 'string', desc: 'componentProps.pullrefresh.loosingText' },
+  { name: 'loadingText', type: 'string', desc: 'componentProps.pullrefresh.loadingText' },
+  { name: 'successText', type: 'string', desc: 'componentProps.pullrefresh.successText' },
 ];
 
 const CARD = {

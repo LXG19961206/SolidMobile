@@ -9,19 +9,19 @@ export interface SwiperMobileProps {
 import { Swiper } from '../../../src/components/Swiper';
 
 const propsData = [
-  { name: 'autoplay', type: 'number | string', desc: '自动轮播间隔 (ms)' },
-  { name: 'duration', type: 'number | string', desc: '动画时长 (ms)，默认 500' },
-  { name: 'initialSwipe', type: 'number | string', desc: '初始位置索引，默认 0' },
-  { name: 'width / height', type: 'number | string', desc: '滑块宽高，默认 auto / 160px' },
-  { name: 'loop', type: 'boolean', desc: '循环播放，默认 true' },
-  { name: 'showIndicators', type: 'boolean', desc: '显示指示器，默认 true' },
-  { name: 'vertical', type: 'boolean', desc: '纵向滚动，默认 false' },
-  { name: 'touchable', type: 'boolean', desc: '手势滑动，默认 true' },
-  { name: 'indicatorColor', type: 'string', desc: '指示器颜色，默认 #1989fa' },
-  { name: 'indicators', type: '(current, total) => JSX', desc: '自定义指示器' },
-  { name: 'imgUrls', type: 'string[]', desc: '快捷图片数组，无需写子组件' },
-  { name: 'lazyRender', type: 'boolean', desc: '延迟渲染非当前页' },
-  { name: 'onChange', type: '(index) => void', desc: '切换回调' },
+  { name: 'autoplay', type: 'number | string', desc: 'componentProps.swiper.autoplay' },
+  { name: 'duration', type: 'number | string', desc: 'componentProps.swiper.duration' },
+  { name: 'initialSwipe', type: 'number | string', desc: 'componentProps.swiper.initialSwipe' },
+  { name: 'width / height', type: 'number | string', desc: 'componentProps.swiper.width / height' },
+  { name: 'loop', type: 'boolean', desc: 'componentProps.swiper.loop' },
+  { name: 'showIndicators', type: 'boolean', desc: 'componentProps.swiper.showIndicators' },
+  { name: 'vertical', type: 'boolean', desc: 'componentProps.swiper.vertical' },
+  { name: 'touchable', type: 'boolean', desc: 'componentProps.swiper.touchable' },
+  { name: 'indicatorColor', type: 'string', desc: 'componentProps.swiper.indicatorColor' },
+  { name: 'indicators', type: '(current, total) => JSX', desc: 'componentProps.swiper.indicators' },
+  { name: 'imgUrls', type: 'string[]', desc: 'componentProps.swiper.imgUrls' },
+  { name: 'lazyRender', type: 'boolean', desc: 'componentProps.swiper.lazyRender' },
+  { name: 'onChange', type: '(index) => void', desc: 'componentProps.swiper.onChange' },
 ];
 
 const CARD = {

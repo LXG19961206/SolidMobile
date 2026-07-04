@@ -12,16 +12,16 @@ export interface TimePickerMobileProps {
 }
 
 const propsData = [
-  { name: 'value', type: 'string', desc: 'componentProps.TimePicker.value' },
-  { name: 'onChange', type: '(value: string) => void', desc: 'componentProps.TimePicker.onChange' },
-  { name: 'onConfirm', type: '(value: string) => void', desc: 'componentProps.TimePicker.onConfirm' },
-  { name: 'onCancel', type: '() => void', desc: 'componentProps.TimePicker.onCancel' },
-  { name: 'show', type: 'boolean', desc: '受控：是否显示面板' },
-  { name: 'onUpdateShow', type: '(show: boolean) => void', desc: 'componentProps.TimePicker.onUpdateShow' },
-  { name: 'placeholder', type: 'string', desc: '未选值时占位文本，默认 "请选择时间"' },
-  { name: 'title', type: 'string', desc: '面板标题' },
-  { name: 'visibleItemCount', type: 'number', desc: '可见行数，默认 7' },
-  { name: 'optionHeight', type: 'number', desc: 'componentProps.TimePicker.optionHeight' },
+  { name: 'value', type: 'string', desc: 'componentProps.timepicker.value' },
+  { name: 'onChange', type: '(value: string) => void', desc: 'componentProps.timepicker.onChange' },
+  { name: 'onConfirm', type: '(value: string) => void', desc: 'componentProps.timepicker.onConfirm' },
+  { name: 'onCancel', type: '() => void', desc: 'componentProps.timepicker.onCancel' },
+  { name: 'show', type: 'boolean', desc: 'componentProps.timepicker.show' },
+  { name: 'onUpdateShow', type: '(show: boolean) => void', desc: 'componentProps.timepicker.onUpdateShow' },
+  { name: 'placeholder', type: 'string', desc: 'componentProps.timepicker.placeholder' },
+  { name: 'title', type: 'string', desc: 'componentProps.timepicker.title' },
+  { name: 'visibleItemCount', type: 'number', desc: 'componentProps.timepicker.visibleItemCount' },
+  { name: 'optionHeight', type: 'number', desc: 'componentProps.timepicker.optionHeight' },
 ];
 
 const CARD = {

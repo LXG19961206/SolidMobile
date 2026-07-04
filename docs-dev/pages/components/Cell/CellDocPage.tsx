@@ -5,27 +5,27 @@ import { useT } from '../../../doc-i18n';
 import styles from './CellDocPage.module.css';
 
 const cellProps: PropRow[] = [
-  { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: '左侧标题。' },
-  { name: 'value', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.Cell.value' },
-  { name: 'description', type: 'string', default: '—', required: false, desc: 'componentProps.Cell.description' },
-  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: '自定义内容，设置后 title/value/description 被忽略。' },
-  { name: 'icon', type: 'IconName | JSX.Element', default: '—', required: false, desc: 'componentProps.Cell.icon' },
-  { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", required: false, desc: '尺寸。' },
-  { name: 'required', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Cell.required' },
-  { name: 'center', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Cell.center' },
-  { name: 'clickable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Cell.clickable' },
-  { name: 'onClick', type: '() => void', default: '—', required: false, desc: 'componentProps.Cell.onClick' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.Cell.class' },
-  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.Cell.style' },
+  { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.cell.title' },
+  { name: 'value', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.cell.value' },
+  { name: 'description', type: 'string', default: '—', required: false, desc: 'componentProps.cell.description' },
+  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.cell.children' },
+  { name: 'icon', type: 'IconName | JSX.Element', default: '—', required: false, desc: 'componentProps.cell.icon' },
+  { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", required: false, desc: 'componentProps.cell.size' },
+  { name: 'required', type: 'boolean', default: 'false', required: false, desc: 'componentProps.cell.required' },
+  { name: 'center', type: 'boolean', default: 'false', required: false, desc: 'componentProps.cell.center' },
+  { name: 'clickable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.cell.clickable' },
+  { name: 'onClick', type: '() => void', default: '—', required: false, desc: 'componentProps.cell.onClick' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.cell.class' },
+  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.cell.style' },
 ];
 
 const groupProps: PropRow[] = [
-  { name: 'title', type: 'string', default: '—', required: false, desc: 'componentProps.Cell.title' },
-  { name: 'card', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Cell.card' },
-  { name: 'border', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Cell.border' },
-  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Cell.children' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.Cell.class' },
-  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.Cell.style' },
+  { name: 'title', type: 'string', default: '—', required: false, desc: 'componentProps.cellgroup.title' },
+  { name: 'card', type: 'boolean', default: 'false', required: false, desc: 'componentProps.cellgroup.card' },
+  { name: 'border', type: 'boolean', default: 'true', required: false, desc: 'componentProps.cellgroup.border' },
+  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.cellgroup.children' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.cellgroup.class' },
+  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.cellgroup.style' },
 ];
 
 const tocItems: TOCItem[] = [

@@ -13,12 +13,12 @@ import { Toast } from '../../../src/components/Toast';
 import type { SwipeAction } from '../../../src/components/SwipeCell/types';
 
 const propsData = [
-  { name: 'rightActions', type: 'SwipeAction[]', desc: '右侧滑出按钮' },
-  { name: 'leftActions', type: 'SwipeAction[]', desc: '左侧滑出按钮' },
-  { name: 'threshold', type: 'number', desc: '触发滑动的阈值(px)，默认 30' },
-  { name: 'disabled', type: 'boolean', desc: '禁用滑动' },
-  { name: 'onOpen', type: '() => void', desc: '打开时回调' },
-  { name: 'onClose', type: '() => void', desc: '关闭时回调' },
+  { name: 'rightActions', type: 'SwipeAction[]', desc: 'componentProps.swipecell.rightActions' },
+  { name: 'leftActions', type: 'SwipeAction[]', desc: 'componentProps.swipecell.leftActions' },
+  { name: 'threshold', type: 'number', desc: 'componentProps.swipecell.threshold' },
+  { name: 'disabled', type: 'boolean', desc: 'componentProps.swipecell.disabled' },
+  { name: 'onOpen', type: '() => void', desc: 'componentProps.swipecell.onOpen' },
+  { name: 'onClose', type: '() => void', desc: 'componentProps.swipecell.onClose' },
 ];
 
 const CARD = {

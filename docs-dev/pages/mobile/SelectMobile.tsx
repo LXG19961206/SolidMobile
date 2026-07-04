@@ -9,17 +9,17 @@ import { Select } from '../../../src/components/Select';
 import { useT } from '../../doc-i18n';
 
 const propsData = [
-  { name: 'options', type: '{ text: string; value: string | number }[]', desc: '选项列表' },
-  { name: 'value', type: 'string | number', desc: '当前选中值' },
-  { name: 'onChange', type: '(value) => void', desc: '值变化回调' },
-  { name: 'onConfirm', type: '(value) => void', desc: '确认回调' },
-  { name: 'title', type: 'string', desc: '面板标题' },
-  { name: 'placeholder', type: 'string', desc: '占位文字' },
-  { name: 'cancelText', type: 'string', desc: '取消按钮文字' },
-  { name: 'confirmText', type: 'string', desc: '确认按钮文字' },
-  { name: 'show', type: 'boolean', desc: '是否显示面板（受控）' },
-  { name: 'onUpdateShow', type: '(show) => void', desc: '面板开关回调' },
-  { name: 'visibleItemCount', type: 'number', desc: '可见行数，默认 7' },
+  { name: 'options', type: '{ text: string; value: string | number }[]', desc: 'componentProps.select.options' },
+  { name: 'value', type: 'string | number', desc: 'componentProps.select.value' },
+  { name: 'onChange', type: '(value) => void', desc: 'componentProps.select.onChange' },
+  { name: 'onConfirm', type: '(value) => void', desc: 'componentProps.select.onConfirm' },
+  { name: 'title', type: 'string', desc: 'componentProps.select.title' },
+  { name: 'placeholder', type: 'string', desc: 'componentProps.select.placeholder' },
+  { name: 'cancelText', type: 'string', desc: 'componentProps.select.cancelText' },
+  { name: 'confirmText', type: 'string', desc: 'componentProps.select.confirmText' },
+  { name: 'show', type: 'boolean', desc: 'componentProps.select.show' },
+  { name: 'onUpdateShow', type: '(show) => void', desc: 'componentProps.select.onUpdateShow' },
+  { name: 'visibleItemCount', type: 'number', desc: 'componentProps.select.visibleItemCount' },
 ];
 
 const CARD = {

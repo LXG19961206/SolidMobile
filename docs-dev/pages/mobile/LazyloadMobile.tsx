@@ -13,13 +13,13 @@ import { Avatar } from '../../../src/components/Avatar';
 import { Button } from '../../../src/components/Button';
 
 const propsData = [
-  { name: 'placeholder', type: 'JSX.Element', desc: '未激活时的骨架占位' },
-  { name: 'children', type: 'JSX.Element', desc: '激活后的实际内容' },
-  { name: 'active', type: 'boolean', desc: '受控模式：手动控制是否激活' },
-  { name: 'rootMargin', type: 'string', desc: '提前触发距离，默认 50px' },
-  { name: 'height', type: 'number | string', desc: '最小高度，防止加载后布局抖动' },
-  { name: 'threshold', type: 'number | number[]', desc: '可见比例阈值，默认 0' },
-  { name: 'once', type: 'boolean', desc: '只触发一次，默认 true' },
+  { name: 'placeholder', type: 'JSX.Element', desc: 'componentProps.lazyload.placeholder' },
+  { name: 'children', type: 'JSX.Element', desc: 'componentProps.lazyload.children' },
+  { name: 'active', type: 'boolean', desc: 'componentProps.lazyload.active' },
+  { name: 'rootMargin', type: 'string', desc: 'componentProps.lazyload.rootMargin' },
+  { name: 'height', type: 'number | string', desc: 'componentProps.lazyload.height' },
+  { name: 'threshold', type: 'number | number[]', desc: 'componentProps.lazyload.threshold' },
+  { name: 'once', type: 'boolean', desc: 'componentProps.lazyload.once' },
 ];
 
 const CARD = {

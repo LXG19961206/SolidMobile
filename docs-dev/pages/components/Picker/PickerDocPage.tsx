@@ -92,20 +92,20 @@ function makeFlatCols(n: number): PickerOption[][] {
 /* ── Props ── */
 
 const propsData: PropRow[] = [
-  { name: 'columns', type: 'PickerOption[] | PickerOption[][]', default: '—', required: true, desc: 'component.picker.props.columns' },
-  { name: 'value', type: '(string | number)[]', default: '—', required: false, desc: 'component.picker.props.value' },
-  { name: 'onChange', type: '(selected, value) => void', default: '—', required: false, desc: 'component.picker.props.onChange' },
-  { name: 'show', type: 'boolean', default: '—', required: false, desc: 'component.picker.props.show' },
-  { name: 'onUpdateShow', type: '(show) => void', default: '—', required: false, desc: 'component.picker.props.onUpdateShow' },
-  { name: 'title', type: 'string', default: "'请选择'", required: false, desc: 'component.picker.props.title' },
-  { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: 'component.picker.props.visibleItemCount' },
-  { name: 'optionHeight', type: 'number', default: '50', required: false, desc: 'component.picker.props.optionHeight' },
-  { name: 'ratio', type: 'number', default: '1.5', required: false, desc: 'component.picker.props.ratio' },
-  { name: 'swipeDuration', type: 'number', default: '1', required: false, desc: 'component.picker.props.swipeDuration' },
-  { name: 'cancelText', type: 'string', default: '跟随 locale', required: false, desc: 'component.picker.props.cancelText' },
-  { name: 'confirmText', type: 'string', default: '跟随 locale', required: false, desc: 'component.picker.props.confirmText' },
-  { name: 'placeholders', type: 'string | string[]', default: '—', required: false, desc: 'component.picker.props.placeholders' },
-  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'component.picker.props.teleport' },
+  { name: 'columns', type: 'PickerOption[] | PickerOption[][]', default: '—', required: true, desc: 'componentProps.picker.columns' },
+  { name: 'value', type: '(string | number)[]', default: '—', required: false, desc: 'componentProps.picker.value' },
+  { name: 'onChange', type: '(selected, value) => void', default: '—', required: false, desc: 'componentProps.picker.onChange' },
+  { name: 'show', type: 'boolean', default: '—', required: false, desc: 'componentProps.picker.show' },
+  { name: 'onUpdateShow', type: '(show) => void', default: '—', required: false, desc: 'componentProps.picker.onUpdateShow' },
+  { name: 'title', type: 'string', default: "'请选择'", required: false, desc: 'componentProps.picker.title' },
+  { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: 'componentProps.picker.visibleItemCount' },
+  { name: 'optionHeight', type: 'number', default: '50', required: false, desc: 'componentProps.picker.optionHeight' },
+  { name: 'ratio', type: 'number', default: '1.5', required: false, desc: 'componentProps.picker.ratio' },
+  { name: 'swipeDuration', type: 'number', default: '1', required: false, desc: 'componentProps.picker.swipeDuration' },
+  { name: 'cancelText', type: 'string', default: '跟随 locale', required: false, desc: 'componentProps.picker.cancelText' },
+  { name: 'confirmText', type: 'string', default: '跟随 locale', required: false, desc: 'componentProps.picker.confirmText' },
+  { name: 'placeholders', type: 'string | string[]', default: '—', required: false, desc: 'componentProps.picker.placeholders' },
+  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.picker.teleport' },
 ];
 
 /* ── Demo Components (each a standalone Cell + Picker pair) ── */

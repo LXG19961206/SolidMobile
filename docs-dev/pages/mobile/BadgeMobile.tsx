@@ -13,12 +13,12 @@ import { useT } from '../../doc-i18n';
 import { Cell, CellGroup } from '../../../src/components/Cell';
 
 const propsData = [
-  { name: 'content', type: 'string | number', desc: '徽标内容，数字超出 max 时显示 max+' },
-  { name: 'dot', type: 'boolean', desc: '仅显示小红点，忽略 content' },
-  { name: 'max', type: 'number', desc: '数字上限，如 99 → "99+"' },
-  { name: 'position', type: "'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'", desc: '位置，默认 top-right' },
-  { name: 'color', type: 'string', desc: '自定义背景色' },
-  { name: 'children', type: 'JSX.Element', desc: '包裹的子元素，不传则为独立模式' },
+  { name: 'content', type: 'string | number', desc: 'componentProps.badge.content' },
+  { name: 'dot', type: 'boolean', desc: 'componentProps.badge.dot' },
+  { name: 'max', type: 'number', desc: 'componentProps.badge.max' },
+  { name: 'position', type: "'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'", desc: 'componentProps.badge.position' },
+  { name: 'color', type: 'string', desc: 'componentProps.badge.color' },
+  { name: 'children', type: 'JSX.Element', desc: 'componentProps.badge.children' },
 ];
 
 const CARD = {

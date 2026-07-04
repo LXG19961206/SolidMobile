@@ -24,29 +24,29 @@ import type { PickerOption } from '../../../../src/components/Picker';
 import type { PropRow } from '../../../../src/doc-utils';
 
 const formProps: PropRow[] = [
-  { name: 'value', type: 'T', default: '—', required: false, desc: 'componentProps.Form.value' },
-  { name: 'onChange', type: '(value: T) => void', default: '—', required: false, desc: 'componentProps.Form.onChange' },
-  { name: 'defaultValue', type: 'T', default: '{}', required: false, desc: '非受控默认值。' },
-  { name: 'onSubmit', type: '(value: T) => void', default: '—', required: false, desc: 'componentProps.Form.onSubmit' },
-  { name: 'validateOnChange', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Form.validateOnChange' },
-  { name: 'validateOnBlur', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Form.validateOnBlur' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Form.disabled' },
-  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Form.readonly' },
-  { name: 'labelAlign', type: "'top' | 'left' | 'right'", default: '—', required: false, desc: '标签对齐。' },
-  { name: 'labelWidth', type: 'string', default: '—', required: false, desc: 'componentProps.Form.labelWidth' },
-  { name: 'colon', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Form.colon' },
-  { name: 'ref', type: '(api: FormRef) => void', default: '—', required: false, desc: 'componentProps.Form.ref' },
+  { name: 'value', type: 'T', default: '—', required: false, desc: 'componentProps.form.value' },
+  { name: 'onChange', type: '(value: T) => void', default: '—', required: false, desc: 'componentProps.form.onChange' },
+  { name: 'defaultValue', type: 'T', default: '{}', required: false, desc: 'componentProps.form.defaultValue' },
+  { name: 'onSubmit', type: '(value: T) => void', default: '—', required: false, desc: 'componentProps.form.onSubmit' },
+  { name: 'validateOnChange', type: 'boolean', default: 'false', required: false, desc: 'componentProps.form.validateOnChange' },
+  { name: 'validateOnBlur', type: 'boolean', default: 'false', required: false, desc: 'componentProps.form.validateOnBlur' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.form.disabled' },
+  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: 'componentProps.form.readonly' },
+  { name: 'labelAlign', type: "'top' | 'left' | 'right'", default: '—', required: false, desc: 'componentProps.form.labelAlign' },
+  { name: 'labelWidth', type: 'string', default: '—', required: false, desc: 'componentProps.form.labelWidth' },
+  { name: 'colon', type: 'boolean', default: 'false', required: false, desc: 'componentProps.form.colon' },
+  { name: 'ref', type: '(api: FormRef) => void', default: '—', required: false, desc: 'componentProps.form.ref' },
 ];
 
 const itemProps: PropRow[] = [
-  { name: 'name', type: 'string', default: '—', required: true, desc: 'componentProps.Form.name' },
-  { name: 'label', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.Form.label' },
-  { name: 'required', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Form.required' },
-  { name: 'rules', type: 'FormRule[]', default: '—', required: false, desc: 'componentProps.Form.rules' },
-  { name: 'help', type: 'string', default: '—', required: false, desc: 'componentProps.Form.help' },
-  { name: 'labelAlign', type: "'top' | 'left' | 'right'", default: "继承 Form", required: false, desc: '标签对齐方式。' },
+  { name: 'name', type: 'string', default: '—', required: true, desc: 'componentProps.form.name' },
+  { name: 'label', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.form.label' },
+  { name: 'required', type: 'boolean', default: 'false', required: false, desc: 'componentProps.form.required' },
+  { name: 'rules', type: 'FormRule[]', default: '—', required: false, desc: 'componentProps.form.rules' },
+  { name: 'help', type: 'string', default: '—', required: false, desc: 'componentProps.form.help' },
+  { name: 'labelAlign', type: "'top' | 'left' | 'right'", default: "继承 Form", required: false, desc: 'componentProps.formItem.labelAlign' },
   { name: 'labelWidth', type: 'string', default: "继承 Form", required: false, desc: "标签固定宽度。" },
-  { name: 'contentFlex', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Form.contentFlex' },
+  { name: 'contentFlex', type: 'boolean', default: 'false', required: false, desc: 'componentProps.form.contentFlex' },
 ];
 
 /* ── 示例省市区数据 ── */

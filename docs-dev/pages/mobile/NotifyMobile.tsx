@@ -10,12 +10,12 @@ import { Button } from '../../../src/components/Button';
 import { useT } from '../../doc-i18n';
 
 const propsData = [
-  { name: 'Notify.primary(msg)', type: 'NotifyHandle', desc: '主色通知' },
-  { name: 'Notify.success(msg)', type: 'NotifyHandle', desc: '成功通知' },
-  { name: 'Notify.warning(msg)', type: 'NotifyHandle', desc: '警告通知' },
-  { name: 'Notify.danger(msg)', type: 'NotifyHandle', desc: '危险通知' },
-  { name: 'Notify.show(options)', type: 'NotifyHandle', desc: '完整配置，支持 type/position/duration 等' },
-  { name: 'Notify.dismissAll()', type: 'void', desc: '关闭所有通知' },
+  { name: 'Notify.primary(msg)', type: 'NotifyHandle', desc: 'componentProps.notify.Notify.primary(msg)' },
+  { name: 'Notify.success(msg)', type: 'NotifyHandle', desc: 'componentProps.notify.Notify.success(msg)' },
+  { name: 'Notify.warning(msg)', type: 'NotifyHandle', desc: 'componentProps.notify.Notify.warning(msg)' },
+  { name: 'Notify.danger(msg)', type: 'NotifyHandle', desc: 'componentProps.notify.Notify.danger(msg)' },
+  { name: 'Notify.show(options)', type: 'NotifyHandle', desc: 'componentProps.notify.Notify.show(options)' },
+  { name: 'Notify.dismissAll()', type: 'void', desc: 'componentProps.notify.Notify.dismissAll()' },
 ];
 
 const CARD = {

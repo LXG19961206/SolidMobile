@@ -7,15 +7,15 @@ import type { NotifyOptions } from '../../../../src/components/notify/types';
 import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
-  { name: 'type', type: "'primary' | 'success' | 'warning' | 'danger'", default: "'danger'", required: false, desc: '类型。' },
-  { name: 'message', type: 'string', default: '—', required: true, desc: '展示文案，支持 \\n 换行。' },
-  { name: 'duration', type: 'number', default: '3000', required: false, desc: '展示时长(ms)，0 不消失。' },
-  { name: 'position', type: "'top' | 'bottom'", default: "'top'", required: false, desc: '弹出位置。' },
-  { name: 'color', type: 'string', default: "'white'", required: false, desc: '字体颜色。' },
-  { name: 'background', type: 'string', default: '—', required: false, desc: '背景颜色。' },
-  { name: 'lockScroll', type: 'boolean', default: 'false', required: false, desc: '锁定背景滚动。' },
-  { name: 'onClick', type: '(e: MouseEvent) => void', default: '—', required: false, desc: '点击回调。' },
-  { name: 'onClose', type: '() => void', default: '—', required: false, desc: '关闭回调。' },
+  { name: 'type', type: "'primary' | 'success' | 'warning' | 'danger'", default: "'danger'", required: false, desc: 'componentProps.notify.type' },
+  { name: 'message', type: 'string', default: '—', required: true, desc: 'componentProps.notify.message' },
+  { name: 'duration', type: 'number', default: '3000', required: false, desc: 'componentProps.notify.duration' },
+  { name: 'position', type: "'top' | 'bottom'", default: "'top'", required: false, desc: 'componentProps.notify.position' },
+  { name: 'color', type: 'string', default: "'white'", required: false, desc: 'componentProps.notify.color' },
+  { name: 'background', type: 'string', default: '—', required: false, desc: 'componentProps.notify.background' },
+  { name: 'lockScroll', type: 'boolean', default: 'false', required: false, desc: 'componentProps.notify.lockScroll' },
+  { name: 'onClick', type: '(e: MouseEvent) => void', default: '—', required: false, desc: 'componentProps.notify.onClick' },
+  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.notify.onClose' },
 ];
 
 const NotifyDocInner: Component = () => {

@@ -7,23 +7,23 @@ import { useT } from '../../../doc-i18n';
 import styles from './ToastDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'message', type: 'string | JSX.Element', default: '—', required: true, desc: 'componentProps.Toast.message' },
-  { name: 'type', type: "'success' | 'error' | 'warning' | 'loading' | 'info'", default: '—', required: false, desc: '类型，决定图标和默认样式。' },
-  { name: 'position', type: "'top' | 'middle' | 'bottom'", default: "'middle'", required: false, desc: '显示位置。' },
-  { name: 'duration', type: 'number', default: '3000', required: false, desc: 'componentProps.Toast.duration' },
-  { name: 'overlay', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Toast.overlay' },
-  { name: 'closeOnClick', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Toast.closeOnClick' },
-  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.Toast.onClose' },
+  { name: 'message', type: 'string | JSX.Element', default: '—', required: true, desc: 'componentProps.toast.message' },
+  { name: 'type', type: "'success' | 'error' | 'warning' | 'loading' | 'info'", default: '—', required: false, desc: 'componentProps.toast.type' },
+  { name: 'position', type: "'top' | 'middle' | 'bottom'", default: "'middle'", required: false, desc: 'componentProps.toast.position' },
+  { name: 'duration', type: 'number', default: '3000', required: false, desc: 'componentProps.toast.duration' },
+  { name: 'overlay', type: 'boolean', default: 'false', required: false, desc: 'componentProps.toast.overlay' },
+  { name: 'closeOnClick', type: 'boolean', default: 'false', required: false, desc: 'componentProps.toast.closeOnClick' },
+  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.toast.onClose' },
 ];
 
 const methodsData: PropRow[] = [
-  { name: 'Toast.show(options)', type: 'ToastHandle', default: '—', required: false, desc: '完整配置显示 toast。' },
-  { name: 'Toast.success(msg, opts?)', type: 'ToastHandle', default: '—', required: false, desc: '成功提示，2000ms 自动关闭。' },
-  { name: 'Toast.error(msg, opts?)', type: 'ToastHandle', default: '—', required: false, desc: '错误提示，3000ms + 遮罩。' },
-  { name: 'Toast.warning(msg, opts?)', type: 'ToastHandle', default: '—', required: false, desc: '警告提示，3000ms。' },
-  { name: 'Toast.loading(msg, opts?)', type: 'ToastHandle', default: '—', required: false, desc: '加载提示，不自动关闭 + 遮罩。' },
-  { name: 'Toast.info(msg, opts?)', type: 'ToastHandle', default: '—', required: false, desc: '信息提示，2500ms。' },
-  { name: 'Toast.dismissAll()', type: 'void', default: '—', required: false, desc: '关闭所有 toast。' },
+  { name: 'Toast.show(options)', type: 'ToastHandle', default: '—', required: false, desc: 'componentProps.toast.Toast.show(options)' },
+  { name: 'Toast.success(msg, opts?)', type: 'ToastHandle', default: '—', required: false, desc: 'componentProps.toast.Toast.success(msg, opts?)' },
+  { name: 'Toast.error(msg, opts?)', type: 'ToastHandle', default: '—', required: false, desc: 'componentProps.toast.Toast.error(msg, opts?)' },
+  { name: 'Toast.warning(msg, opts?)', type: 'ToastHandle', default: '—', required: false, desc: 'componentProps.toast.Toast.warning(msg, opts?)' },
+  { name: 'Toast.loading(msg, opts?)', type: 'ToastHandle', default: '—', required: false, desc: 'componentProps.toast.Toast.loading(msg, opts?)' },
+  { name: 'Toast.info(msg, opts?)', type: 'ToastHandle', default: '—', required: false, desc: 'componentProps.toast.Toast.info(msg, opts?)' },
+  { name: 'Toast.dismissAll()', type: 'void', default: '—', required: false, desc: 'componentProps.toast.Toast.dismissAll()' },
 ];
 
 /* ── Inner Component (inside DocLayout for context) ── */

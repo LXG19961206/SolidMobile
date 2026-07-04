@@ -12,21 +12,21 @@ import { Toast, ToastRenderer } from '../../../src/components/Toast';
 import { useT } from '../../doc-i18n';
 
 const propsData = [
-  { name: 'Radio.value', type: 'unknown', desc: '标识符，选中时对应 RadioGroup 的 value' },
-  { name: 'Radio.label', type: 'string | JSX.Element', desc: '标签文字' },
-  { name: 'Radio.checked', type: 'boolean', desc: '独立使用时是否选中（受控）' },
-  { name: 'Radio.onChange', type: '(checked) => void', desc: '独立使用选中变化回调' },
-  { name: 'Radio.disabled', type: 'boolean', desc: '禁用' },
-  { name: 'Radio.shape', type: "'round' | 'square' | 'dot'", desc: '形状，默认 round' },
-  { name: 'Radio.checkedColor', type: 'string', desc: '选中态颜色' },
-  { name: 'Radio.labelPosition', type: "'left' | 'right'", desc: '标签位置，默认 right' },
-  { name: 'Radio.iconSize', type: 'number | string', desc: '图标大小，默认 20px' },
-  { name: 'Radio.checkedIcon / uncheckedIcon', type: 'JSX.Element', desc: '自定义选中/未选中图标' },
-  { name: 'RadioGroup.value', type: 'unknown', desc: '当前选中值（受控）' },
-  { name: 'RadioGroup.defaultValue', type: 'unknown', desc: '默认值（非受控）' },
-  { name: 'RadioGroup.onChange', type: '(value) => void', desc: '值变化回调' },
-  { name: 'RadioGroup.direction', type: "'vertical' | 'horizontal'", desc: '排列方向' },
-  { name: 'RadioGroup.disabled', type: 'boolean', desc: '全局禁用' },
+  { name: 'Radio.value', type: 'unknown', desc: 'componentProps.radio.Radio.value' },
+  { name: 'Radio.label', type: 'string | JSX.Element', desc: 'componentProps.radio.Radio.label' },
+  { name: 'Radio.checked', type: 'boolean', desc: 'componentProps.radio.Radio.checked' },
+  { name: 'Radio.onChange', type: '(checked) => void', desc: 'componentProps.radio.Radio.onChange' },
+  { name: 'Radio.disabled', type: 'boolean', desc: 'componentProps.radio.Radio.disabled' },
+  { name: 'Radio.shape', type: "'round' | 'square' | 'dot'", desc: 'componentProps.radio.Radio.shape' },
+  { name: 'Radio.checkedColor', type: 'string', desc: 'componentProps.radio.Radio.checkedColor' },
+  { name: 'Radio.labelPosition', type: "'left' | 'right'", desc: 'componentProps.radio.Radio.labelPosition' },
+  { name: 'Radio.iconSize', type: 'number | string', desc: 'componentProps.radio.Radio.iconSize' },
+  { name: 'Radio.checkedIcon / uncheckedIcon', type: 'JSX.Element', desc: 'componentProps.radio.Radio.checkedIcon / uncheckedIcon' },
+  { name: 'RadioGroup.value', type: 'unknown', desc: 'componentProps.radio.RadioGroup.value' },
+  { name: 'RadioGroup.defaultValue', type: 'unknown', desc: 'componentProps.radio.RadioGroup.defaultValue' },
+  { name: 'RadioGroup.onChange', type: '(value) => void', desc: 'componentProps.radio.RadioGroup.onChange' },
+  { name: 'RadioGroup.direction', type: "'vertical' | 'horizontal'", desc: 'componentProps.radio.RadioGroup.direction' },
+  { name: 'RadioGroup.disabled', type: 'boolean', desc: 'componentProps.radio.RadioGroup.disabled' },
 ];
 
 const CARD = {

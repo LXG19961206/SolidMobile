@@ -10,20 +10,20 @@ import { Tabs, Tab } from '../../../src/components/Tabs';
 import { Icon } from '../../../src/components/Icon';
 
 const propsData = [
-  { name: 'active', type: 'number | string', desc: '当前激活的 tab' },
-  { name: 'defaultActive', type: 'number | string', desc: '默认激活（非受控）' },
-  { name: 'onChange', type: '(name) => void', desc: '切换回调' },
-  { name: 'type', type: "'line' | 'card'", desc: '样式风格，默认 line' },
-  { name: 'color', type: 'string', desc: '主题色' },
-  { name: 'background', type: 'string', desc: '标签栏背景色' },
-  { name: 'animated', type: 'boolean', desc: '内容区切换动画' },
-  { name: 'border', type: 'boolean', desc: '显示标签栏外边框（line 模式）' },
-  { name: 'sticky', type: 'boolean', desc: '粘性定位' },
-  { name: 'swipeable', type: 'boolean', desc: '手势滑动切换' },
-  { name: 'lazyRender', type: 'boolean', desc: '延迟渲染内容，默认 true' },
-  { name: 'beforeChange', type: '(name) => boolean', desc: '切换前回调' },
-  { name: 'titleActiveColor', type: 'string', desc: '标题选中态颜色' },
-  { name: 'titleInactiveColor', type: 'string', desc: '标题默认态颜色' },
+  { name: 'active', type: 'number | string', desc: 'componentProps.tabs.active' },
+  { name: 'defaultActive', type: 'number | string', desc: 'componentProps.tabs.defaultActive' },
+  { name: 'onChange', type: '(name) => void', desc: 'componentProps.tabs.onChange' },
+  { name: 'type', type: "'line' | 'card'", desc: 'componentProps.tabs.type' },
+  { name: 'color', type: 'string', desc: 'componentProps.tabs.color' },
+  { name: 'background', type: 'string', desc: 'componentProps.tabs.background' },
+  { name: 'animated', type: 'boolean', desc: 'componentProps.tabs.animated' },
+  { name: 'border', type: 'boolean', desc: 'componentProps.tabs.border' },
+  { name: 'sticky', type: 'boolean', desc: 'componentProps.tabs.sticky' },
+  { name: 'swipeable', type: 'boolean', desc: 'componentProps.tabs.swipeable' },
+  { name: 'lazyRender', type: 'boolean', desc: 'componentProps.tabs.lazyRender' },
+  { name: 'beforeChange', type: '(name) => boolean', desc: 'componentProps.tabs.beforeChange' },
+  { name: 'titleActiveColor', type: 'string', desc: 'componentProps.tabs.titleActiveColor' },
+  { name: 'titleInactiveColor', type: 'string', desc: 'componentProps.tabs.titleInactiveColor' },
 ];
 
 const CARD = {

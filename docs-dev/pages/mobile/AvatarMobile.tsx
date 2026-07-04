@@ -9,14 +9,14 @@ import { useT } from '../../doc-i18n';
 import { Avatar } from '../../../src/components/Avatar';
 
 const propsData = [
-  { name: 'src', type: 'string', desc: '头像图片地址' },
-  { name: 'alt', type: 'string', desc: '替代文本' },
-  { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | number", desc: '尺寸，默认 md' },
-  { name: 'round', type: 'boolean', desc: '完全圆形，默认 true' },
-  { name: 'square', type: 'boolean | number', desc: '方形+圆角，与 round 互斥' },
-  { name: 'icon', type: 'IconName', desc: '无图片时显示的图标' },
-  { name: 'text', type: 'string', desc: '无图片时的文字（取首字符）' },
-  { name: 'color', type: 'string', desc: '自定义背景色' },
+  { name: 'src', type: 'string', desc: 'componentProps.avatar.src' },
+  { name: 'alt', type: 'string', desc: 'componentProps.avatar.alt' },
+  { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | number", desc: 'componentProps.avatar.size' },
+  { name: 'round', type: 'boolean', desc: 'componentProps.avatar.round' },
+  { name: 'square', type: 'boolean | number', desc: 'componentProps.avatar.square' },
+  { name: 'icon', type: 'IconName', desc: 'componentProps.avatar.icon' },
+  { name: 'text', type: 'string', desc: 'componentProps.avatar.text' },
+  { name: 'color', type: 'string', desc: 'componentProps.avatar.color' },
 ];
 
 const CARD = {

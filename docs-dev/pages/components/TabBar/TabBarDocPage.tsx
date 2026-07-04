@@ -5,28 +5,28 @@ import type { PropRow } from '../../../../src/doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const tabBarProps: PropRow[] = [
-  { name: 'value', type: 'number | string', default: '—', required: false, desc: 'componentProps.TabBar.value' },
-  { name: 'defaultValue', type: 'number | string', default: '0', required: false, desc: 'componentProps.TabBar.defaultValue' },
-  { name: 'onChange', type: '(name) => void', default: '—', required: false, desc: 'componentProps.TabBar.onChange' },
-  { name: 'fixed', type: 'boolean', default: 'true', required: false, desc: 'componentProps.TabBar.fixed' },
-  { name: 'border', type: 'boolean', default: 'true', required: false, desc: 'componentProps.TabBar.border' },
-  { name: 'zIndex', type: 'number | string', default: '1', required: false, desc: 'componentProps.TabBar.zIndex' },
-  { name: 'height', type: 'number | string', default: "'50px'", required: false, desc: '标签栏高度，占位高度同步变化。' },
-  { name: 'activeColor', type: 'string', default: "'#1989fa'", required: false, desc: '选中标签颜色。' },
-  { name: 'inactiveColor', type: 'string', default: "'#7d7e80'", required: false, desc: '未选中标签颜色。' },
-  { name: 'safeArea', type: 'boolean', default: 'false', required: false, desc: 'componentProps.TabBar.safeArea' },
-  { name: 'bgColor', type: 'string', default: '—', required: false, desc: 'componentProps.TabBar.bgColor' },
-  { name: 'placeholder', type: 'boolean', default: 'false', required: false, desc: 'componentProps.TabBar.placeholder' },
-  { name: 'beforeChange', type: '(name) => boolean | Promise<boolean>', default: '—', required: false, desc: 'componentProps.TabBar.beforeChange' },
+  { name: 'value', type: 'number | string', default: '—', required: false, desc: 'componentProps.tabbar.value' },
+  { name: 'defaultValue', type: 'number | string', default: '0', required: false, desc: 'componentProps.tabbar.defaultValue' },
+  { name: 'onChange', type: '(name) => void', default: '—', required: false, desc: 'componentProps.tabbar.onChange' },
+  { name: 'fixed', type: 'boolean', default: 'true', required: false, desc: 'componentProps.tabbar.fixed' },
+  { name: 'border', type: 'boolean', default: 'true', required: false, desc: 'componentProps.tabbar.border' },
+  { name: 'zIndex', type: 'number | string', default: '1', required: false, desc: 'componentProps.tabbar.zIndex' },
+  { name: 'height', type: 'number | string', default: "'50px'", required: false, desc: 'componentProps.tabbar.height' },
+  { name: 'activeColor', type: 'string', default: "'#1989fa'", required: false, desc: 'componentProps.tabbar.activeColor' },
+  { name: 'inactiveColor', type: 'string', default: "'#7d7e80'", required: false, desc: 'componentProps.tabbar.inactiveColor' },
+  { name: 'safeArea', type: 'boolean', default: 'false', required: false, desc: 'componentProps.tabbar.safeArea' },
+  { name: 'bgColor', type: 'string', default: '—', required: false, desc: 'componentProps.tabbar.bgColor' },
+  { name: 'placeholder', type: 'boolean', default: 'false', required: false, desc: 'componentProps.tabbar.placeholder' },
+  { name: 'beforeChange', type: '(name) => boolean | Promise<boolean>', default: '—', required: false, desc: 'componentProps.tabbar.beforeChange' },
 ];
 
 const itemProps: PropRow[] = [
-  { name: 'name', type: 'number | string', default: '—', required: true, desc: 'componentProps.TabBar.name' },
-  { name: 'icon', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.TabBar.icon' },
-  { name: 'label', type: 'string', default: '—', required: false, desc: 'componentProps.TabBar.label' },
-  { name: 'dot', type: 'boolean', default: 'false', required: false, desc: 'componentProps.TabBar.dot' },
-  { name: 'badge', type: 'number | string', default: '—', required: false, desc: 'componentProps.TabBar.badge' },
-  { name: 'badgeProps', type: 'Record<string, unknown>', default: '—', required: false, desc: 'componentProps.TabBar.badgeProps' },
+  { name: 'name', type: 'number | string', default: '—', required: true, desc: 'componentProps.tabbar.name' },
+  { name: 'icon', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.tabbar.icon' },
+  { name: 'label', type: 'string', default: '—', required: false, desc: 'componentProps.tabbar.label' },
+  { name: 'dot', type: 'boolean', default: 'false', required: false, desc: 'componentProps.tabbar.dot' },
+  { name: 'badge', type: 'number | string', default: '—', required: false, desc: 'componentProps.tabbar.badge' },
+  { name: 'badgeProps', type: 'Record<string, unknown>', default: '—', required: false, desc: 'componentProps.tabbar.badgeProps' },
 ];
 
 /* ── Animated SVG icon components (selected state: pop + fill) ── */

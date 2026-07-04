@@ -8,19 +8,19 @@ import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
 import type { PropRow } from '../../../../src/doc-utils';
 
 const propsData: PropRow[] = [
-  { name: 'value', type: 'string', default: '—', required: false, desc: 'componentProps.TimePicker.value' },
-  { name: 'onChange', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.TimePicker.onChange' },
-  { name: 'onConfirm', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.TimePicker.onConfirm' },
-  { name: 'onCancel', type: '() => void', default: '—', required: false, desc: 'componentProps.TimePicker.onCancel' },
-  { name: 'show', type: 'boolean', default: '—', required: false, desc: 'componentProps.TimePicker.show' },
-  { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: 'componentProps.TimePicker.onUpdateShow' },
-  { name: 'placeholder', type: 'string', default: "'请选择时间'", required: false, desc: '未选值时显示的占位文本' },
-  { name: 'title', type: 'string', default: "'请选择'", required: false, desc: '面板标题' },
-  { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: 'componentProps.TimePicker.visibleItemCount' },
-  { name: 'optionHeight', type: 'number', default: '50', required: false, desc: 'componentProps.TimePicker.optionHeight' },
-  { name: 'cancelText', type: 'string', default: '跟随 locale', required: false, desc: 'componentProps.TimePicker.cancelText' },
-  { name: 'confirmText', type: 'string', default: '跟随 locale', required: false, desc: 'componentProps.TimePicker.confirmText' },
-  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.TimePicker.teleport' },
+  { name: 'value', type: 'string', default: '—', required: false, desc: 'componentProps.timepicker.value' },
+  { name: 'onChange', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.timepicker.onChange' },
+  { name: 'onConfirm', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.timepicker.onConfirm' },
+  { name: 'onCancel', type: '() => void', default: '—', required: false, desc: 'componentProps.timepicker.onCancel' },
+  { name: 'show', type: 'boolean', default: '—', required: false, desc: 'componentProps.timepicker.show' },
+  { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: 'componentProps.timepicker.onUpdateShow' },
+  { name: 'placeholder', type: 'string', default: "'请选择时间'", required: false, desc: 'componentProps.timepicker.placeholder' },
+  { name: 'title', type: 'string', default: "'请选择'", required: false, desc: 'componentProps.timepicker.title' },
+  { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: 'componentProps.timepicker.visibleItemCount' },
+  { name: 'optionHeight', type: 'number', default: '50', required: false, desc: 'componentProps.timepicker.optionHeight' },
+  { name: 'cancelText', type: 'string', default: '跟随 locale', required: false, desc: 'componentProps.timepicker.cancelText' },
+  { name: 'confirmText', type: 'string', default: '跟随 locale', required: false, desc: 'componentProps.timepicker.confirmText' },
+  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.timepicker.teleport' },
 ];
 
 /* ── Basic demo ── */

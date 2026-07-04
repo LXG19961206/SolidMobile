@@ -13,19 +13,19 @@ import { useT } from '../../doc-i18n';
 import type { CascaderOption } from '../../../src/components/Cascader';
 
 const propsData = [
-  { name: 'options', type: 'CascaderOption[]', desc: '级联数据源' },
-  { name: 'value', type: '(string | number)[]', desc: '当前选中值' },
-  { name: 'onChange', type: '(value) => void', desc: '值变化回调' },
-  { name: 'title', type: 'string | JSX.Element', desc: '标题' },
-  { name: 'placeholder', type: 'string', desc: '占位文字' },
-  { name: 'closeable', type: 'boolean', desc: '显示关闭按钮' },
-  { name: 'show', type: 'boolean', desc: '受控显示' },
-  { name: 'onUpdateShow', type: '(show) => void', desc: '关闭回调' },
-  { name: 'showCheckmark', type: 'boolean', desc: '选中项右侧显示对勾，默认 true' },
-  { name: 'checkmark', type: 'JSX.Element', desc: '自定义选中图标' },
-  { name: 'onLoadChildren', type: '(opt) => Promise<CascaderOption[]>', desc: '异步加载子选项' },
-  { name: 'loading', type: 'JSX.Element', desc: '异步加载时的占位' },
-  { name: 'maxHeight', type: 'number | string', desc: '弹窗固定高度' },
+  { name: 'options', type: 'CascaderOption[]', desc: 'componentProps.cascader.options' },
+  { name: 'value', type: '(string | number)[]', desc: 'componentProps.cascader.value' },
+  { name: 'onChange', type: '(value) => void', desc: 'componentProps.cascader.onChange' },
+  { name: 'title', type: 'string | JSX.Element', desc: 'componentProps.cascader.title' },
+  { name: 'placeholder', type: 'string', desc: 'componentProps.cascader.placeholder' },
+  { name: 'closeable', type: 'boolean', desc: 'componentProps.cascader.closeable' },
+  { name: 'show', type: 'boolean', desc: 'componentProps.cascader.show' },
+  { name: 'onUpdateShow', type: '(show) => void', desc: 'componentProps.cascader.onUpdateShow' },
+  { name: 'showCheckmark', type: 'boolean', desc: 'componentProps.cascader.showCheckmark' },
+  { name: 'checkmark', type: 'JSX.Element', desc: 'componentProps.cascader.checkmark' },
+  { name: 'onLoadChildren', type: '(opt) => Promise<CascaderOption[]>', desc: 'componentProps.cascader.onLoadChildren' },
+  { name: 'loading', type: 'JSX.Element', desc: 'componentProps.cascader.loading' },
+  { name: 'maxHeight', type: 'number | string', desc: 'componentProps.cascader.maxHeight' },
 ];
 
 const CARD = {

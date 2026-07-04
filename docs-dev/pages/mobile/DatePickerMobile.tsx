@@ -9,21 +9,21 @@ import { useT } from '../../doc-i18n';
 import { DatePicker } from '../../../src/components/DatePicker';
 
 const propsData = [
-  { name: 'value', type: 'string', desc: '当前值，格式 YYYY-MM-DD 或 YYYY-MM-DD HH:mm:ss（datetime）' },
-  { name: 'onChange', type: '(value: string) => void', desc: '值变化回调' },
-  { name: 'onConfirm', type: '(value: string) => void', desc: '确认按钮回调' },
-  { name: 'onCancel', type: '() => void', desc: '取消按钮回调' },
-  { name: 'type', type: "'date' | 'year-month' | 'datetime'", desc: '选择类型，datetime 增加时/分/秒' },
-  { name: 'startDate', type: 'string', desc: '范围起点，默认 2014-01-01' },
-  { name: 'endDate', type: 'string', desc: '范围终点，默认 2034-12-31' },
-  { name: 'disabledDate', type: '(y,m,d) => boolean', desc: '禁用特定日期' },
-  { name: 'placeholder', type: 'string', desc: '占位文字' },
-  { name: 'title', type: 'string', desc: '面板标题' },
-  { name: 'cancelText', type: 'string', desc: '取消按钮文字' },
-  { name: 'confirmText', type: 'string', desc: '确认按钮文字' },
-  { name: 'visibleItemCount', type: 'number', desc: '可见行数，默认 7' },
-  { name: 'show', type: 'boolean', desc: '是否显示面板（受控）' },
-  { name: 'onUpdateShow', type: '(show) => void', desc: '面板开关回调' },
+  { name: 'value', type: 'string', desc: 'componentProps.datepicker.value' },
+  { name: 'onChange', type: '(value: string) => void', desc: 'componentProps.datepicker.onChange' },
+  { name: 'onConfirm', type: '(value: string) => void', desc: 'componentProps.datepicker.onConfirm' },
+  { name: 'onCancel', type: '() => void', desc: 'componentProps.datepicker.onCancel' },
+  { name: 'type', type: "'date' | 'year-month' | 'datetime'", desc: 'componentProps.datepicker.type' },
+  { name: 'startDate', type: 'string', desc: 'componentProps.datepicker.startDate' },
+  { name: 'endDate', type: 'string', desc: 'componentProps.datepicker.endDate' },
+  { name: 'disabledDate', type: '(y,m,d) => boolean', desc: 'componentProps.datepicker.disabledDate' },
+  { name: 'placeholder', type: 'string', desc: 'componentProps.datepicker.placeholder' },
+  { name: 'title', type: 'string', desc: 'componentProps.datepicker.title' },
+  { name: 'cancelText', type: 'string', desc: 'componentProps.datepicker.cancelText' },
+  { name: 'confirmText', type: 'string', desc: 'componentProps.datepicker.confirmText' },
+  { name: 'visibleItemCount', type: 'number', desc: 'componentProps.datepicker.visibleItemCount' },
+  { name: 'show', type: 'boolean', desc: 'componentProps.datepicker.show' },
+  { name: 'onUpdateShow', type: '(show) => void', desc: 'componentProps.datepicker.onUpdateShow' },
 ];
 
 const CARD = {

@@ -10,19 +10,19 @@ import { Icon } from '../../../src/components/Icon';
 import { useT } from '../../doc-i18n';
 
 const propsData = [
-  { name: 'title', type: 'string | JSX.Element', desc: '标题' },
-  { name: 'left', type: 'JSX.Element', desc: '左侧内容' },
-  { name: 'right', type: 'JSX.Element', desc: '右侧内容' },
-  { name: 'backArrow', type: 'boolean', desc: '显示返回箭头' },
-  { name: 'onBack', type: '() => void', desc: '返回箭头点击回调' },
-  { name: 'onLeftClick', type: '() => void', desc: '左侧区域点击' },
-  { name: 'onRightClick', type: '() => void', desc: '右侧区域点击' },
-  { name: 'fixed', type: 'boolean', desc: '固定在顶部' },
-  { name: 'placeholder', type: 'boolean', desc: '固定时生成占位元素' },
-  { name: 'border', type: 'boolean', desc: '显示底部边框' },
-  { name: 'background', type: 'string', desc: '背景色' },
-  { name: 'color', type: 'string', desc: '文字颜色' },
-  { name: 'height', type: 'number | string', desc: '自定义高度，默认 46px' },
+  { name: 'title', type: 'string | JSX.Element', desc: 'componentProps.navbar.title' },
+  { name: 'left', type: 'JSX.Element', desc: 'componentProps.navbar.left' },
+  { name: 'right', type: 'JSX.Element', desc: 'componentProps.navbar.right' },
+  { name: 'backArrow', type: 'boolean', desc: 'componentProps.navbar.backArrow' },
+  { name: 'onBack', type: '() => void', desc: 'componentProps.navbar.onBack' },
+  { name: 'onLeftClick', type: '() => void', desc: 'componentProps.navbar.onLeftClick' },
+  { name: 'onRightClick', type: '() => void', desc: 'componentProps.navbar.onRightClick' },
+  { name: 'fixed', type: 'boolean', desc: 'componentProps.navbar.fixed' },
+  { name: 'placeholder', type: 'boolean', desc: 'componentProps.navbar.placeholder' },
+  { name: 'border', type: 'boolean', desc: 'componentProps.navbar.border' },
+  { name: 'background', type: 'string', desc: 'componentProps.navbar.background' },
+  { name: 'color', type: 'string', desc: 'componentProps.navbar.color' },
+  { name: 'height', type: 'number | string', desc: 'componentProps.navbar.height' },
 ];
 
 const CARD = {

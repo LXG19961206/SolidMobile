@@ -9,20 +9,20 @@ export interface StepperMobileProps {
 import { Stepper } from '../../../src/components/Stepper';
 
 const propsData = [
-  { name: 'value', type: 'number', desc: '当前值' },
-  { name: 'onChange', type: '(value: number) => void', desc: '值变化回调' },
-  { name: 'defaultValue', type: 'number', desc: '默认值（非受控）' },
-  { name: 'min', type: 'number', desc: '最小值' },
-  { name: 'max', type: 'number', desc: '最大值' },
-  { name: 'step', type: 'number', desc: '步长' },
-  { name: 'decimalLength', type: 'number', desc: '小数位数' },
-  { name: 'size', type: 'number | string', desc: '整体尺寸' },
-  { name: 'buttonSize', type: 'number | string', desc: '按钮大小' },
-  { name: 'inputWidth', type: 'number | string', desc: '输入框宽度' },
-  { name: 'disabled', type: 'boolean', desc: '禁用' },
-  { name: 'inputDisabled', type: 'boolean', desc: '仅禁用输入' },
-  { name: 'integer', type: 'boolean', desc: '只允许整数' },
-  { name: 'placeholder', type: 'string', desc: '占位文本' },
+  { name: 'value', type: 'number', desc: 'componentProps.stepper.value' },
+  { name: 'onChange', type: '(value: number) => void', desc: 'componentProps.stepper.onChange' },
+  { name: 'defaultValue', type: 'number', desc: 'componentProps.stepper.defaultValue' },
+  { name: 'min', type: 'number', desc: 'componentProps.stepper.min' },
+  { name: 'max', type: 'number', desc: 'componentProps.stepper.max' },
+  { name: 'step', type: 'number', desc: 'componentProps.stepper.step' },
+  { name: 'decimalLength', type: 'number', desc: 'componentProps.stepper.decimalLength' },
+  { name: 'size', type: 'number | string', desc: 'componentProps.stepper.size' },
+  { name: 'buttonSize', type: 'number | string', desc: 'componentProps.stepper.buttonSize' },
+  { name: 'inputWidth', type: 'number | string', desc: 'componentProps.stepper.inputWidth' },
+  { name: 'disabled', type: 'boolean', desc: 'componentProps.stepper.disabled' },
+  { name: 'inputDisabled', type: 'boolean', desc: 'componentProps.stepper.inputDisabled' },
+  { name: 'integer', type: 'boolean', desc: 'componentProps.stepper.integer' },
+  { name: 'placeholder', type: 'string', desc: 'componentProps.stepper.placeholder' },
 ];
 
 const CARD = {

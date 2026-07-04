@@ -9,15 +9,15 @@ export interface SwitchMobileProps {
 import { Switch } from '../../../src/components/Switch';
 
 const propsData = [
-  { name: 'checked (value)', type: 'boolean', desc: '是否打开（受控）' },
-  { name: 'defaultChecked', type: 'boolean', desc: '默认打开（非受控）' },
-  { name: 'onChange', type: '(checked: boolean) => void', desc: '状态变化回调' },
-  { name: 'disabled', type: 'boolean', desc: '禁用' },
-  { name: 'size', type: 'string | number', desc: '尺寸，默认 28' },
-  { name: 'activeColor', type: 'string', desc: '打开时的背景色' },
-  { name: 'inactiveColor', type: 'string', desc: '关闭时的背景色' },
-  { name: 'activeText', type: 'string', desc: '打开时显示的文案' },
-  { name: 'inactiveText', type: 'string', desc: '关闭时显示的文案' },
+  { name: 'checked (value)', type: 'boolean', desc: 'componentProps.switch.checked (value)' },
+  { name: 'defaultChecked', type: 'boolean', desc: 'componentProps.switch.defaultChecked' },
+  { name: 'onChange', type: '(checked: boolean) => void', desc: 'componentProps.switch.onChange' },
+  { name: 'disabled', type: 'boolean', desc: 'componentProps.switch.disabled' },
+  { name: 'size', type: 'string | number', desc: 'componentProps.switch.size' },
+  { name: 'activeColor', type: 'string', desc: 'componentProps.switch.activeColor' },
+  { name: 'inactiveColor', type: 'string', desc: 'componentProps.switch.inactiveColor' },
+  { name: 'activeText', type: 'string', desc: 'componentProps.switch.activeText' },
+  { name: 'inactiveText', type: 'string', desc: 'componentProps.switch.inactiveText' },
 ];
 
 const CARD = {

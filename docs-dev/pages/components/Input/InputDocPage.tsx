@@ -9,22 +9,22 @@ import type { PropRow } from '../../../../src/doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
-  { name: 'type', type: "'text' | 'number' | 'password' | 'tel' | 'email' | 'url'", default: "'text'", required: false, desc: '输入类型。' },
-  { name: 'value', type: 'string | number', default: '—', required: false, desc: 'componentProps.Input.value' },
-  { name: 'onChange', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.Input.onChange' },
-  { name: 'defaultValue', type: 'string', default: '—', required: false, desc: 'componentProps.Input.defaultValue' },
-  { name: 'placeholder', type: 'string', default: '—', required: false, desc: 'componentProps.Input.placeholder' },
-  { name: 'maxlength', type: 'number', default: '—', required: false, desc: 'componentProps.Input.maxlength' },
-  { name: 'clearable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Input.clearable' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Input.disabled' },
-  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Input.readonly' },
-  { name: 'showCount', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Input.showCount' },
-  { name: 'prefix', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Input.prefix' },
-  { name: 'suffix', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Input.suffix' },
-  { name: 'align', type: "'left' | 'center' | 'right'", default: "'left'", required: false, desc: '文字对齐。' },
-  { name: 'onBlur', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.Input.onBlur' },
-  { name: 'onFocus', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.Input.onFocus' },
-  { name: 'onEnter', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.Input.onEnter' },
+  { name: 'type', type: "'text' | 'number' | 'password' | 'tel' | 'email' | 'url'", default: "'text'", required: false, desc: 'componentProps.input.type' },
+  { name: 'value', type: 'string | number', default: '—', required: false, desc: 'componentProps.input.value' },
+  { name: 'onChange', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.input.onChange' },
+  { name: 'defaultValue', type: 'string', default: '—', required: false, desc: 'componentProps.input.defaultValue' },
+  { name: 'placeholder', type: 'string', default: '—', required: false, desc: 'componentProps.input.placeholder' },
+  { name: 'maxlength', type: 'number', default: '—', required: false, desc: 'componentProps.input.maxlength' },
+  { name: 'clearable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.input.clearable' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.input.disabled' },
+  { name: 'readonly', type: 'boolean', default: 'false', required: false, desc: 'componentProps.input.readonly' },
+  { name: 'showCount', type: 'boolean', default: 'false', required: false, desc: 'componentProps.input.showCount' },
+  { name: 'prefix', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.input.prefix' },
+  { name: 'suffix', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.input.suffix' },
+  { name: 'align', type: "'left' | 'center' | 'right'", default: "'left'", required: false, desc: 'componentProps.input.align' },
+  { name: 'onBlur', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.input.onBlur' },
+  { name: 'onFocus', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.input.onFocus' },
+  { name: 'onEnter', type: '(value: string) => void', default: '—', required: false, desc: 'componentProps.input.onEnter' },
 ];
 
 const codeBasic = `<CellGroup>

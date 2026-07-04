@@ -12,18 +12,18 @@ import { Cell, CellGroup } from '../../../src/components/Cell';
 import { Image } from '../../../src/components/Image';
 
 const propsData = [
-  { name: 'open', type: 'boolean', desc: '是否显示（必填）' },
-  { name: 'onClose', type: '() => void', desc: '关闭回调（必填）' },
-  { name: 'items', type: 'ActionSheetItem[]', desc: '选项列表' },
-  { name: 'children', type: 'JSX.Element', desc: '自定义内容（覆盖 items）' },
-  { name: 'title', type: 'string', desc: '标题' },
-  { name: 'closeable', type: 'boolean', desc: '显示关闭图标' },
-  { name: 'description', type: 'string', desc: '描述文字' },
-  { name: 'cancelText', type: 'string', desc: '取消按钮文字' },
-  { name: 'onSelect', type: '(item, index) => void', desc: '选项选中回调' },
-  { name: 'closeOnSelect', type: 'boolean', desc: '选中后自动关闭，默认 true' },
-  { name: 'closeOnOverlayClick', type: 'boolean', desc: '点击遮罩关闭，默认 true' },
-  { name: 'round', type: 'boolean', desc: '顶部圆角，默认 true' },
+  { name: 'open', type: 'boolean', desc: 'componentProps.actionsheet.open' },
+  { name: 'onClose', type: '() => void', desc: 'componentProps.actionsheet.onClose' },
+  { name: 'items', type: 'ActionSheetItem[]', desc: 'componentProps.actionsheet.items' },
+  { name: 'children', type: 'JSX.Element', desc: 'componentProps.actionsheet.children' },
+  { name: 'title', type: 'string', desc: 'componentProps.actionsheet.title' },
+  { name: 'closeable', type: 'boolean', desc: 'componentProps.actionsheet.closeable' },
+  { name: 'description', type: 'string', desc: 'componentProps.actionsheet.description' },
+  { name: 'cancelText', type: 'string', desc: 'componentProps.actionsheet.cancelText' },
+  { name: 'onSelect', type: '(item, index) => void', desc: 'componentProps.actionsheet.onSelect' },
+  { name: 'closeOnSelect', type: 'boolean', desc: 'componentProps.actionsheet.closeOnSelect' },
+  { name: 'closeOnOverlayClick', type: 'boolean', desc: 'componentProps.actionsheet.closeOnOverlayClick' },
+  { name: 'round', type: 'boolean', desc: 'componentProps.actionsheet.round' },
 ];
 
 const CARD = {

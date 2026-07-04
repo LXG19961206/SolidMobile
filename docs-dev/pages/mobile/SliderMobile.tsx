@@ -9,19 +9,19 @@ import { Slider } from '../../../src/components/Slider';
 import { useT } from '../../doc-i18n';
 
 const propsData = [
-  { name: 'value', type: 'number | number[]', desc: '当前值' },
-  { name: 'onChange', type: '(value: number | number[]) => void', desc: '值变化回调' },
-  { name: 'min', type: 'number', desc: '最小值，默认 0' },
-  { name: 'max', type: 'number', desc: '最大值，默认 100' },
-  { name: 'step', type: 'number', desc: '步长，默认 1' },
-  { name: 'count', type: 'number', desc: '滑块数量，默认 1' },
-  { name: 'barHeight', type: 'number | string', desc: '进度条高度' },
-  { name: 'buttonSize', type: 'number | string', desc: '滑块按钮大小' },
-  { name: 'activeColor', type: 'string', desc: '激活态颜色' },
-  { name: 'inactiveColor', type: 'string', desc: '非激活态颜色' },
-  { name: 'reverse', type: 'boolean', desc: '反转方向' },
-  { name: 'disabled', type: 'boolean', desc: '禁用' },
-  { name: 'readonly', type: 'boolean', desc: '只读' },
+  { name: 'value', type: 'number | number[]', desc: 'componentProps.slider.value' },
+  { name: 'onChange', type: '(value: number | number[]) => void', desc: 'componentProps.slider.onChange' },
+  { name: 'min', type: 'number', desc: 'componentProps.slider.min' },
+  { name: 'max', type: 'number', desc: 'componentProps.slider.max' },
+  { name: 'step', type: 'number', desc: 'componentProps.slider.step' },
+  { name: 'count', type: 'number', desc: 'componentProps.slider.count' },
+  { name: 'barHeight', type: 'number | string', desc: 'componentProps.slider.barHeight' },
+  { name: 'buttonSize', type: 'number | string', desc: 'componentProps.slider.buttonSize' },
+  { name: 'activeColor', type: 'string', desc: 'componentProps.slider.activeColor' },
+  { name: 'inactiveColor', type: 'string', desc: 'componentProps.slider.inactiveColor' },
+  { name: 'reverse', type: 'boolean', desc: 'componentProps.slider.reverse' },
+  { name: 'disabled', type: 'boolean', desc: 'componentProps.slider.disabled' },
+  { name: 'readonly', type: 'boolean', desc: 'componentProps.slider.readonly' },
 ];
 
 const CARD = {

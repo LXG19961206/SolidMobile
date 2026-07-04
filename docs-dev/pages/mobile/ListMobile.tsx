@@ -11,15 +11,15 @@ import { Avatar } from '../../../src/components/Avatar';
 import { useT } from '../../doc-i18n';
 
 const propsData = [
-  { name: 'data', type: 'I[]', desc: '受控模式：外部管理的数据源' },
-  { name: 'onLoad', type: '() => Promise<I[]>', desc: '不受控模式：触底加载回调' },
-  { name: 'finished', type: 'boolean', desc: '是否已全部加载完成' },
-  { name: 'offset', type: 'number', desc: '距底部触发距离(px)，默认 100' },
-  { name: 'empty', type: 'string | JSX.Element', desc: '空数据占位' },
-  { name: 'loadMoreText', type: 'string', desc: '加载中底部提示' },
-  { name: 'finishedText', type: 'string', desc: '加载完成底部提示' },
-  { name: 'virtual', type: 'boolean', desc: '开启虚拟列表' },
-  { name: 'itemHeight', type: 'number', desc: '虚拟列表每项高度(px)' },
+  { name: 'data', type: 'I[]', desc: 'componentProps.list.data' },
+  { name: 'onLoad', type: '() => Promise<I[]>', desc: 'componentProps.list.onLoad' },
+  { name: 'finished', type: 'boolean', desc: 'componentProps.list.finished' },
+  { name: 'offset', type: 'number', desc: 'componentProps.list.offset' },
+  { name: 'empty', type: 'string | JSX.Element', desc: 'componentProps.list.empty' },
+  { name: 'loadMoreText', type: 'string', desc: 'componentProps.list.loadMoreText' },
+  { name: 'finishedText', type: 'string', desc: 'componentProps.list.finishedText' },
+  { name: 'virtual', type: 'boolean', desc: 'componentProps.list.virtual' },
+  { name: 'itemHeight', type: 'number', desc: 'componentProps.list.itemHeight' },
 ];
 
 const CARD = {

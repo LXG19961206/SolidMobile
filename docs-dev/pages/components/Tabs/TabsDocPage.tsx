@@ -6,27 +6,27 @@ import { useT } from '../../../doc-i18n';
 import css from './TabsDocPage.module.css';
 
 const tabsProps: PropRow[] = [
-  { name: 'active', type: 'number | string', default: '—', required: false, desc: 'componentProps.Tabs.active' },
-  { name: 'defaultActive', type: 'number | string', default: '第一个 tab', required: false, desc: 'componentProps.Tabs.defaultActive' },
-  { name: 'onChange', type: '(name: number | string) => void', default: '—', required: false, desc: 'componentProps.Tabs.onChange' },
-  { name: 'type', type: "'line' | 'card'", default: "'line'", required: false, desc: '样式风格。' },
-  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.Tabs.color' },
-  { name: 'background', type: 'string', default: '—', required: false, desc: 'componentProps.Tabs.background' },
-  { name: 'duration', type: 'number', default: '0.3', required: false, desc: 'componentProps.Tabs.duration' },
-  { name: 'animated', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Tabs.animated' },
-  { name: 'border', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Tabs.border' },
-  { name: 'sticky', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Tabs.sticky' },
-  { name: 'lazyRender', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Tabs.lazyRender' },
-  { name: 'titleActiveColor', type: 'string', default: '—', required: false, desc: 'componentProps.Tabs.titleActiveColor' },
-  { name: 'titleInactiveColor', type: 'string', default: '—', required: false, desc: 'componentProps.Tabs.titleInactiveColor' },
-  { name: 'beforeChange', type: '(name) => boolean | Promise<boolean>', default: '—', required: false, desc: 'componentProps.Tabs.beforeChange' },
+  { name: 'active', type: 'number | string', default: '—', required: false, desc: 'componentProps.tabs.active' },
+  { name: 'defaultActive', type: 'number | string', default: '第一个 tab', required: false, desc: 'componentProps.tabs.defaultActive' },
+  { name: 'onChange', type: '(name: number | string) => void', default: '—', required: false, desc: 'componentProps.tabs.onChange' },
+  { name: 'type', type: "'line' | 'card'", default: "'line'", required: false, desc: 'componentProps.tabs.type' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.tabs.color' },
+  { name: 'background', type: 'string', default: '—', required: false, desc: 'componentProps.tabs.background' },
+  { name: 'duration', type: 'number', default: '0.3', required: false, desc: 'componentProps.tabs.duration' },
+  { name: 'animated', type: 'boolean', default: 'false', required: false, desc: 'componentProps.tabs.animated' },
+  { name: 'border', type: 'boolean', default: 'false', required: false, desc: 'componentProps.tabs.border' },
+  { name: 'sticky', type: 'boolean', default: 'false', required: false, desc: 'componentProps.tabs.sticky' },
+  { name: 'lazyRender', type: 'boolean', default: 'true', required: false, desc: 'componentProps.tabs.lazyRender' },
+  { name: 'titleActiveColor', type: 'string', default: '—', required: false, desc: 'componentProps.tabs.titleActiveColor' },
+  { name: 'titleInactiveColor', type: 'string', default: '—', required: false, desc: 'componentProps.tabs.titleInactiveColor' },
+  { name: 'beforeChange', type: '(name) => boolean | Promise<boolean>', default: '—', required: false, desc: 'componentProps.tabs.beforeChange' },
 ];
 
 const tabProps: PropRow[] = [
-  { name: 'title', type: 'string | JSX.Element', default: '—', required: true, desc: 'componentProps.Tabs.title' },
-  { name: 'name', type: 'number | string', default: '—', required: true, desc: 'componentProps.Tabs.name' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Tabs.disabled' },
-  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Tabs.children' },
+  { name: 'title', type: 'string | JSX.Element', default: '—', required: true, desc: 'componentProps.tabs.title' },
+  { name: 'name', type: 'number | string', default: '—', required: true, desc: 'componentProps.tabs.name' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.tabs.disabled' },
+  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.tabs.children' },
 ];
 
 const tocItems: TOCItem[] = [

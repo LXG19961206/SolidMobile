@@ -10,14 +10,14 @@ import { Button } from '../../../src/components/Button';
 import { useT } from '../../doc-i18n';
 
 const propsData = [
-  { name: 'type', type: "'spinner' | 'circular' | 'dots'", desc: '内置动画类型，默认 spinner' },
-  { name: 'text', type: 'string', desc: '加载文字' },
-  { name: 'size', type: 'string | number', desc: '尺寸，默认约 24px' },
-  { name: 'color', type: 'string', desc: '动画颜色' },
-  { name: 'textColor', type: 'string', desc: '文字颜色' },
-  { name: 'vertical', type: 'boolean', desc: '纵向排列（文字在下方）' },
-  { name: 'overlay', type: 'boolean', desc: '全屏遮罩加载' },
-  { name: 'icon', type: 'JSX.Element', desc: '自定义加载图标' },
+  { name: 'type', type: "'spinner' | 'circular' | 'dots'", desc: 'componentProps.loading.type' },
+  { name: 'text', type: 'string', desc: 'componentProps.loading.text' },
+  { name: 'size', type: 'string | number', desc: 'componentProps.loading.size' },
+  { name: 'color', type: 'string', desc: 'componentProps.loading.color' },
+  { name: 'textColor', type: 'string', desc: 'componentProps.loading.textColor' },
+  { name: 'vertical', type: 'boolean', desc: 'componentProps.loading.vertical' },
+  { name: 'overlay', type: 'boolean', desc: 'componentProps.loading.overlay' },
+  { name: 'icon', type: 'JSX.Element', desc: 'componentProps.loading.icon' },
 ];
 
 const CARD = {

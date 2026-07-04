@@ -5,11 +5,11 @@ import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './DividerDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'direction', type: "'horizontal' | 'vertical'", default: "'horizontal'", required: false, desc: '方向。' },
-  { name: 'text', type: 'string', default: '—', required: false, desc: 'componentProps.Divider.text' },
-  { name: 'dashed', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Divider.dashed' },
-  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.Divider.color' },
-  { name: 'size', type: 'string | number', default: '—', required: false, desc: 'componentProps.Divider.size' },
+  { name: 'direction', type: "'horizontal' | 'vertical'", default: "'horizontal'", required: false, desc: 'componentProps.divider.direction' },
+  { name: 'text', type: 'string', default: '—', required: false, desc: 'componentProps.divider.text' },
+  { name: 'dashed', type: 'boolean', default: 'false', required: false, desc: 'componentProps.divider.dashed' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.divider.color' },
+  { name: 'size', type: 'string | number', default: '—', required: false, desc: 'componentProps.divider.size' },
 ];
 
 const tocItems: TOCItem[] = [

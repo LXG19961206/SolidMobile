@@ -78,28 +78,28 @@ const regionOptions: CascaderOption[] = [
 ];
 
 const propsData: PropRow[] = [
-  { name: 'options', type: 'CascaderOption[]', default: '—', required: true, desc: 'componentProps.Cascader.options' },
-  { name: 'value', type: '(string | number)[]', default: '—', required: false, desc: '当前选中值。' },
-  { name: 'onChange', type: '(value: (string | number)[]) => void', default: '—', required: false, desc: 'componentProps.Cascader.onChange' },
-  { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.Cascader.title' },
-  { name: 'placeholder', type: 'string', default: "'请选择'", required: false, desc: '未选中的占位文字。' },
-  { name: 'closeable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Cascader.closeable' },
-  { name: 'show', type: 'boolean', default: '—', required: false, desc: 'componentProps.Cascader.show' },
-  { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: 'componentProps.Cascader.onUpdateShow' },
-  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.Cascader.onClose' },
-  { name: 'maxHeight', type: 'number | string', default: "'40vh'", required: false, desc: '弹窗固定高度。' },
-  { name: 'showCheckmark', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Cascader.showCheckmark' },
-  { name: 'checkmark', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Cascader.checkmark' },
-  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.Cascader.teleport' },
-  { name: 'zIndex', type: 'number | string', default: '2000', required: false, desc: 'componentProps.Cascader.zIndex' },
+  { name: 'options', type: 'CascaderOption[]', default: '—', required: true, desc: 'componentProps.cascader.options' },
+  { name: 'value', type: '(string | number)[]', default: '—', required: false, desc: 'componentProps.cascader.value' },
+  { name: 'onChange', type: '(value: (string | number)[]) => void', default: '—', required: false, desc: 'componentProps.cascader.onChange' },
+  { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.cascader.title' },
+  { name: 'placeholder', type: 'string', default: "'请选择'", required: false, desc: 'componentProps.cascader.placeholder' },
+  { name: 'closeable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.cascader.closeable' },
+  { name: 'show', type: 'boolean', default: '—', required: false, desc: 'componentProps.cascader.show' },
+  { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: 'componentProps.cascader.onUpdateShow' },
+  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.cascader.onClose' },
+  { name: 'maxHeight', type: 'number | string', default: "'40vh'", required: false, desc: 'componentProps.cascader.maxHeight' },
+  { name: 'showCheckmark', type: 'boolean', default: 'true', required: false, desc: 'componentProps.cascader.showCheckmark' },
+  { name: 'checkmark', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.cascader.checkmark' },
+  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.cascader.teleport' },
+  { name: 'zIndex', type: 'number | string', default: '2000', required: false, desc: 'componentProps.cascader.zIndex' },
 ];
 
 const optionPropsData: PropRow[] = [
-  { name: 'text', type: 'string', default: '—', required: true, desc: 'componentProps.Cascader.text' },
-  { name: 'value', type: 'string | number', default: '—', required: true, desc: 'componentProps.Cascader.value' },
-  { name: 'children', type: 'CascaderOption[]', default: '—', required: false, desc: 'componentProps.Cascader.children' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Cascader.disabled' },
-  { name: 'render', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Cascader.render' },
+  { name: 'text', type: 'string', default: '—', required: true, desc: 'componentProps.cascader.text' },
+  { name: 'value', type: 'string | number', default: '—', required: true, desc: 'componentProps.cascader.value' },
+  { name: 'children', type: 'CascaderOption[]', default: '—', required: false, desc: 'componentProps.cascader.children' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.cascader.disabled' },
+  { name: 'render', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.cascader.render' },
 ];
 
 const tocItems: TOCItem[] = [

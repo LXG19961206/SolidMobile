@@ -6,18 +6,18 @@ import { useT } from '../../../doc-i18n';
 import styles from './SwitchDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'checked', type: 'boolean', default: '—', required: false, desc: 'componentProps.Switch.checked' },
-  { name: 'value', type: 'boolean', default: '—', required: false, desc: 'componentProps.Switch.value' },
-  { name: 'defaultChecked', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Switch.defaultChecked' },
-  { name: 'onChange', type: '(checked: boolean) => void', default: '—', required: false, desc: 'componentProps.Switch.onChange' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Switch.disabled' },
-  { name: 'size', type: 'string | number', default: '28', required: false, desc: 'componentProps.Switch.size' },
-  { name: 'activeColor', type: 'string', default: '—', required: false, desc: 'componentProps.Switch.activeColor' },
-  { name: 'inactiveColor', type: 'string', default: '—', required: false, desc: 'componentProps.Switch.inactiveColor' },
-  { name: 'activeText', type: 'string', default: '—', required: false, desc: 'componentProps.Switch.activeText' },
-  { name: 'inactiveText', type: 'string', default: '—', required: false, desc: 'componentProps.Switch.inactiveText' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.Switch.class' },
-  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.Switch.style' },
+  { name: 'checked', type: 'boolean', default: '—', required: false, desc: 'componentProps.switch.checked' },
+  { name: 'value', type: 'boolean', default: '—', required: false, desc: 'componentProps.switch.value' },
+  { name: 'defaultChecked', type: 'boolean', default: 'false', required: false, desc: 'componentProps.switch.defaultChecked' },
+  { name: 'onChange', type: '(checked: boolean) => void', default: '—', required: false, desc: 'componentProps.switch.onChange' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.switch.disabled' },
+  { name: 'size', type: 'string | number', default: '28', required: false, desc: 'componentProps.switch.size' },
+  { name: 'activeColor', type: 'string', default: '—', required: false, desc: 'componentProps.switch.activeColor' },
+  { name: 'inactiveColor', type: 'string', default: '—', required: false, desc: 'componentProps.switch.inactiveColor' },
+  { name: 'activeText', type: 'string', default: '—', required: false, desc: 'componentProps.switch.activeText' },
+  { name: 'inactiveText', type: 'string', default: '—', required: false, desc: 'componentProps.switch.inactiveText' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.switch.class' },
+  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.switch.style' },
 ];
 
 const tocItems: TOCItem[] = [

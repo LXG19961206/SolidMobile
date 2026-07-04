@@ -9,28 +9,28 @@ import type { DialogOptions } from '../../../../src/components/Dialog/types';
 import css from './DialogDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'show', type: 'boolean', default: '—', required: true, desc: 'componentProps.Dialog.show' },
-  { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.Dialog.title' },
-  { name: 'message', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.Dialog.message' },
-  { name: 'width', type: 'number | string', default: "'320px'", required: false, desc: '弹窗宽度。' },
-  { name: 'messageAlign', type: "'left' | 'center' | 'right'", default: "'center'", required: false, desc: '内容水平对齐。' },
-  { name: 'showConfirmButton', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Dialog.showConfirmButton' },
-  { name: 'showCancelButton', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Dialog.showCancelButton' },
-  { name: 'confirmText', type: 'string | JSX.Element', default: "'确认'", required: false, desc: '确认按钮文案。' },
-  { name: 'cancelText', type: 'string | JSX.Element', default: "'取消'", required: false, desc: '取消按钮文案。' },
-  { name: 'confirmDisabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Dialog.confirmDisabled' },
-  { name: 'cancelDisabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Dialog.cancelDisabled' },
-  { name: 'zIndex', type: 'number | string', default: '2000', required: false, desc: 'componentProps.Dialog.zIndex' },
-  { name: 'overlay', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Dialog.overlay' },
-  { name: 'closeOnClickOverlay', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Dialog.closeOnClickOverlay' },
-  { name: 'lockScroll', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Dialog.lockScroll' },
-  { name: 'beforeClose', type: '(action: string) => boolean | Promise<boolean>', default: '—', required: false, desc: 'componentProps.Dialog.beforeClose' },
-  { name: 'onConfirm', type: '() => void | Promise<void>', default: '—', required: false, desc: 'componentProps.Dialog.onConfirm' },
-  { name: 'onCancel', type: '() => void', default: '—', required: false, desc: 'componentProps.Dialog.onCancel' },
-  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.Dialog.onClose' },
-  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.Dialog.teleport' },
-  { name: 'destroyOnClose', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Dialog.destroyOnClose' },
-  { name: 'lazyRender', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Dialog.lazyRender' },
+  { name: 'show', type: 'boolean', default: '—', required: true, desc: 'componentProps.dialog.show' },
+  { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.dialog.title' },
+  { name: 'message', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.dialog.message' },
+  { name: 'width', type: 'number | string', default: "'320px'", required: false, desc: 'componentProps.dialog.width' },
+  { name: 'messageAlign', type: "'left' | 'center' | 'right'", default: "'center'", required: false, desc: 'componentProps.dialog.messageAlign' },
+  { name: 'showConfirmButton', type: 'boolean', default: 'true', required: false, desc: 'componentProps.dialog.showConfirmButton' },
+  { name: 'showCancelButton', type: 'boolean', default: 'false', required: false, desc: 'componentProps.dialog.showCancelButton' },
+  { name: 'confirmText', type: 'string | JSX.Element', default: "'确认'", required: false, desc: 'componentProps.dialog.confirmText' },
+  { name: 'cancelText', type: 'string | JSX.Element', default: "'取消'", required: false, desc: 'componentProps.dialog.cancelText' },
+  { name: 'confirmDisabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.dialog.confirmDisabled' },
+  { name: 'cancelDisabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.dialog.cancelDisabled' },
+  { name: 'zIndex', type: 'number | string', default: '2000', required: false, desc: 'componentProps.dialog.zIndex' },
+  { name: 'overlay', type: 'boolean', default: 'true', required: false, desc: 'componentProps.dialog.overlay' },
+  { name: 'closeOnClickOverlay', type: 'boolean', default: 'false', required: false, desc: 'componentProps.dialog.closeOnClickOverlay' },
+  { name: 'lockScroll', type: 'boolean', default: 'true', required: false, desc: 'componentProps.dialog.lockScroll' },
+  { name: 'beforeClose', type: '(action: string) => boolean | Promise<boolean>', default: '—', required: false, desc: 'componentProps.dialog.beforeClose' },
+  { name: 'onConfirm', type: '() => void | Promise<void>', default: '—', required: false, desc: 'componentProps.dialog.onConfirm' },
+  { name: 'onCancel', type: '() => void', default: '—', required: false, desc: 'componentProps.dialog.onCancel' },
+  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.dialog.onClose' },
+  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.dialog.teleport' },
+  { name: 'destroyOnClose', type: 'boolean', default: 'false', required: false, desc: 'componentProps.dialog.destroyOnClose' },
+  { name: 'lazyRender', type: 'boolean', default: 'true', required: false, desc: 'componentProps.dialog.lazyRender' },
 ];
 
 const tocItems: TOCItem[] = [
@@ -70,10 +70,10 @@ const DialogDocInner: Component = () => {
           <div />
         </DemoBlock>
         <PropsTable rows={[
-          { name: 'Dialog.show(options)', type: 'DialogHandle', default: '—', required: false, desc: '完整配置弹窗。options 同 DialogProps（不含 show/onUpdateShow）。返回 handle，可通过 handle.dismiss() 手动关闭。' },
-          { name: 'Dialog.alert(options)', type: 'DialogHandle', default: '—', required: false, desc: '提示弹窗。等价于 show({ ...options, showCancelButton: false })。仅展示确认按钮。' },
-          { name: 'Dialog.confirm(options)', type: 'DialogHandle', default: '—', required: false, desc: '确认弹窗。等价于 show({ ...options, showCancelButton: true })。展示确认+取消按钮。' },
-          { name: 'Dialog.dismissAll()', type: 'void', default: '—', required: false, desc: '立即关闭页面上所有弹窗。通常在路由切换时调用。' },
+          { name: 'Dialog.show(options)', type: 'DialogHandle', default: '—', required: false, desc: 'componentProps.dialog.Dialog.show(options)' },
+          { name: 'Dialog.alert(options)', type: 'DialogHandle', default: '—', required: false, desc: 'componentProps.dialog.Dialog.alert(options)' },
+          { name: 'Dialog.confirm(options)', type: 'DialogHandle', default: '—', required: false, desc: 'componentProps.dialog.Dialog.confirm(options)' },
+          { name: 'Dialog.dismissAll()', type: 'void', default: '—', required: false, desc: 'componentProps.dialog.Dialog.dismissAll()' },
         ]} />
         <DemoBlock
           title={t('demo.dialogDismiss')}

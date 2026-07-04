@@ -7,17 +7,17 @@ import styles from './LoadingDocPage.module.css';
 import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [
-  { name: 'text', type: 'string', default: '—', required: false, desc: 'componentProps.Loading.text' },
-  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Loading.children' },
-  { name: 'type', type: "'spinner' | 'circular' | 'dots'", default: "'spinner'", required: false, desc: '内置动画类型。' },
-  { name: 'size', type: 'string | number', default: '—', required: false, desc: 'componentProps.Loading.size' },
-  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.Loading.color' },
-  { name: 'textColor', type: 'string', default: '—', required: false, desc: 'componentProps.Loading.textColor' },
-  { name: 'vertical', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Loading.vertical' },
-  { name: 'overlay', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Loading.overlay' },
-  { name: 'icon', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Loading.icon' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.Loading.class' },
-  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.Loading.style' },
+  { name: 'text', type: 'string', default: '—', required: false, desc: 'componentProps.loading.text' },
+  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.loading.children' },
+  { name: 'type', type: "'spinner' | 'circular' | 'dots'", default: "'spinner'", required: false, desc: 'componentProps.loading.type' },
+  { name: 'size', type: 'string | number', default: '—', required: false, desc: 'componentProps.loading.size' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.loading.color' },
+  { name: 'textColor', type: 'string', default: '—', required: false, desc: 'componentProps.loading.textColor' },
+  { name: 'vertical', type: 'boolean', default: 'false', required: false, desc: 'componentProps.loading.vertical' },
+  { name: 'overlay', type: 'boolean', default: 'false', required: false, desc: 'componentProps.loading.overlay' },
+  { name: 'icon', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.loading.icon' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.loading.class' },
+  { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.loading.style' },
 ];
 
 const tocItems: TOCItem[] = [

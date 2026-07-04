@@ -10,22 +10,22 @@ export const ImageDocPage = () => {
   const t = useT();
 
   const propsData: PropRow[] = [
-    { name: 'src', type: 'string', default: '—', required: true, desc: 'component.image.props.src' },
-    { name: 'alt', type: 'string', default: "''", required: false, desc: 'component.image.props.alt' },
-    { name: 'width', type: 'string | number', default: '—', required: false, desc: 'component.image.props.width' },
-    { name: 'height', type: 'string | number', default: '—', required: false, desc: 'component.image.props.height' },
-    { name: 'fit', type: "'cover' | 'contain' | 'fill' | 'none' | 'scale-down'", default: "'fill'", required: false, desc: 'component.image.props.fit' },
-    { name: 'position', type: 'string', default: '—', required: false, desc: 'component.image.props.position' },
-    { name: 'radius', type: 'string | number', default: '—', required: false, desc: 'component.image.props.radius' },
-    { name: 'round', type: 'boolean', default: 'false', required: false, desc: 'component.image.props.round' },
-    { name: 'block', type: 'boolean', default: 'false', required: false, desc: 'component.image.props.block' },
-    { name: 'lazy', type: 'boolean', default: 'false', required: false, desc: 'component.image.props.lazy' },
-    { name: 'placeholder', type: 'JSX.Element', default: '—', required: false, desc: 'component.image.props.placeholder' },
-    { name: 'fallback', type: 'JSX.Element', default: '—', required: false, desc: 'component.image.props.fallback' },
-    { name: 'iconSize', type: 'string | number', default: '—', required: false, desc: 'component.image.props.iconSize' },
-    { name: 'onLoad', type: '() => void', default: '—', required: false, desc: 'component.image.props.onLoad' },
-    { name: 'onError', type: '() => void', default: '—', required: false, desc: 'component.image.props.onError' },
-    { name: 'preview', type: 'boolean', default: 'false', required: false, desc: 'component.image.props.preview' },
+    { name: 'src', type: 'string', default: '—', required: true, desc: 'componentProps.image.src' },
+    { name: 'alt', type: 'string', default: "''", required: false, desc: 'componentProps.image.alt' },
+    { name: 'width', type: 'string | number', default: '—', required: false, desc: 'componentProps.image.width' },
+    { name: 'height', type: 'string | number', default: '—', required: false, desc: 'componentProps.image.height' },
+    { name: 'fit', type: "'cover' | 'contain' | 'fill' | 'none' | 'scale-down'", default: "'fill'", required: false, desc: 'componentProps.image.fit' },
+    { name: 'position', type: 'string', default: '—', required: false, desc: 'componentProps.image.position' },
+    { name: 'radius', type: 'string | number', default: '—', required: false, desc: 'componentProps.image.radius' },
+    { name: 'round', type: 'boolean', default: 'false', required: false, desc: 'componentProps.image.round' },
+    { name: 'block', type: 'boolean', default: 'false', required: false, desc: 'componentProps.image.block' },
+    { name: 'lazy', type: 'boolean', default: 'false', required: false, desc: 'componentProps.image.lazy' },
+    { name: 'placeholder', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.image.placeholder' },
+    { name: 'fallback', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.image.fallback' },
+    { name: 'iconSize', type: 'string | number', default: '—', required: false, desc: 'componentProps.image.iconSize' },
+    { name: 'onLoad', type: '() => void', default: '—', required: false, desc: 'componentProps.image.onLoad' },
+    { name: 'onError', type: '() => void', default: '—', required: false, desc: 'componentProps.image.onError' },
+    { name: 'preview', type: 'boolean', default: 'false', required: false, desc: 'componentProps.image.preview' },
   ];
 
   const tocItems: TOCItem[] = [

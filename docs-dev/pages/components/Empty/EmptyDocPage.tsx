@@ -6,10 +6,10 @@ import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './EmptyDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'description', type: 'string', default: '—', required: false, desc: 'componentProps.Empty.description' },
-  { name: 'image', type: "'default' | 'network' | 'search' | JSX.Element", default: "'default'", required: false, desc: '图片：预设类型或自定义 JSX。' },
-  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.Empty.children' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.Empty.class' },
+  { name: 'description', type: 'string', default: '—', required: false, desc: 'componentProps.empty.description' },
+  { name: 'image', type: "'default' | 'network' | 'search' | JSX.Element", default: "'default'", required: false, desc: 'componentProps.empty.image' },
+  { name: 'children', type: 'JSX.Element', default: '—', required: false, desc: 'componentProps.empty.children' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.empty.class' },
 ];
 
 const tocItems: TOCItem[] = [

@@ -12,20 +12,20 @@ import { useT } from '../../doc-i18n';
 import { Toast, ToastRenderer } from '../../../src/components/Toast';
 
 const propsData = [
-  { name: 'Checkbox.value', type: 'unknown', desc: '标识符，选中时对应 CheckboxGroup 的 value' },
-  { name: 'Checkbox.label', type: 'string | JSX.Element', desc: '标签文字' },
-  { name: 'Checkbox.checked', type: 'boolean', desc: '独立使用时是否选中（受控）' },
-  { name: 'Checkbox.defaultChecked', type: 'boolean', desc: '默认选中（非受控）' },
-  { name: 'Checkbox.indeterminate', type: 'boolean', desc: '半选状态' },
-  { name: 'Checkbox.disabled', type: 'boolean', desc: '禁用' },
-  { name: 'Checkbox.shape', type: "'square' | 'round'", desc: '形状，默认 square' },
-  { name: 'Checkbox.checkedColor', type: 'string', desc: '选中态颜色' },
-  { name: 'Checkbox.labelPosition', type: "'left' | 'right'", desc: '标签位置，默认 right' },
-  { name: 'Checkbox.checkedIcon / uncheckedIcon', type: 'JSX.Element', desc: '自定义图标' },
-  { name: 'CheckboxGroup.value', type: 'unknown[]', desc: '当前选中值列表（受控）' },
-  { name: 'CheckboxGroup.onChange', type: '(values) => void', desc: '值变化回调' },
-  { name: 'CheckboxGroup.max / min', type: 'number', desc: '最大/最小可选数' },
-  { name: 'CheckboxGroup.direction', type: "'vertical' | 'horizontal'", desc: '排列方向' },
+  { name: 'Checkbox.value', type: 'unknown', desc: 'componentProps.checkbox.Checkbox.value' },
+  { name: 'Checkbox.label', type: 'string | JSX.Element', desc: 'componentProps.checkbox.Checkbox.label' },
+  { name: 'Checkbox.checked', type: 'boolean', desc: 'componentProps.checkbox.Checkbox.checked' },
+  { name: 'Checkbox.defaultChecked', type: 'boolean', desc: 'componentProps.checkbox.Checkbox.defaultChecked' },
+  { name: 'Checkbox.indeterminate', type: 'boolean', desc: 'componentProps.checkbox.Checkbox.indeterminate' },
+  { name: 'Checkbox.disabled', type: 'boolean', desc: 'componentProps.checkbox.Checkbox.disabled' },
+  { name: 'Checkbox.shape', type: "'square' | 'round'", desc: 'componentProps.checkbox.Checkbox.shape' },
+  { name: 'Checkbox.checkedColor', type: 'string', desc: 'componentProps.checkbox.Checkbox.checkedColor' },
+  { name: 'Checkbox.labelPosition', type: "'left' | 'right'", desc: 'componentProps.checkbox.Checkbox.labelPosition' },
+  { name: 'Checkbox.checkedIcon / uncheckedIcon', type: 'JSX.Element', desc: 'componentProps.checkbox.Checkbox.checkedIcon / uncheckedIcon' },
+  { name: 'CheckboxGroup.value', type: 'unknown[]', desc: 'componentProps.checkbox.CheckboxGroup.value' },
+  { name: 'CheckboxGroup.onChange', type: '(values) => void', desc: 'componentProps.checkbox.CheckboxGroup.onChange' },
+  { name: 'CheckboxGroup.max / min', type: 'number', desc: 'componentProps.checkbox.CheckboxGroup.max / min' },
+  { name: 'CheckboxGroup.direction', type: "'vertical' | 'horizontal'", desc: 'componentProps.checkbox.CheckboxGroup.direction' },
 ];
 
 const CARD = {

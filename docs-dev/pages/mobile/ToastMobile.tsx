@@ -10,13 +10,13 @@ import { Toast, ToastRenderer } from '../../../src/components/Toast';
 import { Button } from '../../../src/components/Button';
 
 const propsData = [
-  { name: 'Toast.success(msg)', type: 'ToastHandle', desc: '成功提示，绿色对勾' },
-  { name: 'Toast.error(msg)', type: 'ToastHandle', desc: '错误提示，红色叉号' },
-  { name: 'Toast.warning(msg)', type: 'ToastHandle', desc: '警告提示，黄色感叹号' },
-  { name: 'Toast.loading(msg)', type: 'ToastHandle', desc: '加载提示，旋转动画' },
-  { name: 'Toast.info(msg)', type: 'ToastHandle', desc: '信息提示，蓝色图标' },
-  { name: 'Toast.show(options)', type: 'ToastHandle', desc: '完整配置，支持 position/duration 等' },
-  { name: 'Toast.dismissAll()', type: 'void', desc: '关闭所有 Toast' },
+  { name: 'Toast.success(msg)', type: 'ToastHandle', desc: 'componentProps.toast.Toast.success(msg)' },
+  { name: 'Toast.error(msg)', type: 'ToastHandle', desc: 'componentProps.toast.Toast.error(msg)' },
+  { name: 'Toast.warning(msg)', type: 'ToastHandle', desc: 'componentProps.toast.Toast.warning(msg)' },
+  { name: 'Toast.loading(msg)', type: 'ToastHandle', desc: 'componentProps.toast.Toast.loading(msg)' },
+  { name: 'Toast.info(msg)', type: 'ToastHandle', desc: 'componentProps.toast.Toast.info(msg)' },
+  { name: 'Toast.show(options)', type: 'ToastHandle', desc: 'componentProps.toast.Toast.show(options)' },
+  { name: 'Toast.dismissAll()', type: 'void', desc: 'componentProps.toast.Toast.dismissAll()' },
 ];
 
 const CARD = {

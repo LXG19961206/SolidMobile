@@ -8,12 +8,12 @@ import { useT } from '../../../doc-i18n';
 import styles from './OverlayDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'open', type: 'boolean', default: '—', required: true, desc: 'componentProps.Overlay.open' },
-  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.Overlay.onClose' },
-  { name: 'zIndex', type: 'number', default: '999', required: false, desc: 'componentProps.Overlay.zIndex' },
-  { name: 'lockScroll', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Overlay.lockScroll' },
-  { name: 'mount', type: 'Node', default: 'document.body', required: false, desc: 'componentProps.Overlay.mount' },
-  { name: 'duration', type: 'number', default: '200', required: false, desc: 'componentProps.Overlay.duration' },
+  { name: 'open', type: 'boolean', default: '—', required: true, desc: 'componentProps.overlay.open' },
+  { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.overlay.onClose' },
+  { name: 'zIndex', type: 'number', default: '999', required: false, desc: 'componentProps.overlay.zIndex' },
+  { name: 'lockScroll', type: 'boolean', default: 'true', required: false, desc: 'componentProps.overlay.lockScroll' },
+  { name: 'mount', type: 'Node', default: 'document.body', required: false, desc: 'componentProps.overlay.mount' },
+  { name: 'duration', type: 'number', default: '200', required: false, desc: 'componentProps.overlay.duration' },
 ];
 
 const OverlayDocInner = () => {

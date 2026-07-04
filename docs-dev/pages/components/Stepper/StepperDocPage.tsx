@@ -9,22 +9,22 @@ import type { PropRow } from '../../../../src/doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const stepperProps: PropRow[] = [
-  { name: 'value', type: 'number', default: '—', required: false, desc: 'componentProps.Stepper.value' },
-  { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: 'componentProps.Stepper.onChange' },
-  { name: 'defaultValue', type: 'number', default: '0', required: false, desc: 'componentProps.Stepper.defaultValue' },
-  { name: 'size', type: 'number | string', default: '—', required: false, desc: 'componentProps.Stepper.size' },
-  { name: 'min', type: 'number', default: '0', required: false, desc: 'componentProps.Stepper.min' },
-  { name: 'max', type: 'number', default: 'Infinity', required: false, desc: 'componentProps.Stepper.max' },
-  { name: 'step', type: 'number', default: '1', required: false, desc: 'componentProps.Stepper.step' },
-  { name: 'decimalLength', type: 'number', default: '0', required: false, desc: 'componentProps.Stepper.decimalLength' },
-  { name: 'integer', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Stepper.integer' },
-  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Stepper.disabled' },
-  { name: 'inputDisabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Stepper.inputDisabled' },
-  { name: 'buttonSize', type: 'number | string', default: '28px', required: false, desc: 'componentProps.Stepper.buttonSize' },
-  { name: 'inputWidth', type: 'number | string', default: '50px', required: false, desc: 'componentProps.Stepper.inputWidth' },
-  { name: 'minusIcon', type: 'any', default: "'−'", required: false, desc: '自定义减号图标。' },
-  { name: 'plusIcon', type: 'any', default: "'+'", required: false, desc: '自定义加号图标。' },
-  { name: 'allowEmpty', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Stepper.allowEmpty' },
+  { name: 'value', type: 'number', default: '—', required: false, desc: 'componentProps.stepper.value' },
+  { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: 'componentProps.stepper.onChange' },
+  { name: 'defaultValue', type: 'number', default: '0', required: false, desc: 'componentProps.stepper.defaultValue' },
+  { name: 'size', type: 'number | string', default: '—', required: false, desc: 'componentProps.stepper.size' },
+  { name: 'min', type: 'number', default: '0', required: false, desc: 'componentProps.stepper.min' },
+  { name: 'max', type: 'number', default: 'Infinity', required: false, desc: 'componentProps.stepper.max' },
+  { name: 'step', type: 'number', default: '1', required: false, desc: 'componentProps.stepper.step' },
+  { name: 'decimalLength', type: 'number', default: '0', required: false, desc: 'componentProps.stepper.decimalLength' },
+  { name: 'integer', type: 'boolean', default: 'false', required: false, desc: 'componentProps.stepper.integer' },
+  { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.stepper.disabled' },
+  { name: 'inputDisabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.stepper.inputDisabled' },
+  { name: 'buttonSize', type: 'number | string', default: '28px', required: false, desc: 'componentProps.stepper.buttonSize' },
+  { name: 'inputWidth', type: 'number | string', default: '50px', required: false, desc: 'componentProps.stepper.inputWidth' },
+  { name: 'minusIcon', type: 'any', default: "'−'", required: false, desc: 'componentProps.stepper.minusIcon' },
+  { name: 'plusIcon', type: 'any', default: "'+'", required: false, desc: 'componentProps.stepper.plusIcon' },
+  { name: 'allowEmpty', type: 'boolean', default: 'false', required: false, desc: 'componentProps.stepper.allowEmpty' },
 ];
 
 const codeBasic = `const [val, setVal] = createSignal(1);

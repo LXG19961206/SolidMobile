@@ -9,18 +9,18 @@ export interface TextareaMobileProps {
 import { Textarea } from '../../../src/components/Textarea';
 
 const propsData = [
-  { name: 'value', type: 'string', desc: '当前值' },
-  { name: 'onChange', type: '(value: string) => void', desc: '值变化回调' },
-  { name: 'defaultValue', type: 'string', desc: '默认值（非受控）' },
-  { name: 'placeholder', type: 'string', desc: '占位文本' },
-  { name: 'maxlength', type: 'number', desc: '最大长度' },
-  { name: 'rows', type: 'number', desc: '可视行数，默认 3' },
-  { name: 'autoSize', type: 'boolean | {minRows, maxRows}', desc: '自动撑高' },
-  { name: 'disabled', type: 'boolean', desc: '禁用' },
-  { name: 'readonly', type: 'boolean', desc: '只读' },
-  { name: 'clearable', type: 'boolean', desc: '可清除' },
-  { name: 'showCount', type: 'boolean', desc: '显示字数统计' },
-  { name: 'error', type: 'boolean', desc: '错误状态' },
+  { name: 'value', type: 'string', desc: 'componentProps.textarea.value' },
+  { name: 'onChange', type: '(value: string) => void', desc: 'componentProps.textarea.onChange' },
+  { name: 'defaultValue', type: 'string', desc: 'componentProps.textarea.defaultValue' },
+  { name: 'placeholder', type: 'string', desc: 'componentProps.textarea.placeholder' },
+  { name: 'maxlength', type: 'number', desc: 'componentProps.textarea.maxlength' },
+  { name: 'rows', type: 'number', desc: 'componentProps.textarea.rows' },
+  { name: 'autoSize', type: 'boolean | {minRows, maxRows}', desc: 'componentProps.textarea.autoSize' },
+  { name: 'disabled', type: 'boolean', desc: 'componentProps.textarea.disabled' },
+  { name: 'readonly', type: 'boolean', desc: 'componentProps.textarea.readonly' },
+  { name: 'clearable', type: 'boolean', desc: 'componentProps.textarea.clearable' },
+  { name: 'showCount', type: 'boolean', desc: 'componentProps.textarea.showCount' },
+  { name: 'error', type: 'boolean', desc: 'componentProps.textarea.error' },
 ];
 
 const CARD = {

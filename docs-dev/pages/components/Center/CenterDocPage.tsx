@@ -5,15 +5,15 @@ import { useT } from '../../../doc-i18n';
 import styles from './CenterDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'flexX', type: 'boolean', default: '—', required: false, desc: 'componentProps.Center.flexX' },
-  { name: 'flexY', type: 'boolean', default: '—', required: false, desc: 'componentProps.Center.flexY' },
-  { name: 'text', type: 'boolean', default: '—', required: false, desc: 'componentProps.Center.text' },
-  { name: 'vertical', type: 'boolean', default: '—', required: false, desc: 'componentProps.Center.vertical' },
-  { name: 'position', type: 'boolean', default: '—', required: false, desc: 'componentProps.Center.position' },
-  { name: 'inline', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Center.inline' },
-  { name: 'as', type: 'string', default: "'div'", required: false, desc: '渲染的 HTML 标签。' },
-  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.Center.class' },
-  { name: 'style', type: 'CSSProperties', default: '—', required: false, desc: 'componentProps.Center.style' },
+  { name: 'flexX', type: 'boolean', default: '—', required: false, desc: 'componentProps.center.flexX' },
+  { name: 'flexY', type: 'boolean', default: '—', required: false, desc: 'componentProps.center.flexY' },
+  { name: 'text', type: 'boolean', default: '—', required: false, desc: 'componentProps.center.text' },
+  { name: 'vertical', type: 'boolean', default: '—', required: false, desc: 'componentProps.center.vertical' },
+  { name: 'position', type: 'boolean', default: '—', required: false, desc: 'componentProps.center.position' },
+  { name: 'inline', type: 'boolean', default: 'false', required: false, desc: 'componentProps.center.inline' },
+  { name: 'as', type: 'string', default: "'div'", required: false, desc: 'componentProps.center.as' },
+  { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.center.class' },
+  { name: 'style', type: 'CSSProperties', default: '—', required: false, desc: 'componentProps.center.style' },
 ];
 
 const tocItems: TOCItem[] = [

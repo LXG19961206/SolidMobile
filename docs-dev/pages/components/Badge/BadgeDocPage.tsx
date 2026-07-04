@@ -8,11 +8,11 @@ import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './BadgeDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'content', type: 'string | number', default: '—', required: false, desc: 'componentProps.Badge.content' },
-  { name: 'dot', type: 'boolean', default: 'false', required: false, desc: 'componentProps.Badge.dot' },
-  { name: 'max', type: 'number', default: '—', required: false, desc: 'componentProps.Badge.max' },
-  { name: 'position', type: "'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'", default: "'top-right'", required: false, desc: '位置。' },
-  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.Badge.color' },
+  { name: 'content', type: 'string | number', default: '—', required: false, desc: 'componentProps.badge.content' },
+  { name: 'dot', type: 'boolean', default: 'false', required: false, desc: 'componentProps.badge.dot' },
+  { name: 'max', type: 'number', default: '—', required: false, desc: 'componentProps.badge.max' },
+  { name: 'position', type: "'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'", default: "'top-right'", required: false, desc: 'componentProps.badge.position' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.badge.color' },
 ];
 
 const tocItems: TOCItem[] = [

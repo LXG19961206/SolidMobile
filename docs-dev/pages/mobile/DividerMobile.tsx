@@ -9,11 +9,11 @@ export interface DividerMobileProps {
 import { Divider } from '../../../src/components/Divider';
 
 const propsData = [
-  { name: 'direction', type: "'horizontal' | 'vertical'", desc: '方向，默认 horizontal' },
-  { name: 'text', type: 'string', desc: '中间文字（仅水平方向有效）' },
-  { name: 'dashed', type: 'boolean', desc: '虚线样式' },
-  { name: 'color', type: 'string', desc: '线条颜色' },
-  { name: 'size', type: 'string | number', desc: '线条粗细，数字自动补 px' },
+  { name: 'direction', type: "'horizontal' | 'vertical'", desc: 'componentProps.divider.direction' },
+  { name: 'text', type: 'string', desc: 'componentProps.divider.text' },
+  { name: 'dashed', type: 'boolean', desc: 'componentProps.divider.dashed' },
+  { name: 'color', type: 'string', desc: 'componentProps.divider.color' },
+  { name: 'size', type: 'string | number', desc: 'componentProps.divider.size' },
 ];
 
 const CARD = {

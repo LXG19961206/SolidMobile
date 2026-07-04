@@ -23,21 +23,21 @@ import { TimePicker } from '../../../src/components/TimePicker';
 import { Toast, ToastRenderer } from '../../../src/components/Toast';
 
 const propsData = [
-  { name: 'Form.value', type: 'FormValue', desc: '受控表单值' },
-  { name: 'Form.onChange', type: '(value) => void', desc: '值变化回调' },
-  { name: 'Form.defaultValue', type: 'FormValue', desc: '默认值（非受控）' },
-  { name: 'Form.onSubmit', type: '(value) => void', desc: '提交回调' },
-  { name: 'Form.validateOnChange', type: 'boolean', desc: '字段变化时校验' },
-  { name: 'Form.validateOnBlur', type: 'boolean', desc: '字段失焦时校验' },
-  { name: 'Form.disabled', type: 'boolean', desc: '全局禁用' },
-  { name: 'Form.labelAlign', type: "'top' | 'left' | 'right'", desc: '标签对齐' },
-  { name: 'Form.labelWidth', type: 'string', desc: '标签宽度，如 6em' },
-  { name: 'Form.ref', type: '(api) => void', desc: '暴露 setFormValue / resetFormValue / submit / validateAll' },
-  { name: 'FormItem.name', type: 'string', desc: '字段名（必填）' },
-  { name: 'FormItem.label', type: 'string', desc: '标签文本' },
-  { name: 'FormItem.required', type: 'boolean', desc: '必填标记' },
-  { name: 'FormItem.rules', type: 'FormRule[]', desc: '校验规则' },
-  { name: 'FormItem.help', type: 'string', desc: '帮助文本' },
+  { name: 'Form.value', type: 'FormValue', desc: 'componentProps.form.Form.value' },
+  { name: 'Form.onChange', type: '(value) => void', desc: 'componentProps.form.Form.onChange' },
+  { name: 'Form.defaultValue', type: 'FormValue', desc: 'componentProps.form.Form.defaultValue' },
+  { name: 'Form.onSubmit', type: '(value) => void', desc: 'componentProps.form.Form.onSubmit' },
+  { name: 'Form.validateOnChange', type: 'boolean', desc: 'componentProps.form.Form.validateOnChange' },
+  { name: 'Form.validateOnBlur', type: 'boolean', desc: 'componentProps.form.Form.validateOnBlur' },
+  { name: 'Form.disabled', type: 'boolean', desc: 'componentProps.form.Form.disabled' },
+  { name: 'Form.labelAlign', type: "'top' | 'left' | 'right'", desc: 'componentProps.form.Form.labelAlign' },
+  { name: 'Form.labelWidth', type: 'string', desc: 'componentProps.form.Form.labelWidth' },
+  { name: 'Form.ref', type: '(api) => void', desc: 'componentProps.form.Form.ref' },
+  { name: 'FormItem.name', type: 'string', desc: 'componentProps.form.FormItem.name' },
+  { name: 'FormItem.label', type: 'string', desc: 'componentProps.form.FormItem.label' },
+  { name: 'FormItem.required', type: 'boolean', desc: 'componentProps.form.FormItem.required' },
+  { name: 'FormItem.rules', type: 'FormRule[]', desc: 'componentProps.form.FormItem.rules' },
+  { name: 'FormItem.help', type: 'string', desc: 'componentProps.form.FormItem.help' },
 ];
 
 const CARD = {

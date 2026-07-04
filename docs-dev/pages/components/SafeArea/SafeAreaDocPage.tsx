@@ -5,7 +5,7 @@ import type { PropRow } from '../../../../src/doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const safeAreaProps: PropRow[] = [
-  { name: 'position', type: "'top' | 'bottom'", default: "'bottom'", required: false, desc: '安全区域位置。' },
+  { name: 'position', type: "'top' | 'bottom'", default: "'bottom'", required: false, desc: 'componentProps.safearea.position' },
 ];
 
 const codeTop = `<SafeArea position="top" />

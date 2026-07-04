@@ -11,20 +11,20 @@ import type { PickerOption } from '../../../src/components/Picker';
 import { useT } from '../../doc-i18n';
 
 const propsData = [
-  { name: 'columns', type: 'PickerOption[] | PickerOption[][]', desc: '数据源：tree 级联或 flat 多列' },
-  { name: 'value', type: '(string | number)[]', desc: '当前选中值数组' },
-  { name: 'onChange', type: '(items, vals) => void', desc: '滚动停止后回调' },
-  { name: 'onConfirm', type: '(items, vals) => void', desc: '确认回调' },
-  { name: 'onCancel', type: '() => void', desc: '取消回调' },
-  { name: 'show', type: 'boolean', desc: '受控：是否显示面板' },
-  { name: 'onUpdateShow', type: '(show) => void', desc: '面板开关回调' },
-  { name: 'title', type: 'string', desc: '面板标题' },
-  { name: 'visibleItemCount', type: 'number', desc: '可见行数（奇数），默认 7' },
-  { name: 'optionHeight', type: 'number', desc: '每行高度，默认 50px' },
-  { name: 'cancelText', type: 'string', desc: '取消按钮文字' },
-  { name: 'confirmText', type: 'string', desc: '确认按钮文字' },
-  { name: 'placeholders', type: 'string | string[]', desc: '每列占位提示文字' },
-  { name: 'ratio', type: 'number', desc: '触摸灵敏度倍率，默认 1.5' },
+  { name: 'columns', type: 'PickerOption[] | PickerOption[][]', desc: 'componentProps.picker.columns' },
+  { name: 'value', type: '(string | number)[]', desc: 'componentProps.picker.value' },
+  { name: 'onChange', type: '(items, vals) => void', desc: 'componentProps.picker.onChange' },
+  { name: 'onConfirm', type: '(items, vals) => void', desc: 'componentProps.picker.onConfirm' },
+  { name: 'onCancel', type: '() => void', desc: 'componentProps.picker.onCancel' },
+  { name: 'show', type: 'boolean', desc: 'componentProps.picker.show' },
+  { name: 'onUpdateShow', type: '(show) => void', desc: 'componentProps.picker.onUpdateShow' },
+  { name: 'title', type: 'string', desc: 'componentProps.picker.title' },
+  { name: 'visibleItemCount', type: 'number', desc: 'componentProps.picker.visibleItemCount' },
+  { name: 'optionHeight', type: 'number', desc: 'componentProps.picker.optionHeight' },
+  { name: 'cancelText', type: 'string', desc: 'componentProps.picker.cancelText' },
+  { name: 'confirmText', type: 'string', desc: 'componentProps.picker.confirmText' },
+  { name: 'placeholders', type: 'string | string[]', desc: 'componentProps.picker.placeholders' },
+  { name: 'ratio', type: 'number', desc: 'componentProps.picker.ratio' },
 ];
 
 const CARD = {

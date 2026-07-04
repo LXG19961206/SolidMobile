@@ -5,14 +5,14 @@ import type { PropRow, TOCItem } from '../../../../src/doc-utils';
 import css from './AvatarDocPage.module.css';
 
 const propsData: PropRow[] = [
-  { name: 'src', type: 'string', default: '—', required: false, desc: 'componentProps.Avatar.src' },
-  { name: 'alt', type: 'string', default: '—', required: false, desc: 'componentProps.Avatar.alt' },
-  { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | number", default: "'md'", required: false, desc: '尺寸，预设或自定义 px。' },
-  { name: 'round', type: 'boolean', default: 'true', required: false, desc: 'componentProps.Avatar.round' },
-  { name: 'square', type: 'boolean | number', default: 'false', required: false, desc: 'componentProps.Avatar.square' },
-  { name: 'icon', type: 'IconName', default: '—', required: false, desc: 'componentProps.Avatar.icon' },
-  { name: 'text', type: 'string', default: '—', required: false, desc: 'componentProps.Avatar.text' },
-  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.Avatar.color' },
+  { name: 'src', type: 'string', default: '—', required: false, desc: 'componentProps.avatar.src' },
+  { name: 'alt', type: 'string', default: '—', required: false, desc: 'componentProps.avatar.alt' },
+  { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | number", default: "'md'", required: false, desc: 'componentProps.avatar.size' },
+  { name: 'round', type: 'boolean', default: 'true', required: false, desc: 'componentProps.avatar.round' },
+  { name: 'square', type: 'boolean | number', default: 'false', required: false, desc: 'componentProps.avatar.square' },
+  { name: 'icon', type: 'IconName', default: '—', required: false, desc: 'componentProps.avatar.icon' },
+  { name: 'text', type: 'string', default: '—', required: false, desc: 'componentProps.avatar.text' },
+  { name: 'color', type: 'string', default: '—', required: false, desc: 'componentProps.avatar.color' },
 ];
 
 const tocItems: TOCItem[] = [

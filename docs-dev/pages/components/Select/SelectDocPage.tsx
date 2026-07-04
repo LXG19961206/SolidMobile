@@ -8,18 +8,18 @@ import { Toast } from '../../../../src/components/Toast';
 import type { PropRow } from '../../../../src/doc-utils';
 
 const selectProps: PropRow[] = [
-  { name: 'options', type: '{ text, value }[]', default: '—', required: true, desc: 'component.select.props.options' },
-  { name: 'value', type: 'string | number', default: '—', required: false, desc: 'component.select.props.value' },
-  { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: 'component.select.props.onChange' },
-  { name: 'onConfirm', type: '(value) => void', default: '—', required: false, desc: 'component.select.props.onConfirm' },
-  { name: 'placeholder', type: 'string', default: '—', required: false, desc: 'component.select.props.placeholder' },
-  { name: 'title', type: 'string', default: '—', required: false, desc: 'component.select.props.title' },
-  { name: 'cancelText', type: 'string', default: '—', required: false, desc: 'component.select.props.cancelText' },
-  { name: 'confirmText', type: 'string', default: '—', required: false, desc: 'component.select.props.confirmText' },
-  { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: 'component.select.props.visibleItemCount' },
-  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'component.select.props.teleport' },
-  { name: 'show', type: 'boolean', default: '—', required: false, desc: 'component.select.props.show' },
-  { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: 'component.select.props.onUpdateShow' },
+  { name: 'options', type: '{ text, value }[]', default: '—', required: true, desc: 'componentProps.select.options' },
+  { name: 'value', type: 'string | number', default: '—', required: false, desc: 'componentProps.select.value' },
+  { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: 'componentProps.select.onChange' },
+  { name: 'onConfirm', type: '(value) => void', default: '—', required: false, desc: 'componentProps.select.onConfirm' },
+  { name: 'placeholder', type: 'string', default: '—', required: false, desc: 'componentProps.select.placeholder' },
+  { name: 'title', type: 'string', default: '—', required: false, desc: 'componentProps.select.title' },
+  { name: 'cancelText', type: 'string', default: '—', required: false, desc: 'componentProps.select.cancelText' },
+  { name: 'confirmText', type: 'string', default: '—', required: false, desc: 'componentProps.select.confirmText' },
+  { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: 'componentProps.select.visibleItemCount' },
+  { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.select.teleport' },
+  { name: 'show', type: 'boolean', default: '—', required: false, desc: 'componentProps.select.show' },
+  { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: 'componentProps.select.onUpdateShow' },
 ];
 
 const codeBasic = `<Select
