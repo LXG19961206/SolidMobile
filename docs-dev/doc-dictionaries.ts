@@ -559,7 +559,7 @@ export const docMessages: LocaleMessages = {
       copyCode: 'Copy Code',
       copied: 'Copied!',
       viewCode: 'View Code',
-      propsTable: { name: 'Name', type: 'Type', default: 'Default', desc: 'Description' },
+      propsTable: { name: '属性', type: '类型', default: '默认值', desc: '说明' },
     },
     cssVars: {
       Button: {
@@ -1939,7 +1939,7 @@ export const docMessages: LocaleMessages = {
       copyCode: '复制代码',
       copied: '已复制!',
       viewCode: '查看代码',
-      propsTable: { name: '属性', type: '类型', default: '默认值', desc: '说明' },
+      propsTable: { name: 'Name', type: 'Type', default: 'Default', desc: 'Description' },
     },
     cssVars: {
       Button: {
