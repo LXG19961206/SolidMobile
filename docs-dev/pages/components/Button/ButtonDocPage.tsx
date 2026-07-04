@@ -100,7 +100,7 @@ export const ButtonDocPage: Component = () => {
 
       {/* ---- 基础用法 ---- */}
       <h2 id="basic" class={styles.h2}>{t('demo.basic')}</h2>
-      <DemoBlock title={t('demo.semanticType')} desc={`六种 type：primary / secondary / success / warning / danger / info`}
+      <DemoBlock title={t('demo.semanticType')} desc={t('demoDesc.Button_ac5a18')}
         code={`<Button type="primary" text="Primary" />\n<Button type="secondary" text="Secondary" />\n<Button type="success" text="Success" />\n<Button type="warning" text="Warning" />\n<Button type="danger" text="Danger" />\n<Button type="info" text="Info" />`}
       >
         <div class={styles.row}>
@@ -146,7 +146,7 @@ export const ButtonDocPage: Component = () => {
 
       {/* ---- 图标 ---- */}
       <h2 id="icons" class={styles.h2}>{t('section.iconButton')}</h2>
-      <DemoBlock title={t('demo.iconText')} desc={`通过 icon 和 iconPosition 控制。icon 支持字符串（内置图标名）或 JSX。默认图标在左。`}
+      <DemoBlock title={t('demo.iconText')} desc={t('demoDesc.Button_5a9446')}
         code={`<Button icon="star" text="收藏" />\n<Button icon="arrow-right" text="下一步" iconPosition="right" type="primary" />\n<Button icon="edit" text="编辑" variant="outline" />\n{/* 也支持传入 JSX */}\n<Button icon={<MyCustomIcon />} text="自定义" />`}
       >
         <div class={styles.row}>
@@ -246,7 +246,7 @@ export const ButtonDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      <DemoBlock title={t('demo.submit')} desc={`nativeType="submit" 配合 form 标签使用。`}
+      <DemoBlock title={t('demo.submit')} desc={t('demoDesc.Button_b8bc89')}
         code={`<form onSubmit={handleSubmit}>\n  <Button nativeType="submit">提交</Button>\n</form>`}
       >
         <div class={styles.row}>

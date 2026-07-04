@@ -107,7 +107,7 @@ export const SwitchDocPage = () => {
         <h2 id="text" class={styles.h2}>{t('section.text')}</h2>
         <DemoBlock
           title="activeText / inactiveText"
-          desc={`文案显示在滑块右侧。如需"左 label + 滑块"布局，Switch 本身是行内元素，在外部包一个 flex 容器即可轻松实现。`}
+          desc={t('demoDesc.Switch_f94b0b')}
           code={`<Switch activeText="ON" inactiveText="OFF" defaultChecked />\n<Switch activeText="开" inactiveText="关" activeColor="#22c55e" />\n{/* 左 label 布局 */}\n<label style={{ display:'flex', alignItems:'center', gap:'0.5rem' }}>\n  <span>开启通知</span>\n  <Switch />\n</label>`}
         >
           <div class={styles.demoArea}>

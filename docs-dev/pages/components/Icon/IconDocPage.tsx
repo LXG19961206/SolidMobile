@@ -213,7 +213,7 @@ export const IconDocPage: Component = () => {
 
         <DemoBlock
           title={t('demo.iconWithButton')}
-          desc={`Button 的 icon 属性支持字符串形式，自动调用内置 Icon。`}
+          desc={t('demoDesc.Icon_70f12a')}
           code={`<Button icon="add" text="新建" />\n<Button icon="download" text="下载" variant="outline" />\n<Button icon="delete-bin" text="删除" type="danger" variant="outline" />\n{/* 也可以传 JSX: icon={<MyIcon />} */}`}
         >
           <div class={styles.demoArea}>
