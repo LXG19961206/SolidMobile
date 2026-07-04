@@ -2299,7 +2299,7 @@ export const docMessages: LocaleMessages = {
       Dialog_ea0953: 'message supports JSX.',
       Dialog_50382e: 'Auto-loading when onConfirm is async.',
       Dialog_601c3b: 'Controlled via show prop for embedding in templates.',
-      Divider_9faa97: 'Use direction=vertical for inline divider.',vertical'，行内使用。`,
+      Divider_9faa97: 'Use direction=vertical for inline divider.',
       Empty_7e7d97: `image 支持 'default'（通用）、'network'（网络异常）、'search'（无搜索结果）三种预设。`,
       Empty_e1269e: 'image accepts arbitrary JSX beyond built-in icons.',
       Empty_eb74ab: 'Pass children for custom action buttons.',
