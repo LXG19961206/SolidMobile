@@ -1151,8 +1151,8 @@ export function App() {
   const localizeGroups = (groups: MenuGroup[]) =>
     groups.map(g => ({
       ...g,
-      title: t(`nav.${['视觉规范','基础组件','展示组件','导航组件','选择器','反馈组件','表单组件','开始','定制','关于项目'].includes(g.title) ? g.title : ''}`) || g.title,
-      items: g.items.map(i => ({ ...i, name: i.name })),
+      title: t(`nav.${g.title}`) || g.title,
+      items: g.items.map(i => ({ ...i, name: t(`nav.${i.key}`) || i.name })),
     }));
 
   const compFilteredGroups = createMemo(() => {
@@ -1189,7 +1189,7 @@ export function App() {
   // ── 组件列表 → 可用于 mobile 端组件切换 ──
   const allComponents = () => {
     const items: { name: string; key: string }[] = [];
-    GROUPS.forEach((g) => g.items.forEach((i) => items.push(i)));
+    compFilteredGroups().forEach((g) => g.items.forEach((i) => items.push(i)));
     return items;
   };
 
