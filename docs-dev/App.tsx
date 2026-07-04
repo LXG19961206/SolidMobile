@@ -1,5 +1,9 @@
 import { createSignal, createMemo, onMount, For, Show, type Component } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
+// Import doc-i18n FIRST (before any component that uses useT) so that
+// doc-only dictionary keys (demo.*, nav.*, section.*, componentIntro.*)
+// are merged into the module-level messages object BEFORE the app renders.
+import './doc-i18n';
 import { useT, setGlobalLocale, useLocale } from '../src/i18n';
 import { defaultConfig } from '../src/config/defaults';
 import { generateCSSVars } from '../src/config/css-vars';
