@@ -74,40 +74,46 @@ function ColorGroups() {
           {isLight ? t('designTokens.colors.lightMode') : t('designTokens.colors.darkMode')}
         </h2>
 
-        {semanticGroups().map((g) => {
-          const stateLabelKeys = [
-            'designTokens.colors.stateBase',
-            'designTokens.colors.stateHover',
-            'designTokens.colors.stateActive',
-            'designTokens.colors.stateDisabled',
-            'designTokens.colors.statePale',
-          ];
-          return (
-            <div class={styles.group}>
-              <h3 class={styles.groupTitle}>{t(g.nameKey)}</h3>
-              <div class={styles.swatches}>
-                {g.keys.map((k, i) => {
-                  const val = (tokens as unknown as Record<string, string>)[k];
-                  if (!val) return null;
-                  return renderSwatch(val, t(stateLabelKeys[i]));
-                })}
+        <For each={semanticGroups()}>
+          {(g) => {
+            const stateLabelKeys = [
+              'designTokens.colors.stateBase',
+              'designTokens.colors.stateHover',
+              'designTokens.colors.stateActive',
+              'designTokens.colors.stateDisabled',
+              'designTokens.colors.statePale',
+            ];
+            return (
+              <div class={styles.group}>
+                <h3 class={styles.groupTitle}>{t(g.nameKey)}</h3>
+                <div class={styles.swatches}>
+                  <For each={g.keys}>
+                    {(k, i) => {
+                      const val = (tokens as unknown as Record<string, string>)[k];
+                      if (!val) return null;
+                      return renderSwatch(val, t(stateLabelKeys[i()]));
+                    }}
+                  </For>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          }}
+        </For>
 
         <div class={styles.group}>
           <h3 class={styles.groupTitle}>
             {isLight ? t('designTokens.colors.surfaces') : t('designTokens.colors.surfacesDark')}
           </h3>
           <div class={styles.swatches}>
-            {surfaceSwatches(mode).map((sw) =>
-              renderSwatch(
-                sw.color,
-                t(sw.labelKey),
-                sw.labelKey.includes('background') || sw.color === '#ffffff',
-              ),
-            )}
+            <For each={surfaceSwatches(mode)}>
+              {(sw) =>
+                renderSwatch(
+                  sw.color,
+                  t(sw.labelKey),
+                  sw.labelKey.includes('background') || sw.color === '#ffffff',
+                )
+              }
+            </For>
           </div>
         </div>
       </>
