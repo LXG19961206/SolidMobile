@@ -151,7 +151,7 @@ export const IconDocPage: Component = () => {
         <DemoBlock
           title={t('demo.iconTreeShake')}
           desc={t('demoDesc.icon_treeshake')}
-          code={`import { Icon } from 'solid-component';\n\n<Icon name="search" size={24} />\n<Icon name="heart" variant="fill" color="#ff4d4f" size={24} />\n<Icon name="star" variant="fill" color="#f59e0b" size={24} />`}
+          code={`import { Icon } from 'solid-mobile';\n\n<Icon name="search" size={24} />\n<Icon name="heart" variant="fill" color="#ff4d4f" size={24} />\n<Icon name="star" variant="fill" color="#f59e0b" size={24} />`}
         >
           <div class={styles.demoArea}>
             <Icon name="search" size={24} />
@@ -163,7 +163,7 @@ export const IconDocPage: Component = () => {
         <DemoBlock
           title={t('demo.iconDynamic')}
           desc={t('demoDesc.使用__lt_icon_name__quot_____quo')}
-          code={`import { Icon } from 'solid-component';\n\n<Icon name="check" color="#22c55e" />\n<Icon name="close" color="#ef4444" />\n<Icon name="information" color="#3b82f6" />`}
+          code={`import { Icon } from 'solid-mobile';\n\n<Icon name="check" color="#22c55e" />\n<Icon name="close" color="#ef4444" />\n<Icon name="information" color="#3b82f6" />`}
         >
           <div class={styles.demoArea}>
             <Icon name="check" color="#22c55e" size={24} />

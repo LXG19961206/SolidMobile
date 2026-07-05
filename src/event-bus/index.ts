@@ -19,7 +19,7 @@ export function emitEvent(event: EventBusEvent): void {
  *
  * @example
  * ```ts
- * import { setEventBusHandler } from 'solid-component';
+ * import { setEventBusHandler } from 'solid-mobile';
  *
  * setEventBusHandler((event) => {
  *   console.log(`[${event.component}] ${event.type}`, event.payload);

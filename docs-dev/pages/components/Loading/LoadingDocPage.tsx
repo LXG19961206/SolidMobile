@@ -125,7 +125,7 @@ const LoadingDocInner = () => {
         <DemoBlock
           title={t('demo.loadingOverlayMode')}
           desc={t('demoDesc.loading_overlay')}
-          code={`import { createSignal } from 'solid-js';\nimport { Loading } from 'solid-component';\n\nfunction Demo() {\n  const [loading, setLoading] = createSignal(false);\n\n  const handleSubmit = async () => {\n    setLoading(true);\n    await fetchData();\n    setLoading(false);\n  };\n\n  return (\n    <>\n      <button onClick={handleSubmit}>提交</button>\n      {loading() && <Loading overlay text="正在处理..." />}\n    </>\n  );\n}`}
+          code={`import { createSignal } from 'solid-js';\nimport { Loading } from 'solid-mobile';\n\nfunction Demo() {\n  const [loading, setLoading] = createSignal(false);\n\n  const handleSubmit = async () => {\n    setLoading(true);\n    await fetchData();\n    setLoading(false);\n  };\n\n  return (\n    <>\n      <button onClick={handleSubmit}>提交</button>\n      {loading() && <Loading overlay text="正在处理..." />}\n    </>\n  );\n}`}
         >
           <div class={styles.demoArea}>
             <button class={styles.btn} onClick={() => {

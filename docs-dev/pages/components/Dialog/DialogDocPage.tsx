@@ -64,7 +64,7 @@ const DialogDocInner: Component = () => {
         <DemoBlock
           title={t('demo.dialogRenderer')}
           desc={'命令式调用需要在应用根组件中挂载 <DialogRenderer />。它负责渲染所有通过 Dialog.show() 等命令式方法创建的弹窗实例，本身不产生任何 DOM 节点。'}
-          code={`// main.tsx 或 App.tsx 根组件\nimport { DialogRenderer } from 'solid-component';\n\nrender(() => (\n  <>\n    <App />\n    <DialogRenderer />\n  </>\n), document.getElementById('root'));`}
+          code={`// main.tsx 或 App.tsx 根组件\nimport { DialogRenderer } from 'solid-mobile';\n\nrender(() => (\n  <>\n    <App />\n    <DialogRenderer />\n  </>\n), document.getElementById('root'));`}
           phone={false}
         >
           <div />
@@ -114,7 +114,7 @@ const DialogDocInner: Component = () => {
           title={t('demo.componentUsage')}
           desc={t('demoDesc.dialog_component')}
           groupCode="组件方式调用"
-          code={`import { createSignal } from 'solid-js';\nimport { DialogComponent } from 'solid-component';\n\nfunction Demo() {\n  const [show, setShow] = createSignal(false);\n\n  return (\n    <>\n      <Button onClick={() => setShow(true)}>打开弹窗</Button>\n      <DialogComponent\n        show={show()}\n        onUpdateShow={setShow}\n        title="组件弹窗"\n        message="这是通过 JSX 组件方式调用的弹窗。"\n        showCancelButton\n        onConfirm={() => { /* ... */ }}\n        onCancel={() => setShow(false)}\n      />\n    </>\n  );\n}`}
+          code={`import { createSignal } from 'solid-js';\nimport { DialogComponent } from 'solid-mobile';\n\nfunction Demo() {\n  const [show, setShow] = createSignal(false);\n\n  return (\n    <>\n      <Button onClick={() => setShow(true)}>打开弹窗</Button>\n      <DialogComponent\n        show={show()}\n        onUpdateShow={setShow}\n        title="组件弹窗"\n        message="这是通过 JSX 组件方式调用的弹窗。"\n        showCancelButton\n        onConfirm={() => { /* ... */ }}\n        onCancel={() => setShow(false)}\n      />\n    </>\n  );\n}`}
         >
           <Cell title={t('demo.componentUsage')} clickable onClick={() => setDeclarativeShow(true)} />
           <DialogComponent

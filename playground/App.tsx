@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Button } from 'solid-component';
+import { Button } from 'solid-mobile';
 import './App.css';
 
 const App = () => {

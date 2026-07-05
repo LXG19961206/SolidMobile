@@ -84,7 +84,7 @@ function autoDeriveColors(colors: Record<string, unknown>): Record<string, unkno
  *
  * Place this near the top of your app tree:
  * ```tsx
- * import { ProviderConfig } from 'solid-component';
+ * import { ProviderConfig } from 'solid-mobile';
  *
  * <ProviderConfig config={{ darkMode: 'class' }}>
  *   <App />

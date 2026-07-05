@@ -453,131 +453,131 @@ const AboutPage: Component = () => {
   const upcoming = ['Grid', 'Table', 'SKU', 'RichText', 'LiveRoom'];
 
   return (
-  <div class="guide-card">
-    <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 1rem' }}>
-      {isEn() ? 'About the Project' : '关于项目'}
-    </h1>
+    <div class="guide-card">
+      <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 1rem' }}>
+        {isEn() ? 'About the Project' : '关于项目'}
+      </h1>
 
-    <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
-      {isEn() ? 'Origins' : '缘起'}
-    </h2>
-    <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
-      {isEn() ? (
-        "This project began in 2023, when Solid.js was still in its early days and its ecosystem was sparse — a situation that, candidly, hasn't changed as much as one would hope. Solid the framework is exceptional: it delivers the DX of React with none of the historical baggage, and its performance was — and remains — best-in-class."
-      ) : (
-        "本项目始于 2023 年。那时的 Solid.js 尚在早期，生态几近空白——坦诚地讲，时至今日也远谈不上繁荣。Solid 框架本身极为出色：它提供了 React 般的开发体验，却无需背负其历史包袱；性能方面，当时已是第一梯队，至今依然。"
-      )}
-    </p>
-    <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '0.75rem' }}>
-      {isEn() ? (
-        <>The author makes no claim to being a UI designer — the color palette, spacing, and overall visual language draw significant inspiration from{" "}
-          <a href="https://vant-ui.github.io/" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>Vant</a>
-          {" "}— one of the most mature mobile component libraries in the Vue ecosystem. We gratefully acknowledge their pioneering work. At the time, no comparable library existed for Solid.js, and cross-framework migration carried prohibitive cost; the natural conclusion was to build one.</>
-      ) : (
-        <>作者本人并不擅长 UI 设计——配色、间距和整体视觉风格大量参考了{" "}
-          <a href="https://vant-ui.github.io/" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>Vant</a>
-          {" "}——Vue 生态中最成熟的移动端组件库之一，在此深表敬意与感谢。彼时 Solid.js 尚无同类轮子，跨框架迁移的成本与风险亦非个人开发者所能承受，于是决定自己动手。</>
-      )}
-    </p>
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
+        {isEn() ? 'Origins' : '缘起'}
+      </h2>
+      <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
+        {isEn() ? (
+          "This project began in 2023, when Solid.js was still in its early days and its ecosystem was sparse — a situation that, candidly, hasn't changed as much as one would hope. Solid the framework is exceptional: it delivers the DX of React with none of the historical baggage, and its performance was — and remains — best-in-class."
+        ) : (
+          "本项目始于 2023 年。那时的 Solid.js 尚在早期，生态几近空白——坦诚地讲，时至今日也远谈不上繁荣。Solid 框架本身极为出色：它提供了 React 般的开发体验，却无需背负其历史包袱；性能方面，当时已是第一梯队，至今依然。"
+        )}
+      </p>
+      <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '0.75rem' }}>
+        {isEn() ? (
+          <>The author makes no claim to being a UI designer — the color palette, spacing, and overall visual language draw significant inspiration from{" "}
+            <a href="https://vant-ui.github.io/" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>Vant</a>
+            {" "}— one of the most mature mobile component libraries in the Vue ecosystem. We gratefully acknowledge their pioneering work. At the time, no comparable library existed for Solid.js, and cross-framework migration carried prohibitive cost; the natural conclusion was to build one.</>
+        ) : (
+          <>作者本人并不擅长 UI 设计——配色、间距和整体视觉风格大量参考了{" "}
+            <a href="https://vant-ui.github.io/" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>Vant</a>
+            {" "}——Vue 生态中最成熟的移动端组件库之一，在此深表敬意与感谢。彼时 Solid.js 尚无同类轮子，跨框架迁移的成本与风险亦非个人开发者所能承受，于是决定自己动手。</>
+        )}
+      </p>
 
-    <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
-      {isEn() ? 'The First Version' : '第一版'}
-    </h2>
-    <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
-      {isEn() ? (
-        "The initial iteration, built over several months, included Picker, DatePicker, Cascader, ActionSheet, Dialog, and a handful of form components — the ceiling of what could be achieved with the technical understanding and tooling available at the time. Life intervened, the frontend world moved on, and the project entered a long hibernation."
-      ) : (
-        "初版断断续续实现了 Picker、DatePicker、Cascader、ActionSheet、Dialog 及若干表单组件，已是在当时技术认知与工具条件下的极限。随后因种种原因，项目进入了漫长的搁置期。"
-      )}
-    </p>
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
+        {isEn() ? 'The First Version' : '第一版'}
+      </h2>
+      <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
+        {isEn() ? (
+          "The initial iteration, built over several months, included Picker, DatePicker, Cascader, ActionSheet, Dialog, and a handful of form components — the ceiling of what could be achieved with the technical understanding and tooling available at the time. Life intervened, the frontend world moved on, and the project entered a long hibernation."
+        ) : (
+          "初版断断续续实现了 Picker、DatePicker、Cascader、ActionSheet、Dialog 及若干表单组件，已是在当时技术认知与工具条件下的极限。随后因种种原因，项目进入了漫长的搁置期。"
+        )}
+      </p>
 
-    <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
-      {isEn() ? 'Renaissance' : '重构'}
-    </h2>
-    <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
-      {isEn() ? (
-        "The rapid advancement of AI tooling in recent years provided both the catalyst and the means to resurrect this long-deferred undertaking. The first version served as a blueprint; years of accumulated engineering experience supplied the architectural judgment. The entire library has been rebuilt from the ground up with a unified design token system, first-class TypeScript support, and a commitment to configurability — every visual property that reasonably should be a variable, is."
-      ) : (
-        "近两年 AI 技术的快速演进为这个搁置已久的项目提供了重启的契机与工具。以初版为蓝本，结合多年来积累的工程化理解，对整套组件库进行了从底层的重构。统一的 Design Token 体系、完整的 TypeScript 类型支持、以可配置性为核心的设计原则——所有应当可被定制的视觉属性，均通过 CSS 变量暴露。"
-      )}
-    </p>
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
+        {isEn() ? 'Renaissance' : '重构'}
+      </h2>
+      <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
+        {isEn() ? (
+          "The rapid advancement of AI tooling in recent years provided both the catalyst and the means to resurrect this long-deferred undertaking. The first version served as a blueprint; years of accumulated engineering experience supplied the architectural judgment. The entire library has been rebuilt from the ground up with a unified design token system, first-class TypeScript support, and a commitment to configurability — every visual property that reasonably should be a variable, is."
+        ) : (
+          "近两年 AI 技术的快速演进为这个搁置已久的项目提供了重启的契机与工具。以初版为蓝本，结合多年来积累的工程化理解，对整套组件库进行了从底层的重构。统一的 Design Token 体系、完整的 TypeScript 类型支持、以可配置性为核心的设计原则——所有应当可被定制的视觉属性，均通过 CSS 变量暴露。"
+        )}
+      </p>
 
-    <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
-      {isEn() ? 'Current Status' : '当前进度'}
-    </h2>
-    <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
-      {isEn() ? (
-        <>The library currently ships <strong>{completed.length} components</strong> across all major categories — basic, display, navigation, form, feedback, and selector. Features include Tree Shaking, dark mode, ConfigProvider-based global theming with automatic color derivation, a complete documentation site with mobile simulator previews, and i18n support (zh-CN / en-US).</>
-      ) : (
-        <>当前已交付 <strong>{completed.length} 个组件</strong>，覆盖基础、展示、导航、表单、反馈、选择器六大类别。支持 Tree Shaking、暗色模式、基于 ConfigProvider 的全局主题配置与自动色彩派生、完整的文档站与移动端模拟器预览、以及中英文国际化。</>
-      )}
-    </p>
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
+        {isEn() ? 'Current Status' : '当前进度'}
+      </h2>
+      <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
+        {isEn() ? (
+          <>The library currently ships <strong>{completed.length} components</strong> across all major categories — basic, display, navigation, form, feedback, and selector. Features include Tree Shaking, dark mode, ConfigProvider-based global theming with automatic color derivation, a complete documentation site with mobile simulator previews, and i18n support (zh-CN / en-US).</>
+        ) : (
+          <>当前已交付 <strong>{completed.length} 个组件</strong>，覆盖基础、展示、导航、表单、反馈、选择器六大类别。支持 Tree Shaking、暗色模式、基于 ConfigProvider 的全局主题配置与自动色彩派生、完整的文档站与移动端模拟器预览、以及中英文国际化。</>
+        )}
+      </p>
 
-    {/* Component table — grouped by category */}
-    <div style={{ 'margin-top': '1rem', display: 'grid', 'grid-template-columns': 'repeat(auto-fill, minmax(240px, 1fr))', gap: '1rem' }}>
-      {([
-        { title: isEn() ? 'Basic' : '基础', items: ['Button', 'Icon', 'Center', 'Divider', 'Layout', 'SafeArea'] },
-        { title: isEn() ? 'Display' : '展示', items: ['Avatar', 'Badge', 'Tag', 'Image', 'Empty', 'Lazyload', 'List', 'SwipeCell', 'Swiper', 'PullRefresh'] },
-        { title: isEn() ? 'Navigation' : '导航', items: ['Tabs', 'TabBar', 'NavBar', 'Cell'] },
-        { title: isEn() ? 'Form' : '表单', items: ['Form', 'Input', 'Textarea', 'Radio', 'Checkbox', 'Switch', 'Rate', 'Stepper', 'Slider', 'Select', 'Upload'] },
-        { title: isEn() ? 'Feedback' : '反馈', items: ['Toast', 'Notify', 'Dialog', 'Overlay', 'ActionSheet', 'Loading'] },
-        { title: isEn() ? 'Selector' : '选择器', items: ['Picker', 'Calendar', 'Cascader', 'DatePicker', 'TimePicker', 'CityPicker'] },
-      ]).map(cat => (
-        <div key={cat.title} style={{
-          background: 'var(--sc-doc-card-placeholder, #f9fafb)',
-          'border-radius': '8px', padding: '12px 14px',
-        }}>
-          <div style={{ 'font-size': '0.7rem', 'font-weight': 600, color: 'var(--sc-doc-card-muted, #9ca3af)', 'text-transform': 'uppercase', 'letter-spacing': '0.05em', 'margin-bottom': '8px' }}>
-            {cat.title} <span style={{ 'font-weight': 400, opacity: 0.6 }}>({cat.items.length})</span>
+      {/* Component table — grouped by category */}
+      <div style={{ 'margin-top': '1rem', display: 'grid', 'grid-template-columns': 'repeat(auto-fill, minmax(240px, 1fr))', gap: '1rem' }}>
+        {([
+          { title: isEn() ? 'Basic' : '基础', items: ['Button', 'Icon', 'Center', 'Divider', 'Layout', 'SafeArea'] },
+          { title: isEn() ? 'Display' : '展示', items: ['Avatar', 'Badge', 'Tag', 'Image', 'Empty', 'Lazyload', 'List', 'SwipeCell', 'Swiper', 'PullRefresh'] },
+          { title: isEn() ? 'Navigation' : '导航', items: ['Tabs', 'TabBar', 'NavBar', 'Cell'] },
+          { title: isEn() ? 'Form' : '表单', items: ['Form', 'Input', 'Textarea', 'Radio', 'Checkbox', 'Switch', 'Rate', 'Stepper', 'Slider', 'Select', 'Upload'] },
+          { title: isEn() ? 'Feedback' : '反馈', items: ['Toast', 'Notify', 'Dialog', 'Overlay', 'ActionSheet', 'Loading'] },
+          { title: isEn() ? 'Selector' : '选择器', items: ['Picker', 'Calendar', 'Cascader', 'DatePicker', 'TimePicker', 'CityPicker'] },
+        ]).map(cat => (
+          <div key={cat.title} style={{
+            background: 'var(--sc-doc-card-placeholder, #f9fafb)',
+            'border-radius': '8px', padding: '12px 14px',
+          }}>
+            <div style={{ 'font-size': '0.7rem', 'font-weight': 600, color: 'var(--sc-doc-card-muted, #9ca3af)', 'text-transform': 'uppercase', 'letter-spacing': '0.05em', 'margin-bottom': '8px' }}>
+              {cat.title} <span style={{ 'font-weight': 400, opacity: 0.6 }}>({cat.items.length})</span>
+            </div>
+            <div style={{ display: 'flex', 'flex-wrap': 'wrap', gap: '4px' }}>
+              {cat.items.map(name => (
+                <span style={{
+                  'font-size': '0.78rem', 'font-family': 'monospace',
+                  color: 'var(--sc-doc-card-title, #374151)',
+                  background: 'var(--sc-doc-card-bg, #fff)',
+                  padding: '2px 8px', 'border-radius': '4px',
+                  border: '1px solid var(--sc-doc-card-border, #e5e7eb)',
+                }}>{name}</span>
+              ))}
+            </div>
           </div>
-          <div style={{ display: 'flex', 'flex-wrap': 'wrap', gap: '4px' }}>
-            {cat.items.map(name => (
-              <span style={{
-                'font-size': '0.78rem', 'font-family': 'monospace',
-                color: 'var(--sc-doc-card-title, #374151)',
-                background: 'var(--sc-doc-card-bg, #fff)',
-                padding: '2px 8px', 'border-radius': '4px',
-                border: '1px solid var(--sc-doc-card-border, #e5e7eb)',
-              }}>{name}</span>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
 
-    <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
-      {isEn() ? 'Roadmap' : '后续规划'}
-    </h2>
-    <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
-      {isEn() ? (
-        "Near-term priorities include completing the remaining specialized components, expanding i18n coverage, and preparing the initial npm release. Medium-term goals involve business-scenario components and a richer documentation experience."
-      ) : (
-        "短期重心：完善国际化覆盖、准备初版 npm 发布。中长期方向：业务场景组件、更丰富的文档交互体验。"
-      )}
-    </p>
-    <div style={{ display: 'flex', 'flex-wrap': 'wrap', gap: '6px', 'margin-top': '0.75rem' }}>
-      {upcoming.map(name => (
-        <span style={{
-          padding: '4px 10px', 'font-size': '0.8rem',
-          background: '#fef3c7', 'border-radius': '4px',
-          'font-family': 'monospace', color: '#92400e',
-        }}>{name}</span>
-      ))}
-    </div>
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
+        {isEn() ? 'Roadmap' : '后续规划'}
+      </h2>
+      <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
+        {isEn() ? (
+          "Near-term priorities include completing the remaining specialized components, expanding i18n coverage, and preparing the initial npm release. Medium-term goals involve business-scenario components and a richer documentation experience."
+        ) : (
+          "短期重心：完善国际化覆盖、准备初版 npm 发布。中长期方向：业务场景组件、更丰富的文档交互体验。"
+        )}
+      </p>
+      <div style={{ display: 'flex', 'flex-wrap': 'wrap', gap: '6px', 'margin-top': '0.75rem' }}>
+        {upcoming.map(name => (
+          <span style={{
+            padding: '4px 10px', 'font-size': '0.8rem',
+            background: '#fef3c7', 'border-radius': '4px',
+            'font-family': 'monospace', color: '#92400e',
+          }}>{name}</span>
+        ))}
+      </div>
 
-    <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
-      {isEn() ? 'Acknowledgments' : '致谢'}
-    </h2>
-    <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
-      {isEn() ? (
-        <>This is a solo project, built across evenings and weekends. It is also — in the spirit of full disclosure — a collaboration between one human and one AI: the author and Claude together contributed the vast majority of the code, docs, and design decisions in this repository. If Kobe could drop 81 with a supporting cast, we can ship 42 components.{" "}
-          <a href="https://github.com/LXG19961206/solid-component" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>GitHub</a>{" "}is always open. Stars, issues, and pull requests are genuinely appreciated.</>
-      ) : (
-        <>这是一个个人项目，利用业余时间完成。坦诚地讲，这也是一个人与一个 AI 的合作项目——作者与 Claude 共同贡献了本仓库中绝大多数的代码、文档与设计决策。科比带着队友能砍 81 分，我和 Claude 合砍 42 个组件不过分吧。{" "}
-          <a href="https://github.com/LXG19961206/solid-component" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>GitHub</a>{" "}始终开放。每一个 star、每一条 issue、每一个 PR，都发自内心地感谢。</>
-      )}
-    </p>
-  </div>
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
+        {isEn() ? 'Acknowledgments' : '致谢'}
+      </h2>
+      <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
+        {isEn() ? (
+          <>This is a solo project, built across evenings and weekends. It is also — in the spirit of full disclosure — a collaboration between one human and one AI: the author and Claude together contributed the vast majority of the code, docs, and design decisions in this repository. {" "}
+            <a href="https://github.com/LXG19961206/solid-component" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>GitHub</a>{" "}is always open. Stars, issues, and pull requests are genuinely appreciated.</>
+        ) : (
+          <>这是一个个人项目，利用业余时间完成。坦诚地讲，这也是一个人与一个 AI 的合作项目——作者与 Claude 共同贡献了本仓库中绝大多数的代码、文档与设计决策。{" "}
+            <a href="https://github.com/LXG19961206/solid-component" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>GitHub</a>{" "}始终开放。每一个 star、每一条 issue、每一个 PR，都发自内心地感谢。</>
+        )}
+      </p>
+    </div>
   );
 };
 
@@ -587,113 +587,113 @@ const SolidjsPage: Component = () => {
   const isEn = () => useLocale() === 'en-US';
 
   return (
-  <div class="guide-card">
-    <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 1rem' }}>
-      {isEn() ? 'About Solid.js' : '关于 Solid.js'}
-    </h1>
+    <div class="guide-card">
+      <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 1rem' }}>
+        {isEn() ? 'About Solid.js' : '关于 Solid.js'}
+      </h1>
 
-    <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
-      {isEn() ? 'What Is It' : '它是什么'}
-    </h2>
-    <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
-      {isEn() ? (
-        <>
-          <a href="https://www.solidjs.com/" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)', 'font-weight': 600 }}>Solid.js</a>
-          {" "}is a declarative, fine-grained reactive JavaScript UI framework. Its programming model is nearly identical to React — JSX, components, Hooks, Context, Suspense… every familiar concept is there, and it feels even more "React" than React itself.
-        </>
-      ) : (
-        <>
-          <a href="https://www.solidjs.com/" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)', 'font-weight': 600 }}>Solid.js</a>
-          {" "}是一个声明式、细粒度响应式的 JavaScript UI 框架。它的编程模型和 React 几乎一模一样——JSX、组件、Hooks、Context、Suspense……你能想到的 React 里有的概念，它都有，而且写得比 React 还「React」。
-        </>
-      )}
-    </p>
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
+        {isEn() ? 'What Is It' : '它是什么'}
+      </h2>
+      <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
+        {isEn() ? (
+          <>
+            <a href="https://www.solidjs.com/" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)', 'font-weight': 600 }}>Solid.js</a>
+            {" "}is a declarative, fine-grained reactive JavaScript UI framework. Its programming model is nearly identical to React — JSX, components, Hooks, Context, Suspense… every familiar concept is there, and it feels even more "React" than React itself.
+          </>
+        ) : (
+          <>
+            <a href="https://www.solidjs.com/" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)', 'font-weight': 600 }}>Solid.js</a>
+            {" "}是一个声明式、细粒度响应式的 JavaScript UI 框架。它的编程模型和 React 几乎一模一样——JSX、组件、Hooks、Context、Suspense……你能想到的 React 里有的概念，它都有，而且写得比 React 还「React」。
+          </>
+        )}
+      </p>
 
-    <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
-      {isEn() ? 'Performance' : '性能'}
-    </h2>
-    <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
-      {isEn() ? (
-        "Solid has no virtual DOM. Component functions run exactly once; after that, a compiler-generated fine-grained reactivity system updates DOM nodes directly. This means extremely low runtime overhead — Solid consistently ranks in the top tier of every major frontend framework benchmark, and in some scenarios it's the fastest."
-      ) : (
-        "Solid 没有虚拟 DOM。组件函数只执行一次，之后由编译器生成的细粒度响应式系统直接更新 DOM 节点。这意味着它的运行时开销极低——在所有主流前端框架的性能基准测试中，Solid 始终处于第一梯队，在某些场景下甚至是最快的那个。"
-      )}
-    </p>
-    <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '0.75rem' }}>
-      {isEn() ? (
-        <>This "no virtual DOM + fine-grained reactivity" design has, in a sense, inspired Vue 3.6's{" "}
-          <a href="https://vuejs.org/guide/extras/reactivity-in-depth.html" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>Vapor Mode</a>
-          {" "}— a compilation strategy that eliminates the need for a virtual DOM. Solid was ahead of the entire industry on this front.</>
-      ) : (
-        <>这个「无虚拟 DOM + 细粒度响应式」的设计，在某种意义上启发了 Vue 3.6 的{" "}
-          <a href="https://vuejs.org/guide/extras/reactivity-in-depth.html" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>Vapor Mode</a>
-          {" "}——一种不需要虚拟 DOM 的编译策略。可以说，Solid 在这个方向上领先了整个行业。</>
-      )}
-    </p>
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
+        {isEn() ? 'Performance' : '性能'}
+      </h2>
+      <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
+        {isEn() ? (
+          "Solid has no virtual DOM. Component functions run exactly once; after that, a compiler-generated fine-grained reactivity system updates DOM nodes directly. This means extremely low runtime overhead — Solid consistently ranks in the top tier of every major frontend framework benchmark, and in some scenarios it's the fastest."
+        ) : (
+          "Solid 没有虚拟 DOM。组件函数只执行一次，之后由编译器生成的细粒度响应式系统直接更新 DOM 节点。这意味着它的运行时开销极低——在所有主流前端框架的性能基准测试中，Solid 始终处于第一梯队，在某些场景下甚至是最快的那个。"
+        )}
+      </p>
+      <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '0.75rem' }}>
+        {isEn() ? (
+          <>This "no virtual DOM + fine-grained reactivity" design has, in a sense, inspired Vue 3.6's{" "}
+            <a href="https://vuejs.org/guide/extras/reactivity-in-depth.html" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>Vapor Mode</a>
+            {" "}— a compilation strategy that eliminates the need for a virtual DOM. Solid was ahead of the entire industry on this front.</>
+        ) : (
+          <>这个「无虚拟 DOM + 细粒度响应式」的设计，在某种意义上启发了 Vue 3.6 的{" "}
+            <a href="https://vuejs.org/guide/extras/reactivity-in-depth.html" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>Vapor Mode</a>
+            {" "}——一种不需要虚拟 DOM 的编译策略。可以说，Solid 在这个方向上领先了整个行业。</>
+        )}
+      </p>
 
-    <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
-      {isEn() ? 'A Missed Opportunity' : '惋惜'}
-    </h2>
-    <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
-      {isEn() ? "But Solid arrived too late." : "但 Solid 诞生得太晚了。"}
-    </p>
-    <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '0.75rem' }}>
-      {isEn() ? (
-        "It was officially released in 2021, by which time the frontend landscape had already been reshaped many times over. React's ecosystem is an immovable mountain. Vue is deeply entrenched in developer communities worldwide. Svelte captured the \"compile-time framework\" narrative, while Qwik carved out the \"resumability\" niche. Solid, despite being technically superior in many ways, found itself squeezed between giants."
-      ) : (
-        "它 2021 年才正式发布，那时前端世界早已完成了一轮又一轮的框架洗牌。React 的生态像一座无人能撼动的大山，Vue 在中小团队和国内社区根深蒂固，Svelte 抢走了「编译时框架」的叙事，而 Qwik 又在「可恢复性」方向上建立了护城河。"
-      )}
-    </p>
-    <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '0.75rem' }}>
-      {isEn() ? (
-        "From a technical standpoint, Solid delivers almost everything you could want from a \"React replacement\" — better performance, simpler state management, cleaner side-effect handling (no dependency arrays, no stale closures). But it ran into an iron law:"
-      ) : (
-        "从技术角度看，Solid 几乎做到了你能对「React 的完美替代品」期待的一切——更好的性能、更简单的状态管理、更干净的副作用处理（没有依赖数组，没有 stale closure）。但它撞上了一个铁律："
-      )}
-    </p>
-    <blockquote style="margin:1rem 0;padding:0.75rem 1rem;border-left:3px solid var(--sc-color-primary, #1677ff);background:color-mix(in srgb, var(--sc-color-primary, #1677ff) 4%, transparent);border-radius:0 6px 6px 0;color:var(--sc-color-text-secondary,#6b7280);font-size:0.9rem;line-height:1.7">
-      <strong>{isEn() ? "Framework competition is no longer just about technology — it's about ecosystem and first-mover advantage." : "前端框架的竞争早已不只是技术的竞争，而是生态和先发优势的竞争。"}</strong>
-    </blockquote>
-    <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
-      {isEn() ? (
-        "This is why, despite its excellence, Solid's ecosystem has never truly flourished. The lack of third-party component libraries, starter templates, and enterprise-grade solutions makes most teams hesitate — nobody wants to be the one who has to fill every gap alone."
-      ) : (
-        "这也是为什么尽管它足够优秀，社区生态却始终没有真正起来的原因——第三方组件库、脚手架模板、企业级解决方案的匮乏，让大多数团队在评估时会因为「万一遇到问题没人填坑」而犹豫。"
-      )}
-    </p>
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
+        {isEn() ? 'A Missed Opportunity' : '惋惜'}
+      </h2>
+      <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
+        {isEn() ? "But Solid arrived too late." : "但 Solid 诞生得太晚了。"}
+      </p>
+      <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '0.75rem' }}>
+        {isEn() ? (
+          "It was officially released in 2021, by which time the frontend landscape had already been reshaped many times over. React's ecosystem is an immovable mountain. Vue is deeply entrenched in developer communities worldwide. Svelte captured the \"compile-time framework\" narrative, while Qwik carved out the \"resumability\" niche. Solid, despite being technically superior in many ways, found itself squeezed between giants."
+        ) : (
+          "它 2021 年才正式发布，那时前端世界早已完成了一轮又一轮的框架洗牌。React 的生态像一座无人能撼动的大山，Vue 在中小团队和国内社区根深蒂固，Svelte 抢走了「编译时框架」的叙事，而 Qwik 又在「可恢复性」方向上建立了护城河。"
+        )}
+      </p>
+      <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '0.75rem' }}>
+        {isEn() ? (
+          "From a technical standpoint, Solid delivers almost everything you could want from a \"React replacement\" — better performance, simpler state management, cleaner side-effect handling (no dependency arrays, no stale closures). But it ran into an iron law:"
+        ) : (
+          "从技术角度看，Solid 几乎做到了你能对「React 的完美替代品」期待的一切——更好的性能、更简单的状态管理、更干净的副作用处理（没有依赖数组，没有 stale closure）。但它撞上了一个铁律："
+        )}
+      </p>
+      <blockquote style="margin:1rem 0;padding:0.75rem 1rem;border-left:3px solid var(--sc-color-primary, #1677ff);background:color-mix(in srgb, var(--sc-color-primary, #1677ff) 4%, transparent);border-radius:0 6px 6px 0;color:var(--sc-color-text-secondary,#6b7280);font-size:0.9rem;line-height:1.7">
+        <strong>{isEn() ? "Framework competition is no longer just about technology — it's about ecosystem and first-mover advantage." : "前端框架的竞争早已不只是技术的竞争，而是生态和先发优势的竞争。"}</strong>
+      </blockquote>
+      <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
+        {isEn() ? (
+          "This is why, despite its excellence, Solid's ecosystem has never truly flourished. The lack of third-party component libraries, starter templates, and enterprise-grade solutions makes most teams hesitate — nobody wants to be the one who has to fill every gap alone."
+        ) : (
+          "这也是为什么尽管它足够优秀，社区生态却始终没有真正起来的原因——第三方组件库、脚手架模板、企业级解决方案的匮乏，让大多数团队在评估时会因为「万一遇到问题没人填坑」而犹豫。"
+        )}
+      </p>
 
-    <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
-      {isEn() ? 'Why We Chose It' : '我们为什么选它'}
-    </h2>
-    <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
-      {isEn() ? (
-        "We chose Solid to build this component library not because it's trendy — quite the opposite. Its reactivity model and compilation strategy happen to be the best foundation for building a component system. Fine-grained updates mean components don't need a massive runtime diff to locate changes. Single-execution component functions let state management return to simple JavaScript variables and functions, without yet another framework API to learn."
-      ) : (
-        "选择 Solid 来写这套组件库，不是因为追随什么潮流——恰恰相反，是因为它的响应式模型和编译策略恰好是构建组件系统的最佳土壤。细粒度的更新意味着组件不需要依赖庞大的运行时 diff 来定位变化；一次执行的组件函数让状态管理回归到最简单的 JavaScript 变量和函数，而不是一套需要额外学习的框架 API。"
-      )}
-    </p>
-    <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '0.75rem' }}>
-      {isEn() ? (
-        <>We believe this component library itself is a step toward filling Solid's ecosystem gap. If this article sparked even a little interest, check out the{" "}
-          <a href="https://www.solidjs.com/tutorial" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>official tutorial</a>
-          {" "}— ten minutes, and you'll discover a world that's cleaner and lighter than React.</>
-      ) : (
-        <>我们相信这套组件库本身，就是帮它补齐生态短板的一步。如果你读完这篇文章，对 Solid 产生了哪怕一点点兴趣，都可以去它的{" "}
-          <a href="https://www.solidjs.com/tutorial" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>官方教程</a>
-          {" "}看看——十分钟，你会发现一个比 React 更干净、更轻量的世界。</>
-      )}
-    </p>
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
+        {isEn() ? 'Why We Chose It' : '我们为什么选它'}
+      </h2>
+      <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
+        {isEn() ? (
+          "We chose Solid to build this component library not because it's trendy — quite the opposite. Its reactivity model and compilation strategy happen to be the best foundation for building a component system. Fine-grained updates mean components don't need a massive runtime diff to locate changes. Single-execution component functions let state management return to simple JavaScript variables and functions, without yet another framework API to learn."
+        ) : (
+          "选择 Solid 来写这套组件库，不是因为追随什么潮流——恰恰相反，是因为它的响应式模型和编译策略恰好是构建组件系统的最佳土壤。细粒度的更新意味着组件不需要依赖庞大的运行时 diff 来定位变化；一次执行的组件函数让状态管理回归到最简单的 JavaScript 变量和函数，而不是一套需要额外学习的框架 API。"
+        )}
+      </p>
+      <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '0.75rem' }}>
+        {isEn() ? (
+          <>We believe this component library itself is a step toward filling Solid's ecosystem gap. If this article sparked even a little interest, check out the{" "}
+            <a href="https://www.solidjs.com/tutorial" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>official tutorial</a>
+            {" "}— ten minutes, and you'll discover a world that's cleaner and lighter than React.</>
+        ) : (
+          <>我们相信这套组件库本身，就是帮它补齐生态短板的一步。如果你读完这篇文章，对 Solid 产生了哪怕一点点兴趣，都可以去它的{" "}
+            <a href="https://www.solidjs.com/tutorial" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>官方教程</a>
+            {" "}看看——十分钟，你会发现一个比 React 更干净、更轻量的世界。</>
+        )}
+      </p>
 
-    <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
-      {isEn() ? 'Further Reading' : '延伸阅读'}
-    </h2>
-    <ul style={{ color: '#6b7280', 'line-height': 1.8, 'padding-left': '1.2rem' }}>
-      <li><a href="https://www.solidjs.com/" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>Solid.js {isEn() ? 'Website' : '官网'}</a> — {isEn() ? 'Docs, tutorials, playground' : '文档、教程、Playground'}</li>
-      <li><a href="https://www.solidjs.com/docs/latest/api" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>Solid API {isEn() ? 'Reference' : '参考'}</a> — {isEn() ? 'Compare with React API, 10 min to get started' : '和 React 的 API 对照着看，10 分钟上手'}</li>
-      <li><a href="https://vuejs.org/guide/extras/reactivity-in-depth.html" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>Vue Vapor Mode</a> — {isEn() ? 'A no-VDOM compilation strategy inspired by Solid' : '受 Solid 启发的无虚拟 DOM 编译策略'}</li>
-      <li><a href="https://krausest.github.io/js-framework-benchmark/" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>JS Framework Benchmark</a> — {isEn() ? 'Solid consistently tops the charts' : '主流框架性能基准，Solid 常年榜首'}</li>
-    </ul>
-  </div>
+      <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>
+        {isEn() ? 'Further Reading' : '延伸阅读'}
+      </h2>
+      <ul style={{ color: '#6b7280', 'line-height': 1.8, 'padding-left': '1.2rem' }}>
+        <li><a href="https://www.solidjs.com/" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>Solid.js {isEn() ? 'Website' : '官网'}</a> — {isEn() ? 'Docs, tutorials, playground' : '文档、教程、Playground'}</li>
+        <li><a href="https://www.solidjs.com/docs/latest/api" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>Solid API {isEn() ? 'Reference' : '参考'}</a> — {isEn() ? 'Compare with React API, 10 min to get started' : '和 React 的 API 对照着看，10 分钟上手'}</li>
+        <li><a href="https://vuejs.org/guide/extras/reactivity-in-depth.html" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>Vue Vapor Mode</a> — {isEn() ? 'A no-VDOM compilation strategy inspired by Solid' : '受 Solid 启发的无虚拟 DOM 编译策略'}</li>
+        <li><a href="https://krausest.github.io/js-framework-benchmark/" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>JS Framework Benchmark</a> — {isEn() ? 'Solid consistently tops the charts' : '主流框架性能基准，Solid 常年榜首'}</li>
+      </ul>
+    </div>
   );
 };
 
@@ -1134,7 +1134,7 @@ const GUIDE_PAGES: Record<string, Component> = {
         在应用入口调用一次 <code>setEventBusHandler</code>，无需 Provider、无额外依赖。未注册时 <code>emitEvent</code> 仅做一次 null 检查，零运行时开销。
       </p>
 
-      <CodeBlock lang="tsx" code={`import { setEventBusHandler } from 'solid-component';
+      <CodeBlock lang="tsx" code={`import { setEventBusHandler } from 'solid-mobile';
 
 setEventBusHandler((event) => {
   // event.component  — 组件名，如 'Picker'、'DatePicker'
@@ -1429,106 +1429,125 @@ export function App() {
   return (
     <ProviderConfig config={dynamicConfig()}>
       <Show when={!mobileView()} fallback={
-      <DrawerContext.Provider value={openMobileDrawer}>
-        <Dynamic component={mobilePageComp()}
-          components={allComponents()} onNavigate={navigateTo} />
-        <DialogRenderer />
+        <DrawerContext.Provider value={openMobileDrawer}>
+          <Dynamic component={mobilePageComp()}
+            components={allComponents()} onNavigate={navigateTo} />
+          <DialogRenderer />
 
-        {/* Persistent drawer — never unmounted, scroll position preserved */}
-        <Show when={mobileDrawerOpen()}>
+          {/* Persistent drawer — never unmounted, scroll position preserved */}
+          <Show when={mobileDrawerOpen()}>
+            <div
+              class={drawerStyles.overlay}
+              classList={{ [drawerStyles.overlayVisible!]: true }}
+              onClick={closeMobileDrawer}
+            />
+          </Show>
           <div
-            class={drawerStyles.overlay}
-            classList={{ [drawerStyles.overlayVisible!]: true }}
-            onClick={closeMobileDrawer}
-          />
-        </Show>
-        <div
-          class={drawerStyles.drawer}
-          classList={{ [drawerStyles.drawerOpen!]: mobileDrawerOpen() }}
-        >
-          <div class={drawerStyles.drawerHeader}>
-            <span class={drawerStyles.drawerTitle}>组件 / Components</span>
-            <button class={drawerStyles.drawerCloseBtn} onClick={closeMobileDrawer}>✕</button>
+            class={drawerStyles.drawer}
+            classList={{ [drawerStyles.drawerOpen!]: mobileDrawerOpen() }}
+          >
+            <div class={drawerStyles.drawerHeader}>
+              <span class={drawerStyles.drawerTitle}>组件 / Components</span>
+              <button class={drawerStyles.drawerCloseBtn} onClick={closeMobileDrawer}>✕</button>
+            </div>
+            <div class={drawerStyles.drawerBody}>
+              <For each={mobileGroups()}>
+                {(group) => (
+                  <>
+                    <Show when={group.title}>
+                      <div class={drawerStyles.drawerGroup}>{group.title}</div>
+                    </Show>
+                    <For each={group.items}>
+                      {(item) => (
+                        <div
+                          class={drawerStyles.drawerItem}
+                          classList={{ [drawerStyles.drawerItemActive!]: activeKey() === item.key }}
+                          onClick={() => { closeMobileDrawer(); navigateTo(item.key); }}
+                        >
+                          <span>{item.name}</span>
+                          <span class={drawerStyles.drawerItemArrow}>›</span>
+                        </div>
+                      )}
+                    </For>
+                  </>
+                )}
+              </For>
+            </div>
           </div>
-          <div class={drawerStyles.drawerBody}>
-            <For each={mobileGroups()}>
-              {(group) => (
-                <>
-                  <Show when={group.title}>
-                    <div class={drawerStyles.drawerGroup}>{group.title}</div>
-                  </Show>
-                  <For each={group.items}>
-                    {(item) => (
-                      <div
-                        class={drawerStyles.drawerItem}
-                        classList={{ [drawerStyles.drawerItemActive!]: activeKey() === item.key }}
-                        onClick={() => { closeMobileDrawer(); navigateTo(item.key); }}
-                      >
-                        <span>{item.name}</span>
-                        <span class={drawerStyles.drawerItemArrow}>›</span>
-                      </div>
-                    )}
-                  </For>
-                </>
-              )}
-            </For>
-          </div>
-        </div>
-      </DrawerContext.Provider>
-    }>
-      <div class="app-shell">
-        {/* ══ Top Nav Tabs ══ */}
-        <header class="top-nav">
-          <div class="top-nav-brand">
-            <img src="./logo.jpg" alt="solid-mobile" style="width:28px;height:28px;border-radius:6px;display:block" />
-            <span class="top-nav-title">solid-mobile</span>
-          </div>
-          <nav class="top-nav-tabs">
-            <For each={topTabs()}>
-              {(tab) => (
-                <button
-                  class={`top-nav-tab ${section() === tab.key ? 'active' : ''}`}
-                  onClick={() => switchSection(tab.key as Section)}
-                >
-                  {tab.label}
-                </button>
-              )}
-            </For>
-          </nav>
-          <div class="top-nav-actions">
-            <ThemeColorPicker color={docThemeColor()} onChange={(c) => persistThemeColor(c)} />
-            <button class="tb-btn" onClick={() => { showI18nNotice(); setGlobalLocale(useLocale() === 'zh-CN' ? 'en-US' : 'zh-CN'); }}>
-              {useLocale() === 'zh-CN' ? 'EN' : '中'}
-            </button>
-            <button class="tb-btn" onClick={toggleDark}>
-              {dark() ? '☀' : '☾'}
-            </button>
-          </div>
-        </header>
+        </DrawerContext.Provider>
+      }>
+        <div class="app-shell">
+          {/* ══ Top Nav Tabs ══ */}
+          <header class="top-nav">
+            <div class="top-nav-brand">
+              <img src="./logo.jpg" alt="solid-mobile" style="width:28px;height:28px;border-radius:6px;display:block" />
+              <span class="top-nav-title">solid-mobile</span>
+            </div>
+            <nav class="top-nav-tabs">
+              <For each={topTabs()}>
+                {(tab) => (
+                  <button
+                    class={`top-nav-tab ${section() === tab.key ? 'active' : ''}`}
+                    onClick={() => switchSection(tab.key as Section)}
+                  >
+                    {tab.label}
+                  </button>
+                )}
+              </For>
+            </nav>
+            <div class="top-nav-actions">
+              <ThemeColorPicker color={docThemeColor()} onChange={(c) => persistThemeColor(c)} />
+              <button class="tb-btn" onClick={() => { showI18nNotice(); setGlobalLocale(useLocale() === 'zh-CN' ? 'en-US' : 'zh-CN'); }}>
+                {useLocale() === 'zh-CN' ? 'EN' : '中'}
+              </button>
+              <button class="tb-btn" onClick={toggleDark}>
+                {dark() ? '☀' : '☾'}
+              </button>
+            </div>
+          </header>
 
-        <div class="app-body">
-          {/* ══ Sidebar ══ */}
-          <Show when={showSidebar()}>
-            <aside class={`sidebar ${menuOpen() ? 'open' : ''}`}>
-              <div class="sidebar-brand">
-                <span class="sidebar-brand-text">
-                  {section() === 'guide' ? t('nav.guides') : t('nav.components')}
-                </span>
-              </div>
-              <Show when={section() === 'components'}>
-                <input
-                  class="sidebar-search"
-                  type="text"
-                  placeholder="搜索组件..."
-                  value={search()}
-                  onInput={(e) => setSearch(e.currentTarget.value)}
-                />
-              </Show>
-              <nav class="sidebar-nav">
-                <Show
-                  when={section() === 'guide'}
-                  fallback={
-                    <For each={compFilteredGroups()}>
+          <div class="app-body">
+            {/* ══ Sidebar ══ */}
+            <Show when={showSidebar()}>
+              <aside class={`sidebar ${menuOpen() ? 'open' : ''}`}>
+                <div class="sidebar-brand">
+                  <span class="sidebar-brand-text">
+                    {section() === 'guide' ? t('nav.guides') : t('nav.components')}
+                  </span>
+                </div>
+                <Show when={section() === 'components'}>
+                  <input
+                    class="sidebar-search"
+                    type="text"
+                    placeholder="搜索组件..."
+                    value={search()}
+                    onInput={(e) => setSearch(e.currentTarget.value)}
+                  />
+                </Show>
+                <nav class="sidebar-nav">
+                  <Show
+                    when={section() === 'guide'}
+                    fallback={
+                      <For each={compFilteredGroups()}>
+                        {(group) => (
+                          <div class="nav-group">
+                            <div class="nav-group-title">{group.title}</div>
+                            <For each={group.items}>
+                              {(item) => (
+                                <button
+                                  class={`nav-item ${activeKey() === item.key ? 'active' : ''}`}
+                                  onClick={() => navigateTo(item.key)}
+                                >
+                                  {item.name}
+                                </button>
+                              )}
+                            </For>
+                          </div>
+                        )}
+                      </For>
+                    }
+                  >
+                    <For each={guideGroups()}>
                       {(group) => (
                         <div class="nav-group">
                           <div class="nav-group-title">{group.title}</div>
@@ -1545,69 +1564,50 @@ export function App() {
                         </div>
                       )}
                     </For>
-                  }
-                >
-                  <For each={guideGroups()}>
-                    {(group) => (
-                      <div class="nav-group">
-                        <div class="nav-group-title">{group.title}</div>
-                        <For each={group.items}>
-                          {(item) => (
-                            <button
-                              class={`nav-item ${activeKey() === item.key ? 'active' : ''}`}
-                              onClick={() => navigateTo(item.key)}
-                            >
-                              {item.name}
-                            </button>
-                          )}
-                        </For>
-                      </div>
-                    )}
-                  </For>
-                </Show>
-              </nav>
-            </aside>
-            {/* Mobile overlay */}
-            <div class={`sidebar-overlay ${menuOpen() ? 'open' : ''}`} onClick={() => setMenuOpen(false)} />
-          </Show>
-
-          {/* ══ Main Content ══ */}
-          <div class="main-area">
-            {/* Topbar */}
-            <Show when={showSidebar()}>
-              <div class="topbar">
-                <button class="menu-btn" onClick={() => setMenuOpen(!menuOpen())}>☰</button>
-                <span class="topbar-title">
-                  {section() === 'guide'
-                    ? guideGroups().flatMap(g => g.items).find(i => i.key === activeKey())?.name || ''
-                    : compFilteredGroups().flatMap(g => g.items).find(i => i.key === activeKey())?.name || ''
-                  }
-                </span>
-              </div>
+                  </Show>
+                </nav>
+              </aside>
+              {/* Mobile overlay */}
+              <div class={`sidebar-overlay ${menuOpen() ? 'open' : ''}`} onClick={() => setMenuOpen(false)} />
             </Show>
-            <div class="content" classList={{ 'content-full': !showSidebar() }}>
-              {section() === 'guide' ? (
-                <>
-                  {(() => {
-                    const P = GUIDE_PAGES[activeKey()];
-                    return P ? <P /> : <div style="padding:2rem">未找到页面: {activeKey()}</div>;
-                  })()}
-                </>
-              ) : (
-                <>
-                  {(() => {
-                    const C = PAGES[activeKey()];
-                    return C ? <C /> : <div style="padding:2rem">未找到组件: {activeKey()}</div>;
-                  })()}
-                </>
-              )}
+
+            {/* ══ Main Content ══ */}
+            <div class="main-area">
+              {/* Topbar */}
+              <Show when={showSidebar()}>
+                <div class="topbar">
+                  <button class="menu-btn" onClick={() => setMenuOpen(!menuOpen())}>☰</button>
+                  <span class="topbar-title">
+                    {section() === 'guide'
+                      ? guideGroups().flatMap(g => g.items).find(i => i.key === activeKey())?.name || ''
+                      : compFilteredGroups().flatMap(g => g.items).find(i => i.key === activeKey())?.name || ''
+                    }
+                  </span>
+                </div>
+              </Show>
+              <div class="content" classList={{ 'content-full': !showSidebar() }}>
+                {section() === 'guide' ? (
+                  <>
+                    {(() => {
+                      const P = GUIDE_PAGES[activeKey()];
+                      return P ? <P /> : <div style="padding:2rem">未找到页面: {activeKey()}</div>;
+                    })()}
+                  </>
+                ) : (
+                  <>
+                    {(() => {
+                      const C = PAGES[activeKey()];
+                      return C ? <C /> : <div style="padding:2rem">未找到组件: {activeKey()}</div>;
+                    })()}
+                  </>
+                )}
+              </div>
             </div>
           </div>
+          <ToastRenderer />
+          <DialogRenderer />
         </div>
-        <ToastRenderer />
-        <DialogRenderer />
-      </div>
-    </Show>
+      </Show>
     </ProviderConfig>
   );
 }

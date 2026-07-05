@@ -88,7 +88,7 @@ export const EventBusMobile: Component<EventBusMobileProps> = (props) => {
         <div style={CARD.title}>如何使用</div>
         <div style={CARD.desc}>应用入口调用一次 setEventBusHandler，无需 Provider。未注册时零开销。</div>
         <div style={CARD.body}>
-          <CodeBlock lang="tsx" code={`import { setEventBusHandler } from 'solid-component';
+          <CodeBlock lang="tsx" code={`import { setEventBusHandler } from 'solid-mobile';
 
 setEventBusHandler((event) => {
   // event.component  — 组件名
