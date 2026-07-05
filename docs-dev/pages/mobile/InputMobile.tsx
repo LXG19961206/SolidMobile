@@ -47,11 +47,11 @@ export const InputMobile: Component<InputMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.inputBasicMobile')}</div>
         <div style={CARD.desc}>{t('demo.inputBasicMobileDesc')}</div>
         <div style={CARD.body}>
-          <Input placeholder={t('demo.inputPlaceholderText')} />
-            <Input type="number" placeholder={t('demo.inputPlaceholderNumber')} />
-            <Input type="password" placeholder={t('demo.inputPlaceholderPassword')} />
-            <Input type="tel" placeholder={t('demo.inputPlaceholderTel')} />
-            <Input type="email" placeholder={t('demo.inputPlaceholderEmail')} />
+          <Input placeholder="Enter text..." />
+            <Input type="number" placeholder="Enter number..." />
+            <Input type="password" placeholder="Enter password..." />
+            <Input type="tel" placeholder="Enter phone number..." />
+            <Input type="email" placeholder="Enter email..." />
         </div>
       </div>
 
@@ -60,8 +60,8 @@ export const InputMobile: Component<InputMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.inputClearableMobile')}</div>
         <div style={CARD.desc}>{t('demo.inputClearableMobileDesc')}</div>
         <div style={CARD.body}>
-          <Input placeholder={t('demo.inputClearablePlaceholder')} clearable onChange={setText1} value={text1()} />
-            <Input type="password" placeholder={t('demo.inputPasswordTogglePlaceholder')} showPasswordToggle />
+          <Input placeholder="Type to clear..." clearable onChange={setText1} value={text1()} />
+            <Input type="password" placeholder="Enter password..." showPasswordToggle />
         </div>
       </div>
 
@@ -70,9 +70,9 @@ export const InputMobile: Component<InputMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.inputAffixMobile')}</div>
         <div style={CARD.desc}>{t('demo.inputAffixMobileDesc')}</div>
         <div style={CARD.body}>
-          <Input placeholder={t('demo.inputSearchPlaceholder')} prefix={<span style={{ color: 'var(--sc-doc-card-muted, #9ca3af)' }}>🔍</span>} />
-            <Input placeholder={t('demo.inputAlignRight')} align="right" />
-            <Input placeholder={t('demo.inputAlignCenter')} align="center" />
+          <Input placeholder="Search..." prefix={<span style={{ color: 'var(--sc-doc-card-muted, #9ca3af)' }}>🔍</span>} />
+            <Input placeholder="Right aligned" align="right" />
+            <Input placeholder="Center aligned" align="center" />
         </div>
       </div>
 
@@ -81,7 +81,7 @@ export const InputMobile: Component<InputMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.inputShowCountMobile')}</div>
         <div style={CARD.desc}>{t('demo.inputShowCountMobileDesc')}</div>
         <div style={CARD.body}>
-          <Input placeholder={t('demo.inputMaxlengthPlaceholder')} maxlength={10} showCount onChange={setText2} value={text2()} />
+          <Input placeholder="Max 10 chars" maxlength={10} showCount onChange={setText2} value={text2()} />
         </div>
       </div>
 
@@ -90,9 +90,9 @@ export const InputMobile: Component<InputMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.inputStatesMobile')}</div>
         <div style={CARD.desc}>{t('demo.inputStatesMobileDesc')}</div>
         <div style={CARD.body}>
-          <Input placeholder={t('demo.disabled')} disabled />
-            <Input placeholder={t('demo.inputReadonlyPlaceholder')} readonly value={t('demo.inputReadonlyValue')} />
-            <Input placeholder={t('demo.inputErrorPlaceholder')} error />
+          <Input placeholder="Disabled" disabled />
+            <Input placeholder="Read only" readonly value="Read-only content" />
+            <Input placeholder="Error state" error />
         </div>
       </div>
 
@@ -101,9 +101,9 @@ export const InputMobile: Component<InputMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.inputSizeMobile')}</div>
         <div style={CARD.desc}>{t('demo.inputSizeMobileDesc')}</div>
         <div style={CARD.body}>
-          <Input placeholder={t('demo.inputSizeSmall')} size="sm" />
-            <Input placeholder={t('demo.inputSizeMedium')} size="md" />
-            <Input placeholder={t('demo.inputSizeLarge')} size="lg" />
+          <Input placeholder="Small size" size="sm" />
+            <Input placeholder="Medium size" size="md" />
+            <Input placeholder="Large size" size="lg" />
         </div>
       </div>
     </MobilePreview>

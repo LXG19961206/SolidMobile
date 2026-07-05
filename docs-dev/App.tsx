@@ -138,8 +138,8 @@ function showI18nNotice() {
   i18nNoticeShown = true;
   setTimeout(() => {
     DialogAPI.confirm({
-      title: '🌐 国际化提示 / i18n Notice',
-      message: '国际化目前仅覆盖少量组件，会在第一批组件稳定后逐步完善。敬请期待！\n\nInternationalization (i18n) currently covers only a few components. It will be gradually improved after the first batch of components is finalized. Stay tuned!',
+      title: '🌐 关于国际化 / About i18n',
+      message: '组件功能描述、属性说明等主要内容已做了基本的国际化，组件库自身也具备完善的多语言支持能力。\n\n受限于个人维护精力，文档 demo 中的示例数据（姓名、选项、提示文案等）仅提供一套简单英文，没有做中英双语对照。不过用的都是基础词汇，不影响理解。\n\n——\n\nMain content — component descriptions, prop docs, etc. — has been internationalized, and the library itself has full i18n support.\n\nDue to limited solo-maintainer bandwidth, demo placeholder data (names, options, labels, etc.) is shown in simple English only. Nothing fancy — just basic vocabulary.',
       confirmText: '知道了 / Got it',
       showCancelButton: false,
     });

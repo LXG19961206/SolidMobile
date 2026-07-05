@@ -33,61 +33,61 @@ const CARD = {
 
 export const TimePickerMobile: Component<TimePickerMobileProps> = (props) => {
   const t = useT();
-  /* ── Basic ── */
+  /* Basic */
   const [basicShow, setBasicShow] = createSignal(false);
   const [basicVal, setBasicVal] = createSignal('');
 
-  /* ── Controlled ── */
+  /* Controlled */
   const [ctrlShow, setCtrlShow] = createSignal(false);
   const [ctrlVal, setCtrlVal] = createSignal('09:15:30');
 
-  /* ── Form ── */
+  /* Form */
   const [formVal, setFormVal] = createSignal({});
 
   return (
-    <MobilePreview title="TimePicker 时间选择" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      {/* 基础用法 */}
+    <MobilePreview title="TimePicker" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+      {/* Basic usage */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.basic')}</div>
         <div style={CARD.desc}>{t('demo.basicDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title={t('demo.selectTime')} value={basicVal() || t('demo.pleaseSelect')} clickable onClick={() => setBasicShow(true)} />
+            <Cell title="Select Time" value={basicVal() || 'Please select'} clickable onClick={() => setBasicShow(true)} />
           </CellGroup>
           <TimePicker show={basicShow()} onUpdateShow={setBasicShow} onChange={(v) => setBasicVal(v)} onConfirm={(v) => { setBasicVal(v); setBasicShow(false); }} onCancel={() => setBasicShow(false)} />
         </div>
       </div>
 
-      {/* 受控值 */}
+      {/* Controlled value */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.controlled')}</div>
         <div style={CARD.desc}>{t('demo.controlledDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title={t('demo.presetValue')} value={ctrlVal()} clickable onClick={() => setCtrlShow(true)} />
+            <Cell title="Preset Value" value={ctrlVal()} clickable onClick={() => setCtrlShow(true)} />
           </CellGroup>
           <TimePicker show={ctrlShow()} onUpdateShow={setCtrlShow} value={ctrlVal()} onChange={(v) => setCtrlVal(v)} onConfirm={(v) => { setCtrlVal(v); setCtrlShow(false); }} onCancel={() => setCtrlShow(false)} />
         </div>
       </div>
 
-      {/* 配合 Form */}
+      {/* With Form */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.withForm')}</div>
         <div style={CARD.desc}>{t('demo.withFormDesc')}</div>
         <div style={CARD.body}>
           <Form onSubmit={(v) => setFormVal(v)} labelWidth="5em">
-            <FormItem name="startTime" label={t('demo.startTime')} required>
-              <TimePicker placeholder={t('demo.selectStartTime')} />
+            <FormItem name="startTime" label="Start Time" required>
+              <TimePicker placeholder="Select start time" />
             </FormItem>
-            <FormItem name="endTime" label={t('demo.endTime')}>
-              <TimePicker placeholder={t('demo.selectEndTime')} />
+            <FormItem name="endTime" label="End Time">
+              <TimePicker placeholder="Select end time" />
             </FormItem>
             <div style={{ padding: '8px 0', display: 'flex' as const, gap: '8px' }}>
-              <Button type="primary" block nativeType="submit" size="sm" text={t('demo.submitForm')} />
+              <Button type="primary" block nativeType="submit" size="sm" text="Submit" />
             </div>
           </Form>
           <div style={{ 'font-size': '0.7rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px' }}>
-            {t('demo.formSubmitValue')}: {JSON.stringify(formVal())}
+            Submitted value: {JSON.stringify(formVal())}
           </div>
         </div>
       </div>

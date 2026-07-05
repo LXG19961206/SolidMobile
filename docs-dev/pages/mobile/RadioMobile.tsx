@@ -73,11 +73,11 @@ export const RadioMobile: Component<RadioMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.basicDesc')}</div>
         <div style={CARD.body}>
           <RadioGroup value={basicVal()} onChange={setBasicVal}>
-            <Radio value="a" label={t('demo.labelOptionA')} />
-            <Radio value="b" label={t('demo.labelOptionB')} />
-            <Radio value="c" label={t('demo.labelOptionC')} />
+            <Radio value="a" label="Option A" />
+            <Radio value="b" label="Option B" />
+            <Radio value="c" label="Option C" />
           </RadioGroup>
-          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px' }}>{t('demo.currentValue')}{basicVal()}</div>
+          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px' }}>Current value: {basicVal()}</div>
         </div>
       </div>
 
@@ -88,15 +88,15 @@ export const RadioMobile: Component<RadioMobileProps> = (props) => {
         <div style={CARD.body}>
           <div style={{ 'margin-bottom': '12px' }}>
             <RadioGroup value={disabledVal()} onChange={setDisabledVal}>
-              <Radio value="a" label={t('demo.labelNormal')} />
-              <Radio value="b" label={t('demo.labelDisabled')} disabled />
-              <Radio value="c" label={t('demo.labelNormal')} />
+              <Radio value="a" label="Normal" />
+              <Radio value="b" label="Disabled" disabled />
+              <Radio value="c" label="Normal" />
             </RadioGroup>
           </div>
           <RadioGroup value={shapeVal()} onChange={setShapeVal}>
-            <Radio value="a" label={t('demo.labelRoundDefault')} />
-            <Radio value="b" label={t('demo.labelSquare')} shape="square" />
-            <Radio value="c" label={t('demo.labelDot')} shape="dot" />
+            <Radio value="a" label="Round (default)" />
+            <Radio value="b" label="Square" shape="square" />
+            <Radio value="c" label="Dot" shape="dot" />
           </RadioGroup>
         </div>
       </div>
@@ -107,13 +107,13 @@ export const RadioMobile: Component<RadioMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.radioHorizontalColorDesc')}</div>
         <div style={CARD.body}>
           <RadioGroup direction="horizontal" value={hVal()} onChange={setHVal}>
-            <Radio value="a" label={t('demo.labelMale')} />
-            <Radio value="b" label={t('demo.labelFemale')} />
+            <Radio value="a" label="Male" />
+            <Radio value="b" label="Female" />
           </RadioGroup>
           <div style={{ height: '12px' }} />
           <RadioGroup value="x" checkedColor="#22c55e">
-            <Radio value="x" label={t('demo.labelGreenRadio')} />
-            <Radio value="y" label={t('demo.labelGreenRadio')} />
+            <Radio value="x" label="Green Radio" />
+            <Radio value="y" label="Green Radio" />
           </RadioGroup>
         </div>
       </div>
@@ -124,12 +124,12 @@ export const RadioMobile: Component<RadioMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.customIconDesc')}</div>
         <div style={CARD.body}>
           <RadioGroup value={iconVal()} onChange={setIconVal} iconSize="28px" checkedColor="var(--sc-color-primary, #1677ff)">
-            <Radio value="like" label={t('demo.labelGoodReview')} checkedIcon={<LikeIcon />} uncheckedIcon={<LikeIcon />} />
-            <Radio value="normal" label={t('demo.labelNormalReview')} checkedIcon={<MehIcon />} uncheckedIcon={<MehIcon />} />
-            <Radio value="bad" label={t('demo.labelPoorReview')} checkedIcon={<BadIcon />} uncheckedIcon={<BadIcon />} />
+            <Radio value="like" label="Good" checkedIcon={<LikeIcon />} uncheckedIcon={<LikeIcon />} />
+            <Radio value="normal" label="Normal" checkedIcon={<MehIcon />} uncheckedIcon={<MehIcon />} />
+            <Radio value="bad" label="Poor" checkedIcon={<BadIcon />} uncheckedIcon={<BadIcon />} />
           </RadioGroup>
           <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px' }}>
-            {iconVal() === 'like' ? t('demo.labelGoodReview') : iconVal() === 'normal' ? t('demo.labelNormalReview') : t('demo.labelPoorReview')}
+            {iconVal() === 'like' ? 'Good' : iconVal() === 'normal' ? 'Normal' : 'Poor'}
           </div>
         </div>
       </div>
@@ -139,18 +139,18 @@ export const RadioMobile: Component<RadioMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.radioStandaloneForm')}</div>
         <div style={CARD.desc}>{t('demo.radioStandaloneFormDesc')}</div>
         <div style={CARD.body}>
-          <Radio value="x" label={t('demo.standaloneModeLabel')} checked={standaloneChecked()} onChange={setStandaloneChecked} />
-          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin': '8px 0 12px' }}>{t('demo.selected')}{String(standaloneChecked())}</div>
+          <Radio value="x" label="Standalone Mode" checked={standaloneChecked()} onChange={setStandaloneChecked} />
+          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin': '8px 0 12px' }}>Selected: {String(standaloneChecked())}</div>
           <Form onSubmit={(v) => { setFormVal(v); Toast.success(JSON.stringify(v)); }}>
-            <FormItem name="gender" label={t('demo.labelGender')} rules={[{ validator: (v: any) => !!v, message: t('demo.validationSelectGender') }]}>
+            <FormItem name="gender" label="Gender" rules={[{ validator: (v: any) => !!v, message: 'Please select a gender' }]}>
               <RadioGroup direction="horizontal">
-                <Radio value="male" label={t('demo.labelMale')} />
-                <Radio value="female" label={t('demo.labelFemale')} />
+                <Radio value="male" label="Male" />
+                <Radio value="female" label="Female" />
               </RadioGroup>
             </FormItem>
-            <Button type="primary" size="sm" nativeType="submit" text={t('demo.labelSubmit')} style={{ 'margin-top': '8px' }} />
+            <Button type="primary" size="sm" nativeType="submit" text="Submit" style={{ 'margin-top': '8px' }} />
           </Form>
-          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '4px' }}>{t('demo.submitValue')}{JSON.stringify(formVal())}</div>
+          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '4px' }}>Submit value: {JSON.stringify(formVal())}</div>
         </div>
       </div>
     </MobilePreview>

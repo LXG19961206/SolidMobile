@@ -58,9 +58,9 @@ export const LoadingMobile: Component<LoadingMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.loadingTextMobile')}</div>
         <div style={CARD.desc}>{t('demo.loadingTextMobileDesc')}</div>
         <div style={CARD.body}>
-          <Loading text={t('demo.loadingEllipsis')} />
-          <Loading text={t('demo.loadingEllipsis')} type="circular" vertical />
-          <Loading text={t('demo.pleaseWait')} type="dots" color="var(--sc-color-primary, #1677ff)" />
+          <Loading text="Loading..." />
+          <Loading text="Loading..." type="circular" vertical />
+          <Loading text="Please wait..." type="dots" color="var(--sc-color-primary, #1677ff)" />
         </div>
       </div>
 
@@ -81,9 +81,9 @@ export const LoadingMobile: Component<LoadingMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.loadingOverlayMobile')}</div>
         <div style={CARD.desc}>{t('demo.loadingOverlayMobileDesc')}</div>
         <div style={CARD.body}>
-          <Button size="sm" text={t('demo.showOverlayLoading')} onClick={() => { setShowOverlay(true); setTimeout(() => setShowOverlay(false), 2000); }} />
+          <Button size="sm" text="Show Overlay Loading" onClick={() => { setShowOverlay(true); setTimeout(() => setShowOverlay(false), 2000); }} />
           <Show when={showOverlay()}>
-            <Loading overlay text={t('demo.loadingEllipsis')} />
+            <Loading overlay text="Loading..." />
           </Show>
         </div>
       </div>

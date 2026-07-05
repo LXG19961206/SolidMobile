@@ -41,21 +41,21 @@ export const SwiperMobile: Component<SwiperMobileProps> = (props) => {
   const t = useT();
   return (
     <MobilePreview title="Swiper" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      {/* 自定义内容 */}
+      {/* Custom Content */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.swiperCustomContent')}</div>
         <div style={CARD.desc}>{t('demo.swiperCustomContentDesc')}</div>
         <div style={CARD.body}>
           <Swiper height={140} loop autoplay={2500}>
-            <div style={{ background: 'linear-gradient(135deg, #667eea, #764ba2)', width: '100%', height: '100%', display: 'flex', 'align-items': 'center', 'justify-content': 'center', color: '#fff', 'font-size': '1.2rem', 'font-weight': 600 }}>🚀 SolidJS</div>
-            <div style={{ background: 'linear-gradient(135deg, #f093fb, #f5576c)', width: '100%', height: '100%', display: 'flex', 'align-items': 'center', 'justify-content': 'center', color: '#fff', 'font-size': '1.2rem', 'font-weight': 600 }}>⚡ Fine-grained</div>
-            <div style={{ background: 'linear-gradient(135deg, #4facfe, #00f2fe)', width: '100%', height: '100%', display: 'flex', 'align-items': 'center', 'justify-content': 'center', color: '#fff', 'font-size': '1.2rem', 'font-weight': 600 }}>🎯 No Virtual DOM</div>
-            <div style={{ background: 'linear-gradient(135deg, #43e97b, #38f9d7)', width: '100%', height: '100%', display: 'flex', 'align-items': 'center', 'justify-content': 'center', color: '#fff', 'font-size': '1.2rem', 'font-weight': 600 }}>📦 Tree Shakable</div>
+            <div style={{ background: 'linear-gradient(135deg, #667eea, #764ba2)', width: '100%', height: '100%', display: 'flex', 'align-items': 'center', 'justify-content': 'center', color: '#fff', 'font-size': '1.2rem', 'font-weight': 600 }}>Slide 1</div>
+            <div style={{ background: 'linear-gradient(135deg, #f093fb, #f5576c)', width: '100%', height: '100%', display: 'flex', 'align-items': 'center', 'justify-content': 'center', color: '#fff', 'font-size': '1.2rem', 'font-weight': 600 }}>Slide 2</div>
+            <div style={{ background: 'linear-gradient(135deg, #4facfe, #00f2fe)', width: '100%', height: '100%', display: 'flex', 'align-items': 'center', 'justify-content': 'center', color: '#fff', 'font-size': '1.2rem', 'font-weight': 600 }}>Slide 3</div>
+            <div style={{ background: 'linear-gradient(135deg, #43e97b, #38f9d7)', width: '100%', height: '100%', display: 'flex', 'align-items': 'center', 'justify-content': 'center', color: '#fff', 'font-size': '1.2rem', 'font-weight': 600 }}>Slide 4</div>
           </Swiper>
         </div>
       </div>
 
-      {/* 自动播放 */}
+      {/* Auto Play */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.imageCarousel')}</div>
         <div style={CARD.desc}>{t('demo.imageCarouselDesc')}</div>
@@ -64,7 +64,7 @@ export const SwiperMobile: Component<SwiperMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 自定义指示器 */}
+      {/* Custom Indicator */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.indicator')}</div>
         <div style={CARD.desc}>{t('demo.indicatorDesc')}</div>
@@ -87,7 +87,7 @@ export const SwiperMobile: Component<SwiperMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 纵向 */}
+      {/* Vertical */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.verticalScroll')}</div>
         <div style={CARD.desc}>{t('demo.verticalScrollDesc')}</div>

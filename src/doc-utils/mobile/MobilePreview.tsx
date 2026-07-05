@@ -51,8 +51,8 @@ async function showI18nNotice() {
   const { DialogAPI } = await import('../../components/Dialog/DialogManager');
   setTimeout(() => {
     DialogAPI.confirm({
-      title: '🌐 国际化提示 / i18n Notice',
-      message: '国际化仅覆盖少量组件，第一批稳定后逐步完善。\n\ni18n covers few components now, will improve after first batch.',
+      title: '🌐 关于国际化 / About i18n',
+      message: '组件描述、属性说明等主要内容已做了基本的国际化，组件库自身也具备完善的多语言支持。\n\n限于个人维护精力，文档 demo 中的示例数据（姓名、选项、提示文案等）仅提供一套简单英文，没有做双语对照。不过用的都是基础词汇，不影响理解。\n\n——\n\nMain content (component descriptions, prop docs) has been internationalized. The library itself has full i18n support.\n\nDue to limited solo-maintainer bandwidth, demo placeholder data (names, options, labels) is shown in simple English only. Nothing fancy — just basic vocabulary.',
       confirmText: 'Got it',
       showCancelButton: false,
     });

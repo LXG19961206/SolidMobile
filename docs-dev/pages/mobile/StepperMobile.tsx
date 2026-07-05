@@ -45,7 +45,7 @@ export const StepperMobile: Component<StepperMobileProps> = (props) => {
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '16px' }}>
             <Stepper value={val()} onChange={setVal} />
-            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>{t('demo.currentValue')}: {val()}</span>
+            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>Current: {val()}</span>
           </div>
         </div>
       </div>
@@ -62,11 +62,11 @@ export const StepperMobile: Component<StepperMobileProps> = (props) => {
             </div>
             <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
               <Stepper defaultValue={0} step={5} min={0} max={50} />
-              <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{t('demo.step')}5</span>
+              <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>Step 5</span>
             </div>
             <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
               <Stepper defaultValue={1.5} step={0.5} decimalLength={1} />
-              <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{t('demo.decimal')}0.5</span>
+              <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>Decimal 0.5</span>
             </div>
           </div>
         </div>

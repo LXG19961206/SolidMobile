@@ -61,8 +61,8 @@ export const AvatarMobile: Component<AvatarMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.avatarTextIcon')}</div>
         <div style={CARD.desc}>{t('demo.avatarTextIconDesc')}</div>
         <div style={CARD.body}>
-          <Avatar size="lg" text="张三" color="var(--sc-color-primary, #1677ff)" />
-          <Avatar size="lg" text="李四" color="#22c55e" />
+          <Avatar size="lg" text="Tom" color="var(--sc-color-primary, #1677ff)" />
+          <Avatar size="lg" text="Kim" color="#22c55e" />
           <Avatar size="lg" text="Wang" color="#f59e0b" />
           <Avatar size="lg" icon="user" color="#6366f1" />
           <Avatar size="lg" icon="user-3" color="#ec4899" />

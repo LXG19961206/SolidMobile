@@ -39,7 +39,7 @@ export const SliderMobile: Component<SliderMobileProps> = (props) => {
 
   return (
     <MobilePreview title={t('nav.slider')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      {/* 基础 */}
+      {/* Basic */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.sliderBasic')}</div>
         <div style={CARD.desc}>{t('demo.sliderBasicDesc')}</div>
@@ -51,11 +51,11 @@ export const SliderMobile: Component<SliderMobileProps> = (props) => {
             </div>
             <span style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'min-width': '24px' }}>100</span>
           </div>
-          <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)', 'text-align': 'center' }}>{t('demo.currentValue')}: {val1()}</span>
+          <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)', 'text-align': 'center' }}>Current Value: {val1()}</span>
         </div>
       </div>
 
-      {/* 双滑块 */}
+      {/* Dual Slider */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.sliderDual')}</div>
         <div style={CARD.desc}>{t('demo.sliderDualDesc')}</div>
@@ -64,18 +64,18 @@ export const SliderMobile: Component<SliderMobileProps> = (props) => {
             <Slider value={rangeVal()} onChange={(v) => setRangeVal(v as number[])} count={2} />
           </div>
           <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)', 'text-align': 'center' }}>
-            {t('demo.rangeValue')}: {rangeVal()[0]} - {rangeVal()[1]}
+            Range: {rangeVal()[0]} - {rangeVal()[1]}
           </span>
         </div>
       </div>
 
-      {/* 步长 & 颜色 */}
+      {/* Step & Color */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.sliderStepColor')}</div>
         <div style={CARD.desc}>{t('demo.sliderStepColorDesc')}</div>
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
-            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{t('demo.step')}5</span>
+            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>Step: 5</span>
             <div style={{ flex: 1 }}>
               <Slider value={val2()} onChange={setVal2} step={5} />
             </div>
@@ -90,7 +90,7 @@ export const SliderMobile: Component<SliderMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 禁用 */}
+      {/* Disabled / Readonly */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.sliderDisabledReadonly')}</div>
         <div style={CARD.body}>

@@ -39,8 +39,8 @@ export const CalendarMobile: Component<CalendarMobileProps> = (props) => {
   const [selectedDate, setSelectedDate] = createSignal('');
 
   return (
-    <MobilePreview title="Calendar 日历" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      {/* 嵌入式 */}
+    <MobilePreview title="Calendar" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+      {/* Inline */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.calendarInlineTitle')}</div>
         <div style={CARD.desc}>{t('demo.calendarInlineMobileDesc')}</div>
@@ -54,7 +54,7 @@ export const CalendarMobile: Component<CalendarMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* Popup 模式 */}
+      {/* Popup mode */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.calendarPopupTitle')}</div>
         <div style={CARD.desc}>{t('demo.calendarPopupMobileDesc')}</div>
@@ -63,20 +63,20 @@ export const CalendarMobile: Component<CalendarMobileProps> = (props) => {
             style={{ padding: '12px 16px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: selectedDate() || '#9ca3af' }}
             onClick={() => setShow(true)}
           >
-            {selectedDate() || t('demo.selectDate')}
+            {selectedDate() || "Select Date"}
           </div>
           <Calendar
             type="single"
             show={show()}
             onUpdateShow={setShow}
-            title={t('demo.selectDate')}
+            title="Select Date"
             showConfirm
-            onChange={(v) => setSelectedDate((v as Date).toLocaleDateString('zh-CN'))}
+            onChange={(v) => setSelectedDate((v as Date).toLocaleDateString('en-US'))}
           />
         </div>
       </div>
 
-      {/* 范围选择 */}
+      {/* Range selection */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.calendarRangeTitle')}</div>
         <div style={CARD.desc}>{t('demo.calendarRangeMobileDesc')}</div>
@@ -89,7 +89,7 @@ export const CalendarMobile: Component<CalendarMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 农历 */}
+      {/* Lunar */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.calendarLunarTitle')}</div>
         <div style={CARD.desc}>{t('demo.calendarLunarMobileDesc')}</div>

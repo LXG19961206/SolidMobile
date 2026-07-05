@@ -38,8 +38,8 @@ interface ListItem {
   color: string;
 }
 
-const NAMES = ['张三', '李四', '王五', '赵六', '孙七', '周八', '吴九', '郑十', '钱一', '陈二'];
-const DESCS = ['产品经理', '前端工程师', '设计师', '后端工程师', '测试', '运营', '市场', '数据', '技术支持', '架构师'];
+const NAMES = ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank', 'Grace', 'Henry', 'Ivy', 'Jack'];
+const DESCS = ['Product Manager', 'Frontend Engineer', 'Designer', 'Backend Engineer', 'QA Engineer', 'Operations', 'Marketing', 'Data Analyst', 'Support', 'Architect'];
 const COLORS = ['#1677ff', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6', '#f97316', '#6366f1', '#84cc16'];
 
 function genItems(start: number, n: number): ListItem[] {

@@ -33,33 +33,33 @@ const CARD = {
 
 const cityData: PickerOption[] = [
   {
-    text: '北京', value: '110000', children: [
-      { text: '北京市', value: '110100', children: [
-        { text: '东城区', value: '110101' },
-        { text: '西城区', value: '110102' },
-        { text: '朝阳区', value: '110105' },
-        { text: '海淀区', value: '110108' },
+    text: 'Beijing', value: '110000', children: [
+      { text: 'Beijing', value: '110100', children: [
+        { text: 'Dongcheng', value: '110101' },
+        { text: 'Xicheng', value: '110102' },
+        { text: 'Chaoyang', value: '110105' },
+        { text: 'Haidian', value: '110108' },
       ]},
     ],
   },
   {
-    text: '上海', value: '310000', children: [
-      { text: '上海市', value: '310100', children: [
-        { text: '黄浦区', value: '310101' },
-        { text: '徐汇区', value: '310104' },
-        { text: '浦东新区', value: '310115' },
+    text: 'Shanghai', value: '310000', children: [
+      { text: 'Shanghai', value: '310100', children: [
+        { text: 'Huangpu', value: '310101' },
+        { text: 'Xuhui', value: '310104' },
+        { text: 'Pudong New Area', value: '310115' },
       ]},
     ],
   },
   {
-    text: '广东', value: '440000', children: [
-      { text: '广州市', value: '440100', children: [
-        { text: '天河区', value: '440106' },
-        { text: '越秀区', value: '440104' },
+    text: 'Guangdong', value: '440000', children: [
+      { text: 'Guangzhou', value: '440100', children: [
+        { text: 'Tianhe', value: '440106' },
+        { text: 'Yuexiu', value: '440104' },
       ]},
-      { text: '深圳市', value: '440300', children: [
-        { text: '南山区', value: '440305' },
-        { text: '福田区', value: '440304' },
+      { text: 'Shenzhen', value: '440300', children: [
+        { text: 'Nanshan', value: '440305' },
+        { text: 'Futian', value: '440304' },
       ]},
     ],
   },
@@ -72,8 +72,8 @@ export const CityPickerMobile: Component<CityPickerMobileProps> = (props) => {
   const [display, setDisplay] = createSignal('');
 
   return (
-    <MobilePreview title="CityPicker 城市选择" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      {/* 省市区选择 */}
+    <MobilePreview title="CityPicker" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+      {/* Province / City / District */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.provinceCityDistrict')}</div>
         <div style={CARD.desc}>{t('demo.cascadeThreeLevels')}</div>
@@ -82,14 +82,14 @@ export const CityPickerMobile: Component<CityPickerMobileProps> = (props) => {
             style={{ padding: '12px 16px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: display() || '#9ca3af' }}
             onClick={() => setShow(true)}
           >
-            {display() || t('demo.pleaseSelectRegion')}
+            {display() || 'Please select region'}
           </div>
           <CityPicker
             columns={cityData}
             show={show()}
             onUpdateShow={setShow}
-            title={t('demo.selectRegion')}
-            placeholder={t('demo.pleaseSelectRegion')}
+            title="Select Region"
+            placeholder="Please select region"
             separator=" - "
             onConfirm={(v) => {
               // build display
@@ -108,14 +108,14 @@ export const CityPickerMobile: Component<CityPickerMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 嵌入式 */}
+      {/* Embedded mode */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.directEmbed')}</div>
         <div style={CARD.desc}>{t('demo.directEmbedMobileDesc')}</div>
         <div style={CARD.body}>
           <CityPicker
             columns={cityData}
-            placeholder={t('demo.pleaseSelectCity')}
+            placeholder="Please select city"
             onChange={setVal}
           />
         </div>

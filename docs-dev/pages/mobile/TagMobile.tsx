@@ -33,20 +33,20 @@ export const TagMobile: Component<TagMobileProps> = (props) => {
 
   return (
     <MobilePreview title={t('demo.tagMobileTitle')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      {/* 语义色 */}
+      {/* Types */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.tagTypes')}</div>
         <div style={CARD.desc}>{t('demo.tagTypesMobileDesc')}</div>
         <div style={CARD.body}>
-          <Tag type="primary">{t('demo.tagPrimary')}</Tag>
-          <Tag type="success">{t('demo.tagSuccess')}</Tag>
-          <Tag type="warning">{t('demo.tagWarning')}</Tag>
-          <Tag type="danger">{t('demo.tagDanger')}</Tag>
-          <Tag type="info">{t('demo.tagInfo')}</Tag>
+          <Tag type="primary">Primary</Tag>
+          <Tag type="success">Success</Tag>
+          <Tag type="warning">Warning</Tag>
+          <Tag type="danger">Danger</Tag>
+          <Tag type="info">Info</Tag>
         </div>
       </div>
 
-      {/* 填充方式 */}
+      {/* Variant */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.variant')}</div>
         <div style={CARD.desc}>{t('demo.tagVariantMobileDesc')}</div>
@@ -60,32 +60,32 @@ export const TagMobile: Component<TagMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 尺寸 */}
+      {/* Size & Round */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.tagSizeRound')}</div>
         <div style={CARD.desc}>{t('demo.tagSizeRoundMobileDesc')}</div>
         <div style={CARD.body}>
-          <Tag size="sm" type="primary">{t('demo.tagSmallSM')}</Tag>
-          <Tag size="md" type="primary">{t('demo.tagMediumMD')}</Tag>
-          <Tag round type="primary">{t('demo.tagCapsule')}</Tag>
-          <Tag round type="success">{t('demo.tagCapsule')}</Tag>
-          <Tag size="sm" round type="danger">{t('demo.tagSmallCapsule')}</Tag>
+          <Tag size="sm" type="primary">Small</Tag>
+          <Tag size="md" type="primary">Medium</Tag>
+          <Tag round type="primary">Capsule</Tag>
+          <Tag round type="success">Capsule</Tag>
+          <Tag size="sm" round type="danger">Small Capsule</Tag>
         </div>
       </div>
 
-      {/* 可关闭 */}
+      {/* Closable */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.tagClosable')}</div>
         <div style={CARD.desc}>{t('demo.tagClosableMobileDesc')}</div>
         <div style={CARD.body}>
-          {isOpen('a') && <Tag closeable onClose={() => close('a')}>{t('demo.tagClosableLabel')}</Tag>}
-          {isOpen('b') && <Tag closeable type="primary" onClose={() => close('b')}>{t('demo.tagLabel1')}</Tag>}
-          {isOpen('c') && <Tag closeable type="success" onClose={() => close('c')}>{t('demo.tagLabel2')}</Tag>}
-          {isOpen('d') && <Tag closeable type="danger" onClose={() => close('d')}>{t('demo.tagLabel3')}</Tag>}
+          {isOpen('a') && <Tag closeable onClose={() => close('a')}>Closable</Tag>}
+          {isOpen('b') && <Tag closeable type="primary" onClose={() => close('b')}>Tag 1</Tag>}
+          {isOpen('c') && <Tag closeable type="success" onClose={() => close('c')}>Tag 2</Tag>}
+          {isOpen('d') && <Tag closeable type="danger" onClose={() => close('d')}>Tag 3</Tag>}
         </div>
       </div>
 
-      {/* 自定义颜色 */}
+      {/* Custom Color */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.customColor')}</div>
         <div style={CARD.desc}>{t('demo.customColorDesc')}</div>

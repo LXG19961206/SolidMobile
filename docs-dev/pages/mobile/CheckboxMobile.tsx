@@ -70,12 +70,12 @@ export const CheckboxMobile: Component<CheckboxMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.checkboxBasicDisabledDesc')}</div>
         <div style={CARD.body}>
           <CheckboxGroup value={basicVal()} onChange={setBasicVal}>
-            <Checkbox value="a" label={t('demo.optionA')} />
-            <Checkbox value="b" label={t('demo.optionB')} />
-            <Checkbox value="c" label={t('demo.optionC')} />
-            <Checkbox value="d" label={t('demo.disabledLabel')} disabled />
+            <Checkbox value="a" label="Option A" />
+            <Checkbox value="b" label="Option B" />
+            <Checkbox value="c" label="Option C" />
+            <Checkbox value="d" label="Disabled" disabled />
           </CheckboxGroup>
-          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px' }}>{t('demo.selectedLabel')}: {JSON.stringify(basicVal())}</div>
+          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px' }}>Selected: {JSON.stringify(basicVal())}</div>
         </div>
       </div>
 
@@ -85,13 +85,13 @@ export const CheckboxMobile: Component<CheckboxMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.checkboxShapeColorDesc')}</div>
         <div style={CARD.body}>
           <CheckboxGroup direction="horizontal" gap={16} defaultValue={['a']}>
-            <Checkbox value="a" label={t('demo.square')} />
-            <Checkbox value="b" label={t('demo.circle')} shape="round" />
+            <Checkbox value="a" label="Square" />
+            <Checkbox value="b" label="Circle" shape="round" />
           </CheckboxGroup>
           <div style={{ height: '12px' }} />
           <CheckboxGroup checkedColor="#22c55e" defaultValue={['green']} direction="horizontal" gap={16}>
-            <Checkbox value="green" label={t('demo.green')} />
-            <Checkbox value="blue" label={t('demo.blue')} />
+            <Checkbox value="green" label="Green" />
+            <Checkbox value="blue" label="Blue" />
           </CheckboxGroup>
         </div>
       </div>
@@ -101,12 +101,12 @@ export const CheckboxMobile: Component<CheckboxMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.checkboxIndeterminate')}</div>
         <div style={CARD.desc}>{t('demo.checkboxIndeterminateDesc')}</div>
         <div style={CARD.body}>
-          <Checkbox value="all" label={t('demo.selectAll')} indeterminate={someChecked()} checked={allChecked()} onChange={(c) => setCheckedList(c ? [...all] : [])} />
+          <Checkbox value="all" label="Select All" indeterminate={someChecked()} checked={allChecked()} onChange={(c) => setCheckedList(c ? [...all] : [])} />
           <div style={{ height: '8px' }} />
           <CheckboxGroup value={checkedList()} onChange={setCheckedList}>
-            <Checkbox value="a" label={t('demo.optionA')} />
-            <Checkbox value="b" label={t('demo.optionB')} />
-            <Checkbox value="c" label={t('demo.optionC')} />
+            <Checkbox value="a" label="Option A" />
+            <Checkbox value="b" label="Option B" />
+            <Checkbox value="c" label="Option C" />
           </CheckboxGroup>
         </div>
       </div>
@@ -117,14 +117,14 @@ export const CheckboxMobile: Component<CheckboxMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.checkboxMaxCustomIconDesc')}</div>
         <div style={CARD.body}>
           <CheckboxGroup max={2} defaultValue={['a']}>
-            <Checkbox value="a" label={t('demo.optionA')} />
-            <Checkbox value="b" label={t('demo.optionB')} />
-            <Checkbox value="c" label={t('demo.optionC')} />
+            <Checkbox value="a" label="Option A" />
+            <Checkbox value="b" label="Option B" />
+            <Checkbox value="c" label="Option C" />
           </CheckboxGroup>
           <div style={{ height: '12px' }} />
           <CheckboxGroup checkedColor="#e74c3c" defaultValue={['star']}>
-            <Checkbox value="star" label={t('demo.star')} checkedIcon={<StarIcon />} uncheckedIcon={<StarIcon />} />
-            <Checkbox value="heart" label={t('demo.heart')} checkedIcon={<HeartIcon />} uncheckedIcon={<HeartIcon />} />
+            <Checkbox value="star" label="Star" checkedIcon={<StarIcon />} uncheckedIcon={<StarIcon />} />
+            <Checkbox value="heart" label="Heart" checkedIcon={<HeartIcon />} uncheckedIcon={<HeartIcon />} />
           </CheckboxGroup>
         </div>
       </div>
@@ -134,19 +134,19 @@ export const CheckboxMobile: Component<CheckboxMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.checkboxStandaloneForm')}</div>
         <div style={CARD.desc}>{t('demo.checkboxStandaloneFormDesc')}</div>
         <div style={CARD.body}>
-          <Checkbox value="standalone" label={t('demo.controlledStandalone')} checked={standaloneChecked()} onChange={setStandaloneChecked} />
-          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin': '8px 0 12px' }}>{t('demo.checkedLabel')}: {String(standaloneChecked())}</div>
+          <Checkbox value="standalone" label="Controlled Standalone" checked={standaloneChecked()} onChange={setStandaloneChecked} />
+          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin': '8px 0 12px' }}>Checked: {String(standaloneChecked())}</div>
           <Form onSubmit={(v) => { setFormVal(v); Toast.success(JSON.stringify(v)); }}>
-            <FormItem name="hobbies" label={t('demo.hobbies')}>
+            <FormItem name="hobbies" label="Hobbies">
               <CheckboxGroup direction="horizontal">
-                <Checkbox value="coding" label={t('demo.coding')} />
-                <Checkbox value="reading" label={t('demo.reading')} />
-                <Checkbox value="gaming" label={t('demo.gaming')} />
+                <Checkbox value="coding" label="Coding" />
+                <Checkbox value="reading" label="Reading" />
+                <Checkbox value="gaming" label="Gaming" />
               </CheckboxGroup>
             </FormItem>
-            <Button type="primary" size="sm" nativeType="submit" text={t('demo.submitBtn')} style={{ 'margin-top': '8px' }} />
+            <Button type="primary" size="sm" nativeType="submit" text="Submit" style={{ 'margin-top': '8px' }} />
           </Form>
-          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '4px' }}>{t('demo.submitValueLabel')}: {JSON.stringify(formVal())}</div>
+          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '4px' }}>Submit value: {JSON.stringify(formVal())}</div>
         </div>
       </div>
     </MobilePreview>

@@ -44,7 +44,7 @@ export const RateMobile: Component<RateMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.rateBasicDesc')}</div>
         <div style={CARD.body}>
           <Rate value={val()} onChange={setVal} />
-          <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>{t('demo.current')}: {val()} {t('demo.points')}</span>
+          <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>Current: {val()} pts</span>
         </div>
       </div>
 
@@ -54,7 +54,7 @@ export const RateMobile: Component<RateMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.halfSelectDesc')}</div>
         <div style={CARD.body}>
           <Rate value={halfVal()} onChange={setHalfVal} allowHalf />
-          <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>{t('demo.current')}: {halfVal()} {t('demo.points')}</span>
+          <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>Current: {halfVal()} pts</span>
         </div>
       </div>
 
@@ -65,11 +65,11 @@ export const RateMobile: Component<RateMobileProps> = (props) => {
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'flex-direction': 'column' as const, 'align-items': 'center' as const, gap: '4px' }}>
             <Rate value={4} readonly />
-            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{t('demo.readonlyLabel')} (4{t('demo.points')})</span>
+            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>Read-only (4 pts)</span>
           </div>
           <div style={{ display: 'flex' as const, 'flex-direction': 'column' as const, 'align-items': 'center' as const, gap: '4px' }}>
             <Rate value={2} disabled />
-            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{t('demo.disabledLabel')} (2{t('demo.points')})</span>
+            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>Disabled (2 pts)</span>
           </div>
         </div>
       </div>

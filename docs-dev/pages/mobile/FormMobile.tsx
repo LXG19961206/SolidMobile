@@ -47,7 +47,11 @@ const CARD = {
   body: { padding: '0 16px 16px' },
 };
 
-const cityOpts = [{ text: '北京', value: 'beijing' }, { text: '上海', value: 'shanghai' }, { text: '广州', value: 'guangzhou' }];
+const cityOpts = [
+  { text: 'Beijing', value: 'beijing' },
+  { text: 'Shanghai', value: 'shanghai' },
+  { text: 'Guangzhou', value: 'guangzhou' },
+];
 
 function mockUploadApi(file: File, onProgress?: (pct: number) => void): Promise<string> {
   return new Promise((resolve) => {
@@ -66,156 +70,150 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
   const [fullVal, setFullVal] = createSignal({});
   let fullFormRef: any;
 
-  const cityOptsI18n = [
-    { text: t('demo.beijing'), value: 'beijing' },
-    { text: t('demo.shanghai'), value: 'shanghai' },
-    { text: t('demo.guangzhou'), value: 'guangzhou' },
-  ];
-
   return (
     <MobilePreview title={t('nav.form')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       <ToastRenderer />
 
-      {/* 基础用法 & 校验 */}
+      {/* Basic form with validation */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.formBasic')}</div>
         <div style={CARD.desc}>{t('demo.formBasicMobileDesc')}</div>
         <div style={CARD.body}>
           <Form
             validateOnBlur
-            onSubmit={(v) => { setBasicVal(v); Toast.success(t('demo.submitLabel') + ': ' + JSON.stringify(v)); }}
+            onSubmit={(v) => { setBasicVal(v); Toast.success('Submitted: ' + JSON.stringify(v)); }}
           >
-            <FormItem name="username" label={t('demo.username')} required rules={[{
+            <FormItem name="username" label="Username" required rules={[{
               validator: (v: any) => (v as string)?.length >= 2,
-              message: t('demo.minChars2'),
+              message: 'At least 2 characters',
             }]}>
-              <Input placeholder={t('demo.usernamePlaceholder')} clearable />
+              <Input placeholder="Enter username" clearable />
             </FormItem>
-            <FormItem name="phone" label={t('demo.phone')}>
-              <Input type="tel" placeholder={t('demo.phonePlaceholder')} maxlength={11} />
+            <FormItem name="phone" label="Phone">
+              <Input type="tel" placeholder="Enter phone" maxlength={11} />
             </FormItem>
             <div style={{ padding: '8px 0', display: 'flex' as const, gap: '8px' }}>
-              <Button type="primary" block nativeType="submit" size="sm" text={t('demo.submitBtn')} />
-              <Button variant="outline" block nativeType="reset" size="sm" text={t('demo.reset')} />
+              <Button type="primary" block nativeType="submit" size="sm" text="Submit" />
+              <Button variant="outline" block nativeType="reset" size="sm" text="Reset" />
             </div>
           </Form>
           <div style={{ 'font-size': '0.7rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px' }}>
-            {t('demo.submitValueLabel')}: {JSON.stringify(basicVal())}
+            Submit value: {JSON.stringify(basicVal())}
           </div>
         </div>
       </div>
 
-      {/* 配合 Switch */}
+      {/* With Switch */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.withOther')}</div>
         <div style={CARD.desc}>{t('demo.withOtherDesc')}</div>
         <div style={CARD.body}>
           <Form>
-            <FormItem name="agree" label={t('demo.agreeTerms')}>
+            <FormItem name="agree" label="Agree">
               <Switch />
             </FormItem>
-            <FormItem name="note" label={t('demo.note')}>
-              <Input placeholder={t('demo.optional')} clearable />
+            <FormItem name="note" label="Note">
+              <Input placeholder="Optional" clearable />
             </FormItem>
           </Form>
         </div>
       </div>
 
-      {/* 标签居左，控件居右 */}
+      {/* Label left, control right */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.labelLeft')}</div>
         <div style={CARD.desc}>{t('demo.labelLeftMobileDesc')}</div>
         <div style={CARD.body}>
           <Form labelAlign="left" labelWidth="5em" colon>
-            <FormItem name="name" label={t('demo.name')}>
-              <Input placeholder={t('demo.pleaseInput')} align="right" />
+            <FormItem name="name" label="Name">
+              <Input placeholder="Enter name" align="right" />
             </FormItem>
-            <FormItem name="phone" label={t('demo.phone')}>
-              <Input type="tel" placeholder={t('demo.pleaseInput')} align="right" />
+            <FormItem name="phone" label="Phone">
+              <Input type="tel" placeholder="Enter phone" align="right" />
             </FormItem>
-            <FormItem name="gender" label={t('demo.gender')}>
+            <FormItem name="gender" label="Gender">
               <RadioGroup direction="horizontal">
-                <Radio value="male" label={t('demo.male')} />
-                <Radio value="female" label={t('demo.female')} />
+                <Radio value="male" label="Male" />
+                <Radio value="female" label="Female" />
               </RadioGroup>
             </FormItem>
-            <FormItem name="notify" label={t('demo.notification')}>
+            <FormItem name="notify" label="Notify">
               <Switch />
             </FormItem>
           </Form>
         </div>
       </div>
 
-      {/* 综合实例 */}
+      {/* Full example */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.fullExample')}</div>
         <div style={CARD.desc}>{t('demo.fullExampleDesc')}</div>
         <div style={CARD.body}>
           <Form
             ref={(r: any) => { fullFormRef = r; }}
-            onSubmit={(v) => { setFullVal(v); Toast.success(t('demo.submitLabel') + ': ' + JSON.stringify(v)); }}
+            onSubmit={(v) => { setFullVal(v); Toast.success('Submitted: ' + JSON.stringify(v)); }}
             labelWidth="5em"
             colon
             scrollToError
           >
-            <FormItem name="username" label={t('demo.username')} required rules={[{
+            <FormItem name="username" label="Username" required rules={[{
               validator: (v: any) => (v as string)?.length >= 2,
-              message: t('demo.minChars2'),
+              message: 'At least 2 characters',
             }]}>
-              <Input placeholder={t('demo.usernamePlaceholder')} clearable />
+              <Input placeholder="Enter username" clearable />
             </FormItem>
-            <FormItem name="intro" label={t('demo.intro')} contentFlex>
-              <Textarea placeholder={t('demo.saySomething')} />
+            <FormItem name="intro" label="Intro" contentFlex>
+              <Textarea placeholder="Say something..." />
             </FormItem>
-            <FormItem name="gender" label={t('demo.gender')} required rules={[{
+            <FormItem name="gender" label="Gender" required rules={[{
               validator: (v: any) => !!v,
-              message: t('demo.genderRequired'),
+              message: 'Please select gender',
             }]}>
               <RadioGroup direction="horizontal">
-                <Radio value="male" label={t('demo.male')} />
-                <Radio value="female" label={t('demo.female')} />
+                <Radio value="male" label="Male" />
+                <Radio value="female" label="Female" />
               </RadioGroup>
             </FormItem>
-            <FormItem name="hobbies" label={t('demo.hobbies')} contentFlex>
+            <FormItem name="hobbies" label="Hobbies" contentFlex>
               <CheckboxGroup direction="horizontal">
-                <Checkbox value="coding" label={t('demo.coding')} />
-                <Checkbox value="reading" label={t('demo.reading')} />
-                <Checkbox value="gaming" label={t('demo.gaming')} />
+                <Checkbox value="coding" label="Coding" />
+                <Checkbox value="reading" label="Reading" />
+                <Checkbox value="gaming" label="Gaming" />
               </CheckboxGroup>
             </FormItem>
-            <FormItem name="score" label={t('demo.score')}>
+            <FormItem name="score" label="Score">
               <Rate />
             </FormItem>
-            <FormItem name="count" label={t('demo.count')}>
+            <FormItem name="count" label="Count">
               <Stepper />
             </FormItem>
-            <FormItem name="agree" label={t('demo.agreeTerms')}>
+            <FormItem name="agree" label="Agree">
               <Switch />
             </FormItem>
-            <FormItem name="range" label={t('demo.formRange')} contentFlex>
+            <FormItem name="range" label="Range" contentFlex>
               <div style={{ padding: '8px 4px', flex: '1', 'min-width': '0' }}>
                 <Slider />
               </div>
             </FormItem>
-            <FormItem name="city" label={t('demo.city')} contentFlex>
-              <Select options={cityOptsI18n} placeholder={t('demo.cityPlaceholder')} />
+            <FormItem name="city" label="City" contentFlex>
+              <Select options={cityOpts} placeholder="Select city" />
             </FormItem>
-            <FormItem name="birthday" label={t('demo.birthday')} contentFlex>
-              <DatePicker placeholder={t('demo.birthdayPlaceholder')} />
+            <FormItem name="birthday" label="Birthday" contentFlex>
+              <DatePicker placeholder="Select date" />
             </FormItem>
-            <FormItem name="photos" label={t('demo.photos')} contentFlex>
+            <FormItem name="photos" label="Photos" contentFlex>
               <Upload api={mockUploadApi} maxCount={6} />
             </FormItem>
-            <FormItem name="time" label={t('demo.timeLabel')} contentFlex>
-              <TimePicker placeholder={t('demo.timePlaceholder')} />
+            <FormItem name="time" label="Time" contentFlex>
+              <TimePicker placeholder="Select time" />
             </FormItem>
             <div style={{ padding: '8px 0', display: 'flex' as const, gap: '8px' }}>
-              <Button type="primary" block nativeType="submit" size="sm" text={t('demo.submitBtn')} />
-              <Button size="sm" text={t('demo.reset')} onClick={() => fullFormRef?.resetFormValue?.()} />
+              <Button type="primary" block nativeType="submit" size="sm" text="Submit" />
+              <Button size="sm" text="Reset" onClick={() => fullFormRef?.resetFormValue?.()} />
             </div>
           </Form>
           <div style={{ 'font-size': '0.7rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px' }}>
-            {t('demo.submitValueLabel')}: {JSON.stringify(fullVal())}
+            Submit value: {JSON.stringify(fullVal())}
           </div>
         </div>
       </div>

@@ -34,105 +34,105 @@ export const SwipeCellMobile: Component<SwipeCellMobileProps> = (props) => {
   const t = useT();
 
   const rightActions: SwipeAction[] = [
-    { text: t('demo.edit'), theme: 'primary', onClick: () => Toast.success(t('demo.edit')) },
-    { text: t('demo.delete'), theme: 'danger', onClick: () => Toast.success(t('demo.delete')) },
+    { text: "Edit", theme: 'primary', onClick: () => Toast.success("Edit") },
+    { text: "Delete", theme: 'danger', onClick: () => Toast.success("Delete") },
   ];
 
   const leftActions: SwipeAction[] = [
-    { text: t('demo.markRead'), theme: 'success', onClick: () => Toast.success(t('demo.read')) },
+    { text: "Mark Read", theme: 'success', onClick: () => Toast.success("Marked as read") },
   ];
 
   const multiActions: SwipeAction[] = [
-    { text: t('demo.collect'), theme: 'warning', onClick: () => Toast.success(t('demo.collect')) },
-    { text: t('demo.edit'), theme: 'primary', onClick: () => Toast.success(t('demo.edit')) },
-    { text: t('demo.delete'), theme: 'danger', onClick: () => Toast.success(t('demo.delete')) },
+    { text: "Collect", theme: 'warning', onClick: () => Toast.success("Collected") },
+    { text: "Edit", theme: 'primary', onClick: () => Toast.success("Edit") },
+    { text: "Delete", theme: 'danger', onClick: () => Toast.success("Delete") },
   ];
 
   return (
     <MobilePreview title={t('nav.swipecell')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      {/* 基础右滑 */}
+      {/* Basic right swipe */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.swipeCellRight')}</div>
         <div style={CARD.desc}>{t('demo.swipeCellRightDesc')}</div>
         <div style={{ ...CARD.body, 'padding-left': 0, 'padding-right': 0 }}>
           <SwipeCell rightActions={rightActions}>
             <Cell
-              title={t('demo.demoUser1')}
-              description={t('demo.demoRole1')}
-              icon={<Avatar size="sm" color={COLORS[0]} text={t('demo.demoUser1')[0]} />}
+              title="User 1"
+              description="Frontend Developer"
+              icon={<Avatar size="sm" color={COLORS[0]} text="U" />}
             />
           </SwipeCell>
           <SwipeCell rightActions={rightActions}>
             <Cell
-              title={t('demo.demoUser2')}
-              description={t('demo.demoRole2')}
-              icon={<Avatar size="sm" color={COLORS[1]} text={t('demo.demoUser2')[0]} />}
+              title="User 2"
+              description="Backend Developer"
+              icon={<Avatar size="sm" color={COLORS[1]} text="U" />}
             />
           </SwipeCell>
           <SwipeCell rightActions={rightActions}>
             <Cell
-              title={t('demo.demoUser3')}
-              description={t('demo.demoRole3')}
-              icon={<Avatar size="sm" color={COLORS[2]} text={t('demo.demoUser3')[0]} />}
+              title="User 3"
+              description="UI Designer"
+              icon={<Avatar size="sm" color={COLORS[2]} text="U" />}
             />
           </SwipeCell>
         </div>
       </div>
 
-      {/* 左侧操作 */}
+      {/* Left actions */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.swipeCellLeft')}</div>
         <div style={CARD.desc}>{t('demo.swipeCellLeftDesc')}</div>
         <div style={{ ...CARD.body, 'padding-left': 0, 'padding-right': 0 }}>
           <SwipeCell leftActions={leftActions}>
             <Cell
-              title={t('demo.demoNotice1')}
-              description={t('demo.demoNotice1Desc')}
-              icon={<Avatar size="sm" color={COLORS[3]} text={t('demo.demoNotice1')[0]} />}
+              title="System Notice"
+              description="Server maintenance at 2 AM"
+              icon={<Avatar size="sm" color={COLORS[3]} text="S" />}
             />
           </SwipeCell>
           <SwipeCell leftActions={leftActions}>
             <Cell
-              title={t('demo.demoNotice2')}
-              description={t('demo.demoNotice2Desc')}
-              icon={<Avatar size="sm" color={COLORS[4]} text={t('demo.demoNotice2')[0]} />}
+              title="Task Reminder"
+              description="Review Q3 report due tomorrow"
+              icon={<Avatar size="sm" color={COLORS[4]} text="T" />}
             />
           </SwipeCell>
         </div>
       </div>
 
-      {/* 多个操作 */}
+      {/* Multiple actions */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.swipeCellMulti')}</div>
         <div style={CARD.desc}>{t('demo.swipeCellMultiDesc')}</div>
         <div style={{ ...CARD.body, 'padding-left': 0, 'padding-right': 0 }}>
           <SwipeCell rightActions={multiActions}>
             <Cell
-              title={t('demo.demoUser4')}
-              description={t('demo.demoRole4')}
-              icon={<Avatar size="sm" color={COLORS[0]} text={t('demo.demoUser4')[0]} />}
+              title="User 4"
+              description="Product Manager"
+              icon={<Avatar size="sm" color={COLORS[0]} text="U" />}
             />
           </SwipeCell>
           <SwipeCell rightActions={multiActions}>
             <Cell
-              title={t('demo.demoUser5')}
-              description={t('demo.demoRole5')}
-              icon={<Avatar size="sm" color={COLORS[1]} text={t('demo.demoUser5')[0]} />}
+              title="User 5"
+              description="QA Engineer"
+              icon={<Avatar size="sm" color={COLORS[1]} text="U" />}
             />
           </SwipeCell>
         </div>
       </div>
 
-      {/* 禁用 */}
+      {/* Disabled */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.swipeCellDisabled')}</div>
         <div style={CARD.desc}>{t('demo.swipeCellDisabledDesc')}</div>
         <div style={{ ...CARD.body, 'padding-left': 0, 'padding-right': 0 }}>
           <SwipeCell rightActions={rightActions} disabled>
             <Cell
-              title={t('demo.demoDisabledCell')}
-              description={t('demo.demoDisabledCellDesc')}
-              icon={<Avatar size="sm" color="#9ca3af" text={t('demo.demoDisabledCell')[0]} />}
+              title="Disabled Item"
+              description="Swipe is disabled for this cell"
+              icon={<Avatar size="sm" color="#9ca3af" text="D" />}
             />
           </SwipeCell>
         </div>

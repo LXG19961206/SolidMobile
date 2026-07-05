@@ -51,7 +51,7 @@ export const CenterMobile: Component<CenterMobileProps> = (props) => {
         <div style={CARD.body}>
           <div style={stage('80px')}>
             <Center>
-              <span style={chip}>{t('demo.centerDefaultChip')}</span>
+              <span style={chip}>Default full center</span>
             </Center>
           </div>
         </div>
@@ -63,13 +63,13 @@ export const CenterMobile: Component<CenterMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.centerFlexXMobileDesc')}</div>
         <div style={CARD.body}>
           <div style={{ ...stage(), padding: '12px', display: 'flex' as const, gap: '8px' }}>
-            <span style={{ padding: '4px 10px', background: 'var(--sc-color-background-secondary, #e2e8f0)', 'border-radius': '12px', 'font-size': '0.75rem', color: '#64748b' }}>{t('demo.tagA')}</span>
-            <span style={{ padding: '4px 10px', background: 'var(--sc-color-background-secondary, #e2e8f0)', 'border-radius': '12px', 'font-size': '0.75rem', color: '#64748b' }}>{t('demo.tagB')}</span>
+            <span style={{ padding: '4px 10px', background: 'var(--sc-color-background-secondary, #e2e8f0)', 'border-radius': '12px', 'font-size': '0.75rem', color: '#64748b' }}>Tag A</span>
+            <span style={{ padding: '4px 10px', background: 'var(--sc-color-background-secondary, #e2e8f0)', 'border-radius': '12px', 'font-size': '0.75rem', color: '#64748b' }}>Tag B</span>
           </div>
           <div style={{ height: '8px' }} />
           <div style={stage()}>
             <Center flexX>
-              <span style={chip}>{t('demo.centerFlexXChip')}</span>
+              <span style={chip}>Horizontal only, auto height</span>
             </Center>
           </div>
         </div>
@@ -82,7 +82,7 @@ export const CenterMobile: Component<CenterMobileProps> = (props) => {
         <div style={CARD.body}>
           <div style={stage('80px')}>
             <Center flexY>
-              <span style={chip}>{t('demo.centerFlexYChip')}</span>
+              <span style={chip}>Vertical center (parent 80px)</span>
             </Center>
           </div>
         </div>
@@ -97,8 +97,8 @@ export const CenterMobile: Component<CenterMobileProps> = (props) => {
             <Center flexX flexY>
               <div style={{ 'text-align': 'center' }}>
                 <div style={{ 'font-size': '1.6rem', 'margin-bottom': '4px' }}>📦</div>
-                <div style={{ 'font-size': '0.85rem', 'font-weight': 600, color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.noData')}</div>
-                <div style={{ 'font-size': '0.7rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{t('demo.noDataHint')}</div>
+                <div style={{ 'font-size': '0.85rem', 'font-weight': 600, color: 'var(--sc-doc-card-text, #374151)' }}>No data</div>
+                <div style={{ 'font-size': '0.7rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>Please add content</div>
               </div>
             </Center>
           </div>
@@ -113,7 +113,7 @@ export const CenterMobile: Component<CenterMobileProps> = (props) => {
           <div style={{ ...stage(), padding: '16px' }}>
             <Center text>
               <div>
-                <div style={{ 'font-size': '0.9rem', 'font-weight': 600, color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.centeredTitle')}</div>
+                <div style={{ 'font-size': '0.9rem', 'font-weight': 600, color: 'var(--sc-doc-card-text, #374151)' }}>Centered Title</div>
                 <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '4px' }}>{t('demo.centeredTitleDesc')}</div>
               </div>
             </Center>
@@ -127,15 +127,15 @@ export const CenterMobile: Component<CenterMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.centerVerticalMobileDesc')}</div>
         <div style={CARD.body}>
           <div style={{ ...stage(), padding: '16px', 'font-size': '0.85rem', 'line-height': '32px' }}>
-            <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.leftText')}</span>
+            <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>Left text</span>
             <Center vertical inline style={{ width: '48px', 'text-align': 'center' }}>
               <span style={{ 'font-size': '1.2rem' }}>⭐</span>
             </Center>
-            <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.middleContent')}</span>
+            <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>Middle</span>
             <Center vertical inline style={{ width: '48px', 'text-align': 'center' }}>
               <span style={{ 'font-size': '1.2rem' }}>❤️</span>
             </Center>
-            <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.rightText')}</span>
+            <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>Right text</span>
           </div>
         </div>
       </div>
@@ -148,10 +148,10 @@ export const CenterMobile: Component<CenterMobileProps> = (props) => {
           <div style={stage('100px')}>
             <Center position>
               <span style={{ background: 'rgba(0,0,0,0.55)', color: '#fff', padding: '6px 16px', 'border-radius': '20px', 'font-size': '0.8rem' }}>
-                🔒 {t('demo.overlayCenter')}
+                🔒 Overlay absolute center
               </span>
             </Center>
-            <div style={{ position: 'absolute' as const, bottom: '6px', right: '10px', 'font-size': '0.6rem', color: '#94a3b8' }}>{t('demo.parentRelative')}</div>
+            <div style={{ position: 'absolute' as const, bottom: '6px', right: '10px', 'font-size': '0.6rem', color: '#94a3b8' }}>Parent relative</div>
           </div>
         </div>
       </div>

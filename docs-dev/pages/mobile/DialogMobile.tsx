@@ -39,54 +39,54 @@ export const DialogMobile: Component<DialogMobileProps> = (props) => {
   const [showDeclarative, setShowDeclarative] = createSignal(false);
 
   return (
-    <MobilePreview title="Dialog 弹窗" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title="Dialog" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       <DialogRenderer />
 
-      {/* 基础弹窗 */}
+      {/* Basic dialogs */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.dialogBasic')}</div>
         <div style={CARD.desc}>{t('demo.dialogBasicDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title={t('demo.dialogAlert')} clickable onClick={() => Dialog.alert({ title: '提示', message: '操作成功！' })} />
-            <Cell title={t('demo.dialogConfirm')} clickable onClick={() => Dialog.confirm({ title: '确认删除', message: '此操作不可撤销，确定继续吗？' })} />
-            <Cell title={t('demo.dialogNoTitle')} clickable onClick={() => Dialog.show({ message: '这是一条纯文本消息，没有标题。' })} />
-            <Cell title={t('demo.dialogMultiline')} clickable onClick={() => Dialog.alert({ message: '第一行\n第二行\n第三行' })} />
+            <Cell title="Alert" clickable onClick={() => Dialog.alert({ title: 'Notice', message: 'Operation successful!' })} />
+            <Cell title="Confirm" clickable onClick={() => Dialog.confirm({ title: 'Confirm Delete', message: 'This action cannot be undone. Are you sure you want to continue?' })} />
+            <Cell title="No Title" clickable onClick={() => Dialog.show({ message: 'This is a plain text message without a title.' })} />
+            <Cell title="Multiline" clickable onClick={() => Dialog.alert({ message: 'Line one\nLine two\nLine three' })} />
           </CellGroup>
         </div>
       </div>
 
-      {/* 高级弹窗 */}
+      {/* Advanced dialogs */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.dialogAdvanced')}</div>
         <div style={CARD.desc}>{t('demo.dialogAdvancedDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title={t('demo.customTrigger')} clickable onClick={() => Dialog.confirm({ title: '保存草稿', message: '是否保存当前编辑？', confirmText: '保存', cancelText: '不保存' })} />
-            <Cell title={t('demo.dialogJSX')} clickable onClick={() => Dialog.alert({ title: '更新说明', message: (<div><p style="margin:0">v2.0 版本已发布</p><p style="margin:4px 0 0;font-size:0.8rem;color:#6b7280">新增 Picker 惯性滚动、SwipeCell 反向关闭</p></div>) })} />
-            <Cell title={t('demo.asyncSubmit')} clickable onClick={() => Dialog.confirm({ title: '提交确认', message: '确定要提交吗？提交后不可修改。', showCancelButton: true, confirmText: '提交', onConfirm: () => new Promise(r => setTimeout(r, 1500)) })} />
-            <Cell title={t('demo.preventClose')} clickable onClick={() => Dialog.confirm({ title: '确认操作', message: '只有点「确认」才能关闭，点取消或遮罩均无效', beforeClose: (action) => { if (action === 'confirm') return true; return false; } })} />
+            <Cell title="Custom Buttons" clickable onClick={() => Dialog.confirm({ title: 'Save Draft', message: 'Save current edits?', confirmText: 'Save', cancelText: "Don't save" })} />
+            <Cell title="JSX Content" clickable onClick={() => Dialog.alert({ title: 'Release Notes', message: (<div><p style="margin:0">v2.0 has been released</p><p style="margin:4px 0 0;font-size:0.8rem;color:#6b7280">New: Picker inertia scrolling, SwipeCell reverse close</p></div>) })} />
+            <Cell title="Async Submit" clickable onClick={() => Dialog.confirm({ title: 'Submit Confirmation', message: 'Are you sure you want to submit? This cannot be modified after submission.', showCancelButton: true, confirmText: 'Submit', onConfirm: () => new Promise(r => setTimeout(r, 1500)) })} />
+            <Cell title="Prevent Close" clickable onClick={() => Dialog.confirm({ title: 'Confirm Action', message: 'Only clicking "Confirm" can close this dialog. Cancel and overlay click are disabled.', beforeClose: (action) => { if (action === 'confirm') return true; return false; } })} />
           </CellGroup>
         </div>
       </div>
 
-      {/* 组件方式 & 关闭 */}
+      {/* Component usage & dismiss */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.dialogComponentDismiss')}</div>
         <div style={CARD.desc}>{t('demo.dialogComponentDismissDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title={t('demo.componentUsage')} clickable onClick={() => setShowDeclarative(true)} />
-            <Cell title={t('demo.manualDismiss')} clickable onClick={() => {
-              const h = Dialog.show({ title: '处理中', message: '请稍候...', showConfirmButton: false });
+            <Cell title="Component Usage" clickable onClick={() => setShowDeclarative(true)} />
+            <Cell title="Manual Dismiss" clickable onClick={() => {
+              const h = Dialog.show({ title: 'Processing', message: 'Please wait...', showConfirmButton: false });
               setTimeout(() => h.dismiss(), 2000);
             }} />
           </CellGroup>
           <DialogComponent
             show={showDeclarative()}
             onUpdateShow={setShowDeclarative}
-            title="组件弹窗"
-            message="这是通过 JSX 组件方式调用的弹窗。适合嵌入模板、受控显示的场景。"
+            title="Component Dialog"
+            message="This dialog is invoked via JSX component. Suitable for template embedding and controlled visibility scenarios."
             showCancelButton
             onConfirm={() => { setShowDeclarative(false); }}
             onCancel={() => { setShowDeclarative(false); }}

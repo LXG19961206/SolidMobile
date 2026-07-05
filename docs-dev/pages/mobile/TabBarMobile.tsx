@@ -87,62 +87,62 @@ export const TabBarMobile: Component<TabBarMobileProps> = (props) => {
     <MobilePreview title="TabBar" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       <ToastRenderer />
 
-      {/* 基础 */}
+      {/* Basic */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.basic')}</div>
         <div style={CARD.desc}>{t('demo.basicDesc')}</div>
         <div style={CARD.body}>
           <TabBar value={val1()} onChange={setVal1} fixed={false}>
-            <TabBarItem name="home" icon="home" label={t('demo.labelHome')} />
-            <TabBarItem name="cart" icon="shopping-cart" label={t('demo.labelCart')} />
-            <TabBarItem name="user" icon="user" label={t('demo.labelProfile')} />
+            <TabBarItem name="home" icon="home" label="Home" />
+            <TabBarItem name="cart" icon="shopping-cart" label="Cart" />
+            <TabBarItem name="user" icon="user" label="Profile" />
           </TabBar>
         </div>
       </div>
 
-      {/* 徽标 & 红点 */}
+      {/* Badge & Dot */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.badgeDot')}</div>
         <div style={CARD.desc}>{t('demo.badgeDotDesc')}</div>
         <div style={CARD.body}>
           <TabBar defaultValue={0} fixed={false} activeColor="#1677ff">
-            <TabBarItem name={0} icon="home" label={t('demo.labelHome')} />
-            <TabBarItem name={1} icon="chat" label={t('demo.labelMessages')} dot />
-            <TabBarItem name={2} icon="settings" label={t('demo.labelSettings')} badge={5} />
+            <TabBarItem name={0} icon="home" label="Home" />
+            <TabBarItem name={1} icon="chat" label="Messages" dot />
+            <TabBarItem name={2} icon="settings" label="Settings" badge={5} />
           </TabBar>
         </div>
       </div>
 
-      {/* 自定义颜色 */}
+      {/* Custom Color */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.customColor')}</div>
         <div style={CARD.desc}>{t('demo.customColorDesc')}</div>
         <div style={CARD.body}>
           <TabBar defaultValue="a" activeColor="#22c55e" fixed={false}>
-            <TabBarItem name="a" icon="home" label={t('demo.labelHome')} />
-            <TabBarItem name="b" icon="star" label={t('demo.labelFavorites')} />
-            <TabBarItem name="c" icon="user" label={t('demo.labelProfile')} />
+            <TabBarItem name="a" icon="home" label="Home" />
+            <TabBarItem name="b" icon="star" label="Favorites" />
+            <TabBarItem name="c" icon="user" label="Profile" />
           </TabBar>
         </div>
       </div>
 
-      {/* 自定义动画 */}
+      {/* Animated Icons */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.tabbarAnimatedIcon')}</div>
         <div style={CARD.desc}>{t('demo.tabbarAnimatedIconDesc')}</div>
         <div style={CARD.body}>
           <TabBar defaultValue="a" fixed={false}>
-            <TabBarItem name="a" label={t('demo.labelHome')} icon={AnimatedHomeIcon} />
-            <TabBarItem name="b" label={t('demo.labelFavorites')} icon={AnimatedStarIcon} />
-            <TabBarItem name="c" label={t('demo.labelProfile')} icon={AnimatedUserIcon} />
+            <TabBarItem name="a" label="Home" icon={AnimatedHomeIcon} />
+            <TabBarItem name="b" label="Favorites" icon={AnimatedStarIcon} />
+            <TabBarItem name="c" label="Profile" icon={AnimatedUserIcon} />
           </TabBar>
           <div style={{ 'font-size': '0.65rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px', padding: '0 16px', 'line-height': 1.5 }}>
-            {t('demo.tabbarAnimatedIconNote')}
+            Custom SVG icons with CSS scale + fill animations on tab switch.
           </div>
         </div>
       </div>
 
-      {/* 路由说明 */}
+      {/* With Router */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.withRouter')}</div>
         <div style={CARD.desc}>
@@ -150,7 +150,7 @@ export const TabBarMobile: Component<TabBarMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* Fixed 固定在底部 */}
+      {/* Fixed Bottom */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.fixedBottom')}</div>
         <div style={CARD.desc}>{t('demo.fixedBottomDesc')}</div>
@@ -158,9 +158,9 @@ export const TabBarMobile: Component<TabBarMobileProps> = (props) => {
       </div>
 
       <TabBar defaultValue="home" activeColor="#1677ff">
-        <TabBarItem name="home" icon="home" label={t('demo.labelHome')} badge={5} />
-        <TabBarItem name="cart" icon="shopping-cart" label={t('demo.labelCart')} dot />
-        <TabBarItem name="user" icon="user" label={t('demo.labelProfile')} />
+        <TabBarItem name="home" icon="home" label="Home" badge={5} />
+        <TabBarItem name="cart" icon="shopping-cart" label="Cart" dot />
+        <TabBarItem name="user" icon="user" label="Profile" />
       </TabBar>
     </MobilePreview>
   );

@@ -30,16 +30,16 @@ const CARD = {
 };
 
 const genderOpts = [
-  { text: '男', value: 'male' },
-  { text: '女', value: 'female' },
-  { text: '其他', value: 'other' },
+  { text: 'Male', value: 'male' },
+  { text: 'Female', value: 'female' },
+  { text: 'Other', value: 'other' },
 ];
 
 const sizeOpts = [
-  { text: 'S 小号', value: 's' },
-  { text: 'M 中号', value: 'm' },
-  { text: 'L 大号', value: 'l' },
-  { text: 'XL 加大', value: 'xl' },
+  { text: 'S - Small', value: 's' },
+  { text: 'M - Medium', value: 'm' },
+  { text: 'L - Large', value: 'l' },
+  { text: 'XL - Extra Large', value: 'xl' },
 ];
 
 export const SelectMobile: Component<SelectMobileProps> = (props) => {
@@ -60,13 +60,13 @@ export const SelectMobile: Component<SelectMobileProps> = (props) => {
             style={{ padding: '12px 16px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: gender() ? '#1f2937' : '#9ca3af' }}
             onClick={() => setShow1(true)}
           >
-            {genderOpts.find(o => o.value === gender())?.text || t('demo.selectGender')}
+            {genderOpts.find(o => o.value === gender())?.text || 'Select gender'}
           </div>
           <Select
             options={genderOpts}
             show={show1()}
             onUpdateShow={setShow1}
-            title={t('demo.selectGenderTitle')}
+            title="Select Gender"
             value={gender()}
             onConfirm={(v) => { setGender(v as string); setShow1(false); }}
             onCancel={() => setShow1(false)}
@@ -83,9 +83,9 @@ export const SelectMobile: Component<SelectMobileProps> = (props) => {
             options={sizeOpts}
             value={size()}
             onChange={(v) => setSize(v as string)}
-            placeholder={t('demo.selectSize')}
+            placeholder="Select size"
           />
-          <span style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>{t('demo.selected')}: {size() || t('demo.none')}</span>
+          <span style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>Selected: {size() || 'None'}</span>
         </div>
       </div>
     </MobilePreview>

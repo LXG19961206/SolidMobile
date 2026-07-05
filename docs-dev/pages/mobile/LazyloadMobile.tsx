@@ -29,7 +29,7 @@ const CARD = {
   body: { padding: '0 16px 16px' },
 };
 
-/* ── Deferred content — 模拟网络延迟 ── */
+/* ── Deferred content — simulate network delay ── */
 
 const DeferredContent: Component<{ delay?: number; children: any }> = (props) => {
   const [ready, setReady] = createSignal(false);
@@ -62,8 +62,8 @@ const GallerySkeleton = () => (
 /* ── Data ── */
 
 const COLORS = ['#1677ff', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6', '#f97316', '#6366f1', '#84cc16'];
-const TITLES = ['产品设计稿', '前端架构', '数据库 ER 图', 'API 接口规范', '测试用例报告', '部署运维手册', '用户调研分析', '竞品对比', '迭代排期', '季度回顾'];
-const TIMES = ['2 小时前', '昨天', '3 天前', '1 周前', '上周', '2 周前', '1 月前', '刚刚', '5 小时前', '昨天'];
+const TITLES = ['Design Draft', 'Architecture', 'Database Schema', 'API Spec', 'Test Report', 'Deploy Guide', 'User Research', 'Competitor Analysis', 'Sprint Plan', 'Quarterly Review'];
+const TIMES = ['2 hours ago', 'Yesterday', '3 days ago', '1 week ago', 'Last week', '2 weeks ago', '1 month ago', 'Just now', '5 hours ago', 'Yesterday'];
 
 const DocItem: Component<{ idx: number }> = (props) => (
   <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px', padding: '12px 0', 'border-bottom': '1px solid #f3f4f6' }}>

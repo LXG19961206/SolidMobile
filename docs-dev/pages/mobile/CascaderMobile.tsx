@@ -38,69 +38,69 @@ const CARD = {
 /* ── Data ── */
 
 const regionOptions: CascaderOption[] = [
-  { text: '北京', value: 'beijing', children: [
-    { text: '朝阳区', value: 'chaoyang', children: [
-      { text: '望京街道', value: 'wangjing' }, { text: '三里屯街道', value: 'sanlitun' },
-      { text: '国贸', value: 'guomao' }, { text: '双井街道', value: 'shuangjing' },
+  { text: 'Beijing', value: 'beijing', children: [
+    { text: 'Chaoyang', value: 'chaoyang', children: [
+      { text: 'Wangjing', value: 'wangjing' }, { text: 'Sanlitun', value: 'sanlitun' },
+      { text: 'Guomao', value: 'guomao' }, { text: 'Shuangjing', value: 'shuangjing' },
     ]},
-    { text: '海淀区', value: 'haidian', children: [
-      { text: '中关村', value: 'zhongguancun' }, { text: '五道口', value: 'wudaokou' },
-      { text: '西二旗', value: 'xierqi' },
+    { text: 'Haidian', value: 'haidian', children: [
+      { text: 'Zhongguancun', value: 'zhongguancun' }, { text: 'Wudaokou', value: 'wudaokou' },
+      { text: 'Xierqi', value: 'xierqi' },
     ]},
-    { text: '西城区', value: 'xicheng' },
-    { text: '东城区', value: 'dongcheng' },
+    { text: 'Xicheng', value: 'xicheng' },
+    { text: 'Dongcheng', value: 'dongcheng' },
   ]},
-  { text: '上海', value: 'shanghai', children: [
-    { text: '浦东新区', value: 'pudong', children: [
-      { text: '陆家嘴', value: 'lujiazui' }, { text: '张江', value: 'zhangjiang' },
+  { text: 'Shanghai', value: 'shanghai', children: [
+    { text: 'Pudong', value: 'pudong', children: [
+      { text: 'Lujiazui', value: 'lujiazui' }, { text: 'Zhangjiang', value: 'zhangjiang' },
     ]},
-    { text: '静安区', value: 'jingan' },
-    { text: '徐汇区', value: 'xuhui' },
+    { text: "Jing'an", value: 'jingan' },
+    { text: 'Xuhui', value: 'xuhui' },
   ]},
-  { text: '广东', value: 'guangdong', children: [
-    { text: '深圳', value: 'shenzhen', children: [
-      { text: '南山区', value: 'nanshan' }, { text: '福田区', value: 'futian' },
+  { text: 'Guangdong', value: 'guangdong', children: [
+    { text: 'Shenzhen', value: 'shenzhen', children: [
+      { text: 'Nanshan', value: 'nanshan' }, { text: 'Futian', value: 'futian' },
     ]},
-    { text: '广州', value: 'guangzhou', children: [
-      { text: '天河区', value: 'tianhe' }, { text: '越秀区', value: 'yuexiu' },
+    { text: 'Guangzhou', value: 'guangzhou', children: [
+      { text: 'Tianhe', value: 'tianhe' }, { text: 'Yuexiu', value: 'yuexiu' },
     ]},
   ]},
-  { text: '浙江', value: 'zhejiang', children: [
-    { text: '杭州', value: 'hangzhou', children: [
-      { text: '西湖区', value: 'xihu' }, { text: '余杭区', value: 'yuhang' },
+  { text: 'Zhejiang', value: 'zhejiang', children: [
+    { text: 'Hangzhou', value: 'hangzhou', children: [
+      { text: 'Xihu', value: 'xihu' }, { text: 'Yuhang', value: 'yuhang' },
     ]},
-    { text: '宁波', value: 'ningbo' },
+    { text: 'Ningbo', value: 'ningbo' },
   ]},
 ];
 
 export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
   const t = useT();
-  /* ── 地区选择 ── */
+  /* ── Region Selection ── */
   const [show1, setShow1] = createSignal(false);
   const [val1, setVal1] = createSignal<(string | number)[]>([]);
 
-  /* ── 禁用选项 ── */
+  /* ── Disabled Options ── */
   const [show2, setShow2] = createSignal(false);
   const [val2, setVal2] = createSignal<(string | number)[]>([]);
   const disabledOpts: CascaderOption[] = [
-    { text: '北京', value: 'beijing' },
-    { text: '上海', value: 'shanghai', disabled: true },
-    { text: '广东', value: 'guangdong' },
-    { text: '浙江', value: 'zhejiang' },
-    { text: '江苏', value: 'jiangsu', disabled: true },
+    { text: 'Beijing', value: 'beijing' },
+    { text: 'Shanghai', value: 'shanghai', disabled: true },
+    { text: 'Guangdong', value: 'guangdong' },
+    { text: 'Zhejiang', value: 'zhejiang' },
+    { text: 'Jiangsu', value: 'jiangsu', disabled: true },
   ];
 
-  /* ── 自定义渲染 ── */
+  /* ── Custom Render ── */
   const [show3, setShow3] = createSignal(false);
   const [val3, setVal3] = createSignal<(string | number)[]>([]);
   const renderOpts: CascaderOption[] = [
-    { text: '北京', value: 'beijing', render: <span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}><Icon name="map-pin" size={16} /> 北京</span> },
-    { text: '上海', value: 'shanghai', render: <span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}><Icon name="map-pin" size={16} /> 上海</span> },
-    { text: '广东', value: 'guangdong', render: <span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}><Icon name="map-pin" size={16} color="#22c55e" /> 广东</span> },
-    { text: '浙江', value: 'zhejiang', render: <span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}><Icon name="map-pin" size={16} color="#f59e0b" /> 浙江</span> },
+    { text: 'Beijing', value: 'beijing', render: <span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}><Icon name="map-pin" size={16} /> Beijing</span> },
+    { text: 'Shanghai', value: 'shanghai', render: <span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}><Icon name="map-pin" size={16} /> Shanghai</span> },
+    { text: 'Guangdong', value: 'guangdong', render: <span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}><Icon name="map-pin" size={16} color="#22c55e" /> Guangdong</span> },
+    { text: 'Zhejiang', value: 'zhejiang', render: <span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}><Icon name="map-pin" size={16} color="#f59e0b" /> Zhejiang</span> },
   ];
 
-  /* ── 异步加载 ── */
+  /* ── Async Load ── */
   const [show4, setShow4] = createSignal(false);
   const [val4, setVal4] = createSignal<(string | number)[]>([]);
 
@@ -108,35 +108,35 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
     await new Promise(r => setTimeout(r, 1000));
     const map: Record<string, CascaderOption[]> = {
       __root__: [
-        { text: '北京', value: 'beijing' },
-        { text: '上海', value: 'shanghai' },
-        { text: '广东', value: 'guangdong' },
+        { text: 'Beijing', value: 'beijing' },
+        { text: 'Shanghai', value: 'shanghai' },
+        { text: 'Guangdong', value: 'guangdong' },
       ],
       beijing: [
-        { text: '朝阳区', value: 'chaoyang' },
-        { text: '海淀区', value: 'haidian' },
-        { text: '东城区', value: 'dongcheng' },
+        { text: 'Chaoyang', value: 'chaoyang' },
+        { text: 'Haidian', value: 'haidian' },
+        { text: 'Dongcheng', value: 'dongcheng' },
       ],
       chaoyang: [
-        { text: '望京街道', value: 'wangjing', isLeaf: true },
-        { text: '三里屯街道', value: 'sanlitun', isLeaf: true },
-        { text: '国贸', value: 'guomao', isLeaf: true },
+        { text: 'Wangjing', value: 'wangjing', isLeaf: true },
+        { text: 'Sanlitun', value: 'sanlitun', isLeaf: true },
+        { text: 'Guomao', value: 'guomao', isLeaf: true },
       ],
     };
     return map[String(option.value)] || [];
   };
 
   return (
-    <MobilePreview title="Cascader 级联选择" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      {/* 地区选择 */}
+    <MobilePreview title="Cascader" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+      {/* Region Selection */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.cascaderRegion')}</div>
         <div style={CARD.desc}>{t('demo.cascaderRegionMobileDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title={t('demo.selectRegion')}
-              value={val1().length ? val1().join(' / ') : t('demo.pleaseSelect')}
+              title="Select Region"
+              value={val1().length ? val1().join(' / ') : 'Please select'}
               clickable
               onClick={() => setShow1(true)}
             />
@@ -147,21 +147,21 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
             onUpdateShow={setShow1}
             value={val1()}
             onChange={setVal1}
-            title={t('demo.selectRegion')}
+            title="Select Region"
             closeable
           />
         </div>
       </div>
 
-      {/* 禁用选项 */}
+      {/* Disabled Options */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.cascaderDisabled')}</div>
         <div style={CARD.desc}>{t('demo.cascaderDisabledMobileDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title={t('demo.partialDisabled')}
-              value={val2().length ? val2().join(' / ') : t('demo.pleaseSelect')}
+              title="Partial Disabled"
+              value={val2().length ? val2().join(' / ') : 'Please select'}
               clickable
               onClick={() => setShow2(true)}
             />
@@ -172,20 +172,20 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
             onUpdateShow={setShow2}
             value={val2()}
             onChange={setVal2}
-            title={t('demo.cityPartialDisabled')}
+            title="Cities (Partial Disabled)"
           />
         </div>
       </div>
 
-      {/* 自定义渲染 */}
+      {/* Custom Render */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.customRender')}</div>
         <div style={CARD.desc}>{t('demo.customRenderDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title={t('demo.selectProvince')}
-              value={val3().length ? val3().join(' / ') : t('demo.pleaseSelect')}
+              title="Select Province"
+              value={val3().length ? val3().join(' / ') : 'Please select'}
               clickable
               onClick={() => setShow3(true)}
             />
@@ -196,21 +196,21 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
             onUpdateShow={setShow3}
             value={val3()}
             onChange={setVal3}
-            title={t('demo.provinceCustomRender')}
+            title="Province (Custom Render)"
             checkmark={<Icon name="check" size={16} color="var(--sc-color-primary, #1677ff)" />}
           />
         </div>
       </div>
 
-      {/* 异步加载 */}
+      {/* Async Load */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.cascaderAsync')}</div>
         <div style={CARD.desc}>{t('demo.cascaderAsyncMobileDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title={t('demo.selectRegion')}
-              value={val4().length ? val4().join(' → ') : t('demo.pleaseSelect')}
+              title="Select Region"
+              value={val4().length ? val4().join(' → ') : 'Please select'}
               clickable
               onClick={() => setShow4(true)}
             />
@@ -222,12 +222,12 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
             onUpdateShow={setShow4}
             value={val4()}
             onChange={setVal4}
-            title={t('demo.asyncLoadRegion')}
+            title="Async Load Region"
             closeable
             loading={
               <div style={{ 'text-align': 'center', padding: '32px', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>
                 <Loading size={24} />
-                <div style={{ 'margin-top': '8px', 'font-size': '0.8rem' }}>{t('demo.loadingRegionData')}</div>
+                <div style={{ 'margin-top': '8px', 'font-size': '0.8rem' }}>Loading region data...</div>
               </div>
             }
           />

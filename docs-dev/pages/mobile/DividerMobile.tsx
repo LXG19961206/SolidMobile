@@ -26,15 +26,15 @@ const CARD = {
 export const DividerMobile: Component<DividerMobileProps> = (props) => {
   const t = useT();
   return (
-    <MobilePreview title="Divider 分割线" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title="Divider" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础水平 */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.horizontalBasic')}</div>
         <div style={CARD.desc}>{t('demo.horizontalBasicDesc')}</div>
         <div style={CARD.body}>
-          <div style={{ padding: '12px 0' }}>上方内容</div>
+          <div style={{ padding: '12px 0' }}>Content above</div>
           <Divider />
-          <div style={{ padding: '12px 0' }}>下方内容</div>
+          <div style={{ padding: '12px 0' }}>Content below</div>
         </div>
       </div>
 
@@ -43,11 +43,11 @@ export const DividerMobile: Component<DividerMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.dividerText')}</div>
         <div style={CARD.desc}>{t('demo.dividerTextDesc')}</div>
         <div style={CARD.body}>
-          <Divider text="我是分割线" />
+          <Divider text="I am a divider" />
           <div style={{ height: '16px' }} />
-          <Divider text="或者这样" />
+          <Divider text="Or like this" />
           <div style={{ height: '16px' }} />
-          <Divider text="没有更多了" />
+          <Divider text="No more content" />
         </div>
       </div>
 
@@ -58,7 +58,7 @@ export const DividerMobile: Component<DividerMobileProps> = (props) => {
         <div style={CARD.body}>
           <Divider dashed />
           <div style={{ height: '16px' }} />
-          <Divider dashed text="虚线文字" />
+          <Divider dashed text="Dashed text" />
         </div>
       </div>
 
@@ -69,9 +69,9 @@ export const DividerMobile: Component<DividerMobileProps> = (props) => {
         <div style={CARD.body}>
           <Divider color="var(--sc-color-primary, #1677ff)" size={2} />
           <div style={{ height: '16px' }} />
-          <Divider color="#ef4444" text="红色警告" size={2} />
+          <Divider color="#ef4444" text="Red warning" size={2} />
           <div style={{ height: '16px' }} />
-          <Divider color="#22c55e" dashed text="绿色虚线" />
+          <Divider color="#22c55e" dashed text="Green dashed" />
         </div>
       </div>
 
@@ -80,13 +80,13 @@ export const DividerMobile: Component<DividerMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.verticalDividerDemo')}</div>
         <div style={CARD.desc}>{t('demo.verticalDividerDemoDesc')}</div>
         <div style={{ ...CARD.body, display: 'flex' as const, 'align-items': 'center' as const, height: '40px', gap: '12px' }}>
-          <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>文字一</span>
+          <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>Text One</span>
           <Divider direction="vertical" />
-          <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>文字二</span>
+          <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>Text Two</span>
           <Divider direction="vertical" dashed color="var(--sc-color-primary, #1677ff)" />
-          <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>文字三</span>
+          <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>Text Three</span>
           <Divider direction="vertical" color="#ef4444" size={2} />
-          <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>文字四</span>
+          <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>Text Four</span>
         </div>
       </div>
     </MobilePreview>

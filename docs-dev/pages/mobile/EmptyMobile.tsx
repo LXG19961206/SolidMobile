@@ -25,13 +25,13 @@ const CARD = {
 export const EmptyMobile: Component<EmptyMobileProps> = (props) => {
   const t = useT();
   return (
-    <MobilePreview title="Empty 空状态" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title="Empty" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.basic')}</div>
         <div style={CARD.desc}>{t('demo.basicDesc')}</div>
         <div style={CARD.body}>
-          <Empty description="暂无数据" />
+          <Empty description="No data" />
         </div>
       </div>
 
@@ -41,13 +41,13 @@ export const EmptyMobile: Component<EmptyMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.emptyPresetDesc')}</div>
         <div style={{ ...CARD.body, display: 'flex' as const, gap: '12px', 'justify-content': 'space-around' }}>
           <div style={{ flex: 1 }}>
-            <Empty image="default" description="暂无数据" />
+            <Empty image="default" description="No data" />
           </div>
           <div style={{ flex: 1 }}>
-            <Empty image="network" description="网络异常" />
+            <Empty image="network" description="Network error" />
           </div>
           <div style={{ flex: 1 }}>
-            <Empty image="search" description="未找到结果" />
+            <Empty image="search" description="No results found" />
           </div>
         </div>
       </div>
@@ -57,8 +57,8 @@ export const EmptyMobile: Component<EmptyMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.emptyChildren')}</div>
         <div style={CARD.desc}>{t('demo.emptyChildrenDesc')}</div>
         <div style={CARD.body}>
-          <Empty description="购物车是空的">
-            <Button type="primary" text="去逛逛" size="sm" style={{ 'margin-top': '8px' }} />
+          <Empty description="Your cart is empty">
+            <Button type="primary" text="Go shopping" size="sm" style={{ 'margin-top': '8px' }} />
           </Empty>
         </div>
       </div>
@@ -70,9 +70,9 @@ export const EmptyMobile: Component<EmptyMobileProps> = (props) => {
         <div style={CARD.body}>
           <Empty
             image={<div style={{ 'font-size': '3rem' }}>📭</div>}
-            description="自定义空状态"
+            description="Custom empty state"
           >
-            <Button type="primary" text="刷新" size="sm" style={{ 'margin-top': '8px' }} />
+            <Button type="primary" text="Refresh" size="sm" style={{ 'margin-top': '8px' }} />
           </Empty>
         </div>
       </div>

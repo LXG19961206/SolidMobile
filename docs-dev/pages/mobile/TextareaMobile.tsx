@@ -42,8 +42,8 @@ export const TextareaMobile: Component<TextareaMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.textareaBasic')}</div>
         <div style={CARD.desc}>{t('demo.textareaBasicMobileDesc')}</div>
         <div style={CARD.body}>
-          <Textarea placeholder={t('demo.textareaPlaceholderMulti')} rows={3} />
-          <Textarea placeholder={t('demo.textareaPlaceholderMore')} rows={5} />
+          <Textarea placeholder="Enter multiple lines..." rows={3} />
+          <Textarea placeholder="Enter more content..." rows={5} />
         </div>
       </div>
 
@@ -52,7 +52,7 @@ export const TextareaMobile: Component<TextareaMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.textareaAutoSize')}</div>
         <div style={CARD.desc}>{t('demo.textareaAutoSizeMobileDesc')}</div>
         <div style={CARD.body}>
-          <Textarea placeholder={t('demo.textareaPlaceholderAuto')} autoSize onChange={setVal1} value={val1()} />
+          <Textarea placeholder="Type to auto-expand..." autoSize onChange={setVal1} value={val1()} />
         </div>
       </div>
 
@@ -61,7 +61,7 @@ export const TextareaMobile: Component<TextareaMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.textareaCharCount')}</div>
         <div style={CARD.desc}>{t('demo.textareaCharCountMobileDesc')}</div>
         <div style={CARD.body}>
-          <Textarea placeholder={t('demo.textareaPlaceholderMax')} maxlength={100} showCount clearable onChange={setVal2} value={val2()} />
+          <Textarea placeholder="Max 100 characters..." maxlength={100} showCount clearable onChange={setVal2} value={val2()} />
         </div>
       </div>
 
@@ -69,9 +69,9 @@ export const TextareaMobile: Component<TextareaMobileProps> = (props) => {
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.textareaStates')}</div>
         <div style={CARD.body}>
-          <Textarea placeholder={t('demo.disabled')} disabled />
-          <Textarea placeholder={t('demo.textareaReadonly')} readonly value={t('demo.textareaReadonlyContent')} />
-          <Textarea placeholder={t('demo.textareaError')} error />
+          <Textarea placeholder="Disabled" disabled />
+          <Textarea placeholder="Read only" readonly value="This is read-only content." />
+          <Textarea placeholder="Error state" error />
         </div>
       </div>
     </MobilePreview>

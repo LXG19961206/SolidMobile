@@ -55,7 +55,7 @@ export const SafeAreaMobile: Component<SafeAreaMobileProps> = (props) => {
             </code>
             <br />
             <code style={{ background: 'var(--sc-doc-card-placeholder, #f3f4f6)', padding: '2px 6px', 'border-radius': '3px', 'font-size': '0.75rem' }}>
-              {'<NavBar title="页面标题" fixed placeholder />'}
+              {'<NavBar title="Page Title" fixed placeholder />'}
             </code>
             <br /><br />
             <span>{t('demo.contentArea')}</span>

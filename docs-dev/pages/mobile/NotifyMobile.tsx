@@ -36,10 +36,10 @@ export const NotifyMobile: Component<NotifyMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.notifyTypes')}</div>
         <div style={CARD.desc}>{t('demo.notifyTypesDesc')}</div>
         <div style={CARD.body}>
-          <Button type="primary" size="sm" text="Primary" onClick={() => Notify.primary('主色通知栏')} />
-          <Button type="success" size="sm" text="Success" onClick={() => Notify.success('操作成功！')} />
-          <Button type="warning" size="sm" text="Warning" onClick={() => Notify.warning('请注意检查')} />
-          <Button type="danger" size="sm" text="Danger" onClick={() => Notify.danger('操作失败')} />
+          <Button type="primary" size="sm" text="Primary" onClick={() => Notify.primary('Primary notification')} />
+          <Button type="success" size="sm" text="Success" onClick={() => Notify.success('Operation successful!')} />
+          <Button type="warning" size="sm" text="Warning" onClick={() => Notify.warning('Please check carefully')} />
+          <Button type="danger" size="sm" text="Danger" onClick={() => Notify.danger('Operation failed')} />
         </div>
       </div>
 
@@ -48,8 +48,8 @@ export const NotifyMobile: Component<NotifyMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.position')}</div>
         <div style={CARD.desc}>{t('demo.positionDesc')}</div>
         <div style={CARD.body}>
-          <Button variant="outline" size="sm" text={t('demo.top')} onClick={() => Notify.show({ message: '顶部通知', type: 'primary', position: 'top', duration: 2000 })} />
-          <Button variant="outline" size="sm" text={t('demo.bottom')} onClick={() => Notify.show({ message: '底部通知', type: 'success', position: 'bottom', duration: 2000 })} />
+          <Button variant="outline" size="sm" text={t('demo.top')} onClick={() => Notify.show({ message: 'Top notification', type: 'primary', position: 'top', duration: 2000 })} />
+          <Button variant="outline" size="sm" text={t('demo.bottom')} onClick={() => Notify.show({ message: 'Bottom notification', type: 'success', position: 'bottom', duration: 2000 })} />
         </div>
       </div>
 
@@ -58,8 +58,8 @@ export const NotifyMobile: Component<NotifyMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.customStyle')}</div>
         <div style={CARD.desc}>{t('demo.notifyCustomDesc')}</div>
         <div style={CARD.body}>
-          <Button variant="outline" size="sm" text={t('demo.customColor')} onClick={() => Notify.show({ message: '自定义通知', background: '#6366f1', color: '#fff', duration: 2000 })} />
-          <Button variant="outline" size="sm" text={t('demo.longDuration')} onClick={() => Notify.show({ message: '不会自动消失（duration=0）', type: 'warning', duration: 0 })} />
+          <Button variant="outline" size="sm" text={t('demo.customColor')} onClick={() => Notify.show({ message: 'Custom notification', background: '#6366f1', color: '#fff', duration: 2000 })} />
+          <Button variant="outline" size="sm" text={t('demo.longDuration')} onClick={() => Notify.show({ message: 'Persistent notification (duration=0)', type: 'warning', duration: 0 })} />
         </div>
       </div>
     </MobilePreview>

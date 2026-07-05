@@ -89,16 +89,16 @@ export const ButtonMobile: Component<ButtonMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.buttonRoundBlockMobileDesc')}</div>
         <div style={{ ...CARD.body, 'flex-direction': 'column' as const }}>
           <div style={{ display: 'flex' as const, gap: '8px' }}>
-            <Button type="primary" round text={t('demo.buttonCapsule')} />
+            <Button type="primary" round text="Capsule" />
             <Button type="danger" variant="outline" round text="Danger" />
             <Button variant="ghost" round text="Ghost" />
           </div>
           <div style={{ width: '100%' }}>
-            <Button type="primary" block round size="lg" text={t('demo.buttonBuyNow')} />
+            <Button type="primary" block round size="lg" text="Buy Now" />
           </div>
           <div style={{ width: '100%', display: 'flex' as const, gap: '8px' }}>
-            <Button variant="outline" block text={t('demo.buttonAddToCart')} />
-            <Button variant="ghost" block text={t('demo.buttonFavorite')} />
+            <Button variant="outline" block text="Add to Cart" />
+            <Button variant="ghost" block text="Favorite" />
           </div>
         </div>
       </div>
@@ -108,11 +108,11 @@ export const ButtonMobile: Component<ButtonMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.iconText')}</div>
         <div style={CARD.desc}>{t('demo.buttonIconMobileDesc')}</div>
         <div style={CARD.body}>
-          <Button icon="star" text={t('demo.buttonFavorite')} />
-          <Button icon="arrow-right" text={t('demo.buttonNext')} iconPosition="right" type="primary" />
-          <Button icon="edit" text={t('demo.buttonEdit')} variant="outline" />
-          <Button icon="search" aria-label={t('demo.buttonSearch')} variant="ghost" />
-          <Button icon="settings" aria-label={t('demo.buttonSettings')} variant="ghost" />
+          <Button icon="star" text="Favorite" />
+          <Button icon="arrow-right" text="Next" iconPosition="right" type="primary" />
+          <Button icon="edit" text="Edit" variant="outline" />
+          <Button icon="search" aria-label="Search" variant="ghost" />
+          <Button icon="settings" aria-label="Settings" variant="ghost" />
         </div>
       </div>
 
@@ -121,7 +121,7 @@ export const ButtonMobile: Component<ButtonMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.buttonLoadingDisabled')}</div>
         <div style={CARD.desc}>{t('demo.buttonLoadingDisabledMobileDesc')}</div>
         <div style={CARD.body}>
-          <Button type="primary" text={loading() ? t('demo.buttonSubmitting') : t('demo.buttonClickSubmit')} loading={loading()} loadingText={t('demo.buttonSubmitting')} onClick={handleLoading} />
+          <Button type="primary" text={loading() ? 'Submitting...' : 'Click to Submit'} loading={loading()} loadingText="Submitting..." onClick={handleLoading} />
           <Button type="primary" text="Disabled" disabled />
           <Button variant="outline" text="Disabled" disabled />
           <Button type="danger" text="Disabled" disabled />

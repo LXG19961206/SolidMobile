@@ -41,91 +41,91 @@ export const TabsMobile: Component<TabsMobileProps> = (props) => {
 
   return (
     <MobilePreview title={t('demo.tabsMobileTitle')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      {/* 基础 line 模式 */}
+      {/* Line Mode */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.lineMode')}</div>
         <div style={CARD.desc}>{t('demo.lineModeDesc')}</div>
         <div style={CARD.body}>
           <Tabs active={active1()} onChange={setActive1}>
-            <Tab name={0} title={t('demo.tabLabel1')}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabContent1')}</div>
+            <Tab name={0} title="Tab 1">
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Content 1</div>
             </Tab>
-            <Tab name={1} title={t('demo.tabLabel2')}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabContent2')}</div>
+            <Tab name={1} title="Tab 2">
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Content 2</div>
             </Tab>
-            <Tab name={2} title={t('demo.tabLabel3')}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabContent3')}</div>
+            <Tab name={2} title="Tab 3">
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Content 3</div>
             </Tab>
           </Tabs>
         </div>
       </div>
 
-      {/* card 模式 */}
+      {/* Card Mode */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.cardMode')}</div>
         <div style={CARD.desc}>{t('demo.cardModeDesc')}</div>
         <div style={CARD.body}>
           <Tabs type="card" active={active2()} onChange={setActive2}>
-            <Tab name={0} title={t('demo.tabOptionA')}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabCardContentA')}</div>
+            <Tab name={0} title="Option A">
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Card content A</div>
             </Tab>
-            <Tab name={1} title={t('demo.tabOptionB')}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabCardContentB')}</div>
+            <Tab name={1} title="Option B">
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Card content B</div>
             </Tab>
-            <Tab name={2} title={t('demo.tabOptionC')}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabCardContentC')}</div>
+            <Tab name={2} title="Option C">
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Card content C</div>
             </Tab>
           </Tabs>
         </div>
       </div>
 
-      {/* 自定义颜色 */}
+      {/* Custom Color */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.tabsCustomColor')}</div>
         <div style={CARD.desc}>{t('demo.tabsCustomColorDesc')}</div>
         <div style={CARD.body}>
           <Tabs active={active3()} onChange={setActive3} color="#22c55e" border>
-            <Tab name="a" title={t('demo.tabAll')}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabAllOrders')}</div>
+            <Tab name="a" title="All">
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>All Orders</div>
             </Tab>
-            <Tab name="b" title={t('demo.tabPendingPayment')}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabPendingOrders')}</div>
+            <Tab name="b" title="Pending Payment">
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Pending Orders</div>
             </Tab>
-            <Tab name="c" title={t('demo.tabCompleted')}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabCompletedOrders')}</div>
+            <Tab name="c" title="Completed">
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Completed Orders</div>
             </Tab>
           </Tabs>
         </div>
       </div>
 
-      {/* 图标标题 */}
+      {/* Icon Titles */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.tabsIconTitle')}</div>
         <div style={CARD.desc}>{t('demo.tabsIconTitleDesc')}</div>
         <div style={CARD.body}>
           <Tabs defaultActive={0}>
-            <Tab name={0} title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '4px' }}><Icon name="home" size={16} /> {t('demo.tabHome')}</span>}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabHomeContent')}</div>
+            <Tab name={0} title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '4px' }}><Icon name="home" size={16} /> Home</span>}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Home content</div>
             </Tab>
-            <Tab name={1} title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '4px' }}><Icon name="heart" size={16} /> {t('demo.tabFavorites')}</span>}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabFavoritesContent')}</div>
+            <Tab name={1} title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '4px' }}><Icon name="heart" size={16} /> Favorites</span>}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Favorites content</div>
             </Tab>
-            <Tab name={2} title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '4px' }}><Icon name="user" size={16} /> {t('demo.tabProfile')}</span>}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabProfileContent')}</div>
+            <Tab name={2} title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '4px' }}><Icon name="user" size={16} /> Profile</span>}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Profile content</div>
             </Tab>
           </Tabs>
         </div>
       </div>
 
-      {/* 禁用 */}
+      {/* Disabled */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.tabsDisabled')}</div>
         <div style={CARD.desc}>{t('demo.tabsDisabledDesc')}</div>
         <div style={CARD.body}>
           <Tabs defaultActive={0}>
-            <Tab name={0} title={t('demo.tabNormal')} />
-            <Tab name={1} title={t('demo.disabledLabel')} disabled />
-            <Tab name={2} title={t('demo.tabNormal')} />
+            <Tab name={0} title="Normal" />
+            <Tab name={1} title="Disabled" disabled />
+            <Tab name={2} title="Normal" />
           </Tabs>
         </div>
       </div>

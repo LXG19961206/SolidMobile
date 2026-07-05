@@ -38,84 +38,84 @@ const CARD = {
 
 const cityTree: PickerOption[] = [
   {
-    text: '北京', value: 'bj', children: [
-      { text: '海淀区', value: 'hd' }, { text: '朝阳区', value: 'cy' }, { text: '东城区', value: 'dc' },
+    text: 'Beijing', value: 'bj', children: [
+      { text: 'Haidian', value: 'hd' }, { text: 'Chaoyang', value: 'cy' }, { text: 'Dongcheng', value: 'dc' },
     ],
   },
   {
-    text: '上海', value: 'sh', children: [
-      { text: '浦东新区', value: 'pd' }, { text: '静安区', value: 'ja' },
+    text: 'Shanghai', value: 'sh', children: [
+      { text: 'Pudong', value: 'pd' }, { text: "Jing'an", value: 'ja' },
     ],
   },
   {
-    text: '广东', value: 'gd', children: [
+    text: 'Guangdong', value: 'gd', children: [
       {
-        text: '深圳市', value: 'sz', children: [
-          { text: '南山区', value: 'ns' }, { text: '福田区', value: 'ft' },
+        text: 'Shenzhen', value: 'sz', children: [
+          { text: 'Nanshan', value: 'ns' }, { text: 'Futian', value: 'ft' },
         ],
       },
-      { text: '广州市', value: 'gz', children: [{ text: '天河区', value: 'th' }] },
+      { text: 'Guangzhou', value: 'gz', children: [{ text: 'Tianhe', value: 'th' }] },
     ],
   },
 ];
 
 const thisYear = new Date().getFullYear();
 const dateCols: PickerOption[][] = [
-  Array.from({ length: 10 }, (_, i) => ({ text: `${thisYear - 5 + i}年`, value: thisYear - 5 + i })),
-  Array.from({ length: 12 }, (_, i) => ({ text: `${i + 1}月`, value: i + 1 })),
+  Array.from({ length: 10 }, (_, i) => ({ text: `${thisYear - 5 + i}`, value: thisYear - 5 + i })),
+  Array.from({ length: 12 }, (_, i) => ({ text: `${String(i + 1).padStart(2, '0')}`, value: i + 1 })),
 ];
 
 const timeCols: PickerOption[][] = [
-  Array.from({ length: 24 }, (_, i) => ({ text: `${String(i).padStart(2, '0')}时`, value: i })),
-  Array.from({ length: 60 }, (_, i) => ({ text: `${String(i).padStart(2, '0')}分`, value: i })),
+  Array.from({ length: 24 }, (_, i) => ({ text: `${String(i).padStart(2, '0')}h`, value: i })),
+  Array.from({ length: 60 }, (_, i) => ({ text: `${String(i).padStart(2, '0')}m`, value: i })),
 ];
 
 const disabledCols: PickerOption[][] = [[
-  { text: '选项 A', value: 'a' },
-  { text: '选项 B (禁用)', value: 'b', disabled: true },
-  { text: '选项 C', value: 'c' },
-  { text: '选项 D (禁用)', value: 'd', disabled: true },
-  { text: '选项 E', value: 'e' },
+  { text: 'Option A', value: 'a' },
+  { text: 'Option B (disabled)', value: 'b', disabled: true },
+  { text: 'Option C', value: 'c' },
+  { text: 'Option D (disabled)', value: 'd', disabled: true },
+  { text: 'Option E', value: 'e' },
 ]];
 
 export const PickerMobile: Component<PickerMobileProps> = (props) => {
   const t = useT();
-  /* ── Tree 级联 ── */
+  /* ── Tree cascade ── */
   const [showCity, setShowCity] = createSignal(false);
   const [cityVal, setCityVal] = createSignal<(string | number)[]>([]);
   const [cityLabel, setCityLabel] = createSignal('');
 
-  /* ── Flat 年月 ── */
+  /* ── Flat year/month ── */
   const [showDate, setShowDate] = createSignal(false);
   const [dateVal, setDateVal] = createSignal<(string | number)[]>([]);
   const [dateLabel, setDateLabel] = createSignal('');
 
-  /* ── 时分 ── */
+  /* ── Time ── */
   const [showTime, setShowTime] = createSignal(false);
   const [timeLabel, setTimeLabel] = createSignal('');
 
-  /* ── 禁用项 ── */
+  /* ── Disabled options ── */
   const [showDisabled, setShowDisabled] = createSignal(false);
   const [disabledVal, setDisabledVal] = createSignal<(string | number)[]>([]);
 
-  /* ── 占位符 ── */
+  /* ── Placeholder ── */
   const [showPh, setShowPh] = createSignal(false);
   const [phLabel, setPhLabel] = createSignal('');
 
-  /* ── 受控值 ── */
+  /* ── Controlled value ── */
   const [showCtrl, setShowCtrl] = createSignal(false);
 
   return (
-    <MobilePreview title="Picker 选择器" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      {/* Tree 级联 */}
+    <MobilePreview title="Picker" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+      {/* Tree cascade */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.cascade')}</div>
         <div style={CARD.desc}>{t('demo.cascadeDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title={t('demo.selectRegion')}
-              value={cityLabel() || t('demo.pleaseSelect')}
+              title="Select Region"
+              value={cityLabel() || "Please select"}
               clickable
               onClick={() => setShowCity(true)}
             />
@@ -124,7 +124,7 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
             columns={cityTree}
             show={showCity()}
             onUpdateShow={setShowCity}
-            title={t('demo.selectRegion')}
+            title="Select Region"
             onChange={(_, v) => setCityVal(v)}
             onConfirm={(items, _) => {
               setCityLabel(items.map(i => i.text).join(' / '));
@@ -135,15 +135,15 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* Flat 年月 */}
+      {/* Flat year/month */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.flat')}</div>
         <div style={CARD.desc}>{t('demo.flatDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title={t('demo.selectYearMonth')}
-              value={dateLabel() || t('demo.pleaseSelect')}
+              title="Select Year/Month"
+              value={dateLabel() || "Please select"}
               clickable
               onClick={() => setShowDate(true)}
             />
@@ -152,7 +152,7 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
             columns={dateCols}
             show={showDate()}
             onUpdateShow={setShowDate}
-            title={t('demo.selectYearMonth')}
+            title="Select Year/Month"
             onChange={(_, v) => setDateVal(v)}
             onConfirm={(items, _) => {
               setDateLabel(items.map(i => i.text).join(' / '));
@@ -163,15 +163,15 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 时分选择 */}
+      {/* Time picker */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.timeSelect')}</div>
         <div style={CARD.desc}>{t('demo.timeSelectDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title={t('demo.selectTime')}
-              value={timeLabel() || t('demo.pleaseSelect')}
+              title="Select Time"
+              value={timeLabel() || "Please select"}
               clickable
               onClick={() => setShowTime(true)}
             />
@@ -180,7 +180,7 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
             columns={timeCols}
             show={showTime()}
             onUpdateShow={setShowTime}
-            title={t('demo.selectTime')}
+            title="Select Time"
             onChange={(_, v) => setTimeLabel(`${String(v[0]).padStart(2, '0')}:${String(v[1]).padStart(2, '0')}`)}
             onConfirm={(_items, v) => {
               setTimeLabel(`${String(v[0]).padStart(2, '0')}:${String(v[1]).padStart(2, '0')}`);
@@ -191,15 +191,15 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 禁用选项 */}
+      {/* Disabled options */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.disabled')}</div>
         <div style={CARD.desc}>{t('demo.disabledDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title={t('demo.withDisabled')}
-              value={disabledVal().length ? String(disabledVal()) : t('demo.pleaseSelect')}
+              title="With Disabled Items"
+              value={disabledVal().length ? String(disabledVal()) : "Please select"}
               clickable
               onClick={() => setShowDisabled(true)}
             />
@@ -208,7 +208,7 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
             columns={disabledCols}
             show={showDisabled()}
             onUpdateShow={setShowDisabled}
-            title={t('demo.actionOptions')}
+            title="Options"
             onChange={(_, v) => setDisabledVal(v)}
             onConfirm={(_, v) => { setDisabledVal(v); setShowDisabled(false); }}
             onCancel={() => setShowDisabled(false)}
@@ -216,25 +216,25 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 占位符 */}
+      {/* Placeholder */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.placeholder')}</div>
         <div style={CARD.desc}>{t('demo.placeholderDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title={t('demo.placeholderMode')}
-              value={phLabel() || t('demo.pleaseSelect')}
+              title="Placeholder Mode"
+              value={phLabel() || "Please select"}
               clickable
               onClick={() => setShowPh(true)}
             />
           </CellGroup>
           <Picker
-            columns={[[{ text: '选项 1', value: 1 }, { text: '选项 2', value: 2 }, { text: '选项 3', value: 3 }]]}
+            columns={[[{ text: 'Option 1', value: 1 }, { text: 'Option 2', value: 2 }, { text: 'Option 3', value: 3 }]]}
             show={showPh()}
             onUpdateShow={setShowPh}
-            title={t('demo.pleaseSelect')}
-            placeholders={t('demo.pleaseSelect')}
+            title="Please select"
+            placeholders="Please select"
             onChange={(items, vals) => setPhLabel(vals[0] ? String(items[0]?.text ?? '') : '')}
             onConfirm={(items, vals) => {
               setPhLabel(vals[0] ? String(items[0]?.text ?? '') : '');
@@ -245,19 +245,19 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 受控值 */}
+      {/* Controlled value */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.controlled')}</div>
         <div style={CARD.desc}>{t('demo.controlledDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title={t('demo.presetValue')} value="北京 / 海淀区" clickable onClick={() => setShowCtrl(true)} />
+            <Cell title="Preset Value" value="Beijing / Haidian" clickable onClick={() => setShowCtrl(true)} />
           </CellGroup>
           <Picker
             columns={cityTree}
             show={showCtrl()}
             onUpdateShow={setShowCtrl}
-            title={t('demo.selectRegion')}
+            title="Select Region"
             value={['bj', 'hd']}
             onConfirm={() => setShowCtrl(false)}
             onCancel={() => setShowCtrl(false)}

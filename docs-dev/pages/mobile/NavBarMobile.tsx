@@ -35,14 +35,14 @@ const CARD = {
 export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
   const t = useT();
   return (
-    <MobilePreview title="NavBar 导航栏" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title="NavBar" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.basicTitle')}</div>
         <div style={CARD.desc}>{t('demo.basicTitleDesc')}</div>
         <div style={CARD.body}>
           <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
-            <NavBar title="页面标题" border />
+            <NavBar title="Page Title" border />
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.navBackArrowDesc')}</div>
         <div style={CARD.body}>
           <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
-            <NavBar title="详情页" backArrow onBack={() => {}} border />
+            <NavBar title="Details" backArrow onBack={() => {}} border />
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
         <div style={{ ...CARD.body, display: 'flex' as const, 'flex-direction': 'column' as const, gap: '12px' }}>
           <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
             <NavBar
-              title="消息"
+              title="Messages"
               left={<Icon name="user" size={20} />}
               right={<Icon name="settings" size={20} />}
               border
@@ -73,9 +73,9 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
           </div>
           <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
             <NavBar
-              title="编辑"
-              left={<span style={{ 'font-size': '0.9rem', color: 'var(--sc-color-primary, #1677ff)' }}>取消</span>}
-              right={<span style={{ 'font-size': '0.9rem', color: 'var(--sc-color-primary, #1677ff)' }}>完成</span>}
+              title="Edit"
+              left={<span style={{ 'font-size': '0.9rem', color: 'var(--sc-color-primary, #1677ff)' }}>Cancel</span>}
+              right={<span style={{ 'font-size': '0.9rem', color: 'var(--sc-color-primary, #1677ff)' }}>Done</span>}
               border
             />
           </div>
@@ -88,7 +88,7 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.customNavStyleDesc')}</div>
         <div style={CARD.body}>
           <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
-            <NavBar title="品牌色导航" background="#1677ff" color="#fff" backArrow onBack={() => {}} />
+            <NavBar title="Brand NavBar" background="#1677ff" color="#fff" backArrow onBack={() => {}} />
           </div>
         </div>
       </div>

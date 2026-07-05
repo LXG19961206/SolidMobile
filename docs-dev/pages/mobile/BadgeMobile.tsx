@@ -33,7 +33,7 @@ const AVATAR_URL = 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix';
 export const BadgeMobile: Component<BadgeMobileProps> = (props) => {
   const t = useT();
   return (
-    <MobilePreview title="Badge 徽标" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title="Badge" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 配头像 — 最常见场景 */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.withAvatar')}</div>
@@ -60,13 +60,13 @@ export const BadgeMobile: Component<BadgeMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.withButtonDesc')}</div>
         <div style={{ ...CARD.body, gap: '12px' }}>
           <Badge content={3}>
-            <Button size="sm">消息</Button>
+            <Button size="sm">Messages</Button>
           </Badge>
           <Badge content={8}>
-            <Button size="sm" variant="outline">订单</Button>
+            <Button size="sm" variant="outline">Orders</Button>
           </Badge>
           <Badge dot>
-            <Button size="sm" variant="ghost">系统</Button>
+            <Button size="sm" variant="ghost">System</Button>
           </Badge>
         </div>
       </div>
@@ -79,15 +79,15 @@ export const BadgeMobile: Component<BadgeMobileProps> = (props) => {
           <Tabs defaultActive="all">
             <Tab
               name="all"
-              title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '6px' }}>全部 <Badge content={12} /></span>}
+              title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '6px' }}>All <Badge content={12} /></span>}
             />
             <Tab
               name="pending"
-              title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '6px' }}>待处理 <Badge dot /></span>}
+              title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '6px' }}>Pending <Badge dot /></span>}
             />
             <Tab
               name="done"
-              title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '6px' }}>已完成 <Badge content={99} max={99} /></span>}
+              title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '6px' }}>Done <Badge content={99} max={99} /></span>}
             />
           </Tabs>
         </div>
@@ -99,10 +99,10 @@ export const BadgeMobile: Component<BadgeMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.withCellDesc')}</div>
         <div style={{ padding: '0 16px 16px' }}>
           <CellGroup>
-            <Cell title="系统消息" value={<Badge content={5} />} clickable onClick={() => {}} icon="notification" />
-            <Cell title="活动通知" value={<Badge dot />} clickable onClick={() => {}} icon="mail" />
-            <Cell title="版本更新" value={<Badge content="新" color="#22c55e" />} clickable onClick={() => {}} icon="settings" />
-            <Cell title="安全提醒" clickable onClick={() => {}} icon="shield" />
+            <Cell title="System Message" value={<Badge content={5} />} clickable onClick={() => {}} icon="notification" />
+            <Cell title="Event Notice" value={<Badge dot />} clickable onClick={() => {}} icon="mail" />
+            <Cell title="Version Update" value={<Badge content="New" color="#22c55e" />} clickable onClick={() => {}} icon="settings" />
+            <Cell title="Security Alert" clickable onClick={() => {}} icon="shield" />
           </CellGroup>
         </div>
       </div>
@@ -132,9 +132,9 @@ export const BadgeMobile: Component<BadgeMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.badgeStandalone')}</div>
         <div style={CARD.desc}>{t('demo.badgeStandaloneDesc')}</div>
         <div style={{ ...CARD.body, 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>
-          <span>新消息 <Badge content={99} /></span>
-          <span><Badge dot /> 在线</span>
-          <span>已完成 <Badge content="✓" color="#22c55e" /></span>
+          <span>New messages <Badge content={99} /></span>
+          <span><Badge dot /> Online</span>
+          <span>Done <Badge content="✓" color="#22c55e" /></span>
         </div>
       </div>
     </MobilePreview>
