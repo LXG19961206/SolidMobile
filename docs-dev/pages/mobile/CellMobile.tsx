@@ -39,51 +39,51 @@ export const CellMobile: Component<CellMobileProps> = (props) => {
     <MobilePreview title="Cell 单元格" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础单元格</div>
-        <div style={CARD.desc}>title 标题 + value 右侧内容</div>
+        <div style={CARD.title}>{t('demo.cellBasicTitle')}</div>
+        <div style={CARD.desc}>{t('demo.cellBasicMobileDesc')}</div>
         <div style={CARD.body}>
-          <CellGroup title="基础信息">
-            <Cell title="姓名" value="张三" />
-            <Cell title="手机号" value="138****8888" />
-            <Cell title="地址" value="北京市海淀区" />
+          <CellGroup title={t('demo.basicInfo')}>
+            <Cell title={t('demo.name')} value="张三" />
+            <Cell title={t('demo.phone')} value="138****8888" />
+            <Cell title={t('demo.address')} value="北京市海淀区" />
           </CellGroup>
         </div>
       </div>
 
       {/* 可点击 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>可点击 & 图标</div>
-        <div style={CARD.desc}>clickable 显示右侧箭头，icon 显示左侧图标</div>
+        <div style={CARD.title}>{t('demo.clickableAndIcon')}</div>
+        <div style={CARD.desc}>{t('demo.clickableAndIconMobileDesc')}</div>
         <div style={CARD.body}>
-          <CellGroup title="个人中心">
-            <Cell title="我的订单" icon="shopping-bag" clickable onClick={() => {}} />
-            <Cell title="我的收藏" icon="heart" clickable onClick={() => {}} />
-            <Cell title="地址管理" icon="map-pin" clickable onClick={() => {}} />
-            <Cell title="设置" icon="settings" clickable onClick={() => {}} />
+          <CellGroup title={t('demo.personalCenter')}>
+            <Cell title={t('demo.myOrders')} icon="shopping-bag" clickable onClick={() => {}} />
+            <Cell title={t('demo.myFavorites')} icon="heart" clickable onClick={() => {}} />
+            <Cell title={t('demo.addressManagement')} icon="map-pin" clickable onClick={() => {}} />
+            <Cell title={t('demo.settings')} icon="settings" clickable onClick={() => {}} />
           </CellGroup>
         </div>
       </div>
 
       {/* 描述 & 必填 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>描述 & 必填</div>
-        <div style={CARD.desc}>description 副标题 / required 星号</div>
+        <div style={CARD.title}>{t('demo.descriptionAndRequired')}</div>
+        <div style={CARD.desc}>{t('demo.descriptionAndRequiredMobileDesc')}</div>
         <div style={CARD.body}>
-          <CellGroup title="表单">
-            <Cell title="用户名" value="请输入用户名" description="6-20 位字母或数字" required clickable onClick={() => {}} />
-            <Cell title="密码" value="请输入密码" description="至少 8 位，含字母和数字" required clickable onClick={() => {}} />
+          <CellGroup title={t('demo.formName')}>
+            <Cell title={t('demo.username')} value={t('demo.enterUsername')} description={t('demo.usernameHint')} required clickable onClick={() => {}} />
+            <Cell title={t('demo.password')} value={t('demo.enterPassword')} description={t('demo.passwordHint')} required clickable onClick={() => {}} />
           </CellGroup>
         </div>
       </div>
 
       {/* 卡片模式 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>卡片模式 card</div>
-        <div style={CARD.desc}>圆角 + 背景色的卡片风格</div>
+        <div style={CARD.title}>{t('demo.cardModeCard')}</div>
+        <div style={CARD.desc}>{t('demo.cardModeCardMobileDesc')}</div>
         <div style={CARD.body}>
           <CellGroup title={t('section.cardMode')} card>
-            <Cell title="版本" value="v2.0.0" />
-            <Cell title="更新日志" clickable onClick={() => {}} />
+            <Cell title={t('demo.version')} value="v2.0.0" />
+            <Cell title={t('demo.changelog')} clickable onClick={() => {}} />
           </CellGroup>
         </div>
       </div>

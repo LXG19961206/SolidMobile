@@ -32,24 +32,24 @@ export const TagMobile: Component<TagMobileProps> = (props) => {
   const close = (id: string) => setClosed(prev => new Set([...prev, id]));
 
   return (
-    <MobilePreview title="Tag 标签" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('demo.tagMobileTitle')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 语义色 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>语义色 type</div>
-        <div style={CARD.desc}>五种语义色 solid 填充</div>
+        <div style={CARD.title}>{t('demo.tagTypes')}</div>
+        <div style={CARD.desc}>{t('demo.tagTypesMobileDesc')}</div>
         <div style={CARD.body}>
-          <Tag type="primary">主色</Tag>
-          <Tag type="success">成功</Tag>
-          <Tag type="warning">警告</Tag>
-          <Tag type="danger">危险</Tag>
-          <Tag type="info">信息</Tag>
+          <Tag type="primary">{t('demo.tagPrimary')}</Tag>
+          <Tag type="success">{t('demo.tagSuccess')}</Tag>
+          <Tag type="warning">{t('demo.tagWarning')}</Tag>
+          <Tag type="danger">{t('demo.tagDanger')}</Tag>
+          <Tag type="info">{t('demo.tagInfo')}</Tag>
         </div>
       </div>
 
       {/* 填充方式 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>填充方式 variant</div>
-        <div style={CARD.desc}>solid（实心）/ outline（线框）</div>
+        <div style={CARD.title}>{t('demo.variant')}</div>
+        <div style={CARD.desc}>{t('demo.tagVariantMobileDesc')}</div>
         <div style={CARD.body}>
           <Tag type="primary" variant="solid">Solid</Tag>
           <Tag type="primary" variant="outline">Outline</Tag>
@@ -62,26 +62,26 @@ export const TagMobile: Component<TagMobileProps> = (props) => {
 
       {/* 尺寸 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>尺寸 & 圆角</div>
-        <div style={CARD.desc}>sm/md 和 round 胶囊</div>
+        <div style={CARD.title}>{t('demo.tagSizeRound')}</div>
+        <div style={CARD.desc}>{t('demo.tagSizeRoundMobileDesc')}</div>
         <div style={CARD.body}>
-          <Tag size="sm" type="primary">小标签 SM</Tag>
-          <Tag size="md" type="primary">中标签 MD</Tag>
-          <Tag round type="primary">胶囊</Tag>
-          <Tag round type="success">胶囊</Tag>
-          <Tag size="sm" round type="danger">小胶囊</Tag>
+          <Tag size="sm" type="primary">{t('demo.tagSmallSM')}</Tag>
+          <Tag size="md" type="primary">{t('demo.tagMediumMD')}</Tag>
+          <Tag round type="primary">{t('demo.tagCapsule')}</Tag>
+          <Tag round type="success">{t('demo.tagCapsule')}</Tag>
+          <Tag size="sm" round type="danger">{t('demo.tagSmallCapsule')}</Tag>
         </div>
       </div>
 
       {/* 可关闭 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>可关闭 closeable</div>
-        <div style={CARD.desc}>点击右侧 ✕ 按钮关闭标签，每个标签独立控制。</div>
+        <div style={CARD.title}>{t('demo.tagClosable')}</div>
+        <div style={CARD.desc}>{t('demo.tagClosableMobileDesc')}</div>
         <div style={CARD.body}>
-          {isOpen('a') && <Tag closeable onClose={() => close('a')}>可关闭</Tag>}
-          {isOpen('b') && <Tag closeable type="primary" onClose={() => close('b')}>标签一</Tag>}
-          {isOpen('c') && <Tag closeable type="success" onClose={() => close('c')}>标签二</Tag>}
-          {isOpen('d') && <Tag closeable type="danger" onClose={() => close('d')}>标签三</Tag>}
+          {isOpen('a') && <Tag closeable onClose={() => close('a')}>{t('demo.tagClosableLabel')}</Tag>}
+          {isOpen('b') && <Tag closeable type="primary" onClose={() => close('b')}>{t('demo.tagLabel1')}</Tag>}
+          {isOpen('c') && <Tag closeable type="success" onClose={() => close('c')}>{t('demo.tagLabel2')}</Tag>}
+          {isOpen('d') && <Tag closeable type="danger" onClose={() => close('d')}>{t('demo.tagLabel3')}</Tag>}
         </div>
       </div>
 

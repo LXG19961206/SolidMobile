@@ -66,35 +66,41 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
   const [fullVal, setFullVal] = createSignal({});
   let fullFormRef: any;
 
+  const cityOptsI18n = [
+    { text: t('demo.beijing'), value: 'beijing' },
+    { text: t('demo.shanghai'), value: 'shanghai' },
+    { text: t('demo.guangzhou'), value: 'guangzhou' },
+  ];
+
   return (
-    <MobilePreview title="Form 表单" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('nav.form')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       <ToastRenderer />
 
       {/* 基础用法 & 校验 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础表单 & 校验</div>
-        <div style={CARD.desc}>用户名校验（至少 2 字符）+ 手机号输入，点击提交触发校验</div>
+        <div style={CARD.title}>{t('demo.formBasic')}</div>
+        <div style={CARD.desc}>{t('demo.formBasicMobileDesc')}</div>
         <div style={CARD.body}>
           <Form
             validateOnBlur
-            onSubmit={(v) => { setBasicVal(v); Toast.success('提交: ' + JSON.stringify(v)); }}
+            onSubmit={(v) => { setBasicVal(v); Toast.success(t('demo.submitLabel') + ': ' + JSON.stringify(v)); }}
           >
-            <FormItem name="username" label="用户名" required rules={[{
+            <FormItem name="username" label={t('demo.username')} required rules={[{
               validator: (v: any) => (v as string)?.length >= 2,
-              message: '至少 2 个字符',
+              message: t('demo.minChars2'),
             }]}>
-              <Input placeholder="请输入用户名" clearable />
+              <Input placeholder={t('demo.usernamePlaceholder')} clearable />
             </FormItem>
-            <FormItem name="phone" label="手机号">
-              <Input type="tel" placeholder="请输入手机号" maxlength={11} />
+            <FormItem name="phone" label={t('demo.phone')}>
+              <Input type="tel" placeholder={t('demo.phonePlaceholder')} maxlength={11} />
             </FormItem>
             <div style={{ padding: '8px 0', display: 'flex' as const, gap: '8px' }}>
-              <Button type="primary" block nativeType="submit" size="sm" text="提交" />
-              <Button variant="outline" block nativeType="reset" size="sm" text="重置" />
+              <Button type="primary" block nativeType="submit" size="sm" text={t('demo.submitBtn')} />
+              <Button variant="outline" block nativeType="reset" size="sm" text={t('demo.reset')} />
             </div>
           </Form>
           <div style={{ 'font-size': '0.7rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px' }}>
-            提交值: {JSON.stringify(basicVal())}
+            {t('demo.submitValueLabel')}: {JSON.stringify(basicVal())}
           </div>
         </div>
       </div>
@@ -105,11 +111,11 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.withOtherDesc')}</div>
         <div style={CARD.body}>
           <Form>
-            <FormItem name="agree" label="同意协议">
+            <FormItem name="agree" label={t('demo.agreeTerms')}>
               <Switch />
             </FormItem>
-            <FormItem name="note" label="备注">
-              <Input placeholder="选填" clearable />
+            <FormItem name="note" label={t('demo.note')}>
+              <Input placeholder={t('demo.optional')} clearable />
             </FormItem>
           </Form>
         </div>
@@ -117,23 +123,23 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
 
       {/* 标签居左，控件居右 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>标签居左 · 控件居右</div>
-        <div style={CARD.desc}>labelAlign="left" + labelWidth 固定标签宽度，控件自然靠右对齐</div>
+        <div style={CARD.title}>{t('demo.labelLeft')}</div>
+        <div style={CARD.desc}>{t('demo.labelLeftMobileDesc')}</div>
         <div style={CARD.body}>
           <Form labelAlign="left" labelWidth="5em" colon>
-            <FormItem name="name" label="姓名">
-              <Input placeholder="请输入" align="right" />
+            <FormItem name="name" label={t('demo.name')}>
+              <Input placeholder={t('demo.pleaseInput')} align="right" />
             </FormItem>
-            <FormItem name="phone" label="手机号">
-              <Input type="tel" placeholder="请输入" align="right" />
+            <FormItem name="phone" label={t('demo.phone')}>
+              <Input type="tel" placeholder={t('demo.pleaseInput')} align="right" />
             </FormItem>
-            <FormItem name="gender" label="性别">
+            <FormItem name="gender" label={t('demo.gender')}>
               <RadioGroup direction="horizontal">
-                <Radio value="male" label="男" />
-                <Radio value="female" label="女" />
+                <Radio value="male" label={t('demo.male')} />
+                <Radio value="female" label={t('demo.female')} />
               </RadioGroup>
             </FormItem>
-            <FormItem name="notify" label="通知">
+            <FormItem name="notify" label={t('demo.notification')}>
               <Switch />
             </FormItem>
           </Form>
@@ -147,73 +153,72 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
         <div style={CARD.body}>
           <Form
             ref={(r: any) => { fullFormRef = r; }}
-            onSubmit={(v) => { setFullVal(v); Toast.success('提交: ' + JSON.stringify(v)); }}
+            onSubmit={(v) => { setFullVal(v); Toast.success(t('demo.submitLabel') + ': ' + JSON.stringify(v)); }}
             labelWidth="5em"
             colon
             scrollToError
           >
-            <FormItem name="username" label="用户名" required rules={[{
+            <FormItem name="username" label={t('demo.username')} required rules={[{
               validator: (v: any) => (v as string)?.length >= 2,
-              message: '至少 2 个字符',
+              message: t('demo.minChars2'),
             }]}>
-              <Input placeholder="请输入用户名" clearable />
+              <Input placeholder={t('demo.usernamePlaceholder')} clearable />
             </FormItem>
-            <FormItem name="intro" label="简介" contentFlex>
-              <Textarea placeholder="说点什么..." />
+            <FormItem name="intro" label={t('demo.intro')} contentFlex>
+              <Textarea placeholder={t('demo.saySomething')} />
             </FormItem>
-            <FormItem name="gender" label="性别" required rules={[{
+            <FormItem name="gender" label={t('demo.gender')} required rules={[{
               validator: (v: any) => !!v,
-              message: '请选择性别',
+              message: t('demo.genderRequired'),
             }]}>
               <RadioGroup direction="horizontal">
-                <Radio value="male" label="男" />
-                <Radio value="female" label="女" />
+                <Radio value="male" label={t('demo.male')} />
+                <Radio value="female" label={t('demo.female')} />
               </RadioGroup>
             </FormItem>
-            <FormItem name="hobbies" label="爱好" contentFlex>
+            <FormItem name="hobbies" label={t('demo.hobbies')} contentFlex>
               <CheckboxGroup direction="horizontal">
-                <Checkbox value="coding" label="写代码" />
-                <Checkbox value="reading" label="阅读" />
-                <Checkbox value="gaming" label="游戏" />
+                <Checkbox value="coding" label={t('demo.coding')} />
+                <Checkbox value="reading" label={t('demo.reading')} />
+                <Checkbox value="gaming" label={t('demo.gaming')} />
               </CheckboxGroup>
             </FormItem>
-            <FormItem name="score" label="评分">
+            <FormItem name="score" label={t('demo.score')}>
               <Rate />
             </FormItem>
-            <FormItem name="count" label="数量">
+            <FormItem name="count" label={t('demo.count')}>
               <Stepper />
             </FormItem>
-            <FormItem name="agree" label="同意协议">
+            <FormItem name="agree" label={t('demo.agreeTerms')}>
               <Switch />
             </FormItem>
-            <FormItem name="range" label="范围" contentFlex>
+            <FormItem name="range" label={t('demo.formRange')} contentFlex>
               <div style={{ padding: '8px 4px', flex: '1', 'min-width': '0' }}>
                 <Slider />
               </div>
             </FormItem>
-            <FormItem name="city" label="所在城市" contentFlex>
-              <Select options={cityOpts} placeholder="请选择城市" />
+            <FormItem name="city" label={t('demo.city')} contentFlex>
+              <Select options={cityOptsI18n} placeholder={t('demo.cityPlaceholder')} />
             </FormItem>
-            <FormItem name="birthday" label="生日" contentFlex>
-              <DatePicker placeholder="选择出生日期" />
+            <FormItem name="birthday" label={t('demo.birthday')} contentFlex>
+              <DatePicker placeholder={t('demo.birthdayPlaceholder')} />
             </FormItem>
-            <FormItem name="photos" label="照片" contentFlex>
+            <FormItem name="photos" label={t('demo.photos')} contentFlex>
               <Upload api={mockUploadApi} maxCount={6} />
             </FormItem>
-            <FormItem name="time" label="时间" contentFlex>
-              <TimePicker placeholder="选择时间" />
+            <FormItem name="time" label={t('demo.timeLabel')} contentFlex>
+              <TimePicker placeholder={t('demo.timePlaceholder')} />
             </FormItem>
             <div style={{ padding: '8px 0', display: 'flex' as const, gap: '8px' }}>
-              <Button type="primary" block nativeType="submit" size="sm" text="提交" />
-              <Button size="sm" text="重置" onClick={() => fullFormRef?.resetFormValue?.()} />
+              <Button type="primary" block nativeType="submit" size="sm" text={t('demo.submitBtn')} />
+              <Button size="sm" text={t('demo.reset')} onClick={() => fullFormRef?.resetFormValue?.()} />
             </div>
           </Form>
           <div style={{ 'font-size': '0.7rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px' }}>
-            提交值: {JSON.stringify(fullVal())}
+            {t('demo.submitValueLabel')}: {JSON.stringify(fullVal())}
           </div>
         </div>
       </div>
     </MobilePreview>
   );
 };
-

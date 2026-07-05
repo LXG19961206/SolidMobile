@@ -36,42 +36,42 @@ export const TextareaMobile: Component<TextareaMobileProps> = (props) => {
   const [val2, setVal2] = createSignal('');
 
   return (
-    <MobilePreview title="Textarea 多行输入" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('demo.textareaMobileTitle')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础多行输入</div>
-        <div style={CARD.desc}>rows 控制可视行数</div>
+        <div style={CARD.title}>{t('demo.textareaBasic')}</div>
+        <div style={CARD.desc}>{t('demo.textareaBasicMobileDesc')}</div>
         <div style={CARD.body}>
-          <Textarea placeholder="请输入多行文字..." rows={3} />
-          <Textarea placeholder="更多行数..." rows={5} />
+          <Textarea placeholder={t('demo.textareaPlaceholderMulti')} rows={3} />
+          <Textarea placeholder={t('demo.textareaPlaceholderMore')} rows={5} />
         </div>
       </div>
 
       {/* 自动撑高 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自动撑高 autoSize</div>
-        <div style={CARD.desc}>内容超过高度时自动扩展</div>
+        <div style={CARD.title}>{t('demo.textareaAutoSize')}</div>
+        <div style={CARD.desc}>{t('demo.textareaAutoSizeMobileDesc')}</div>
         <div style={CARD.body}>
-          <Textarea placeholder="输入内容自动撑高..." autoSize onChange={setVal1} value={val1()} />
+          <Textarea placeholder={t('demo.textareaPlaceholderAuto')} autoSize onChange={setVal1} value={val1()} />
         </div>
       </div>
 
       {/* 字数统计 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>字数统计 & 清除</div>
-        <div style={CARD.desc}>showCount + maxlength + clearable</div>
+        <div style={CARD.title}>{t('demo.textareaCharCount')}</div>
+        <div style={CARD.desc}>{t('demo.textareaCharCountMobileDesc')}</div>
         <div style={CARD.body}>
-          <Textarea placeholder="最多 100 字" maxlength={100} showCount clearable onChange={setVal2} value={val2()} />
+          <Textarea placeholder={t('demo.textareaPlaceholderMax')} maxlength={100} showCount clearable onChange={setVal2} value={val2()} />
         </div>
       </div>
 
       {/* 状态 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>禁用 & 只读 & 错误</div>
+        <div style={CARD.title}>{t('demo.textareaStates')}</div>
         <div style={CARD.body}>
-          <Textarea placeholder="{t('demo.disabled')}" disabled />
-          <Textarea placeholder="只读状态" readonly value="只读内容" />
-          <Textarea placeholder="错误状态" error />
+          <Textarea placeholder={t('demo.disabled')} disabled />
+          <Textarea placeholder={t('demo.textareaReadonly')} readonly value={t('demo.textareaReadonlyContent')} />
+          <Textarea placeholder={t('demo.textareaError')} error />
         </div>
       </div>
     </MobilePreview>

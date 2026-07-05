@@ -75,21 +75,21 @@ export const CityPickerMobile: Component<CityPickerMobileProps> = (props) => {
     <MobilePreview title="CityPicker 城市选择" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 省市区选择 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>省市区选择</div>
-        <div style={CARD.desc}>三级联动：省 → 市 → 区</div>
+        <div style={CARD.title}>{t('demo.provinceCityDistrict')}</div>
+        <div style={CARD.desc}>{t('demo.cascadeThreeLevels')}</div>
         <div style={CARD.body}>
           <div
             style={{ padding: '12px 16px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: display() || '#9ca3af' }}
             onClick={() => setShow(true)}
           >
-            {display() || '请选择所在地区'}
+            {display() || t('demo.pleaseSelectRegion')}
           </div>
           <CityPicker
             columns={cityData}
             show={show()}
             onUpdateShow={setShow}
-            title="选择地区"
-            placeholder="请选择所在地区"
+            title={t('demo.selectRegion')}
+            placeholder={t('demo.pleaseSelectRegion')}
             separator=" - "
             onConfirm={(v) => {
               // build display
@@ -110,12 +110,12 @@ export const CityPickerMobile: Component<CityPickerMobileProps> = (props) => {
 
       {/* 嵌入式 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>直接嵌入</div>
-        <div style={CARD.desc}>不通过 Sheet，直接渲染 CityPicker</div>
+        <div style={CARD.title}>{t('demo.directEmbed')}</div>
+        <div style={CARD.desc}>{t('demo.directEmbedMobileDesc')}</div>
         <div style={CARD.body}>
           <CityPicker
             columns={cityData}
-            placeholder="请选择城市"
+            placeholder={t('demo.pleaseSelectCity')}
             onChange={setVal}
           />
         </div>

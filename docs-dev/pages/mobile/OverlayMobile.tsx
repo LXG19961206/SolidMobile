@@ -36,20 +36,20 @@ export const OverlayMobile: Component<OverlayMobileProps> = (props) => {
     <MobilePreview title="Overlay 遮罩层" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础遮罩 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础遮罩</div>
-        <div style={CARD.desc}>半透明遮罩层，点击背景关闭</div>
+        <div style={CARD.title}>{t('demo.overlayBasic')}</div>
+        <div style={CARD.desc}>{t('demo.overlayBasicDesc')}</div>
         <div style={CARD.body}>
-          <Button size="sm" text="显示遮罩" onClick={() => setShow1(true)} />
+          <Button size="sm" text={t('demo.showOverlay')} onClick={() => setShow1(true)} />
           <Overlay open={show1()} onClose={() => setShow1(false)} />
         </div>
       </div>
 
       {/* 遮罩 + Loading */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>遮罩 + 内容</div>
-        <div style={CARD.desc}>在遮罩上放置 Loading 卡片，常用于等待异步操作</div>
+        <div style={CARD.title}>{t('demo.overlayWithContent')}</div>
+        <div style={CARD.desc}>{t('demo.overlayWithContentDesc')}</div>
         <div style={CARD.body}>
-          <Button size="sm" text="模拟提交" onClick={() => {
+          <Button size="sm" text={t('demo.simulateSubmit')} onClick={() => {
             setShow2(true);
             setTimeout(() => setShow2(false), 2000);
           }} />
@@ -62,8 +62,8 @@ export const OverlayMobile: Component<OverlayMobileProps> = (props) => {
             }}>
               <Loading type="circular" size={36} color="var(--sc-color-primary, #1677ff)" />
               <div style={{ 'text-align': 'center' }}>
-                <div style={{ 'font-size': '0.9rem', 'font-weight': 600, color: 'var(--sc-doc-card-title, #1f2937)' }}>提交中</div>
-                <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '4px' }}>请稍候...</div>
+                <div style={{ 'font-size': '0.9rem', 'font-weight': 600, color: 'var(--sc-doc-card-title, #1f2937)' }}>{t('demo.submitting')}</div>
+                <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '4px' }}>{t('demo.pleaseWait')}</div>
               </div>
             </div>
           </Overlay>

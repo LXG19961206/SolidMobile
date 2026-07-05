@@ -40,44 +40,44 @@ export const RateMobile: Component<RateMobileProps> = (props) => {
     <MobilePreview title="Rate 评分" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础评分</div>
-        <div style={CARD.desc}>默认 5 颗星，点击评价</div>
+        <div style={CARD.title}>{t('demo.rateBasic')}</div>
+        <div style={CARD.desc}>{t('demo.rateBasicDesc')}</div>
         <div style={CARD.body}>
           <Rate value={val()} onChange={setVal} />
-          <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>当前: {val()} 分</span>
+          <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>{t('demo.current')}: {val()} {t('demo.points')}</span>
         </div>
       </div>
 
       {/* 半选 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>半选 allowHalf</div>
-        <div style={CARD.desc}>允许选中半颗星</div>
+        <div style={CARD.title}>{t('demo.halfSelect')}</div>
+        <div style={CARD.desc}>{t('demo.halfSelectDesc')}</div>
         <div style={CARD.body}>
           <Rate value={halfVal()} onChange={setHalfVal} allowHalf />
-          <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>当前: {halfVal()} 分</span>
+          <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>{t('demo.current')}: {halfVal()} {t('demo.points')}</span>
         </div>
       </div>
 
       {/* 只读 & 禁用 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>只读 & 禁用</div>
-        <div style={CARD.desc}>readonly / disabled 不可交互</div>
+        <div style={CARD.title}>{t('demo.readonlyDisabled')}</div>
+        <div style={CARD.desc}>{t('demo.readonlyDisabledDesc')}</div>
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'flex-direction': 'column' as const, 'align-items': 'center' as const, gap: '4px' }}>
             <Rate value={4} readonly />
-            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>只读 (4分)</span>
+            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{t('demo.readonlyLabel')} (4{t('demo.points')})</span>
           </div>
           <div style={{ display: 'flex' as const, 'flex-direction': 'column' as const, 'align-items': 'center' as const, gap: '4px' }}>
             <Rate value={2} disabled />
-            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>禁用 (2分)</span>
+            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{t('demo.disabledLabel')} (2{t('demo.points')})</span>
           </div>
         </div>
       </div>
 
       {/* 自定义 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义图标 & 数量</div>
-        <div style={CARD.desc}>icon / voidIcon / count / size / color</div>
+        <div style={CARD.title}>{t('demo.customIconCount')}</div>
+        <div style={CARD.desc}>{t('demo.customIconDesc')}</div>
         <div style={CARD.body}>
           <Rate value={4} count={3} size={32} color="#ef4444" icon="heart" voidIcon="heart" readonly />
           <Rate value={3} count={10} size={16} color="#f59e0b" readonly />

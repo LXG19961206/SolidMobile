@@ -32,47 +32,48 @@ const COLORS = ['#1677ff', '#22c55e', '#f59e0b', '#8b5cf6', '#ec4899'];
 
 export const SwipeCellMobile: Component<SwipeCellMobileProps> = (props) => {
   const t = useT();
+
   const rightActions: SwipeAction[] = [
-    { text: '编辑', theme: 'primary', onClick: () => Toast.success('编辑') },
-    { text: '删除', theme: 'danger', onClick: () => Toast.success('删除') },
+    { text: t('demo.edit'), theme: 'primary', onClick: () => Toast.success(t('demo.edit')) },
+    { text: t('demo.delete'), theme: 'danger', onClick: () => Toast.success(t('demo.delete')) },
   ];
 
   const leftActions: SwipeAction[] = [
-    { text: '标为已读', theme: 'success', onClick: () => Toast.success('已读') },
+    { text: t('demo.markRead'), theme: 'success', onClick: () => Toast.success(t('demo.read')) },
   ];
 
   const multiActions: SwipeAction[] = [
-    { text: '收藏', theme: 'warning', onClick: () => Toast.success('收藏') },
-    { text: '编辑', theme: 'primary', onClick: () => Toast.success('编辑') },
-    { text: '删除', theme: 'danger', onClick: () => Toast.success('删除') },
+    { text: t('demo.collect'), theme: 'warning', onClick: () => Toast.success(t('demo.collect')) },
+    { text: t('demo.edit'), theme: 'primary', onClick: () => Toast.success(t('demo.edit')) },
+    { text: t('demo.delete'), theme: 'danger', onClick: () => Toast.success(t('demo.delete')) },
   ];
 
   return (
-    <MobilePreview title="SwipeCell 滑动单元格" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('nav.swipecell')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础右滑 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>右滑操作</div>
-        <div style={CARD.desc}>向左滑动露出右侧操作按钮（编辑 / 删除）</div>
+        <div style={CARD.title}>{t('demo.swipeCellRight')}</div>
+        <div style={CARD.desc}>{t('demo.swipeCellRightDesc')}</div>
         <div style={{ ...CARD.body, 'padding-left': 0, 'padding-right': 0 }}>
           <SwipeCell rightActions={rightActions}>
             <Cell
-              title="张三"
-              description="产品经理"
-              icon={<Avatar size="sm" color={COLORS[0]} text="张" />}
+              title={t('demo.demoUser1')}
+              description={t('demo.demoRole1')}
+              icon={<Avatar size="sm" color={COLORS[0]} text={t('demo.demoUser1')[0]} />}
             />
           </SwipeCell>
           <SwipeCell rightActions={rightActions}>
             <Cell
-              title="李四"
-              description="前端工程师"
-              icon={<Avatar size="sm" color={COLORS[1]} text="李" />}
+              title={t('demo.demoUser2')}
+              description={t('demo.demoRole2')}
+              icon={<Avatar size="sm" color={COLORS[1]} text={t('demo.demoUser2')[0]} />}
             />
           </SwipeCell>
           <SwipeCell rightActions={rightActions}>
             <Cell
-              title="王五"
-              description="设计师"
-              icon={<Avatar size="sm" color={COLORS[2]} text="王" />}
+              title={t('demo.demoUser3')}
+              description={t('demo.demoRole3')}
+              icon={<Avatar size="sm" color={COLORS[2]} text={t('demo.demoUser3')[0]} />}
             />
           </SwipeCell>
         </div>
@@ -80,21 +81,21 @@ export const SwipeCellMobile: Component<SwipeCellMobileProps> = (props) => {
 
       {/* 左侧操作 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>左侧操作</div>
-        <div style={CARD.desc}>向右滑动露出左侧操作按钮</div>
+        <div style={CARD.title}>{t('demo.swipeCellLeft')}</div>
+        <div style={CARD.desc}>{t('demo.swipeCellLeftDesc')}</div>
         <div style={{ ...CARD.body, 'padding-left': 0, 'padding-right': 0 }}>
           <SwipeCell leftActions={leftActions}>
             <Cell
-              title="系统通知"
-              description="版本 v2.0 已发布"
-              icon={<Avatar size="sm" color={COLORS[3]} text="系" />}
+              title={t('demo.demoNotice1')}
+              description={t('demo.demoNotice1Desc')}
+              icon={<Avatar size="sm" color={COLORS[3]} text={t('demo.demoNotice1')[0]} />}
             />
           </SwipeCell>
           <SwipeCell leftActions={leftActions}>
             <Cell
-              title="活动提醒"
-              description="今晚 8 点线上会议"
-              icon={<Avatar size="sm" color={COLORS[4]} text="活" />}
+              title={t('demo.demoNotice2')}
+              description={t('demo.demoNotice2Desc')}
+              icon={<Avatar size="sm" color={COLORS[4]} text={t('demo.demoNotice2')[0]} />}
             />
           </SwipeCell>
         </div>
@@ -102,21 +103,21 @@ export const SwipeCellMobile: Component<SwipeCellMobileProps> = (props) => {
 
       {/* 多个操作 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>多个操作按钮</div>
-        <div style={CARD.desc}>支持不同 theme 的操作按钮组合（收藏 / 编辑 / 删除）</div>
+        <div style={CARD.title}>{t('demo.swipeCellMulti')}</div>
+        <div style={CARD.desc}>{t('demo.swipeCellMultiDesc')}</div>
         <div style={{ ...CARD.body, 'padding-left': 0, 'padding-right': 0 }}>
           <SwipeCell rightActions={multiActions}>
             <Cell
-              title="赵六"
-              description="后端工程师"
-              icon={<Avatar size="sm" color={COLORS[0]} text="赵" />}
+              title={t('demo.demoUser4')}
+              description={t('demo.demoRole4')}
+              icon={<Avatar size="sm" color={COLORS[0]} text={t('demo.demoUser4')[0]} />}
             />
           </SwipeCell>
           <SwipeCell rightActions={multiActions}>
             <Cell
-              title="孙七"
-              description="测试工程师"
-              icon={<Avatar size="sm" color={COLORS[1]} text="孙" />}
+              title={t('demo.demoUser5')}
+              description={t('demo.demoRole5')}
+              icon={<Avatar size="sm" color={COLORS[1]} text={t('demo.demoUser5')[0]} />}
             />
           </SwipeCell>
         </div>
@@ -124,14 +125,14 @@ export const SwipeCellMobile: Component<SwipeCellMobileProps> = (props) => {
 
       {/* 禁用 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>禁用滑动</div>
-        <div style={CARD.desc}>disabled=true 时无法滑动操作</div>
+        <div style={CARD.title}>{t('demo.swipeCellDisabled')}</div>
+        <div style={CARD.desc}>{t('demo.swipeCellDisabledDesc')}</div>
         <div style={{ ...CARD.body, 'padding-left': 0, 'padding-right': 0 }}>
           <SwipeCell rightActions={rightActions} disabled>
             <Cell
-              title="禁用的单元格"
-              description="无法滑动操作"
-              icon={<Avatar size="sm" color="#9ca3af" text="禁" />}
+              title={t('demo.demoDisabledCell')}
+              description={t('demo.demoDisabledCellDesc')}
+              icon={<Avatar size="sm" color="#9ca3af" text={t('demo.demoDisabledCell')[0]} />}
             />
           </SwipeCell>
         </div>

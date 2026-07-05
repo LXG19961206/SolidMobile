@@ -53,20 +53,20 @@ export const SelectMobile: Component<SelectMobileProps> = (props) => {
     <MobilePreview title="Select 选择器" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础选择</div>
-        <div style={CARD.desc}>点击触发，Picker 滚轮选择</div>
+        <div style={CARD.title}>{t('demo.selectBasic')}</div>
+        <div style={CARD.desc}>{t('demo.selectBasicDesc')}</div>
         <div style={CARD.body}>
           <div
             style={{ padding: '12px 16px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: gender() ? '#1f2937' : '#9ca3af' }}
             onClick={() => setShow1(true)}
           >
-            {genderOpts.find(o => o.value === gender())?.text || '请选择性别'}
+            {genderOpts.find(o => o.value === gender())?.text || t('demo.selectGender')}
           </div>
           <Select
             options={genderOpts}
             show={show1()}
             onUpdateShow={setShow1}
-            title="选择性别"
+            title={t('demo.selectGenderTitle')}
             value={gender()}
             onConfirm={(v) => { setGender(v as string); setShow1(false); }}
             onCancel={() => setShow1(false)}
@@ -76,16 +76,16 @@ export const SelectMobile: Component<SelectMobileProps> = (props) => {
 
       {/* 嵌入式 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>嵌入式选择</div>
-        <div style={CARD.desc}>不通过 Sheet，直接渲染 Select</div>
+        <div style={CARD.title}>{t('demo.embeddedSelect')}</div>
+        <div style={CARD.desc}>{t('demo.embeddedSelectDesc')}</div>
         <div style={CARD.body}>
           <Select
             options={sizeOpts}
             value={size()}
             onChange={(v) => setSize(v as string)}
-            placeholder="请选择尺寸"
+            placeholder={t('demo.selectSize')}
           />
-          <span style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>选中: {size() || '无'}</span>
+          <span style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>{t('demo.selected')}: {size() || t('demo.none')}</span>
         </div>
       </div>
     </MobilePreview>

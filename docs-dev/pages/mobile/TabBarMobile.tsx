@@ -84,7 +84,7 @@ export const TabBarMobile: Component<TabBarMobileProps> = (props) => {
   const [val1, setVal1] = createSignal('home');
 
   return (
-    <MobilePreview title="TabBar 标签栏" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title="TabBar" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       <ToastRenderer />
 
       {/* 基础 */}
@@ -93,22 +93,22 @@ export const TabBarMobile: Component<TabBarMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.basicDesc')}</div>
         <div style={CARD.body}>
           <TabBar value={val1()} onChange={setVal1} fixed={false}>
-            <TabBarItem name="home" icon="home" label="首页" />
-            <TabBarItem name="cart" icon="shopping-cart" label="购物车" />
-            <TabBarItem name="user" icon="user" label="我的" />
+            <TabBarItem name="home" icon="home" label={t('demo.labelHome')} />
+            <TabBarItem name="cart" icon="shopping-cart" label={t('demo.labelCart')} />
+            <TabBarItem name="user" icon="user" label={t('demo.labelProfile')} />
           </TabBar>
         </div>
       </div>
 
       {/* 徽标 & 红点 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>徽标 & 红点</div>
-        <div style={CARD.desc}>badge 数字徽标 / dot 小红点</div>
+        <div style={CARD.title}>{t('demo.badgeDot')}</div>
+        <div style={CARD.desc}>{t('demo.badgeDotDesc')}</div>
         <div style={CARD.body}>
           <TabBar defaultValue={0} fixed={false} activeColor="#1677ff">
-            <TabBarItem name={0} icon="home" label="首页" />
-            <TabBarItem name={1} icon="chat" label="消息" dot />
-            <TabBarItem name={2} icon="settings" label="设置" badge={5} />
+            <TabBarItem name={0} icon="home" label={t('demo.labelHome')} />
+            <TabBarItem name={1} icon="chat" label={t('demo.labelMessages')} dot />
+            <TabBarItem name={2} icon="settings" label={t('demo.labelSettings')} badge={5} />
           </TabBar>
         </div>
       </div>
@@ -119,50 +119,48 @@ export const TabBarMobile: Component<TabBarMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.customColorDesc')}</div>
         <div style={CARD.body}>
           <TabBar defaultValue="a" activeColor="#22c55e" fixed={false}>
-            <TabBarItem name="a" icon="home" label="首页" />
-            <TabBarItem name="b" icon="star" label="收藏" />
-            <TabBarItem name="c" icon="user" label="我的" />
+            <TabBarItem name="a" icon="home" label={t('demo.labelHome')} />
+            <TabBarItem name="b" icon="star" label={t('demo.labelFavorites')} />
+            <TabBarItem name="c" icon="user" label={t('demo.labelProfile')} />
           </TabBar>
         </div>
       </div>
 
       {/* 自定义动画 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义动画 icon</div>
-        <div style={CARD.desc}>icon 属性接受 JSX.Element，可传入自带动画的 SVG，实现选中态路径绘制、缩放等效果。</div>
+        <div style={CARD.title}>{t('demo.tabbarAnimatedIcon')}</div>
+        <div style={CARD.desc}>{t('demo.tabbarAnimatedIconDesc')}</div>
         <div style={CARD.body}>
           <TabBar defaultValue="a" fixed={false}>
-            <TabBarItem name="a" label="首页" icon={AnimatedHomeIcon} />
-            <TabBarItem name="b" label="收藏" icon={AnimatedStarIcon} />
-            <TabBarItem name="c" label="我的" icon={AnimatedUserIcon} />
+            <TabBarItem name="a" label={t('demo.labelHome')} icon={AnimatedHomeIcon} />
+            <TabBarItem name="b" label={t('demo.labelFavorites')} icon={AnimatedStarIcon} />
+            <TabBarItem name="c" label={t('demo.labelProfile')} icon={AnimatedUserIcon} />
           </TabBar>
           <div style={{ 'font-size': '0.65rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px', padding: '0 16px', 'line-height': 1.5 }}>
-            选中态下 icon 有放大 + 填充动画。icon 属性直接接受 JSX，用户可自由使用 Lottie / Rive / CSS animation 等任意方案。
+            {t('demo.tabbarAnimatedIconNote')}
           </div>
         </div>
       </div>
 
       {/* 路由说明 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>与路由配合</div>
+        <div style={CARD.title}>{t('demo.withRouter')}</div>
         <div style={CARD.desc}>
-          组件库不内置路由相关属性，以避免与具体路由方案耦合。
-          切换标签时通过 <code>onChange</code> 回调拿到 name，自行控制页面切换。
-          可在 <code>beforeChange</code> 中返回 <code>false</code> 拦截切换（如表单未保存时阻止离开）。
+          {t('demo.withRouterDesc')}
         </div>
       </div>
 
       {/* Fixed 固定在底部 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>Fixed 固定底部</div>
-        <div style={CARD.desc}>默认 fixed=true，吸附在视口底部。配合 Badge 和红点。</div>
+        <div style={CARD.title}>{t('demo.fixedBottom')}</div>
+        <div style={CARD.desc}>{t('demo.fixedBottomDesc')}</div>
         <div style={{ height: '60px' }} />
       </div>
 
       <TabBar defaultValue="home" activeColor="#1677ff">
-        <TabBarItem name="home" icon="home" label="首页" badge={5} />
-        <TabBarItem name="cart" icon="shopping-cart" label="购物车" dot />
-        <TabBarItem name="user" icon="user" label="我的" />
+        <TabBarItem name="home" icon="home" label={t('demo.labelHome')} badge={5} />
+        <TabBarItem name="cart" icon="shopping-cart" label={t('demo.labelCart')} dot />
+        <TabBarItem name="user" icon="user" label={t('demo.labelProfile')} />
       </TabBar>
     </MobilePreview>
   );

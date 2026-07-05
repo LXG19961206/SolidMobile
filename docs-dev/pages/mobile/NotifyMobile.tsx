@@ -33,8 +33,8 @@ export const NotifyMobile: Component<NotifyMobileProps> = (props) => {
 
       {/* 四种类型 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>四种类型</div>
-        <div style={CARD.desc}>primary / success / warning / danger（从顶部弹出）</div>
+        <div style={CARD.title}>{t('demo.notifyTypes')}</div>
+        <div style={CARD.desc}>{t('demo.notifyTypesDesc')}</div>
         <div style={CARD.body}>
           <Button type="primary" size="sm" text="Primary" onClick={() => Notify.primary('主色通知栏')} />
           <Button type="success" size="sm" text="Success" onClick={() => Notify.success('操作成功！')} />
@@ -45,21 +45,21 @@ export const NotifyMobile: Component<NotifyMobileProps> = (props) => {
 
       {/* 位置 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>位置 position</div>
-        <div style={CARD.desc}>top（默认）/ bottom</div>
+        <div style={CARD.title}>{t('demo.position')}</div>
+        <div style={CARD.desc}>{t('demo.positionDesc')}</div>
         <div style={CARD.body}>
-          <Button variant="outline" size="sm" text="顶部" onClick={() => Notify.show({ message: '顶部通知', type: 'primary', position: 'top', duration: 2000 })} />
-          <Button variant="outline" size="sm" text="底部" onClick={() => Notify.show({ message: '底部通知', type: 'success', position: 'bottom', duration: 2000 })} />
+          <Button variant="outline" size="sm" text={t('demo.top')} onClick={() => Notify.show({ message: '顶部通知', type: 'primary', position: 'top', duration: 2000 })} />
+          <Button variant="outline" size="sm" text={t('demo.bottom')} onClick={() => Notify.show({ message: '底部通知', type: 'success', position: 'bottom', duration: 2000 })} />
         </div>
       </div>
 
       {/* 自定义 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义样式</div>
-        <div style={CARD.desc}>color / background 自定义外观</div>
+        <div style={CARD.title}>{t('demo.customStyle')}</div>
+        <div style={CARD.desc}>{t('demo.notifyCustomDesc')}</div>
         <div style={CARD.body}>
-          <Button variant="outline" size="sm" text="自定义颜色" onClick={() => Notify.show({ message: '自定义通知', background: '#6366f1', color: '#fff', duration: 2000 })} />
-          <Button variant="outline" size="sm" text="长时显示" onClick={() => Notify.show({ message: '不会自动消失（duration=0）', type: 'warning', duration: 0 })} />
+          <Button variant="outline" size="sm" text={t('demo.customColor')} onClick={() => Notify.show({ message: '自定义通知', background: '#6366f1', color: '#fff', duration: 2000 })} />
+          <Button variant="outline" size="sm" text={t('demo.longDuration')} onClick={() => Notify.show({ message: '不会自动消失（duration=0）', type: 'warning', duration: 0 })} />
         </div>
       </div>
     </MobilePreview>

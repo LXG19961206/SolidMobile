@@ -38,8 +38,8 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
     <MobilePreview title="NavBar 导航栏" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础标题</div>
-        <div style={CARD.desc}>仅标题，无左右按钮</div>
+        <div style={CARD.title}>{t('demo.basicTitle')}</div>
+        <div style={CARD.desc}>{t('demo.basicTitleDesc')}</div>
         <div style={CARD.body}>
           <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
             <NavBar title="页面标题" border />
@@ -49,8 +49,8 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
 
       {/* 返回箭头 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>返回箭头</div>
-        <div style={CARD.desc}>backArrow + onBack 实现返回</div>
+        <div style={CARD.title}>{t('demo.navBackArrow')}</div>
+        <div style={CARD.desc}>{t('demo.navBackArrowDesc')}</div>
         <div style={CARD.body}>
           <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
             <NavBar title="详情页" backArrow onBack={() => {}} border />
@@ -60,8 +60,8 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
 
       {/* 左右内容 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>左右内容</div>
-        <div style={CARD.desc}>left / right 插槽自定义</div>
+        <div style={CARD.title}>{t('demo.navCustomSides')}</div>
+        <div style={CARD.desc}>{t('demo.navCustomSidesDesc')}</div>
         <div style={{ ...CARD.body, display: 'flex' as const, 'flex-direction': 'column' as const, gap: '12px' }}>
           <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
             <NavBar
@@ -84,8 +84,8 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
 
       {/* 自定义样式 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义样式</div>
-        <div style={CARD.desc}>background / color 控制外观</div>
+        <div style={CARD.title}>{t('demo.customNavStyle')}</div>
+        <div style={CARD.desc}>{t('demo.customNavStyleDesc')}</div>
         <div style={CARD.body}>
           <div style={{ border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' }}>
             <NavBar title="品牌色导航" background="#1677ff" color="#fff" backArrow onBack={() => {}} />
@@ -95,11 +95,8 @@ export const NavBarMobile: Component<NavBarMobileProps> = (props) => {
 
       {/* 固定模式说明 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>固定模式 fixed</div>
-        <div style={CARD.desc}>
-          设置 fixed + placeholder 后，NavBar 固定在页面顶部，并自动生成等高的占位元素，
-          防止内容被 NavBar 遮挡。
-        </div>
+        <div style={CARD.title}>{t('demo.navFixedTop')}</div>
+        <div style={CARD.desc}>{t('demo.navFixedTopDesc')}</div>
       </div>
     </MobilePreview>
   );

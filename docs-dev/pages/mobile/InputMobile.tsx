@@ -41,69 +41,69 @@ export const InputMobile: Component<InputMobileProps> = (props) => {
   const [text2, setText2] = createSignal('');
 
   return (
-    <MobilePreview title="Input 输入框" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('nav.input')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础输入 & 类型</div>
-        <div style={CARD.desc}>type 控制输入类型</div>
+        <div style={CARD.title}>{t('demo.inputBasicMobile')}</div>
+        <div style={CARD.desc}>{t('demo.inputBasicMobileDesc')}</div>
         <div style={CARD.body}>
-          <Input placeholder="请输入文字 (text)" />
-            <Input type="number" placeholder="请输入数字 (number)" />
-            <Input type="password" placeholder="请输入密码 (password)" />
-            <Input type="tel" placeholder="请输入手机号 (tel)" />
-            <Input type="email" placeholder="请输入邮箱 (email)" />
+          <Input placeholder={t('demo.inputPlaceholderText')} />
+            <Input type="number" placeholder={t('demo.inputPlaceholderNumber')} />
+            <Input type="password" placeholder={t('demo.inputPlaceholderPassword')} />
+            <Input type="tel" placeholder={t('demo.inputPlaceholderTel')} />
+            <Input type="email" placeholder={t('demo.inputPlaceholderEmail')} />
         </div>
       </div>
 
       {/* 清除 & 密码切换 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>清除 & 密码切换</div>
-        <div style={CARD.desc}>clearable 显示清除按钮 / showPasswordToggle 切换密码可见</div>
+        <div style={CARD.title}>{t('demo.inputClearableMobile')}</div>
+        <div style={CARD.desc}>{t('demo.inputClearableMobileDesc')}</div>
         <div style={CARD.body}>
-          <Input placeholder="可清除的输入框" clearable onChange={setText1} value={text1()} />
-            <Input type="password" placeholder="密码（可切换可见）" showPasswordToggle />
+          <Input placeholder={t('demo.inputClearablePlaceholder')} clearable onChange={setText1} value={text1()} />
+            <Input type="password" placeholder={t('demo.inputPasswordTogglePlaceholder')} showPasswordToggle />
         </div>
       </div>
 
       {/* 前后缀 & 对齐 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>前后缀 & 对齐</div>
-        <div style={CARD.desc}>prefix / suffix 装饰 / align 对齐方式</div>
+        <div style={CARD.title}>{t('demo.inputAffixMobile')}</div>
+        <div style={CARD.desc}>{t('demo.inputAffixMobileDesc')}</div>
         <div style={CARD.body}>
-          <Input placeholder="搜索内容" prefix={<span style={{ color: 'var(--sc-doc-card-muted, #9ca3af)' }}>🔍</span>} />
-            <Input placeholder="右对齐" align="right" />
-            <Input placeholder="居中" align="center" />
+          <Input placeholder={t('demo.inputSearchPlaceholder')} prefix={<span style={{ color: 'var(--sc-doc-card-muted, #9ca3af)' }}>🔍</span>} />
+            <Input placeholder={t('demo.inputAlignRight')} align="right" />
+            <Input placeholder={t('demo.inputAlignCenter')} align="center" />
         </div>
       </div>
 
       {/* 字数统计 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>字数统计</div>
-        <div style={CARD.desc}>showCount + maxlength 限制输入长度</div>
+        <div style={CARD.title}>{t('demo.inputShowCountMobile')}</div>
+        <div style={CARD.desc}>{t('demo.inputShowCountMobileDesc')}</div>
         <div style={CARD.body}>
-          <Input placeholder="最多 10 个字" maxlength={10} showCount onChange={setText2} value={text2()} />
+          <Input placeholder={t('demo.inputMaxlengthPlaceholder')} maxlength={10} showCount onChange={setText2} value={text2()} />
         </div>
       </div>
 
       {/* 状态 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>禁用 & 只读 & 错误</div>
-        <div style={CARD.desc}>disabled / readonly / error 三种状态</div>
+        <div style={CARD.title}>{t('demo.inputStatesMobile')}</div>
+        <div style={CARD.desc}>{t('demo.inputStatesMobileDesc')}</div>
         <div style={CARD.body}>
-          <Input placeholder="{t('demo.disabled')}" disabled />
-            <Input placeholder="只读状态" readonly value="只读内容" />
-            <Input placeholder="错误状态" error />
+          <Input placeholder={t('demo.disabled')} disabled />
+            <Input placeholder={t('demo.inputReadonlyPlaceholder')} readonly value={t('demo.inputReadonlyValue')} />
+            <Input placeholder={t('demo.inputErrorPlaceholder')} error />
         </div>
       </div>
 
       {/* 尺寸 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>尺寸 size</div>
-        <div style={CARD.desc}>sm=32px / md=40px / lg=48px</div>
+        <div style={CARD.title}>{t('demo.inputSizeMobile')}</div>
+        <div style={CARD.desc}>{t('demo.inputSizeMobileDesc')}</div>
         <div style={CARD.body}>
-          <Input placeholder="小尺寸 SM" size="sm" />
-            <Input placeholder="中尺寸 MD" size="md" />
-            <Input placeholder="大尺寸 LG" size="lg" />
+          <Input placeholder={t('demo.inputSizeSmall')} size="sm" />
+            <Input placeholder={t('demo.inputSizeMedium')} size="md" />
+            <Input placeholder={t('demo.inputSizeLarge')} size="lg" />
         </div>
       </div>
     </MobilePreview>

@@ -40,21 +40,21 @@ export const TabsMobile: Component<TabsMobileProps> = (props) => {
   const [active3, setActive3] = createSignal('a');
 
   return (
-    <MobilePreview title="Tabs 标签页" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('demo.tabsMobileTitle')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 line 模式 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>line 模式（默认）</div>
-        <div style={CARD.desc}>底部线条指示器跟随切换</div>
+        <div style={CARD.title}>{t('demo.lineMode')}</div>
+        <div style={CARD.desc}>{t('demo.lineModeDesc')}</div>
         <div style={CARD.body}>
           <Tabs active={active1()} onChange={setActive1}>
-            <Tab name={0} title="标签 1">
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>内容 1</div>
+            <Tab name={0} title={t('demo.tabLabel1')}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabContent1')}</div>
             </Tab>
-            <Tab name={1} title="标签 2">
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>内容 2</div>
+            <Tab name={1} title={t('demo.tabLabel2')}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabContent2')}</div>
             </Tab>
-            <Tab name={2} title="标签 3">
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>内容 3</div>
+            <Tab name={2} title={t('demo.tabLabel3')}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabContent3')}</div>
             </Tab>
           </Tabs>
         </div>
@@ -62,18 +62,18 @@ export const TabsMobile: Component<TabsMobileProps> = (props) => {
 
       {/* card 模式 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>card 模式</div>
-        <div style={CARD.desc}>卡片式标签，选中项高亮</div>
+        <div style={CARD.title}>{t('demo.cardMode')}</div>
+        <div style={CARD.desc}>{t('demo.cardModeDesc')}</div>
         <div style={CARD.body}>
           <Tabs type="card" active={active2()} onChange={setActive2}>
-            <Tab name={0} title="选项 A">
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>卡片 A 内容</div>
+            <Tab name={0} title={t('demo.tabOptionA')}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabCardContentA')}</div>
             </Tab>
-            <Tab name={1} title="选项 B">
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>卡片 B 内容</div>
+            <Tab name={1} title={t('demo.tabOptionB')}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabCardContentB')}</div>
             </Tab>
-            <Tab name={2} title="选项 C">
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>卡片 C 内容</div>
+            <Tab name={2} title={t('demo.tabOptionC')}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabCardContentC')}</div>
             </Tab>
           </Tabs>
         </div>
@@ -81,18 +81,18 @@ export const TabsMobile: Component<TabsMobileProps> = (props) => {
 
       {/* 自定义颜色 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义颜色 & 边框</div>
-        <div style={CARD.desc}>color / titleActiveColor / border 等外观定制</div>
+        <div style={CARD.title}>{t('demo.tabsCustomColor')}</div>
+        <div style={CARD.desc}>{t('demo.tabsCustomColorDesc')}</div>
         <div style={CARD.body}>
           <Tabs active={active3()} onChange={setActive3} color="#22c55e" border>
-            <Tab name="a" title="全部">
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>全部订单</div>
+            <Tab name="a" title={t('demo.tabAll')}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabAllOrders')}</div>
             </Tab>
-            <Tab name="b" title="待付款">
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>待付款订单</div>
+            <Tab name="b" title={t('demo.tabPendingPayment')}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabPendingOrders')}</div>
             </Tab>
-            <Tab name="c" title="已完成">
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>已完成订单</div>
+            <Tab name="c" title={t('demo.tabCompleted')}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabCompletedOrders')}</div>
             </Tab>
           </Tabs>
         </div>
@@ -100,18 +100,18 @@ export const TabsMobile: Component<TabsMobileProps> = (props) => {
 
       {/* 图标标题 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>图标标题</div>
-        <div style={CARD.desc}>title 支持 JSX，可以嵌入 Icon 或任意元素</div>
+        <div style={CARD.title}>{t('demo.tabsIconTitle')}</div>
+        <div style={CARD.desc}>{t('demo.tabsIconTitleDesc')}</div>
         <div style={CARD.body}>
           <Tabs defaultActive={0}>
-            <Tab name={0} title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '4px' }}><Icon name="home" size={16} /> 首页</span>}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>首页内容</div>
+            <Tab name={0} title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '4px' }}><Icon name="home" size={16} /> {t('demo.tabHome')}</span>}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabHomeContent')}</div>
             </Tab>
-            <Tab name={1} title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '4px' }}><Icon name="heart" size={16} /> 收藏</span>}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>收藏内容</div>
+            <Tab name={1} title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '4px' }}><Icon name="heart" size={16} /> {t('demo.tabFavorites')}</span>}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabFavoritesContent')}</div>
             </Tab>
-            <Tab name={2} title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '4px' }}><Icon name="user" size={16} /> 我的</span>}>
-              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>个人中心</div>
+            <Tab name={2} title={<span style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '4px' }}><Icon name="user" size={16} /> {t('demo.tabProfile')}</span>}>
+              <div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.tabProfileContent')}</div>
             </Tab>
           </Tabs>
         </div>
@@ -119,13 +119,13 @@ export const TabsMobile: Component<TabsMobileProps> = (props) => {
 
       {/* 禁用 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>禁用选项</div>
-        <div style={CARD.desc}>Tab 设置 disabled 后不可点击</div>
+        <div style={CARD.title}>{t('demo.tabsDisabled')}</div>
+        <div style={CARD.desc}>{t('demo.tabsDisabledDesc')}</div>
         <div style={CARD.body}>
           <Tabs defaultActive={0}>
-            <Tab name={0} title="正常" />
-            <Tab name={1} title="禁用" disabled />
-            <Tab name={2} title="正常" />
+            <Tab name={0} title={t('demo.tabNormal')} />
+            <Tab name={1} title={t('demo.disabledLabel')} disabled />
+            <Tab name={2} title={t('demo.tabNormal')} />
           </Tabs>
         </div>
       </div>

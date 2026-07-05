@@ -28,8 +28,8 @@ export const EmptyMobile: Component<EmptyMobileProps> = (props) => {
     <MobilePreview title="Empty 空状态" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础空状态</div>
-        <div style={CARD.desc}>默认图片 + 描述文字</div>
+        <div style={CARD.title}>{t('demo.basic')}</div>
+        <div style={CARD.desc}>{t('demo.basicDesc')}</div>
         <div style={CARD.body}>
           <Empty description="暂无数据" />
         </div>
@@ -37,8 +37,8 @@ export const EmptyMobile: Component<EmptyMobileProps> = (props) => {
 
       {/* 不同预设 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>预设图片类型</div>
-        <div style={CARD.desc}>default / network / search 三种预设</div>
+        <div style={CARD.title}>{t('demo.emptyPreset')}</div>
+        <div style={CARD.desc}>{t('demo.emptyPresetDesc')}</div>
         <div style={{ ...CARD.body, display: 'flex' as const, gap: '12px', 'justify-content': 'space-around' }}>
           <div style={{ flex: 1 }}>
             <Empty image="default" description="暂无数据" />
@@ -54,8 +54,8 @@ export const EmptyMobile: Component<EmptyMobileProps> = (props) => {
 
       {/* 带操作按钮 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>带操作按钮</div>
-        <div style={CARD.desc}>children 可放置操作按钮</div>
+        <div style={CARD.title}>{t('demo.emptyChildren')}</div>
+        <div style={CARD.desc}>{t('demo.emptyChildrenDesc')}</div>
         <div style={CARD.body}>
           <Empty description="购物车是空的">
             <Button type="primary" text="去逛逛" size="sm" style={{ 'margin-top': '8px' }} />
@@ -65,8 +65,8 @@ export const EmptyMobile: Component<EmptyMobileProps> = (props) => {
 
       {/* 自定义图片 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义图片</div>
-        <div style={CARD.desc}>image 可传入自定义 JSX</div>
+        <div style={CARD.title}>{t('demo.emptyJSX')}</div>
+        <div style={CARD.desc}>{t('demo.emptyJSXDesc')}</div>
         <div style={CARD.body}>
           <Empty
             image={<div style={{ 'font-size': '3rem' }}>📭</div>}

@@ -64,7 +64,7 @@ export const RadioMobile: Component<RadioMobileProps> = (props) => {
   const [formVal, setFormVal] = createSignal({});
 
   return (
-    <MobilePreview title="Radio 单选框" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title="Radio" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       <ToastRenderer />
 
       {/* 基础 */}
@@ -73,47 +73,47 @@ export const RadioMobile: Component<RadioMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.basicDesc')}</div>
         <div style={CARD.body}>
           <RadioGroup value={basicVal()} onChange={setBasicVal}>
-            <Radio value="a" label="选项 A" />
-            <Radio value="b" label="选项 B" />
-            <Radio value="c" label="选项 C" />
+            <Radio value="a" label={t('demo.labelOptionA')} />
+            <Radio value="b" label={t('demo.labelOptionB')} />
+            <Radio value="c" label={t('demo.labelOptionC')} />
           </RadioGroup>
-          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px' }}>当前值: {basicVal()}</div>
+          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px' }}>{t('demo.currentValue')}{basicVal()}</div>
         </div>
       </div>
 
       {/* 禁用 & 形状 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>禁用 & 形状</div>
-        <div style={CARD.desc}>disabled 禁用 / round / square / dot 三种形状</div>
+        <div style={CARD.title}>{t('demo.radioDisabledShape')}</div>
+        <div style={CARD.desc}>{t('demo.radioDisabledShapeDesc')}</div>
         <div style={CARD.body}>
           <div style={{ 'margin-bottom': '12px' }}>
             <RadioGroup value={disabledVal()} onChange={setDisabledVal}>
-              <Radio value="a" label="正常" />
-              <Radio value="b" label="禁用" disabled />
-              <Radio value="c" label="正常" />
+              <Radio value="a" label={t('demo.labelNormal')} />
+              <Radio value="b" label={t('demo.labelDisabled')} disabled />
+              <Radio value="c" label={t('demo.labelNormal')} />
             </RadioGroup>
           </div>
           <RadioGroup value={shapeVal()} onChange={setShapeVal}>
-            <Radio value="a" label="Round 默认" />
-            <Radio value="b" label="Square" shape="square" />
-            <Radio value="c" label="Dot" shape="dot" />
+            <Radio value="a" label={t('demo.labelRoundDefault')} />
+            <Radio value="b" label={t('demo.labelSquare')} shape="square" />
+            <Radio value="c" label={t('demo.labelDot')} shape="dot" />
           </RadioGroup>
         </div>
       </div>
 
       {/* 水平排列 & 颜色 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>水平排列 & 自定义颜色</div>
-        <div style={CARD.desc}>direction="horizontal" / checkedColor</div>
+        <div style={CARD.title}>{t('demo.radioHorizontalColor')}</div>
+        <div style={CARD.desc}>{t('demo.radioHorizontalColorDesc')}</div>
         <div style={CARD.body}>
           <RadioGroup direction="horizontal" value={hVal()} onChange={setHVal}>
-            <Radio value="a" label="男" />
-            <Radio value="b" label="女" />
+            <Radio value="a" label={t('demo.labelMale')} />
+            <Radio value="b" label={t('demo.labelFemale')} />
           </RadioGroup>
           <div style={{ height: '12px' }} />
           <RadioGroup value="x" checkedColor="#22c55e">
-            <Radio value="x" label="绿色单选" />
-            <Radio value="y" label="绿色单选" />
+            <Radio value="x" label={t('demo.labelGreenRadio')} />
+            <Radio value="y" label={t('demo.labelGreenRadio')} />
           </RadioGroup>
         </div>
       </div>
@@ -124,33 +124,33 @@ export const RadioMobile: Component<RadioMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.customIconDesc')}</div>
         <div style={CARD.body}>
           <RadioGroup value={iconVal()} onChange={setIconVal} iconSize="28px" checkedColor="var(--sc-color-primary, #1677ff)">
-            <Radio value="like" label="好评" checkedIcon={<LikeIcon />} uncheckedIcon={<LikeIcon />} />
-            <Radio value="normal" label="一般" checkedIcon={<MehIcon />} uncheckedIcon={<MehIcon />} />
-            <Radio value="bad" label="差评" checkedIcon={<BadIcon />} uncheckedIcon={<BadIcon />} />
+            <Radio value="like" label={t('demo.labelGoodReview')} checkedIcon={<LikeIcon />} uncheckedIcon={<LikeIcon />} />
+            <Radio value="normal" label={t('demo.labelNormalReview')} checkedIcon={<MehIcon />} uncheckedIcon={<MehIcon />} />
+            <Radio value="bad" label={t('demo.labelPoorReview')} checkedIcon={<BadIcon />} uncheckedIcon={<BadIcon />} />
           </RadioGroup>
           <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px' }}>
-            {iconVal() === 'like' ? '好评' : iconVal() === 'normal' ? '一般' : '差评'}
+            {iconVal() === 'like' ? t('demo.labelGoodReview') : iconVal() === 'normal' ? t('demo.labelNormalReview') : t('demo.labelPoorReview')}
           </div>
         </div>
       </div>
 
       {/* 独立使用 & 表单 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>独立使用 & 表单</div>
-        <div style={CARD.desc}>脱离 RadioGroup 单独使用 / FormItem 集成</div>
+        <div style={CARD.title}>{t('demo.radioStandaloneForm')}</div>
+        <div style={CARD.desc}>{t('demo.radioStandaloneFormDesc')}</div>
         <div style={CARD.body}>
-          <Radio value="x" label="独立模式，点击切换" checked={standaloneChecked()} onChange={setStandaloneChecked} />
-          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin': '8px 0 12px' }}>选中: {String(standaloneChecked())}</div>
+          <Radio value="x" label={t('demo.standaloneModeLabel')} checked={standaloneChecked()} onChange={setStandaloneChecked} />
+          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin': '8px 0 12px' }}>{t('demo.selected')}{String(standaloneChecked())}</div>
           <Form onSubmit={(v) => { setFormVal(v); Toast.success(JSON.stringify(v)); }}>
-            <FormItem name="gender" label="性别" rules={[{ validator: (v: any) => !!v, message: '请选择性别' }]}>
+            <FormItem name="gender" label={t('demo.labelGender')} rules={[{ validator: (v: any) => !!v, message: t('demo.validationSelectGender') }]}>
               <RadioGroup direction="horizontal">
-                <Radio value="male" label="男" />
-                <Radio value="female" label="女" />
+                <Radio value="male" label={t('demo.labelMale')} />
+                <Radio value="female" label={t('demo.labelFemale')} />
               </RadioGroup>
             </FormItem>
-            <Button type="primary" size="sm" nativeType="submit" text="提交" style={{ 'margin-top': '8px' }} />
+            <Button type="primary" size="sm" nativeType="submit" text={t('demo.labelSubmit')} style={{ 'margin-top': '8px' }} />
           </Form>
-          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '4px' }}>提交值: {JSON.stringify(formVal())}</div>
+          <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '4px' }}>{t('demo.submitValue')}{JSON.stringify(formVal())}</div>
         </div>
       </div>
     </MobilePreview>

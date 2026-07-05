@@ -36,8 +36,8 @@ export const BadgeMobile: Component<BadgeMobileProps> = (props) => {
     <MobilePreview title="Badge 徽标" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 配头像 — 最常见场景 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>配合 Avatar 头像</div>
-        <div style={CARD.desc}>未读消息数、在线状态等。最典型的使用场景。</div>
+        <div style={CARD.title}>{t('demo.withAvatar')}</div>
+        <div style={CARD.desc}>{t('demo.withAvatarDesc')}</div>
         <div style={{ ...CARD.body, gap: '20px' }}>
           <Badge content={5}>
             <Avatar src={AVATAR_URL} size="lg" />
@@ -56,8 +56,8 @@ export const BadgeMobile: Component<BadgeMobileProps> = (props) => {
 
       {/* 配按钮 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>配合 Button 按钮</div>
-        <div style={CARD.desc}>按钮角标提示待处理数量，常用于消息、订单、购物车等。</div>
+        <div style={CARD.title}>{t('demo.withButton')}</div>
+        <div style={CARD.desc}>{t('demo.withButtonDesc')}</div>
         <div style={{ ...CARD.body, gap: '12px' }}>
           <Badge content={3}>
             <Button size="sm">消息</Button>
@@ -73,8 +73,8 @@ export const BadgeMobile: Component<BadgeMobileProps> = (props) => {
 
       {/* 配 Tabs 标签页 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>配合 Tabs 标签页</div>
-        <div style={CARD.desc}>Tab 标题中嵌入 Badge，展示各分类下的数量。</div>
+        <div style={CARD.title}>{t('demo.withTab')}</div>
+        <div style={CARD.desc}>{t('demo.withTabDesc')}</div>
         <div style={{ padding: '0 16px 16px' }}>
           <Tabs defaultActive="all">
             <Tab
@@ -95,8 +95,8 @@ export const BadgeMobile: Component<BadgeMobileProps> = (props) => {
 
       {/* 配 Cell 列表 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>配合 Cell 单元格</div>
-        <div style={CARD.desc}>列表项右侧的状态标记。</div>
+        <div style={CARD.title}>{t('demo.withCell')}</div>
+        <div style={CARD.desc}>{t('demo.withCellDesc')}</div>
         <div style={{ padding: '0 16px 16px' }}>
           <CellGroup>
             <Cell title="系统消息" value={<Badge content={5} />} clickable onClick={() => {}} icon="notification" />
@@ -109,8 +109,8 @@ export const BadgeMobile: Component<BadgeMobileProps> = (props) => {
 
       {/* 位置 & 颜色 */}
       <div style={{ ...CARD.wrapper, overflow: 'visible' as const }}>
-        <div style={CARD.title}>位置 & 自定义颜色</div>
-        <div style={CARD.desc}>四角定位 + 自定义背景色。因 Badge 绝对定位会溢出，此卡片不做 overflow:hidden。</div>
+        <div style={CARD.title}>{t('demo.positionAndColor')}</div>
+        <div style={CARD.desc}>{t('demo.positionAndColorDesc')}</div>
         <div style={{ ...CARD.body, gap: '24px', 'padding-top': '12px', 'padding-bottom': '20px' }}>
           <Badge content="TR" position="top-right" color="var(--sc-color-primary, #1677ff)">
             <div style={{ width: '44px', height: '44px', background: 'var(--sc-doc-card-placeholder, #e5e7eb)', 'border-radius': '10px' }} />
@@ -129,8 +129,8 @@ export const BadgeMobile: Component<BadgeMobileProps> = (props) => {
 
       {/* 独立使用 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>独立使用（无 children）</div>
-        <div style={CARD.desc}>不包裹子元素时原地渲染，适合行内状态标记。</div>
+        <div style={CARD.title}>{t('demo.badgeStandalone')}</div>
+        <div style={CARD.desc}>{t('demo.badgeStandaloneDesc')}</div>
         <div style={{ ...CARD.body, 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>
           <span>新消息 <Badge content={99} /></span>
           <span><Badge dot /> 在线</span>

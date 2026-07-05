@@ -31,11 +31,11 @@ const AVATAR_URL = 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix';
 export const AvatarMobile: Component<AvatarMobileProps> = (props) => {
   const t = useT();
   return (
-    <MobilePreview title="Avatar 头像" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('nav.avatar')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 尺寸 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>尺寸 size</div>
-        <div style={CARD.desc}>xs / sm / md / lg / xl 五档预设</div>
+        <div style={CARD.title}>{t('demo.avatarSizeTitle')}</div>
+        <div style={CARD.desc}>{t('demo.avatarSizeMobileDesc')}</div>
         <div style={CARD.body}>
           <Avatar src={AVATAR_URL} size="xs" />
           <Avatar src={AVATAR_URL} size="sm" />
@@ -47,8 +47,8 @@ export const AvatarMobile: Component<AvatarMobileProps> = (props) => {
 
       {/* 圆形 & 方形 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>圆形 & 方形</div>
-        <div style={CARD.desc}>round 圆形（默认）/ square 方形</div>
+        <div style={CARD.title}>{t('demo.avatarRoundSquare')}</div>
+        <div style={CARD.desc}>{t('demo.avatarRoundSquareDesc')}</div>
         <div style={CARD.body}>
           <Avatar src={AVATAR_URL} size="lg" round />
           <Avatar src={AVATAR_URL} size="lg" square />
@@ -58,8 +58,8 @@ export const AvatarMobile: Component<AvatarMobileProps> = (props) => {
 
       {/* 文字 & 图标头像 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>文字 & 图标头像</div>
-        <div style={CARD.desc}>无 src 时显示 icon 或 text（取首字符）</div>
+        <div style={CARD.title}>{t('demo.avatarTextIcon')}</div>
+        <div style={CARD.desc}>{t('demo.avatarTextIconDesc')}</div>
         <div style={CARD.body}>
           <Avatar size="lg" text="张三" color="var(--sc-color-primary, #1677ff)" />
           <Avatar size="lg" text="李四" color="#22c55e" />

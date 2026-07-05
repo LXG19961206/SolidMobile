@@ -37,15 +37,15 @@ export const StepperMobile: Component<StepperMobileProps> = (props) => {
   const [val, setVal] = createSignal(1);
 
   return (
-    <MobilePreview title="Stepper 步进器" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('nav.stepper')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础步进</div>
-        <div style={CARD.desc}>通过 +/- 按钮或输入框调整数值</div>
+        <div style={CARD.title}>{t('demo.stepperBasic')}</div>
+        <div style={CARD.desc}>{t('demo.stepperBasicDesc')}</div>
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '16px' }}>
             <Stepper value={val()} onChange={setVal} />
-            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>当前: {val()}</span>
+            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>{t('demo.currentValue')}: {val()}</span>
           </div>
         </div>
       </div>
@@ -62,11 +62,11 @@ export const StepperMobile: Component<StepperMobileProps> = (props) => {
             </div>
             <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
               <Stepper defaultValue={0} step={5} min={0} max={50} />
-              <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>步长5</span>
+              <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{t('demo.step')}5</span>
             </div>
             <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
               <Stepper defaultValue={1.5} step={0.5} decimalLength={1} />
-              <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>小数0.5</span>
+              <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{t('demo.decimal')}0.5</span>
             </div>
           </div>
         </div>
@@ -74,8 +74,8 @@ export const StepperMobile: Component<StepperMobileProps> = (props) => {
 
       {/* 禁用 & 只读 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>禁用 & 只读</div>
-        <div style={CARD.desc}>disabled / readonly / inputDisabled</div>
+        <div style={CARD.title}>{t('demo.stepperDisabledReadonly')}</div>
+        <div style={CARD.desc}>{t('demo.stepperDisabledReadonlyDesc')}</div>
         <div style={CARD.body}>
           <Stepper defaultValue={3} disabled />
           <Stepper defaultValue={3} readonly />

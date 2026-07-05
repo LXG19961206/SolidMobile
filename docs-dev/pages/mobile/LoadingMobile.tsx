@@ -32,11 +32,11 @@ export const LoadingMobile: Component<LoadingMobileProps> = (props) => {
   const [showOverlay, setShowOverlay] = createSignal(false);
 
   return (
-    <MobilePreview title="Loading 加载" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('nav.loading')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 三种类型 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>三种内置动画</div>
-        <div style={CARD.desc}>spinner（旋转环）/ circular（弧线）/ dots（三点）</div>
+        <div style={CARD.title}>{t('demo.loadingTypesMobile')}</div>
+        <div style={CARD.desc}>{t('demo.loadingTypesMobileDesc')}</div>
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'flex-direction': 'column' as const, 'align-items': 'center' as const, gap: '4px' }}>
             <Loading type="spinner" size={32} />
@@ -55,19 +55,19 @@ export const LoadingMobile: Component<LoadingMobileProps> = (props) => {
 
       {/* 文字 & 排列 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>文字 & 排列</div>
-        <div style={CARD.desc}>水平（默认）/ 垂直 vertical</div>
+        <div style={CARD.title}>{t('demo.loadingTextMobile')}</div>
+        <div style={CARD.desc}>{t('demo.loadingTextMobileDesc')}</div>
         <div style={CARD.body}>
-          <Loading text="加载中..." />
-          <Loading text="加载中..." type="circular" vertical />
-          <Loading text="请稍候" type="dots" color="var(--sc-color-primary, #1677ff)" />
+          <Loading text={t('demo.loadingEllipsis')} />
+          <Loading text={t('demo.loadingEllipsis')} type="circular" vertical />
+          <Loading text={t('demo.pleaseWait')} type="dots" color="var(--sc-color-primary, #1677ff)" />
         </div>
       </div>
 
       {/* 颜色 & 大小 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>颜色 & 大小</div>
-        <div style={CARD.desc}>color / size 自定义外观</div>
+        <div style={CARD.title}>{t('demo.loadingSizeColorMobile')}</div>
+        <div style={CARD.desc}>{t('demo.loadingSizeColorMobileDesc')}</div>
         <div style={CARD.body}>
           <Loading type="spinner" size={20} color="var(--sc-color-primary, #1677ff)" />
           <Loading type="spinner" size={28} color="#22c55e" />
@@ -78,12 +78,12 @@ export const LoadingMobile: Component<LoadingMobileProps> = (props) => {
 
       {/* 遮罩模式 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>遮罩模式 overlay</div>
-        <div style={CARD.desc}>全屏半透明遮罩 + 居中加载</div>
+        <div style={CARD.title}>{t('demo.loadingOverlayMobile')}</div>
+        <div style={CARD.desc}>{t('demo.loadingOverlayMobileDesc')}</div>
         <div style={CARD.body}>
-          <Button size="sm" text="显示遮罩加载" onClick={() => { setShowOverlay(true); setTimeout(() => setShowOverlay(false), 2000); }} />
+          <Button size="sm" text={t('demo.showOverlayLoading')} onClick={() => { setShowOverlay(true); setTimeout(() => setShowOverlay(false), 2000); }} />
           <Show when={showOverlay()}>
-            <Loading overlay text="加载中..." />
+            <Loading overlay text={t('demo.loadingEllipsis')} />
           </Show>
         </div>
       </div>

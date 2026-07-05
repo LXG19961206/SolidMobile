@@ -114,8 +114,8 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title="选择地区"
-              value={cityLabel() || '请选择'}
+              title={t('demo.selectRegion')}
+              value={cityLabel() || t('demo.pleaseSelect')}
               clickable
               onClick={() => setShowCity(true)}
             />
@@ -124,7 +124,7 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
             columns={cityTree}
             show={showCity()}
             onUpdateShow={setShowCity}
-            title="选择地区"
+            title={t('demo.selectRegion')}
             onChange={(_, v) => setCityVal(v)}
             onConfirm={(items, _) => {
               setCityLabel(items.map(i => i.text).join(' / '));
@@ -142,8 +142,8 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title="选择年月"
-              value={dateLabel() || '请选择'}
+              title={t('demo.selectYearMonth')}
+              value={dateLabel() || t('demo.pleaseSelect')}
               clickable
               onClick={() => setShowDate(true)}
             />
@@ -152,7 +152,7 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
             columns={dateCols}
             show={showDate()}
             onUpdateShow={setShowDate}
-            title="选择年月"
+            title={t('demo.selectYearMonth')}
             onChange={(_, v) => setDateVal(v)}
             onConfirm={(items, _) => {
               setDateLabel(items.map(i => i.text).join(' / '));
@@ -170,8 +170,8 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title="选择时间"
-              value={timeLabel() || '请选择'}
+              title={t('demo.selectTime')}
+              value={timeLabel() || t('demo.pleaseSelect')}
               clickable
               onClick={() => setShowTime(true)}
             />
@@ -180,7 +180,7 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
             columns={timeCols}
             show={showTime()}
             onUpdateShow={setShowTime}
-            title="选择时间"
+            title={t('demo.selectTime')}
             onChange={(_, v) => setTimeLabel(`${String(v[0]).padStart(2, '0')}:${String(v[1]).padStart(2, '0')}`)}
             onConfirm={(_items, v) => {
               setTimeLabel(`${String(v[0]).padStart(2, '0')}:${String(v[1]).padStart(2, '0')}`);
@@ -198,8 +198,8 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title="含禁用项"
-              value={disabledVal().length ? String(disabledVal()) : '请选择'}
+              title={t('demo.withDisabled')}
+              value={disabledVal().length ? String(disabledVal()) : t('demo.pleaseSelect')}
               clickable
               onClick={() => setShowDisabled(true)}
             />
@@ -223,8 +223,8 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title="占位符模式"
-              value={phLabel() || '请选择'}
+              title={t('demo.placeholderMode')}
+              value={phLabel() || t('demo.pleaseSelect')}
               clickable
               onClick={() => setShowPh(true)}
             />
@@ -233,8 +233,8 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
             columns={[[{ text: '选项 1', value: 1 }, { text: '选项 2', value: 2 }, { text: '选项 3', value: 3 }]]}
             show={showPh()}
             onUpdateShow={setShowPh}
-            title="请选择"
-            placeholders="请选择"
+            title={t('demo.pleaseSelect')}
+            placeholders={t('demo.pleaseSelect')}
             onChange={(items, vals) => setPhLabel(vals[0] ? String(items[0]?.text ?? '') : '')}
             onConfirm={(items, vals) => {
               setPhLabel(vals[0] ? String(items[0]?.text ?? '') : '');
@@ -251,13 +251,13 @@ export const PickerMobile: Component<PickerMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.controlledDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title="预设值" value="北京 / 海淀区" clickable onClick={() => setShowCtrl(true)} />
+            <Cell title={t('demo.presetValue')} value="北京 / 海淀区" clickable onClick={() => setShowCtrl(true)} />
           </CellGroup>
           <Picker
             columns={cityTree}
             show={showCtrl()}
             onUpdateShow={setShowCtrl}
-            title="选择地区"
+            title={t('demo.selectRegion')}
             value={['bj', 'hd']}
             onConfirm={() => setShowCtrl(false)}
             onCancel={() => setShowCtrl(false)}

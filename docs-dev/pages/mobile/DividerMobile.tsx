@@ -29,8 +29,8 @@ export const DividerMobile: Component<DividerMobileProps> = (props) => {
     <MobilePreview title="Divider 分割线" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础水平 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础水平分割</div>
-        <div style={CARD.desc}>默认实线，1px 粗细</div>
+        <div style={CARD.title}>{t('demo.horizontalBasic')}</div>
+        <div style={CARD.desc}>{t('demo.horizontalBasicDesc')}</div>
         <div style={CARD.body}>
           <div style={{ padding: '12px 0' }}>上方内容</div>
           <Divider />
@@ -40,8 +40,8 @@ export const DividerMobile: Component<DividerMobileProps> = (props) => {
 
       {/* 带文字 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>带文字分割</div>
-        <div style={CARD.desc}>text 属性在中间嵌入文字</div>
+        <div style={CARD.title}>{t('demo.dividerText')}</div>
+        <div style={CARD.desc}>{t('demo.dividerTextDesc')}</div>
         <div style={CARD.body}>
           <Divider text="我是分割线" />
           <div style={{ height: '16px' }} />
@@ -53,8 +53,8 @@ export const DividerMobile: Component<DividerMobileProps> = (props) => {
 
       {/* 虚线 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>虚线分割</div>
-        <div style={CARD.desc}>dashed 属性切换为虚线风格</div>
+        <div style={CARD.title}>{t('demo.dashedDivider')}</div>
+        <div style={CARD.desc}>{t('demo.dashedDividerDesc')}</div>
         <div style={CARD.body}>
           <Divider dashed />
           <div style={{ height: '16px' }} />
@@ -64,8 +64,8 @@ export const DividerMobile: Component<DividerMobileProps> = (props) => {
 
       {/* 自定义颜色 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义颜色 & 粗细</div>
-        <div style={CARD.desc}>color 和 size 属性控制外观</div>
+        <div style={CARD.title}>{t('demo.customColorAndSize')}</div>
+        <div style={CARD.desc}>{t('demo.customColorAndSizeDesc')}</div>
         <div style={CARD.body}>
           <Divider color="var(--sc-color-primary, #1677ff)" size={2} />
           <div style={{ height: '16px' }} />
@@ -77,8 +77,8 @@ export const DividerMobile: Component<DividerMobileProps> = (props) => {
 
       {/* 垂直分割 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>垂直分割</div>
-        <div style={CARD.desc}>direction="vertical"，需父级有高度</div>
+        <div style={CARD.title}>{t('demo.verticalDividerDemo')}</div>
+        <div style={CARD.desc}>{t('demo.verticalDividerDemoDesc')}</div>
         <div style={{ ...CARD.body, display: 'flex' as const, 'align-items': 'center' as const, height: '40px', gap: '12px' }}>
           <span style={{ color: 'var(--sc-doc-card-text, #374151)' }}>文字一</span>
           <Divider direction="vertical" />

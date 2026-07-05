@@ -38,7 +38,7 @@ export const PullRefreshMobile: Component<PullRefreshMobileProps> = (_props) => 
   const [count, setCount] = createSignal(0);
 
   return (
-    <MobilePreview title="PullRefresh 下拉刷新" props={propsData} components={_props.components} onNavigate={_props.onNavigate}>
+    <MobilePreview title="PullRefresh" props={propsData} components={_props.components} onNavigate={_props.onNavigate}>
       {/* 基础用法 */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.basic')}</div>
@@ -46,8 +46,8 @@ export const PullRefreshMobile: Component<PullRefreshMobileProps> = (_props) => 
         <div style={CARD.body}>
           <PullRefresh onRefresh={mockRefresh}>
             <div style={{ padding: '80px 16px', 'text-align': 'center', color: '#969799', 'font-size': '0.8125rem' }}>
-              <div style={{ 'font-size': '0.9rem', color: '#323233', 'margin-bottom': '8px' }}>下拉刷新</div>
-              <div>刷新次数: {count()}</div>
+              <div style={{ 'font-size': '0.9rem', color: '#323233', 'margin-bottom': '8px' }}>{t('demo.pullRefreshPull')}</div>
+              <div>{t('demo.pullRefreshCount')}{count()}</div>
             </div>
           </PullRefresh>
         </div>
@@ -55,18 +55,18 @@ export const PullRefreshMobile: Component<PullRefreshMobileProps> = (_props) => 
 
       {/* 自定义文案 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义文案</div>
-        <div style={CARD.desc}>自定义各状态文案。</div>
+        <div style={CARD.title}>{t('demo.pullCustomText')}</div>
+        <div style={CARD.desc}>{t('demo.pullCustomTextDesc')}</div>
         <div style={CARD.body}>
           <PullRefresh
             onRefresh={mockRefresh}
-            pullingText="再用力一点"
-            loosingText="松手刷新"
-            loadingText="加载中..."
-            successText="完成了"
+            pullingText={t('demo.pullRefreshPullingText')}
+            loosingText={t('demo.pullRefreshLoosingText')}
+            loadingText={t('demo.pullRefreshLoadingText')}
+            successText={t('demo.pullRefreshSuccessText')}
           >
             <div style={{ padding: '80px 16px', 'text-align': 'center', color: '#323233', 'font-size': '0.9rem' }}>
-              自定义文案
+              {t('demo.pullCustomText')}
             </div>
           </PullRefresh>
         </div>

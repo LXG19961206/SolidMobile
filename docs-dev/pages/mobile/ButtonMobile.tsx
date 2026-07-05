@@ -45,11 +45,11 @@ export const ButtonMobile: Component<ButtonMobileProps> = (props) => {
   };
 
   return (
-    <MobilePreview title="Button 按钮" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('demo.buttonMobileTitle')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 语义色 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>语义色 type</div>
-        <div style={CARD.desc}>六种语义色: primary / secondary / success / warning / danger / info</div>
+        <div style={CARD.title}>{t('demo.semanticType')}</div>
+        <div style={CARD.desc}>{t('demo.buttonSemanticTypeMobileDesc')}</div>
         <div style={CARD.body}>
           <Button type="primary" text="Primary" />
           <Button type="secondary" text="Secondary" />
@@ -62,8 +62,8 @@ export const ButtonMobile: Component<ButtonMobileProps> = (props) => {
 
       {/* 尺寸 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>尺寸 size</div>
-        <div style={CARD.desc}>xs (28px) / sm (32px) / md (40px) / lg (48px)</div>
+        <div style={CARD.title}>{t('demo.size')}</div>
+        <div style={CARD.desc}>{t('demo.buttonSizeMobileDesc')}</div>
         <div style={CARD.body}>
           <Button type="primary" size="xs" text="XS" />
           <Button type="primary" size="sm" text="SM" />
@@ -74,8 +74,8 @@ export const ButtonMobile: Component<ButtonMobileProps> = (props) => {
 
       {/* 填充方式 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>填充方式 variant</div>
-        <div style={CARD.desc}>solid（实心）/ outline（线框）/ ghost（透明）</div>
+        <div style={CARD.title}>{t('demo.variant')}</div>
+        <div style={CARD.desc}>{t('demo.buttonVariantMobileDesc')}</div>
         <div style={CARD.body}>
           <Button type="primary" variant="solid" text="Solid" />
           <Button type="primary" variant="outline" text="Outline" />
@@ -85,43 +85,43 @@ export const ButtonMobile: Component<ButtonMobileProps> = (props) => {
 
       {/* 胶囊 & 通栏 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>胶囊 & 通栏</div>
-        <div style={CARD.desc}>round 胶囊形状 / block 通栏按钮</div>
+        <div style={CARD.title}>{t('demo.buttonRoundBlock')}</div>
+        <div style={CARD.desc}>{t('demo.buttonRoundBlockMobileDesc')}</div>
         <div style={{ ...CARD.body, 'flex-direction': 'column' as const }}>
           <div style={{ display: 'flex' as const, gap: '8px' }}>
-            <Button type="primary" round text="胶囊" />
+            <Button type="primary" round text={t('demo.buttonCapsule')} />
             <Button type="danger" variant="outline" round text="Danger" />
             <Button variant="ghost" round text="Ghost" />
           </div>
           <div style={{ width: '100%' }}>
-            <Button type="primary" block round size="lg" text="立即购买" />
+            <Button type="primary" block round size="lg" text={t('demo.buttonBuyNow')} />
           </div>
           <div style={{ width: '100%', display: 'flex' as const, gap: '8px' }}>
-            <Button variant="outline" block text="加入购物车" />
-            <Button variant="ghost" block text="收藏" />
+            <Button variant="outline" block text={t('demo.buttonAddToCart')} />
+            <Button variant="ghost" block text={t('demo.buttonFavorite')} />
           </div>
         </div>
       </div>
 
       {/* 图标按钮 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>图标按钮</div>
-        <div style={CARD.desc}>icon 属性支持内置图标名，iconPosition 控制位置</div>
+        <div style={CARD.title}>{t('demo.iconText')}</div>
+        <div style={CARD.desc}>{t('demo.buttonIconMobileDesc')}</div>
         <div style={CARD.body}>
-          <Button icon="star" text="收藏" />
-          <Button icon="arrow-right" text="下一步" iconPosition="right" type="primary" />
-          <Button icon="edit" text="编辑" variant="outline" />
-          <Button icon="search" aria-label="搜索" variant="ghost" />
-          <Button icon="settings" aria-label="设置" variant="ghost" />
+          <Button icon="star" text={t('demo.buttonFavorite')} />
+          <Button icon="arrow-right" text={t('demo.buttonNext')} iconPosition="right" type="primary" />
+          <Button icon="edit" text={t('demo.buttonEdit')} variant="outline" />
+          <Button icon="search" aria-label={t('demo.buttonSearch')} variant="ghost" />
+          <Button icon="settings" aria-label={t('demo.buttonSettings')} variant="ghost" />
         </div>
       </div>
 
       {/* 状态 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>加载与禁用</div>
-        <div style={CARD.desc}>loading 旋转动画 / disabled 置灰不可点击</div>
+        <div style={CARD.title}>{t('demo.buttonLoadingDisabled')}</div>
+        <div style={CARD.desc}>{t('demo.buttonLoadingDisabledMobileDesc')}</div>
         <div style={CARD.body}>
-          <Button type="primary" text={loading() ? '提交中...' : '点击提交'} loading={loading()} loadingText="提交中..." onClick={handleLoading} />
+          <Button type="primary" text={loading() ? t('demo.buttonSubmitting') : t('demo.buttonClickSubmit')} loading={loading()} loadingText={t('demo.buttonSubmitting')} onClick={handleLoading} />
           <Button type="primary" text="Disabled" disabled />
           <Button variant="outline" text="Disabled" disabled />
           <Button type="danger" text="Disabled" disabled />

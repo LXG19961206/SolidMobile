@@ -33,25 +33,6 @@ const CARD = {
   body: { padding: '0 16px 16px' },
 };
 
-const basicItems: ActionSheetItem[] = [
-  { name: '编辑' },
-  { name: '分享' },
-  { name: '删除' },
-];
-
-const twoLineItems: ActionSheetItem[] = [
-  { name: '从相册选择', subname: '支持 JPG、PNG、HEIC' },
-  { name: '拍照上传', subname: '自动压缩至 2MB 以内' },
-  { name: '从聊天记录选取', subname: '仅支持图片和视频文件' },
-];
-
-const disabledItems: ActionSheetItem[] = [
-  { name: '选项 A' },
-  { name: '选项 B (禁用)', disabled: true },
-  { name: '选项 C' },
-  { name: '选项 D (禁用)', disabled: true },
-];
-
 export const ActionSheetMobile: Component<ActionSheetMobileProps> = (props) => {
   const t = useT();
   const [show1, setShow1] = createSignal(false);
@@ -60,14 +41,32 @@ export const ActionSheetMobile: Component<ActionSheetMobileProps> = (props) => {
   const [show4, setShow4] = createSignal(false);
   const [show5, setShow5] = createSignal(false);
   const [show6, setShow6] = createSignal(false);
-  const [show7, setShow7] = createSignal(false);
+
+  const basicItems: ActionSheetItem[] = [
+    { name: t('demo.edit') },
+    { name: t('demo.share') },
+    { name: t('demo.delete') },
+  ];
+
+  const twoLineItems: ActionSheetItem[] = [
+    { name: t('demo.actionSheetFromAlbum'), subname: t('demo.actionSheetFromAlbumDesc') },
+    { name: t('demo.actionSheetTakePhoto'), subname: t('demo.actionSheetTakePhotoDesc') },
+    { name: t('demo.actionSheetFromChat'), subname: t('demo.actionSheetFromChatDesc') },
+  ];
+
+  const disabledItems: ActionSheetItem[] = [
+    { name: t('demo.optionA') },
+    { name: t('demo.optionBDisabled'), disabled: true },
+    { name: t('demo.optionC') },
+    { name: t('demo.optionDDisabled'), disabled: true },
+  ];
 
   return (
-    <MobilePreview title="ActionSheet 动作面板" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('nav.actionsheet')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 选项列表 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>选项列表</div>
-        <div style={CARD.desc}>传入 items 数组，底部滑出选项菜单</div>
+        <div style={CARD.title}>{t('demo.actionOptions')}</div>
+        <div style={CARD.desc}>{t('demo.actionSheetOptionsDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell title={t('demo.actionOptions')} clickable onClick={() => setShow1(true)} />
@@ -78,19 +77,19 @@ export const ActionSheetMobile: Component<ActionSheetMobileProps> = (props) => {
 
       {/* 标题 & 取消 & 描述 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>标题 & 描述 & 取消按钮</div>
-        <div style={CARD.desc}>title + closeable + description + cancelText 完整组合</div>
+        <div style={CARD.title}>{t('demo.actionSheetFullHeader')}</div>
+        <div style={CARD.desc}>{t('demo.actionSheetFullHeaderDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title="完整头部" clickable onClick={() => setShow2(true)} />
+            <Cell title={t('demo.actionSheetFullHeaderCell')} clickable onClick={() => setShow2(true)} />
           </CellGroup>
           <ActionSheet
             open={show2()} onClose={() => setShow2(false)}
-            title="确认删除？"
-            description="删除后数据不可恢复，建议先导出备份。"
+            title={t('demo.confirmDelete')}
+            description={t('demo.confirmDeleteDesc')}
             closeable
-            items={[{ name: '直接删除' }, { name: '导出后删除' }]}
-            cancelText="取消"
+            items={[{ name: t('demo.deleteDirectly') }, { name: t('demo.exportThenDelete') }]}
+            cancelText={t('demo.cancel')}
             onSelect={() => setShow2(false)}
           />
         </div>
@@ -98,18 +97,18 @@ export const ActionSheetMobile: Component<ActionSheetMobileProps> = (props) => {
 
       {/* 双行选项 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>双行选项</div>
-        <div style={CARD.desc}>name + subname 双行展示，适合带说明的选项</div>
+        <div style={CARD.title}>{t('demo.actionTwoLine')}</div>
+        <div style={CARD.desc}>{t('demo.actionSheetTwoLineDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title="上传方式" clickable onClick={() => setShow3(true)} />
+            <Cell title={t('demo.actionSheetUploadMethod')} clickable onClick={() => setShow3(true)} />
           </CellGroup>
           <ActionSheet
             open={show3()} onClose={() => setShow3(false)}
-            title="上传方式"
+            title={t('demo.actionSheetUploadMethod')}
             closeable
             items={twoLineItems}
-            cancelText="取消"
+            cancelText={t('demo.cancel')}
             onSelect={() => setShow3(false)}
           />
         </div>
@@ -117,35 +116,35 @@ export const ActionSheetMobile: Component<ActionSheetMobileProps> = (props) => {
 
       {/* 禁用项 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>禁用项</div>
-        <div style={CARD.desc}>disabled: true 的选项显示为灰色，不可点击</div>
+        <div style={CARD.title}>{t('demo.actionDisabled')}</div>
+        <div style={CARD.desc}>{t('demo.actionSheetDisabledDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title="含禁用项" clickable onClick={() => setShow4(true)} />
+            <Cell title={t('demo.actionSheetWithDisabled')} clickable onClick={() => setShow4(true)} />
           </CellGroup>
           <ActionSheet
             open={show4()} onClose={() => setShow4(false)}
             items={disabledItems}
-            cancelText="取消"
+            cancelText={t('demo.cancel')}
           />
         </div>
       </div>
 
       {/* 选中不关闭 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>选中不自动关闭</div>
-        <div style={CARD.desc}>closeOnSelect={false}，适合多选或需要连续操作的场景</div>
+        <div style={CARD.title}>{t('demo.actionSheetNoAutoClose')}</div>
+        <div style={CARD.desc}>{t('demo.actionSheetNoAutoCloseDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title="连续选择" clickable onClick={() => setShow5(true)} />
+            <Cell title={t('demo.actionSheetContinuousSelect')} clickable onClick={() => setShow5(true)} />
           </CellGroup>
           <ActionSheet
             open={show5()} onClose={() => setShow5(false)}
-            title="选择标签"
+            title={t('demo.selectTag')}
             closeable
             closeOnSelect={false}
-            items={[{ name: '前端' }, { name: '后端' }, { name: '设计' }, { name: '产品' }]}
-            cancelText="完成"
+            items={[{ name: t('demo.frontend') }, { name: t('demo.backend') }, { name: t('demo.designField') }, { name: t('demo.product') }]}
+            cancelText={t('demo.done')}
             onSelect={() => {}}
           />
         </div>
@@ -153,11 +152,11 @@ export const ActionSheetMobile: Component<ActionSheetMobileProps> = (props) => {
 
       {/* 关于 Solid */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义内容</div>
-        <div style={CARD.desc}>children 完全自定义面板内容，可放图片、文字等任意元素</div>
+        <div style={CARD.title}>{t('demo.actionSheetCustomContent')}</div>
+        <div style={CARD.desc}>{t('demo.actionSheetCustomContentDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title="关于 SolidJS" clickable onClick={() => setShow6(true)} />
+            <Cell title={t('demo.actionSheetAboutSolidjs')} clickable onClick={() => setShow6(true)} />
           </CellGroup>
           <ActionSheet
             open={show6()} onClose={() => setShow6(false)}

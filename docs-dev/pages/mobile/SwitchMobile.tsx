@@ -33,47 +33,47 @@ export const SwitchMobile: Component<SwitchMobileProps> = (props) => {
   const [val2, setVal2] = createSignal(false);
 
   return (
-    <MobilePreview title="Switch 开关" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('nav.switch')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础开关</div>
-        <div style={CARD.desc}>受控 / 非受控 / 默认值</div>
+        <div style={CARD.title}>{t('demo.switchBasic')}</div>
+        <div style={CARD.desc}>{t('demo.switchBasicDesc')}</div>
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
             <Switch checked={val1()} onChange={setVal1} />
-            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>受控: {val1() ? '开' : '关'}</span>
+            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.controlled')}: {val1() ? t('demo.on') : t('demo.off')}</span>
           </div>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
             <Switch defaultChecked />
-            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>默认开</span>
+            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.defaultOn')}</span>
           </div>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
             <Switch checked={val2()} onChange={setVal2} />
-            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>默认关</span>
+            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.defaultOff')}</span>
           </div>
         </div>
       </div>
 
       {/* 颜色 & 文字 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义颜色 & 文字</div>
-        <div style={CARD.desc}>activeColor / inactiveColor / activeText / inactiveText</div>
+        <div style={CARD.title}>{t('demo.switchColorText')}</div>
+        <div style={CARD.desc}>{t('demo.switchColorTextDesc')}</div>
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
             <Switch defaultChecked activeColor="#22c55e" />
-            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>绿色</span>
+            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.colorGreen')}</span>
           </div>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
-            <Switch defaultChecked activeText="开" inactiveText="关" />
-            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>带文字</span>
+            <Switch defaultChecked activeText={t('demo.on')} inactiveText={t('demo.off')} />
+            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>{t('demo.withText')}</span>
           </div>
         </div>
       </div>
 
       {/* 尺寸 & 禁用 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>尺寸 & 禁用</div>
-        <div style={CARD.desc}>size 控制开关大小 / disabled 禁用</div>
+        <div style={CARD.title}>{t('demo.switchSizeDisabled')}</div>
+        <div style={CARD.desc}>{t('demo.switchSizeDisabledDesc')}</div>
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
             <Switch defaultChecked size={20} />
@@ -89,7 +89,7 @@ export const SwitchMobile: Component<SwitchMobileProps> = (props) => {
           </div>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
             <Switch defaultChecked disabled />
-            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>禁用</span>
+            <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{t('demo.disabled')}</span>
           </div>
         </div>
       </div>

@@ -50,11 +50,11 @@ export const IconMobile: Component<IconMobileProps> = (props) => {
   };
 
   return (
-    <MobilePreview title="Icon 图标" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('nav.icon')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础使用 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础使用</div>
-        <div style={CARD.desc}>通过 name 属性指定图标，variant 切换线/填充风格</div>
+        <div style={CARD.title}>{t('demo.iconBasicMobile')}</div>
+        <div style={CARD.desc}>{t('demo.iconBasicMobileDesc')}</div>
         <div style={CARD.body}>
           <Icon name="search" size={24} />
           <Icon name="heart" variant="fill" color="#ff4d4f" size={24} />
@@ -67,8 +67,8 @@ export const IconMobile: Component<IconMobileProps> = (props) => {
 
       {/* Line vs Fill */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>Line vs Fill</div>
-        <div style={CARD.desc}>同图标两种风格对比</div>
+        <div style={CARD.title}>{t('demo.iconLineFill')}</div>
+        <div style={CARD.desc}>{t('demo.iconLineFillMobileDesc')}</div>
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'flex-direction': 'column' as const, 'align-items': 'center' as const, gap: '4px' }}>
             <Icon name="home" variant="line" size={32} />
@@ -91,8 +91,8 @@ export const IconMobile: Component<IconMobileProps> = (props) => {
 
       {/* 尺寸 & 颜色 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>尺寸 & 颜色</div>
-        <div style={CARD.desc}>size 支持数字（自动补px）或任意 CSS 单位；color 设置颜色</div>
+        <div style={CARD.title}>{t('demo.iconSizeColorMobile')}</div>
+        <div style={CARD.desc}>{t('demo.iconSizeColorMobileDesc')}</div>
         <div style={CARD.body}>
           <Icon name="star" variant="fill" color="#f59e0b" size={16} />
           <Icon name="star" variant="fill" color="#f59e0b" size={24} />
@@ -110,20 +110,20 @@ export const IconMobile: Component<IconMobileProps> = (props) => {
 
       {/* 图标库 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>图标库（部分预览）</div>
-        <div style={CARD.desc}>点击复制 JSX 代码。共 129 个图标，此处展示常用图标。</div>
+        <div style={CARD.title}>{t('demo.iconLibraryMobile')}</div>
+        <div style={CARD.desc}>{t('demo.iconLibraryMobileDesc')}</div>
         <div style={{ padding: '0 16px 12px', display: 'flex' as const, gap: '8px' }}>
           <button
             style={{ padding: '6px 12px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '6px', background: variant() === 'line' ? 'var(--sc-color-primary, #1677ff)' : '#fff', color: variant() === 'line' ? '#fff' : '#374151', cursor: 'pointer', 'font-size': '0.8rem' }}
             onClick={() => setVariant('line')}
-          >线性</button>
+          >{t('demo.lineVariant')}</button>
           <button
             style={{ padding: '6px 12px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '6px', background: variant() === 'fill' ? 'var(--sc-color-primary, #1677ff)' : '#fff', color: variant() === 'fill' ? '#fff' : '#374151', cursor: 'pointer', 'font-size': '0.8rem' }}
             onClick={() => setVariant('fill')}
-          >填充</button>
+          >{t('demo.fillVariant')}</button>
           <input
             style={{ flex: 1, padding: '6px 12px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '6px', 'font-size': '0.8rem' }}
-            placeholder="搜索图标..."
+            placeholder={t('demo.searchIcons')}
             value={search()}
             onInput={(e) => setSearch(e.currentTarget.value)}
           />

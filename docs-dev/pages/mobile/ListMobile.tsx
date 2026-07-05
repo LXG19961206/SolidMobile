@@ -71,11 +71,11 @@ export const ListMobile: Component<ListMobileProps> = (props) => {
   };
 
   return (
-    <MobilePreview title="List 列表" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('nav.list')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 静态数据 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>静态数据 data</div>
-        <div style={CARD.desc}>受控模式：直接传入 data 数组，组件不管理数据源</div>
+        <div style={CARD.title}>{t('demo.listStaticMobile')}</div>
+        <div style={CARD.desc}>{t('demo.listStaticMobileDesc')}</div>
         <div style={CARD.body}>
           <List data={staticItems} finished>
             {(item) => (
@@ -93,8 +93,8 @@ export const ListMobile: Component<ListMobileProps> = (props) => {
 
       {/* 触底加载 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>触底加载 onLoad</div>
-        <div style={CARD.desc}>固定高度容器内滚动到底部自动加载更多（最多 25 条，每次 8 条）</div>
+        <div style={CARD.title}>{t('demo.listOnLoadMobile')}</div>
+        <div style={CARD.desc}>{t('demo.listOnLoadMobileDesc')}</div>
         <div style={CARD.body}>
           <div style={{
             height: '380px', overflow: 'auto' as const,
@@ -104,8 +104,8 @@ export const ListMobile: Component<ListMobileProps> = (props) => {
             <List
               onLoad={onLoad}
               finished={finished()}
-              loadMoreText="加载中..."
-              finishedText="— 没有更多了 —"
+              loadMoreText={t('demo.loadingEllipsis')}
+              finishedText={t('demo.noMoreData')}
             >
               {(item) => (
                 <Cell
@@ -121,8 +121,8 @@ export const ListMobile: Component<ListMobileProps> = (props) => {
 
       {/* 虚拟列表 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>虚拟列表 virtual</div>
-        <div style={CARD.desc}>itemHeight=60，1000 条数据只渲染可视区域的 DOM 节点</div>
+        <div style={CARD.title}>{t('demo.listVirtualMobile')}</div>
+        <div style={CARD.desc}>{t('demo.listVirtualMobileDesc')}</div>
         <div style={CARD.body}>
           <div style={{
             height: '380px', overflow: 'auto' as const,
@@ -156,10 +156,10 @@ export const ListMobile: Component<ListMobileProps> = (props) => {
 
       {/* 空数据 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>空数据状态</div>
-        <div style={CARD.desc}>data 为空数组时展示 empty 占位内容</div>
+        <div style={CARD.title}>{t('demo.listEmptyMobile')}</div>
+        <div style={CARD.desc}>{t('demo.listEmptyMobileDesc')}</div>
         <div style={CARD.body}>
-          <List data={[]} empty="暂无记录" finished>
+          <List data={[]} empty={t('demo.noRecords')} finished>
             {(item) => <Cell title={(item as ListItem).name} />}
           </List>
         </div>

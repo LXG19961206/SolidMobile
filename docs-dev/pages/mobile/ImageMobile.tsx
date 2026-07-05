@@ -29,30 +29,19 @@ const CARD = {
   body: { padding: '0 16px 16px', display: 'flex' as const, 'flex-wrap': 'wrap' as const, gap: '12px', 'align-items': 'center' as const },
 };
 
-/* ── Framework logos (GitHub org avatars, stable URLs) ── */
-
-/* ── Framework logos (GitHub org avatars) ── */
-
 const VUE_SRC = './vue-logo.png';
 const REACT_SRC = './react-logo.png';
 const SOLID_SRC = './solid-logo.png';
 const SVELTE_SRC = './svelte-logo.png';
 
-const LOGOS = [
-  { src: SOLID_SRC, name: 'Solid', color: '#3b82f6' },
-  { src: VUE_SRC, name: 'Vue', color: '#41b883' },
-  { src: REACT_SRC, name: 'React', color: '#61dafb' },
-  { src: SVELTE_SRC, name: 'Svelte', color: '#ff3e00' },
-];
-
 export const ImageMobile: Component<ImageMobileProps> = (props) => {
   const t = useT();
   return (
     <MobilePreview title="Image 图片" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      {/* Logo 展示 */}
+      {/* Logo */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>Logo 展示</div>
-        <div style={CARD.desc}>solid-mobile 官方 logo · 彩色渐变环 + 代码括号</div>
+        <div style={CARD.title}>{t('demo.imageLogo')}</div>
+        <div style={CARD.desc}>{t('demo.imageLogoDesc')}</div>
         <div style={{ ...CARD.body, 'align-items': 'center' as const, 'justify-content': 'center' as const }}>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
             <span style={{ 'font-size': '1.4rem', color: 'var(--sc-color-primary, #1677ff)', 'font-family': 'monospace', 'font-weight': 200, opacity: 0.3 }}>{'{'}</span>
@@ -69,10 +58,10 @@ export const ImageMobile: Component<ImageMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 基础填充方式 */}
+      {/* Fit modes */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>填充方式 fit</div>
-        <div style={CARD.desc}>cover / contain / fill / none 四种模式对比（容器 100×50，2:1 窄条）</div>
+        <div style={CARD.title}>{t('demo.imageFit')}</div>
+        <div style={CARD.desc}>{t('demo.imageFitMobileDesc')}</div>
         <div style={CARD.body}>
           {[
             { fit: 'cover' as const, label: 'cover' },
@@ -90,10 +79,10 @@ export const ImageMobile: Component<ImageMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 圆角 & 圆形 */}
+      {/* Radius & Round */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>圆角 & 圆形</div>
-        <div style={CARD.desc}>radius 控制圆角大小 / round 完全圆形</div>
+        <div style={CARD.title}>{t('demo.imageRadius')}</div>
+        <div style={CARD.desc}>{t('demo.imageRadiusMobileDesc')}</div>
         <div style={CARD.body}>
           <Image src={REACT_SRC} width={60} height={60} radius={4} />
           <Image src={REACT_SRC} width={60} height={60} radius={12} />
@@ -102,22 +91,22 @@ export const ImageMobile: Component<ImageMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 块级 & 宽高比 */}
+      {/* Block & Aspect Ratio */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>块级 & 宽高比</div>
-        <div style={CARD.desc}>自定义宽高比例 + block 通栏模式</div>
+        <div style={CARD.title}>{t('demo.imageBlockMobile')}</div>
+        <div style={CARD.desc}>{t('demo.imageBlockMobileDesc')}</div>
         <div style={{ ...CARD.body, 'flex-direction': 'column' as const, 'align-items': 'center' as const }}>
           <Image src={REACT_SRC} width={100} height={60} fit="cover" radius={8} />
-          <span style={{ 'font-size': '0.6rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>100×60 自定义宽高</span>
+          <span style={{ 'font-size': '0.6rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{t('demo.imageCustomSize')}</span>
           <Image src={VUE_SRC} width="100%" fit="cover" radius={8} block />
-          <span style={{ 'font-size': '0.6rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>block 独占一行</span>
+          <span style={{ 'font-size': '0.6rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{t('demo.imageBlockFull')}</span>
         </div>
       </div>
 
-      {/* 点击预览 */}
+      {/* Preview */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>点击预览 preview</div>
-        <div style={CARD.desc}>preview 属性开启点击预览大图，点击下方图片试试</div>
+        <div style={CARD.title}>{t('demo.imagePreview')}</div>
+        <div style={CARD.desc}>{t('demo.imagePreviewMobileDesc')}</div>
         <div style={CARD.body}>
           <Image src={SOLID_SRC} width={80} height={80} fit="cover" round preview />
           <Image src={VUE_SRC} width={80} height={80} fit="cover" round preview />
@@ -125,10 +114,10 @@ export const ImageMobile: Component<ImageMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 加载失败兜底 */}
+      {/* Fallback */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>加载失败兜底 fallback</div>
-        <div style={CARD.desc}>src 无效时显示 fallback 占位内容</div>
+        <div style={CARD.title}>{t('demo.imageFallbackMobile')}</div>
+        <div style={CARD.desc}>{t('demo.imageFallbackMobileDesc')}</div>
         <div style={CARD.body}>
           <Image
             src="invalid-url"
@@ -140,7 +129,7 @@ export const ImageMobile: Component<ImageMobileProps> = (props) => {
                 'justify-content': 'center' as const, 'border-radius': '8px',
                 color: 'var(--sc-doc-card-muted, #9ca3af)', 'font-size': '0.75rem',
               }}>
-                加载失败
+                {t('demo.loadFailed')}
               </div>
             }
           />

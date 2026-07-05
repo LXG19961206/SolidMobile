@@ -48,14 +48,14 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
     <MobilePreview title="DatePicker 日期选择" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 年月日 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>年月日选择 date</div>
-        <div style={CARD.desc}>滚轮选择年-月-日</div>
+        <div style={CARD.title}>{t('demo.dateSelect')}</div>
+        <div style={CARD.desc}>{t('demo.dateSelectDesc')}</div>
         <div style={CARD.body}>
           <div
             style={{ padding: '12px 16px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: dateVal() || '#9ca3af' }}
             onClick={() => setShowDate(true)}
           >
-            {dateVal() || '请选择日期'}
+            {dateVal() || t('demo.selectDate')}
           </div>
           <DatePicker
             type="date"
@@ -65,21 +65,21 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
             onChange={setDateVal}
             onConfirm={(v) => { setDateVal(v); setShowDate(false); }}
             onCancel={() => setShowDate(false)}
-            title="选择日期"
+            title={t('demo.selectDateTitle')}
           />
         </div>
       </div>
 
       {/* 年月 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>年月选择 year-month</div>
-        <div style={CARD.desc}>滚轮选择年-月，无日列</div>
+        <div style={CARD.title}>{t('demo.yearMonthSelect')}</div>
+        <div style={CARD.desc}>{t('demo.yearMonthSelectDesc')}</div>
         <div style={CARD.body}>
           <div
             style={{ padding: '12px 16px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: monthVal() || '#9ca3af' }}
             onClick={() => setShowMonth(true)}
           >
-            {monthVal() || '请选择年月'}
+            {monthVal() || t('demo.selectYearMonth')}
           </div>
           <DatePicker
             type="year-month"
@@ -89,7 +89,7 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
             onChange={setMonthVal}
             onConfirm={(v) => { setMonthVal(v); setShowMonth(false); }}
             onCancel={() => setShowMonth(false)}
-            title="选择年月"
+            title={t('demo.selectYearMonthTitle')}
           />
         </div>
       </div>
@@ -103,7 +103,7 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
             type="date"
             value={disabledVal()}
             onChange={setDisabledVal}
-            placeholder="周末不可选"
+            placeholder={t('demo.weekendDisabled')}
             disabledDate={(y, m, d) => {
               const date = new Date(y, m - 1, d);
               return date.getDay() === 0 || date.getDay() === 6;
@@ -114,14 +114,14 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
 
       {/* 自定义范围 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义日期范围</div>
-        <div style={CARD.desc}>startDate / endDate 限制可选范围</div>
+        <div style={CARD.title}>{t('demo.customDateRange')}</div>
+        <div style={CARD.desc}>{t('demo.customDateRangeDesc')}</div>
         <div style={CARD.body}>
           <DatePicker
             type="date"
             value={rangeVal()}
             onChange={setRangeVal}
-            placeholder="2025年范围内"
+            placeholder={t('demo.rangePlaceholder')}
             startDate="2025-01-01"
             endDate="2025-12-31"
           />
@@ -137,7 +137,7 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
             style={{ padding: '12px 16px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '8px', cursor: 'pointer', 'font-size': '0.9rem', color: dateTimeVal() || '#9ca3af' }}
             onClick={() => setShowDateTime(true)}
           >
-            {dateTimeVal() || '请选择日期时间'}
+            {dateTimeVal() || t('demo.selectDateTime')}
           </div>
           <DatePicker
             type="datetime"
@@ -147,7 +147,7 @@ export const DatePickerMobile: Component<DatePickerMobileProps> = (props) => {
             onChange={setDateTimeVal}
             onConfirm={(v) => { setDateTimeVal(v); setShowDateTime(false); }}
             onCancel={() => setShowDateTime(false)}
-            title="选择日期时间"
+            title={t('demo.selectDateTimeTitle')}
           />
         </div>
       </div>

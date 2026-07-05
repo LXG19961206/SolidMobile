@@ -40,11 +40,11 @@ const IMGS = [
 export const SwiperMobile: Component<SwiperMobileProps> = (props) => {
   const t = useT();
   return (
-    <MobilePreview title="Swiper 轮播" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title="Swiper" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 自定义内容 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义内容</div>
-        <div style={CARD.desc}>children 传入任意 JSX，不限于图片</div>
+        <div style={CARD.title}>{t('demo.swiperCustomContent')}</div>
+        <div style={CARD.desc}>{t('demo.swiperCustomContentDesc')}</div>
         <div style={CARD.body}>
           <Swiper height={140} loop autoplay={2500}>
             <div style={{ background: 'linear-gradient(135deg, #667eea, #764ba2)', width: '100%', height: '100%', display: 'flex', 'align-items': 'center', 'justify-content': 'center', color: '#fff', 'font-size': '1.2rem', 'font-weight': 600 }}>🚀 SolidJS</div>
@@ -57,8 +57,8 @@ export const SwiperMobile: Component<SwiperMobileProps> = (props) => {
 
       {/* 自动播放 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>imgUrls 图片轮播</div>
-        <div style={CARD.desc}>autoplay=3000 每 3 秒自动切换，手指触摸时暂停</div>
+        <div style={CARD.title}>{t('demo.imageCarousel')}</div>
+        <div style={CARD.desc}>{t('demo.imageCarouselDesc')}</div>
         <div style={CARD.body}>
           <Swiper imgUrls={IMGS} height={160} autoplay={3000} />
         </div>
@@ -66,8 +66,8 @@ export const SwiperMobile: Component<SwiperMobileProps> = (props) => {
 
       {/* 自定义指示器 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>自定义指示器</div>
-        <div style={CARD.desc}>indicators 属性传入 (current, total) 渲染函数</div>
+        <div style={CARD.title}>{t('demo.indicator')}</div>
+        <div style={CARD.desc}>{t('demo.indicatorDesc')}</div>
         <div style={CARD.body}>
           <Swiper
             imgUrls={IMGS}
@@ -89,8 +89,8 @@ export const SwiperMobile: Component<SwiperMobileProps> = (props) => {
 
       {/* 纵向 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>纵向滚动</div>
-        <div style={CARD.desc}>vertical，上下滑动切换，适合卡片详情页</div>
+        <div style={CARD.title}>{t('demo.verticalScroll')}</div>
+        <div style={CARD.desc}>{t('demo.verticalScrollDesc')}</div>
         <div style={CARD.body}>
           <Swiper imgUrls={IMGS} height={240} vertical />
         </div>

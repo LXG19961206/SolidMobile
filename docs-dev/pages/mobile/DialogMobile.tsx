@@ -44,8 +44,8 @@ export const DialogMobile: Component<DialogMobileProps> = (props) => {
 
       {/* 基础弹窗 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础弹窗</div>
-        <div style={CARD.desc}>alert（仅确认）/ confirm（确认+取消）/ 无标题纯消息</div>
+        <div style={CARD.title}>{t('demo.dialogBasic')}</div>
+        <div style={CARD.desc}>{t('demo.dialogBasicDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell title={t('demo.dialogAlert')} clickable onClick={() => Dialog.alert({ title: '提示', message: '操作成功！' })} />
@@ -58,26 +58,26 @@ export const DialogMobile: Component<DialogMobileProps> = (props) => {
 
       {/* 高级弹窗 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>高级弹窗</div>
-        <div style={CARD.desc}>自定义按钮文案 / JSX 内容 / 异步提交 / 阻止关闭</div>
+        <div style={CARD.title}>{t('demo.dialogAdvanced')}</div>
+        <div style={CARD.desc}>{t('demo.dialogAdvancedDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell title={t('demo.customTrigger')} clickable onClick={() => Dialog.confirm({ title: '保存草稿', message: '是否保存当前编辑？', confirmText: '保存', cancelText: '不保存' })} />
             <Cell title={t('demo.dialogJSX')} clickable onClick={() => Dialog.alert({ title: '更新说明', message: (<div><p style="margin:0">v2.0 版本已发布</p><p style="margin:4px 0 0;font-size:0.8rem;color:#6b7280">新增 Picker 惯性滚动、SwipeCell 反向关闭</p></div>) })} />
-            <Cell title="异步提交" clickable onClick={() => Dialog.confirm({ title: '提交确认', message: '确定要提交吗？提交后不可修改。', showCancelButton: true, confirmText: '提交', onConfirm: () => new Promise(r => setTimeout(r, 1500)) })} />
-            <Cell title="阻止关闭" clickable onClick={() => Dialog.confirm({ title: '确认操作', message: '只有点「确认」才能关闭，点取消或遮罩均无效', beforeClose: (action) => { if (action === 'confirm') return true; return false; } })} />
+            <Cell title={t('demo.asyncSubmit')} clickable onClick={() => Dialog.confirm({ title: '提交确认', message: '确定要提交吗？提交后不可修改。', showCancelButton: true, confirmText: '提交', onConfirm: () => new Promise(r => setTimeout(r, 1500)) })} />
+            <Cell title={t('demo.preventClose')} clickable onClick={() => Dialog.confirm({ title: '确认操作', message: '只有点「确认」才能关闭，点取消或遮罩均无效', beforeClose: (action) => { if (action === 'confirm') return true; return false; } })} />
           </CellGroup>
         </div>
       </div>
 
       {/* 组件方式 & 关闭 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>组件方式 & 手动关闭</div>
-        <div style={CARD.desc}>JSX 组件声明式调用 / handle.dismiss() 手动关闭</div>
+        <div style={CARD.title}>{t('demo.dialogComponentDismiss')}</div>
+        <div style={CARD.desc}>{t('demo.dialogComponentDismissDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell title={t('demo.componentUsage')} clickable onClick={() => setShowDeclarative(true)} />
-            <Cell title="手动关闭" clickable onClick={() => {
+            <Cell title={t('demo.manualDismiss')} clickable onClick={() => {
               const h = Dialog.show({ title: '处理中', message: '请稍候...', showConfirmButton: false });
               setTimeout(() => h.dismiss(), 2000);
             }} />

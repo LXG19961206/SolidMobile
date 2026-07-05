@@ -130,13 +130,13 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
     <MobilePreview title="Cascader 级联选择" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 地区选择 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>地区选择</div>
-        <div style={CARD.desc}>三级联动：省 → 区 → 街道。点击顶部 Tab 可回退。</div>
+        <div style={CARD.title}>{t('demo.cascaderRegion')}</div>
+        <div style={CARD.desc}>{t('demo.cascaderRegionMobileDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title="选择地区"
-              value={val1().length ? val1().join(' / ') : '请选择'}
+              title={t('demo.selectRegion')}
+              value={val1().length ? val1().join(' / ') : t('demo.pleaseSelect')}
               clickable
               onClick={() => setShow1(true)}
             />
@@ -147,7 +147,7 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
             onUpdateShow={setShow1}
             value={val1()}
             onChange={setVal1}
-            title="选择地区"
+            title={t('demo.selectRegion')}
             closeable
           />
         </div>
@@ -155,13 +155,13 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
 
       {/* 禁用选项 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>禁用选项</div>
-        <div style={CARD.desc}>disabled: true 的选项不可点击。</div>
+        <div style={CARD.title}>{t('demo.cascaderDisabled')}</div>
+        <div style={CARD.desc}>{t('demo.cascaderDisabledMobileDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title="部分禁用"
-              value={val2().length ? val2().join(' / ') : '请选择'}
+              title={t('demo.partialDisabled')}
+              value={val2().length ? val2().join(' / ') : t('demo.pleaseSelect')}
               clickable
               onClick={() => setShow2(true)}
             />
@@ -172,7 +172,7 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
             onUpdateShow={setShow2}
             value={val2()}
             onChange={setVal2}
-            title="城市（部分禁用）"
+            title={t('demo.cityPartialDisabled')}
           />
         </div>
       </div>
@@ -184,8 +184,8 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title="选择省份"
-              value={val3().length ? val3().join(' / ') : '请选择'}
+              title={t('demo.selectProvince')}
+              value={val3().length ? val3().join(' / ') : t('demo.pleaseSelect')}
               clickable
               onClick={() => setShow3(true)}
             />
@@ -196,7 +196,7 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
             onUpdateShow={setShow3}
             value={val3()}
             onChange={setVal3}
-            title="省份（自定义渲染）"
+            title={t('demo.provinceCustomRender')}
             checkmark={<Icon name="check" size={16} color="var(--sc-color-primary, #1677ff)" />}
           />
         </div>
@@ -204,13 +204,13 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
 
       {/* 异步加载 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>异步加载</div>
-        <div style={CARD.desc}>options 初始为空，每级由 onLoadChildren 按需拉取，模拟 1s 延迟。</div>
+        <div style={CARD.title}>{t('demo.cascaderAsync')}</div>
+        <div style={CARD.desc}>{t('demo.cascaderAsyncMobileDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
             <Cell
-              title="选择地区"
-              value={val4().length ? val4().join(' → ') : '请选择'}
+              title={t('demo.selectRegion')}
+              value={val4().length ? val4().join(' → ') : t('demo.pleaseSelect')}
               clickable
               onClick={() => setShow4(true)}
             />
@@ -222,12 +222,12 @@ export const CascaderMobile: Component<CascaderMobileProps> = (props) => {
             onUpdateShow={setShow4}
             value={val4()}
             onChange={setVal4}
-            title="异步加载地区"
+            title={t('demo.asyncLoadRegion')}
             closeable
             loading={
               <div style={{ 'text-align': 'center', padding: '32px', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>
                 <Loading size={24} />
-                <div style={{ 'margin-top': '8px', 'font-size': '0.8rem' }}>加载地区数据中...</div>
+                <div style={{ 'margin-top': '8px', 'font-size': '0.8rem' }}>{t('demo.loadingRegionData')}</div>
               </div>
             }
           />

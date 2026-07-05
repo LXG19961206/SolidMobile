@@ -29,50 +29,50 @@ const CARD = {
 export const ToastMobile: Component<ToastMobileProps> = (props) => {
   const t = useT();
   return (
-    <MobilePreview title="Toast 轻提示" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('demo.toastMobileTitle')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       <ToastRenderer />
 
       {/* 基础类型 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>五种类型</div>
-        <div style={CARD.desc}>success / error / warning / loading / info</div>
+        <div style={CARD.title}>{t('demo.toastFiveTypes')}</div>
+        <div style={CARD.desc}>{t('demo.toastFiveTypesMobileDesc')}</div>
         <div style={CARD.body}>
-          <Button type="success" text="成功" size="sm" onClick={() => Toast.success('操作成功')} />
-          <Button type="danger" text="错误" size="sm" onClick={() => Toast.error('操作失败')} />
-          <Button type="warning" text="警告" size="sm" onClick={() => Toast.warning('请注意')} />
-          <Button size="sm" text="加载" color="#6366f1" onClick={() => { const h = Toast.loading('加载中...'); setTimeout(() => h.dismiss(), 2000); }} />
-          <Button size="sm" text="信息" color="var(--sc-color-primary, #1677ff)" onClick={() => Toast.info('提示信息')} />
+          <Button type="success" text={t('demo.toastSuccessBtn')} size="sm" onClick={() => Toast.success(t('demo.toastSuccessMsg'))} />
+          <Button type="danger" text={t('demo.toastErrorBtn')} size="sm" onClick={() => Toast.error(t('demo.toastErrorMsg'))} />
+          <Button type="warning" text={t('demo.toastWarningBtn')} size="sm" onClick={() => Toast.warning(t('demo.toastWarningMsg'))} />
+          <Button size="sm" text={t('demo.toastLoadingBtn')} color="#6366f1" onClick={() => { const h = Toast.loading(t('demo.toastLoadingMsg')); setTimeout(() => h.dismiss(), 2000); }} />
+          <Button size="sm" text={t('demo.toastInfoBtn')} color="var(--sc-color-primary, #1677ff)" onClick={() => Toast.info(t('demo.toastInfoMsg'))} />
         </div>
       </div>
 
       {/* 位置 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>位置 position</div>
-        <div style={CARD.desc}>top / middle（默认）/ bottom</div>
+        <div style={CARD.title}>{t('demo.toastPosition')}</div>
+        <div style={CARD.desc}>{t('demo.toastPositionMobileDesc')}</div>
         <div style={CARD.body}>
-          <Button variant="outline" size="sm" text="顶部" onClick={() => Toast.show({ message: '顶部提示', position: 'top', duration: 1500 })} />
-          <Button variant="outline" size="sm" text="中间" onClick={() => Toast.show({ message: '中间提示', position: 'middle', duration: 1500 })} />
-          <Button variant="outline" size="sm" text="底部" onClick={() => Toast.show({ message: '底部提示', position: 'bottom', duration: 1500 })} />
+          <Button variant="outline" size="sm" text={t('demo.toastTop')} onClick={() => Toast.show({ message: t('demo.toastTopMsg'), position: 'top', duration: 1500 })} />
+          <Button variant="outline" size="sm" text={t('demo.toastMiddle')} onClick={() => Toast.show({ message: t('demo.toastMiddleMsg'), position: 'middle', duration: 1500 })} />
+          <Button variant="outline" size="sm" text={t('demo.toastBottom')} onClick={() => Toast.show({ message: t('demo.toastBottomMsg'), position: 'bottom', duration: 1500 })} />
         </div>
       </div>
 
       {/* 长文本 & 遮罩 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>遮罩 & 长文本</div>
-        <div style={CARD.desc}>overlay 显示遮罩 / 多行文本</div>
+        <div style={CARD.title}>{t('demo.toastOverlayMultiline')}</div>
+        <div style={CARD.desc}>{t('demo.toastOverlayMultilineMobileDesc')}</div>
         <div style={CARD.body}>
-          <Button variant="outline" size="sm" text="遮罩模式" onClick={() => Toast.show({ message: '处理中...', type: 'loading', overlay: true, duration: 2000 })} />
-          <Button variant="outline" size="sm" text="多行文本" onClick={() => Toast.info('这是一段比较长的提示文字\n用于展示多行内容')} />
+          <Button variant="outline" size="sm" text={t('demo.toastOverlayMode')} onClick={() => Toast.show({ message: t('demo.toastProcessingMsg'), type: 'loading', overlay: true, duration: 2000 })} />
+          <Button variant="outline" size="sm" text={t('demo.toastMultiline')} onClick={() => Toast.info(t('demo.toastMultilineMsg'))} />
         </div>
       </div>
 
       {/* 全局关闭 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>全局关闭</div>
-        <div style={CARD.desc}>Toast.dismissAll() 关闭所有 Toast</div>
+        <div style={CARD.title}>{t('demo.toastDismissAll')}</div>
+        <div style={CARD.desc}>{t('demo.toastDismissAllMobileDesc')}</div>
         <div style={CARD.body}>
-          <Button variant="outline" size="sm" text="弹出多个" onClick={() => { Toast.info('消息 1'); Toast.info('消息 2'); }} />
-          <Button variant="ghost" size="sm" text="全部关闭" onClick={() => Toast.dismissAll()} />
+          <Button variant="outline" size="sm" text={t('demo.toastPopMultiple')} onClick={() => { Toast.info(t('demo.toastMsg1')); Toast.info(t('demo.toastMsg2')); }} />
+          <Button variant="ghost" size="sm" text={t('demo.toastDismissAllBtn')} onClick={() => Toast.dismissAll()} />
         </div>
       </div>
     </MobilePreview>

@@ -36,11 +36,11 @@ const colBox = (bg: string) => ({
 export const LayoutMobile: Component<LayoutMobileProps> = (props) => {
   const t = useT();
   return (
-    <MobilePreview title="Layout 布局" props={propsData} components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={t('nav.layout')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 基础栅格 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础栅格 Col.span</div>
-        <div style={CARD.desc}>24 栅格系统，span 占位 1-24</div>
+        <div style={CARD.title}>{t('demo.layoutGridMobile')}</div>
+        <div style={CARD.desc}>{t('demo.layoutGridMobileDesc')}</div>
         <div style={CARD.body}>
           <Row gap={8}>
             <Col span={12}><div style={colBox('var(--sc-color-primary, #1677ff)')}>span=12</div></Col>
@@ -64,8 +64,8 @@ export const LayoutMobile: Component<LayoutMobileProps> = (props) => {
 
       {/* 偏移 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>偏移 offset</div>
-        <div style={CARD.desc}>Col.offset 向右偏移若干栅格</div>
+        <div style={CARD.title}>{t('demo.layoutOffsetMobile')}</div>
+        <div style={CARD.desc}>{t('demo.layoutOffsetMobileDesc')}</div>
         <div style={CARD.body}>
           <Row gap={8}>
             <Col span={8}><div style={colBox('var(--sc-color-primary, #1677ff)')}>span=8</div></Col>
@@ -81,21 +81,21 @@ export const LayoutMobile: Component<LayoutMobileProps> = (props) => {
 
       {/* 对齐 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>对齐方式</div>
-        <div style={CARD.desc}>justify 水平分布 / align 垂直对齐</div>
+        <div style={CARD.title}>{t('demo.layoutAlignMobile')}</div>
+        <div style={CARD.desc}>{t('demo.layoutAlignMobileDesc')}</div>
         <div style={CARD.body}>
           <div style={{ 'margin-bottom': '12px' }}>
             <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-bottom': '4px' }}>justify="between"</div>
             <Row gap={8} justify="between" style={{ background: 'var(--sc-doc-card-demo, #f9fafb)', padding: '8px', 'border-radius': '6px' }}>
-              <Col span={4}><div style={colBox('var(--sc-color-primary, #1677ff)')}>左</div></Col>
-              <Col span={4}><div style={colBox('var(--sc-color-primary-hover, #5195ff)')}>右</div></Col>
+              <Col span={4}><div style={colBox('var(--sc-color-primary, #1677ff)')}>{t('demo.left')}</div></Col>
+              <Col span={4}><div style={colBox('var(--sc-color-primary-hover, #5195ff)')}>{t('demo.right')}</div></Col>
             </Row>
           </div>
           <div style={{ 'margin-bottom': '12px' }}>
             <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-bottom': '4px' }}>justify="center"</div>
             <Row gap={8} justify="center" style={{ background: 'var(--sc-doc-card-demo, #f9fafb)', padding: '8px', 'border-radius': '6px' }}>
-              <Col span={5}><div style={colBox('var(--sc-color-primary, #1677ff)')}>中</div></Col>
-              <Col span={5}><div style={colBox('var(--sc-color-primary-hover, #5195ff)')}>中</div></Col>
+              <Col span={5}><div style={colBox('var(--sc-color-primary, #1677ff)')}>{t('demo.center')}</div></Col>
+              <Col span={5}><div style={colBox('var(--sc-color-primary-hover, #5195ff)')}>{t('demo.center')}</div></Col>
             </Row>
           </div>
         </div>

@@ -90,16 +90,16 @@ export const LazyloadMobile: Component<LazyloadMobileProps> = (props) => {
     <MobilePreview title="Lazyload 懒加载" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       {/* 列表懒加载 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>列表懒加载</div>
+        <div style={CARD.title}>{t('demo.listLazy')}</div>
         <div style={CARD.desc}>
-          顶部固定占位区将列表推出首屏，向下滚动后卡片逐个进入视口触发加载。
+          {t('demo.listLazyLoadDesc')}
         </div>
         <div style={CARD.body}>
           <div style={{ height: '380px', overflow: 'auto' as const, '-webkit-overflow-scrolling': 'touch', border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px' }}>
             {/* 撑高区域 */}
             <Center flexX flexY style={{ height: '280px', color: 'var(--sc-doc-card-muted, #9ca3af)', 'text-align': 'center', 'flex-direction': 'column' as const }}>
-              <div style={{ 'font-size': '1rem', 'margin-bottom': '6px' }}>⬇ 向下滚动</div>
-              <div style={{ 'font-size': '0.75rem' }}>下方列表进入视口后加载</div>
+              <div style={{ 'font-size': '1rem', 'margin-bottom': '6px' }}>{t('demo.scrollDown')}</div>
+              <div style={{ 'font-size': '0.75rem' }}>{t('demo.scrollDownHint')}</div>
             </Center>
             {/* 懒加载列表 */}
             <div style={{ padding: '0 12px' }}>
@@ -119,13 +119,13 @@ export const LazyloadMobile: Component<LazyloadMobileProps> = (props) => {
 
       {/* 图片画廊懒加载 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>图片画廊</div>
-        <div style={CARD.desc}>双列网格 + 懒加载。滚动触发彩色卡片逐个出现。</div>
+        <div style={CARD.title}>{t('demo.imageGallery')}</div>
+        <div style={CARD.desc}>{t('demo.imageGalleryLoadDesc')}</div>
         <div style={CARD.body}>
           <div style={{ height: '360px', overflow: 'auto' as const, '-webkit-overflow-scrolling': 'touch', border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px' }}>
             <Center flexX flexY style={{ height: '240px', color: 'var(--sc-doc-card-muted, #9ca3af)', 'text-align': 'center', 'flex-direction': 'column' as const }}>
-              <div style={{ 'font-size': '1rem', 'margin-bottom': '6px' }}>⬇ 向下滚动</div>
-              <div style={{ 'font-size': '0.75rem' }}>图片卡片进入视口后加载</div>
+              <div style={{ 'font-size': '1rem', 'margin-bottom': '6px' }}>{t('demo.scrollDown')}</div>
+              <div style={{ 'font-size': '0.75rem' }}>{t('demo.imageGalleryLoadHint')}</div>
             </Center>
             <div style={{ display: 'grid', 'grid-template-columns': '1fr 1fr', gap: '8px', padding: '8px' }}>
               <For each={Array.from({ length: 12 })}>
@@ -144,8 +144,8 @@ export const LazyloadMobile: Component<LazyloadMobileProps> = (props) => {
 
       {/* 受控模式 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>受控模式 active</div>
-        <div style={CARD.desc}>不依赖滚动，通过按钮手动控制加载。</div>
+        <div style={CARD.title}>{t('demo.activeMode')}</div>
+        <div style={CARD.desc}>{t('demo.activeModeDesc')}</div>
         <div style={CARD.body}>
           <ControlledDemo />
         </div>
@@ -157,12 +157,13 @@ export const LazyloadMobile: Component<LazyloadMobileProps> = (props) => {
 /* ── Controlled Demo ── */
 
 const ControlledDemo: Component = () => {
+  const t = useT();
   const [loaded, setLoaded] = createSignal(false);
   return (
     <div style={{ display: 'flex' as const, 'flex-direction': 'column' as const, gap: '8px' }}>
       <div style={{ display: 'flex' as const, gap: '8px', 'margin-bottom': '4px' }}>
-        <Button size="sm" text={loaded() ? '已激活' : '点击加载'} onClick={() => setLoaded(true)} />
-        <Button size="sm" variant="outline" text="重置" onClick={() => setLoaded(false)} />
+        <Button size="sm" text={loaded() ? t('demo.activated') : t('demo.clickToLoad')} onClick={() => setLoaded(true)} />
+        <Button size="sm" variant="outline" text={t('demo.reset')} onClick={() => setLoaded(false)} />
       </div>
       <Lazyload active={loaded()} height={60} placeholder={<Skeleton />}>
         <DeferredContent>

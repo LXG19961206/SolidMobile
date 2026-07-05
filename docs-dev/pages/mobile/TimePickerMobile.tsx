@@ -52,7 +52,7 @@ export const TimePickerMobile: Component<TimePickerMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.basicDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title="选择时间" value={basicVal() || '请选择'} clickable onClick={() => setBasicShow(true)} />
+            <Cell title={t('demo.selectTime')} value={basicVal() || t('demo.pleaseSelect')} clickable onClick={() => setBasicShow(true)} />
           </CellGroup>
           <TimePicker show={basicShow()} onUpdateShow={setBasicShow} onChange={(v) => setBasicVal(v)} onConfirm={(v) => { setBasicVal(v); setBasicShow(false); }} onCancel={() => setBasicShow(false)} />
         </div>
@@ -64,7 +64,7 @@ export const TimePickerMobile: Component<TimePickerMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.controlledDesc')}</div>
         <div style={CARD.body}>
           <CellGroup>
-            <Cell title="预设值" value={ctrlVal()} clickable onClick={() => setCtrlShow(true)} />
+            <Cell title={t('demo.presetValue')} value={ctrlVal()} clickable onClick={() => setCtrlShow(true)} />
           </CellGroup>
           <TimePicker show={ctrlShow()} onUpdateShow={setCtrlShow} value={ctrlVal()} onChange={(v) => setCtrlVal(v)} onConfirm={(v) => { setCtrlVal(v); setCtrlShow(false); }} onCancel={() => setCtrlShow(false)} />
         </div>
@@ -72,22 +72,22 @@ export const TimePickerMobile: Component<TimePickerMobileProps> = (props) => {
 
       {/* 配合 Form */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>配合 Form</div>
-        <div style={CARD.desc}>放入 FormItem 自动双向绑定，onSubmit 直接拿到 HH:mm:ss 格式字符串。</div>
+        <div style={CARD.title}>{t('demo.withForm')}</div>
+        <div style={CARD.desc}>{t('demo.withFormDesc')}</div>
         <div style={CARD.body}>
           <Form onSubmit={(v) => setFormVal(v)} labelWidth="5em">
-            <FormItem name="startTime" label="开始时间" required>
-              <TimePicker placeholder="选择开始时间" />
+            <FormItem name="startTime" label={t('demo.startTime')} required>
+              <TimePicker placeholder={t('demo.selectStartTime')} />
             </FormItem>
-            <FormItem name="endTime" label="结束时间">
-              <TimePicker placeholder="选择结束时间" />
+            <FormItem name="endTime" label={t('demo.endTime')}>
+              <TimePicker placeholder={t('demo.selectEndTime')} />
             </FormItem>
             <div style={{ padding: '8px 0', display: 'flex' as const, gap: '8px' }}>
-              <Button type="primary" block nativeType="submit" size="sm" text="提交" />
+              <Button type="primary" block nativeType="submit" size="sm" text={t('demo.submitForm')} />
             </div>
           </Form>
           <div style={{ 'font-size': '0.7rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'margin-top': '8px' }}>
-            提交值: {JSON.stringify(formVal())}
+            {t('demo.formSubmitValue')}: {JSON.stringify(formVal())}
           </div>
         </div>
       </div>
