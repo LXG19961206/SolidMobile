@@ -74,6 +74,61 @@ export const UploadDocPage: Component = () => {
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Props</h2>
         <PropsTable rows={uploadProps} />
 
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.design')}</h2>
+
+        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>{t('section.noHttp')}</h3>
+        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
+          Upload 组件<strong>不提供</strong> <code>action</code>、<code>headers</code>、<code>data</code>、<code>withCredentials</code> 等请求相关属性。
+          原因很简单：<strong>请求是业务层的事，不是组件层的事。</strong>
+        </p>
+        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
+          传统组件库把这些参数摊成 props 替你去发请求，看似省事，实则每个项目的 Authorization、BaseURL、超时、重试策略都不一样——props 永远列不完。更关键的是，你全局的 HTTP 拦截器和 token 刷新逻辑本来就能正常工作，何必让组件再绕一层？
+        </p>
+        <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.8125rem', 'line-height': 1.7, 'margin-bottom': '12px' }}>
+          <thead><tr style={{ 'border-bottom': '1px solid #e5e7eb', 'text-align': 'left' }}>
+            <th style={{ padding: '8px 12px' }}>理由</th>
+            <th style={{ padding: '8px 12px' }}>展开说</th>
+          </tr></thead>
+          <tbody>
+            <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>解耦 HTTP 库</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>fetch、axios、ky 还是 wx.uploadFile？Upload 不关心。你传一个 api 函数，里面怎么发请求完全由你控制。</td>
+            </tr>
+            <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>Token / 拦截器</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>项目中已封装好的 request 实例（统一拦截、错误处理、loading 态）直接传给 api 即可，Upload 不绕过你的基础设施。</td>
+            </tr>
+            <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>OSS 直传</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>阿里云 / AWS S3 需要先获取签名、拼表单、有时还要回调通知。传统的 action + data 模型根本无法表达这个流程。</td>
+            </tr>
+            <tr>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>测试友好</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>传一个 <code>{"async () => ({ url: '...' })"}</code> 就能跑通测试，无需 mock 任何 HTTP 库。</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>{t('section.ioc')}</h3>
+        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
+          Upload 只做一件事：<strong>管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你通过 <code>api</code> 属性注入（控制反转 / IoC）：你写一个返回 Promise 的函数，Upload 调用它。token、拦截器、请求库都在你自己掌控之中。
+        </p>
+        <CodeBlock code={`// 你的 IoC 容器 — 封装好的请求实例
+import { request } from '@/services/http';
+
+// 注入给 Upload。api 必须返回文件 URL 字符串，组件用于反显和预览
+<Upload
+  api={(file, onProgress) =>
+    request.post('/upload', { body: file, onProgress })
+      .then(res => res.data.url)
+  }
+/>`} />
+        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '12px' }}>
+          如果不传 <code>api</code>，Upload 退化为「文件选择器 + 列表管理器」。
+        </p>
+
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>示例</h2>
+
         <DemoBlock title={t('demo.imageUpload')} desc={t('demo.imageUploadDesc')} code={`// api 返回上传后的文件 URL，组件用于反显和预览
 const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
   const form = new FormData();
@@ -171,55 +226,6 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           </Upload>
         </DemoBlock>
 
-        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.design')}</h2>
-
-        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>{t('section.noHttp')}</h3>
-        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
-          Upload 组件<strong>不提供</strong> <code>action</code>、<code>headers</code>、<code>data</code>、<code>withCredentials</code> 等请求相关属性。
-          原因很简单：<strong>请求是业务层的事，不是组件层的事。</strong>
-        </p>
-        <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.8125rem', 'line-height': 1.7, 'margin-bottom': '12px' }}>
-          <thead><tr style={{ 'border-bottom': '1px solid #e5e7eb', 'text-align': 'left' }}>
-            <th style={{ padding: '8px 12px' }}>理由</th>
-            <th style={{ padding: '8px 12px' }}>展开说</th>
-          </tr></thead>
-          <tbody>
-            <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>解耦 HTTP 库</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>fetch、axios、ky 还是 wx.uploadFile？Upload 不知道也不该知道。你传一个 api 函数，里面怎么发完全由你控制。</td>
-            </tr>
-            <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>Token / 拦截器</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>项目中通常有一个封装好的 request 实例（统一拦截、错误处理、loading）。传给 api 就行，Upload 不绕开你的基础设施。</td>
-            </tr>
-            <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>OSS 直传</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>阿里云 / AWS S3 需要先拿签名、再拼表单、有时还要回调通知。action + data 的模型根本表达不了这个流程。</td>
-            </tr>
-            <tr>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>测试</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>传一个 <code> {"async () => ({ url: '...' })"}</code> 就能跑测试，不用 mock 任何 HTTP 库。</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>{t('section.ioc')}</h3>
-        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
-          Upload 只做一件事：<strong>管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你通过 <code>api</code> 属性注入：
-        </p>
-        <CodeBlock code={`// 你的 IoC 容器 — 封装好的请求实例
-import { request } from '@/services/http';
-
-// 注入给 Upload。api 必须返回文件 URL 字符串，组件用于反显和预览
-<Upload
-  api={(file, onProgress) =>
-    request.post('/upload', { body: file, onProgress })
-      .then(res => res.data.url)
-  }
-/>`} />
-        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '12px' }}>
-          如果不需要上传（只选文件、本地管理列表），不传 <code>api</code> 即可。Upload 退化为「文件选择器 + 列表管理器」。
-        </p>
       </div>
     </DocLayout>
   );

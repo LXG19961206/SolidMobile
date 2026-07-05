@@ -8,6 +8,36 @@ import { docThemeColor, persistThemeColor } from '../doc-theme';
 import { ThemeColorPicker } from '../ThemeColorPicker';
 import styles from './MobilePreview.module.css';
 
+/* ── Stable ordered key list for prev/next navigation ──
+   Mirrors the mobile drawer order exactly so prev/next always
+   follows the sidebar directory, independent of locale or filtering. */
+const MOBILE_PAGE_KEYS: string[] = [
+  'home', 'eventbus', 'solidjs', 'about',
+  'design-tokens',
+  'button', 'icon', 'center', 'divider', 'layout', 'safearea',
+  'avatar', 'badge', 'tag', 'image', 'empty', 'lazyload', 'list',
+  'swipecell', 'swiper', 'pullrefresh',
+  'tabs', 'tabbar', 'navbar', 'cell',
+  'picker', 'calendar', 'cascader', 'datepicker', 'citypicker', 'timepicker',
+  'toast', 'notify', 'dialog', 'overlay', 'actionsheet', 'loading',
+  'form', 'input', 'textarea', 'radio', 'checkbox', 'switch',
+  'rate', 'stepper', 'slider', 'select', 'upload',
+];
+
+/** Extract the current page key from the URL hash (e.g. #/components/button → button). */
+function getCurrentKeyFromHash(): string | null {
+  try {
+    const raw = window.location.hash.replace('#', '') || '';
+    if (raw.startsWith('/')) {
+      const parts = raw.split('/').filter(Boolean);
+      return parts[1] || null;
+    }
+    return raw || null;
+  } catch {
+    return null;
+  }
+}
+
 const DARK_KEY = 'sc-docs-dark-mode';
 let i18nNoticeShown = false;
 
@@ -61,8 +91,23 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
     setIsDark(next);
   };
 
-  /* ── Prev / Next navigation ── */
+  /* ── Prev / Next navigation ──
+     Uses the stable MOBILE_PAGE_KEYS order (mirrors drawer) and matches
+     by URL hash key — immune to locale switches and group boundaries. */
   const nav = createMemo(() => {
+    const currentKey = getCurrentKeyFromHash();
+    if (currentKey) {
+      const idx = MOBILE_PAGE_KEYS.indexOf(currentKey);
+      if (idx >= 0) {
+        const prevKey = idx > 0 ? MOBILE_PAGE_KEYS[idx - 1] : null;
+        const nextKey = idx < MOBILE_PAGE_KEYS.length - 1 ? MOBILE_PAGE_KEYS[idx + 1] : null;
+        return {
+          prev: prevKey ? { key: prevKey, name: prevKey } : null,
+          next: nextKey ? { key: nextKey, name: nextKey } : null,
+        };
+      }
+    }
+    // Fallback: try old name-based matching (for pages not in MOBILE_PAGE_KEYS)
     const list = props.components || [];
     const idx = list.findIndex(c => c.name === props.title);
     const prev = idx > 0 ? list[idx - 1] : null;

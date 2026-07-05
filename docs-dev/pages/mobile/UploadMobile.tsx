@@ -35,6 +35,15 @@ const CARD = {
   body: { padding: '8px 16px 16px' },
 };
 
+const designTableRow = { padding: '6px 8px', 'font-size': '0.75rem', 'line-height': 1.6, 'border-bottom': '1px solid var(--sc-doc-card-divider, #f3f4f6)' };
+
+const designReasons = [
+  { title: '解耦 HTTP 库', desc: 'fetch、axios、ky 还是 wx.uploadFile？Upload 不关心。你传一个 api 函数，里面怎么发请求完全由你控制。' },
+  { title: 'Token / 拦截器', desc: '项目中已封装好的 request 实例（统一拦截、错误处理、loading 态）直接传给 api 即可，Upload 不绕过你的基础设施。' },
+  { title: 'OSS 直传', desc: '阿里云 / AWS S3 需要先获取签名、拼表单、有时还要回调通知。传统的 action + data 模型根本无法表达这个流程。' },
+  { title: '测试友好', desc: '传一个 async () => ({ url: "..." }) 就能跑通测试，无需 mock 任何 HTTP 库。' },
+];
+
 function mockApi(file: File, onProgress?: (pct: number) => void): Promise<string> {
   return new Promise((resolve) => {
     let pct = 0;
@@ -57,6 +66,31 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
   return (
     <MobilePreview title="Upload 上传" props={propsData} components={props.components} onNavigate={props.onNavigate}>
       <ToastRenderer />
+
+      {/* 设计理念 — moved to front */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>{t('demo.design')}</div>
+        <div style={{ padding: '0 16px 12px', 'font-size': '0.8rem', 'line-height': 1.8, color: 'var(--sc-color-text-secondary, #6b7280)' }}>
+          <p style={{ margin: '0 0 10px' }}>
+            Upload 组件<strong>不提供</strong> <code>action</code>、<code>headers</code>、<code>data</code>、<code>withCredentials</code> 等请求相关属性。原因很简单：<strong>请求是业务层的事，不是组件层的事。</strong>
+          </p>
+          <p style={{ margin: '0 0 10px' }}>
+            传统组件库把这些参数摊成 props 替你去发请求，看似省事，实则每个项目的 Authorization、BaseURL、超时、重试策略都不一样——props 永远列不完。更关键的是，你全局的 HTTP 拦截器和 token 刷新逻辑本来就能正常工作，何必让组件再绕一层？
+          </p>
+          {/* Reasons table */}
+          <div style={{ 'border-radius': '6px', overflow: 'hidden' as const, border: '1px solid var(--sc-doc-card-border, #e5e7eb)', margin: '10px 0' }}>
+            {designReasons.map((r, i) => (
+              <div style={{ ...designTableRow, background: i % 2 === 0 ? 'transparent' : 'var(--sc-doc-card-placeholder, #f9fafb)', 'border-bottom': i < designReasons.length - 1 ? designTableRow['border-bottom'] : 'none' }}>
+                <div style={{ 'font-weight': 600, 'margin-bottom': '2px', color: 'var(--sc-doc-card-text, #374151)' }}>{r.title}</div>
+                <div style={{ color: 'var(--sc-doc-card-desc, #6b7280)' }}>{r.desc}</div>
+              </div>
+            ))}
+          </div>
+          <p style={{ margin: '10px 0 0' }}>
+            <strong>Upload 只做一件事：管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你通过 <code>api</code> 属性注入（控制反转 / IoC）：你写一个返回 Promise 的函数，Upload 调用它。token、拦截器、请求库都在你自己掌控之中。如果不传 <code>api</code>，Upload 退化为「文件选择器 + 列表管理器」。
+          </p>
+        </div>
+      </div>
 
       {/* 图片上传 */}
       <div style={CARD.wrapper}>
@@ -129,27 +163,6 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
               + 上传图片
             </span>
           </Upload>
-        </div>
-      </div>
-
-      {/* 设计理念 */}
-      <div style={CARD.wrapper}>
-        <div style={{ padding: '16px 16px 12px', 'border-bottom': '1px solid var(--sc-color-border, #ebedf0)' }}>
-          <div style={{ 'font-size': '0.85rem', 'font-weight': 600, color: 'var(--sc-color-text, #323233)' }}>{t('demo.design')}</div>
-        </div>
-        <div style={{ padding: '12px 16px 16px', 'font-size': '0.8rem', 'line-height': 1.8, color: 'var(--sc-color-text-secondary, #6b7280)' }}>
-          <p style={{ margin: '0 0 8px' }}>
-            Upload 没有 <code>action</code>、<code>headers</code>、<code>data</code> 这些属性 —— 因为 HTTP 请求是<strong>业务层</strong>的事，不是组件层的事。
-          </p>
-          <p style={{ margin: '0 0 8px' }}>
-            传统组件库把这些参数摊成 props 替你去发请求，看似省事，实则更麻烦：Authorization、Content-Type、BaseURL、超时、重试……每个项目的封装方式都不一样，props 永远列不完。更关键的是，你全局 HTTP 库的拦截器、token 刷新逻辑本来就能正常工作，何必让组件再绕一层？
-          </p>
-          <p style={{ margin: '0 0 8px' }}>
-            <strong>Upload 只做一件事：管理文件生命周期。</strong>（选文件 → 校验 → 展示 → 删除）
-          </p>
-          <p style={{ margin: '0' }}>
-            上传策略通过 <code>api</code> 函数注入（控制反转 / IoC）：你写一个返回 Promise 的函数，组件调用它。token、拦截器、请求库都是你自己掌控的，不需要绕过任何组件层逻辑。测试时传个 <code>{"async () => ({ url: '...' })"}</code> 就能跑，零 mock。
-          </p>
         </div>
       </div>
     </MobilePreview>

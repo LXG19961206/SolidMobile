@@ -122,6 +122,7 @@ import { PullRefreshMobile } from './pages/mobile/PullRefreshMobile';
 import { DesignTokensMobile } from './pages/mobile/DesignTokensMobile';
 import { EventBusMobile } from './pages/mobile/EventBusMobile';
 import { SolidjsMobile } from './pages/mobile/SolidjsMobile';
+import { AboutMobile } from './pages/mobile/AboutMobile';
 import { AllTokens } from '../src/design-tokens/DesignTokenShowcase';
 import { useDisableZoom } from '../src/hooks';
 import { CodeBlock } from '../src/doc-utils';
@@ -163,7 +164,7 @@ const MobileHome: Component<{
           width: '72px', height: '72px', 'border-radius': '50%',
           background: 'conic-gradient(from 0deg, var(--sc-color-primary, #1677ff), #22c55e, #f59e0b, #ef4444, #8b5cf6, var(--sc-color-primary, #1677ff))',
           animation: 'sc-logo-pulse 3s ease-in-out infinite',
-          position: 'absolute' as const, top: '-5px', left: '-5px',
+          position: 'absolute' as const, top: '-6px', left: '-6px',
         }} />
         <img src="./logo.jpg" alt="solid-mobile" style={{
           width: '60px', height: '60px', 'border-radius': '50%',
@@ -215,6 +216,7 @@ const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key:
   home: MobileHome,
   eventbus: EventBusMobile,
   solidjs: SolidjsMobile,
+  about: AboutMobile,
   'design-tokens': DesignTokensMobile,
   button: ButtonMobile,
   icon: IconMobile,
@@ -571,10 +573,10 @@ const AboutPage: Component = () => {
       <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
         {isEn() ? (
           <>This is a solo project, built across evenings and weekends. It is also — in the spirit of full disclosure — a collaboration between one human and one AI: the author and Claude together contributed the vast majority of the code, docs, and design decisions in this repository. {" "}
-            <a href="https://github.com/LXG19961206/solid-component" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>GitHub</a>{" "}is always open. Stars, issues, and pull requests are genuinely appreciated.</>
+            <a href="https://github.com/LXG19961206/SolidMobile" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>GitHub</a>{" "}is always open. Stars, issues, and pull requests are genuinely appreciated.</>
         ) : (
           <>这是一个个人项目，利用业余时间完成。坦诚地讲，这也是一个人与一个 AI 的合作项目——作者与 Claude 共同贡献了本仓库中绝大多数的代码、文档与设计决策。{" "}
-            <a href="https://github.com/LXG19961206/solid-component" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>GitHub</a>{" "}始终开放。每一个 star、每一条 issue、每一个 PR，都发自内心地感谢。</>
+            <a href="https://github.com/LXG19961206/SolidMobile" target="_blank" rel="noopener" style={{ color: 'var(--sc-color-primary, #1677ff)' }}>GitHub</a>{" "}始终开放。每一个 star、每一条 issue、每一个 PR，都发自内心地感谢。</>
         )}
       </p>
     </div>
@@ -1125,7 +1127,7 @@ const GUIDE_PAGES: Record<string, Component> = {
       <blockquote style="margin:0 0 1.5rem;padding:0.75rem 1rem;border-left:3px solid var(--sc-color-primary, #1677ff);background:color-mix(in srgb, var(--sc-color-primary, #1677ff) 4%, transparent);border-radius:0 6px 6px 0;color:var(--sc-color-text-secondary,#6b7280);font-size:0.9rem;line-height:1.7">
         <strong>本库的 EventBus 定位为拦截与切面，而非通用消息通道。</strong><br />
         它专为<strong>埋点遥测、审计日志、AOP 拦截</strong>等横切关注点设计，提供一个统一的观测入口。
-        我们不建议用它来做组件间通信、状态同步或事件驱动的业务流转——这些场景请走 props、回调或 Form 等显式契约。
+        我们不建议用它来做组件间通信、状态同步或事件驱动的业务流转——这些场景请走 props、回调等显式契约。
         EventBus 在这里的角色是旁路观察者：静默记录发生的一切，不参与、不改变业务逻辑的执行路径。
       </blockquote>
 

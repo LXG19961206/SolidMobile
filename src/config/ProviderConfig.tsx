@@ -4,7 +4,7 @@ import { defaultConfig } from './defaults';
 import { deepMerge } from './merge';
 import { generateCSSVars } from './css-vars';
 import { LocaleProvider } from '../i18n/context';
-import { deriveColorSet } from '../utils/color';
+import { deriveColorSet, hexToRgb } from '../utils/color';
 import type { Locale } from '../i18n/types';
 import type { PartialSolidComponentConfig, SolidComponentConfig } from './types';
 
@@ -25,14 +25,27 @@ export interface ProviderConfigProps extends ParentProps {
 /** Semantic color keys that have derived hover / active / disabled / pale states. */
 const SEMANTIC_COLORS = ['primary', 'secondary', 'danger', 'success', 'warning', 'info'] as const;
 
+/** Build a transparent pale value for dark mode (matching defaultConfig pattern). */
+function darkPale(hex: string): string {
+  const { r, g, b } = hexToRgb(hex);
+  return `rgba(${r}, ${g}, ${b}, 0.12)`;
+}
+
 /**
  * Auto-derive missing state colors from any base colors present in the input.
  *
  * When a user provides e.g. `{ primary: '#ff6b00' }` without `primaryHover`,
  * `primaryActive`, etc., this fills them in with values computed from the base
  * color.  Explicitly provided state colors are preserved as-is.
+ *
+ * @param colors  The color map for a single theme (light or dark).
+ * @param theme   Which theme these colors belong to — pale is computed
+ *                differently for dark mode (transparent overlay vs. light tint).
  */
-function autoDeriveColors(colors: Record<string, unknown>): Record<string, unknown> {
+function autoDeriveColors(
+  colors: Record<string, unknown>,
+  theme: 'light' | 'dark' = 'light',
+): Record<string, unknown> {
   const result = { ...colors };
 
   for (const key of SEMANTIC_COLORS) {
@@ -51,7 +64,7 @@ function autoDeriveColors(colors: Record<string, unknown>): Record<string, unkno
       result[`${key}Disabled`] = derived.disabled;
     }
     if (result[`${key}Pale`] === undefined) {
-      result[`${key}Pale`] = derived.pale;
+      result[`${key}Pale`] = theme === 'dark' ? darkPale(base) : derived.pale;
     }
   }
 
@@ -68,7 +81,9 @@ function autoDeriveColors(colors: Record<string, unknown>): Record<string, unkno
     if (result['secondaryHover'] === undefined) result['secondaryHover'] = secondarySet.hover;
     if (result['secondaryActive'] === undefined) result['secondaryActive'] = secondarySet.active;
     if (result['secondaryDisabled'] === undefined) result['secondaryDisabled'] = secondarySet.disabled;
-    if (result['secondaryPale'] === undefined) result['secondaryPale'] = secondarySet.pale;
+    if (result['secondaryPale'] === undefined) {
+      result['secondaryPale'] = theme === 'dark' ? darkPale(secondaryBase) : secondarySet.pale;
+    }
   }
 
   // Auto-derive focus ring from primary when not explicitly provided
@@ -109,9 +124,9 @@ export function ProviderConfig(props: ProviderConfigProps) {
 
     if (props.config.colors) {
       const colors = { ...props.config.colors } as Record<string, unknown>;
-      for (const theme of ['light', 'dark']) {
+      for (const theme of ['light', 'dark'] as const) {
         if (colors[theme] && typeof colors[theme] === 'object') {
-          colors[theme] = autoDeriveColors(colors[theme] as Record<string, unknown>);
+          colors[theme] = autoDeriveColors(colors[theme] as Record<string, unknown>, theme);
         }
       }
       processed.colors = colors;

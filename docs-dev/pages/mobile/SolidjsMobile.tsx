@@ -21,34 +21,54 @@ export const SolidjsMobile: Component<SolidjsMobileProps> = (props) => {
       <h2 style={H2}>{isEn() ? 'What Is It' : '它是什么'}</h2>
       <p style={P}>
         {isEn() ? (
-          <><a href="https://www.solidjs.com/" target="_blank" rel="noopener" style={LINK}>Solid.js</a> is a declarative, fine-grained reactive JavaScript UI framework. Its programming model is nearly identical to React — JSX, Hooks, Context, Suspense — every familiar concept is there.</>
+          <>
+            <a href="https://www.solidjs.com/" target="_blank" rel="noopener" style={LINK}>Solid.js</a>
+            {" "}is a declarative, fine-grained reactive JavaScript UI framework. Its programming model is nearly identical to React — JSX, components, Hooks, Context, Suspense… every familiar concept is there, and it feels even more "React" than React itself.
+          </>
         ) : (
-          <><a href="https://www.solidjs.com/" target="_blank" rel="noopener" style={LINK}>Solid.js</a> 是一个声明式、细粒度响应式的 JavaScript UI 框架。编程模型和 React 几乎一样——JSX、组件、Hooks、Context、Suspense……有甚至会写 React 还顺手。</>
+          <>
+            <a href="https://www.solidjs.com/" target="_blank" rel="noopener" style={LINK}>Solid.js</a>
+            {" "}是一个声明式、细粒度响应式的 JavaScript UI 框架。它的编程模型和 React 几乎一模一样——JSX、组件、Hooks、Context、Suspense……你能想到的 React 里有的概念，它都有，而且写得比 React 还「React」。
+          </>
         )}
       </p>
 
       <h2 style={H2}>{isEn() ? 'Performance' : '性能'}</h2>
       <p style={P}>
         {isEn() ? (
-          "Solid has no virtual DOM. Component functions run once, then a fine-grained reactivity system updates the DOM directly. It consistently ranks in the top tier of every major benchmark."
+          "Solid has no virtual DOM. Component functions run exactly once; after that, a compiler-generated fine-grained reactivity system updates DOM nodes directly. This means extremely low runtime overhead — Solid consistently ranks in the top tier of every major frontend framework benchmark, and in some scenarios it's the fastest."
         ) : (
-          "Solid 没有虚拟 DOM。组件函数只执行一次，之后由编译器生成的细粒度响应式系统直接更新 DOM 节点。在所有主流前端框架的性能基准中，Solid 始终处于第一梯队。"
+          "Solid 没有虚拟 DOM。组件函数只执行一次，之后由编译器生成的细粒度响应式系统直接更新 DOM 节点。这意味着它的运行时开销极低——在所有主流前端框架的性能基准测试中，Solid 始终处于第一梯队，在某些场景下甚至是最快的那个。"
         )}
       </p>
       <p style={P}>
         {isEn() ? (
-          <>The "no VDOM + fine-grained reactivity" design inspired Vue 3.6's <a href="https://vuejs.org/guide/extras/reactivity-in-depth.html" target="_blank" rel="noopener" style={LINK}>Vapor Mode</a>.</>
+          <>This "no virtual DOM + fine-grained reactivity" design has, in a sense, inspired Vue 3.6's{" "}
+            <a href="https://vuejs.org/guide/extras/reactivity-in-depth.html" target="_blank" rel="noopener" style={LINK}>Vapor Mode</a>
+            {" "}— a compilation strategy that eliminates the need for a virtual DOM. Solid was ahead of the entire industry on this front.</>
         ) : (
-          <>这个「无虚拟 DOM + 细粒度响应式」的设计启发了 Vue 3.6 的 <a href="https://vuejs.org/guide/extras/reactivity-in-depth.html" target="_blank" rel="noopener" style={LINK}>Vapor Mode</a>。</>
+          <>这个「无虚拟 DOM + 细粒度响应式」的设计，在某种意义上启发了 Vue 3.6 的{" "}
+            <a href="https://vuejs.org/guide/extras/reactivity-in-depth.html" target="_blank" rel="noopener" style={LINK}>Vapor Mode</a>
+            {" "}——一种不需要虚拟 DOM 的编译策略。可以说，Solid 在这个方向上领先了整个行业。</>
         )}
       </p>
 
       <h2 style={H2}>{isEn() ? 'A Missed Opportunity' : '惋惜'}</h2>
       <p style={P}>
+        {isEn() ? "But Solid arrived too late." : "但 Solid 诞生得太晚了。"}
+      </p>
+      <p style={P}>
         {isEn() ? (
-          "Solid arrived too late. Released in 2021, it entered a world where React's ecosystem was an immovable mountain, Vue was deeply entrenched, and Svelte had already captured the compiler-framework narrative."
+          "It was officially released in 2021, by which time the frontend landscape had already been reshaped many times over. React's ecosystem is an immovable mountain. Vue is deeply entrenched in developer communities worldwide. Svelte captured the \"compile-time framework\" narrative, while Qwik carved out the \"resumability\" niche. Solid, despite being technically superior in many ways, found itself squeezed between giants."
         ) : (
-          "但 Solid 诞生得太晚了。它 2021 年才正式发布，那时前端世界早已完成了一轮又一轮的框架洗牌。React 的生态像一座无人能撼动的大山，Vue 在国内社区根深蒂固，Svelte 和 Qwik 又分别在各自的方向上建立了护城河。"
+          "它 2021 年才正式发布，那时前端世界早已完成了一轮又一轮的框架洗牌。React 的生态像一座无人能撼动的大山，Vue 在中小团队和国内社区根深蒂固，Svelte 抢走了「编译时框架」的叙事，而 Qwik 又在「可恢复性」方向上建立了护城河。"
+        )}
+      </p>
+      <p style={P}>
+        {isEn() ? (
+          "From a technical standpoint, Solid delivers almost everything you could want from a \"React replacement\" — better performance, simpler state management, cleaner side-effect handling (no dependency arrays, no stale closures). But it ran into an iron law:"
+        ) : (
+          "从技术角度看，Solid 几乎做到了你能对「React 的完美替代品」期待的一切——更好的性能、更简单的状态管理、更干净的副作用处理（没有依赖数组，没有 stale closure）。但它撞上了一个铁律："
         )}
       </p>
       <blockquote style="margin:0.75rem 16px;padding:0.75rem 1rem;border-left:3px solid var(--sc-color-primary, #1677ff);background:color-mix(in srgb, var(--sc-color-primary, #1677ff) 4%, transparent);border-radius:0 6px 6px 0;color:var(--sc-color-text-secondary,#6b7280);font-size:0.85rem;line-height:1.7">
@@ -56,27 +76,39 @@ export const SolidjsMobile: Component<SolidjsMobileProps> = (props) => {
       </blockquote>
       <p style={P}>
         {isEn() ? (
-          "The lack of third-party component libraries, starter templates, and enterprise solutions makes most teams hesitate — this is the ecosystem gap we're trying to help fill."
+          "This is why, despite its excellence, Solid's ecosystem has never truly flourished. The lack of third-party component libraries, starter templates, and enterprise-grade solutions makes most teams hesitate — nobody wants to be the one who has to fill every gap alone."
         ) : (
-          "这也是为什么尽管它足够优秀，社区生态却始终没有真正起来——第三方组件库、企业级解决方案的匮乏，让大多数团队在评估时犹豫。"
+          "这也是为什么尽管它足够优秀，社区生态却始终没有真正起来的原因——第三方组件库、脚手架模板、企业级解决方案的匮乏，让大多数团队在评估时会因为「万一遇到问题没人填坑」而犹豫。"
         )}
       </p>
 
       <h2 style={H2}>{isEn() ? 'Why We Chose It' : '我们为什么选它'}</h2>
       <p style={P}>
         {isEn() ? (
-          "Fine-grained reactivity and single-execution components are the best foundation for a component system. No massive runtime diff, no stale closures — just simple JavaScript."
+          "We chose Solid to build this component library not because it's trendy — quite the opposite. Its reactivity model and compilation strategy happen to be the best foundation for building a component system. Fine-grained updates mean components don't need a massive runtime diff to locate changes. Single-execution component functions let state management return to simple JavaScript variables and functions, without yet another framework API to learn."
         ) : (
-          "选择 Solid 不是追随潮流——它的细粒度响应式和编译策略恰好是构建组件系统的最佳土壤。一次执行的组件函数让状态管理回归最简单的 JavaScript 变量和函数。我们相信这套组件库本身就是帮它补齐生态短板的一步。"
+          "选择 Solid 来写这套组件库，不是因为追随什么潮流——恰恰相反，是因为它的响应式模型和编译策略恰好是构建组件系统的最佳土壤。细粒度的更新意味着组件不需要依赖庞大的运行时 diff 来定位变化；一次执行的组件函数让状态管理回归到最简单的 JavaScript 变量和函数，而不是一套需要额外学习的框架 API。"
+        )}
+      </p>
+      <p style={P}>
+        {isEn() ? (
+          <>We believe this component library itself is a step toward filling Solid's ecosystem gap. If this article sparked even a little interest, check out the{" "}
+            <a href="https://www.solidjs.com/tutorial" target="_blank" rel="noopener" style={LINK}>official tutorial</a>
+            {" "}— ten minutes, and you'll discover a world that's cleaner and lighter than React.</>
+        ) : (
+          <>我们相信这套组件库本身，就是帮它补齐生态短板的一步。如果你读完这篇文章，对 Solid 产生了哪怕一点点兴趣，都可以去它的{" "}
+            <a href="https://www.solidjs.com/tutorial" target="_blank" rel="noopener" style={LINK}>官方教程</a>
+            {" "}看看——十分钟，你会发现一个比 React 更干净、更轻量的世界。</>
         )}
       </p>
 
       <h2 style={H2}>{isEn() ? 'Further Reading' : '延伸阅读'}</h2>
-      <div style={{ padding: '0 16px 16px', 'line-height': 2 }}>
-        <div><a href="https://www.solidjs.com/" target="_blank" rel="noopener" style={LINK}>Solid.js {isEn() ? 'Website' : '官网'}</a></div>
-        <div><a href="https://www.solidjs.com/docs/latest/api" target="_blank" rel="noopener" style={LINK}>Solid API {isEn() ? 'Reference' : '参考'}</a></div>
-        <div><a href="https://krausest.github.io/js-framework-benchmark/" target="_blank" rel="noopener" style={LINK}>JS Framework Benchmark</a></div>
-      </div>
+      <ul style={{ color: 'var(--sc-color-text-secondary, #6b7280)', 'line-height': 2, 'padding-left': '1.2rem', 'font-size': '0.85rem', margin: '0 16px 16px' }}>
+        <li><a href="https://www.solidjs.com/" target="_blank" rel="noopener" style={LINK}>Solid.js {isEn() ? 'Website' : '官网'}</a> — {isEn() ? 'Docs, tutorials, playground' : '文档、教程、Playground'}</li>
+        <li><a href="https://www.solidjs.com/docs/latest/api" target="_blank" rel="noopener" style={LINK}>Solid API {isEn() ? 'Reference' : '参考'}</a> — {isEn() ? 'Compare with React API, 10 min to get started' : '和 React 的 API 对照着看，10 分钟上手'}</li>
+        <li><a href="https://vuejs.org/guide/extras/reactivity-in-depth.html" target="_blank" rel="noopener" style={LINK}>Vue Vapor Mode</a> — {isEn() ? 'A no-VDOM compilation strategy inspired by Solid' : '受 Solid 启发的无虚拟 DOM 编译策略'}</li>
+        <li><a href="https://krausest.github.io/js-framework-benchmark/" target="_blank" rel="noopener" style={LINK}>JS Framework Benchmark</a> — {isEn() ? 'Solid consistently tops the charts' : '主流框架性能基准，Solid 常年榜首'}</li>
+      </ul>
     </div>
   </MobilePreview>
   );

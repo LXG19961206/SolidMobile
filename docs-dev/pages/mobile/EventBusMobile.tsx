@@ -63,10 +63,10 @@ export const EventBusMobile: Component<EventBusMobileProps> = (props) => {
       <div style={CARD.wrapper}>
         <div style={CARD.title}>设计定位</div>
         <div style={CARD.desc}>
-          全局事件总线。所有组件在触发内置事件时，除执行原有回调外，还会将结构化事件推送至全局总线。
+          全局事件总线。所有组件在触发内置事件时，除执行原有回调外，还会将结构化事件推送至全局总线。适用于埋点遥测、审计日志、AOP 拦截、开发调试等场景。
         </div>
         <div style={{ ...CARD.body, ...note }}>
-          本库的 EventBus 定位为<b>拦截与切面</b>，而非通用消息通道。它专为埋点遥测、审计日志、AOP 拦截等横切关注点设计。我们不建议用它做组件间通信或状态同步——这些场景请走 props、回调或 Form。
+          <b>本库的 EventBus 定位为拦截与切面，而非通用消息通道。</b>它专为<b>埋点遥测、审计日志、AOP 拦截</b>等横切关注点设计，提供一个统一的观测入口。我们不建议用它来做组件间通信、状态同步或事件驱动的业务流转——这些场景请走 props、回调等显式契约。EventBus 在这里的角色是<b>旁路观察者</b>：静默记录发生的一切，不参与、不改变业务逻辑的执行路径。
         </div>
       </div>
 
@@ -75,18 +75,18 @@ export const EventBusMobile: Component<EventBusMobileProps> = (props) => {
         <div style={CARD.title}>适用场景</div>
         <div style={CARD.body}>
           <div style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-text, #374151)', 'line-height': 1.8 }}>
-            <div>• <strong>埋点/遥测</strong> — 利用 props 获取组件配置上下文</div>
-            <div>• <strong>审计日志</strong> — 记录关键操作，合规追溯</div>
-            <div>• <strong>AOP 拦截</strong> — 全局统一前置/后置处理</div>
-            <div>• <strong>开发调试</strong> — 一个 handler 查看所有交互</div>
+            <div>• <strong>埋点 / 遥测</strong> — 利用 <code>event.props</code> 获取组件配置上下文，统计用户行为与组件使用模式</div>
+            <div>• <strong>审计日志</strong> — 记录关键操作（提交、确认、删除），合规追溯</div>
+            <div>• <strong>AOP 拦截</strong> — 全局前置/后置处理组件事件，无需侵入业务代码</div>
+            <div>• <strong>开发调试</strong> — 注册一个 handler 即可实时查看所有组件交互，无需给每个组件加 log</div>
           </div>
         </div>
       </div>
 
-      {/* 使用 */}
+      {/* 快速开始 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>如何使用</div>
-        <div style={CARD.desc}>应用入口调用一次 setEventBusHandler，无需 Provider。未注册时零开销。</div>
+        <div style={CARD.title}>快速开始</div>
+        <div style={CARD.desc}>在应用入口调用一次 <code>setEventBusHandler</code>，无需 Provider、无额外依赖。未注册时 <code>emitEvent</code> 仅做一次 null 检查，零运行时开销。</div>
         <div style={CARD.body}>
           <CodeBlock lang="tsx" code={`import { setEventBusHandler } from 'solid-mobile';
 
@@ -119,7 +119,7 @@ setEventBusHandler((event) => {
               <tr>
                 <td style={{ padding: '5px 4px', 'font-weight': 500 }}>component</td>
                 <td style={{ padding: '5px 4px', color: 'var(--sc-color-primary, #1677ff)', 'font-family': 'monospace' }}>string</td>
-                <td style={{ padding: '5px 4px', color: 'var(--sc-doc-card-desc, #6b7280)' }}>触发事件的组件名</td>
+                <td style={{ padding: '5px 4px', color: 'var(--sc-doc-card-desc, #6b7280)' }}>触发事件的组件名，如 <code>Picker</code>、<code>Upload</code></td>
               </tr>
               <tr>
                 <td style={{ padding: '5px 4px', 'font-weight': 500 }}>type</td>
@@ -134,7 +134,7 @@ setEventBusHandler((event) => {
               <tr style={{ background: 'color-mix(in srgb, var(--sc-color-primary, #1677ff) 4%, transparent)' }}>
                 <td style={{ padding: '5px 4px', 'font-weight': 600, color: 'var(--sc-color-primary, #1677ff)' }}>props</td>
                 <td style={{ padding: '5px 4px', color: 'var(--sc-color-primary, #1677ff)', 'font-family': 'monospace' }}>unknown</td>
-                <td style={{ padding: '5px 4px', color: 'var(--sc-doc-card-text, #374151)' }}><b>组件触发事件时的 props 快照。</b>可以拿到组件的所有配置信息（placeholder、maxCount、columns 等），用于遥测上下文分析。</td>
+                <td style={{ padding: '5px 4px', color: 'var(--sc-doc-card-text, #374151)' }}><b>组件触发事件时的 props 快照。</b>这是最容易被忽略但价值最高的字段——你可以从 props 中拿到组件的所有配置信息（placeholder、maxCount、columns、disabled 等），无需额外从组件实例读取。用于遥测时分析「用户是在什么配置下触发了这个事件」。</td>
               </tr>
               <tr>
                 <td style={{ padding: '5px 4px', 'font-weight': 500 }}>timestamp</td>
@@ -177,10 +177,10 @@ setEventBusHandler((event) => {
         <div style={CARD.title}>注意事项</div>
         <div style={CARD.body}>
           <div style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', 'line-height': 1.8 }}>
-            <div>• 未注册 handler 时 emitEvent 为零开销（仅一次 null 检查）</div>
+            <div>• 未注册 handler 时 <code>emitEvent</code> 为零开销（仅一次 null 检查）</div>
             <div>• handler 内避免执行耗时操作，建议异步处理</div>
-            <div>• payload 和 props 类型均为 unknown，需根据 component/type 自行窄化</div>
-            <div>• EventBus 不做组件间通信——组件协作请用 props / 回调 / Form</div>
+            <div>• <code>event.payload</code> 为事件特异数据（选中值、输入值等），需根据 component/type 自行窄化</div>
+            <div>• <code>event.props</code> 为组件触发事件时的 props 快照，可用于遥测获取组件的当前配置（如 placeholder、maxCount 等）</div>
           </div>
         </div>
       </div>

@@ -60,7 +60,7 @@ export const ImageMobile: Component<ImageMobileProps> = (props) => {
               <div style={{
                 width: '86px', height: '86px', 'border-radius': '50%',
                 background: 'conic-gradient(from 0deg, #1677ff, #22c55e, #f59e0b, #ef4444, #8b5cf6, #1677ff)',
-                opacity: 0.15, position: 'absolute' as const, top: '-5px', left: '-5px',
+                opacity: 0.15, position: 'absolute' as const, top: '-7px', left: '-7px',
               }} />
               <Image src="./logo.jpg" width={72} height={72} fit="cover" round />
             </div>
@@ -72,12 +72,19 @@ export const ImageMobile: Component<ImageMobileProps> = (props) => {
       {/* 基础填充方式 */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>填充方式 fit</div>
-        <div style={CARD.desc}>cover / contain / fill 三种常用模式对比</div>
+        <div style={CARD.desc}>cover / contain / fill / none 四种模式对比（容器 100×50，2:1 窄条）</div>
         <div style={CARD.body}>
-          {LOGOS.map((logo) => (
+          {[
+            { fit: 'cover' as const, label: 'cover' },
+            { fit: 'contain' as const, label: 'contain' },
+            { fit: 'fill' as const, label: 'fill' },
+            { fit: 'none' as const, label: 'none' },
+          ].map((item) => (
             <div style={{ display: 'flex' as const, 'flex-direction': 'column' as const, 'align-items': 'center' as const, gap: '4px' }}>
-              <Image src={logo.src} width={56} height={56} fit="cover" radius={12} />
-              <span style={{ 'font-size': '0.65rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>cover</span>
+              <div style={{ width: '100px', height: '50px', background: 'var(--sc-doc-card-placeholder, #f3f4f6)', 'border-radius': '8px', overflow: 'hidden' as const }}>
+                <Image src="./demo-photo.jpg" width={100} height={50} fit={item.fit} />
+              </div>
+              <span style={{ 'font-size': '0.65rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>{item.label}</span>
             </div>
           ))}
         </div>
