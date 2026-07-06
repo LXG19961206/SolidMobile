@@ -72,8 +72,8 @@ const codeColor = `<RadioGroup value={colorVal()} onChange={setColorVal} checked
 </RadioGroup>`;
 
 const codeHorizontal = `<RadioGroup direction="horizontal" value={hVal()} onChange={setHVal}>
-  <Radio value="a" label="男" />
-  <Radio value="b" label="女" />
+  <Radio value="a" label="浅色" />
+  <Radio value="b" label="深色" />
 </RadioGroup>`;
 
 const codeCustomIcon = `<RadioGroup value={iconVal()} onChange={setIconVal}>
@@ -118,17 +118,18 @@ const BadIcon = () => (
 );
 
 const codeForm = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}>
-  <FormItem name="gender" label="性别" contentFlex rules={[{
+  <FormItem name="lang" label="语言" contentFlex rules={[{
     validator: (v) => !!v,
-    message: '请选择性别',
+    message: '请选择语言',
   }]}>
-    <RadioGroup direction="horizontal" style={{ 'margin-left': 'auto' }}>
-      <Radio value="male" label="男" />
-      <Radio value="female" label="女" />
+    <RadioGroup direction="horizontal">
+      <Radio value="zh" label="中文" />
+      <Radio value="en" label="English" />
+      <Radio value="ja" label="日本語" />
     </RadioGroup>
   </FormItem>
   <FormItem name="level" label="会员等级" contentFlex>
-    <RadioGroup direction="horizontal" style={{ 'margin-left': 'auto' }}>
+    <RadioGroup direction="horizontal">
       <Radio value="bronze" label="青铜" />
       <Radio value="silver" label="白银" />
       <Radio value="gold" label="黄金" />
@@ -147,21 +148,22 @@ const FormDemo: Component = () => {
     <>
       <Form onSubmit={(v) => { setFormVal(v); Toast.success('提交: ' + JSON.stringify(v)); }}>
         <FormItem
-          name="gender"
-          label="性别"
+          name="lang"
+          label="语言"
           contentFlex
           rules={[{
             validator: (v: unknown) => !!v,
-            message: '请选择性别',
+            message: '请选择语言',
           }]}
         >
-          <RadioGroup direction="horizontal" style={{ 'margin-left': 'auto' }}>
-            <Radio value="male" label="男" />
-            <Radio value="female" label="女" />
+          <RadioGroup direction="horizontal">
+            <Radio value="zh" label="中文" />
+            <Radio value="en" label="English" />
+            <Radio value="ja" label="日本語" />
           </RadioGroup>
         </FormItem>
         <FormItem name="level" label="会员等级" contentFlex>
-          <RadioGroup direction="horizontal" style={{ 'margin-left': 'auto' }}>
+          <RadioGroup direction="horizontal">
             <Radio value="bronze" label="青铜" />
             <Radio value="silver" label="白银" />
             <Radio value="gold" label="黄金" />
@@ -251,8 +253,8 @@ export const RadioDocPage: Component = () => {
 
         <DemoBlock title={t('demo.horizontal')} desc={t('demo.horizontalDesc')} code={codeHorizontal}>
           <RadioGroup direction="horizontal" value={hVal()} onChange={setHVal}>
-            <Radio value="a" label="男" />
-            <Radio value="b" label="女" />
+            <Radio value="a" label="浅色" />
+            <Radio value="b" label="深色" />
           </RadioGroup>
           <div style={{ 'font-size': '0.8rem', color: '#6b7280', 'margin-top': '8px' }}>
             当前值: {hVal()}

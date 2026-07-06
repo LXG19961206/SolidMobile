@@ -217,6 +217,7 @@ export const DatePicker: Component<DatePickerProps> = (rawProps) => {
         <Cell
           title={displayText() || placeholderText()}
           clickable
+          flush
           onClick={() => updateShow(true)}
           class={local.class}
           style={{

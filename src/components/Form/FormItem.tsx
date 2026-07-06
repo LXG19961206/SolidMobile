@@ -3,7 +3,6 @@ import {
   Show, type Component,
   createContext, useContext,
 } from 'solid-js';
-import { Cell } from '../Cell';
 import { useFormContext } from './context';
 import type { FormItemProps, FormFieldContextValue } from './types';
 
@@ -23,16 +22,20 @@ const defaultProps: Partial<FormItemProps> = {
 };
 
 /**
- * FormItem — 表单项，负责字段布局（Cell）和 Form ↔ 控件的值桥接。
+ * FormItem — 表单项，负责字段布局和 Form ↔ 控件的值桥接。
  *
  * 通过 FormFieldContext 向子控件注入 name / value / onChange / error。
  * 子控件用 useFormField() 读取，即可同时支持独立使用和表单内使用。
+ *
+ * 布局模式：
+ * - 默认（side-by-side）：label 在左、控件在右，label 宽度由 Form 的 labelWidth 统一控制
+ * - label-top：设置 Form.labelAlign="top" 后 label 在上方
  */
 export const FormItem: Component<FormItemProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
   const [local] = splitProps(props, [
     'name', 'label', 'required', 'rules',
-    'help', 'labelAlign', 'labelWidth', 'contentFlex',
+    'help', 'labelAlign', 'labelWidth', 'controlAlign', 'contentFlex',
     'class', 'style', 'children',
   ]);
 
@@ -69,7 +72,7 @@ export const FormItem: Component<FormItemProps> = (rawProps) => {
     }
   }
 
-  /* ── Field Context (stable reference, getters for reactive reads) ── */
+  /* ── Field Context ── */
   const fieldCtx: FormFieldContextValue = {
     get name() { return local.name; },
     get value() { return fieldValue(); },
@@ -79,9 +82,10 @@ export const FormItem: Component<FormItemProps> = (rawProps) => {
     get required() { return local.required; },
     get disabled() { return form?.disabled; },
     get readonly() { return form?.readonly; },
+    get controlAlign() { return controlAlign(); },
   };
 
-  /* ── 标签 ──*/
+  /* ── 标签 ── */
   const label = () => {
     if (!local.label) return undefined;
     return form?.colon ? `${local.label}:` : local.label;
@@ -94,64 +98,122 @@ export const FormItem: Component<FormItemProps> = (rawProps) => {
     return local.help;
   };
 
-  const labelOnTop = () => (form?.labelAlign ?? local.labelAlign) === 'top';
-  const useFlex = () => labelOnTop() || local.contentFlex || local.labelWidth;
+  const top = () => (form?.labelAlign ?? local.labelAlign) === 'top';
+  const labelRight = () => (form?.labelAlign ?? local.labelAlign) === 'right';
+  const hasLabel = () => !!local.label;
+  const labelW = () => (local.labelWidth ?? form?.labelWidth) || undefined;
+  const controlAlign = () => local.controlAlign ?? form?.controlAlign ?? 'left';
+  const errColor = () =>
+    fieldErr() ? 'var(--sc-color-danger, #e01823)' : 'var(--sc-color-text-secondary, #969799)';
 
   return (
     <FormFieldContext.Provider value={fieldCtx}>
-      <Show
-        when={useFlex()}
-        fallback={
-          <Cell
-            title={label()}
-            value={local.children as any}
-            required={local.required}
-            description={description()}
-            descriptionError={!!fieldErr()}
-            center
-            class={local.class}
-            data-field={local.name}
-            data-form-error={fieldErr() || undefined}
-          />
-        }
+      <div
+        class={local.class}
+        data-field={local.name}
+        data-form-error={fieldErr() || undefined}
+        style={{
+          '--sc-form-control-height': '40px',
+          '--sc-form-item-min-height': 'var(--sc-form-control-height)',
+          '--sc-form-item-padding-y': '8px',
+          '--sc-form-item-label-top-padding-y': '12px',
+          '--sc-form-item-label-gap': '6px',
+          '--sc-form-item-label-margin': '12px',
+          'padding-top': top()
+            ? 'var(--sc-form-item-label-top-padding-y)'
+            : 'var(--sc-form-item-padding-y)',
+          'padding-bottom': 'var(--sc-form-item-padding-y)',
+          'padding-left': '1rem',
+          'padding-right': '1rem',
+          background: 'var(--sc-color-cell-bg, #fff)',
+          'border-bottom': '1px solid var(--sc-color-border, #ebedf0)',
+          ...(typeof local.style === 'object' ? local.style : {}),
+        }}
       >
-        <div class={local.class} data-field={local.name} data-form-error={fieldErr() || undefined} style={{ padding: '4px 0 4px 1rem', background: 'var(--sc-color-cell-bg, #fff)', 'border-bottom': '1px solid var(--sc-color-border, #ebedf0)' }}>
-          {labelOnTop() ? (
-            <>
-              <Show when={local.label}>
-                <div style={{ 'font-size': '0.9rem', 'font-weight': 500, 'margin-bottom': '4px', color: 'var(--sc-color-text, #323233)' }}>
-                  {label()}
-                  {local.required && <span style={{ color: 'var(--sc-color-danger, #e01823)' }}> *</span>}
-                </div>
+        <Show
+          when={top()}
+          fallback={
+            /* ── Side-by-side ── */
+            <div style={{ display: 'flex', 'align-items': 'center', 'min-height': 'var(--sc-form-item-min-height)' }}>
+              <Show when={labelRight()}>
+                <div style={{ flex: 1, 'min-width': 0, display: 'flex', 'justify-content': controlAlign() === 'right' ? 'flex-end' : 'flex-start', ...(typeof local.style === 'object' ? local.style : {}) }}>{local.children}</div>
               </Show>
-              <div style={{ flex: 1, 'min-width': 0 }}>{local.children}</div>
-            </>
-          ) : (
-            /* side-by-side with configurable label width + content flex */
-            <div style={{ display: 'flex', 'align-items': 'center', 'min-height': '44px' }}>
-              <Show when={local.label}>
+              <Show when={hasLabel()}>
                 <div style={{
-                  width: (local.labelWidth ?? form?.labelWidth) || 'auto',
+                  width: labelW(),
                   'flex-shrink': 0,
                   'font-size': '0.9rem',
                   'font-weight': 500,
                   color: 'var(--sc-color-text, #323233)',
-                  'margin-right': '12px',
+                  'margin-left': labelRight() ? 'var(--sc-form-item-label-margin)' : undefined,
+                  'margin-right': labelRight() ? undefined : 'var(--sc-form-item-label-margin)',
                 }}>
-                  {label()}
-                  {local.required && <span style={{ color: 'var(--sc-color-danger, #e01823)' }}> *</span>}
+                  <div style={{ display: 'flex', 'align-items': 'center' }}>
+                    <Show when={!labelRight()}>
+                      {local.required && (
+                        <span style={{
+                          color: 'var(--sc-color-danger, #e01823)',
+                          'flex-shrink': 0,
+                          'margin-right': '0.35rem',
+                        }}>*</span>
+                      )}
+                    </Show>
+                    <span style={{ overflow: 'hidden', 'text-overflow': 'ellipsis', 'white-space': 'nowrap' }}>
+                      {label()}
+                    </span>
+                    <Show when={labelRight()}>
+                      {local.required && (
+                        <span style={{
+                          color: 'var(--sc-color-danger, #e01823)',
+                          'flex-shrink': 0,
+                          'margin-left': '0.35rem',
+                        }}>*</span>
+                      )}
+                    </Show>
+                  </div>
+                  <Show when={description()}>
+                    <div style={{
+                      'font-size': '0.8rem',
+                      'line-height': 1.4,
+                      color: errColor(),
+                    }}>{description()}</div>
+                  </Show>
                 </div>
               </Show>
-              <div style={{ flex: 1, 'min-width': 0 }}>{local.children}</div>
+              <Show when={!labelRight()}>
+                <div style={{ flex: 1, 'min-width': 0, display: 'flex', 'justify-content': controlAlign() === 'right' ? 'flex-end' : 'flex-start', ...(typeof local.style === 'object' ? local.style : {}) }}>{local.children}</div>
+              </Show>
             </div>
-          )}
-          <Show when={description()}>
-            <div style={{ 'font-size': '0.8rem', 'margin-top': '2px', color: fieldErr() ? 'var(--sc-color-danger, #e01823)' : 'var(--sc-color-text-secondary, #969799)' }}>
-              {description()}
+          }
+        >
+          {/* ── Label on top ── */}
+          <Show when={hasLabel()}>
+            <div style={{
+              'font-size': '0.9rem',
+              'font-weight': 500,
+              'margin-bottom': 'var(--sc-form-item-label-gap)',
+              color: 'var(--sc-color-text, #323233)',
+            }}>
+              {local.required && (
+                <span style={{
+                  color: 'var(--sc-color-danger, #e01823)',
+                  'flex-shrink': 0,
+                  'margin-right': '0.35rem',
+                }}>*</span>
+              )}
+              {label()}
             </div>
           </Show>
-        </div>
-      </Show>
+          <div style={{ flex: 1, 'min-width': 0, 'min-height': 'var(--sc-form-item-min-height)', display: 'flex', 'align-items': 'center', 'justify-content': controlAlign() === 'right' ? 'flex-end' : 'flex-start', ...(typeof local.style === 'object' ? local.style : {}) }}>{local.children}</div>
+          <Show when={description()}>
+            <div style={{
+              'font-size': '0.8rem',
+              'margin-top': '2px',
+              color: errColor(),
+            }}>{description()}</div>
+          </Show>
+        </Show>
+      </div>
     </FormFieldContext.Provider>
   );
 };

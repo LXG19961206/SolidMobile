@@ -47,6 +47,8 @@ export interface FormContextValue<T extends FormValue = FormValue> {
   labelAlign?: 'top' | 'left' | 'right';
   /** 标签宽度 */
   labelWidth?: string;
+  /** 控件区对齐方向，默认 'left'。设为 'right' 时控件靠右 */
+  controlAlign?: 'left' | 'right';
   /** 统一标签对齐，FormItem 可单独覆盖 */
   colon?: boolean;
   /** @internal */
@@ -79,6 +81,8 @@ export interface FormProps<T extends FormValue = FormValue> {
   labelAlign?: 'top' | 'left' | 'right';
   /** 标签宽度，如 '6em' */
   labelWidth?: string;
+  /** 控件区对齐，默认 'left' */
+  controlAlign?: 'left' | 'right';
   /** 标签后加冒号 */
   colon?: boolean;
   /** 提交校验失败时，自动滚动到第一个错误字段 */
@@ -119,6 +123,8 @@ export interface FormFieldContextValue {
   disabled?: boolean;
   /** 是否只读 */
   readonly?: boolean;
+  /** 控件对齐方向，从 Form / FormItem 继承 */
+  controlAlign?: 'left' | 'right';
 }
 
 /** FormItem Props */
@@ -137,8 +143,10 @@ export interface FormItemProps {
   labelAlign?: 'top' | 'left' | 'right';
   /** 自定义标签宽度 */
   labelWidth?: string;
-  /** 内容区自动拉伸（flex: 1），适合 Textarea 等需要撑满的场景 */
+  /** @deprecated 控件区默认已 flex:1，无需此属性 */
   contentFlex?: boolean;
+  /** 控件区对齐，默认继承 Form 的 controlAlign */
+  controlAlign?: 'left' | 'right';
   /** 自定义类名 */
   class?: string;
   /** 自定义样式 */

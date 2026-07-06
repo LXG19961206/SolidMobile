@@ -13,6 +13,7 @@ const styles = scopedStyle(rawStyles, 'sc-input');
 const defaultProps: Partial<InputProps> = {
   type: 'text',
   align: 'left',
+  size: 'md',
 };
 
 /**

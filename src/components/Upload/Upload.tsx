@@ -363,7 +363,9 @@ export const Upload: Component<UploadProps> = (rawProps) => {
             </Show>
           </div>
         }>
-          <div class={styles.imageGrid}>
+          <div class={styles.imageGrid} style={{
+            'justify-content': field?.controlAlign === 'right' ? 'end' : undefined,
+          }}>
           <For each={files()}>
             {(file, i) => (
               <div class={styles.imageItem}>

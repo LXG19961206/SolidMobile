@@ -178,7 +178,8 @@ export const RadioGroup: Component<RadioGroupProps> = (rawProps) => {
 
   const getGap = () => {
     if (local.gap !== undefined) return typeof local.gap === 'number' ? `${local.gap}px` : local.gap;
-    return local.direction === 'horizontal' ? '12px' : '0';
+    // Horizontal: 12px between items, tight 4px between wrapped rows
+    return local.direction === 'horizontal' ? '4px 12px' : '0';
   };
 
   function onChange(v: unknown) {
@@ -217,6 +218,9 @@ export const RadioGroup: Component<RadioGroupProps> = (rawProps) => {
           'flex-direction': local.direction === 'horizontal' ? 'row' : 'column',
           'flex-wrap': 'wrap',
           gap: getGap(),
+          'justify-content': local.direction === 'horizontal'
+            ? (field?.controlAlign === 'right' ? 'flex-end' : 'flex-start')
+            : undefined,
           ...(typeof local.style === 'object' ? local.style : {}),
         }}
       >

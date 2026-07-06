@@ -29,7 +29,7 @@ export const Form: Component<FormProps> = (rawProps) => {
     'value', 'onChange', 'defaultValue', 'onSubmit',
     'validateOnChange', 'validateOnBlur',
     'disabled', 'readonly',
-    'labelAlign', 'labelWidth', 'colon', 'scrollToError',
+    'labelAlign', 'labelWidth', 'colon', 'controlAlign', 'scrollToError',
     'class', 'style', 'children', 'ref',
   ]);
 
@@ -178,6 +178,7 @@ export const Form: Component<FormProps> = (rawProps) => {
     get labelAlign() { return local.labelAlign; },
     get labelWidth() { return local.labelWidth; },
     get colon() { return local.colon; },
+    get controlAlign() { return local.controlAlign; },
   };
 
   /* ── Ref callback ── */

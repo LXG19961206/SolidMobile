@@ -11,6 +11,11 @@
   --sc-input-count-font-size: 0.75rem;
   --sc-input-count-color: var(--sc-color-text-tertiary, #afaba9);
   --sc-input-error-color: #e01823;
+  --sc-input-font-size: 14px;
+  --sc-input-line-height: 1.5;
+  --sc-input-height-sm: 32px;
+  --sc-input-height-md: var(--sc-form-control-height, 40px);
+  --sc-input-height-lg: 48px;
 }
 
 .wrapper {
@@ -29,12 +34,12 @@
   outline: none;
   background: transparent;
   caret-color: var(--sc-color-primary, #1677ff);
-  font-size: 14px;
+  font-size: var(--sc-input-font-size);
   font-family: inherit;
   color: inherit;
   text-indent: 4px;
   padding: 0;
-  line-height: 1.5;
+  line-height: var(--sc-input-line-height);
 }
 .input::placeholder { color: var(--sc-input-placeholder-color); }
 
@@ -47,9 +52,9 @@
 /* error 状态作用在 wrapper 上，实际波浪线落在 input 文字下方 */
 .error .input { text-decoration: underline wavy var(--sc-input-error-color); text-underline-offset: 4px; }
 
-.sm { min-height: 32px; }
-.md { min-height: 40px; }
-.lg { height: 48px; }
+.sm { min-height: var(--sc-input-height-sm); }
+.md { min-height: var(--sc-input-height-md); }
+.lg { height: var(--sc-input-height-lg); }
 
 .prefix, .suffix {
   flex-shrink: 0;

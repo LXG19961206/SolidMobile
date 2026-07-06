@@ -217,7 +217,7 @@ export const CheckboxGroup: Component<CheckboxGroupProps> = (rawProps) => {
 
   const getGap = () => {
     if (local.gap !== undefined) return typeof local.gap === 'number' ? `${local.gap}px` : local.gap;
-    return local.direction === 'horizontal' ? '12px' : '0';
+    return local.direction === 'horizontal' ? '4px 12px' : '0';
   };
 
   const ctx: CheckboxGroupCtxValue = {
@@ -244,6 +244,9 @@ export const CheckboxGroup: Component<CheckboxGroupProps> = (rawProps) => {
           'flex-direction': local.direction === 'horizontal' ? 'row' : 'column',
           'flex-wrap': 'wrap',
           gap: getGap(),
+          'justify-content': local.direction === 'horizontal'
+            ? (field?.controlAlign === 'right' ? 'flex-end' : 'flex-start')
+            : undefined,
           ...(typeof local.style === 'object' ? local.style : {}),
         }}
       >

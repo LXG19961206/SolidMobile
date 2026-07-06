@@ -154,6 +154,7 @@ export const TimePicker: Component<TimePickerProps> = (rawProps) => {
         <Cell
           title={displayText() || placeholderText()}
           clickable
+          flush
           onClick={() => updateShow(true)}
           class={local.class}
           style={{

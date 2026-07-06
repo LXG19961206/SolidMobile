@@ -32,12 +32,14 @@ const propsData = [
   { name: 'Form.disabled', type: 'boolean', desc: 'componentProps.form.Form.disabled' },
   { name: 'Form.labelAlign', type: "'top' | 'left' | 'right'", desc: 'componentProps.form.Form.labelAlign' },
   { name: 'Form.labelWidth', type: 'string', desc: 'componentProps.form.Form.labelWidth' },
+  { name: 'Form.controlAlign', type: "'left' | 'right'", desc: 'componentProps.form.Form.controlAlign' },
   { name: 'Form.ref', type: '(api) => void', desc: 'componentProps.form.Form.ref' },
   { name: 'FormItem.name', type: 'string', desc: 'componentProps.form.FormItem.name' },
   { name: 'FormItem.label', type: 'string', desc: 'componentProps.form.FormItem.label' },
   { name: 'FormItem.required', type: 'boolean', desc: 'componentProps.form.FormItem.required' },
   { name: 'FormItem.rules', type: 'FormRule[]', desc: 'componentProps.form.FormItem.rules' },
   { name: 'FormItem.help', type: 'string', desc: 'componentProps.form.FormItem.help' },
+  { name: 'FormItem.controlAlign', type: "'left' | 'right'", desc: 'componentProps.form.FormItem.controlAlign' },
 ];
 
 const CARD = {
@@ -68,11 +70,27 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
   const t = useT();
   const [basicVal, setBasicVal] = createSignal({});
   const [fullVal, setFullVal] = createSignal({});
+  const [controlRight, setControlRight] = createSignal(true);
   let fullFormRef: any;
 
   return (
     <MobilePreview title={t('nav.form')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
       <ToastRenderer />
+
+      {/* Layout strategy */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>{t('demo.formLayout')}</div>
+        <div style={{ ...CARD.body, 'line-height': 1.8, 'font-size': '0.85rem' }}>
+          <p style={{ margin: '0 0 0.5rem', color: 'var(--sc-color-text, #323233)', 'font-weight': 500 }}>{t('demo.formLayoutDesc')}</p>
+          <ul style={{ margin: 0, 'padding-left': '0.75rem', 'list-style': 'none', 'border-left': '3px solid var(--sc-color-primary, #1677ff)', color: 'var(--sc-color-text-secondary, #6b7280)' }}>
+            <li style={{ 'margin-bottom': '0.5rem', 'padding-bottom': '0.5rem', 'border-bottom': '1px solid var(--sc-color-border, #ebedf0)' }}>{t('demo.formLayoutItem1')}</li>
+            <li style={{ 'margin-bottom': '0.5rem', 'padding-bottom': '0.5rem', 'border-bottom': '1px solid var(--sc-color-border, #ebedf0)' }}>{t('demo.formLayoutItem2')}</li>
+            <li style={{ 'margin-bottom': '0.5rem', 'padding-bottom': '0.5rem', 'border-bottom': '1px solid var(--sc-color-border, #ebedf0)' }}>{t('demo.formLayoutItem3')}</li>
+            <li style={{ 'margin-bottom': '0.5rem', 'padding-bottom': '0.5rem', 'border-bottom': '1px solid var(--sc-color-border, #ebedf0)' }}>{t('demo.formLayoutItem4')}</li>
+            <li>{t('demo.formLayoutItem5')}</li>
+          </ul>
+        </div>
+      </div>
 
       {/* Basic form with validation */}
       <div style={CARD.wrapper}>
@@ -119,22 +137,24 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* Label left, control right */}
+      {/* labelAlign + labelWidth + controlAlign */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.labelLeft')}</div>
         <div style={CARD.desc}>{t('demo.labelLeftMobileDesc')}</div>
         <div style={CARD.body}>
-          <Form labelAlign="left" labelWidth="5em" colon>
+          <Form labelAlign="left" labelWidth="6em" colon controlAlign="right">
             <FormItem name="name" label="Name">
               <Input placeholder="Enter name" align="right" />
             </FormItem>
             <FormItem name="phone" label="Phone">
               <Input type="tel" placeholder="Enter phone" align="right" />
             </FormItem>
-            <FormItem name="gender" label="Gender">
+            <FormItem name="lang" label="Language">
               <RadioGroup direction="horizontal">
-                <Radio value="male" label="Male" />
-                <Radio value="female" label="Female" />
+                <Radio value="zh" label="中文" />
+                <Radio value="en" label="English" />
+                <Radio value="ja" label="日本語" />
+                <Radio value="ko" label="한국어" />
               </RadioGroup>
             </FormItem>
             <FormItem name="notify" label="Notify">
@@ -152,33 +172,40 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
           <Form
             ref={(r: any) => { fullFormRef = r; }}
             onSubmit={(v) => { setFullVal(v); Toast.success('Submitted: ' + JSON.stringify(v)); }}
-            labelWidth="5em"
+            labelWidth="6em"
             colon
+            controlAlign={controlRight() ? 'right' : 'left'}
             scrollToError
           >
+            <FormItem name="_ctrlRight" label="Ctrl Right">
+              <Switch checked={controlRight()} onChange={(v) => setControlRight(v)} />
+            </FormItem>
             <FormItem name="username" label="Username" required rules={[{
               validator: (v: any) => (v as string)?.length >= 2,
               message: 'At least 2 characters',
             }]}>
-              <Input placeholder="Enter username" clearable />
+              <Input placeholder="Enter username" clearable align={controlRight() ? 'right' : 'left'} />
             </FormItem>
-            <FormItem name="intro" label="Intro" contentFlex>
+            <FormItem name="intro" label="Intro">
               <Textarea placeholder="Say something..." />
             </FormItem>
-            <FormItem name="gender" label="Gender" required rules={[{
+            <FormItem name="lang" label="Languages" labelAlign="top" required rules={[{
               validator: (v: any) => !!v,
-              message: 'Please select gender',
+              message: 'Please select language',
             }]}>
               <RadioGroup direction="horizontal">
-                <Radio value="male" label="Male" />
-                <Radio value="female" label="Female" />
+                <Radio value="zh" label="中文" />
+                <Radio value="en" label="English" />
+                <Radio value="ja" label="日本語" />
+                <Radio value="ko" label="한국어" />
               </RadioGroup>
             </FormItem>
-            <FormItem name="hobbies" label="Hobbies" contentFlex>
+            <FormItem name="hobbies" label="Hobbies" labelAlign="top">
               <CheckboxGroup direction="horizontal">
-                <Checkbox value="coding" label="Coding" />
-                <Checkbox value="reading" label="Reading" />
-                <Checkbox value="gaming" label="Gaming" />
+                <Checkbox value="code" label="Code" />
+                <Checkbox value="read" label="Read" />
+                <Checkbox value="game" label="Game" />
+                <Checkbox value="music" label="Music" />
               </CheckboxGroup>
             </FormItem>
             <FormItem name="score" label="Score">
@@ -190,21 +217,21 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
             <FormItem name="agree" label="Agree">
               <Switch />
             </FormItem>
-            <FormItem name="range" label="Range" contentFlex>
+            <FormItem name="range" label="Range">
               <div style={{ padding: '8px 4px', flex: '1', 'min-width': '0' }}>
                 <Slider />
               </div>
             </FormItem>
-            <FormItem name="city" label="City" contentFlex>
+            <FormItem name="city" label="City">
               <Select options={cityOpts} placeholder="Select city" />
             </FormItem>
-            <FormItem name="birthday" label="Birthday" contentFlex>
+            <FormItem name="birthday" label="Birthday">
               <DatePicker placeholder="Select date" />
             </FormItem>
-            <FormItem name="photos" label="Photos" contentFlex>
+            <FormItem name="photos" label="Photos">
               <Upload api={mockUploadApi} maxCount={6} />
             </FormItem>
-            <FormItem name="time" label="Time" contentFlex>
+            <FormItem name="time" label="Time">
               <TimePicker placeholder="Select time" />
             </FormItem>
             <div style={{ padding: '8px 0', display: 'flex' as const, gap: '8px' }}>

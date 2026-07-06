@@ -104,6 +104,7 @@ export const CityPicker: Component<CityPickerProps> = (rawProps) => {
         <Cell
           title={displayText() || placeholderText()}
           clickable
+          flush
           onClick={() => updateShow(true)}
           class={local.class}
           style={{

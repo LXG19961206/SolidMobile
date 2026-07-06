@@ -9,3 +9,4 @@ dist-storybook
 *.tsbuildinfo
 coverage
 .vite
+dist-dev

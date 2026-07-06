@@ -1,5 +1,6 @@
 /* ── Wrapper / CSS Custom Properties ── */
 .wrapper {
+  width: 100%;
   --sc-upload-size: 80px;
   --sc-upload-gap: 8px;
   --sc-upload-radius: 8px;

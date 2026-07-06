@@ -35,6 +35,7 @@ const formProps: PropRow[] = [
   { name: 'labelAlign', type: "'top' | 'left' | 'right'", default: '—', required: false, desc: 'componentProps.form.labelAlign' },
   { name: 'labelWidth', type: 'string', default: '—', required: false, desc: 'componentProps.form.labelWidth' },
   { name: 'colon', type: 'boolean', default: 'false', required: false, desc: 'componentProps.form.colon' },
+  { name: 'controlAlign', type: "'left' | 'right'", default: "'left'", required: false, desc: 'componentProps.form.controlAlign' },
   { name: 'ref', type: '(api: FormRef) => void', default: '—', required: false, desc: 'componentProps.form.ref' },
 ];
 
@@ -46,7 +47,7 @@ const itemProps: PropRow[] = [
   { name: 'help', type: 'string', default: '—', required: false, desc: 'componentProps.form.help' },
   { name: 'labelAlign', type: "'top' | 'left' | 'right'", default: "继承 Form", required: false, desc: 'componentProps.formItem.labelAlign' },
   { name: 'labelWidth', type: 'string', default: "继承 Form", required: false, desc: "标签固定宽度。" },
-  { name: 'contentFlex', type: 'boolean', default: 'false', required: false, desc: 'componentProps.form.contentFlex' },
+  { name: 'controlAlign', type: "'left' | 'right'", default: "继承 Form", required: false, desc: 'componentProps.form.controlAlign' },
 ];
 
 /* ── 示例省市区数据 ── */
@@ -78,24 +79,29 @@ const cityTree: PickerOption[] = [
 
 /* ─── 综合实例 ─── */
 
-const FullDemoCode = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}>
-  <FormItem name="username" label="用户名" required rules={[{ validator: v => v?.length >= 2, message: '至少 2 个字符' }]}>
-    <Input placeholder="请输入用户名" clearable />
+const FullDemoCode = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}
+  labelWidth="5em" colon controlAlign={ctrlRight() ? 'right' : 'left'}>
+  <FormItem name="_ctrlRight" label="Ctrl Right">
+    <Switch checked={ctrlRight()} onChange={(v) => setCtrlRight(v)} />
   </FormItem>
-  <FormItem name="intro" label="简介" contentFlex>
+
+  <FormItem name="username" label="用户名" required rules={[{ validator: v => v?.length >= 2, message: '至少 2 个字符' }]}>
+    <Input placeholder="请输入用户名" clearable align={ctrlRight() ? 'right' : 'left'} />
+  </FormItem>
+  <FormItem name="intro" label="简介">
     <Textarea placeholder="说点什么..." />
   </FormItem>
-  <FormItem name="gender" label="性别" required rules={[{ validator: v => !!v, message: '请选择性别' }]}>
+  <FormItem name="lang" label="语言" labelAlign="top" required rules={[{ validator: v => !!v, message: '请选择语言' }]}>
     <RadioGroup direction="horizontal">
-      <Radio value="male" label="男" />
-      <Radio value="female" label="女" />
+      <Radio value="zh" label="中文" />
+      <Radio value="en" label="English" />
+      <Radio value="ja" label="日本語" />
     </RadioGroup>
   </FormItem>
-  <FormItem name="hobbies" label="爱好" contentFlex>
+  <FormItem name="hobbies" label="爱好" labelAlign="top">
     <CheckboxGroup direction="horizontal">
-      <Checkbox value="coding" label="写代码" />
-      <Checkbox value="reading" label="阅读" />
-      <Checkbox value="gaming" label="游戏" />
+      <Checkbox value="code" label="Code" />
+      <Checkbox value="read" label="Read" />
     </CheckboxGroup>
   </FormItem>
   <FormItem name="score" label="评分">
@@ -104,7 +110,7 @@ const FullDemoCode = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}>
   <FormItem name="count" label="数量">
     <Stepper />
   </FormItem>
-  <FormItem name="range" label="范围" contentFlex>
+  <FormItem name="range" label="范围">
     <div style={{ padding: '8px 4px', flex: '1', 'min-width': '0' }}>
       <Slider />
     </div>
@@ -112,7 +118,7 @@ const FullDemoCode = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}>
   <FormItem name="agree" label="同意协议">
     <Switch />
   </FormItem>
-  <FormItem name="city" label="所在城市" contentFlex>
+  <FormItem name="city" label="所在城市">
     <Select
       options={[
         { text: '北京', value: 'beijing' },
@@ -122,16 +128,16 @@ const FullDemoCode = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}>
       teleport={phone?.()?.parentElement?.parentElement || undefined}
     />
   </FormItem>
-  <FormItem name="birthday" label="生日" contentFlex>
+  <FormItem name="birthday" label="生日">
     <DatePicker placeholder="选择出生日期" teleport={phone?.()?.parentElement?.parentElement || undefined} />
   </FormItem>
-  <FormItem name="region" label="地区" contentFlex>
+  <FormItem name="region" label="地区">
     <CityPicker columns={cityTree} placeholder="选择省市区" teleport={phone?.()?.parentElement?.parentElement || undefined} />
   </FormItem>
-  <FormItem name="photos" label="照片" contentFlex>
+  <FormItem name="photos" label="照片">
     <Upload api={mockUploadApi} maxCount={6} />
   </FormItem>
-  <FormItem name="time" label="时间" contentFlex>
+  <FormItem name="time" label="时间">
     <TimePicker placeholder="选择时间" teleport={phone?.()?.parentElement?.parentElement || undefined} />
   </FormItem>
   <div style={{ padding: '12px 1rem', display: 'flex', gap: '12px' }}>
@@ -143,6 +149,7 @@ const FullDemoCode = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}>
 const FullFormDemo: Component = () => {
   const phone = useContext(PhoneTargetContext);
   const [formVal, setFormVal] = createSignal({});
+  const [ctrlRight, setCtrlRight] = createSignal(true);
   let formRef: any;
 
   /** Mock upload API — simulates progress then returns a blob URL */
@@ -164,39 +171,48 @@ const FullFormDemo: Component = () => {
         onSubmit={(v) => { setFormVal(v); Toast.success('提交: ' + JSON.stringify(v)); }}
         labelWidth="5em"
         colon
+        controlAlign={ctrlRight() ? 'right' : 'left'}
         scrollToError
       >
+        {/* ── Control align toggle ── */}
+        <FormItem name="_ctrlRight" label="Ctrl Right">
+          <Switch checked={ctrlRight()} onChange={(v) => setCtrlRight(v)} />
+        </FormItem>
+
         {/* ── Input ── */}
         <FormItem name="username" label="用户名" required rules={[{
           validator: (v: unknown) => (v as string)?.length >= 2,
           message: '至少 2 个字符',
         }]}>
-          <Input placeholder="请输入用户名" clearable />
+          <Input placeholder="请输入用户名" clearable align={ctrlRight() ? 'right' : 'left'} />
         </FormItem>
 
         {/* ── Textarea ── */}
-        <FormItem name="intro" label="简介" contentFlex>
+        <FormItem name="intro" label="简介">
           <Textarea placeholder="说点什么..." />
         </FormItem>
 
         {/* ── Radio ── */}
-        <FormItem name="gender" label="性别" required rules={[{
+        <FormItem name="lang" label="语言" labelAlign="top" required rules={[{
           validator: (v: unknown) => !!v,
-          message: '请选择性别',
+          message: '请选择语言',
         }]}>
           <RadioGroup direction="horizontal">
-            <Radio value="male" label="男" />
-            <Radio value="female" label="女" />
+            <Radio value="zh" label="中文" />
+            <Radio value="en" label="English" />
+            <Radio value="ja" label="日本語" />
+            <Radio value="ko" label="한국어" />
           </RadioGroup>
         </FormItem>
 
         {/* ── Checkbox ── */}
-        <FormItem name="hobbies" label="爱好" contentFlex>
+        <FormItem name="hobbies" label="爱好" labelAlign="top">
           <CheckboxGroup direction="horizontal">
-            <Checkbox value="coding" label="写代码" />
-            <Checkbox value="reading" label="阅读" />
-            <Checkbox value="gaming" label="游戏" />
-          </CheckboxGroup>
+            <Checkbox value="code" label="Code" />
+            <Checkbox value="read" label="Read" />
+            <Checkbox value="game" label="Game" />
+            <Checkbox value="music" label="Music" />
+                </CheckboxGroup>
         </FormItem>
 
         {/* ── Switch ── */}
@@ -215,14 +231,14 @@ const FullFormDemo: Component = () => {
         </FormItem>
 
         {/* ── Slider ── */}
-        <FormItem name="range" label="范围" contentFlex>
+        <FormItem name="range" label="范围">
           <div style={{ padding: '8px 4px', flex: '1', 'min-width': '0' }}>
             <Slider />
           </div>
         </FormItem>
 
         {/* ── Select ── */}
-        <FormItem name="city" label="所在城市" contentFlex>
+        <FormItem name="city" label="所在城市">
           <Select
             options={[
               { text: '北京', value: 'beijing' },
@@ -234,22 +250,22 @@ const FullFormDemo: Component = () => {
         </FormItem>
 
         {/* ── DatePicker ── */}
-        <FormItem name="birthday" label="生日" contentFlex>
+        <FormItem name="birthday" label="生日">
           <DatePicker placeholder="选择出生日期" teleport={phone?.()?.parentElement?.parentElement || undefined} />
         </FormItem>
 
         {/* ── CityPicker ── */}
-        <FormItem name="region" label="地区" contentFlex>
+        <FormItem name="region" label="地区">
           <CityPicker columns={cityTree} placeholder="选择省市区" teleport={phone?.()?.parentElement?.parentElement || undefined} />
         </FormItem>
 
         {/* ── Upload ── */}
-        <FormItem name="photos" label="照片" contentFlex>
+        <FormItem name="photos" label="照片">
           <Upload api={mockUploadApi} maxCount={6} />
         </FormItem>
 
         {/* ── TimePicker ── */}
-        <FormItem name="time" label="时间" contentFlex>
+        <FormItem name="time" label="时间">
           <TimePicker placeholder="选择时间" teleport={phone?.()?.parentElement?.parentElement || undefined} />
         </FormItem>
 
@@ -272,7 +288,7 @@ const BasicDemo: Component = () => {
   const [val, setVal] = createSignal({});
   return (
     <>
-      <Form onSubmit={(v) => { setVal(v); Toast.success('提交: ' + JSON.stringify(v)); }}>
+      <Form onSubmit={(v) => { setVal(v); Toast.success('提交: ' + JSON.stringify(v)); }} controlAlign="right">
         <FormItem name="username" label="用户名" rules={[{
           validator: (v: any) => (v as string)?.length >= 2,
           message: '至少 2 个字符',
@@ -306,26 +322,6 @@ const CodeBasic = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}>
   <Button type="primary" block nativeType="submit" text="提交" />
 </Form>`;
 
-const WithOtherDemo: Component = () => (
-  <Form>
-    <FormItem name="agree" label="同意协议">
-      <Switch />
-    </FormItem>
-    <FormItem name="note" label="备注">
-      <Input placeholder="选填" clearable />
-    </FormItem>
-  </Form>
-);
-
-const CodeWithOther = `<Form>
-  <FormItem name="agree" label="同意协议">
-    <Switch />
-  </FormItem>
-  <FormItem name="note" label="备注">
-    <Input placeholder="选填" clearable />
-  </FormItem>
-</Form>`;
-
 /* ── Main ── */
 
 export const FormDocPage: Component = () => {
@@ -344,14 +340,21 @@ export const FormDocPage: Component = () => {
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>FormItem Props</h2>
       <PropsTable rows={itemProps} />
 
+      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.formLayout')}</h2>
+      <div class="guide-card" style="line-height: 1.8; font-size: 0.9rem; border-left: 3px solid var(--sc-color-primary, #1677ff); background: linear-gradient(135deg, color-mix(in srgb, var(--sc-color-primary, #1677ff) 4%, transparent), transparent); border-radius: 0 8px 8px 0;">
+        <p style="margin: 0 0 0.75rem; color: var(--sc-color-text, #323233); font-weight: 500;">{t('demo.formLayoutDesc')}</p>
+        <ul style="margin: 0; padding-left: 1.2rem; color: var(--sc-color-text-secondary, #6b7280);">
+          <li>{t('demo.formLayoutItem1')}</li>
+          <li>{t('demo.formLayoutItem2')}</li>
+          <li>{t('demo.formLayoutItem3')}</li>
+          <li>{t('demo.formLayoutItem4')}</li>
+          <li>{t('demo.formLayoutItem5')}</li>
+        </ul>
+      </div>
+
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.basic')}</h2>
       <DemoBlock title={t('demo.submit')} desc={t('demo.submitDesc')} code={CodeBasic}>
         <BasicDemo />
-      </DemoBlock>
-
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.withOther')}</h2>
-      <DemoBlock title={t('demo.switchInput')} desc={t('demo.switchInputDesc')} code={CodeWithOther}>
-        <WithOtherDemo />
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.fullExample')}</h2>

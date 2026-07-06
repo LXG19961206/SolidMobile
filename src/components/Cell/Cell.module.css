@@ -78,8 +78,8 @@
   align-items: center;
 }
 .flush {
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
+  min-height: auto;
 }
 
 /* ── Cell inner layout ── */
