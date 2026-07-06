@@ -177,9 +177,12 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
             controlAlign={controlRight() ? 'right' : 'left'}
             scrollToError
           >
-            <FormItem name="_ctrlRight" label="Ctrl Right">
-              <Switch checked={controlRight()} onChange={(v) => setControlRight(v)} />
-            </FormItem>
+            <div style={{ display: 'flex', 'align-items': 'center', 'min-height': 'var(--sc-form-control-height)', padding: '8px 1rem', background: 'var(--sc-color-cell-bg, #fff)', 'border-bottom': '1px solid var(--sc-color-border, #ebedf0)' }}>
+              <span style={{ width: '6em', 'flex-shrink': 0, 'font-size': '0.9rem', 'font-weight': 500, color: 'var(--sc-color-text, #323233)', 'margin-right': '12px' }}>Ctrl Right:</span>
+              <div style={{ flex: 1, 'min-width': 0, display: 'flex', 'justify-content': 'flex-end' }}>
+                <Switch checked={controlRight()} onChange={(v) => setControlRight(v)} />
+              </div>
+            </div>
             <FormItem name="username" label="Username" required rules={[{
               validator: (v: any) => (v as string)?.length >= 2,
               message: 'At least 2 characters',

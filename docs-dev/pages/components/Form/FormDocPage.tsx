@@ -87,9 +87,12 @@ const cityTree: PickerOption[] = [
 
 const FullDemoCode = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}
   labelWidth="5em" colon controlAlign={ctrlRight() ? 'right' : 'left'}>
-  <FormItem name="_ctrlRight" label="Ctrl Right">
-    <Switch checked={ctrlRight()} onChange={(v) => setCtrlRight(v)} />
-  </FormItem>
+  <div style="display:flex;align-items:center;min-height:40px;padding:8px 1rem">
+    <span style="width:5em;flex-shrink:0;font-size:0.9rem;font-weight:500">Ctrl Right:</span>
+    <div style="flex:1;min-width:0;display:flex;justify-content:flex-end">
+      <Switch checked={ctrlRight()} onChange={(v) => setCtrlRight(v)} />
+    </div>
+  </div>
 
   <FormItem name="username" label="用户名" required rules={[{ validator: v => v?.length >= 2, message: '至少 2 个字符' }]}>
     <Input placeholder="请输入用户名" clearable align={ctrlRight() ? 'right' : 'left'} />
@@ -155,7 +158,7 @@ const FullDemoCode = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}
 const FullFormDemo: Component = () => {
   const phone = useContext(PhoneTargetContext);
   const [formVal, setFormVal] = createSignal({});
-  const [ctrlRight, setCtrlRight] = createSignal(false);
+  const [ctrlRight, setCtrlRight] = createSignal(true);
   let formRef: any;
 
   /** Mock upload API — simulates progress then returns a blob URL */
@@ -181,9 +184,12 @@ const FullFormDemo: Component = () => {
         scrollToError
       >
         {/* ── Control align toggle ── */}
-        <FormItem name="_ctrlRight" label="Ctrl Right">
-          <Switch checked={ctrlRight()} onChange={(v) => setCtrlRight(v)} />
-        </FormItem>
+        <div style={{ display: 'flex', 'align-items': 'center', 'min-height': 'var(--sc-form-control-height)', padding: '8px 1rem', background: 'var(--sc-color-cell-bg, #fff)', 'border-bottom': '1px solid var(--sc-color-border, #ebedf0)' }}>
+          <span style={{ width: '5em', 'flex-shrink': 0, 'font-size': '0.9rem', 'font-weight': 500, color: 'var(--sc-color-text, #323233)', 'margin-right': '12px' }}>Ctrl Right:</span>
+          <div style={{ flex: 1, 'min-width': 0, display: 'flex', 'justify-content': 'flex-end' }}>
+            <Switch checked={ctrlRight()} onChange={(v) => setCtrlRight(v)} />
+          </div>
+        </div>
 
         {/* ── Input ── */}
         <FormItem name="username" label="用户名" required rules={[{
