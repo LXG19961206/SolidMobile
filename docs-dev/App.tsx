@@ -1404,11 +1404,6 @@ export function App() {
   const mobileGroups = createMemo(() => [
     { title: '', items: [{ name: 'Home 首页', key: 'home' }] },
     {
-      title: '指南 / Guides', items: [
-        { name: 'EventBus 事件总线', key: 'eventbus' },
-      ]
-    },
-    {
       title: '关于 / About', items: [
         { name: 'Solid.js 框架介绍', key: 'solidjs' },
         { name: '关于项目', key: 'about' },
@@ -1422,6 +1417,11 @@ export function App() {
         name: CN[i.key] ? `${i.name} ${CN[i.key]}` : i.name,
       })),
     })),
+    {
+      title: '指南 / Guides', items: [
+        { name: 'EventBus 事件总线', key: 'eventbus' },
+      ]
+    },
   ]);
 
   // ── Mobile page memos ──
