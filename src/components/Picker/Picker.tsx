@@ -18,7 +18,10 @@ const DEFAULT_DURATION = 0.4;
 const MOVE_DURATION = 0.05;
 const MOMENTUM_WINDOW_MS = 300;
 const QUEUE_CAPACITY = 30;
-const MOMENTUM_EXTRAPOLATE_FACTOR = 3;
+const MOMENTUM_EXTRAPOLATE_FACTOR = 1.8;
+const OVERSCROLL_DAMPING = 0.4;
+const MIN_SNAP_MS = 240;
+const MAX_ANIM_MS = 2000;
 
 /* ── FixedQueue ── */
 class FixedQueue<T> {
@@ -432,16 +435,20 @@ export const Picker: Component<PickerProps> = (rawProps) => {
       return snapToLine(current, lineHeight());
     }
 
-    // 取最后 3 段 delta 的平均值作为速度
     const len = queue.length;
-    const d1 = queue.at(len - 1)![0];
-    const d2 = queue.at(len - 2)![0];
-    const d3 = queue.at(len - 3)![0];
-    const speed = (d1 + d2 + d3) / 3;
+    // 基于时间戳计算真实速度 (px/ms)，而非简单平均 delta — 避免帧率差异影响惯性手感
+    const oldest = queue.at(len - Math.min(len, 5))!;
+    const latest = queue.at(len - 1)!;
+    const dt = latest[1] - oldest[1];
+    if (dt <= 0) return snapToLine(current, lineHeight());
 
-    const extrapolated = current + speed * MOMENTUM_EXTRAPOLATE_FACTOR;
-    // 动态上限：慢滑最少 1 格，快滑最多 8 格
-    const maxDelta = Math.max(1 * lineHeight(), Math.min(Math.abs(speed) * 5, 8 * lineHeight()));
+    const totalDelta = latest[3] - oldest[3];
+    const velocity = totalDelta / dt; // px/ms
+
+    const extrapolated = current + velocity * 80; // ~80ms 动量外推
+    // 动态上限：速度越快滚得越远，但最多 8 格
+    const maxCells = Math.max(1, Math.min(Math.abs(velocity) * 20, 8));
+    const maxDelta = maxCells * lineHeight();
     const clamped = current + Math.max(-maxDelta, Math.min(maxDelta, extrapolated - current));
 
     return snapToLine(clamped, lineHeight());
@@ -469,15 +476,13 @@ export const Picker: Component<PickerProps> = (rawProps) => {
     setTargetCol(col);
 
     // 去抖动：避免轻点确认 / 取消按钮时误触发滚动。
-    // 30ms 后或手指移动超过 3px 即可认为用户在滑动。
+    // 50ms 后或手指移动超过 3px 即可认为用户在滑动。
     scrollGateMoved = false;
-    scrollGateTimer = setTimeout(() => setIsScrolling(true), 30);
+    scrollGateTimer = setTimeout(() => setIsScrolling(true), 50);
 
-    // snap 当前列到最近的整行位置，作为拖拽起点
+    // 不主动 snap，保留当前列的位置作为拖拽起点 — 避免 PC 端点击时视觉跳动
     const currentY = allTranslates()[col];
-    const snapped = snapToLine(currentY, lineHeight());
     animDuration()[col][1](MOVE_DURATION);
-    translateY()[col][1](snapped);
 
     queue.clear();
     lastClientY = evt.clientY;
@@ -512,9 +517,9 @@ export const Picker: Component<PickerProps> = (rawProps) => {
 
     // 超出边界时带阻尼，允许拖出较大距离再回弹
     if (newVal > top) {
-      newVal = top + (newVal - top) * 0.7;
+      newVal = top + (newVal - top) * OVERSCROLL_DAMPING;
     } else if (newVal < bottom) {
-      newVal = bottom + (newVal - bottom) * 0.7;
+      newVal = bottom + (newVal - bottom) * OVERSCROLL_DAMPING;
     }
 
     setter(newVal);
@@ -562,9 +567,9 @@ export const Picker: Component<PickerProps> = (rawProps) => {
     const distance = final - start;
     // 滑动距离越大动画越久，但至少 280ms 保证可见，最多 2s
     const travelItems = Math.abs(distance) / lineHeight();
-    const duration = Math.max(280, Math.min(
-      (useMomentum ? local.swipeDuration! * 1000 : 400) + travelItems * 40,
-      2000
+    const duration = Math.max(MIN_SNAP_MS, Math.min(
+      (useMomentum ? local.swipeDuration! * 1000 : 400) + travelItems * 35,
+      MAX_ANIM_MS
     ));
 
     // 无 CSS transition — 用 rAF 逐帧驱动，高亮实时跟踪
