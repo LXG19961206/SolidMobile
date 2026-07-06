@@ -56,23 +56,29 @@ const cityTree: PickerOption[] = [
   {
     text: '广东省', value: 'gd',
     children: [
-      { text: '广州市', value: 'gz', children: [
-        { text: '天河区', value: 'gz-th' },
-        { text: '越秀区', value: 'gz-yx' },
-      ]},
-      { text: '深圳市', value: 'sz', children: [
-        { text: '南山区', value: 'sz-ns' },
-        { text: '福田区', value: 'sz-ft' },
-      ]},
+      {
+        text: '广州市', value: 'gz', children: [
+          { text: '天河区', value: 'gz-th' },
+          { text: '越秀区', value: 'gz-yx' },
+        ]
+      },
+      {
+        text: '深圳市', value: 'sz', children: [
+          { text: '南山区', value: 'sz-ns' },
+          { text: '福田区', value: 'sz-ft' },
+        ]
+      },
     ],
   },
   {
     text: '浙江省', value: 'zj',
     children: [
-      { text: '杭州市', value: 'hz', children: [
-        { text: '西湖区', value: 'hz-xh' },
-        { text: '上城区', value: 'hz-sc' },
-      ]},
+      {
+        text: '杭州市', value: 'hz', children: [
+          { text: '西湖区', value: 'hz-xh' },
+          { text: '上城区', value: 'hz-sc' },
+        ]
+      },
     ],
   },
 ];
@@ -149,7 +155,7 @@ const FullDemoCode = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}
 const FullFormDemo: Component = () => {
   const phone = useContext(PhoneTargetContext);
   const [formVal, setFormVal] = createSignal({});
-  const [ctrlRight, setCtrlRight] = createSignal(true);
+  const [ctrlRight, setCtrlRight] = createSignal(false);
   let formRef: any;
 
   /** Mock upload API — simulates progress then returns a blob URL */
@@ -212,7 +218,7 @@ const FullFormDemo: Component = () => {
             <Checkbox value="read" label="Read" />
             <Checkbox value="game" label="Game" />
             <Checkbox value="music" label="Music" />
-                </CheckboxGroup>
+          </CheckboxGroup>
         </FormItem>
 
         {/* ── Switch ── */}
@@ -327,41 +333,41 @@ const CodeBasic = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}>
 export const FormDocPage: Component = () => {
   const t = useT();
   return (
-  <DocLayout>
-    <div style={{ padding: '16px', 'max-width': '960px' }}>
-      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Form 表单</h1>
-      <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
-        {t('componentIntro.FormIntro')}
-      </p>
+    <DocLayout>
+      <div style={{ padding: '16px', 'max-width': '960px' }}>
+        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Form 表单</h1>
+        <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
+          {t('componentIntro.FormIntro')}
+        </p>
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Form Props</h2>
-      <PropsTable rows={formProps} />
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Form Props</h2>
+        <PropsTable rows={formProps} />
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>FormItem Props</h2>
-      <PropsTable rows={itemProps} />
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>FormItem Props</h2>
+        <PropsTable rows={itemProps} />
 
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.formLayout')}</h2>
-      <div class="guide-card" style="line-height: 1.8; font-size: 0.9rem; border-left: 3px solid var(--sc-color-primary, #1677ff); background: linear-gradient(135deg, color-mix(in srgb, var(--sc-color-primary, #1677ff) 4%, transparent), transparent); border-radius: 0 8px 8px 0;">
-        <p style="margin: 0 0 0.75rem; color: var(--sc-color-text, #323233); font-weight: 500;">{t('demo.formLayoutDesc')}</p>
-        <ul style="margin: 0; padding-left: 1.2rem; color: var(--sc-color-text-secondary, #6b7280);">
-          <li>{t('demo.formLayoutItem1')}</li>
-          <li>{t('demo.formLayoutItem2')}</li>
-          <li>{t('demo.formLayoutItem3')}</li>
-          <li>{t('demo.formLayoutItem4')}</li>
-          <li>{t('demo.formLayoutItem5')}</li>
-        </ul>
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.formLayout')}</h2>
+        <div class="guide-card" style="line-height: 1.8; font-size: 0.9rem; border-left: 3px solid var(--sc-color-primary, #1677ff); background: linear-gradient(135deg, color-mix(in srgb, var(--sc-color-primary, #1677ff) 4%, transparent), transparent); border-radius: 0 8px 8px 0;">
+          <p style="margin: 0 0 0.75rem; color: var(--sc-color-text, #323233); font-weight: 500;">{t('demo.formLayoutDesc')}</p>
+          <ul style="margin: 0; padding-left: 1.2rem; color: var(--sc-color-text-secondary, #6b7280);">
+            <li>{t('demo.formLayoutItem1')}</li>
+            <li>{t('demo.formLayoutItem2')}</li>
+            <li>{t('demo.formLayoutItem3')}</li>
+            <li>{t('demo.formLayoutItem4')}</li>
+            <li>{t('demo.formLayoutItem5')}</li>
+          </ul>
+        </div>
+
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.basic')}</h2>
+        <DemoBlock title={t('demo.submit')} desc={t('demo.submitDesc')} code={CodeBasic}>
+          <BasicDemo />
+        </DemoBlock>
+
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.fullExample')}</h2>
+        <DemoBlock title={t('demo.allComponents')} desc={t('demo.allComponentsDesc')} code={FullDemoCode}>
+          <FullFormDemo />
+        </DemoBlock>
       </div>
-
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.basic')}</h2>
-      <DemoBlock title={t('demo.submit')} desc={t('demo.submitDesc')} code={CodeBasic}>
-        <BasicDemo />
-      </DemoBlock>
-
-      <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.fullExample')}</h2>
-      <DemoBlock title={t('demo.allComponents')} desc={t('demo.allComponentsDesc')} code={FullDemoCode}>
-        <FullFormDemo />
-      </DemoBlock>
-    </div>
-  </DocLayout>
+    </DocLayout>
   );
 };

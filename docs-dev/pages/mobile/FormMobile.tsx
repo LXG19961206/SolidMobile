@@ -70,7 +70,7 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
   const t = useT();
   const [basicVal, setBasicVal] = createSignal({});
   const [fullVal, setFullVal] = createSignal({});
-  const [controlRight, setControlRight] = createSignal(true);
+  const [controlRight, setControlRight] = createSignal(false);
   let fullFormRef: any;
 
   return (
