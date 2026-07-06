@@ -6,10 +6,11 @@ import {
   type Component,
   type JSX,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { Icon } from '../Icon';
 import type { AvatarProps, AvatarSize } from './types';
-import styles from './Avatar.module.css';
+import rawStyles from './Avatar.module.css';
+const styles = scopedStyle(rawStyles, 'sc-avatar');
 
 const SIZE_MAP: Record<AvatarSize, number> = {
   xs: 24,

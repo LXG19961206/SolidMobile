@@ -1,9 +1,10 @@
 import { mergeProps, splitProps, Show, type Component } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { Icon } from '../Icon';
 import { emitEvent } from '../../event-bus';
 import type { NavBarProps } from './types';
-import styles from './NavBar.module.css';
+import rawStyles from './NavBar.module.css';
+const styles = scopedStyle(rawStyles, 'sc-nav-bar');
 
 const defaultProps: Partial<NavBarProps> = {
   height: 46,

@@ -1,8 +1,9 @@
 import { mergeProps, splitProps, type Component, type JSX } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import type { IconProps } from './types';
 import { icons } from './icon-registry';
-import styles from './Icon.module.css';
+import rawStyles from './Icon.module.css';
+const styles = scopedStyle(rawStyles, 'sc-icon');
 
 const defaultProps: Partial<IconProps> = {
   variant: 'line',

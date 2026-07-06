@@ -2,7 +2,9 @@ import { For, type Component } from 'solid-js';
 import { useConfig } from '../config';
 import { useT } from '../i18n';
 import type { ColorTokens } from '../config/types';
-import styles from './DesignTokenShowcase.module.css';
+import rawStyles from './DesignTokenShowcase.module.css';
+import { scopedStyle } from '../utils';
+const styles = scopedStyle(rawStyles, 'sc-dt-design-token-showcase');
 
 /* -------------------------------------------------------------------------- */
 /*  Color Section                                                             */

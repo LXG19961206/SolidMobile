@@ -3,9 +3,10 @@ import {
   Show, For, mergeProps, splitProps,
   type Component,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import type { SwipeAction, SwipeCellProps } from './types';
-import styles from './SwipeCell.module.css';
+import rawStyles from './SwipeCell.module.css';
+const styles = scopedStyle(rawStyles, 'sc-swipe-cell');
 
 /* ── Constants ── */
 const MOVE_DURATION = 0.05;      // 跟指滑动时的动画时长

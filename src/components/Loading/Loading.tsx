@@ -1,8 +1,9 @@
 import { mergeProps, splitProps, Show, type Component, type JSX } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { Overlay } from '../Overlay';
 import type { LoadingProps, LoadingType } from './types';
-import styles from './Loading.module.css';
+import rawStyles from './Loading.module.css';
+const styles = scopedStyle(rawStyles, 'sc-loading');
 
 const defaultProps: Partial<LoadingProps> = {
   type: 'spinner',

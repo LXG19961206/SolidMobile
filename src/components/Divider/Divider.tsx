@@ -1,7 +1,8 @@
 import { mergeProps, splitProps, Show, type Component } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import type { DividerProps } from './types';
-import styles from './Divider.module.css';
+import rawStyles from './Divider.module.css';
+const styles = scopedStyle(rawStyles, 'sc-divider');
 
 const defaultProps: Partial<DividerProps> = {
   direction: 'horizontal',

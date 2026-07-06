@@ -2,11 +2,12 @@ import {
   createSignal, createEffect, on, mergeProps, splitProps,
   type Component,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { useFormField } from '../Form/FormItem';
 import { emitEvent } from '../../event-bus';
 import type { StepperProps } from './types';
-import styles from './Stepper.module.css';
+import rawStyles from './Stepper.module.css';
+const styles = scopedStyle(rawStyles, 'sc-stepper');
 
 const defaultProps: Partial<StepperProps> = {
   defaultValue: 0,

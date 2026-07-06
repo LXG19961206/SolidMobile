@@ -12,9 +12,10 @@ import {
   useContext,
   onMount,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import type { TabsProps, TabProps } from './types';
-import styles from './Tabs.module.css';
+import rawStyles from './Tabs.module.css';
+const styles = scopedStyle(rawStyles, 'sc-tabs');
 import { emitEvent } from '../../event-bus';
 
 /* ═══════════════════════════════════════════════════════════════════════

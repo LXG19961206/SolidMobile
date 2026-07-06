@@ -26,6 +26,6 @@ describe('Badge', () => {
 
   it('hides when no content and no dot', () => {
     const { container } = render(() => <Badge><span>hi</span></Badge>);
-    expect(container.querySelector('[class*="badge"]')).toBeNull();
+    expect(container.querySelector('[class*="sc-badge-badge"]')).toBeNull();
   });
 });

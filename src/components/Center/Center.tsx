@@ -1,8 +1,9 @@
 import { mergeProps, splitProps, type Component, type JSX } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import type { CenterProps } from './types';
-import styles from './Center.module.css';
+import rawStyles from './Center.module.css';
+const styles = scopedStyle(rawStyles, 'sc-center');
 
 const defaultProps: Partial<CenterProps> = {
   as: 'div',

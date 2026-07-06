@@ -3,11 +3,12 @@ import {
   onMount, onCleanup,
   type Component, type JSX,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { useT } from '../../i18n';
 import { emitEvent } from '../../event-bus';
 import type { PullRefreshProps } from './types';
-import styles from './PullRefresh.module.css';
+import rawStyles from './PullRefresh.module.css';
+const styles = scopedStyle(rawStyles, 'sc-pull-refresh');
 
 /* ── Defaults ── */
 

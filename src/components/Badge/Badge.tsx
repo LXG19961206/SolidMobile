@@ -1,7 +1,8 @@
 import { mergeProps, splitProps, Show, type Component } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import type { BadgeProps } from './types';
-import styles from './Badge.module.css';
+import rawStyles from './Badge.module.css';
+const styles = scopedStyle(rawStyles, 'sc-badge');
 
 const defaultProps: Partial<BadgeProps> = {
   position: 'top-right',

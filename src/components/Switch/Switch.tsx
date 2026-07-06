@@ -5,10 +5,11 @@ import {
   type Component,
   type JSX,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { useFormField } from '../Form/FormItem';
 import type { SwitchProps } from './types';
-import styles from './Switch.module.css';
+import rawStyles from './Switch.module.css';
+const styles = scopedStyle(rawStyles, 'sc-switch');
 import { emitEvent } from '../../event-bus';
 
 const defaultProps: Partial<SwitchProps> = {

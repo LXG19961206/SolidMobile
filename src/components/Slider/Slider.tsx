@@ -2,11 +2,12 @@ import {
   createSignal, createEffect, on, onMount, mergeProps, splitProps,
   type Component,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { useFormField } from '../Form/FormItem';
 import { emitEvent } from '../../event-bus';
 import type { SliderProps } from './types';
-import styles from './Slider.module.css';
+import rawStyles from './Slider.module.css';
+const styles = scopedStyle(rawStyles, 'sc-slider');
 
 const defaultProps: Partial<SliderProps> = {
   min: 0, max: 100, step: 1, count: 1,

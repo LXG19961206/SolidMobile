@@ -53,8 +53,8 @@ describe('Overlay', () => {
       expect(screen.getByText('Content')).toBeDefined();
     });
 
-    // Click the backdrop (the outer div)
-    const overlay = screen.getByText('Content').closest('[class*="overlay"]')!;
+    // Click the backdrop (the outer div — role="presentation")
+    const overlay = screen.getByRole('presentation');
     await userEvent.click(overlay);
     expect(onClose).toHaveBeenCalledOnce();
   });
@@ -133,7 +133,7 @@ describe('Overlay', () => {
   it('applies custom zIndex', async () => {
     render(() => <Overlay open={true} zIndex={2000}>Content</Overlay>);
     await waitFor(() => {
-      const overlay = screen.getByText('Content').closest('[class*="overlay"]')!;
+      const overlay = screen.getByRole('presentation');
       const style = overlay.getAttribute('style') || '';
       expect(style).toContain('2000');
     });
@@ -142,7 +142,7 @@ describe('Overlay', () => {
   it('passes custom class', async () => {
     render(() => <Overlay open={true} class="my-overlay">Content</Overlay>);
     await waitFor(() => {
-      const overlay = screen.getByText('Content').closest('[class*="overlay"]')!;
+      const overlay = screen.getByRole('presentation');
       expect(overlay.className).toContain('my-overlay');
     });
   });

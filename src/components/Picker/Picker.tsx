@@ -5,12 +5,13 @@ import {
   type Component,
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { useLocale, useT } from '../../i18n';
 import { Overlay } from '../Overlay';
 import { emitEvent } from '../../event-bus';
 import type { PickerOption, PickerProps } from './types';
-import styles from './Picker.module.css';
+import rawStyles from './Picker.module.css';
+const styles = scopedStyle(rawStyles, 'sc-picker');
 
 /* ── Constants ── */
 const DEFAULT_DURATION = 0.4;

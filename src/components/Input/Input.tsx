@@ -2,12 +2,13 @@ import {
   createSignal, createEffect, on, mergeProps, splitProps,
   Show, type Component,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { Icon } from '../Icon';
 import { useFormField } from '../Form/FormItem';
 import { emitEvent } from '../../event-bus';
 import type { InputProps } from './types';
-import styles from './Input.module.css';
+import rawStyles from './Input.module.css';
+const styles = scopedStyle(rawStyles, 'sc-input');
 
 const defaultProps: Partial<InputProps> = {
   type: 'text',

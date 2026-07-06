@@ -2,13 +2,14 @@ import {
   createSignal, createMemo, createEffect, on, onMount, onCleanup,
   Show, For, mergeProps, splitProps, type Component,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { Popup } from '../Popup';
 import { useLocale, useT } from '../../i18n';
 import { solarToLunar } from '../../utils/lunar';
 import type { CalendarProps, DayInfo } from './types';
 import { emitEvent } from '../../event-bus';
-import styles from './Calendar.module.css';
+import rawStyles from './Calendar.module.css';
+const styles = scopedStyle(rawStyles, 'sc-calendar');
 
 /* ── Date helpers ── */
 function daysInMonth(y: number, m: number) { return new Date(y, m, 0).getDate(); }

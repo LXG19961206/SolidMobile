@@ -8,9 +8,10 @@ import {
   type Component,
 } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import type { LazyloadProps } from './types';
-import styles from './Lazyload.module.css';
+import rawStyles from './Lazyload.module.css';
+const styles = scopedStyle(rawStyles, 'sc-lazyload');
 
 const defaultProps: Partial<LazyloadProps> = {
   rootMargin: '50px',

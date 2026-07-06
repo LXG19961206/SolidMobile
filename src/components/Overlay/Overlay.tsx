@@ -8,9 +8,10 @@ import {
   type Component,
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import type { OverlayProps } from './types';
-import styles from './Overlay.module.css';
+import rawStyles from './Overlay.module.css';
+const styles = scopedStyle(rawStyles, 'sc-overlay');
 
 const defaultProps: Partial<OverlayProps> = {
   zIndex: 999,

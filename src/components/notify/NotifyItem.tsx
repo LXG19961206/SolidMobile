@@ -1,8 +1,9 @@
 import { onMount, onCleanup, createSignal, type Component } from 'solid-js';
 import { Portal } from 'solid-js/web';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import type { NotifyOptions } from './types';
-import styles from './Notify.module.css';
+import rawStyles from './Notify.module.css';
+const styles = scopedStyle(rawStyles, 'sc-notify');
 
 interface NotifyItemProps extends NotifyOptions {
   id: number;

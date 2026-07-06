@@ -2,11 +2,12 @@ import {
   createSignal, createEffect, on, createContext, useContext,
   mergeProps, splitProps, Show, type Component, type Accessor,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { useFormField } from '../Form/FormItem';
 import type { CheckboxProps, CheckboxGroupProps, CheckboxShape } from './types';
 import { emitEvent } from '../../event-bus';
-import styles from './Checkbox.module.css';
+import rawStyles from './Checkbox.module.css';
+const styles = scopedStyle(rawStyles, 'sc-checkbox');
 
 /* ═══════════════════════════════════════════════════════════
    Context

@@ -1,7 +1,8 @@
 import { mergeProps, splitProps, Show, type Component } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import type { TagProps } from './types';
-import styles from './Tag.module.css';
+import rawStyles from './Tag.module.css';
+const styles = scopedStyle(rawStyles, 'sc-tag');
 
 const defaultProps: Partial<TagProps> = {
   type: 'primary',

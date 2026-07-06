@@ -1,7 +1,8 @@
 import { mergeProps, splitProps, Show, type Component } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import type { CellGroupProps } from './types';
-import styles from './Cell.module.css';
+import rawStyles from './Cell.module.css';
+const styles = scopedStyle(rawStyles, 'sc-cell');
 
 const defaultProps: Partial<CellGroupProps> = {
   border: true,

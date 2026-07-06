@@ -3,7 +3,7 @@ import {
   type Component, type JSX,
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { useT } from '../../i18n';
 import { useFormField } from '../Form/FormItem';
 import { emitEvent } from '../../event-bus';
@@ -11,7 +11,8 @@ import { Image } from '../Image';
 import { Icon } from '../Icon';
 import type { IconName } from '../Icon';
 import type { UploadProps, UploadFile } from './types';
-import styles from './Upload.module.css';
+import rawStyles from './Upload.module.css';
+const styles = scopedStyle(rawStyles, 'sc-upload');
 
 /* ── Defaults ── */
 

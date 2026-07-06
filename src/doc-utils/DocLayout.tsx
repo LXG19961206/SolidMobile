@@ -1,6 +1,8 @@
 import { createContext, createSignal, onCleanup, type JSX } from 'solid-js';
 import { PhoneSimulator } from './PhoneSimulator';
-import styles from './DocLayout.module.css';
+import rawStyles from './DocLayout.module.css';
+import { scopedStyle } from '../utils';
+const styles = scopedStyle(rawStyles, 'sc-doc-doc-layout');
 
 // Context so DemoBlock knows where to portal its demo preview.
 export const PhoneTargetContext = createContext<() => HTMLDivElement | undefined>();

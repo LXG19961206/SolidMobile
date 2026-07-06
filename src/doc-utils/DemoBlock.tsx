@@ -6,7 +6,9 @@ import 'prismjs/components/prism-jsx';
 import 'prismjs/themes/prism.css';
 import { PhoneTargetContext, IsMobileContext } from './DocLayout';
 import type { JSX } from 'solid-js';
-import styles from './DemoBlock.module.css';
+import rawStyles from './DemoBlock.module.css';
+import { scopedStyle } from '../utils';
+const styles = scopedStyle(rawStyles, 'sc-doc-demo-block');
 
 /* ── GroupCode Context ── */
 

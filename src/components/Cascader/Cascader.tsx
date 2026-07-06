@@ -3,13 +3,14 @@ import {
   Show, For, mergeProps, splitProps, type Component,
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { Overlay } from '../Overlay';
 import { Loading } from '../Loading';
 import type { CascaderProps, CascaderOption } from './types';
 import { emitEvent } from '../../event-bus';
 import { useT } from '../../i18n';
-import styles from './Cascader.module.css';
+import rawStyles from './Cascader.module.css';
+const styles = scopedStyle(rawStyles, 'sc-cascader');
 
 const defaultProps: Partial<CascaderProps> = {
   zIndex: 2000,

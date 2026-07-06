@@ -41,6 +41,9 @@ export function createRef<T extends HTMLElement = HTMLElement>(): [
   return [get, set];
 }
 
+// CSS Modules scoped style helper
+export { scopedStyle } from './scopedStyle';
+
 // Color utilities
 export {
   hexToRgb,

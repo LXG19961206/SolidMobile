@@ -6,7 +6,9 @@ import { useLocale, setGlobalLocale, useT } from '../../i18n';
 import { useDrawer } from './DrawerContext';
 import { docThemeColor, persistThemeColor } from '../doc-theme';
 import { ThemeColorPicker } from '../ThemeColorPicker';
-import styles from './MobilePreview.module.css';
+import rawStyles from './MobilePreview.module.css';
+import { scopedStyle } from '../../utils';
+const styles = scopedStyle(rawStyles, 'sc-doc-mobile-preview');
 
 /* ── Stable ordered key list for prev/next navigation ──
    Mirrors the mobile drawer order exactly so prev/next always

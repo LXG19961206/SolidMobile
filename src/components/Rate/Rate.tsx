@@ -2,12 +2,13 @@ import {
   createSignal, mergeProps, splitProps, For, createEffect, on,
   type Component,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { Icon } from '../Icon';
 import type { IconName } from '../Icon';
 import { useFormField } from '../Form/FormItem';
 import type { RateProps } from './types';
-import styles from './Rate.module.css';
+import rawStyles from './Rate.module.css';
+const styles = scopedStyle(rawStyles, 'sc-rate');
 import { emitEvent } from '../../event-bus';
 
 const defaultProps: Partial<RateProps> = {

@@ -2,14 +2,15 @@ import {
   createSignal, createContext, useContext, createMemo,
   mergeProps, splitProps, Show, type Component, type JSX,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { Icon } from '../Icon';
 import type { IconName } from '../Icon';
 import { Badge } from '../Badge';
 import { SafeArea } from '../SafeArea';
 import { emitEvent } from '../../event-bus';
 import type { TabBarProps, TabBarItemProps } from './types';
-import styles from './TabBar.module.css';
+import rawStyles from './TabBar.module.css';
+const styles = scopedStyle(rawStyles, 'sc-tab-bar');
 
 /* ── Context ── */
 

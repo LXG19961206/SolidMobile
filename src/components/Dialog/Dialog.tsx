@@ -3,12 +3,13 @@ import {
   Show, mergeProps, splitProps, type Component,
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { useT } from '../../i18n';
 import { Overlay } from '../Overlay';
 import { Loading } from '../Loading';
 import type { DialogProps } from './types';
-import styles from './Dialog.module.css';
+import rawStyles from './Dialog.module.css';
+const styles = scopedStyle(rawStyles, 'sc-dialog');
 
 const defaultProps: Partial<DialogProps> = {
   width: '320px',

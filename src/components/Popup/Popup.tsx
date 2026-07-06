@@ -3,10 +3,11 @@ import {
   mergeProps, splitProps, type Component,
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { Overlay } from '../Overlay';
 import type { PopupProps } from './types';
-import styles from './Popup.module.css';
+import rawStyles from './Popup.module.css';
+const styles = scopedStyle(rawStyles, 'sc-popup');
 
 const defaultProps: Partial<PopupProps> = {
   zIndex: 2000,

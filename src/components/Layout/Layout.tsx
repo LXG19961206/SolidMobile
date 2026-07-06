@@ -1,7 +1,8 @@
 import { mergeProps, splitProps, type Component } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import type { RowProps, ColProps } from './types';
-import styles from './Layout.module.css';
+import rawStyles from './Layout.module.css';
+const styles = scopedStyle(rawStyles, 'sc-layout');
 
 export const Row: Component<RowProps> = (rawProps) => {
   const props = mergeProps({}, rawProps);

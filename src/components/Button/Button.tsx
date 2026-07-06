@@ -1,11 +1,12 @@
 import { splitProps, mergeProps, type Component, type JSX } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
-import { cn, contrastText, deriveColorSet } from '../../utils';
+import { cn, contrastText, deriveColorSet, scopedStyle } from '../../utils';
 import { Icon } from '../Icon';
 import type { IconName } from '../Icon';
 import { emitEvent } from '../../event-bus';
 import type { ButtonProps } from './types';
-import styles from './Button.module.css';
+import rawStyles from './Button.module.css';
+const styles = scopedStyle(rawStyles, 'sc-button');
 
 const defaultProps: Partial<ButtonProps> = {
   type: 'primary',

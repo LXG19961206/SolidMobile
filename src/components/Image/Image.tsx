@@ -6,11 +6,12 @@ import {
   type Component,
   type JSX,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { Lazyload } from '../Lazyload';
 import { Icon } from '../Icon';
 import type { ImageProps } from './types';
-import styles from './Image.module.css';
+import rawStyles from './Image.module.css';
+const styles = scopedStyle(rawStyles, 'sc-image');
 
 const defaultProps: Partial<ImageProps> = {
   fit: 'fill',

@@ -10,13 +10,14 @@ import {
   type Component,
   type JSX,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { Empty } from '../Empty';
 import { Loading } from '../Loading';
 import { PullRefresh } from '../PullRefresh';
 import type { ListProps } from './types';
 import { useT } from '../../i18n';
-import styles from './List.module.css';
+import rawStyles from './List.module.css';
+const styles = scopedStyle(rawStyles, 'sc-list');
 
 const defaultProps: Partial<ListProps<any>> = {
   offset: 100,

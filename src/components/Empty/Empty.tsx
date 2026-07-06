@@ -1,8 +1,9 @@
 import { mergeProps, splitProps, Show, type Component } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { Icon } from '../Icon';
 import type { EmptyProps } from './types';
-import styles from './Empty.module.css';
+import rawStyles from './Empty.module.css';
+const styles = scopedStyle(rawStyles, 'sc-empty');
 
 const PRESETS: Record<string, string> = {
   default: 'image',

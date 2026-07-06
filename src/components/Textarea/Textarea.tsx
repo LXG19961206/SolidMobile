@@ -2,12 +2,13 @@ import {
   createSignal, createEffect, on, onMount, mergeProps, splitProps,
   Show, type Component,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { Icon } from '../Icon';
 import { useFormField } from '../Form/FormItem';
 import { emitEvent } from '../../event-bus';
 import type { TextareaProps } from './types';
-import styles from './Textarea.module.css';
+import rawStyles from './Textarea.module.css';
+const styles = scopedStyle(rawStyles, 'sc-textarea');
 
 const defaultProps: Partial<TextareaProps> = {
   rows: 3,

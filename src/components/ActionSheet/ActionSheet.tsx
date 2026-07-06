@@ -10,11 +10,12 @@ import {
   type Component,
   type JSX,
 } from 'solid-js';
-import { cn } from '../../utils';
+import { cn, scopedStyle } from '../../utils';
 import { Overlay } from '../Overlay';
 import { Icon } from '../Icon';
 import type { ActionSheetItem, ActionSheetProps } from './types';
-import styles from './ActionSheet.module.css';
+import rawStyles from './ActionSheet.module.css';
+const styles = scopedStyle(rawStyles, 'sc-action-sheet');
 import { emitEvent } from '../../event-bus';
 
 const defaultProps: Partial<ActionSheetProps> = {

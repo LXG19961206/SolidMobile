@@ -2,7 +2,9 @@ import { onMount, onCleanup, type Component } from 'solid-js';
 import { Portal } from 'solid-js/web';
 import { Overlay } from '../Overlay';
 import type { ToastOptions } from './types';
-import styles from './Toast.module.css';
+import rawStyles from './Toast.module.css';
+import { scopedStyle } from '../../utils';
+const styles = scopedStyle(rawStyles, 'sc-toast');
 
 interface ToastItemProps extends ToastOptions {
   id: number;
