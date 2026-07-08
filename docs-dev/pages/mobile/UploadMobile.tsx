@@ -74,16 +74,23 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
         <div style={{ padding: '0 16px 12px', 'font-size': '0.8rem', 'line-height': 1.8, color: 'var(--sc-color-text-secondary, #6b7280)' }}>
           <p style={{ margin: '0 0 10px' }}>
             {isEn() ? (
-              <>In an ideal world, uploading a file would be a single URL: <code>{'<Upload action="/api/upload" />'}</code>. But in real enterprise projects — is method always POST? Binary or form-data? Extra headers? BaseURL? Error handling? You think about it for a moment and the props explode.</>
+              <>In an ideal world, uploading a file is a single URL: <code>{'<Upload action="/api/upload" />'}</code>. But in real enterprise projects, think for a moment:</>
             ) : (
-              <>在最理想的构想中，用户只需传一个 URL 就能完成上传：<code>{'<Upload action="/api/upload" />'}</code>。然而实际企业工程中，method 一定是 POST 吗？binary 还是 form-data？额外的头？BaseURL？异常处理？稍微一想，props 就爆炸了。</>
+              <>在最理想的构想中，用户只需传一个 URL 就能完成上传：<code>{'<Upload action="/api/upload" />'}</code>。然而实际企业工程中，稍微一想问题就来了：</>
             )}
           </p>
+          <ul style={{ margin: '0 0 10px', 'padding-left': '1.5rem', 'line-height': 2 }}>
+            {isEn() ? (
+              <><li>Is method always POST?</li><li>Binary or form-data?</li><li>Extra headers?</li><li>BaseURL — where from?</li><li>Error handling? Timeout? Retry?</li><li>Upload progress feedback?</li></>
+            ) : (
+              <><li>method 一定是 POST 吗？</li><li>binary 还是 form-data？</li><li>额外的请求头如何传递？</li><li>BaseURL 从哪来？</li><li>异常怎么处理？超时、重试呢？</li><li>上传进度怎么反馈？</li></>
+            )}
+          </ul>
           <p style={{ margin: '0 0 10px' }}>
             {isEn() ? (
-              <>A mature project has its own HTTP infrastructure. The traditional paradigm makes the component library completely unable to benefit from it — interceptors, middleware, token refresh, timeout retry... each use of Upload risks inconsistency with your global HTTP layer. Is that really "simple"? We don't think so. You can't fully describe an HTTP request with a handful of props; even if you could, it would be redundant with your global setup.</>
+              <>Turn all of these into props? Then a mature project's HTTP infrastructure — interceptors, middleware, token refresh, timeout retry — would be completely bypassed. Each use of Upload introduces inconsistency with your global HTTP layer. Can a handful of props fully describe an HTTP request? Even if they could, they'd be redundant with your global setup.</>
             ) : (
-              <>一个成熟的工程，有自己的通用 HTTP 基础设施。传统组件库的范式让组件库完全无法受益于它——拦截器、中间件、token 刷新、超时重试……每次使用 Upload，都可能造成一次和全局 HTTP 库不统一的隐患。这真的是"简单"吗？我们认为不是。你很难靠几个 props 去描述一个 HTTP 请求的全貌；就算勉强做到，和你全局的通用处理也一定是冗余的。</>
+              <>都做成 props？那一个成熟工程的 HTTP 基础设施（拦截器、中间件、token 刷新、超时重试）就被完全绕开了——每次使用 Upload，都可能造成和全局 HTTP 库不统一的隐患。几个 props 能描述一个 HTTP 请求的全貌吗？就算勉强做到，和你全局的通用处理也一定是冗余的。</>
             )}
           </p>
           <p style={{ margin: '0 0 10px' }}>

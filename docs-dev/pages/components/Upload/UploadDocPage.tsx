@@ -76,16 +76,32 @@ export const UploadDocPage: Component = () => {
 
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.design')}</h2>
 
-        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '16px' }}>
-          在最理想的构想中，用户只需传一个 URL 就能完成上传：<code>{'<Upload action="/api/upload" />'}</code>。
-          然而在实际企业级工程中，method 一定是 POST 吗？binary 还是 form-data？额外的头如何传递？
-          BaseURL 从哪来？异常怎么处理？稍微一想，问题就来了——都做成 props 吗？
+        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
+          在最理想的构想中，用户只需传一个 URL 就能完成上传：
         </p>
+        <CodeBlock code={`<Upload action="/api/upload" />`} />
+        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin': '12px 0' }}>
+          然而在实际企业级工程中，稍微一想，问题就来了：
+        </p>
+        <ul style={{ color: '#6b7280', 'line-height': 2, 'padding-left': '1.5rem', 'margin': '0 0 12px' }}>
+          <li>method 一定是 POST 吗？</li>
+          <li>binary 还是 form-data？</li>
+          <li>额外的请求头如何传递？</li>
+          <li>BaseURL 从哪来？</li>
+          <li>异常怎么处理？超时、重试呢？</li>
+          <li>上传进度怎么反馈？</li>
+        </ul>
+        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
+          都做成 props 吗？那一个 Upload 组件将有多少属性？更关键的是——
+        </p>
+        <ul style={{ color: '#6b7280', 'line-height': 2, 'padding-left': '1.5rem', 'margin': '0 0 16px' }}>
+          <li>每个成熟工程都有自己的 HTTP 基础设施（拦截器、中间件、token 刷新、超时重试……）；</li>
+          <li>传统 props 范式让组件完全无法受益于此——每次使用 Upload，都是在绕开你的全局 HTTP 库；</li>
+          <li>你很难靠几个 props 完整描述一个 HTTP 请求的全貌；就算勉强做到，和你全局的通用处理也一定是冗余的。</li>
+        </ul>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '24px' }}>
-          一个成熟的工程，有自己的通用 HTTP 基础设施。传统组件库的范式让组件库完全无法受益于它——
-          拦截器、中间件、token 刷新、超时重试……每次使用 Upload，都可能造成一次和全局 HTTP 库不统一的隐患。
-          这真的是"简单"吗？我们认为不是。你很难靠几个 props 去描述一个 HTTP 请求的全貌；就算勉强做到，和你全局的通用处理也一定是冗余的。
-          了解一个 HTTP 请求的全貌并不难——组件库该做的是<strong>引导用户更强</strong>，而非让他陷入不知所以然的泥潭。
+          这真的是"简单"吗？我们认为不是。了解一个 HTTP 请求的全貌并不难——
+          组件库该做的是<strong>引导用户更强</strong>，而非让他陷入不知所以然的泥潭。
         </p>
 
         <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>{t('section.noHttp')}</h3>
