@@ -203,6 +203,26 @@ const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key:
   pullrefresh: PullRefreshMobile,
 };
 
+const PAGES: Record<string, Component> = {
+  'design-tokens': () => <div class="guide-card" style="padding: 1.5rem 2rem; max-width: 960px"><AllTokens /></div>,
+  button: ButtonDocPage, icon: IconDocPage, center: CenterDocPage, divider: DividerDocPage, layout: LayoutDocPage,
+  avatar: AvatarDocPage, badge: BadgeDocPage, tag: TagDocPage, image: ImageDocPage, empty: EmptyDocPage,
+  lazyload: LazyloadDocPage, list: ListDocPage, navbar: NavBarDocPage, tabs: TabsDocPage, tabbar: TabBarDocPage,
+  cell: CellDocPage, picker: PickerDocPage, cascader: CascaderDocPage, calendar: CalendarDocPage,
+  toast: ToastDocPage, dialog: DialogDocPage, notify: NotifyDocPage, overlay: OverlayDocPage,
+  actionsheet: ActionSheetDocPage, loading: LoadingDocPage, switch: SwitchDocPage, swipecell: SwipeCellDocPage,
+  swiper: SwiperDocPage, form: FormDocPage, input: InputDocPage, textarea: TextareaDocPage, radio: RadioDocPage,
+  checkbox: CheckboxDocPage, datepicker: DatePickerDocPage, citypicker: CityPickerDocPage, timepicker: TimePickerDocPage,
+  rate: RateDocPage, stepper: StepperDocPage, safearea: SafeAreaDocPage, slider: SliderDocPage, select: SelectDocPage,
+  upload: UploadDocPage, pullrefresh: PullRefreshDocPage,
+};
+
+const GUIDE_PAGES: Record<string, Component> = {
+  guide: GuidePage, solidjs: SolidjsPage, about: AboutPage, config: ConfigDocPage, i18n: I18nDocPage,
+  'design-tokens': () => <div class="guide-card"><AllTokens /></div>,
+  eventbus: EventBusDocPage,
+};
+
 /* ── Top Nav Tabs ── */
 
 // Moved inside component for t() access
