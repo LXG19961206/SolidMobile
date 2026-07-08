@@ -2,9 +2,9 @@ import { Badge } from '../../../../src/components/Badge';
 import { Button } from '../../../../src/components/Button';
 import { Avatar } from '../../../../src/components/Avatar';
 import { Tabs, Tab } from '../../../../src/components/Tabs';
-import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import { useT } from '../../../doc-i18n';
-import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './BadgeDocPage.module.css';
 
 const propsData: PropRow[] = [

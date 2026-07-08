@@ -1,4 +1,4 @@
-import { useLocale, setGlobalLocale } from '../i18n';
+import { useLocale, setGlobalLocale } from '../../src/i18n';
 
 /**
  * 中/英语言切换按钮。文档页专用。

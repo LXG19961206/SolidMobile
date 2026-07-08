@@ -1,8 +1,8 @@
 import { NavBar } from '../../../../src/components/NavBar';
 import { Button } from '../../../../src/components/Button';
 import { Icon } from '../../../../src/components/Icon';
-import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
-import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
+import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './NavBarDocPage.module.css';
 import { useT } from '../../../doc-i18n';
 

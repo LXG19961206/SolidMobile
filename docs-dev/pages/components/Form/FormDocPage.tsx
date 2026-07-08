@@ -19,9 +19,9 @@ import { TimePicker } from '../../../../src/components/TimePicker';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
 import { useT } from '../../../doc-i18n';
 import { Toast } from '../../../../src/components/Toast';
-import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PickerOption } from '../../../../src/components/Picker';
-import type { PropRow } from '../../../../src/doc-utils';
+import type { PropRow } from '../../../doc-utils';
 
 const formProps: PropRow[] = [
   { name: 'value', type: 'T', default: '—', required: false, desc: 'componentProps.form.value' },

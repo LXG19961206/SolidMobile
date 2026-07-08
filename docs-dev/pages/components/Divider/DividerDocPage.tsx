@@ -1,7 +1,7 @@
 import { Divider } from '../../../../src/components/Divider';
 import { useT } from '../../../doc-i18n';
-import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
-import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
+import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './DividerDocPage.module.css';
 
 const propsData: PropRow[] = [

@@ -1,6 +1,6 @@
 import { createSignal, onMount } from 'solid-js';
-import { defaultConfig } from '../config/defaults';
-import { generateCSSVars } from '../config/css-vars';
+import { defaultConfig } from '../../src/config/defaults';
+import { generateCSSVars } from '../../src/config/css-vars';
 
 const KEY = 'sc-docs-dark-mode';
 

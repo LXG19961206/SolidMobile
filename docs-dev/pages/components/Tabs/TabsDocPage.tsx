@@ -1,7 +1,7 @@
 import { createSignal } from 'solid-js';
 import { Tabs, Tab } from '../../../../src/components/Tabs';
-import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
-import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
+import type { PropRow, TOCItem } from '../../../doc-utils';
 import { useT } from '../../../doc-i18n';
 import css from './TabsDocPage.module.css';
 

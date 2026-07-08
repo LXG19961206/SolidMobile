@@ -2,13 +2,13 @@ import { createSignal, useContext, type Component } from 'solid-js';
 import { CityPicker } from '../../../../src/components/CityPicker';
 import { Picker } from '../../../../src/components/Picker';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
-import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
 import { useT } from '../../../doc-i18n';
 import type { PickerOption } from '../../../../src/components/Picker';
-import type { PropRow } from '../../../../src/doc-utils';
+import type { PropRow } from '../../../doc-utils';
 
 /* ── 示例省市区数据（用户需自行提供完整数据） ── */
 

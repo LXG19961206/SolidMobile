@@ -3,8 +3,8 @@ import { Upload } from '../../../../src/components/Upload';
 import type { UploadFile } from '../../../../src/components/Upload';
 import { useT } from '../../../doc-i18n';
 import { ToastRenderer, Toast } from '../../../../src/components/Toast';
-import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
-import type { PropRow } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
+import type { PropRow } from '../../../doc-utils';
 import Prism from 'prismjs';
 
 /* ── CodeBlock ── */

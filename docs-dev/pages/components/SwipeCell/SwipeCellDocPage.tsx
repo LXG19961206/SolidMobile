@@ -2,8 +2,8 @@ import { type Component, useContext } from 'solid-js';
 import { SwipeCell } from '../../../../src/components/SwipeCell';
 import { Cell } from '../../../../src/components/Cell';
 import { Toast } from '../../../../src/components/Toast';
-import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
-import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
+import type { PropRow, TOCItem } from '../../../doc-utils';
 import type { SwipeAction } from '../../../../src/components/SwipeCell/types';
 import { useT } from '../../../doc-i18n';
 

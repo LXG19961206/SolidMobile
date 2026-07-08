@@ -1,6 +1,6 @@
 import { createSignal, onMount, onCleanup, For } from 'solid-js';
 import rawStyles from './DocTOC.module.css';
-import { scopedStyle } from '../utils';
+import { scopedStyle } from '../../src/utils';
 const styles = scopedStyle(rawStyles, 'sc-doc-doc-toc');
 
 export interface TOCItem {

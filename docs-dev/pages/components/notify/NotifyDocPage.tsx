@@ -1,8 +1,8 @@
 import { useContext, type Component } from 'solid-js';
 import { Notify, NotifyRenderer } from '../../../../src/components/notify/NotifyManager';
 import { Cell } from '../../../../src/components/Cell';
-import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
-import type { PropRow } from '../../../../src/doc-utils';
+import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
+import type { PropRow } from '../../../doc-utils';
 import type { NotifyOptions } from '../../../../src/components/notify/types';
 import { useT } from '../../../doc-i18n';
 

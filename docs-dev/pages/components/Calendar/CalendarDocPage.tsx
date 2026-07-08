@@ -1,8 +1,8 @@
 import { createSignal, Show, useContext } from 'solid-js';
 import { Calendar } from '../../../../src/components/Calendar';
 import { Cell } from '../../../../src/components/Cell';
-import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
-import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
+import type { PropRow, TOCItem } from '../../../doc-utils';
 import { useT } from '../../../doc-i18n';
 import css from './CalendarDocPage.module.css';
 

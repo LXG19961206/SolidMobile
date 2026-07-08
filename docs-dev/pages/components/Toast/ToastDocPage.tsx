@@ -1,8 +1,8 @@
 import { useContext, type Component } from 'solid-js';
 import { Toast, ToastRenderer } from '../../../../src/components/Toast/ToastManager';
 import { Cell } from '../../../../src/components/Cell';
-import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
-import type { PropRow } from '../../../../src/doc-utils';
+import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
+import type { PropRow } from '../../../doc-utils';
 import { useT } from '../../../doc-i18n';
 import styles from './ToastDocPage.module.css';
 

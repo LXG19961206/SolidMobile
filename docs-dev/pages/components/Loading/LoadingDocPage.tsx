@@ -1,8 +1,8 @@
 import { createSignal, useContext } from 'solid-js';
 import { Loading } from '../../../../src/components/Loading';
 import { Icon } from '../../../../src/components/Icon';
-import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
-import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
+import type { PropRow, TOCItem } from '../../../doc-utils';
 import styles from './LoadingDocPage.module.css';
 import { useT } from '../../../doc-i18n';
 

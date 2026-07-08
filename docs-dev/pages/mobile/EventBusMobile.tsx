@@ -1,6 +1,6 @@
 import { type Component } from 'solid-js';
-import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
-import { CodeBlock } from '../../../src/doc-utils';
+import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
+import { CodeBlock } from '../../doc-utils';
 import { useT } from '../../doc-i18n';
 
 export interface EventBusMobileProps {

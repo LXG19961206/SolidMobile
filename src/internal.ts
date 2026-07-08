@@ -8,6 +8,6 @@
  */
 // @ts-nocheck — doc-utils & design-tokens are internal, types are loose
 export * from './index';
-export * from './doc-utils';
-export * from './doc-utils/mobile/MobilePreview';
+export * from '../docs-dev/doc-utils';
+export * from '../docs-dev/doc-utils/mobile/MobilePreview';
 export { AllTokens } from './design-tokens/DesignTokenShowcase';

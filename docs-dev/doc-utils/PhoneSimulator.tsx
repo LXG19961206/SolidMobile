@@ -1,6 +1,6 @@
 import { Show } from 'solid-js';
-import { cn, scopedStyle } from '../utils';
-import { NavBar } from '../components/NavBar';
+import { cn, scopedStyle } from '../../src/utils';
+import { NavBar } from '../../src/components/NavBar';
 import rawStyles from './PhoneSimulator.module.css';
 const styles = scopedStyle(rawStyles, 'sc-doc-phone-simulator');
 

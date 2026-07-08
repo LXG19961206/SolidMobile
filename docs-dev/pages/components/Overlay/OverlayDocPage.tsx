@@ -3,8 +3,8 @@ import { Overlay } from '../../../../src/components/Overlay';
 import { ActionSheet } from '../../../../src/components/ActionSheet';
 import { Cell } from '../../../../src/components/Cell';
 import { Button } from '../../../../src/components/Button';
-import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
-import type { PropRow } from '../../../../src/doc-utils';
+import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
+import type { PropRow } from '../../../doc-utils';
 import { useT } from '../../../doc-i18n';
 import styles from './OverlayDocPage.module.css';
 

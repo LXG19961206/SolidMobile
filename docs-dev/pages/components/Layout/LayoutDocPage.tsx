@@ -1,7 +1,7 @@
 import { Row, Col } from '../../../../src/components/Layout';
 import { useT } from '../../../doc-i18n';
-import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
-import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
+import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './LayoutDocPage.module.css';
 
 const rowProps: PropRow[] = [

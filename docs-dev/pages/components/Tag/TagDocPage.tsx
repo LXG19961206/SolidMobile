@@ -1,6 +1,6 @@
 import { Tag } from '../../../../src/components/Tag';
-import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
-import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
+import type { PropRow, TOCItem } from '../../../doc-utils';
 import { useT } from '../../../doc-i18n';
 import css from './TagDocPage.module.css';
 

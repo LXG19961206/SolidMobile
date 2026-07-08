@@ -2,8 +2,8 @@ import { type Component } from 'solid-js';
 import { Textarea } from '../../../../src/components/Textarea';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
-import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
-import type { PropRow } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
+import type { PropRow } from '../../../doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const propsData: PropRow[] = [

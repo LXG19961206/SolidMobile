@@ -1,11 +1,11 @@
 import { createSignal, useContext, type Component } from 'solid-js';
 import { DatePicker } from '../../../../src/components/DatePicker';
-import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import { useT } from '../../../doc-i18n';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
-import type { PropRow } from '../../../../src/doc-utils';
+import type { PropRow } from '../../../doc-utils';
 
 const datePickerProps: PropRow[] = [
   { name: 'value', type: 'string', default: '—', required: false, desc: 'componentProps.datepicker.value' },

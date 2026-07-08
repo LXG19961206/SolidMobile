@@ -2,11 +2,11 @@ import { createSignal, type Component } from 'solid-js';
 import { Stepper } from '../../../../src/components/Stepper';
 import { Cell } from '../../../../src/components/Cell';
 import { Icon } from '../../../../src/components/Icon';
-import { DemoBlock, GroupCodePhone, PropsTable, DocLayout } from '../../../../src/doc-utils';
+import { DemoBlock, GroupCodePhone, PropsTable, DocLayout } from '../../../doc-utils';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
-import type { PropRow } from '../../../../src/doc-utils';
+import type { PropRow } from '../../../doc-utils';
 import { useT } from '../../../doc-i18n';
 
 const stepperProps: PropRow[] = [

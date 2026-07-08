@@ -1,13 +1,13 @@
 import { useContext, createContext, createSignal, onMount, For, onCleanup, Show } from 'solid-js';
 import { Portal } from 'solid-js/web';
-import { useT } from '../i18n';
+import { useT } from '../../src/i18n';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/themes/prism.css';
 import { PhoneTargetContext, IsMobileContext } from './DocLayout';
 import type { JSX } from 'solid-js';
 import rawStyles from './DemoBlock.module.css';
-import { scopedStyle } from '../utils';
+import { scopedStyle } from '../../src/utils';
 const styles = scopedStyle(rawStyles, 'sc-doc-demo-block');
 
 /* ── GroupCode Context ── */

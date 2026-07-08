@@ -3,8 +3,8 @@ import { DialogAPI as Dialog, DialogRenderer } from '../../../../src/components/
 import { DialogComponent } from '../../../../src/components/Dialog';
 import { Cell } from '../../../../src/components/Cell';
 import { useT } from '../../../doc-i18n';
-import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
-import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
+import type { PropRow, TOCItem } from '../../../doc-utils';
 import type { DialogOptions } from '../../../../src/components/Dialog/types';
 import css from './DialogDocPage.module.css';
 

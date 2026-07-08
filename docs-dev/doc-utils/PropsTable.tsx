@@ -1,7 +1,7 @@
 import { For } from 'solid-js';
-import { useT } from '../i18n';
+import { useT } from '../../src/i18n';
 import rawStyles from './PropsTable.module.css';
-import { scopedStyle } from '../utils';
+import { scopedStyle } from '../../src/utils';
 const styles = scopedStyle(rawStyles, 'sc-doc-props-table');
 
 export interface PropRow {

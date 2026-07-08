@@ -1,5 +1,5 @@
 import { createSignal, type Component } from 'solid-js';
-import { MobilePreview, type ComponentEntry } from '../../../src/doc-utils/mobile/MobilePreview';
+import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 import { useT } from '../../doc-i18n';
 
 export interface TabBarMobileProps {

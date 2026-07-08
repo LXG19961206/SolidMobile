@@ -1,6 +1,6 @@
 import { Center } from '../../../../src/components/Center';
-import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
-import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
+import type { PropRow, TOCItem } from '../../../doc-utils';
 import { useT } from '../../../doc-i18n';
 import styles from './CenterDocPage.module.css';
 

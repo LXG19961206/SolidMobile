@@ -4,8 +4,8 @@ import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
 import { useT } from '../../../doc-i18n';
-import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
-import type { PropRow } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
+import type { PropRow } from '../../../doc-utils';
 
 const propsData: PropRow[] = [
   { name: 'value', type: 'string', default: '—', required: false, desc: 'componentProps.timepicker.value' },

@@ -3,8 +3,8 @@ import { Icon } from '../../../../src/components/Icon';
 import { Button } from '../../../../src/components/Button';
 import type { IconName, IconVariant } from '../../../../src/components/Icon/types';
 import { useT } from '../../../doc-i18n';
-import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
-import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
+import type { PropRow, TOCItem } from '../../../doc-utils';
 import styles from './IconDocPage.module.css';
 
 const propsData: PropRow[] = [

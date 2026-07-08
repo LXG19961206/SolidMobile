@@ -1,11 +1,11 @@
 import { createSignal, useContext, type Component } from 'solid-js';
 import { Select } from '../../../../src/components/Select';
-import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import { useT } from '../../../doc-i18n';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
-import type { PropRow } from '../../../../src/doc-utils';
+import type { PropRow } from '../../../doc-utils';
 
 const selectProps: PropRow[] = [
   { name: 'options', type: '{ text, value }[]', default: '—', required: true, desc: 'componentProps.select.options' },

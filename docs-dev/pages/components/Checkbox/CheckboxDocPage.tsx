@@ -1,11 +1,11 @@
 import { createSignal, type Component } from 'solid-js';
 import { Checkbox, CheckboxGroup } from '../../../../src/components/Checkbox';
-import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
 import { useT } from '../../../doc-i18n';
-import type { PropRow } from '../../../../src/doc-utils';
+import type { PropRow } from '../../../doc-utils';
 
 const checkboxProps: PropRow[] = [
   { name: 'value', type: 'unknown', default: '—', required: true, desc: 'componentProps.checkbox.value' },

@@ -1,8 +1,8 @@
 import { Empty } from '../../../../src/components/Empty';
 import { Button } from '../../../../src/components/Button';
 import { useT } from '../../../doc-i18n';
-import { DemoBlock, PropsTable, DocLayout } from '../../../../src/doc-utils';
-import type { PropRow, TOCItem } from '../../../../src/doc-utils';
+import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
+import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './EmptyDocPage.module.css';
 
 const propsData: PropRow[] = [

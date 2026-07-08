@@ -1,13 +1,13 @@
 import { createSignal, createMemo, Show, type Component } from 'solid-js';
-import { NavBar } from '../../components/NavBar';
-import { SafeArea } from '../../components/SafeArea';
-import { Icon } from '../../components/Icon';
-import { useLocale, setGlobalLocale, useT } from '../../i18n';
+import { NavBar } from '../../../src/components/NavBar';
+import { SafeArea } from '../../../src/components/SafeArea';
+import { Icon } from '../../../src/components/Icon';
+import { useLocale, setGlobalLocale, useT } from '../../../src/i18n';
 import { useDrawer } from './DrawerContext';
 import { docThemeColor, persistThemeColor } from '../doc-theme';
 import { ThemeColorPicker } from '../ThemeColorPicker';
 import rawStyles from './MobilePreview.module.css';
-import { scopedStyle } from '../../utils';
+import { scopedStyle } from '../../../src/utils';
 const styles = scopedStyle(rawStyles, 'sc-doc-mobile-preview');
 
 /* ── Stable ordered key list for prev/next navigation ──
@@ -50,7 +50,7 @@ function getDark(): boolean {
 async function showI18nNotice() {
   if (i18nNoticeShown) return;
   i18nNoticeShown = true;
-  const { DialogAPI } = await import('../../components/Dialog/DialogManager');
+  const { DialogAPI } = await import('../../../src/components/Dialog/DialogManager');
   setTimeout(() => {
     DialogAPI.confirm({
       title: '🌐 关于国际化 / About i18n',
