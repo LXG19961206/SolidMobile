@@ -1,5 +1,5 @@
-import { createSignal, createMemo, onMount, For, Show, useContext, type Component } from 'solid-js';
-import { Dynamic, Portal } from 'solid-js/web';
+import { createSignal, createMemo, onMount, For, Show, type Component } from 'solid-js';
+import { Dynamic } from 'solid-js/web';
 // Merge doc-only i18n keys into the library's dictionaries.
 // MUST run before any component uses useT().  Doing this inline in
 // the entry module prevents Rollup from tree-shaking the merge.
@@ -30,8 +30,6 @@ import { useT, setGlobalLocale, useLocale } from '../src/i18n';
 import { ProviderConfig } from '../src/config';
 import { deriveColorSet } from '../src/utils/color';
 import { docThemeColor, persistThemeColor } from './doc-utils/doc-theme';
-import { Button, Tag, Picker, Cell, CellGroup } from '../src/components';
-import { DialogAPI } from '../src/components/Dialog/DialogManager';
 
 // Component DocPages
 import { ButtonDocPage } from './pages/components/Button/ButtonDocPage';
@@ -143,7 +141,7 @@ import type { Section } from './utils';
 
 import { AllTokens } from '../src/design-tokens/DesignTokenShowcase';
 import { useDisableZoom } from '../src/hooks';
-import { CodeBlock, DocLayout, PhoneTargetContext } from './doc-utils';
+
 import { DrawerContext } from './doc-utils/mobile/DrawerContext';
 import drawerStyles from './doc-utils/mobile/MobilePreview.module.css';
 
