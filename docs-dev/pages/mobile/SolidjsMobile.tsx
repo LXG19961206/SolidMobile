@@ -8,7 +8,7 @@ export interface SolidjsMobileProps {
 }
 
 const CARD = {
-  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', margin: '0 12px 12px' },
+  wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', margin: '0 0 12px' },
   title: { 'font-size': '0.9rem', 'font-weight': 600, padding: '14px 14px 2px', color: 'var(--sc-doc-card-title, #1f2937)' },
   body: { padding: '2px 14px 14px', 'font-size': '0.85rem', 'line-height': 1.8, color: 'var(--sc-color-text-secondary, #6b7280)' },
 };
