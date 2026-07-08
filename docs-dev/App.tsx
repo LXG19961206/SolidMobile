@@ -26,7 +26,7 @@ for (const messages of [docMessages, extraDocMessages]) {
   }
 }
 
-import { useT, setGlobalLocale, useLocale } from '../src/i18n';
+import { setGlobalLocale, useLocale } from '../src/i18n';
 import { ProviderConfig } from '../src/config';
 import { deriveColorSet } from '../src/utils/color';
 import { docThemeColor, persistThemeColor } from './doc-utils/doc-theme';
@@ -135,7 +135,7 @@ import { AboutPage } from './pages/guide/AboutPage';
 import { SolidjsPage } from './pages/guide/SolidjsPage';
 import { EventBusDocPage } from './pages/guide/EventBusDocPage';
 import { MobileHome } from './pages/mobile/MobileHome';
-import { MenuGroup, GROUPS, GUIDE_GROUPS, CN } from './nav';
+import { GROUPS, GUIDE_GROUPS } from './nav';
 import { showI18nNotice, parseHash, buildHash, getDark, applyDark } from './utils';
 import type { Section } from './utils';
 
@@ -221,9 +221,6 @@ const GUIDE_PAGES: Record<string, Component> = {
   eventbus: EventBusDocPage,
 };
 
-/* ── Top Nav Tabs ── */
-
-// Moved inside component for t() access
 
 import { ThemeColorPicker } from './doc-utils/ThemeColorPicker';
 
@@ -252,11 +249,9 @@ export function App() {
   });
   const isMobileViewport = () => typeof window !== 'undefined' && window.innerWidth <= 1024;
   const [mobileView, setMobileView] = createSignal(isMobileViewport());
-  const t = useT();
-
   const topTabs = createMemo(() => [
-    { key: 'guide' as Section, label: t('nav.guides') },
-    { key: 'components' as Section, label: t('nav.components') },
+    { key: 'guide' as Section, label: 'Guide 指南' },
+    { key: 'components' as Section, label: 'Components 组件' },
   ]);
 
   onMount(() => {
@@ -274,19 +269,10 @@ export function App() {
     setMenuOpen(false);
   });
 
-  /** Localize group titles & item names via nav dictionary */
-  const localizeGroups = (groups: MenuGroup[]) =>
-    groups.map(g => ({
-      ...g,
-      title: t(`nav.${g.title}`) || g.title,
-      items: g.items.map(i => ({ ...i, name: t(`nav.${i.key}`) || i.name })),
-    }));
-
   const compFilteredGroups = createMemo(() => {
     const q = search().toLowerCase().replace(/\s+/g, '');
-    const groups = localizeGroups(GROUPS);
-    if (!q) return groups;
-    return groups.map(g => ({
+    if (!q) return GROUPS;
+    return GROUPS.map(g => ({
       ...g,
       items: g.items.filter(i =>
         i.name.toLowerCase().replace(/\s+/g, '').includes(q) ||
@@ -295,7 +281,7 @@ export function App() {
     })).filter(g => g.items.length > 0);
   });
 
-  const guideGroups = createMemo(() => localizeGroups(GUIDE_GROUPS));
+  const guideGroups = createMemo(() => GUIDE_GROUPS);
 
   const showSidebar = () => section() === 'components' || section() === 'guide';
 
@@ -343,11 +329,7 @@ export function App() {
     },
     ...GROUPS.map(g => ({
       ...g,
-      title: `${g.title}`,
-      items: g.items.map(i => ({
-        ...i,
-        name: CN[i.key] ? `${i.name} ${CN[i.key]}` : i.name,
-      })),
+      items: g.items.map(i => ({ ...i })),
     })),
   ]);
 
@@ -441,7 +423,7 @@ export function App() {
               <aside class={`sidebar ${menuOpen() ? 'open' : ''}`}>
                 <div class="sidebar-brand">
                   <span class="sidebar-brand-text">
-                    {section() === 'guide' ? t('nav.guides') : t('nav.components')}
+                    {section() === 'guide' ? 'Guide 指南' : 'Components 组件'}
                   </span>
                 </div>
                 <Show when={section() === 'components'}>
