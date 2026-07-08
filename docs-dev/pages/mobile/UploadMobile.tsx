@@ -88,9 +88,9 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
           </ul>
           <p style={{ margin: '0 0 10px' }}>
             {isEn() ? (
-              <>Turn all of these into props? Then your global HTTP infrastructure — interceptors, middleware, token refresh — is bypassed. A handful of props can never fully describe an HTTP request, and they'd be redundant with your existing setup anyway. Therefore Upload <strong>provides no request-related props</strong> like <code>action</code>, <code>headers</code>, or <code>data</code>. <strong>HTTP is a business concern, not a component concern.</strong></>
+              <>Turn all of these into props? Then your global HTTP infrastructure — interceptors, middleware, token refresh — is bypassed. A handful of props can never fully describe an HTTP request, and they'd be redundant with your existing setup anyway. Therefore Upload <strong>does not proxy upload requests</strong> — it provides no <code>action</code>, <code>headers</code>, or <code>data</code> props. The project's global HTTP configuration (interceptors, token refresh, unified error handling) remains fully utilized. <strong>HTTP requests belong to the business layer, not the component layer.</strong></>
             ) : (
-              <>都做成 props？那全局的 HTTP 基础设施——拦截器、中间件、token 刷新——就被绕开了。几个 props 永远无法完整描述一个 HTTP 请求，和你的通用处理也一定是冗余的。因此 Upload <strong>不提供</strong> <code>action</code>、<code>headers</code>、<code>data</code> 等请求相关属性。<strong>请求是业务层的事，不是组件层的事。</strong></>
+              <>若全部暴露为 Props，则每次使用 Upload 都将绕开全局的 HTTP 基础设施。Upload <strong>不代理上传请求</strong>，不提供 <code>action</code>、<code>headers</code>、<code>data</code> 等属性。上传请求由开发者自行发起，组件库不介入这一过程，项目的全局 HTTP 配置（拦截器、Token 刷新、统一错误处理）得以充分利用。<strong>请求应归属业务层，而非组件层。</strong></>
             )}
           </p>
           <p style={{ margin: '10px 0 0' }}>
