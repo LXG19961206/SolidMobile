@@ -101,34 +101,10 @@ export const UploadDocPage: Component = () => {
           因此 Upload <strong>不提供</strong> <code>action</code>、<code>headers</code>、<code>data</code>、<code>withCredentials</code> 等请求相关属性。
           <strong>请求是业务层的事，不是组件层的事。</strong>
         </p>
-        <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.8125rem', 'line-height': 1.7, 'margin-bottom': '12px' }}>
-          <thead><tr style={{ 'border-bottom': '1px solid #e5e7eb', 'text-align': 'left' }}>
-            <th style={{ padding: '8px 12px' }}>如果你担心</th>
-            <th style={{ padding: '8px 12px' }}>实际上</th>
-          </tr></thead>
-          <tbody>
-            <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>绑死 HTTP 库</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>fetch、axios、ky、wx.uploadFile——你用什么跟 Upload 无关。<code>api</code> 是你的函数，爱怎么发怎么发。</td>
-            </tr>
-            <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>绕过全局拦截器</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>你封装好的 request 实例——拦截器、token 刷新、统一错误处理、loading 态——全部照常工作。Upload 不替你发请求，所以不会绕过任何一层。</td>
-            </tr>
-            <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>搞不定 OSS / COS</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>OSS 直传要先拿签名再拼表单，COS 要算鉴权头，有些接口还要回调通知——传统的 <code>action + data</code> 根本表达不了。但一个异步函数可以。</td>
-            </tr>
-            <tr>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>不好写测试</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>传个 <code>{"async () => ({ url: '/fake' })"}</code>，零 mock 零拦截。上传逻辑和 UI 彻底分离，测试只测 UI 行为。</td>
-            </tr>
-          </tbody>
-        </table>
 
-        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>{t('section.ioc')}</h3>
+        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>控制反转（IoC）— 面向接口，而非实现</h3>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
-          Upload 只做一件事：<strong>管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你通过 <code>api</code> 属性注入（控制反转 / IoC）：你写一个返回 Promise 的函数，Upload 调用它。token、拦截器、请求库都在你自己掌控之中。
+          Upload 只做一件事：<strong>管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你通过 <code>api</code> 属性注入——你写一个返回 Promise 的函数，Upload 调用它。这就是控制反转：组件定义<strong>接口</strong>（一个返回 Promise 的函数），你提供<strong>实现</strong>。token、拦截器、请求库都在你自己掌控之中。
         </p>
         <CodeBlock code={`// 你的 IoC 容器 — 封装好的请求实例
 import { request } from '@/services/http';
@@ -143,7 +119,34 @@ import { request } from '@/services/http';
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '12px' }}>
           如果不传 <code>api</code>，Upload 退化为「文件选择器 + 列表管理器」。
         </p>
-        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '12px' }}>
+
+        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>这意味着</h3>
+        <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.8125rem', 'line-height': 1.7, 'margin-bottom': '12px' }}>
+          <thead><tr style={{ 'border-bottom': '1px solid #e5e7eb', 'text-align': 'left' }}>
+            <th style={{ padding: '8px 12px', 'width': '25%' }}></th>
+            <th style={{ padding: '8px 12px' }}></th>
+          </tr></thead>
+          <tbody>
+            <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>不绑 HTTP 库</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>fetch、axios、ky、wx.uploadFile——<code>api</code> 是你的函数，爱怎么发怎么发。</td>
+            </tr>
+            <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>不绕过基础设施</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>request 实例的拦截器、token 刷新、统一错误处理、loading 态全部照常工作。</td>
+            </tr>
+            <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>兼容任意上传流程</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>OSS 签名、COS 鉴权、回调通知——一个异步函数全搞定。传统的 <code>action + data</code> 根本表达不了。</td>
+            </tr>
+            <tr>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>天然可测</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>传个 <code>{"async () => ({ url: '/fake' })"}</code>，零 mock。上传逻辑和 UI 彻底分离，测试只测 UI 行为。</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style={{ color: '#6b7280', 'line-height': 1.8', 'margin-top': '12px' }}>
           我们不提供 <code>action</code>，是因为我们相信：一个成熟的工程，本就有自己的 HTTP 基础设施。
           Upload 不替代它，而是<strong>融入它</strong>。你只需要一个返回 Promise 的函数——剩下的，全由你掌控。
         </p>
