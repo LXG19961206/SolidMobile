@@ -51,7 +51,7 @@ export const CenterMobile: Component<CenterMobileProps> = (props) => {
         <div style={CARD.body}>
           <div style={stage('80px')}>
             <Center>
-              <span style={chip}>Default full center</span>
+              <span style={chip}>Full center</span>
             </Center>
           </div>
         </div>
@@ -69,7 +69,7 @@ export const CenterMobile: Component<CenterMobileProps> = (props) => {
           <div style={{ height: '8px' }} />
           <div style={stage()}>
             <Center flexX>
-              <span style={chip}>Horizontal only, auto height</span>
+              <span style={chip}>Horizontal only</span>
             </Center>
           </div>
         </div>
@@ -82,7 +82,7 @@ export const CenterMobile: Component<CenterMobileProps> = (props) => {
         <div style={CARD.body}>
           <div style={stage('80px')}>
             <Center flexY>
-              <span style={chip}>Vertical center (parent 80px)</span>
+              <span style={chip}>Vertical center</span>
             </Center>
           </div>
         </div>
@@ -147,8 +147,8 @@ export const CenterMobile: Component<CenterMobileProps> = (props) => {
         <div style={CARD.body}>
           <div style={stage('100px')}>
             <Center position>
-              <span style={{ background: 'rgba(0,0,0,0.55)', color: '#fff', padding: '6px 16px', 'border-radius': '20px', 'font-size': '0.8rem' }}>
-                🔒 Overlay absolute center
+              <span style={{ background: 'rgba(0,0,0,0.55)', color: '#fff', padding: '6px 16px', 'border-radius': '20px', 'font-size': '0.75rem', 'white-space': 'nowrap' }}>
+                🔒 Overlay center
               </span>
             </Center>
             <div style={{ position: 'absolute' as const, bottom: '6px', right: '10px', 'font-size': '0.6rem', color: '#94a3b8' }}>Parent relative</div>
