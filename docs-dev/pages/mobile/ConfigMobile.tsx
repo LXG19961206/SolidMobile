@@ -1,7 +1,7 @@
 import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 import { useConfig } from '../../../src/config';
-import { useT } from '../../doc-i18n';
+import { useT, useLocale } from '../../doc-i18n';
 
 const CARD = {
   wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
@@ -76,14 +76,14 @@ const SWATCH = {
 };
 
 const ConfigOverview: Component = () => {
-  const t = useT();
+  const isEn = () => useLocale() === 'en-US';
   const config = useConfig();
 
   return (
     <div style={CARD.wrapper}>
-      <div style={CARD.title}>{t('guideSection.currentConfig')}</div>
+      <div style={CARD.title}>{isEn() ? 'Current Config' : '当前生效配置'}</div>
       <div style={CARD.desc}>
-        {t('guideSection.currentConfigDesc')}
+        {isEn() ? 'The current theme state read from useConfig():' : '以下是从 useConfig() 读取的当前主题状态（受文档站顶部取色器影响）：'}
       </div>
       <div style={CARD.body}>
         <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-desc, #6b7280)', 'margin-bottom': '8px' }}>
@@ -101,29 +101,37 @@ const ConfigOverview: Component = () => {
 
 export const ConfigMobile: Component<{ components?: ComponentEntry[]; onNavigate?: (key: string) => void }> = (props) => {
   const t = useT();
+  const isEn = () => useLocale() === 'en-US';
 
   return (
     <MobilePreview title={t('nav.config') || 'ConfigProvider'} components={props.components} onNavigate={props.onNavigate}>
       <div style={CARD.wrapper}>
         <div style={CARD.title}>ConfigProvider</div>
         <div style={CARD.note}>
-          {t('configDesc')}
+          {isEn()
+            ? <>Global config provider. Place at the app root. Deep-merges with default config, injects CSS variables (<code>--sc-*</code>), and provides theme, typography, border-radius, and locale settings to child components via Solid Context. Components run on <code>defaultConfig</code> when omitted.</>
+            : <>全局配置提供者。放在应用根节点，深层合并默认配置，注入 CSS 变量（<code>--sc-*</code>），并通过 Solid Context 向子组件提供主题、排版、圆角、语言等全局设置。不使用时组件按 <code>defaultConfig</code> 运行，无需额外配置。</>
+          }
         </div>
       </div>
 
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>{t('guideSection.quickStartTitle')}</div>
+        <div style={CARD.title}>{isEn() ? 'Quick Start: Change Primary Color' : '快速开始：换个主色'}</div>
         <div style={CARD.desc}>
-          {t('guideSection.quickStartDesc')}
+          {isEn()
+            ? <>The most common scenario — change the brand color. Just pass <code>primary</code>, and hover, active, disabled, pale, focus, even secondary are all auto-derived via <code>deriveColorSet()</code>. You can also override any state color individually.</>
+            : <>最简单也最常用的场景——换一个品牌色。你只需要传 <code>primary</code>，hover、active、disabled、pale、focus 甚至 secondary 都会通过 <code>deriveColorSet()</code> 自动从主色计算。当然你也可以逐项覆盖任意状态色。</>
+          }
         </div>
         <pre style={PRE}>{codeQuickStart}</pre>
       </div>
 
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>{t('guideSection.topFields')}</div>
+        <div style={CARD.title}>{isEn() ? 'Top-Level Fields' : '顶层配置字段'}</div>
         <div style={CARD.body}>
           <div style={TABLE_HEAD}>
-            <span style="flex:1">字段</span><span style="flex:2">说明</span>
+            <span style="flex:1">{isEn() ? 'Field' : '字段'}</span>
+            <span style="flex:2">{isEn() ? 'Description' : '说明'}</span>
           </div>
           {configFields.map(([name, desc]) => (
             <div style={TABLE_ROW}>
@@ -137,25 +145,30 @@ export const ConfigMobile: Component<{ components?: ComponentEntry[]; onNavigate
       <ConfigOverview />
 
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>{t('guideSection.useConfig')}</div>
+        <div style={CARD.title}>{isEn() ? 'useConfig Hook' : 'useConfig Hook'}</div>
         <div style={CARD.desc}>
-          {t('guideSection.useConfigDesc')}
+          {isEn() ? 'Access the current config in any child component (read theme values on the JS side).' : '任意子组件内获取当前配置（JS 端读取主题值、做条件逻辑）。'}
         </div>
         <pre style={PRE}>{codeUseConfig}</pre>
       </div>
 
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>{t('guideSection.cssVars')}</div>
+        <div style={CARD.title}>{isEn() ? 'CSS Variables' : 'CSS 变量输出'}</div>
         <div style={CARD.desc}>
-          {t('guideSection.cssVarsDesc')}
+          {isEn()
+            ? <>ProviderConfig calls <code>generateCSSVars()</code> on mount and injects <code>{'<style id="solid-component-theme">'}</code> into <code>{'<head>'}</code>. <code>darkMode='class'</code> generates :root + .dark blocks; <code>darkMode='media'</code> generates :root + @media query.</>
+            : <>ProviderConfig 挂载时调用 <code>generateCSSVars()</code>，注入 <code>{'<style id="solid-component-theme">'}</code> 到 <code>{'<head>'}</code>。darkMode='class' 时生成 :root + .dark 两段；darkMode='media' 时生成 :root + @media 查询。</>
+          }
         </div>
         <pre style={PRE}>{codeCssVars}</pre>
       </div>
 
       <div style={CARD.wrapper}>
         <div style={CARD.note}>
-          以上为移动端常用配置速览。所有可配置字段（含完整色彩 Token 表、排版/圆角详细规格、CSS 变量生成规则等）
-          请查看 <strong>PC 端文档</strong>。
+          {isEn()
+            ? <>Above is a quick overview for mobile. For all configurable fields (full color token table, typography/radius specifications, CSS variable generation rules), please refer to the <strong>desktop documentation</strong>.</>
+            : <>以上为移动端常用配置速览。所有可配置字段（含完整色彩 Token 表、排版/圆角详细规格、CSS 变量生成规则等）请查看 <strong>PC 端文档</strong>。</>
+          }
         </div>
       </div>
     </MobilePreview>

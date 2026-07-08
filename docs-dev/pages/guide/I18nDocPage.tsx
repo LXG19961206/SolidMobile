@@ -3,7 +3,7 @@ import { Portal } from 'solid-js/web';
 import { ProviderConfig } from '../../../src/config';
 import { Cell, Picker } from '../../../src/components';
 import { CodeBlock, DocLayout, PhoneTargetContext } from '../../doc-utils';
-import { useT } from '../../doc-i18n';
+import { useT, useLocale } from '../../doc-i18n';
 import { messages as libMessages } from '../../../src/i18n/dictionaries';
 
 /** Demo content rendered inside the right-side phone simulator via Portal. */
@@ -150,6 +150,7 @@ setUserMessages({
 
 const I18nDocPage: Component = () => {
   const t = useT();
+  const isEn = () => useLocale() === 'en-US';
   const SECTION_H2 = { 'font-size': '1.15rem', 'font-weight': 600, margin: '2.5rem 0 0.75rem' };
 
   const handleDownloadTemplate = () => {
@@ -213,7 +214,7 @@ const I18nDocPage: Component = () => {
         <h2 style={SECTION_H2}>基础用法：添加日语</h2>
         <CodeBlock lang="tsx" code={docCodeBasicUsage} />
 
-        <h2 style={SECTION_H2}>{t('guideSection.override')}</h2>
+        <h2 style={SECTION_H2}>{isEn() ? 'Override Built-in Locales' : '覆盖内置语言'}</h2>
         <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
           你也可以用同样的方式 <strong>覆盖</strong> zh-CN / en-US 中的特定词条。同 key 以用户提供的为准。
         </p>
@@ -241,7 +242,7 @@ const I18nDocPage: Component = () => {
         </p>
         <CodeBlock lang="ts" code={docCodeDictStructure} />
 
-        <h2 style={SECTION_H2}>{t('guideSection.programmatic')}</h2>
+        <h2 style={SECTION_H2}>{isEn() ? 'Programmatic Injection' : '程序化注入'}</h2>
         <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
           除了通过 <code>ProviderConfig</code> 的 prop 传入，你也可以在应用入口直接调用 <code>setUserMessages()</code>：
         </p>
