@@ -108,8 +108,8 @@ export interface SolidComponentConfig {
   typography: TypographyConfig;
   /** Border radius tokens */
   borderRadius: BorderRadiusConfig;
-  /** Locale for built-in text and documentation. */
-  locale: 'zh-CN' | 'en-US';
+  /** Locale for built-in text and documentation. Supports any locale string; built-in dictionaries exist for 'zh-CN' and 'en-US'. */
+  locale: string;
 }
 
 // ---- Partial Config ----

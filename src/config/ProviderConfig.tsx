@@ -5,7 +5,7 @@ import { deepMerge } from './merge';
 import { generateCSSVars } from './css-vars';
 import { LocaleProvider } from '../i18n/context';
 import { deriveColorSet, hexToRgb } from '../utils/color';
-import type { Locale } from '../i18n/types';
+import type { UserLocaleMessages } from '../i18n/types';
 import type { PartialSolidComponentConfig, SolidComponentConfig } from './types';
 
 export interface ProviderConfigProps extends ParentProps {
@@ -20,6 +20,19 @@ export interface ProviderConfigProps extends ParentProps {
    * you want to override the derivation formula.
    */
   config?: PartialSolidComponentConfig;
+
+  /**
+   * User-provided custom locale dictionaries, deep-merged with built-in
+   * dictionaries.  User values take precedence over built-in for the same keys.
+   *
+   * Use this to:
+   * - Add a new language (e.g. `'ja-JP': { component: { picker: { cancel: 'キャンセル' } } }`)
+   * - Override built-in zh-CN / en-US strings
+   *
+   * When a key is missing in the current locale, the library falls back
+   * to en-US, then to the key path itself (with a console.warn).
+   */
+  localeMessages?: UserLocaleMessages;
 }
 
 /** Semantic color keys that have derived hover / active / disabled / pale states. */
@@ -154,7 +167,7 @@ export function ProviderConfig(props: ProviderConfigProps) {
 
   return (
     <ConfigContext.Provider value={merged()}>
-      <LocaleProvider locale={merged().locale as Locale}>
+      <LocaleProvider locale={merged().locale} messages={props.localeMessages}>
         {props.children}
       </LocaleProvider>
     </ConfigContext.Provider>

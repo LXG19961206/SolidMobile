@@ -148,8 +148,8 @@ export type {
 } from './config';
 
 // ── i18n ───────────────────────────────────────────────────────────────
-export { LocaleProvider, useLocale, useT, messages } from './i18n';
-export type { Locale, LocaleProviderProps } from './i18n';
+export { LocaleProvider, useLocale, useT, setUserMessages, messages } from './i18n';
+export type { Locale, LocaleProviderProps, TranslationDict, UserLocaleMessages } from './i18n';
 
 // ── Event Bus ──────────────────────────────────────────────────────────
 export { emitEvent, setEventBusHandler, getEventBusHandler } from './event-bus';

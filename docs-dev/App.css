@@ -422,6 +422,27 @@ html.dark .doc-code-block {
   white-space: pre;
 }
 
+/* Mobile: tighter code blocks */
+@media (max-width: 1024px) {
+  .doc-code-block>pre {
+    padding: 0.25rem 0.75rem 0.5rem;
+  }
+  .doc-code-block>pre>code {
+    font-size: 0.7rem;
+    line-height: 1.45;
+  }
+}
+
+/* Mobile code blocks (no highlight) — theme-aware via CSS variables */
+:root {
+  --sc-doc-code-bg: #f5f5f5;
+  --sc-doc-code-text: #374151;
+}
+html.dark {
+  --sc-doc-code-bg: #1a1d21;
+  --sc-doc-code-text: #e2e8f0;
+}
+
 /* ── Prism dark mode override ── */
 html.dark code[class*="language-"],
 html.dark pre[class*="language-"] {

@@ -113,14 +113,14 @@ export const Calendar: Component<CalendarProps> = (rawProps) => {
   const min = () => local.minDate || new Date(+today - 30 * MS_DAY);
   const max = () => local.maxDate || new Date(+today + 30 * MS_DAY);
 
-  const weekdays = () => local.weekdays || (useLocale() === 'en-US'
-    ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-    : WEEKS);
+  const weekdays = () => local.weekdays || (useLocale() === 'zh-CN'
+    ? WEEKS
+    : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
   const titleText = () => {
     const m = activeMonth();
     if (!m) return '';
     if (local.titleFormatter) return local.titleFormatter(m.year, m.month);
-    return useLocale() === 'en-US' ? `${m.month}/${m.year}` : `${m.year}年 ${m.month}月`;
+    return useLocale() === 'zh-CN' ? `${m.year}年 ${m.month}月` : `${m.month}/${m.year}`;
   };
 
   const months = createMemo(() => buildMonths(min(), max(), local.firstDayOfWeek!));

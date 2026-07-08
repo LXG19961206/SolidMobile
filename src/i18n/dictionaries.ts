@@ -1,4 +1,5 @@
 import type { LocaleMessages } from './types';
+export { FALLBACK_LOCALE } from './types';
 
 export const messages: LocaleMessages = {
   'zh-CN': {
