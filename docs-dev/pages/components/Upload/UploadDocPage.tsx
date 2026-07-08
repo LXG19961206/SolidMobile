@@ -77,11 +77,11 @@ export const UploadDocPage: Component = () => {
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.design')}</h2>
 
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
-          最理想的构想，一个 URL 搞定上传：
+          最理想的构想，一个 URL 即可完成上传：
         </p>
         <CodeBlock code={`<Upload action="/api/upload" />`} />
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin': '12px 0' }}>
-          但实际企业工程中，稍微一想：
+          但在实际企业级工程中，情况远不止于此：
         </p>
         <ul style={{ color: '#6b7280', 'line-height': 2, 'padding-left': '1.5rem', 'margin': '0 0 16px' }}>
           <li>method 一定是 POST 吗？</li>
@@ -92,8 +92,8 @@ export const UploadDocPage: Component = () => {
           <li>上传进度怎么反馈？</li>
         </ul>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '16px' }}>
-          都做成 props？那每次使用 Upload 都在绕开你全局的 HTTP 基础设施——拦截器、中间件、token 刷新全部失效。
-          几个 props 永远无法描述一个完整的 HTTP 请求，和你的通用处理也一定是冗余的。
+          若全部暴露为 Props，则每次使用 Upload 都将绕开全局的 HTTP 基础设施——拦截器、中间件、token 刷新全部失效。
+          有限的几个 Props 无法描述一次完整的 HTTP 请求，且与现有的通用处理必然产生冗余。
         </p>
 
         <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>{t('section.noHttp')}</h3>
@@ -134,7 +134,7 @@ import { request } from '@/services/http';
           <tbody>
             <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
               <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>不绑 HTTP 库</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>fetch、axios、ky、wx.uploadFile——<code>api</code> 是你的函数，爱怎么发怎么发。</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>fetch、axios、ky、wx.uploadFile——<code>api</code> 由你实现，请求方式不受任何限制。</td>
             </tr>
             <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
               <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>不绕过基础设施</td>
@@ -142,11 +142,11 @@ import { request } from '@/services/http';
             </tr>
             <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
               <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>兼容任意上传流程</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>OSS 签名、COS 鉴权、回调通知——一个异步函数全搞定。传统的 <code>action + data</code> 根本表达不了。</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>OSS 签名、COS 鉴权、回调通知——均可通过一个异步函数完成。传统的 <code>action + data</code> 已无法描述此类场景。</td>
             </tr>
             <tr>
               <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>天然可测</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>传个 <code>{`async () => ({ url: "/fake" })`}</code>，零 mock。上传逻辑和 UI 彻底分离，测试只测 UI 行为。</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>传入 <code>{`async () => ({ url: "/fake" })`}</code> 即可，无需 mock 任何 HTTP 库。上传逻辑与 UI 彻底分离，测试仅需验证 UI 行为。</td>
             </tr>
           </tbody>
         </table>
