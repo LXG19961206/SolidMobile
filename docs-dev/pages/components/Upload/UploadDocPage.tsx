@@ -98,7 +98,7 @@ export const UploadDocPage: Component = () => {
 
         <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>{t('section.noHttp')}</h3>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
-          因此 Upload <strong>不代理 HTTP 上传请求</strong>，不提供 <code>action</code>、<code>headers</code>、<code>data</code>、<code>withCredentials</code> 等请求相关属性。上传请求由开发者自行发起，组件库不介入这一过程。
+          因此 Upload <strong>不代为拼凑发起上传请求</strong>，不提供 <code>action</code>、<code>headers</code>、<code>data</code>、<code>withCredentials</code> 等请求相关属性。上传请求由开发者自行发起，组件库不介入这一过程。
         </p>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
           传统组件库替开发者代发上传请求，看似方便，实则将请求逻辑固化在 props 层面，难以充分利用项目已有的全局 HTTP 配置（拦截器、Token 刷新、统一错误处理等）。<strong>请求应归属业务层，而非组件层。</strong>
