@@ -1014,7 +1014,7 @@ export const docMessages: LocaleMessages = {
       imageFallbackMobileDesc: 'src 无效时显示 fallback 占位内容',
       loadFailed: '加载失败',
       uploadDesignDecoupleTitle: '不绑 HTTP 库',
-      uploadDesignDecoupleDesc: 'fetch、axios、ky、wx.uploadFile——api 由你实现，请求方式不受任何限制。',
+      uploadDesignDecoupleDesc: 'Upload 只管理文件生命周期，网络请求完全交由你掌控。fetch、axios、ky、wx.uploadFile——你选什么是什么，组件与 HTTP 层彻底解耦。',
       uploadDesignTokenTitle: '不绕过基础设施',
       uploadDesignTokenDesc: 'request 实例的拦截器、token 刷新、统一错误处理、loading 态均不受影响。',
       uploadDesignOssTitle: '兼容任意上传流程',

@@ -131,7 +131,7 @@ import { request } from '@/services/http';
           <tbody>
             <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
               <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>不绑 HTTP 库</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>fetch、axios、ky、wx.uploadFile——<code>api</code> 由你实现，请求方式不受任何限制。</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>Upload 只管理文件生命周期，网络请求完全交由你掌控。fetch、axios、ky、wx.uploadFile——你选什么是什么，组件与 HTTP 层彻底解耦。</td>
             </tr>
             <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
               <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>不绕过基础设施</td>
