@@ -133,6 +133,7 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   flex: 1;
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
 }
 
 .drawerGroup {

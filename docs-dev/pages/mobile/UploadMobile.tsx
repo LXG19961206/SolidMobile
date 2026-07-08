@@ -74,6 +74,20 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
         <div style={{ padding: '0 16px 12px', 'font-size': '0.8rem', 'line-height': 1.8, color: 'var(--sc-color-text-secondary, #6b7280)' }}>
           <p style={{ margin: '0 0 10px' }}>
             {isEn() ? (
+              <>In an ideal world, uploading a file would be a single URL: <code>{'<Upload action="/api/upload" />'}</code>. But in real enterprise projects — is method always POST? Binary or form-data? Extra headers? BaseURL? Error handling? You think about it for a moment and the props explode.</>
+            ) : (
+              <>在最理想的构想中，用户只需传一个 URL 就能完成上传：<code>{'<Upload action="/api/upload" />'}</code>。然而实际企业工程中，method 一定是 POST 吗？binary 还是 form-data？额外的头？BaseURL？异常处理？稍微一想，props 就爆炸了。</>
+            )}
+          </p>
+          <p style={{ margin: '0 0 10px' }}>
+            {isEn() ? (
+              <>A mature project has its own HTTP infrastructure. The traditional paradigm makes the component library completely unable to benefit from it — interceptors, middleware, token refresh, timeout retry... each use of Upload risks inconsistency with your global HTTP layer. Is that really "simple"? We don't think so. You can't fully describe an HTTP request with a handful of props; even if you could, it would be redundant with your global setup.</>
+            ) : (
+              <>一个成熟的工程，有自己的通用 HTTP 基础设施。传统组件库的范式让组件库完全无法受益于它——拦截器、中间件、token 刷新、超时重试……每次使用 Upload，都可能造成一次和全局 HTTP 库不统一的隐患。这真的是"简单"吗？我们认为不是。你很难靠几个 props 去描述一个 HTTP 请求的全貌；就算勉强做到，和你全局的通用处理也一定是冗余的。</>
+            )}
+          </p>
+          <p style={{ margin: '0 0 10px' }}>
+            {isEn() ? (
               <>Upload <strong>does not provide</strong> <code>action</code>, <code>headers</code>, <code>data</code>, <code>withCredentials</code> or other request-related props. The reason is simple: <strong>HTTP requests are a concern of the business layer, not the component layer.</strong></>
             ) : (
               <>Upload 组件<strong>不提供</strong> <code>action</code>、<code>headers</code>、<code>data</code>、<code>withCredentials</code> 等请求相关属性。原因很简单：<strong>请求是业务层的事，不是组件层的事。</strong></>
@@ -100,6 +114,13 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
               <><strong>Upload does one thing: manage the file lifecycle</strong> (select file → validate → display → delete). "How to upload" is a <strong>strategy</strong>, injected by you via the <code>api</code> prop (Inversion of Control / IoC): you write a function that returns a Promise, and Upload calls it. Tokens, interceptors, and HTTP libraries are all under your control. If you do not pass <code>api</code>, Upload degrades to a "file picker + list manager".</>
             ) : (
               <><strong>Upload 只做一件事：管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你通过 <code>api</code> 属性注入（控制反转 / IoC）：你写一个返回 Promise 的函数，Upload 调用它。token、拦截器、请求库都在你自己掌控之中。如果不传 <code>api</code>，Upload 退化为「文件选择器 + 列表管理器」。</>
+            )}
+          </p>
+          <p style={{ margin: '10px 0 0' }}>
+            {isEn() ? (
+              <>We don't provide <code>action</code> because we believe a mature project already has its own HTTP infrastructure. Upload doesn't replace it — it <strong>integrates into it</strong>. All you need is a function that returns a Promise. The rest is yours.</>
+            ) : (
+              <>我们不提供 <code>action</code>，是因为我们相信：一个成熟的工程，本就有自己的 HTTP 基础设施。Upload 不替代它，而是<strong>融入它</strong>。你只需要一个返回 Promise 的函数——剩下的，全由你掌控。</>
             )}
           </p>
         </div>

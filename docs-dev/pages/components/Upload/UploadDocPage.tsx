@@ -76,6 +76,18 @@ export const UploadDocPage: Component = () => {
 
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.design')}</h2>
 
+        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '16px' }}>
+          在最理想的构想中，用户只需传一个 URL 就能完成上传：<code>{'<Upload action="/api/upload" />'}</code>。
+          然而在实际企业级工程中，method 一定是 POST 吗？binary 还是 form-data？额外的头如何传递？
+          BaseURL 从哪来？异常怎么处理？稍微一想，问题就来了——都做成 props 吗？
+        </p>
+        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '24px' }}>
+          一个成熟的工程，有自己的通用 HTTP 基础设施。传统组件库的范式让组件库完全无法受益于它——
+          拦截器、中间件、token 刷新、超时重试……每次使用 Upload，都可能造成一次和全局 HTTP 库不统一的隐患。
+          这真的是"简单"吗？我们认为不是。你很难靠几个 props 去描述一个 HTTP 请求的全貌；就算勉强做到，和你全局的通用处理也一定是冗余的。
+          了解一个 HTTP 请求的全貌并不难——组件库该做的是<strong>引导用户更强</strong>，而非让他陷入不知所以然的泥潭。
+        </p>
+
         <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>{t('section.noHttp')}</h3>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
           Upload 组件<strong>不提供</strong> <code>action</code>、<code>headers</code>、<code>data</code>、<code>withCredentials</code> 等请求相关属性。
@@ -125,6 +137,10 @@ import { request } from '@/services/http';
 />`} />
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '12px' }}>
           如果不传 <code>api</code>，Upload 退化为「文件选择器 + 列表管理器」。
+        </p>
+        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '12px' }}>
+          我们不提供 <code>action</code>，是因为我们相信：一个成熟的工程，本就有自己的 HTTP 基础设施。
+          Upload 不替代它，而是<strong>融入它</strong>。你只需要一个返回 Promise 的函数——剩下的，全由你掌控。
         </p>
 
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>示例</h2>
