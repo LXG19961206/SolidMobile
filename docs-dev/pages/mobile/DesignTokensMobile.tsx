@@ -1,6 +1,6 @@
 import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
-import { useT } from '../../doc-i18n';
+import { useT, useLocale } from '../../doc-i18n';
 import { useConfig } from '../../../src/config';
 
 const CARD = {
@@ -52,6 +52,7 @@ const surfaceKeys = [
 
 export const DesignTokensMobile: Component<{ components?: ComponentEntry[]; onNavigate?: (key: string) => void }> = (props) => {
   const t = useT();
+  const isEn = () => useLocale() === 'en-US';
   const config = useConfig();
   const light = () => config.colors.light;
   const dark = () => config.colors.dark;
@@ -66,7 +67,7 @@ export const DesignTokensMobile: Component<{ components?: ComponentEntry[]; onNa
   );
 
   return (
-    <MobilePreview title="视觉规范" components={props.components} onNavigate={props.onNavigate}>
+    <MobilePreview title={isEn() ? 'Design Tokens' : '视觉规范'} components={props.components} onNavigate={props.onNavigate}>
       {/* 语义色 */}
       {semanticGroups.map((group) => (
         <div style={CARD.wrapper}>
