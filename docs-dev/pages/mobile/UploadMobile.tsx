@@ -93,15 +93,6 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
               <>都做成 props？那全局的 HTTP 基础设施——拦截器、中间件、token 刷新——就被绕开了。几个 props 永远无法完整描述一个 HTTP 请求，和你的通用处理也一定是冗余的。因此 Upload <strong>不提供</strong> <code>action</code>、<code>headers</code>、<code>data</code> 等请求相关属性。<strong>请求是业务层的事，不是组件层的事。</strong></>
             )}
           </p>
-          {/* Reasons table */}
-          <div style={{ 'border-radius': '6px', overflow: 'hidden' as const, border: '1px solid var(--sc-doc-card-border, #e5e7eb)', margin: '10px 0' }}>
-            {designReasons.map((r, i) => (
-              <div style={{ ...designTableRow, background: i % 2 === 0 ? 'transparent' : 'var(--sc-doc-card-placeholder, #f9fafb)', 'border-bottom': i < designReasons.length - 1 ? designTableRow['border-bottom'] : 'none' }}>
-                <div style={{ 'font-weight': 600, 'margin-bottom': '2px', color: 'var(--sc-doc-card-text, #374151)' }}>{t(`demo.${r.titleKey}`)}</div>
-                <div style={{ color: 'var(--sc-doc-card-desc, #6b7280)' }}>{t(`demo.${r.descKey}`)}</div>
-              </div>
-            ))}
-          </div>
           <p style={{ margin: '10px 0 0' }}>
             {isEn() ? (
               <><strong>Upload does one thing: manage the file lifecycle</strong> (select file → validate → display → delete). "How to upload" is a <strong>strategy</strong>, injected by you via the <code>api</code> prop (Inversion of Control / IoC): you write a function that returns a Promise, and Upload calls it. Tokens, interceptors, and HTTP libraries are all under your control. If you do not pass <code>api</code>, Upload degrades to a "file picker + list manager".</>
@@ -116,6 +107,14 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
               <>我们不提供 <code>action</code>，是因为我们相信：一个成熟的工程，本就有自己的 HTTP 基础设施。Upload 不替代它，而是<strong>融入它</strong>。你只需要一个返回 Promise 的函数——剩下的，全由你掌控。</>
             )}
           </p>
+          <div style={{ 'border-radius': '6px', overflow: 'hidden' as const, border: '1px solid var(--sc-doc-card-border, #e5e7eb)', margin: '10px 0' }}>
+            {designReasons.map((r, i) => (
+              <div style={{ ...designTableRow, background: i % 2 === 0 ? 'transparent' : 'var(--sc-doc-card-placeholder, #f9fafb)', 'border-bottom': i < designReasons.length - 1 ? designTableRow['border-bottom'] : 'none' }}>
+                <div style={{ 'font-weight': 600, 'margin-bottom': '2px', color: 'var(--sc-doc-card-text, #374151)' }}>{t(`demo.${r.titleKey}`)}</div>
+                <div style={{ color: 'var(--sc-doc-card-desc, #6b7280)' }}>{t(`demo.${r.descKey}`)}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
