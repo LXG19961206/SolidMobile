@@ -92,16 +92,16 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
           <h3 style={{ 'font-size': '0.85rem', 'font-weight': 600, margin: '16px 0 8px' }}>{t('section.noHttp')}</h3>
           <p style={{ margin: '0 0 8px' }}>
             {isEn() ? (
-              <>Therefore Upload <strong>does not construct or send upload requests</strong> — it provides no action, headers, data, withCredentials or other request-related props. Upload requests are entirely initiated by the developer; the component library does not participate in this process.</>
+              <>Traditional component libraries send upload requests on behalf of the developer. This appears convenient but hard-codes the request logic at the props level, making it difficult to leverage the project's global HTTP configuration (interceptors, token refresh, unified error handling). <strong>HTTP requests belong to the business layer, not the component layer.</strong></>
             ) : (
-              <>因此 Upload <strong>不做请求的构造与发起</strong>，不提供 action、headers、data、withCredentials 等请求相关属性。上传请求由开发者自行发起，组件库不介入这一过程。</>
+              <>传统组件库替开发者代发上传请求，看似方便，实则将请求逻辑固化在 props 层面，难以充分利用项目已有的全局 HTTP 配置（拦截器、Token 刷新、统一错误处理等）。<strong>请求应归属业务层，而非组件层。</strong></>
             )}
           </p>
           <p style={{ margin: '0 0 8px' }}>
             {isEn() ? (
-              <>Traditional component libraries send upload requests on behalf of the developer. This appears convenient but hard-codes the request logic at the props level, making it difficult to leverage the project's global HTTP configuration (interceptors, token refresh, unified error handling). <strong>HTTP requests belong to the business layer, not the component layer.</strong></>
+              <>Therefore Upload <strong>does not construct or send upload requests</strong> — it provides no action, headers, data, withCredentials or other request-related props. Upload requests are entirely initiated by the developer; the component library does not participate in this process.</>
             ) : (
-              <>传统组件库替开发者代发上传请求，看似方便，实则将请求逻辑固化在 props 层面，难以充分利用项目已有的全局 HTTP 配置（拦截器、Token 刷新、统一错误处理等）。<strong>请求应归属业务层，而非组件层。</strong></>
+              <>因此 Upload <strong>不做请求的构造与发起</strong>，不提供 action、headers、data、withCredentials 等请求相关属性。上传请求由开发者自行发起，组件库不介入这一过程。</>
             )}
           </p>
 
