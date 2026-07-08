@@ -113,8 +113,7 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
               <>Upload 只做一件事：<strong>管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你通过 api 属性注入——你写一个返回 Promise 的函数，Upload 调用它。这就是控制反转：组件定义<strong>接口</strong>（一个返回 Promise 的函数），你提供<strong>实现</strong>。token、拦截器、请求库都在你自己掌控之中。</>
             )}
           </p>
-          <p style={{ margin: '0 0 10px', 'font-family': 'ui-monospace, monospace', 'font-size': '0.7rem', 'line-height': 1.5, background: 'var(--sc-doc-code-bg, #f5f5f5)', padding: '10px 12px', 'border-radius': '6px', color: 'var(--sc-doc-code-text, #374151)', 'white-space': 'pre-wrap', border: '1px solid var(--sc-doc-card-border, #e5e7eb)' }}>
-{`// 你的 IoC 容器 — 封装好的请求实例
+          <CodeBlock lang="tsx" code={`// 你的 IoC 容器 — 封装好的请求实例
 import { request } from '@/services/http';
 
 // 注入给 Upload。api 必须返回文件 URL 字符串
@@ -123,8 +122,7 @@ import { request } from '@/services/http';
     request.post('/upload', { body: file, onProgress })
       .then(res => res.data.url)
   }
-/>`}
-          </p>
+/>`} />
           <p style={{ margin: '0 0 8px' }}>
             {isEn() ? 'Without api, Upload degrades to a "file picker + list manager".' : '如果不传 api，Upload 退化为「文件选择器 + 列表管理器」。'}
           </p>
