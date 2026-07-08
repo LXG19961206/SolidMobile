@@ -92,8 +92,8 @@ export const UploadDocPage: Component = () => {
           <li>上传异常如何处理？进度如何反馈？</li>
         </ul>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '16px' }}>
-          若全部暴露为 Props，则每次使用 Upload 都将绕开全局的 HTTP 基础设施——拦截器、中间件、token 刷新全部失效。
-          有限的几个 Props 无法描述一次完整的 HTTP 请求，且与现有的通用处理必然产生冗余。
+          由组件库代为发起上传请求，意味每次上传都在绕开项目全局的 HTTP 基础设施——拦截器、中间件、token 刷新等全部无法生效。
+          有限的 Props 亦无法覆盖所有请求场景，且与现有的通用处理必然产生冗余。
         </p>
 
         <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>{t('section.noHttp')}</h3>
