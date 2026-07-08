@@ -84,9 +84,12 @@ export const UploadDocPage: Component = () => {
           但实际企业工程中，稍微一想：
         </p>
         <ul style={{ color: '#6b7280', 'line-height': 2, 'padding-left': '1.5rem', 'margin': '0 0 16px' }}>
-          <li>method 一定是 POST？binary 还是 form-data？</li>
-          <li>额外的请求头、BaseURL、超时、重试？</li>
-          <li>异常怎么处理？进度怎么反馈？</li>
+          <li>method 一定是 POST 吗？</li>
+          <li>binary 还是 form-data？</li>
+          <li>额外的请求头如何传递？</li>
+          <li>BaseURL 从哪来？</li>
+          <li>异常怎么处理？超时、重试呢？</li>
+          <li>上传进度怎么反馈？</li>
         </ul>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '16px' }}>
           都做成 props？那每次使用 Upload 都在绕开你全局的 HTTP 基础设施——拦截器、中间件、token 刷新全部失效。
