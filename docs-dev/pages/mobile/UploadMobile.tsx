@@ -74,37 +74,23 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
         <div style={{ padding: '0 16px 12px', 'font-size': '0.8rem', 'line-height': 1.8, color: 'var(--sc-color-text-secondary, #6b7280)' }}>
           <p style={{ margin: '0 0 10px' }}>
             {isEn() ? (
-              <>In an ideal world, uploading a file is a single URL: <code>{'<Upload action="/api/upload" />'}</code>. But in real enterprise projects, think for a moment:</>
+              <>Ideal world — upload with a single URL: <code>{'<Upload action="/api/upload" />'}</code>. But in real projects:</>
             ) : (
-              <>在最理想的构想中，用户只需传一个 URL 就能完成上传：<code>{'<Upload action="/api/upload" />'}</code>。然而实际企业工程中，稍微一想问题就来了：</>
+              <>最理想的构想，一个 URL 搞定上传：<code>{'<Upload action="/api/upload" />'}</code>。但实际工程中：</>
             )}
           </p>
           <ul style={{ margin: '0 0 10px', 'padding-left': '1.5rem', 'line-height': 2 }}>
             {isEn() ? (
-              <><li>Is method always POST?</li><li>Binary or form-data?</li><li>Extra headers?</li><li>BaseURL — where from?</li><li>Error handling? Timeout? Retry?</li><li>Upload progress feedback?</li></>
+              <><li>Is method always POST? Binary or form-data?</li><li>Extra headers, BaseURL, timeout, retry?</li><li>Error handling? Progress feedback?</li></>
             ) : (
-              <><li>method 一定是 POST 吗？</li><li>binary 还是 form-data？</li><li>额外的请求头如何传递？</li><li>BaseURL 从哪来？</li><li>异常怎么处理？超时、重试呢？</li><li>上传进度怎么反馈？</li></>
+              <><li>method 一定是 POST？binary 还是 form-data？</li><li>额外的头、BaseURL、超时、重试？</li><li>异常处理？进度反馈？</li></>
             )}
           </ul>
           <p style={{ margin: '0 0 10px' }}>
             {isEn() ? (
-              <>Turn all of these into props? Then a mature project's HTTP infrastructure — interceptors, middleware, token refresh, timeout retry — would be completely bypassed. Each use of Upload introduces inconsistency with your global HTTP layer. Can a handful of props fully describe an HTTP request? Even if they could, they'd be redundant with your global setup.</>
+              <>Turn all of these into props? Then your global HTTP infrastructure — interceptors, middleware, token refresh — is bypassed. A handful of props can never fully describe an HTTP request, and they'd be redundant with your existing setup anyway. Therefore Upload <strong>provides no request-related props</strong> like <code>action</code>, <code>headers</code>, or <code>data</code>. <strong>HTTP is a business concern, not a component concern.</strong></>
             ) : (
-              <>都做成 props？那一个成熟工程的 HTTP 基础设施（拦截器、中间件、token 刷新、超时重试）就被完全绕开了——每次使用 Upload，都可能造成和全局 HTTP 库不统一的隐患。几个 props 能描述一个 HTTP 请求的全貌吗？就算勉强做到，和你全局的通用处理也一定是冗余的。</>
-            )}
-          </p>
-          <p style={{ margin: '0 0 10px' }}>
-            {isEn() ? (
-              <>Upload <strong>does not provide</strong> <code>action</code>, <code>headers</code>, <code>data</code>, <code>withCredentials</code> or other request-related props. The reason is simple: <strong>HTTP requests are a concern of the business layer, not the component layer.</strong></>
-            ) : (
-              <>Upload 组件<strong>不提供</strong> <code>action</code>、<code>headers</code>、<code>data</code>、<code>withCredentials</code> 等请求相关属性。原因很简单：<strong>请求是业务层的事，不是组件层的事。</strong></>
-            )}
-          </p>
-          <p style={{ margin: '0 0 10px' }}>
-            {isEn() ? (
-              <>Traditional component libraries spread these parameters as props and send requests on your behalf. It seems convenient, but in reality every project has different Authorization, BaseURL, timeout, and retry strategies — you can never list enough props. More importantly, your global HTTP interceptors and token refresh logic already work fine; why let the component add another layer?</>
-            ) : (
-              <>传统组件库把这些参数摊成 props 替你去发请求，看似省事，实则每个项目的 Authorization、BaseURL、超时、重试策略都不一样——props 永远列不完。更关键的是，你全局的 HTTP 拦截器和 token 刷新逻辑本来就能正常工作，何必让组件再绕一层？</>
+              <>都做成 props？那全局的 HTTP 基础设施——拦截器、中间件、token 刷新——就被绕开了。几个 props 永远无法完整描述一个 HTTP 请求，和你的通用处理也一定是冗余的。因此 Upload <strong>不提供</strong> <code>action</code>、<code>headers</code>、<code>data</code> 等请求相关属性。<strong>请求是业务层的事，不是组件层的事。</strong></>
             )}
           </p>
           {/* Reasons table */}

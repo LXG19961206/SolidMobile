@@ -77,40 +77,26 @@ export const UploadDocPage: Component = () => {
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.design')}</h2>
 
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
-          在最理想的构想中，用户只需传一个 URL 就能完成上传：
+          最理想的构想，一个 URL 搞定上传：
         </p>
         <CodeBlock code={`<Upload action="/api/upload" />`} />
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin': '12px 0' }}>
-          然而在实际企业级工程中，稍微一想，问题就来了：
-        </p>
-        <ul style={{ color: '#6b7280', 'line-height': 2, 'padding-left': '1.5rem', 'margin': '0 0 12px' }}>
-          <li>method 一定是 POST 吗？</li>
-          <li>binary 还是 form-data？</li>
-          <li>额外的请求头如何传递？</li>
-          <li>BaseURL 从哪来？</li>
-          <li>异常怎么处理？超时、重试呢？</li>
-          <li>上传进度怎么反馈？</li>
-        </ul>
-        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
-          都做成 props 吗？那一个 Upload 组件将有多少属性？更关键的是——
+          但实际企业工程中，稍微一想：
         </p>
         <ul style={{ color: '#6b7280', 'line-height': 2, 'padding-left': '1.5rem', 'margin': '0 0 16px' }}>
-          <li>每个成熟工程都有自己的 HTTP 基础设施（拦截器、中间件、token 刷新、超时重试……）；</li>
-          <li>传统 props 范式让组件完全无法受益于此——每次使用 Upload，都是在绕开你的全局 HTTP 库；</li>
-          <li>你很难靠几个 props 完整描述一个 HTTP 请求的全貌；就算勉强做到，和你全局的通用处理也一定是冗余的。</li>
+          <li>method 一定是 POST？binary 还是 form-data？</li>
+          <li>额外的请求头、BaseURL、超时、重试？</li>
+          <li>异常怎么处理？进度怎么反馈？</li>
         </ul>
-        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '24px' }}>
-          这真的是"简单"吗？我们认为不是。了解一个 HTTP 请求的全貌并不难——
-          组件库该做的是<strong>引导用户更强</strong>，而非让他陷入不知所以然的泥潭。
+        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '16px' }}>
+          都做成 props？那每次使用 Upload 都在绕开你全局的 HTTP 基础设施——拦截器、中间件、token 刷新全部失效。
+          几个 props 永远无法描述一个完整的 HTTP 请求，和你的通用处理也一定是冗余的。
         </p>
 
         <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>{t('section.noHttp')}</h3>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
-          Upload 组件<strong>不提供</strong> <code>action</code>、<code>headers</code>、<code>data</code>、<code>withCredentials</code> 等请求相关属性。
-          原因很简单：<strong>请求是业务层的事，不是组件层的事。</strong>
-        </p>
-        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
-          传统组件库把这些参数摊成 props 替你去发请求，看似省事，实则每个项目的 Authorization、BaseURL、超时、重试策略都不一样——props 永远列不完。更关键的是，你全局的 HTTP 拦截器和 token 刷新逻辑本来就能正常工作，何必让组件再绕一层？
+          因此 Upload <strong>不提供</strong> <code>action</code>、<code>headers</code>、<code>data</code>、<code>withCredentials</code> 等请求相关属性。
+          <strong>请求是业务层的事，不是组件层的事。</strong>
         </p>
         <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.8125rem', 'line-height': 1.7, 'margin-bottom': '12px' }}>
           <thead><tr style={{ 'border-bottom': '1px solid #e5e7eb', 'text-align': 'left' }}>
