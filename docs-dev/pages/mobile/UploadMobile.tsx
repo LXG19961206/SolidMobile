@@ -102,9 +102,9 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
           </p>
           <p style={{ margin: '10px 0 0' }}>
             {isEn() ? (
-              <>We don't provide <code>action</code> because we believe a mature project already has its own HTTP infrastructure. Upload doesn't replace it — it <strong>integrates into it</strong>. All you need is a function that returns a Promise. The rest is yours.</>
+              <>We don't provide <code>action</code> because we believe a mature project already has its own HTTP infrastructure. Upload doesn't replace it — it <strong>integrates into it</strong>.</>
             ) : (
-              <>我们不提供 <code>action</code>，是因为我们相信：一个成熟的工程，本就有自己的 HTTP 基础设施。Upload 不替代它，而是<strong>融入它</strong>。你只需要一个返回 Promise 的函数——剩下的，全由你掌控。</>
+              <>我们不提供 <code>action</code>，是因为我们相信：一个成熟的工程，本就有自己的 HTTP 基础设施。Upload 不替代它，而是<strong>融入它</strong>。</>
             )}
           </p>
           <div style={{ 'border-radius': '6px', overflow: 'hidden' as const, border: '1px solid var(--sc-doc-card-border, #e5e7eb)', margin: '10px 0' }}>

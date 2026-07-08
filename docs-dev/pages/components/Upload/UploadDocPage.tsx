@@ -122,7 +122,7 @@ import { request } from '@/services/http';
 
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '12px' }}>
           我们不提供 <code>action</code>，是因为我们相信：一个成熟的工程，本就有自己的 HTTP 基础设施。
-          Upload 不替代它，而是<strong>融入它</strong>。你只需要一个返回 Promise 的函数——剩下的，全由你掌控。
+          Upload 不替代它，而是<strong>融入它</strong>。
         </p>
 
         <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>这意味着</h3>
