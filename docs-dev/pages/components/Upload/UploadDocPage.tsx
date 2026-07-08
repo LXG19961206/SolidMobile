@@ -103,25 +103,25 @@ export const UploadDocPage: Component = () => {
         </p>
         <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.8125rem', 'line-height': 1.7, 'margin-bottom': '12px' }}>
           <thead><tr style={{ 'border-bottom': '1px solid #e5e7eb', 'text-align': 'left' }}>
-            <th style={{ padding: '8px 12px' }}>理由</th>
-            <th style={{ padding: '8px 12px' }}>展开说</th>
+            <th style={{ padding: '8px 12px' }}>如果你担心</th>
+            <th style={{ padding: '8px 12px' }}>实际上</th>
           </tr></thead>
           <tbody>
             <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>解耦 HTTP 库</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>fetch、axios、ky 还是 wx.uploadFile？Upload 不关心。你传一个 api 函数，里面怎么发请求完全由你控制。</td>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>绑死 HTTP 库</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>fetch、axios、ky、wx.uploadFile——你用什么跟 Upload 无关。<code>api</code> 是你的函数，爱怎么发怎么发。</td>
             </tr>
             <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>Token / 拦截器</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>项目中已封装好的 request 实例（统一拦截、错误处理、loading 态）直接传给 api 即可，Upload 不绕过你的基础设施。</td>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>绕过全局拦截器</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>你封装好的 request 实例——拦截器、token 刷新、统一错误处理、loading 态——全部照常工作。Upload 不替你发请求，所以不会绕过任何一层。</td>
             </tr>
             <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>OSS 直传</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>阿里云 / AWS S3 需要先获取签名、拼表单、有时还要回调通知。传统的 action + data 模型根本无法表达这个流程。</td>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>复杂上传流程</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>OSS 直传要先拿签名再拼表单，COS 要算鉴权头，有些接口还要回调通知——传统的 <code>action + data</code> 根本表达不了。但一个异步函数可以。</td>
             </tr>
             <tr>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>测试友好</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>传一个 <code>{"async () => ({ url: '...' })"}</code> 就能跑通测试，无需 mock 任何 HTTP 库。</td>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>不好写测试</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>传个 <code>{"async () => ({ url: '/fake' })"}</code>，零 mock 零拦截。上传逻辑和 UI 彻底分离，测试只测 UI 行为。</td>
             </tr>
           </tbody>
         </table>
