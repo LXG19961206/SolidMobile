@@ -120,6 +120,11 @@ import { request } from '@/services/http';
           如果不传 <code>api</code>，Upload 退化为「文件选择器 + 列表管理器」。
         </p>
 
+        <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '12px' }}>
+          我们不提供 <code>action</code>，是因为我们相信：一个成熟的工程，本就有自己的 HTTP 基础设施。
+          Upload 不替代它，而是<strong>融入它</strong>。你只需要一个返回 Promise 的函数——剩下的，全由你掌控。
+        </p>
+
         <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>这意味着</h3>
         <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.8125rem', 'line-height': 1.7, 'margin-bottom': '12px' }}>
           <thead><tr style={{ 'border-bottom': '1px solid #e5e7eb', 'text-align': 'left' }}>
@@ -141,15 +146,10 @@ import { request } from '@/services/http';
             </tr>
             <tr>
               <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>天然可测</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>传个 <code>{"async () => ({ url: '/fake' })"}</code>，零 mock。上传逻辑和 UI 彻底分离，测试只测 UI 行为。</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>传个 <code>{`async () => ({ url: "/fake" })`}</code>，零 mock。上传逻辑和 UI 彻底分离，测试只测 UI 行为。</td>
             </tr>
           </tbody>
         </table>
-
-        <p style={{ color: '#6b7280', 'line-height': 1.8', 'margin-top': '12px' }}>
-          我们不提供 <code>action</code>，是因为我们相信：一个成熟的工程，本就有自己的 HTTP 基础设施。
-          Upload 不替代它，而是<strong>融入它</strong>。你只需要一个返回 Promise 的函数——剩下的，全由你掌控。
-        </p>
 
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>示例</h2>
 
