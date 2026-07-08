@@ -149,22 +149,8 @@ import drawerStyles from './doc-utils/mobile/MobilePreview.module.css';
 
 import './App.css';
 
-/* ── i18n first-switch notice (in-memory, once per session) ── */
-let i18nNoticeShown = false;
-function showI18nNotice() {
-  if (i18nNoticeShown) return;
-  i18nNoticeShown = true;
-  setTimeout(() => {
-    DialogAPI.confirm({
-      title: '🌐 关于国际化 / About i18n',
-      message: '组件功能描述、属性说明等主要内容已做了基本的国际化，组件库自身也具备完善的多语言支持能力。\n\n受限于个人维护精力，文档 demo 中的示例数据（姓名、选项、提示文案等）仅提供一套简单英文，没有做中英双语对照。不过用的都是基础词汇，不影响理解。\n\n——\n\nMain content — component descriptions, prop docs, etc. — has been internationalized, and the library itself has full i18n support.\n\nDue to limited solo-maintainer bandwidth, demo placeholder data (names, options, labels, etc.) is shown in simple English only. Nothing fancy — just basic vocabulary.',
-      confirmText: '知道了 / Got it',
-      showCancelButton: false,
-    });
-  }, 100);
-}
 
-: Record<string, Component<{ components?: { name: string; key: string }[]; onNavigate?: (key: string) => void; onOpenDrawer?: () => void }>> = {
+const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key: string }[]; onNavigate?: (key: string) => void; onOpenDrawer?: () => void }>> = {
   home: MobileHome,
   eventbus: EventBusMobile,
   solidjs: SolidjsMobile,
@@ -320,19 +306,6 @@ export function App() {
   const [mobileDrawerOpen, setMobileDrawerOpen] = createSignal(false);
   const openMobileDrawer = () => setMobileDrawerOpen(true);
   const closeMobileDrawer = () => setMobileDrawerOpen(false);
-  // Bilingual labels for the mobile drawer — no i18n needed.
-  const CN: Record<string, string> = {
-    home: '首页', i18n: '国际化', config: '全局配置', eventbus: '事件总线', solidjs: '框架介绍', 'design-tokens': '视觉规范',
-    button: '按钮', icon: '图标', center: '居中', divider: '分割线', layout: '布局', safearea: '安全区',
-    avatar: '头像', badge: '徽标', tag: '标签', image: '图片', empty: '空状态', lazyload: '懒加载',
-    list: '列表', swipecell: '滑动单元格', swiper: '轮播', pullrefresh: '下拉刷新',
-    tabs: '标签页', tabbar: '标签栏', navbar: '导航栏', cell: '单元格',
-    picker: '选择器', calendar: '日历', cascader: '级联选择', datepicker: '日期选择',
-    citypicker: '城市选择', timepicker: '时间选择',
-    toast: '轻提示', notify: '通知', dialog: '对话框', overlay: '遮罩层', actionsheet: '动作面板', loading: '加载',
-    form: '表单', input: '输入框', textarea: '文本域', radio: '单选框', checkbox: '复选框',
-    switch: '开关', rate: '评分', stepper: '步进器', slider: '滑块', select: '选择器', upload: '上传',
-  };
 
   const mobileGroups = createMemo(() => [
     { title: '', items: [{ name: 'Home 首页', key: 'home' }] },
