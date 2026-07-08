@@ -1059,7 +1059,7 @@ export const docMessages: LocaleMessages = {
       absoluteCenter: '绝对居中',
       autoSize: '自动撑高',
       ioc: 'IoC 模式',
-      noHttp: '不由组件库代为发起',
+      noHttp: '组件库不做请求的构造与发起',
       withRouter: '与路由配合',
       text: '文案',
       methods: '方法',

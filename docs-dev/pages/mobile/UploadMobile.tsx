@@ -88,9 +88,9 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
           </ul>
           <p style={{ margin: '0 0 10px' }}>
             {isEn() ? (
-              <>When the component sends upload requests on your behalf, each upload bypasses your global HTTP infrastructure — interceptors, middleware, token refresh are all lost. Therefore Upload <strong>does not assemble and send upload requests for you</strong> — it provides no action, headers, or data props. The project's global HTTP configuration (interceptors, token refresh, unified error handling) remains fully utilized. <strong>HTTP requests belong to the business layer, not the component layer.</strong></>
+              <>When the component sends upload requests on your behalf, each upload bypasses your global HTTP infrastructure — interceptors, middleware, token refresh are all lost. Therefore Upload <strong>does not construct or send upload requests</strong> — it provides no action, headers, or data props. The project's global HTTP configuration (interceptors, token refresh, unified error handling) remains fully utilized. <strong>HTTP requests belong to the business layer, not the component layer.</strong></>
             ) : (
-              <>由组件库代为发起上传请求，意味着每次上传都在绕开项目全局的 HTTP 基础设施——拦截器、中间件、token 刷新等全部无法生效。Upload <strong>不代为拼凑发起上传请求</strong>，不提供 action、headers、data 等属性。上传请求由开发者自行发起，组件库不介入这一过程，项目的全局 HTTP 配置（拦截器、Token 刷新、统一错误处理）得以充分利用。<strong>请求应归属业务层，而非组件层。</strong></>
+              <>由组件库代为发起上传请求，意味着每次上传都在绕开项目全局的 HTTP 基础设施——拦截器、中间件、token 刷新等全部无法生效。Upload <strong>不做请求的构造与发起</strong>，不提供 action、headers、data 等属性。上传请求由开发者自行发起，组件库不介入这一过程，项目的全局 HTTP 配置（拦截器、Token 刷新、统一错误处理）得以充分利用。<strong>请求应归属业务层，而非组件层。</strong></>
             )}
           </p>
           <p style={{ margin: '10px 0 0' }}>
