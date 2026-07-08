@@ -76,6 +76,7 @@ const SWATCH = {
 };
 
 const ConfigOverview: Component = () => {
+  const t = useT();
   const config = useConfig();
 
   return (
