@@ -314,17 +314,17 @@ export function App() {
   const mobileGroups = createMemo(() => [
     { title: '', items: [{ name: 'Home 首页', key: 'home' }] },
     {
-      title: '指南 / Guides', items: [
-        { name: '全局配置', key: 'config' },
-        { name: '视觉规范', key: 'design-tokens' },
-        { name: '国际化 / i18n', key: 'i18n' },
+      title: 'Guide 指南', items: [
+        { name: 'ConfigProvider 全局配置', key: 'config' },
+        { name: 'Design Tokens 视觉规范', key: 'design-tokens' },
+        { name: 'i18n 国际化', key: 'i18n' },
         { name: 'EventBus 事件总线', key: 'eventbus' },
       ]
     },
     {
-      title: '关于 / About', items: [
+      title: 'About 关于', items: [
         { name: 'Solid.js 框架介绍', key: 'solidjs' },
-        { name: '关于项目', key: 'about' },
+        { name: 'About 关于项目', key: 'about' },
       ]
     },
     ...GROUPS.map(g => ({
