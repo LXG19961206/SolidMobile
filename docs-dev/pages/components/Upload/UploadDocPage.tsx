@@ -83,13 +83,11 @@ export const UploadDocPage: Component = () => {
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin': '12px 0' }}>
           但在实际企业级工程中，情况远不止于此：
         </p>
-        <ul style={{ color: '#6b7280', 'line-height': 2, 'padding-left': '1.5rem', 'margin': '0 0 16px' }}>
-          <li>method 一定是 POST 吗？</li>
-          <li>binary 还是 form-data？</li>
-          <li>额外的请求头如何传递？</li>
-          <li>BaseURL 从哪来？</li>
-          <li>异常怎么处理？超时、重试呢？</li>
-          <li>上传进度怎么反馈？</li>
+        <ul style={{ color: '#6b7280', 'line-height': 2, 'padding-left': '1.5rem', 'margin': '0 0 16px', 'font-size': '0.85rem' }}>
+          <li>method 一定是 POST 吗？—— binary、form-data 还是其他格式？</li>
+          <li>额外的请求头（Authorization、Content-Type 等）如何传递？</li>
+          <li>BaseURL 从哪来？超时怎么设？重试策略呢？</li>
+          <li>上传异常如何处理？进度如何反馈？</li>
         </ul>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '16px' }}>
           若全部暴露为 Props，则每次使用 Upload 都将绕开全局的 HTTP 基础设施——拦截器、中间件、token 刷新全部失效。
