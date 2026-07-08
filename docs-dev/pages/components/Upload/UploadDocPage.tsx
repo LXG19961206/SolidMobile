@@ -84,9 +84,10 @@ export const UploadDocPage: Component = () => {
           但在实际企业级工程中，情况远不止于此：
         </p>
         <ul style={{ color: '#6b7280', 'line-height': 2, 'padding-left': '1.5rem', 'margin': '0 0 16px', 'font-size': '0.85rem' }}>
-          <li>method 一定是 POST 吗？—— binary、form-data 还是其他格式？</li>
+          <li>method 一定是 POST 吗？</li>
+          <li>binary 还是 form-data，或是其他编码格式？</li>
           <li>额外的请求头（Authorization、Content-Type 等）如何传递？</li>
-          <li>BaseURL 从哪来？超时怎么设？重试策略呢？</li>
+          <li>BaseURL 从哪来？超时、重试策略如何配置？</li>
           <li>上传异常如何处理？进度如何反馈？</li>
         </ul>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '16px' }}>
