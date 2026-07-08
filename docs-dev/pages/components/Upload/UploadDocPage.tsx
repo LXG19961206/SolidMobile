@@ -114,11 +114,11 @@ import { request } from '@/services/http';
   }
 />`} />
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '12px' }}>
-          如果不传 <code>api</code>，Upload 退化为「文件选择器 + 列表管理器」。
+          如果不传 api，Upload 退化为「文件选择器 + 列表管理器」。
         </p>
 
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '12px' }}>
-          我们不提供 <code>action</code>，是因为我们相信：一个成熟的工程，本就有自己的 HTTP 基础设施。
+          这一设计的背后，是我们相信：一个成熟的工程，本就有自己的 HTTP 基础设施。
           Upload 不替代它，而是<strong>融入它</strong>。
         </p>
 
