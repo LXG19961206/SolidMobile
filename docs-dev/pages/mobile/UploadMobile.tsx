@@ -95,9 +95,9 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
           </p>
           <p style={{ margin: '10px 0 0' }}>
             {isEn() ? (
-              <><strong>Upload does one thing: manage the file lifecycle</strong> (select file → validate → display → delete). "How to upload" is a <strong>strategy</strong>, injected by you via the <code>api</code> prop (Inversion of Control / IoC): you write a function that returns a Promise, and Upload calls it. Tokens, interceptors, and HTTP libraries are all under your control. If you do not pass <code>api</code>, Upload degrades to a "file picker + list manager".</>
+              <><strong>Upload does one thing: manage the file lifecycle</strong> (select file → validate → display → delete). "How to upload" is a <strong>strategy</strong>, injected by you via the api prop (Inversion of Control / IoC): you write a function that returns a Promise, and Upload calls it. Tokens, interceptors, and HTTP libraries are all under your control. If you do not pass api, Upload degrades to a "file picker + list manager".</>
             ) : (
-              <><strong>Upload 只做一件事：管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你通过 <code>api</code> 属性注入（控制反转 / IoC）：你写一个返回 Promise 的函数，Upload 调用它。token、拦截器、请求库都在你自己掌控之中。如果不传 <code>api</code>，Upload 退化为「文件选择器 + 列表管理器」。</>
+              <><strong>Upload 只做一件事：管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你通过 api 属性注入（控制反转 / IoC）：你写一个返回 Promise 的函数，Upload 调用它。token、拦截器、请求库都在你自己掌控之中。如果不传 api，Upload 退化为「文件选择器 + 列表管理器」。</>
             )}
           </p>
           <p style={{ margin: '10px 0 0' }}>

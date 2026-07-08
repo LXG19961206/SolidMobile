@@ -105,7 +105,7 @@ export const UploadDocPage: Component = () => {
 
         <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>控制反转（IoC）— 面向接口，而非实现</h3>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
-          Upload 只做一件事：<strong>管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你通过 <code>api</code> 属性注入——你写一个返回 Promise 的函数，Upload 调用它。这就是控制反转：组件定义<strong>接口</strong>（一个返回 Promise 的函数），你提供<strong>实现</strong>。token、拦截器、请求库都在你自己掌控之中。
+          Upload 只做一件事：<strong>管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你通过 api 属性注入——你写一个返回 Promise 的函数，Upload 调用它。这就是控制反转：组件定义<strong>接口</strong>（一个返回 Promise 的函数），你提供<strong>实现</strong>。token、拦截器、请求库都在你自己掌控之中。
         </p>
         <CodeBlock code={`// 你的 IoC 容器 — 封装好的请求实例
 import { request } from '@/services/http';
