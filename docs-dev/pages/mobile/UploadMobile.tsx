@@ -81,9 +81,9 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
           </p>
           <ul style={{ margin: '0 0 10px', 'padding-left': '1.5rem', 'line-height': 2 }}>
             {isEn() ? (
-              <><li>Is method always POST?</li><li>Binary, form-data, or other encoding?</li><li>Extra headers (Authorization, Content-Type)?</li><li>BaseURL? Timeout? Retry strategy?</li><li>Error handling? Progress feedback?</li></>
+              <><li>Is method always POST?</li><li>Binary, form-data, or other encoding?</li><li>Extra headers (Authorization, Content-Type)?</li><li>BaseURL — where from?</li><li>Timeout? Retry strategy?</li><li>Error handling? Progress feedback?</li></>
             ) : (
-              <><li>method 一定是 POST 吗？</li><li>binary 还是 form-data，或是其他编码格式？</li><li>额外的请求头（Authorization、Content-Type 等）如何传递？</li><li>BaseURL 从哪来？超时、重试策略如何配置？</li><li>上传异常如何处理？进度如何反馈？</li></>
+              <><li>method 一定是 POST 吗？</li><li>binary 还是 form-data，或是其他编码格式？</li><li>额外的请求头（Authorization、Content-Type 等）如何传递？</li><li>BaseURL 从哪来？</li><li>超时、重试策略如何配置？</li><li>上传异常如何处理？进度如何反馈？</li></>
             )}
           </ul>
           <p style={{ margin: '0 0 10px' }}>
