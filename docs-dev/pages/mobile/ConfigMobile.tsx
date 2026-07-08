@@ -80,9 +80,9 @@ const ConfigOverview: Component = () => {
 
   return (
     <div style={CARD.wrapper}>
-      <div style={CARD.title}>当前生效配置</div>
+      <div style={CARD.title}>{t('guideSection.currentConfig')}</div>
       <div style={CARD.desc}>
-        以下是从 <code>useConfig()</code> 读取的当前主题状态（受文档站顶部取色器影响）：
+        {t('guideSection.currentConfigDesc')}
       </div>
       <div style={CARD.body}>
         <div style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-desc, #6b7280)', 'margin-bottom': '8px' }}>
@@ -106,24 +106,20 @@ export const ConfigMobile: Component<{ components?: ComponentEntry[]; onNavigate
       <div style={CARD.wrapper}>
         <div style={CARD.title}>ConfigProvider</div>
         <div style={CARD.note}>
-          全局配置提供者。放在应用根节点，深层合并默认配置，注入 CSS 变量（<code>--sc-*</code>），
-          并通过 Solid Context 向子组件提供主题、排版、圆角、语言等全局设置。
-          不使用时组件按 <code>defaultConfig</code> 运行，无需额外配置。
+          {t('configDesc')}
         </div>
       </div>
 
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>快速开始：换个主色</div>
+        <div style={CARD.title}>{t('guideSection.quickStartTitle')}</div>
         <div style={CARD.desc}>
-          最简单也最常用的场景——换一个品牌色。你只需要传 <code>primary</code>，
-          hover、active、disabled、pale、focus 甚至 secondary 都会通过 <code>deriveColorSet()</code> 自动从主色计算。
-          当然你也可以逐项覆盖任意状态色。
+          {t('guideSection.quickStartDesc')}
         </div>
         <pre style={PRE}>{codeQuickStart}</pre>
       </div>
 
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>顶层配置字段</div>
+        <div style={CARD.title}>{t('guideSection.topFields')}</div>
         <div style={CARD.body}>
           <div style={TABLE_HEAD}>
             <span style="flex:1">字段</span><span style="flex:2">说明</span>
@@ -140,18 +136,17 @@ export const ConfigMobile: Component<{ components?: ComponentEntry[]; onNavigate
       <ConfigOverview />
 
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>useConfig Hook</div>
+        <div style={CARD.title}>{t('guideSection.useConfig')}</div>
         <div style={CARD.desc}>
-          任意子组件内获取当前配置（JS 端读取主题值、做条件逻辑）。
+          {t('guideSection.useConfigDesc')}
         </div>
         <pre style={PRE}>{codeUseConfig}</pre>
       </div>
 
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>CSS 变量输出</div>
+        <div style={CARD.title}>{t('guideSection.cssVars')}</div>
         <div style={CARD.desc}>
-          ProviderConfig 挂载时调用 <code>generateCSSVars()</code>，注入 <code>{'<style id="solid-component-theme">'}</code> 到 <code>{'<head>'}</code>。
-          darkMode='class' 时生成 :root + .dark 两段；darkMode='media' 时生成 :root + @media 查询。
+          {t('guideSection.cssVarsDesc')}
         </div>
         <pre style={PRE}>{codeCssVars}</pre>
       </div>

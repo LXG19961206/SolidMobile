@@ -3,6 +3,7 @@ import { Portal } from 'solid-js/web';
 import { ProviderConfig } from '../../../src/config';
 import { Cell, Picker } from '../../../src/components';
 import { CodeBlock, DocLayout, PhoneTargetContext } from '../../doc-utils';
+import { useT } from '../../doc-i18n';
 import { messages as libMessages } from '../../../src/i18n/dictionaries';
 
 /** Demo content rendered inside the right-side phone simulator via Portal. */
@@ -148,6 +149,7 @@ setUserMessages({
 });`;
 
 const I18nDocPage: Component = () => {
+  const t = useT();
   const SECTION_H2 = { 'font-size': '1.15rem', 'font-weight': 600, margin: '2.5rem 0 0.75rem' };
 
   const handleDownloadTemplate = () => {
@@ -172,8 +174,7 @@ const I18nDocPage: Component = () => {
       <div class="guide-card">
         <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 0.5rem' }}>国际化 / i18n</h1>
         <p style={{ color: '#6b7280', margin: '0 0 2rem' }}>
-          组件库内置 <strong>zh-CN</strong> 和 <strong>en-US</strong> 两套字典，覆盖所有组件的按钮文案、占位提示、状态标签等。
-          当你需要其他语言（日文、韩文、法文……）或者想覆盖内置词条时，通过 <code>localeMessages</code> prop 传入自定义字典即可。
+          {t('i18nIntro')}
         </p>
 
         <h2 style={SECTION_H2}>📥 下载翻译模板</h2>
@@ -212,7 +213,7 @@ const I18nDocPage: Component = () => {
         <h2 style={SECTION_H2}>基础用法：添加日语</h2>
         <CodeBlock lang="tsx" code={docCodeBasicUsage} />
 
-        <h2 style={SECTION_H2}>覆盖内置语言</h2>
+        <h2 style={SECTION_H2}>{t('guideSection.override')}</h2>
         <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
           你也可以用同样的方式 <strong>覆盖</strong> zh-CN / en-US 中的特定词条。同 key 以用户提供的为准。
         </p>
@@ -240,7 +241,7 @@ const I18nDocPage: Component = () => {
         </p>
         <CodeBlock lang="ts" code={docCodeDictStructure} />
 
-        <h2 style={SECTION_H2}>程序化注入</h2>
+        <h2 style={SECTION_H2}>{t('guideSection.programmatic')}</h2>
         <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
           除了通过 <code>ProviderConfig</code> 的 prop 传入，你也可以在应用入口直接调用 <code>setUserMessages()</code>：
         </p>

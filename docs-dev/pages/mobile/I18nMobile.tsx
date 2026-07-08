@@ -110,8 +110,7 @@ export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?:
       <div style={CARD.wrapper}>
         <div style={CARD.title}>国际化 / i18n</div>
         <div style={CARD.note}>
-          组件库内置 <strong>zh-CN</strong> 和 <strong>en-US</strong> 两套字典，覆盖所有组件的按钮文案、占位提示、状态标签等。
-          当你需要其他语言（日文、韩文、法文……）或者想覆盖内置词条时，通过 <code>localeMessages</code> prop 传入自定义字典即可。
+          {t('i18nIntro')}
         </div>
       </div>
 
@@ -145,31 +144,31 @@ export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?:
       </div>
 
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>基础用法</div>
+        <div style={CARD.title}>{t('guideSection.basics')}</div>
         <div style={CARD.desc}>
-          在 <code>ProviderConfig</code> 上设置 <code>locale</code> 并传入 <code>localeMessages</code>：
+          {t('guideSection.basicsDesc')}
         </div>
         <pre style={PRE}>{codeBasicUsage}</pre>
       </div>
 
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>覆盖内置语言</div>
+        <div style={CARD.title}>{t('guideSection.override')}</div>
         <div style={CARD.desc}>
-          你也可以用同样的方式覆盖 zh-CN / en-US 中的特定词条。同 key 以用户提供的为准。
+          {t('guideSection.overrideDesc')}
         </div>
         <pre style={PRE}>{codeOverride}</pre>
       </div>
 
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>程序化注入</div>
+        <div style={CARD.title}>{t('guideSection.programmatic')}</div>
         <div style={CARD.desc}>
-          除了通过 <code>ProviderConfig</code> 的 prop 传入，你也可以在应用入口直接调用 <code>setUserMessages()</code>：
+          {t('guideSection.programmaticDesc')}
         </div>
         <pre style={PRE}>{codeProgrammatic}</pre>
       </div>
 
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>使用步骤</div>
+        <div style={CARD.title}>{t('guideSection.steps')}</div>
         <div style={CARD.note}>
           <strong>1.</strong> 桌面端文档提供 <strong>英文词条模板下载</strong>（JSON 格式）<br />
           <strong>2.</strong> 将 value 替换为目标语言<br />
@@ -179,7 +178,7 @@ export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?:
       </div>
 
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>回退策略</div>
+        <div style={CARD.title}>{t('guideSection.fallback')}</div>
         <div style={CARD.note}>
           当某个 key 在当前语言中不存在时，按以下链路回退：<br /><br />
           1. <strong>当前语言</strong>（如 <code>ja-JP</code>，含用户自定义字典）<br />
@@ -190,9 +189,9 @@ export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?:
       </div>
 
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>字典结构速览</div>
+        <div style={CARD.title}>{t('guideSection.dictOverview')}</div>
         <div style={CARD.desc}>
-          <code>component</code> 下包含以下组件的运行时词条：
+          {t('guideSection.dictOverviewDesc')}
         </div>
         <div style={DICT_STRUCTURE}>
           picker — cancel, confirm, select, selectDate, selectTime<br />

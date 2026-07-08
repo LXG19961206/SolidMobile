@@ -1,5 +1,6 @@
 import { type Component } from 'solid-js';
 import { CodeBlock } from '../../doc-utils';
+import { useT } from '../../doc-i18n';
 
 const SECTION_H2 = { 'font-size': '1.15rem', 'font-weight': 600, margin: '2.5rem 0 0.75rem' };
 const CODE = {
@@ -56,6 +57,7 @@ const radiusRows = [
 ];
 
 const ConfigDocPage: Component = () => {
+  const t = useT();
   return (
     <div class="guide-card">
       <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 0.5rem' }}>ConfigProvider</h1>
@@ -65,7 +67,7 @@ const ConfigDocPage: Component = () => {
         不使用时组件按 defaultConfig 运行，无需额外配置。
       </p>
 
-      <h2 style={SECTION_H2}>快速开始：换个主色</h2>
+      <h2 style={SECTION_H2}>{t('guideSection.quickStartTitle')}</h2>
       <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
         最简单也最常用的场景——换一个品牌色。<strong>你只需要传 <code>primary</code></strong>，
         hover、active、disabled、pale、focus 甚至 secondary 都会通过 <code>deriveColorSet()</code> 自动从主色计算
@@ -355,7 +357,7 @@ function App() {
         </table>
       </div>
 
-      <h2 style={SECTION_H2}>CSS 变量输出</h2>
+      <h2 style={SECTION_H2}>{t('guideSection.cssVars')}</h2>
       <p style={{ color: '#6b7280', 'margin': '0 0 0.75rem' }}>
         ProviderConfig 挂载时调用 generateCSSVars()，注入 &lt;style id="solid-component-theme"&gt; 到 &lt;head&gt;。
         darkMode='class' 时生成 :root + .dark 两段；darkMode='media' 时生成 :root + @media 查询。
@@ -376,7 +378,7 @@ function App() {
   /* ... 暗色覆盖 ... */
 }`} />
 
-      <h2 style={SECTION_H2}>useConfig Hook</h2>
+      <h2 style={SECTION_H2}>{t('guideSection.useConfig')}</h2>
       <p style={{ color: '#6b7280', 'margin': '0 0 0.75rem' }}>
         任意子组件内获取当前配置（JS 端读取主题值、做条件逻辑）。
       </p>

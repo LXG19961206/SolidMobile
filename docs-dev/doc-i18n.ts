@@ -8,6 +8,7 @@
  */
 import { messages as libMessages } from '../src/i18n/dictionaries';
 import { docMessages } from './doc-dictionaries';
+import { extraDocMessages } from './doc-dictionaries-extra';
 import type { LocaleMessages } from '../src/i18n/types';
 
 // Deep-merge: doc keys are appended to the library's dictionary for each locale.
@@ -23,11 +24,11 @@ function deepMerge(target: any, source: any): any {
   }
 }
 
-for (const locale of Object.keys(docMessages) as Array<keyof LocaleMessages>) {
-  if (!libMessages[locale]) {
-    (libMessages as any)[locale] = {};
+for (const messages of [docMessages, extraDocMessages]) {
+  for (const locale of Object.keys(messages) as Array<keyof LocaleMessages>) {
+    if (!libMessages[locale]) (libMessages as any)[locale] = {};
+    deepMerge((libMessages as any)[locale], (messages as any)[locale]);
   }
-  deepMerge((libMessages as any)[locale], (docMessages as any)[locale]);
 }
 
 // Re-export everything from the library's i18n module.
