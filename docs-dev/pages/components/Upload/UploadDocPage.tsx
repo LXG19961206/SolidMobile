@@ -116,7 +116,7 @@ export const UploadDocPage: Component = () => {
               <td style={{ padding: '8px 12px', color: '#6b7280' }}>你封装好的 request 实例——拦截器、token 刷新、统一错误处理、loading 态——全部照常工作。Upload 不替你发请求，所以不会绕过任何一层。</td>
             </tr>
             <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>复杂上传流程</td>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>搞不定 OSS / COS</td>
               <td style={{ padding: '8px 12px', color: '#6b7280' }}>OSS 直传要先拿签名再拼表单，COS 要算鉴权头，有些接口还要回调通知——传统的 <code>action + data</code> 根本表达不了。但一个异步函数可以。</td>
             </tr>
             <tr>
