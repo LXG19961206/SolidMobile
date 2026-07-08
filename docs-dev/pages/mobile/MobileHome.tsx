@@ -2,7 +2,8 @@ import { type Component } from 'solid-js';
 
 /* ── Mobile Home Page ── */
 
-const export const MobileHome: Component<{
+
+export const MobileHome: Component<{
   components?: { name: string; key: string }[];
   onNavigate?: (key: string) => void;
   onOpenDrawer?: () => void;
