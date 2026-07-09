@@ -44,7 +44,7 @@ const DARK_KEY = 'sc-docs-dark-mode';
 let i18nNoticeShown = false;
 
 function getDark(): boolean {
-  return document.documentElement.classList.contains('dark');
+  try { return localStorage.getItem(DARK_KEY) === '1'; } catch { return false; }
 }
 
 async function showI18nNotice() {
