@@ -34,14 +34,7 @@ const QUICK_ICONS: IconName[] = [
 export const IconMobile: Component<IconMobileProps> = (props) => {
   const t = useT();
   const [variant, setVariant] = createSignal<IconVariant>('line');
-  const [search, setSearch] = createSignal('');
   const [copiedName, setCopiedName] = createSignal('');
-
-  const filteredIcons = () => {
-    const q = search().toLowerCase();
-    if (!q) return QUICK_ICONS;
-    return QUICK_ICONS.filter(n => n.toLowerCase().includes(q));
-  };
 
   const handleCopy = (name: string) => {
     navigator.clipboard.writeText(`<Icon name="${name}" />`);
@@ -121,15 +114,9 @@ export const IconMobile: Component<IconMobileProps> = (props) => {
             style={{ padding: '6px 12px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '6px', background: variant() === 'fill' ? 'var(--sc-color-primary, #1677ff)' : '#fff', color: variant() === 'fill' ? '#fff' : '#374151', cursor: 'pointer', 'font-size': '0.8rem' }}
             onClick={() => setVariant('fill')}
           >{t('demo.fillVariant')}</button>
-          <input
-            style={{ flex: 1, padding: '6px 12px', border: '1px solid var(--sc-doc-card-border, #e5e7eb)', 'border-radius': '6px', 'font-size': '0.8rem' }}
-            placeholder={t('demo.searchIcons')}
-            value={search()}
-            onInput={(e) => setSearch(e.currentTarget.value)}
-          />
         </div>
         <div style={{ padding: '0 16px 16px', display: 'flex' as const, 'flex-wrap': 'wrap' as const, gap: '8px' }}>
-          <For each={filteredIcons()}>
+          <For each={QUICK_ICONS}>
             {(name) => (
               <div
                 style={{ display: 'flex' as const, 'flex-direction': 'column' as const, 'align-items': 'center' as const, gap: '4px', padding: '8px', border: '1px solid var(--sc-doc-card-divider, #f3f4f6)', 'border-radius': '8px', cursor: 'pointer', 'min-width': '56px' }}
