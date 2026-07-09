@@ -1101,6 +1101,7 @@ export const docMessages: LocaleMessages = {
     },
     nav: {
       'guide': "开发指南",
+      "i18n": "国际化",
       "config": "全局配置",
       "design-tokens": "视觉规范",
       "eventbus": "事件总线",
@@ -3223,6 +3224,7 @@ export const docMessages: LocaleMessages = {
     },
     nav: {
       'guide': "QuickStart",
+      "i18n": "i18n",
       "config": "ConfigProvider",
       "design-tokens": "Design Tokens",
       "eventbus": "EventBus",
