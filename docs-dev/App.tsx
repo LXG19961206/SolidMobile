@@ -241,6 +241,7 @@ export function App() {
     // remaining state colors from it.
     const darkPrimary = deriveColorSet(c).hover;
     return {
+      locale: useLocale(),
       colors: {
         light: { primary: c },
         dark: { primary: darkPrimary },
