@@ -29,7 +29,8 @@ export type EventBusComponent =
   | 'Textarea'
   | 'TimePicker'
   | 'Toast'
-  | 'Upload';
+  | 'Upload'
+  | (string & {});
 
 /** Event category — what kind of interaction occurred. */
 export type EventBusEventType =

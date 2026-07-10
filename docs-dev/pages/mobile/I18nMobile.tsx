@@ -1,4 +1,4 @@
-import { createSignal, type Component } from 'solid-js';
+import { createSignal, For, Show, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 import { Picker, Cell } from '../../../src/components';
 import { ProviderConfig } from '../../../src/config';
@@ -20,24 +20,100 @@ const PRE = {
   border: '1px solid var(--sc-doc-card-border, #e5e7eb)',
 };
 
-const jaI18n = {
-  'ja-JP': {
-    component: {
-      picker: { cancel: 'キャンセル', confirm: '確認', select: '選択してください' },
-      select: { placeholder: '選択してください' },
-      dialog: { confirmText: 'OK', cancelText: 'キャンセル' },
-      datePicker: { title: '日付選択', placeholder: '日付を選択' },
-      calendar: { confirmText: '決定', placeholder: '日付選択' },
-      list: { loading: '読み込み中...', empty: 'データなし' },
-    },
-  },
-};
+/** ── Language configs ── */
 
-const demoColumns = [[
-  { text: '東京', value: 'tokyo' }, { text: '大阪', value: 'osaka' },
-  { text: '京都', value: 'kyoto' }, { text: '札幌', value: 'sapporo' },
-  { text: '福岡', value: 'fukuoka' }, { text: '名古屋', value: 'nagoya' },
-]];
+interface LangConfig {
+  key: string;
+  label: string;
+  locale: string;
+  dict: Record<string, any>;
+  pickerTitle: string;
+  placeholder: string;
+  columns: { text: string; value: string }[][];
+  descZh: string;
+  descEn: string;
+}
+
+const LANG_CONFIGS: LangConfig[] = [
+  {
+    key: 'ja',
+    label: '日本語',
+    locale: 'ja-JP',
+    dict: {
+      'ja-JP': {
+        component: {
+          picker: { cancel: 'キャンセル', confirm: '確認', select: '選択してください' },
+          select: { placeholder: '選択してください' },
+          dialog: { confirmText: 'OK', cancelText: 'キャンセル' },
+          datePicker: { title: '日付選択', placeholder: '日付を選択' },
+          calendar: { confirmText: '決定', placeholder: '日付選択' },
+          list: { loading: '読み込み中...', empty: 'データなし' },
+        },
+      },
+    },
+    pickerTitle: '都市選択',
+    placeholder: '選択してください',
+    columns: [[
+      { text: '東京', value: 'tokyo' }, { text: '大阪', value: 'osaka' },
+      { text: '京都', value: 'kyoto' }, { text: '札幌', value: 'sapporo' },
+      { text: '福岡', value: 'fukuoka' }, { text: '名古屋', value: 'nagoya' },
+    ]],
+    descZh: '点击下方单元格打开选择器，底部按钮显示日文「キャンセル」「確認」。',
+    descEn: 'Tap the cell to open the picker. Bottom buttons show 「キャンセル」「確認」 in Japanese.',
+  },
+  {
+    key: 'ko',
+    label: '한국어',
+    locale: 'ko-KR',
+    dict: {
+      'ko-KR': {
+        component: {
+          picker: { cancel: '취소', confirm: '확인', select: '선택하세요' },
+          select: { placeholder: '선택하세요' },
+          dialog: { confirmText: '확인', cancelText: '취소' },
+          datePicker: { title: '날짜 선택', placeholder: '날짜를 선택하세요' },
+          calendar: { confirmText: '확인', placeholder: '날짜 선택' },
+          list: { loading: '로딩 중...', empty: '데이터 없음' },
+        },
+      },
+    },
+    pickerTitle: '도시 선택',
+    placeholder: '선택하세요',
+    columns: [[
+      { text: '서울', value: 'seoul' }, { text: '부산', value: 'busan' },
+      { text: '인천', value: 'incheon' }, { text: '대구', value: 'daegu' },
+      { text: '대전', value: 'daejeon' }, { text: '광주', value: 'gwangju' },
+    ]],
+    descZh: '点击下方单元格打开选择器，底部按钮显示韩文「취소」「확인」。',
+    descEn: 'Tap the cell to open the picker. Bottom buttons show 「취소」「확인」 in Korean.',
+  },
+  {
+    key: 'fr',
+    label: 'Français',
+    locale: 'fr-FR',
+    dict: {
+      'fr-FR': {
+        component: {
+          picker: { cancel: 'Annuler', confirm: 'Confirmer', select: 'Sélectionner' },
+          select: { placeholder: 'Sélectionner' },
+          dialog: { confirmText: 'Confirmer', cancelText: 'Annuler' },
+          datePicker: { title: 'Choisir une date', placeholder: 'Sélectionner une date' },
+          calendar: { confirmText: 'Confirmer', placeholder: 'Sélectionner une date' },
+          list: { loading: 'Chargement...', empty: 'Aucune donnée' },
+        },
+      },
+    },
+    pickerTitle: 'Ville',
+    placeholder: 'Sélectionner',
+    columns: [[
+      { text: 'Paris', value: 'paris' }, { text: 'Lyon', value: 'lyon' },
+      { text: 'Marseille', value: 'marseille' }, { text: 'Bordeaux', value: 'bordeaux' },
+      { text: 'Lille', value: 'lille' }, { text: 'Toulouse', value: 'toulouse' },
+    ]],
+    descZh: '点击下方单元格打开选择器，底部按钮显示法文「Annuler」「Confirmer」。',
+    descEn: 'Tap the cell to open the picker. Bottom buttons show 「Annuler」「Confirmer」 in French.',
+  },
+];
 
 const codeBasicUsage = `import { ProviderConfig } from 'solid-mobile';
 
@@ -99,12 +175,48 @@ setUserMessages({
 
 const DICT_STRUCTURE = { ...CARD.note, 'font-family': 'monospace', 'font-size': '0.7rem', 'line-height': 2 };
 
+/** ── Single-language Picker demo (isolated state) ── */
+
+const LangPickerDemo: Component<{ config: LangConfig }> = (props) => {
+  const [showPicker, setShowPicker] = createSignal(false);
+  const [pickerLabel, setPickerLabel] = createSignal('');
+
+  return (
+    <ProviderConfig config={{ locale: props.config.locale as any }} localeMessages={props.config.dict}>
+      <Cell
+        title={props.config.pickerTitle}
+        value={pickerLabel() || props.config.placeholder}
+        clickable
+        onClick={() => setShowPicker(true)}
+      />
+      <Picker
+        columns={props.config.columns}
+        show={showPicker()}
+        onUpdateShow={setShowPicker}
+        title={props.config.pickerTitle}
+        onChange={(items) => setPickerLabel(String(items[0]?.text ?? ''))}
+        onConfirm={(items) => {
+          if (items[0]) setPickerLabel(String(items[0].text ?? ''));
+          setShowPicker(false);
+        }}
+        onCancel={() => setShowPicker(false)}
+      />
+    </ProviderConfig>
+  );
+};
+
+/** ── Page ── */
+
 export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?: (key: string) => void }> = (props) => {
   const t = useT();
   const isEn = () => useLocale() === 'en-US';
 
-  const [showPicker, setShowPicker] = createSignal(false);
-  const [pickerLabel, setPickerLabel] = createSignal('');
+  // Which languages are toggled on (default: Japanese)
+  const [activeLangs, setActiveLangs] = createSignal(new Set<string>(['ja']));
+
+  const toggleLang = (key: string) => {
+    setActiveLangs(new Set([key]));
+  };
 
   return (
     <MobilePreview title={t('nav.i18n') || 'i18n'} components={props.components} onNavigate={props.onNavigate}>
@@ -118,33 +230,69 @@ export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?:
         </div>
       </div>
 
+      {/* ── Language selector + demo cards ── */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>{isEn() ? 'Japanese Picker Demo' : '日语 Picker 演示'}</div>
+        <div style={CARD.title}>{isEn() ? 'Multi-language Demo' : '多语言演示'}</div>
         <div style={CARD.desc}>
-          {isEn() ? 'Tap the cell below to open the picker. The bottom buttons display 「キャンセル」「確認」 in Japanese.' : '点击下方单元格打开选择器，底部按钮显示日文「キャンセル」「確認」。'}
+          {isEn() ? 'Select a language to see the Picker in action with that locale:' : '选择语言来查看该语言下的 Picker 效果：'}
         </div>
-        <div style={CARD.body}>
-          <ProviderConfig config={{ locale: 'ja-JP' as any }} localeMessages={jaI18n}>
-            <Cell
-              title="都市選択"
-              value={pickerLabel() || '選択してください'}
-              clickable
-              onClick={() => setShowPicker(true)}
-            />
-            <Picker
-              columns={demoColumns}
-              show={showPicker()}
-              onUpdateShow={setShowPicker}
-              title="都市選択"
-              onChange={(items) => setPickerLabel(items[0]?.text ?? '')}
-              onConfirm={(items) => {
-                if (items[0]) setPickerLabel(items[0].text ?? '');
-                setShowPicker(false);
-              }}
-              onCancel={() => setShowPicker(false)}
-            />
-          </ProviderConfig>
+        <div style={{ ...CARD.body, display: 'flex', gap: '16px', 'flex-wrap': 'wrap', 'padding-top': '8px' }}>
+          <style>{`
+            .i18n-lang-radio {
+              -webkit-appearance: none;
+              appearance: none;
+              width: 16px; height: 16px;
+              border: 1.5px solid #c4c4c4;
+              border-radius: 50%;
+              cursor: pointer;
+              margin: 0;
+              padding: 0;
+              background: #fff;
+              vertical-align: middle;
+              flex-shrink: 0;
+            }
+            .i18n-lang-radio:checked {
+              border-color: var(--sc-color-primary, #1677ff);
+              background: var(--sc-color-primary, #1677ff);
+              box-shadow: inset 0 0 0 3px #fff;
+            }
+            html.dark .i18n-lang-radio {
+              border-color: #6b7280;
+              background: #1f2937;
+            }
+            html.dark .i18n-lang-radio:checked {
+              border-color: var(--sc-color-primary, #1677ff);
+              background: var(--sc-color-primary, #1677ff);
+              box-shadow: inset 0 0 0 3px #1f2937;
+            }
+          `}</style>
+          <For each={LANG_CONFIGS}>
+            {(lang) => (
+              <label style={{ display: 'flex', 'align-items': 'center', gap: '6px', cursor: 'pointer', 'font-size': '0.85rem', color: 'var(--sc-doc-card-title, #1f2937)' }}>
+                <input
+                  type="radio"
+                  class="i18n-lang-radio"
+                  name="lang-demo"
+                  checked={activeLangs().has(lang.key)}
+                  onChange={() => toggleLang(lang.key)}
+                />
+                {lang.label}
+              </label>
+            )}
+          </For>
         </div>
+        <For each={LANG_CONFIGS}>
+          {(lang) => (
+            <Show when={activeLangs().has(lang.key)}>
+              <div style={{ padding: '0 16px 16px' }}>
+                <div style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)', 'margin-bottom': '10px' }}>
+                  {isEn() ? lang.descEn : lang.descZh}
+                </div>
+                <LangPickerDemo config={lang} />
+              </div>
+            </Show>
+          )}
+        </For>
       </div>
 
       <div style={CARD.wrapper}>

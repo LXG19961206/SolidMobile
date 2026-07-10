@@ -1,7 +1,9 @@
-import { type Component } from 'solid-js';
+import { createSignal, For, onCleanup, onMount, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 import { CodeBlock } from '../../doc-utils';
 import { useT, useLocale } from '../../doc-i18n';
+import { Button } from '../../../src/components';
+import { setEventBusHandler, emitEvent, getEventBusHandler } from '../../../src/event-bus';
 
 export interface EventBusMobileProps {
   components?: ComponentEntry[];
@@ -54,6 +56,64 @@ const EVENTS_LIST = [
   ['Toast', 'show', 'ToastOptions'],
   ['Upload', 'change / delete / success / error', 'UploadFile[] | { file, ... }'],
 ];
+
+const EventBusLiveDemo: Component = () => {
+  const [logs, setLogs] = createSignal<Array<{ comp: string; type: string; ptype: string; size: string; time: string; id: number }>>([]);
+  let id = 0;
+
+  onMount(() => {
+    const prev = getEventBusHandler();
+    setEventBusHandler((event) => {
+      const p = (event.props as Record<string, unknown>) || {};
+      setLogs((prevLogs) => {
+        const next = [...prevLogs, {
+          comp: event.component,
+          type: event.type,
+          ptype: String(p.type ?? '-'),
+          size: String(p.size ?? 'md'),
+          time: new Date(event.timestamp).toLocaleTimeString(),
+          id: ++id,
+        }];
+        return next.length > 6 ? next.slice(-6) : next;
+      });
+      prev?.(event);
+    });
+    onCleanup(() => setEventBusHandler(prev));
+  });
+
+  return (
+    <div>
+      <div style={{ display: 'flex', gap: '8px', 'flex-wrap': 'wrap', 'margin-bottom': '12px' }}>
+        <Button onClick={() => {}} size="sm">Primary</Button>
+        <Button type="success" size="sm" onClick={() => {}}>Success</Button>
+        <Button type="warning" size="sm" onClick={() => {}}>Warning</Button>
+        <Button type="danger" size="sm" onClick={() => {}}>Danger</Button>
+        <Button variant="outline" size="sm" onClick={() => {}}>Outline</Button>
+      </div>
+      <div style={{
+        background: 'var(--sc-doc-code-bg, #f5f5f5)', color: 'var(--sc-doc-code-text, #374151)',
+        'border-radius': '6px', padding: '10px 12px', 'min-height': '48px',
+        'font-family': 'ui-monospace, monospace', 'font-size': '0.68rem', 'line-height': 1.9,
+        border: '1px solid var(--sc-doc-card-border, #e5e7eb)',
+      }}>
+        <For each={logs()}>
+          {(log) => (
+            <div>
+              <span style={{ color: '#1677ff' }}>[{log.comp}]</span>{' '}
+              <span style={{ color: '#16a34a' }}>{log.type}</span>
+              <span style={{ color: '#9ca3af' }}>{'  '}type={log.ptype}</span>
+              <span style={{ color: '#9ca3af' }}>{'  '}size={log.size}</span>
+              <span style={{ color: '#d1d5db', float: 'right' }}>{log.time}</span>
+            </div>
+          )}
+        </For>
+        {logs().length === 0 && (
+          <div style={{ color: '#9ca3af' }}>等待点击...</div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export const EventBusMobile: Component<EventBusMobileProps> = (props) => {
   const t = useT();
@@ -193,6 +253,48 @@ setEventBusHandler((event) => {
               ))}
             </tbody>
           </table>
+        </div>
+      </div>
+
+      {/* ── Custom Component ── */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>{isEn() ? 'Custom Components' : '自定义组件'}</div>
+        <div style={CARD.desc}>
+          {isEn()
+            ? <><code>emitEvent</code> is exported as a public API. Your own components can push structured events to the same global bus — just follow the <code>EventBusEvent</code> signature. The <code>component</code> field accepts any string, and built-in component names still get IDE autocompletion.</>
+            : <><code>emitEvent</code> 已作为公开 API 导出。你自己的组件也能按 <code>EventBusEvent</code> 签名把结构化事件推送到同一个全局总线。<code>component</code> 字段接受任意字符串，内置组件名仍保留 IDE 补全提示。</>
+          }
+        </div>
+        <div style={CARD.body}>
+          <CodeBlock lang="tsx" code={`import { emitEvent } from 'solid-mobile';
+import type { EventBusEvent } from 'solid-mobile';
+
+function MyChart(props: { data: Bar[]; id?: string }) {
+  const handleBarClick = (bar: Bar) => {
+    emitEvent({
+      component: 'MyChart',   // 自定义组件名 — 任意 string
+      type: 'click',
+      payload: { bar, value: bar.value },
+      props,
+      timestamp: Date.now(),
+    });
+  };
+
+  return <div>...</div>;
+}`} />
+        </div>
+      </div>
+
+      {/* ── Live Demo ── */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>{isEn() ? 'Live Demo' : '实时演示'}</div>
+        <div style={CARD.desc}>
+          {isEn()
+            ? 'Click the buttons below — each triggers an EventBus event. Watch the log appear in real time:'
+            : '点击下方按钮——每次点击都会触发 EventBus 事件，日志实时输出：'}
+        </div>
+        <div style={CARD.body}>
+          <EventBusLiveDemo />
         </div>
       </div>
 
