@@ -1,5 +1,6 @@
 import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
+import { CodeBlock } from '../../doc-utils';
 import { useConfig } from '../../../src/config';
 import { useT, useLocale } from '../../doc-i18n';
 
@@ -35,16 +36,15 @@ const configFields = [
 
 const codeQuickStart = `import { ProviderConfig } from 'solid-mobile';
 
-const themeConfig = {
-  colors: {
-    light: { primary: '#6366f1' },
-  },
+// 把主题配置提到组件外面，只传 primary，其余状态色自动推导
+const theme = {
+  colors: { light: { primary: '#6366f1' } },
 };
 
 function App() {
   return (
-    <ProviderConfig config={themeConfig}>
-      <App />
+    <ProviderConfig config={theme}>
+      <div>你的应用内容</div>
     </ProviderConfig>
   );
 }`;
@@ -123,7 +123,7 @@ export const ConfigMobile: Component<{ components?: ComponentEntry[]; onNavigate
             : <>最简单也最常用的场景——换一个品牌色。你只需要传 <code>primary</code>，hover、active、disabled、pale、focus 甚至 secondary 都会通过 <code>deriveColorSet()</code> 自动从主色计算。当然你也可以逐项覆盖任意状态色。</>
           }
         </div>
-        <pre style={PRE}>{codeQuickStart}</pre>
+        <div style={CARD.body}><CodeBlock lang="jsx" code={codeQuickStart} /></div>
       </div>
 
       <div style={CARD.wrapper}>
@@ -149,7 +149,7 @@ export const ConfigMobile: Component<{ components?: ComponentEntry[]; onNavigate
         <div style={CARD.desc}>
           {isEn() ? 'Access the current config in any child component (read theme values on the JS side).' : '任意子组件内获取当前配置（JS 端读取主题值、做条件逻辑）。'}
         </div>
-        <pre style={PRE}>{codeUseConfig}</pre>
+        <div style={CARD.body}><CodeBlock lang="jsx" code={codeUseConfig} /></div>
       </div>
 
       <div style={CARD.wrapper}>
@@ -160,7 +160,7 @@ export const ConfigMobile: Component<{ components?: ComponentEntry[]; onNavigate
             : <>ProviderConfig 挂载时调用 <code>generateCSSVars()</code>，注入 <code>{'<style id="solid-component-theme">'}</code> 到 <code>{'<head>'}</code>。darkMode='class' 时生成 :root + .dark 两段；darkMode='media' 时生成 :root + @media 查询。</>
           }
         </div>
-        <pre style={PRE}>{codeCssVars}</pre>
+        <div style={CARD.body}><CodeBlock lang="css" code={codeCssVars} /></div>
       </div>
 
       <div style={CARD.wrapper}>

@@ -6,13 +6,14 @@ import 'prismjs/themes/prism.css';
 
 export const CodeBlock = (props: { code: string; lang?: string }) => {
   const html = () => {
-    const lang = Prism.languages[props.lang || 'tsx'] || Prism.languages.tsx;
-    return Prism.highlight(props.code, lang, props.lang || 'tsx');
+    const langName = props.lang || 'jsx';
+    const lang = Prism.languages[langName] || Prism.languages.jsx;
+    return Prism.highlight(props.code, lang, langName);
   };
   return (
     <div class="doc-code-block">
-      <pre class={`language-${props.lang || 'tsx'}`}>
-        <code class={`language-${props.lang || 'tsx'}`} innerHTML={html()} />
+      <pre class={`language-${props.lang || 'jsx'}`}>
+        <code class={`language-${props.lang || 'jsx'}`} innerHTML={html()} />
       </pre>
     </div>
   );

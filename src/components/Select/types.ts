@@ -1,6 +1,8 @@
+import type { JSX } from 'solid-js';
+
 export interface SelectProps {
   /** 选项列表 */
-  options: { text: string; value: string | number }[];
+  options: { text: string; value: string | number; render?: JSX.Element }[];
   /** 当前选中值 */
   value?: string | number;
   /** 值变化回调 */

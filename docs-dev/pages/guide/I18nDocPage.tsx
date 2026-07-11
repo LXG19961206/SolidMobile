@@ -1,9 +1,9 @@
-import { createSignal, For, Show, useContext, type Component } from 'solid-js';
+import { createSignal, For, Show, useContext, onCleanup, type Component } from 'solid-js';
 import { Portal } from 'solid-js/web';
 import { ProviderConfig } from '../../../src/config';
 import { Cell, Picker } from '../../../src/components';
 import { CodeBlock, DocLayout, PhoneTargetContext } from '../../doc-utils';
-import { useT, useLocale } from '../../doc-i18n';
+import { useT, useLocale, setGlobalLocale } from '../../doc-i18n';
 import { messages as libMessages } from '../../../src/i18n/dictionaries';
 
 /** ── Language configs for phone demo ── */
@@ -197,7 +197,7 @@ function App() {
   const [locale, setLocale] = createSignal('ja-JP');
 
   return (
-    <ProviderConfig config={{ locale: locale() as any }} localeMessages={messages}>
+    <ProviderConfig config={{ locale: locale() }} localeMessages={messages}>
       {/* 语言切换 Radio */}
       <div style={{ display: 'flex', gap: '12px', padding: '8px 0' }}>
         <For each={langConfigs}>
@@ -321,6 +321,14 @@ const I18nDocPage: Component = () => {
   const isEn = () => useLocale() === 'en-US';
   const SECTION_H2 = { 'font-size': '1.15rem', 'font-weight': 600, margin: '2.5rem 0 0.75rem' };
 
+  // 进入页面时记住当前全局语言，离开时还原。
+  // 页面内的 i18n 演示会通过嵌套 ProviderConfig 临时切换 locale，
+  // 离开后全局 locale 不受影响。
+  const savedLocale = useLocale();
+  onCleanup(() => {
+    setGlobalLocale(savedLocale);
+  });
+
   const handleDownloadTemplate = () => {
     const componentDict = (libMessages as any)['en-US']?.component;
     const template = {
@@ -386,7 +394,7 @@ const I18nDocPage: Component = () => {
         <PhoneI18nDemo />
 
         <h2 style={SECTION_H2}>{t('i18nPage.basicUsage')}</h2>
-        <CodeBlock lang="tsx" code={docCodeBasicUsage} />
+        <CodeBlock lang="jsx" code={docCodeBasicUsage} />
 
         <h2 style={SECTION_H2}>{t('i18nPage.overrideTitle')}</h2>
         <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
@@ -395,7 +403,7 @@ const I18nDocPage: Component = () => {
             : <>你也可以用同样的方式 <strong>覆盖</strong> zh-CN / en-US 中的特定词条。同 key 以用户提供的为准。</>
           }
         </p>
-        <CodeBlock lang="tsx" code={docCodeOverride} />
+        <CodeBlock lang="jsx" code={docCodeOverride} />
 
         <h2 style={SECTION_H2}>{t('i18nPage.fallbackTitle')}</h2>
         <div style={{ color: '#6b7280', 'line-height': 1.8 }}>
@@ -449,7 +457,7 @@ const I18nDocPage: Component = () => {
             : <>除了通过 <code>ProviderConfig</code> 的 prop 传入，你也可以在应用入口直接调用 <code>setUserMessages()</code>：</>
           }
         </p>
-        <CodeBlock lang="tsx" code={docCodeProgrammatic} />
+        <CodeBlock lang="jsx" code={docCodeProgrammatic} />
       </div>
     </DocLayout>
   );

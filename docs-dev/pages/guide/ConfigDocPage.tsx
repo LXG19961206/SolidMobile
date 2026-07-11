@@ -74,12 +74,16 @@ const ConfigDocPage: Component = () => {
         （HSL 色彩空间，hover 提亮 10、active 压暗 10）。
         当然你也可以逐项覆盖任意状态色。
       </p>
-      <CodeBlock lang="tsx" code={`import { ProviderConfig } from 'solid-mobile';
+      <CodeBlock lang="jsx" code={`import { ProviderConfig } from 'solid-mobile';
 
-// 只传 primary，其余状态色自动推导
+// 把主题配置提到组件外面，只传 primary，其余状态色自动推导
+const theme = {
+  colors: { light: { primary: '#6366f1' } },
+};
+
 function App() {
   return (
-    <ProviderConfig config={{ colors: { light: { primary: '#6366f1' } } }}>
+    <ProviderConfig config={theme}>
       <div>你的应用内容</div>
     </ProviderConfig>
   );
@@ -97,126 +101,131 @@ function App() {
         以下展示所有可配置项。所有字段均有默认值，<strong>只需传入需要覆盖的部分</strong>，
         未传字段自动使用 defaultConfig（含上述自动推导逻辑）。
       </p>
-      <CodeBlock lang="tsx" code={`import { ProviderConfig } from 'solid-mobile';
+      <CodeBlock lang="jsx" code={`import { ProviderConfig } from 'solid-mobile';
 
-<ProviderConfig
-  config={{
-    // ══════════════════════════════════════
-    // 全局设置
-    // ══════════════════════════════════════
-    prefix: 'sc',              // CSS 变量前缀 → 生成 --sc-color-primary 等
-    darkMode: 'class',         // 暗色模式策略: 'class' = .dark 类名, 'media' = 系统偏好
-    locale: 'zh-CN',           // 内置文本语言: 任意 locale 字符串，内置字典仅含 'zh-CN' | 'en-US'
+// 把配置提到组件外面，清晰且高亮正确
+const appConfig = {
+  // ══════════════════════════════════════
+  // 全局设置
+  // ══════════════════════════════════════
+  prefix: 'sc',              // CSS 变量前缀 → 生成 --sc-color-primary 等
+  darkMode: 'class',         // 暗色模式策略: 'class' = .dark 类名, 'media' = 系统偏好
+  locale: 'zh-CN',           // 内置文本语言: 任意 locale 字符串，内置字典仅含 'zh-CN' | 'en-US'
 
-    // ══════════════════════════════════════
-    // 色彩系统 — light / dark 双色板
-    // 每个语义色含 5 级: base / hover / active / disabled / pale
-    // ══════════════════════════════════════
-    colors: {
-      light: {
-        // 主色 — 按钮、选中态、品牌色
-        primary: '#1677ff',
-        primaryHover: '#4096ff',
-        primaryActive: '#0958d9',
-        primaryDisabled: 'rgba(22,119,255,0.35)',
-        primaryPale: 'rgba(22,119,255,0.08)',
+  // ══════════════════════════════════════
+  // 色彩系统 — light / dark 双色板
+  // 每个语义色含 5 级: base / hover / active / disabled / pale
+  // ══════════════════════════════════════
+  colors: {
+    light: {
+      // 主色 — 按钮、选中态、品牌色
+      primary: '#1677ff',
+      primaryHover: '#4096ff',
+      primaryActive: '#0958d9',
+      primaryDisabled: 'rgba(22,119,255,0.35)',
+      primaryPale: 'rgba(22,119,255,0.08)',
 
-        // 次级色 — 辅助按钮、次要元素
-        secondary: '#6ba3ff',
-        secondaryHover: '#8ab8ff',
-        secondaryActive: '#4d8ae0',
-        secondaryDisabled: 'rgba(107,163,255,0.35)',
-        secondaryPale: 'rgba(107,163,255,0.08)',
+      // 次级色 — 辅助按钮、次要元素
+      secondary: '#6ba3ff',
+      secondaryHover: '#8ab8ff',
+      secondaryActive: '#4d8ae0',
+      secondaryDisabled: 'rgba(107,163,255,0.35)',
+      secondaryPale: 'rgba(107,163,255,0.08)',
 
-        // 表面 — 页面 / 卡片背景
-        background: '#eff2f5',
-        backgroundSecondary: '#f7f8fa',
+      // 表面 — 页面 / 卡片背景
+      background: '#eff2f5',
+      backgroundSecondary: '#f7f8fa',
 
-        // 文字 — 四级层级
-        text: '#323233',
-        textSecondary: '#969799',
-        textTertiary: '#afaba9',
-        textInverse: '#ffffff',
+      // 文字 — 四级层级
+      text: '#323233',
+      textSecondary: '#969799',
+      textTertiary: '#afaba9',
+      textInverse: '#ffffff',
 
-        // 边框
-        border: '#dcdee0',
-        borderHover: '#c5c7ca',
+      // 边框
+      border: '#dcdee0',
+      borderHover: '#c5c7ca',
 
-        // 语义色 — 危险 / 成功 / 警告 / 信息
-        danger: '#fc000a',
-        dangerHover: '#ff3b43',
-        dangerActive: '#d90008',
-        dangerDisabled: 'rgba(252,0,10,0.35)',
-        dangerPale: 'rgba(252,0,10,0.08)',
+      // 语义色 — 危险 / 成功 / 警告 / 信息
+      danger: '#fc000a',
+      dangerHover: '#ff3b43',
+      dangerActive: '#d90008',
+      dangerDisabled: 'rgba(252,0,10,0.35)',
+      dangerPale: 'rgba(252,0,10,0.08)',
 
-        success: '#00d35b',
-        successHover: '#33e07a',
-        successDisabled: 'rgba(0,211,91,0.35)',
-        successPale: 'rgba(0,211,91,0.08)',
+      success: '#00d35b',
+      successHover: '#33e07a',
+      successDisabled: 'rgba(0,211,91,0.35)',
+      successPale: 'rgba(0,211,91,0.08)',
 
-        warning: '#ff9162',
-        warningHover: '#ffb08a',
-        warningDisabled: 'rgba(255,145,98,0.35)',
-        warningPale: 'rgba(255,145,98,0.08)',
+      warning: '#ff9162',
+      warningHover: '#ffb08a',
+      warningDisabled: 'rgba(255,145,98,0.35)',
+      warningPale: 'rgba(255,145,98,0.08)',
 
-        // 信息色 / 聚焦环
-        info: '#969799',
-        focus: 'rgba(22,119,255,0.25)',
-      },
-
-      // 暗色模式 — 字段结构与 light 完全一致
-      dark: {
-        primary: '#5195ff',
-        primaryHover: '#7ab0ff',
-        primaryActive: '#3678e0',
-        primaryDisabled: 'rgba(81,149,255,0.35)',
-        primaryPale: 'rgba(81,149,255,0.12)',
-        // ... 其余字段同上结构，此处省略
-      },
+      // 信息色 / 聚焦环
+      info: '#969799',
+      focus: 'rgba(22,119,255,0.25)',
     },
 
-    // ══════════════════════════════════════
-    // 排版 — 字体 / 字号 / 字重 / 行高
-    // ══════════════════════════════════════
-    typography: {
-      'font-family': {
-        base: 'system-ui, -apple-system, sans-serif',  // 正文
-        mono: 'ui-monospace, SFMono-Regular, monospace', // 代码
-      },
-      'font-size': {
-        xs: '0.75rem',    // 12px — 辅助文字
-        sm: '0.875rem',   // 14px — 次要文字
-        md: '1rem',       // 16px — 正文
-        lg: '1.125rem',   // 18px — 小标题
-        xl: '1.25rem',    // 20px — 大标题
-        xxl: '1.5rem',    // 24px — 超大标题
-      },
-      'font-weight': {
-        normal: 400,
-        medium: 500,
-        semibold: 600,
-        bold: 700,
-      },
-      'line-height': {
-        tight: 1.25,     // 标题
-        normal: 1.5,     // 正文
-        relaxed: 1.75,   // 长文本
-      },
+    // 暗色模式 — 字段结构与 light 完全一致
+    dark: {
+      primary: '#5195ff',
+      primaryHover: '#7ab0ff',
+      primaryActive: '#3678e0',
+      primaryDisabled: 'rgba(81,149,255,0.35)',
+      primaryPale: 'rgba(81,149,255,0.12)',
+      // ... 其余字段同上结构，此处省略
     },
+  },
 
-    // ══════════════════════════════════════
-    // 圆角 — 四级尺寸
-    // ══════════════════════════════════════
-    'border-radius': {
-      sm: '4px',         // 小元素: Tag、Badge
-      md: '8px',         // 按钮、输入框
-      lg: '12px',        // 卡片、弹窗
-      full: '9999px',    // 胶囊形状、头像
+  // ══════════════════════════════════════
+  // 排版 — 字体 / 字号 / 字重 / 行高
+  // ══════════════════════════════════════
+  typography: {
+    'font-family': {
+      base: 'system-ui, -apple-system, sans-serif',  // 正文
+      mono: 'ui-monospace, SFMono-Regular, monospace', // 代码
     },
-  }}
->
-  <App />
-</ProviderConfig>`} />
+    'font-size': {
+      xs: '0.75rem',    // 12px — 辅助文字
+      sm: '0.875rem',   // 14px — 次要文字
+      md: '1rem',       // 16px — 正文
+      lg: '1.125rem',   // 18px — 小标题
+      xl: '1.25rem',    // 20px — 大标题
+      xxl: '1.5rem',    // 24px — 超大标题
+    },
+    'font-weight': {
+      normal: 400,
+      medium: 500,
+      semibold: 600,
+      bold: 700,
+    },
+    'line-height': {
+      tight: 1.25,     // 标题
+      normal: 1.5,     // 正文
+      relaxed: 1.75,   // 长文本
+    },
+  },
+
+  // ══════════════════════════════════════
+  // 圆角 — 四级尺寸
+  // ══════════════════════════════════════
+  'border-radius': {
+    sm: '4px',         // 小元素: Tag、Badge
+    md: '8px',         // 按钮、输入框
+    lg: '12px',        // 卡片、弹窗
+    full: '9999px',    // 胶囊形状、头像
+  },
+};
+
+function App() {
+  return (
+    <ProviderConfig config={appConfig}>
+      <App />
+    </ProviderConfig>
+  );
+}`} />
 
       <h2 style={SECTION_H2}>{isEn() ? 'ProviderConfig Props' : 'ProviderConfig Props'}</h2>
       <div class="guide-table-wrap">
@@ -382,7 +391,7 @@ function App() {
       <p style={{ color: '#6b7280', 'margin': '0 0 0.75rem' }}>
         任意子组件内获取当前配置（JS 端读取主题值、做条件逻辑）。
       </p>
-      <CodeBlock lang="tsx" code={`import { useConfig } from 'solid-mobile';
+      <CodeBlock lang="jsx" code={`import { useConfig } from 'solid-mobile';
 
 function MyComp() {
   const cfg = useConfig();

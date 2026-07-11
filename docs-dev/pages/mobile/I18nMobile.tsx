@@ -1,8 +1,9 @@
-import { createSignal, For, Show, type Component } from 'solid-js';
+import { createSignal, For, Show, onCleanup, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
+import { CodeBlock } from '../../doc-utils';
 import { Picker, Cell } from '../../../src/components';
 import { ProviderConfig } from '../../../src/config';
-import { useT, useLocale } from '../../doc-i18n';
+import { useT, useLocale, setGlobalLocale } from '../../doc-i18n';
 
 const CARD = {
   wrapper: { background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden' as const, 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)', 'margin-bottom': '16px' },
@@ -211,6 +212,12 @@ export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?:
   const t = useT();
   const isEn = () => useLocale() === 'en-US';
 
+  // 进入页面时记住当前全局语言，离开时还原。
+  const savedLocale = useLocale();
+  onCleanup(() => {
+    setGlobalLocale(savedLocale);
+  });
+
   // Which languages are toggled on (default: Japanese)
   const [activeLangs, setActiveLangs] = createSignal(new Set<string>(['ja']));
 
@@ -300,7 +307,7 @@ export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?:
         <div style={CARD.desc}>
           {isEn() ? <>Set <code>locale</code> and pass <code>localeMessages</code> on <code>ProviderConfig</code>:</> : <>在 <code>ProviderConfig</code> 上设置 <code>locale</code> 并传入 <code>localeMessages</code>：</>}
         </div>
-        <pre style={PRE}>{codeBasicUsage}</pre>
+        <div style={CARD.body}><CodeBlock lang="jsx" code={codeBasicUsage} /></div>
       </div>
 
       <div style={CARD.wrapper}>
@@ -308,7 +315,7 @@ export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?:
         <div style={CARD.desc}>
           {isEn() ? 'You can also override specific keys in zh-CN / en-US. User values win on conflict.' : '你也可以用同样的方式覆盖 zh-CN / en-US 中的特定词条。同 key 以用户提供的为准。'}
         </div>
-        <pre style={PRE}>{codeOverride}</pre>
+        <div style={CARD.body}><CodeBlock lang="jsx" code={codeOverride} /></div>
       </div>
 
       <div style={CARD.wrapper}>
@@ -316,7 +323,7 @@ export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?:
         <div style={CARD.desc}>
           {isEn() ? <>Besides the <code>ProviderConfig</code> prop, you can call <code>setUserMessages()</code> at the app entry:</> : <>除了通过 <code>ProviderConfig</code> 的 prop 传入，你也可以在应用入口直接调用 <code>setUserMessages()</code>：</>}
         </div>
-        <pre style={PRE}>{codeProgrammatic}</pre>
+        <div style={CARD.body}><CodeBlock lang="jsx" code={codeProgrammatic} /></div>
       </div>
 
       <div style={CARD.wrapper}>

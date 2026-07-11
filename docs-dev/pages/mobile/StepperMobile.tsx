@@ -7,6 +7,7 @@ export interface StepperMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { Stepper } from '../../../src/components/Stepper';
+import { Icon } from '../../../src/components/Icon';
 
 const propsData = [
   { name: 'value', type: 'number', desc: 'componentProps.stepper.value' },
@@ -80,6 +81,51 @@ export const StepperMobile: Component<StepperMobileProps> = (props) => {
           <Stepper defaultValue={3} disabled />
           <Stepper defaultValue={3} readonly />
           <Stepper defaultValue={3} inputDisabled />
+        </div>
+      </div>
+
+      {/* 自定义图标 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>{t('demo.customIcon')}</div>
+        <div style={CARD.desc}>{t('demoDesc.stepper_custom_icon')}</div>
+        <div style={CARD.body}>
+          <Stepper
+            defaultValue={3}
+            minusIcon={<span style={{ transform: 'rotate(180deg)', display: 'inline-flex' }}><Icon name="heart" variant="fill" color="#333" /></span>}
+            plusIcon={<Icon name="heart" variant="fill" color="#ff4d4f" />}
+          />
+        </div>
+      </div>
+
+      {/* 尺寸 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>{t('demo.customSizeMobile')}</div>
+        <div style={CARD.desc}>{t('demoDesc.stepper_size')}</div>
+        <div style={CARD.body}>
+          <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
+            <Stepper defaultValue={3} size={24} />
+            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>size=24</span>
+          </div>
+          <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
+            <Stepper defaultValue={3} size={32} />
+            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>size=32 (default)</span>
+          </div>
+          <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '12px' }}>
+            <Stepper defaultValue={3} size={40} />
+            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>size=40</span>
+          </div>
+        </div>
+      </div>
+
+      {/* 整数模式 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>{t('demo.integerMode')}</div>
+        <div style={CARD.desc}>{t('demoDesc.stepper_integer')}</div>
+        <div style={CARD.body}>
+          <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '16px' }}>
+            <Stepper defaultValue={5} integer min={0} max={100} />
+            <span style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>integer only</span>
+          </div>
         </div>
       </div>
     </MobilePreview>

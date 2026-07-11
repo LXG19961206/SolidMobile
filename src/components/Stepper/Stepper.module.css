@@ -1,3 +1,16 @@
+/* ── Dark mode ── */
+:global(html.dark) .wrapper {
+  --sc-stepper-button-bg: #2a2d33;
+  --sc-stepper-button-color: #e5e7eb;
+  --sc-stepper-button-hover-bg: #3a3d43;
+  --sc-stepper-button-active-bg: #4a4d53;
+  --sc-stepper-input-bg: #1a1d21;
+  --sc-stepper-input-color: #e5e7eb;
+  --sc-stepper-border-color: #3a3d43;
+  --sc-stepper-disabled-bg: #1a1d21;
+  --sc-stepper-disabled-color: #4a4d53;
+}
+
 .wrapper {
   display: inline-flex;
   align-items: center;

@@ -425,12 +425,15 @@ html.dark .doc-code-block {
 
 /* Mobile: tighter code blocks */
 @media (max-width: 1024px) {
+  .doc-code-block {
+    margin: 0.5rem 0;
+  }
   .doc-code-block>pre {
-    padding: 0.25rem 0.75rem 0.5rem;
+    padding: 0.6rem 0.75rem;
   }
   .doc-code-block>pre>code {
     font-size: 0.7rem;
-    line-height: 1.45;
+    line-height: 1.55;
   }
 }
 

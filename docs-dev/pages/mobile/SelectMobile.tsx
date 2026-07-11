@@ -9,7 +9,7 @@ import { Select } from '../../../src/components/Select';
 import { useT } from '../../doc-i18n';
 
 const propsData = [
-  { name: 'options', type: '{ text: string; value: string | number }[]', desc: 'componentProps.select.options' },
+  { name: 'options', type: '{ text: string; value: string | number; render?: JSX.Element }[]', desc: 'componentProps.select.options' },
   { name: 'value', type: 'string | number', desc: 'componentProps.select.value' },
   { name: 'onChange', type: '(value) => void', desc: 'componentProps.select.onChange' },
   { name: 'onConfirm', type: '(value) => void', desc: 'componentProps.select.onConfirm' },
@@ -48,6 +48,8 @@ export const SelectMobile: Component<SelectMobileProps> = (props) => {
   const [show2, setShow2] = createSignal(false);
   const [gender, setGender] = createSignal('');
   const [size, setSize] = createSignal('');
+  const [color, setColor] = createSignal('');
+  const [status, setStatus] = createSignal('');
 
   return (
     <MobilePreview title="Select 选择器" props={propsData} components={props.components} onNavigate={props.onNavigate}>
@@ -86,6 +88,61 @@ export const SelectMobile: Component<SelectMobileProps> = (props) => {
             placeholder="Select size"
           />
           <span style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>Selected: {size() || 'None'}</span>
+        </div>
+      </div>
+
+      {/* 自定义文字 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>{t('demo.selectCustomText')}</div>
+        <div style={CARD.desc}>{t('demoDesc.select_custom_text')}</div>
+        <div style={CARD.body}>
+          <Select
+            options={[
+              { text: 'Red', value: 'red' },
+              { text: 'Blue', value: 'blue' },
+              { text: 'Green', value: 'green' },
+            ]}
+            value={color()}
+            onChange={(v) => setColor(v as string)}
+            title="Pick a Color"
+            cancelText="Nope"
+            confirmText="Yes!"
+            placeholder="Choose color"
+          />
+          <span style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>Selected: {color() || 'None'}</span>
+        </div>
+      </div>
+
+      {/* 自定义渲染 */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>{t('demo.selectCustomRender')}</div>
+        <div style={CARD.desc}>{t('demoDesc.select_custom_render')}</div>
+        <div style={CARD.body}>
+          <Select
+            options={[
+              {
+                text: 'To Do', value: 'todo',
+                render: <span style={{ display: 'flex', 'align-items': 'center', gap: '8px', color: 'inherit' }}><span style={{ width: '10px', height: '10px', 'border-radius': '2px', background: '#8c8c8c', 'flex-shrink': 0 }} />⬜ To Do</span> as JSX.Element,
+              },
+              {
+                text: 'In Progress', value: 'in_progress',
+                render: <span style={{ display: 'flex', 'align-items': 'center', gap: '8px', color: 'inherit' }}><span style={{ width: '10px', height: '10px', 'border-radius': '2px', background: '#1677ff', 'flex-shrink': 0 }} />🔄 In Progress</span> as JSX.Element,
+              },
+              {
+                text: 'Done', value: 'done',
+                render: <span style={{ display: 'flex', 'align-items': 'center', gap: '8px', color: 'inherit' }}><span style={{ width: '10px', height: '10px', 'border-radius': '2px', background: '#52c41a', 'flex-shrink': 0 }} />✅ Done</span> as JSX.Element,
+              },
+              {
+                text: 'Blocked', value: 'blocked',
+                render: <span style={{ display: 'flex', 'align-items': 'center', gap: '8px', color: 'inherit' }}><span style={{ width: '10px', height: '10px', 'border-radius': '2px', background: '#ff4d4f', 'flex-shrink': 0 }} />🚫 Blocked</span> as JSX.Element,
+              },
+            ]}
+            value={status()}
+            onChange={(v) => setStatus(v as string)}
+            title="Task Status"
+            placeholder="选择任务状态"
+          />
+          <span style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>Selected: {status() || 'None'}</span>
         </div>
       </div>
     </MobilePreview>

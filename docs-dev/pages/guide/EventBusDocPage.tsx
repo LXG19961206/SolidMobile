@@ -2,7 +2,7 @@ import { createSignal, For, onCleanup, onMount, Show, useContext, type Component
 import { Portal } from 'solid-js/web';
 import { CodeBlock, DocLayout, PhoneTargetContext } from '../../doc-utils';
 import { useLocale } from '../../doc-i18n';
-import { Button } from '../../../src/components';
+import { Button, Input } from '../../../src/components';
 import { setEventBusHandler, getEventBusHandler } from '../../../src/event-bus';
 
 const H2 = { 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' };
@@ -11,23 +11,28 @@ const H2 = { 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem'
 
 const PhoneEventBusDemo: Component = () => {
   const phone = useContext(PhoneTargetContext);
-  const [logs, setLogs] = createSignal<Array<{ comp: string; type: string; ptype: string; size: string; time: string; id: number }>>([]);
+  const [logs, setLogs] = createSignal<Array<{ comp: string; type: string; detail: string; time: string; id: number }>>([]);
   let id = 0;
 
   onMount(() => {
     const prev = getEventBusHandler();
     setEventBusHandler((event) => {
       const p = (event.props as Record<string, unknown>) || {};
+      const pl = event.payload;
+      let detail = '';
+      if (event.component === 'Button') {
+        const parts = [p.type, p.variant, p.size, p.round && 'round', p.disabled && 'disabled'].filter(Boolean);
+        detail = parts.join(' ');
+      } else if (event.component === 'Input' && typeof pl === 'string') {
+        detail = `"${pl.length > 15 ? pl.slice(0, 15) + '…' : pl}"`;
+      } else if (typeof pl === 'string') {
+        detail = `"${pl.slice(0, 20)}"`;
+      } else if (typeof pl === 'number' || typeof pl === 'boolean') {
+        detail = String(pl);
+      }
       setLogs((prevLogs) => {
-        const next = [...prevLogs, {
-          comp: event.component,
-          type: event.type,
-          ptype: String(p.type ?? '-'),
-          size: String(p.size ?? 'md'),
-          time: new Date(event.timestamp).toLocaleTimeString(),
-          id: ++id,
-        }];
-        return next.length > 5 ? next.slice(-5) : next;
+        const next = [...prevLogs, { comp: event.component, type: event.type, detail, time: new Date(event.timestamp).toLocaleTimeString(), id: ++id }];
+        return next.length > 6 ? next.slice(-6) : next;
       });
       prev?.(event);
     });
@@ -40,12 +45,13 @@ const PhoneEventBusDemo: Component = () => {
     <Show when={target()}>
       <Portal mount={target()!}>
         <div style={{ padding: '12px 0' }}>
-          <div style={{ display: 'flex', gap: '6px', 'flex-wrap': 'wrap', 'margin-bottom': '10px' }}>
+          <div style={{ display: 'flex', gap: '6px', 'flex-wrap': 'wrap', 'margin-bottom': '8px' }}>
             <Button size="sm" onClick={() => {}}>Click</Button>
             <Button type="success" size="sm" onClick={() => {}}>OK</Button>
             <Button type="warning" size="sm" onClick={() => {}}>Warn</Button>
             <Button type="danger" size="sm" onClick={() => {}}>Del</Button>
           </div>
+          <Input placeholder="Type to watch change events…" clearable style={{ 'margin-bottom': '8px', 'font-size': '0.75rem' }} />
           <div style={{
             background: 'var(--sc-doc-code-bg, #f5f5f5)', color: 'var(--sc-doc-code-text, #374151)',
             'border-radius': '6px', padding: '8px 10px', 'min-height': '40px',
@@ -55,16 +61,15 @@ const PhoneEventBusDemo: Component = () => {
             <For each={logs()}>
               {(log) => (
                 <div>
-                  <span style={{ color: '#1677ff' }}>[{log.comp}]</span>{' '}
-                  <span style={{ color: '#16a34a' }}>{log.type}</span>
-                  <span style={{ color: '#9ca3af' }}>{' '}type={log.ptype}</span>
-                  <span style={{ color: '#9ca3af' }}>{' '}size={log.size}</span>
-                  <span style={{ color: '#d1d5db', float: 'right' }}>{log.time}</span>
+                  <span style={{ color: '#1677ff' }}>[{log.comp}]</span>
+                  <span style={{ color: '#16a34a', 'margin-left': '4px' }}>{log.type}</span>
+                  <span style={{ color: '#6b7280', 'margin-left': '6px' }}>{log.detail}</span>
+                  <span style={{ color: '#9ca3af', float: 'right' }}>{log.time}</span>
                 </div>
               )}
             </For>
             {logs().length === 0 && (
-              <div style={{ color: '#9ca3af' }}>Tap a button...</div>
+              <div style={{ color: '#9ca3af' }}>Tap a button or type...</div>
             )}
           </div>
         </div>

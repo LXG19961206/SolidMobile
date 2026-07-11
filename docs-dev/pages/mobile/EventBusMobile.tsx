@@ -2,7 +2,7 @@ import { createSignal, For, onCleanup, onMount, type Component } from 'solid-js'
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 import { CodeBlock } from '../../doc-utils';
 import { useT, useLocale } from '../../doc-i18n';
-import { Button } from '../../../src/components';
+import { Button, Input } from '../../../src/components';
 import { setEventBusHandler, emitEvent, getEventBusHandler } from '../../../src/event-bus';
 
 export interface EventBusMobileProps {
@@ -58,23 +58,28 @@ const EVENTS_LIST = [
 ];
 
 const EventBusLiveDemo: Component = () => {
-  const [logs, setLogs] = createSignal<Array<{ comp: string; type: string; ptype: string; size: string; time: string; id: number }>>([]);
+  const [logs, setLogs] = createSignal<Array<{ comp: string; type: string; detail: string; time: string; id: number }>>([]);
   let id = 0;
 
   onMount(() => {
     const prev = getEventBusHandler();
     setEventBusHandler((event) => {
       const p = (event.props as Record<string, unknown>) || {};
+      const pl = event.payload;
+      let detail = '';
+      if (event.component === 'Button') {
+        const parts = [p.type, p.variant, p.size, p.round && 'round', p.disabled && 'disabled'].filter(Boolean);
+        detail = parts.join(' ');
+      } else if (event.component === 'Input' && typeof pl === 'string') {
+        detail = `"${pl.length > 15 ? pl.slice(0, 15) + '…' : pl}"`;
+      } else if (typeof pl === 'string') {
+        detail = `"${pl.slice(0, 20)}"`;
+      } else if (typeof pl === 'number' || typeof pl === 'boolean') {
+        detail = String(pl);
+      }
       setLogs((prevLogs) => {
-        const next = [...prevLogs, {
-          comp: event.component,
-          type: event.type,
-          ptype: String(p.type ?? '-'),
-          size: String(p.size ?? 'md'),
-          time: new Date(event.timestamp).toLocaleTimeString(),
-          id: ++id,
-        }];
-        return next.length > 6 ? next.slice(-6) : next;
+        const next = [...prevLogs, { comp: event.component, type: event.type, detail, time: new Date(event.timestamp).toLocaleTimeString(), id: ++id }];
+        return next.length > 8 ? next.slice(-8) : next;
       });
       prev?.(event);
     });
@@ -83,13 +88,14 @@ const EventBusLiveDemo: Component = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', gap: '8px', 'flex-wrap': 'wrap', 'margin-bottom': '12px' }}>
+      <div style={{ display: 'flex', gap: '8px', 'flex-wrap': 'wrap', 'margin-bottom': '10px' }}>
         <Button onClick={() => {}} size="sm">Primary</Button>
         <Button type="success" size="sm" onClick={() => {}}>Success</Button>
         <Button type="warning" size="sm" onClick={() => {}}>Warning</Button>
         <Button type="danger" size="sm" onClick={() => {}}>Danger</Button>
         <Button variant="outline" size="sm" onClick={() => {}}>Outline</Button>
       </div>
+      <Input placeholder="Type to watch change events…" clearable style={{ 'margin-bottom': '10px', 'font-size': '0.8rem' }} />
       <div style={{
         background: 'var(--sc-doc-code-bg, #f5f5f5)', color: 'var(--sc-doc-code-text, #374151)',
         'border-radius': '6px', padding: '10px 12px', 'min-height': '48px',
@@ -99,16 +105,15 @@ const EventBusLiveDemo: Component = () => {
         <For each={logs()}>
           {(log) => (
             <div>
-              <span style={{ color: '#1677ff' }}>[{log.comp}]</span>{' '}
-              <span style={{ color: '#16a34a' }}>{log.type}</span>
-              <span style={{ color: '#9ca3af' }}>{'  '}type={log.ptype}</span>
-              <span style={{ color: '#9ca3af' }}>{'  '}size={log.size}</span>
-              <span style={{ color: '#d1d5db', float: 'right' }}>{log.time}</span>
+              <span style={{ color: '#1677ff' }}>[{log.comp}]</span>
+              <span style={{ color: '#16a34a', 'margin-left': '4px' }}>{log.type}</span>
+              <span style={{ color: '#6b7280', 'margin-left': '6px' }}>{log.detail}</span>
+              <span style={{ color: '#9ca3af', float: 'right' }}>{log.time}</span>
             </div>
           )}
         </For>
         {logs().length === 0 && (
-          <div style={{ color: '#9ca3af' }}>等待点击...</div>
+          <div style={{ color: '#9ca3af' }}>Click a button or type to see events…</div>
         )}
       </div>
     </div>

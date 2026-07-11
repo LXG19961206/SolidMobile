@@ -62,6 +62,11 @@ export const GUIDE_GROUPS: MenuGroup[] = [
       { name: 'Design Tokens 视觉规范', key: 'design-tokens' },
       { name: 'i18n 国际化', key: 'i18n' },
       { name: 'EventBus 事件总线', key: 'eventbus' },
+    ],
+  },
+  {
+    title: 'About 关于',
+    items: [
       { name: 'About Solid.js 关于框架', key: 'solidjs' },
       { name: 'About 关于项目', key: 'about' },
     ],

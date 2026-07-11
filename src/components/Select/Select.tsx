@@ -71,7 +71,7 @@ export const Select: Component<SelectProps> = (rawProps) => {
 
   /* ── Picker columns ── */
   const pickerColumns = createMemo((): PickerOption[][] => [
-    local.options.map((o) => ({ text: o.text, value: o.value })),
+    local.options.map((o) => ({ text: o.text, value: o.value, render: o.render })),
   ]);
 
   const pickerValue = createMemo((): (string | number)[] => {
@@ -103,7 +103,7 @@ export const Select: Component<SelectProps> = (rawProps) => {
         <Cell
           title={displayText() || placeholderText()}
           clickable
-          flush
+          flush={!!field}
           onClick={() => updateShow(true)}
           class={local.class}
           style={{
