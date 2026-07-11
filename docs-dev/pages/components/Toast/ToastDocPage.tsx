@@ -1,5 +1,5 @@
 import { useContext, type Component } from 'solid-js';
-import { Toast, ToastRenderer } from '../../../../src/components/Toast/ToastManager';
+import { Toast } from '../../../../src/components/Toast/ToastManager';
 import { Cell } from '../../../../src/components/Cell';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
@@ -35,9 +35,11 @@ const ToastDocInner: Component = () => {
 
   return (
     <div class={styles.page}>
-      <ToastRenderer />
       <h1 class={styles.h1}>Toast 轻提示</h1>
       <p class={styles.lead}>{t('componentIntro.ToastIntro')}</p>
+      <div style={{ background: '#e8f5e9', border: '1px solid #66bb6a', 'border-radius': '6px', padding: '10px 14px', 'font-size': '0.85rem', 'line-height': 1.6, margin: '12px 0', color: '#2e7d32' }}>
+        首次调用 <code>Toast.*()</code> 时会自动在 <code>document.body</code> 挂载渲染器，<strong>无需手动添加 <code>&lt;ToastRenderer /&gt;</code></strong>。如果你需要控制挂载位置（如放在 ProviderConfig 内部），仍可显式放置，自动挂载会检测到已存在的渲染器并跳过。
+      </div>
 
       <h2 id="props" class={styles.h2}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />

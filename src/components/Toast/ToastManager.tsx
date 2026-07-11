@@ -1,5 +1,5 @@
-import { createSignal, For, Show } from 'solid-js';
-import { Portal } from 'solid-js/web';
+import { createSignal, For, Show, createEffect, onCleanup } from 'solid-js';
+import { render, Portal } from 'solid-js/web';
 import { ToastItem } from './ToastItem';
 import type { ToastOptions, ToastHandle, ToastType } from './types';
 import { emitEvent } from '../../event-bus';
@@ -18,6 +18,9 @@ let nextId = 0;
 const [toasts, setToasts] = createSignal<ToastEntry[]>([]);
 const onCloseCallbacks = new Map<number, (() => void) | undefined>();
 
+/** Track whether the renderer was auto-mounted (vs manually placed by the user). */
+let autoMounted = false;
+
 function remove(id: number) {
   const cb = onCloseCallbacks.get(id);
   if (cb) cb();
@@ -25,7 +28,26 @@ function remove(id: number) {
   setToasts((prev) => prev.filter((t) => t.id !== id));
 }
 
+/**
+ * Ensure a DOM renderer exists.  If the user has already placed
+ * `<ToastRenderer />` in their tree, it will have created a root node
+ * with `data-sc-toast-root`.  Otherwise we auto-create one and append
+ * it to `document.body`.
+ */
+function ensureRenderer() {
+  if (document.querySelector('[data-sc-toast-root]')) return;
+
+  const root = document.createElement('div');
+  root.setAttribute('data-sc-toast-root', '');
+  document.body.appendChild(root);
+  autoMounted = true;
+
+  render(() => <ToastRenderer />, root);
+}
+
 function add(options: ToastOptions): ToastHandle {
+  ensureRenderer();
+
   const id = ++nextId;
   onCloseCallbacks.set(id, options.onClose);
 
@@ -105,10 +127,18 @@ export const Toast = {
 } as const;
 
 /* ---------------------------------------------------------------------- */
-/*  Renderer — mount once at app root                                       */
+/*  Renderer — mount once at app root (manual) or auto-mounted above       */
 /* ---------------------------------------------------------------------- */
 
+/**
+ * Manual renderer.  User places `<ToastRenderer />` in their component
+ * tree for explicit control (e.g. inside a `ProviderConfig`).  When omitted,
+ * the first `Toast.*()` call auto-creates a renderer in `document.body`.
+ */
 export function ToastRenderer() {
+  // Auto-cleanup happens when the renderer's DOM parent is removed.
+  // For auto-mounted nodes this is the detached div; for user-placed
+  // nodes this is whatever parent they chose.
   return (
     <For each={toasts()}>
       {(t) => (

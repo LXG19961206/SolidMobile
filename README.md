@@ -16,7 +16,7 @@ npm install solid-mobile solid-js
 
 ```tsx
 import { render } from 'solid-js/web';
-import { ProviderConfig, Button, Toast, ToastRenderer } from 'solid-mobile';
+import { ProviderConfig, Button, Toast } from 'solid-mobile';
 import 'solid-mobile/styles.css';
 
 function App() {
@@ -25,7 +25,6 @@ function App() {
       <Button type="primary" onClick={() => Toast.success('Hello!')}>
         Click Me
       </Button>
-      <ToastRenderer />
     </ProviderConfig>
   );
 }

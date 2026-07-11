@@ -1,4 +1,5 @@
 import { createSignal, For } from 'solid-js';
+import { render } from 'solid-js/web';
 import { NotifyItem } from './NotifyItem';
 import type { JSX } from 'solid-js';
 import type { NotifyOptions, NotifyHandle, NotifyType } from './types';
@@ -25,7 +26,17 @@ function remove(id: number) {
   setNotifies((prev) => prev.filter((n) => n.id !== id));
 }
 
+function ensureRenderer() {
+  if (document.querySelector('[data-sc-notify-root]')) return;
+  const root = document.createElement('div');
+  root.setAttribute('data-sc-notify-root', '');
+  document.body.appendChild(root);
+  render(() => <NotifyRenderer />, root);
+}
+
 function add(options: NotifyOptions): NotifyHandle {
+  ensureRenderer();
+
   const id = ++nextId;
   onCloseCallbacks.set(id, options.onClose);
   onOpenedCallbacks.set(id, options.onOpened);
