@@ -26,7 +26,7 @@ for (const messages of [docMessages, extraDocMessages]) {
   }
 }
 
-import { setGlobalLocale, useLocale } from '../src/i18n';
+import { setGlobalLocale, useLocale, useT } from '../src/i18n';
 import { ProviderConfig } from '../src/config';
 import { deriveColorSet } from '../src/utils/color';
 import { docThemeColor, persistThemeColor } from './doc-utils/doc-theme';
@@ -227,6 +227,7 @@ import { ThemeColorPicker } from './doc-utils/ThemeColorPicker';
 export function App() {
   useDisableZoom();
   const initial = parseHash();
+  const t = useT();
   const [section, setSection] = createSignal<Section>(initial.section);
   const [activeKey, setActiveKey] = createSignal(initial.pageKey || 'button');
   const [menuOpen, setMenuOpen] = createSignal(false);
@@ -249,8 +250,8 @@ export function App() {
   const isMobileViewport = () => typeof window !== 'undefined' && window.innerWidth <= 1024;
   const [mobileView, setMobileView] = createSignal(isMobileViewport());
   const topTabs = createMemo(() => [
-    { key: 'guide' as Section, label: 'Guide 指南' },
-    { key: 'components' as Section, label: 'Components 组件' },
+    { key: 'guide' as Section, label: t('nav.tabGuide') || 'Guide 指南' },
+    { key: 'components' as Section, label: t('nav.tabComponents') || 'Components 组件' },
   ]);
 
   onMount(() => {
@@ -311,24 +312,25 @@ export function App() {
   const closeMobileDrawer = () => setMobileDrawerOpen(false);
 
   const mobileGroups = createMemo(() => [
-    { title: '', items: [{ name: 'Home 首页', key: 'home' }] },
+    { title: '', items: [{ name: t('nav.mobileHome') || 'Home 首页', key: 'home' }] },
     {
-      title: 'Guide 指南', items: [
-        { name: 'ConfigProvider 全局配置', key: 'config' },
-        { name: 'Design Tokens 视觉规范', key: 'design-tokens' },
-        { name: 'i18n 国际化', key: 'i18n' },
-        { name: 'EventBus 事件总线', key: 'eventbus' },
+      title: t('nav.drawerGuideGroup') || 'Guide 指南', items: [
+        { name: t('nav.config') || 'ConfigProvider 全局配置', key: 'config' },
+        { name: t('nav.design-tokens') || 'Design Tokens 视觉规范', key: 'design-tokens' },
+        { name: t('nav.i18n') || 'i18n 国际化', key: 'i18n' },
+        { name: t('nav.eventbus') || 'EventBus 事件总线', key: 'eventbus' },
       ]
     },
     {
-      title: 'About 关于', items: [
-        { name: 'Solid.js 框架介绍', key: 'solidjs' },
-        { name: 'About 关于项目', key: 'about' },
+      title: t('nav.drawerAboutGroup') || 'About 关于', items: [
+        { name: t('nav.solidjs') || 'About Solid.js 关于框架', key: 'solidjs' },
+        { name: t('nav.about') || 'About 关于项目', key: 'about' },
       ]
     },
     ...GROUPS.map(g => ({
       ...g,
-      items: g.items.map(i => ({ ...i })),
+      title: t('nav.' + g.titleKey) || g.title,
+      items: g.items.map(i => ({ ...i, name: t('nav.' + i.key) || i.name })),
     })),
   ]);
 
@@ -356,7 +358,7 @@ export function App() {
             classList={{ [drawerStyles.drawerOpen!]: mobileDrawerOpen() }}
           >
             <div class={drawerStyles.drawerHeader}>
-              <span class={drawerStyles.drawerTitle}>组件 / Components</span>
+              <span class={drawerStyles.drawerTitle}>{t('nav.drawerTitle') || '组件 / Components'}</span>
               <button class={drawerStyles.drawerCloseBtn} onClick={closeMobileDrawer}>✕</button>
             </div>
             <div class={drawerStyles.drawerBody}>
@@ -373,7 +375,7 @@ export function App() {
                           classList={{ [drawerStyles.drawerItemActive!]: activeKey() === item.key }}
                           onClick={() => { closeMobileDrawer(); navigateTo(item.key); }}
                         >
-                          <span>{item.name}</span>
+                          <span>{t('nav.' + item.key) || item.name}</span>
                           <span class={drawerStyles.drawerItemArrow}>›</span>
                         </div>
                       )}
@@ -421,14 +423,14 @@ export function App() {
               <aside class={`sidebar ${menuOpen() ? 'open' : ''}`}>
                 <div class="sidebar-brand">
                   <span class="sidebar-brand-text">
-                    {section() === 'guide' ? 'Guide 指南' : 'Components 组件'}
+                    {section() === 'guide' ? (t('nav.tabGuide') || 'Guide 指南') : (t('nav.tabComponents') || 'Components 组件')}
                   </span>
                 </div>
                 <Show when={section() === 'components'}>
                   <input
                     class="sidebar-search"
                     type="text"
-                    placeholder="搜索组件..."
+                    placeholder={t('nav.searchComponents') || '搜索组件...'}
                     value={search()}
                     onInput={(e) => setSearch(e.currentTarget.value)}
                   />
@@ -440,14 +442,14 @@ export function App() {
                       <For each={compFilteredGroups()}>
                         {(group) => (
                           <div class="nav-group">
-                            <div class="nav-group-title">{group.title}</div>
+                            <div class="nav-group-title">{t('nav.' + group.titleKey) || group.title}</div>
                             <For each={group.items}>
                               {(item) => (
                                 <button
                                   class={`nav-item ${activeKey() === item.key ? 'active' : ''}`}
                                   onClick={() => navigateTo(item.key)}
                                 >
-                                  {item.name}
+                                  {t('nav.' + item.key) || item.name}
                                 </button>
                               )}
                             </For>
@@ -459,14 +461,14 @@ export function App() {
                     <For each={guideGroups()}>
                       {(group) => (
                         <div class="nav-group">
-                          <div class="nav-group-title">{group.title}</div>
+                          <div class="nav-group-title">{t('nav.' + group.titleKey) || group.title}</div>
                           <For each={group.items}>
                             {(item) => (
                               <button
                                 class={`nav-item ${activeKey() === item.key ? 'active' : ''}`}
                                 onClick={() => navigateTo(item.key)}
                               >
-                                {item.name}
+                                {t('nav.' + item.key) || item.name}
                               </button>
                             )}
                           </For>
@@ -487,10 +489,12 @@ export function App() {
                 <div class="topbar">
                   <button class="menu-btn" onClick={() => setMenuOpen(!menuOpen())}>☰</button>
                   <span class="topbar-title">
-                    {section() === 'guide'
-                      ? guideGroups().flatMap(g => g.items).find(i => i.key === activeKey())?.name || ''
-                      : compFilteredGroups().flatMap(g => g.items).find(i => i.key === activeKey())?.name || ''
-                    }
+                    {(() => {
+                      const key = activeKey();
+                      return t('nav.' + key) || (section() === 'guide'
+                        ? guideGroups().flatMap(g => g.items).find(i => i.key === key)?.name
+                        : compFilteredGroups().flatMap(g => g.items).find(i => i.key === key)?.name) || '';
+                    })()}
                   </span>
                 </div>
               </Show>
@@ -499,14 +503,14 @@ export function App() {
                   <>
                     {(() => {
                       const P = GUIDE_PAGES[activeKey()];
-                      return P ? <P /> : <div style="padding:2rem">未找到页面: {activeKey()}</div>;
+                      return P ? <P /> : <div style="padding:2rem">{t('nav.pageNotFound') || '未找到页面'}: {activeKey()}</div>;
                     })()}
                   </>
                 ) : (
                   <>
                     {(() => {
                       const C = PAGES[activeKey()];
-                      return C ? <C /> : <div style="padding:2rem">未找到组件: {activeKey()}</div>;
+                      return C ? <C /> : <div style="padding:2rem">{t('nav.componentNotFound') || '未找到组件'}: {activeKey()}</div>;
                     })()}
                   </>
                 )}

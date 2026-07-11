@@ -10,70 +10,70 @@ import { useT } from '../../../doc-i18n';
 import css from './CascaderDocPage.module.css';
 
 const regionOptions: CascaderOption[] = [
-  { text: '北京', value: 'beijing', children: [
-    { text: '朝阳区', value: 'chaoyang', children: [
-      { text: '望京街道', value: 'wangjing' }, { text: '三里屯街道', value: 'sanlitun' },
-      { text: '国贸', value: 'guomao' }, { text: '双井街道', value: 'shuangjing' },
-      { text: '劲松街道', value: 'jinsong' }, { text: '潘家园街道', value: 'panjiayuan' },
-      { text: '安贞街道', value: 'anzhen' }, { text: '奥运村街道', value: 'aoyuncun' },
+  { text: 'Beijing', value: 'beijing', children: [
+    { text: 'Chaoyang', value: 'chaoyang', children: [
+      { text: 'Wangjing', value: 'wangjing' }, { text: 'Sanlitun', value: 'sanlitun' },
+      { text: 'Guomao', value: 'guomao' }, { text: 'Shuangjing', value: 'shuangjing' },
+      { text: 'Jinsong', value: 'jinsong' }, { text: 'Panjiayuan', value: 'panjiayuan' },
+      { text: 'Anzhen', value: 'anzhen' }, { text: 'Olympic Village', value: 'aoyuncun' },
     ]},
-    { text: '海淀区', value: 'haidian', children: [
-      { text: '中关村街道', value: 'zhongguancun' }, { text: '五道口', value: 'wudaokou' },
-      { text: '西二旗', value: 'xierqi' }, { text: '上地街道', value: 'shangdi' },
-      { text: '清河街道', value: 'qinghe' },
+    { text: 'Haidian', value: 'haidian', children: [
+      { text: 'Zhongguancun', value: 'zhongguancun' }, { text: 'Wudaokou', value: 'wudaokou' },
+      { text: 'Xi Erqi', value: 'xierqi' }, { text: 'Shangdi', value: 'shangdi' },
+      { text: 'Qinghe', value: 'qinghe' },
     ]},
-    { text: '西城区', value: 'xicheng', children: [
-      { text: '金融街', value: 'jinrongjie' }, { text: '西单', value: 'xidan' },
-      { text: '德胜门外', value: 'deshengmenwai' },
+    { text: 'Xicheng', value: 'xicheng', children: [
+      { text: 'Financial Street', value: 'jinrongjie' }, { text: 'Xidan', value: 'xidan' },
+      { text: 'Deshengmen', value: 'deshengmenwai' },
     ]},
-    { text: '东城区', value: 'dongcheng' },
-    { text: '丰台区', value: 'fengtai' },
-    { text: '石景山区', value: 'shijingshan' },
-    { text: '通州区', value: 'tongzhou' },
-    { text: '大兴区', value: 'daxing' },
+    { text: 'Dongcheng', value: 'dongcheng' },
+    { text: 'Fengtai', value: 'fengtai' },
+    { text: 'Shijingshan', value: 'shijingshan' },
+    { text: 'Tongzhou', value: 'tongzhou' },
+    { text: 'Daxing', value: 'daxing' },
   ]},
-  { text: '上海', value: 'shanghai', children: [
-    { text: '浦东新区', value: 'pudong', children: [
-      { text: '陆家嘴', value: 'lujiazui' }, { text: '张江', value: 'zhangjiang' },
-      { text: '金桥', value: 'jinqiao' }, { text: '外高桥', value: 'waigaoqiao' },
-      { text: '川沙', value: 'chuansha' },
+  { text: 'Shanghai', value: 'shanghai', children: [
+    { text: 'Pudong', value: 'pudong', children: [
+      { text: 'Lujiazui', value: 'lujiazui' }, { text: 'Zhangjiang', value: 'zhangjiang' },
+      { text: 'Jinqiao', value: 'jinqiao' }, { text: 'Waigaoqiao', value: 'waigaoqiao' },
+      { text: 'Chuansha', value: 'chuansha' },
     ]},
-    { text: '静安区', value: 'jingan' },
-    { text: '徐汇区', value: 'xuhui' },
-    { text: '长宁区', value: 'changning' },
-    { text: '杨浦区', value: 'yangpu' },
-    { text: '虹口区', value: 'hongkou' },
+    { text: "Jing'an", value: 'jingan' },
+    { text: 'Xuhui', value: 'xuhui' },
+    { text: 'Changning', value: 'changning' },
+    { text: 'Yangpu', value: 'yangpu' },
+    { text: 'Hongkou', value: 'hongkou' },
   ]},
-  { text: '广东', value: 'guangdong', children: [
-    { text: '深圳', value: 'shenzhen', children: [
-      { text: '南山区', value: 'nanshan' }, { text: '福田区', value: 'futian' },
-      { text: '罗湖区', value: 'luohu' }, { text: '宝安区', value: 'baoan' },
-      { text: '龙岗区', value: 'longgang' }, { text: '龙华区', value: 'longhua' },
+  { text: 'Guangdong', value: 'guangdong', children: [
+    { text: 'Shenzhen', value: 'shenzhen', children: [
+      { text: 'Nanshan', value: 'nanshan' }, { text: 'Futian', value: 'futian' },
+      { text: 'Luohu', value: 'luohu' }, { text: 'Bao\'an', value: 'baoan' },
+      { text: 'Longgang', value: 'longgang' }, { text: 'Longhua', value: 'longhua' },
     ]},
-    { text: '广州', value: 'guangzhou', children: [
-      { text: '天河区', value: 'tianhe' }, { text: '越秀区', value: 'yuexiu' },
-      { text: '海珠区', value: 'haizhu' }, { text: '白云区', value: 'baiyun' },
+    { text: 'Guangzhou', value: 'guangzhou', children: [
+      { text: 'Tianhe', value: 'tianhe' }, { text: 'Yuexiu', value: 'yuexiu' },
+      { text: 'Haizhu', value: 'haizhu' }, { text: 'Baiyun', value: 'baiyun' },
     ]},
-    { text: '东莞', value: 'dongguan' },
-    { text: '佛山', value: 'foshan' },
-    { text: '珠海', value: 'zhuhai' },
+    { text: 'Dongguan', value: 'dongguan' },
+    { text: 'Foshan', value: 'foshan' },
+    { text: 'Zhuhai', value: 'zhuhai' },
   ]},
-  { text: '浙江', value: 'zhejiang', children: [
-    { text: '杭州', value: 'hangzhou', children: [
-      { text: '西湖区', value: 'xihu' }, { text: '滨江区', value: 'binjiang' },
-      { text: '余杭区', value: 'yuhang' }, { text: '萧山区', value: 'xiaoshan' },
+  { text: 'Zhejiang', value: 'zhejiang', children: [
+    { text: 'Hangzhou', value: 'hangzhou', children: [
+      { text: 'Xihu', value: 'xihu' }, { text: 'Binjiang', value: 'binjiang' },
+      { text: 'Yuhang', value: 'yuhang' }, { text: 'Xiaoshan', value: 'xiaoshan' },
     ]},
-    { text: '宁波', value: 'ningbo' },
-    { text: '温州', value: 'wenzhou' },
+    { text: 'Ningbo', value: 'ningbo' },
+    { text: 'Wenzhou', value: 'wenzhou' },
   ]},
-  { text: '江苏', value: 'jiangsu', children: [
-    { text: '南京', value: 'nanjing', children: [
-      { text: '鼓楼区', value: 'gulou' }, { text: '建邺区', value: 'jianye' },
-      { text: '玄武区', value: 'xuanwu' },
+  { text: 'Jiangsu', value: 'jiangsu', children: [
+    { text: 'Nanjing', value: 'nanjing', children: [
+      { text: 'Gulou', value: 'gulou' }, { text: 'Jianye', value: 'jianye' },
+      { text: 'Xuanwu', value: 'xuanwu' },
     ]},
-    { text: '苏州', value: 'suzhou' },
-    { text: '无锡', value: 'wuxi' },
-    { text: '常州', value: 'changzhou' },
+    { text: 'Suzhou', value: 'suzhou' },
+    { text: 'Wuxi', value: 'wuxi' },
+    { text: 'Changzhou', value: 'changzhou' },
   ]},
 ];
 
@@ -82,7 +82,7 @@ const propsData: PropRow[] = [
   { name: 'value', type: '(string | number)[]', default: '—', required: false, desc: 'componentProps.cascader.value' },
   { name: 'onChange', type: '(value: (string | number)[]) => void', default: '—', required: false, desc: 'componentProps.cascader.onChange' },
   { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.cascader.title' },
-  { name: 'placeholder', type: 'string', default: "'请选择'", required: false, desc: 'componentProps.cascader.placeholder' },
+  { name: 'placeholder', type: 'string', default: "'Please Select'", required: false, desc: 'componentProps.cascader.placeholder' },
   { name: 'closeable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.cascader.closeable' },
   { name: 'show', type: 'boolean', default: '—', required: false, desc: 'componentProps.cascader.show' },
   { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: 'componentProps.cascader.onUpdateShow' },
@@ -103,8 +103,8 @@ const optionPropsData: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'demo', title: '示例' },
+  { id: 'props', title: 'Props' },
+  { id: 'demo', title: 'Examples' },
 ];
 
 const CascaderDemo = () => {
@@ -114,14 +114,14 @@ const CascaderDemo = () => {
 
   return (
     <>
-      <Cell title={val().length ? val().join(' / ') : '选择地区'} clickable onClick={() => setShow(true)} />
+      <Cell title={val().length ? val().join(' / ') : 'Select Region'} clickable onClick={() => setShow(true)} />
       <Cascader
         options={regionOptions}
         show={show()}
         onUpdateShow={setShow}
         value={val()}
         onChange={setVal}
-        title="选择地区"
+        title="Select Region"
         closeable
         teleport={phoneTarget?.()}
       />
@@ -134,16 +134,16 @@ const DisabledCascader = () => {
   const [show, setShow] = createSignal(false);
   const [val, setVal] = createSignal<(string | number)[]>([]);
   const opts: CascaderOption[] = [
-    { text: '北京', value: 'beijing' },
-    { text: '上海', value: 'shanghai', disabled: true },
-    { text: '广东', value: 'guangdong' },
-    { text: '浙江', value: 'zhejiang' },
-    { text: '江苏', value: 'jiangsu', disabled: true },
+    { text: 'Beijing', value: 'beijing' },
+    { text: 'Shanghai', value: 'shanghai', disabled: true },
+    { text: 'Guangdong', value: 'guangdong' },
+    { text: 'Zhejiang', value: 'zhejiang' },
+    { text: 'Jiangsu', value: 'jiangsu', disabled: true },
   ];
   return (
     <>
-      <Cell title={val().length ? val().join(' / ') : '选择城市'} clickable onClick={() => setShow(true)} />
-      <Cascader options={opts} show={show()} onUpdateShow={setShow} value={val()} onChange={setVal} title="城市（部分禁用）" teleport={phoneTarget?.()} />
+      <Cell title={val().length ? val().join(' / ') : 'Select City'} clickable onClick={() => setShow(true)} />
+      <Cascader options={opts} show={show()} onUpdateShow={setShow} value={val()} onChange={setVal} title="City (Partial Disabled)" teleport={phoneTarget?.()} />
     </>
   );
 };
@@ -153,14 +153,14 @@ const JsxCascader = () => {
   const [show, setShow] = createSignal(false);
   const [val, setVal] = createSignal<(string | number)[]>([]);
   const opts: CascaderOption[] = [
-    { text: '北京', value: 'beijing', render: <span style="display:flex;align-items:center;gap:8px"><Icon name="map-pin" size={16} /> 北京</span> },
-    { text: '上海', value: 'shanghai', render: <span style="display:flex;align-items:center;gap:8px"><Icon name="map-pin" size={16} /> 上海</span> },
-    { text: '广东', value: 'guangdong', render: <span style="display:flex;align-items:center;gap:8px"><Icon name="map-pin" size={16} color="#22c55e" /> 广东</span> },
-    { text: '浙江', value: 'zhejiang', render: <span style="display:flex;align-items:center;gap:8px"><Icon name="map-pin" size={16} color="#f59e0b" /> 浙江</span> },
+    { text: 'Beijing', value: 'beijing', render: <span style="display:flex;align-items:center;gap:8px"><Icon name="map-pin" size={16} /> Beijing</span> },
+    { text: 'Shanghai', value: 'shanghai', render: <span style="display:flex;align-items:center;gap:8px"><Icon name="map-pin" size={16} /> Shanghai</span> },
+    { text: 'Guangdong', value: 'guangdong', render: <span style="display:flex;align-items:center;gap:8px"><Icon name="map-pin" size={16} color="#22c55e" /> Guangdong</span> },
+    { text: 'Zhejiang', value: 'zhejiang', render: <span style="display:flex;align-items:center;gap:8px"><Icon name="map-pin" size={16} color="#f59e0b" /> Zhejiang</span> },
   ];
   return (
     <>
-      <Cell title={val().length ? val().join(' / ') : '选择省份'} clickable onClick={() => setShow(true)} />
+      <Cell title={val().length ? val().join(' / ') : 'Select Province'} clickable onClick={() => setShow(true)} />
       <Cascader options={opts} show={show()} onUpdateShow={setShow} value={val()} onChange={setVal} title="省份（自定义渲染）" checkmark={<Icon name="check" size={16} color="var(--sc-color-primary, #1677ff)" />} teleport={phoneTarget?.()} />
     </>
   );
@@ -175,19 +175,19 @@ const AsyncCascader = () => {
     await new Promise(r => setTimeout(r, 2000));
     const map: Record<string, CascaderOption[]> = {
       __root__: [
-        { text: '北京', value: 'beijing' },
-        { text: '上海', value: 'shanghai' },
-        { text: '广东', value: 'guangdong' },
+        { text: 'Beijing', value: 'beijing' },
+        { text: 'Shanghai', value: 'shanghai' },
+        { text: 'Guangdong', value: 'guangdong' },
       ],
       beijing: [
-        { text: '朝阳区', value: 'chaoyang' },
-        { text: '海淀区', value: 'haidian' },
-        { text: '东城区', value: 'dongcheng' },
+        { text: 'Chaoyang', value: 'chaoyang' },
+        { text: 'Haidian', value: 'haidian' },
+        { text: 'Dongcheng', value: 'dongcheng' },
       ],
       chaoyang: [
-        { text: '望京街道', value: 'wangjing', isLeaf: true },
-        { text: '三里屯街道', value: 'sanlitun', isLeaf: true },
-        { text: '国贸', value: 'guomao', isLeaf: true },
+        { text: 'Wangjing', value: 'wangjing', isLeaf: true },
+        { text: 'Sanlitun', value: 'sanlitun', isLeaf: true },
+        { text: 'Guomao', value: 'guomao', isLeaf: true },
       ],
     };
     return map[String(option.value)] || [];
@@ -195,14 +195,14 @@ const AsyncCascader = () => {
 
   return (
     <>
-      <Cell title={val().length ? val().join(' / ') : '选择地区'} clickable onClick={() => setShow(true)} />
-      <Show when={val().length}><span style="font-size:0.8rem;color:#6b7280">已选: {val().join(' → ')}</span></Show>
+      <Cell title={val().length ? val().join(' / ') : 'Select Region'} clickable onClick={() => setShow(true)} />
+      <Show when={val().length}><span style="font-size:0.8rem;color:#6b7280">Selected: {val().join(' → ')}</span></Show>
       <Cascader
         options={[]}
         onLoadChildren={loadChildren}
         show={show()} onUpdateShow={setShow}
         value={val()} onChange={setVal}
-        title="异步加载地区"
+        title="Async Load Region"
         closeable
         teleport={phoneTarget?.()}
         loading={<div style="text-align:center;padding:32px;color:#9ca3af"><Loading size={24} /><div style="margin-top:8px;font-size:0.8rem">加载地区数据中...</div></div>}
@@ -216,7 +216,7 @@ export const CascaderDocPage = () => {
   return (
     <DocLayout>
     <div class={css.page}>
-      <h1 class={css.h1}>Cascader 级联选择器</h1>
+      <h1 class={css.h1}>Cascader器</h1>
       <p class={css.intro}>
         {t('componentIntro.CascaderIntro')}
       </p>
@@ -232,7 +232,7 @@ export const CascaderDocPage = () => {
       <DemoBlock
         title={t('demo.cascaderRegion')}
         desc={t('demoDesc.cascader_basic')}
-        code={`<Cascader\n  options={options}\n  show={show()}\n  onUpdateShow={setShow}\n  value={val()}\n  onChange={setVal}\n  title="选择地区"\n  closeable\n/>`}
+        code={`<Cascader\n  options={options}\n  show={show()}\n  onUpdateShow={setShow}\n  value={val()}\n  onChange={setVal}\n  title="Select Region"\n  closeable\n/>`}
       >
         <CascaderDemo />
       </DemoBlock>
@@ -240,7 +240,7 @@ export const CascaderDocPage = () => {
       <DemoBlock
         title="禁用选项"
         desc={t('demoDesc.cascader_disabled')}
-        code={`const options = [\n  { text: '北京', value: 'beijing' },\n  { text: '上海', value: 'shanghai', disabled: true },\n  { text: '广东', value: 'guangdong' },\n];`}
+        code={`const options = [\n  { text: 'Beijing', value: 'beijing' },\n  { text: 'Shanghai', value: 'shanghai', disabled: true },\n  { text: 'Guangdong', value: 'guangdong' },\n];`}
       >
         <DisabledCascader />
       </DemoBlock>
@@ -248,7 +248,7 @@ export const CascaderDocPage = () => {
       <DemoBlock
         title={t('demo.customRender')}
         desc={t('demo.customRenderDesc')}
-        code={`const options = [\n  { text: '北京', value: 'beijing',\n    render: <span style="display:flex;align-items:center;gap:8px">\n      <Icon name="map-pin" size={16} /> 北京\n    </span>,\n  },\n  ...\n];`}
+        code={`const options = [\n  { text: 'Beijing', value: 'beijing',\n    render: <span style="display:flex;align-items:center;gap:8px">\n      <Icon name="map-pin" size={16} /> 北京\n    </span>,\n  },\n  ...\n];`}
       >
         <JsxCascader />
       </DemoBlock>
@@ -256,7 +256,7 @@ export const CascaderDocPage = () => {
       <DemoBlock
         title={t('demo.cascaderAsync')}
         desc={t('demoDesc.cascader_async')}
-        code={`const loadChildren = async (option) => {\n  const res = await fetch('/api/areas?parent=' + option.value);\n  return res.json();\n};\n\n<Cascader\n  options={[]}\n  onLoadChildren={loadChildren}\n  show={show()}\n  onUpdateShow={setShow}\n  title="异步加载地区"\n/>`}
+        code={`const loadChildren = async (option) => {\n  const res = await fetch('/api/areas?parent=' + option.value);\n  return res.json();\n};\n\n<Cascader\n  options={[]}\n  onLoadChildren={loadChildren}\n  show={show()}\n  onUpdateShow={setShow}\n  title="Async Load Region"\n/>`}
       >
         <AsyncCascader />
       </DemoBlock>

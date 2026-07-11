@@ -14,12 +14,12 @@ const propsData: PropRow[] = [
   { name: 'onCancel', type: '() => void', default: '—', required: false, desc: 'componentProps.timepicker.onCancel' },
   { name: 'show', type: 'boolean', default: '—', required: false, desc: 'componentProps.timepicker.show' },
   { name: 'onUpdateShow', type: '(show: boolean) => void', default: '—', required: false, desc: 'componentProps.timepicker.onUpdateShow' },
-  { name: 'placeholder', type: 'string', default: "'请选择时间'", required: false, desc: 'componentProps.timepicker.placeholder' },
-  { name: 'title', type: 'string', default: "'请选择'", required: false, desc: 'componentProps.timepicker.title' },
+  { name: 'placeholder', type: 'string', default: "'Please select a time'", required: false, desc: 'componentProps.timepicker.placeholder' },
+  { name: 'title', type: 'string', default: "'Please Select'", required: false, desc: 'componentProps.timepicker.title' },
   { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: 'componentProps.timepicker.visibleItemCount' },
   { name: 'optionHeight', type: 'number', default: '50', required: false, desc: 'componentProps.timepicker.optionHeight' },
-  { name: 'cancelText', type: 'string', default: '跟随 locale', required: false, desc: 'componentProps.timepicker.cancelText' },
-  { name: 'confirmText', type: 'string', default: '跟随 locale', required: false, desc: 'componentProps.timepicker.confirmText' },
+  { name: 'cancelText', type: 'string', default: 'Follows locale', required: false, desc: 'componentProps.timepicker.cancelText' },
+  { name: 'confirmText', type: 'string', default: 'Follows locale', required: false, desc: 'componentProps.timepicker.confirmText' },
   { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.timepicker.teleport' },
 ];
 
@@ -33,7 +33,7 @@ const BasicDemo: Component = () => {
       <CellGroup>
         <Cell
           title="选择时间"
-          value={val() || '请选择'}
+          value={val() || 'Please Select'}
           clickable
           onClick={() => {
             // TimePicker manages its own show state (auto mode)
@@ -57,7 +57,7 @@ const ControlledDemo: Component = () => {
       <CellGroup>
         <Cell
           title="预设值"
-          value={val() || '请选择'}
+          value={val() || 'Please Select'}
           clickable
         />
       </CellGroup>
@@ -83,11 +83,11 @@ const FormDemo: Component = () => {
           <TimePicker placeholder="选择结束时间" teleport={phone?.()} />
         </FormItem>
         <div style={{ padding: '12px 1rem' }}>
-          <Button type="primary" block nativeType="submit" text="提交" />
+          <Button type="primary" block nativeType="submit" text="Submit" />
         </div>
       </Form>
       <div style={{ padding: '0 1rem', 'font-size': '0.8rem', color: '#6b7280' }}>
-        提交值: {JSON.stringify(formVal())}
+        Submit value: {JSON.stringify(formVal())}
       </div>
     </>
   );
@@ -100,7 +100,7 @@ const codeForm = `<Form onSubmit={(v) => console.log(v)}>
   <FormItem name="endTime" label="结束时间">
     <TimePicker />
   </FormItem>
-  <Button type="primary" block nativeType="submit" text="提交" />
+  <Button type="primary" block nativeType="submit" text="Submit" />
 </Form>`;
 
 export const TimePickerDocPage: Component = () => {
@@ -108,7 +108,7 @@ export const TimePickerDocPage: Component = () => {
   return (
   <DocLayout>
     <div style={{ padding: '16px', 'max-width': '960px' }}>
-      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>TimePicker 时间选择</h1>
+      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>TimePicker</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
         {t('componentIntro.TimePickerIntro')}
       </p>

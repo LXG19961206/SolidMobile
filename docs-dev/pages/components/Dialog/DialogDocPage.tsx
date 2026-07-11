@@ -16,8 +16,8 @@ const propsData: PropRow[] = [
   { name: 'messageAlign', type: "'left' | 'center' | 'right'", default: "'center'", required: false, desc: 'componentProps.dialog.messageAlign' },
   { name: 'showConfirmButton', type: 'boolean', default: 'true', required: false, desc: 'componentProps.dialog.showConfirmButton' },
   { name: 'showCancelButton', type: 'boolean', default: 'false', required: false, desc: 'componentProps.dialog.showCancelButton' },
-  { name: 'confirmText', type: 'string | JSX.Element', default: "'确认'", required: false, desc: 'componentProps.dialog.confirmText' },
-  { name: 'cancelText', type: 'string | JSX.Element', default: "'取消'", required: false, desc: 'componentProps.dialog.cancelText' },
+  { name: 'confirmText', type: 'string | JSX.Element', default: "'Confirm'", required: false, desc: 'componentProps.dialog.confirmText' },
+  { name: 'cancelText', type: 'string | JSX.Element', default: "'Cancel'", required: false, desc: 'componentProps.dialog.cancelText' },
   { name: 'confirmDisabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.dialog.confirmDisabled' },
   { name: 'cancelDisabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.dialog.cancelDisabled' },
   { name: 'zIndex', type: 'number | string', default: '2000', required: false, desc: 'componentProps.dialog.zIndex' },
@@ -34,9 +34,9 @@ const propsData: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'api', title: '命令式 API' },
-  { id: 'demo', title: '示例' },
+  { id: 'props', title: 'Props' },
+  { id: 'api', title: 'Imperative API' },
+  { id: 'demo', title: 'Examples' },
 ];
 
 const DialogDocInner: Component = () => {
@@ -51,7 +51,7 @@ const DialogDocInner: Component = () => {
   return (
     <>
       <div class={css.page}>
-        <h1 class={css.h1}>Dialog 弹窗</h1>
+        <h1 class={css.h1}>Dialog</h1>
         <p class={css.intro}>
           {t('componentIntro.DialogIntro')}
         </p>
@@ -68,8 +68,8 @@ const DialogDocInner: Component = () => {
         ]} />
         <DemoBlock
           title={t('demo.dialogDismiss')}
-          desc={'show/alert/confirm 均返回 { dismiss: () => void } 句柄对象，调用 handle.dismiss() 可主动关闭该弹窗，常用于需要在异步操作完成后手动关闭的场景。'}
-          code={`const handle = Dialog.show({\n  title: '处理中',\n  message: '请稍候...',\n  showConfirmButton: false,\n});\n\n// 异步操作完成后手动关闭\nawait doSomethingAsync();\nhandle.dismiss();`}
+          desc={'show/alert/confirm all return a { dismiss: () => void } handle. Call handle.dismiss() to programmatically close the dialog, useful for async workflows.'}
+          code={`const handle = Dialog.show({\n  title: 'Processing',\n  message: 'Please wait...',\n  showConfirmButton: false,\n});\n\n// 异步操作完成后手动关闭\nawait doSomethingAsync();\nhandle.dismiss();`}
           phone={false}
         >
           <div />
@@ -77,26 +77,26 @@ const DialogDocInner: Component = () => {
 
         <h2 id="demo" class={css.h2}>{t('demo.examples')}</h2>
 
-        <DemoBlock title={t('demo.dialogAlert')} desc={t('demoDesc.dialog_alert')} code={`Dialog.alert({\n  title: '提示',\n  message: '操作成功！',\n});`} groupCode="基础弹窗">
-          <Cell title="弹出提示" clickable onClick={() => show({ title: '提示', message: '操作成功！' })} />
+        <DemoBlock title={t('demo.dialogAlert')} desc={t('demoDesc.dialog_alert')} code={`Dialog.alert({\n  title: 'Notice',\n  message: 'Success!',\n});`} groupCode="基础弹窗">
+          <Cell title="弹出提示" clickable onClick={() => show({ title: 'Notice', message: 'Success!' })} />
         </DemoBlock>
-        <DemoBlock title={t('demo.dialogConfirm')} desc={t('demoDesc.dialog_confirm')} code={`Dialog.confirm({\n  title: '确认删除',\n  message: '此操作不可撤销，确定继续吗？',\n});`} groupCode="基础弹窗">
-          <Cell title="删除确认" clickable onClick={() => show({ title: '确认删除', message: '此操作不可撤销，确定继续吗？', showCancelButton: true })} />
+        <DemoBlock title={t('demo.dialogConfirm')} desc={t('demoDesc.dialog_confirm')} code={`Dialog.confirm({\n  title: 'Confirm Delete',\n  message: 'This cannot be undone. Are you sure?',\n});`} groupCode="基础弹窗">
+          <Cell title="删除确认" clickable onClick={() => show({ title: 'Confirm Delete', message: 'This cannot be undone. Are you sure?', showCancelButton: true })} />
         </DemoBlock>
-        <DemoBlock title={t('demo.dialogNoTitle')} desc={t('demoDesc.dialog_no_title')} code={`Dialog.show({\n  message: '这是一条纯文本消息，没有标题。',\n});`} groupCode="基础弹窗">
-          <Cell title="纯消息" clickable onClick={() => show({ message: '这是一条纯文本消息，没有标题。' })} />
+        <DemoBlock title={t('demo.dialogNoTitle')} desc={t('demoDesc.dialog_no_title')} code={`Dialog.show({\n  message: 'This is a plain text message without a title.',\n});`} groupCode="基础弹窗">
+          <Cell title="纯消息" clickable onClick={() => show({ message: 'This is a plain text message without a title.' })} />
         </DemoBlock>
         <DemoBlock title={t('demo.dialogMultiline')} desc={t('demoDesc.message_中的___n_自动换行_')} code={`Dialog.alert({\n  message: '第一行\\n第二行\\n第三行',\n});`} groupCode="基础弹窗">
-          <Cell title={t('demo.dialogMultiline')} clickable onClick={() => show({ message: '第一行\n第二行\n第三行' })} />
+          <Cell title={t('demo.dialogMultiline')} clickable onClick={() => show({ message: 'Line 1\nLine 2\nLine 3' })} />
         </DemoBlock>
-        <DemoBlock title={t('demo.dialogCustomText')} desc={t('demoDesc.dialog_custom_text')} code={`Dialog.confirm({\n  title: '保存草稿',\n  confirmText: '保存',\n  cancelText: '不保存',\n});`} groupCode="高级弹窗">
-          <Cell title={t('demo.customTrigger')} clickable onClick={() => show({ title: '保存草稿', message: '是否保存当前编辑内容？', showCancelButton: true, confirmText: '保存', cancelText: '不保存' })} />
+        <DemoBlock title={t('demo.dialogCustomText')} desc={t('demoDesc.dialog_custom_text')} code={`Dialog.confirm({\n  title: 'Save Draft',\n  confirmText: 'Save',\n  cancelText: 'Discard',\n});`} groupCode="高级弹窗">
+          <Cell title={t('demo.customTrigger')} clickable onClick={() => show({ title: 'Save Draft', message: '是否保存当前编辑内容？', showCancelButton: true, confirmText: 'Save', cancelText: 'Discard' })} />
         </DemoBlock>
-        <DemoBlock title={t('demo.dialogJSX')} desc={t('demoDesc.dialog_jsx')} code={`Dialog.alert({\n  title: '更新说明',\n  message: <div>...</div>,\n});`} groupCode="高级弹窗">
-          <Cell title="更新日志" clickable onClick={() => show({ title: '更新说明', message: (<div><p>v2.0 版本已发布</p></div>) })} />
+        <DemoBlock title={t('demo.dialogJSX')} desc={t('demoDesc.dialog_jsx')} code={`Dialog.alert({\n  title: 'Release Notes',\n  message: <div>...</div>,\n});`} groupCode="高级弹窗">
+          <Cell title="更新日志" clickable onClick={() => show({ title: 'Release Notes', message: (<div><p>v2.0 版本已发布</p></div>) })} />
         </DemoBlock>
-        <DemoBlock title={t('demo.asyncLoading')} desc={t('demoDesc.dialog_async')} code={`Dialog.confirm({\n  title: '提交确认',\n  onConfirm: async () => { await fetch(...); },\n});`} groupCode="高级弹窗">
-          <Cell title="异步提交" clickable onClick={() => show({ title: '提交确认', message: '确定要提交吗？提交后不可修改。', showCancelButton: true, confirmText: '提交', onConfirm: () => new Promise(r => setTimeout(r, 1500)) })} />
+        <DemoBlock title={t('demo.asyncLoading')} desc={t('demoDesc.dialog_async')} code={`Dialog.confirm({\n  title: 'Confirm Submission',\n  onConfirm: async () => { await fetch(...); },\n});`} groupCode="高级弹窗">
+          <Cell title="异步提交" clickable onClick={() => show({ title: 'Confirm Submission', message: 'Are you sure? This cannot be undone.', showCancelButton: true, confirmText: 'Submit', onConfirm: () => new Promise(r => setTimeout(r, 1500)) })} />
         </DemoBlock>
 
         <GroupCodePhone />

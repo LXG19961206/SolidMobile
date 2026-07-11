@@ -45,38 +45,38 @@ const itemProps: PropRow[] = [
   { name: 'required', type: 'boolean', default: 'false', required: false, desc: 'componentProps.form.required' },
   { name: 'rules', type: 'FormRule[]', default: '—', required: false, desc: 'componentProps.form.rules' },
   { name: 'help', type: 'string', default: '—', required: false, desc: 'componentProps.form.help' },
-  { name: 'labelAlign', type: "'top' | 'left' | 'right'", default: "继承 Form", required: false, desc: 'componentProps.formItem.labelAlign' },
-  { name: 'labelWidth', type: 'string', default: "继承 Form", required: false, desc: "标签固定宽度。" },
-  { name: 'controlAlign', type: "'left' | 'right'", default: "继承 Form", required: false, desc: 'componentProps.form.controlAlign' },
+  { name: 'labelAlign', type: "'top' | 'left' | 'right'", default: "Inherits from Form", required: false, desc: 'componentProps.formItem.labelAlign' },
+  { name: 'labelWidth', type: 'string', default: "Inherits from Form", required: false, desc: "Label fixed width." },
+  { name: 'controlAlign', type: "'left' | 'right'", default: "Inherits from Form", required: false, desc: 'componentProps.form.controlAlign' },
 ];
 
 /* ── 示例省市区数据 ── */
 
 const cityTree: PickerOption[] = [
   {
-    text: '广东省', value: 'gd',
+    text: 'Guangdong', value: 'gd',
     children: [
       {
-        text: '广州市', value: 'gz', children: [
-          { text: '天河区', value: 'gz-th' },
-          { text: '越秀区', value: 'gz-yx' },
+        text: 'Guangzhou', value: 'gz', children: [
+          { text: 'Tianhe', value: 'gz-th' },
+          { text: 'Yuexiu', value: 'gz-yx' },
         ]
       },
       {
-        text: '深圳市', value: 'sz', children: [
-          { text: '南山区', value: 'sz-ns' },
-          { text: '福田区', value: 'sz-ft' },
+        text: 'Shenzhen', value: 'sz', children: [
+          { text: 'Nanshan', value: 'sz-ns' },
+          { text: 'Futian', value: 'sz-ft' },
         ]
       },
     ],
   },
   {
-    text: '浙江省', value: 'zj',
+    text: 'Zhejiang', value: 'zj',
     children: [
       {
-        text: '杭州市', value: 'hz', children: [
-          { text: '西湖区', value: 'hz-xh' },
-          { text: '上城区', value: 'hz-sc' },
+        text: 'Hangzhou', value: 'hz', children: [
+          { text: 'Xihu', value: 'hz-xh' },
+          { text: 'Shangcheng', value: 'hz-sc' },
         ]
       },
     ],
@@ -94,64 +94,64 @@ const FullDemoCode = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}
     </div>
   </div>
 
-  <FormItem name="username" label="用户名" required rules={[{ validator: v => v?.length >= 2, message: '至少 2 个字符' }]}>
-    <Input placeholder="请输入用户名" clearable align={ctrlRight() ? 'right' : 'left'} />
+  <FormItem name="username" label="Username" required rules={[{ validator: v => v?.length >= 2, message: 'At least 2 characters' }]}>
+    <Input placeholder="Enter username" clearable align={ctrlRight() ? 'right' : 'left'} />
   </FormItem>
-  <FormItem name="intro" label="简介">
-    <Textarea placeholder="说点什么..." />
+  <FormItem name="intro" label="Bio">
+    <Textarea placeholder="Say something..." />
   </FormItem>
-  <FormItem name="lang" label="语言" labelAlign="top" required rules={[{ validator: v => !!v, message: '请选择语言' }]}>
+  <FormItem name="lang" label="Language" labelAlign="top" required rules={[{ validator: v => !!v, message: 'Please select language' }]}>
     <RadioGroup direction="horizontal">
       <Radio value="zh" label="中文" />
       <Radio value="en" label="English" />
       <Radio value="ja" label="日本語" />
     </RadioGroup>
   </FormItem>
-  <FormItem name="hobbies" label="爱好" labelAlign="top">
+  <FormItem name="hobbies" label="Hobbies" labelAlign="top">
     <CheckboxGroup direction="horizontal">
       <Checkbox value="code" label="Code" />
       <Checkbox value="read" label="Read" />
     </CheckboxGroup>
   </FormItem>
-  <FormItem name="score" label="评分">
+  <FormItem name="score" label="Rating">
     <Rate />
   </FormItem>
-  <FormItem name="count" label="数量">
+  <FormItem name="count" label="Quantity">
     <Stepper />
   </FormItem>
-  <FormItem name="range" label="范围">
+  <FormItem name="range" label="Range">
     <div style={{ padding: '8px 4px', flex: '1', 'min-width': '0' }}>
       <Slider />
     </div>
   </FormItem>
-  <FormItem name="agree" label="同意协议">
+  <FormItem name="agree" label="Agree">
     <Toggle />
   </FormItem>
-  <FormItem name="city" label="所在城市">
+  <FormItem name="city" label="City">
     <Select
       options={[
-        { text: '北京', value: 'beijing' },
-        { text: '上海', value: 'shanghai' },
-        { text: '广州', value: 'guangzhou' },
+        { text: 'Beijing', value: 'beijing' },
+        { text: 'Shanghai', value: 'shanghai' },
+        { text: 'Guangzhou', value: 'guangzhou' },
       ]}
       teleport={phone?.()?.parentElement?.parentElement || undefined}
     />
   </FormItem>
-  <FormItem name="birthday" label="生日">
-    <DatePicker placeholder="选择出生日期" teleport={phone?.()?.parentElement?.parentElement || undefined} />
+  <FormItem name="birthday" label="Birthday">
+    <DatePicker placeholder="Select birth date" teleport={phone?.()?.parentElement?.parentElement || undefined} />
   </FormItem>
-  <FormItem name="region" label="地区">
-    <CityPicker columns={cityTree} placeholder="选择省市区" teleport={phone?.()?.parentElement?.parentElement || undefined} />
+  <FormItem name="region" label="Region">
+    <CityPicker columns={cityTree} placeholder="Select region" teleport={phone?.()?.parentElement?.parentElement || undefined} />
   </FormItem>
-  <FormItem name="photos" label="照片">
+  <FormItem name="photos" label="Photos">
     <Upload api={mockUploadApi} maxCount={6} />
   </FormItem>
-  <FormItem name="time" label="时间">
-    <TimePicker placeholder="选择时间" teleport={phone?.()?.parentElement?.parentElement || undefined} />
+  <FormItem name="time" label="Time">
+    <TimePicker placeholder="Select time" teleport={phone?.()?.parentElement?.parentElement || undefined} />
   </FormItem>
   <div style={{ padding: '12px 1rem', display: 'flex', gap: '12px' }}>
-    <Button type="primary" block nativeType="submit" text="提交" />
-    <Button text="重置" onClick={() => formRef?.resetFormValue()} />
+    <Button type="primary" block nativeType="submit" text="Submit" />
+    <Button text="Reset" onClick={() => formRef?.resetFormValue()} />
   </div>
 </Form>`;
 
@@ -177,7 +177,7 @@ const FullFormDemo: Component = () => {
     <>
       <Form
         ref={(r: any) => { formRef = r; }}
-        onSubmit={(v) => { setFormVal(v); Toast.success('提交: ' + JSON.stringify(v)); }}
+        onSubmit={(v) => { setFormVal(v); Toast.success('Submit: ' + JSON.stringify(v)); }}
         labelWidth="5em"
         colon
         controlAlign={ctrlRight() ? 'right' : 'left'}
@@ -192,22 +192,22 @@ const FullFormDemo: Component = () => {
         </div>
 
         {/* ── Input ── */}
-        <FormItem name="username" label="用户名" required rules={[{
+        <FormItem name="username" label="Username" required rules={[{
           validator: (v: unknown) => (v as string)?.length >= 2,
-          message: '至少 2 个字符',
+          message: 'At least 2 characters',
         }]}>
-          <Input placeholder="请输入用户名" clearable align={ctrlRight() ? 'right' : 'left'} />
+          <Input placeholder="Enter username" clearable align={ctrlRight() ? 'right' : 'left'} />
         </FormItem>
 
         {/* ── Textarea ── */}
-        <FormItem name="intro" label="简介">
-          <Textarea placeholder="说点什么..." />
+        <FormItem name="intro" label="Bio">
+          <Textarea placeholder="Say something..." />
         </FormItem>
 
         {/* ── Radio ── */}
-        <FormItem name="lang" label="语言" labelAlign="top" required rules={[{
+        <FormItem name="lang" label="Language" labelAlign="top" required rules={[{
           validator: (v: unknown) => !!v,
-          message: '请选择语言',
+          message: 'Please select language',
         }]}>
           <RadioGroup direction="horizontal">
             <Radio value="zh" label="中文" />
@@ -218,7 +218,7 @@ const FullFormDemo: Component = () => {
         </FormItem>
 
         {/* ── Checkbox ── */}
-        <FormItem name="hobbies" label="爱好" labelAlign="top">
+        <FormItem name="hobbies" label="Hobbies" labelAlign="top">
           <CheckboxGroup direction="horizontal">
             <Checkbox value="code" label="Code" />
             <Checkbox value="read" label="Read" />
@@ -228,67 +228,67 @@ const FullFormDemo: Component = () => {
         </FormItem>
 
         {/* ── Switch ── */}
-        <FormItem name="agree" label="同意协议">
+        <FormItem name="agree" label="Agree">
           <Toggle />
         </FormItem>
 
         {/* ── Rate ── */}
-        <FormItem name="score" label="评分">
+        <FormItem name="score" label="Rating">
           <Rate />
         </FormItem>
 
         {/* ── Stepper ── */}
-        <FormItem name="count" label="数量">
+        <FormItem name="count" label="Quantity">
           <Stepper />
         </FormItem>
 
         {/* ── Slider ── */}
-        <FormItem name="range" label="范围">
+        <FormItem name="range" label="Range">
           <div style={{ padding: '8px 4px', flex: '1', 'min-width': '0' }}>
             <Slider />
           </div>
         </FormItem>
 
         {/* ── Select ── */}
-        <FormItem name="city" label="所在城市">
+        <FormItem name="city" label="City">
           <Select
             options={[
-              { text: '北京', value: 'beijing' },
-              { text: '上海', value: 'shanghai' },
-              { text: '广州', value: 'guangzhou' },
+              { text: 'Beijing', value: 'beijing' },
+              { text: 'Shanghai', value: 'shanghai' },
+              { text: 'Guangzhou', value: 'guangzhou' },
             ]}
             teleport={phone?.()?.parentElement?.parentElement || undefined}
           />
         </FormItem>
 
         {/* ── DatePicker ── */}
-        <FormItem name="birthday" label="生日">
-          <DatePicker placeholder="选择出生日期" teleport={phone?.()?.parentElement?.parentElement || undefined} />
+        <FormItem name="birthday" label="Birthday">
+          <DatePicker placeholder="Select birth date" teleport={phone?.()?.parentElement?.parentElement || undefined} />
         </FormItem>
 
         {/* ── CityPicker ── */}
-        <FormItem name="region" label="地区">
-          <CityPicker columns={cityTree} placeholder="选择省市区" teleport={phone?.()?.parentElement?.parentElement || undefined} />
+        <FormItem name="region" label="Region">
+          <CityPicker columns={cityTree} placeholder="Select region" teleport={phone?.()?.parentElement?.parentElement || undefined} />
         </FormItem>
 
         {/* ── Upload ── */}
-        <FormItem name="photos" label="照片">
+        <FormItem name="photos" label="Photos">
           <Upload api={mockUploadApi} maxCount={6} />
         </FormItem>
 
         {/* ── TimePicker ── */}
-        <FormItem name="time" label="时间">
-          <TimePicker placeholder="选择时间" teleport={phone?.()?.parentElement?.parentElement || undefined} />
+        <FormItem name="time" label="Time">
+          <TimePicker placeholder="Select time" teleport={phone?.()?.parentElement?.parentElement || undefined} />
         </FormItem>
 
         {/* ── Submit ── */}
         <div style={{ padding: '12px 1rem', display: 'flex', gap: '12px' }}>
-          <Button type="primary" block nativeType="submit" text="提交" />
-          <Button text="重置" onClick={() => formRef?.resetFormValue?.()} />
+          <Button type="primary" block nativeType="submit" text="Submit" />
+          <Button text="Reset" onClick={() => formRef?.resetFormValue?.()} />
         </div>
       </Form>
       <div style={{ padding: '0 1rem', 'font-size': '0.8rem', color: '#6b7280' }}>
-        提交值: {JSON.stringify(formVal())}
+        Submit value: {JSON.stringify(formVal())}
       </div>
     </>
   );
@@ -300,38 +300,38 @@ const BasicDemo: Component = () => {
   const [val, setVal] = createSignal({});
   return (
     <>
-      <Form onSubmit={(v) => { setVal(v); Toast.success('提交: ' + JSON.stringify(v)); }} controlAlign="right">
-        <FormItem name="username" label="用户名" rules={[{
+      <Form onSubmit={(v) => { setVal(v); Toast.success('Submit: ' + JSON.stringify(v)); }} controlAlign="right">
+        <FormItem name="username" label="Username" rules={[{
           validator: (v: any) => (v as string)?.length >= 2,
-          message: '至少 2 个字符',
+          message: 'At least 2 characters',
         }]}>
-          <Input placeholder="请输入用户名" />
+          <Input placeholder="Enter username" />
         </FormItem>
-        <FormItem name="phone" label="手机号">
-          <Input type="tel" placeholder="请输入手机号" maxlength={11} />
+        <FormItem name="phone" label="Phone">
+          <Input type="tel" placeholder="Enter phone number" maxlength={11} />
         </FormItem>
         <div style={{ padding: '12px 1rem' }}>
-          <Button type="primary" block nativeType="submit" text="提交" />
+          <Button type="primary" block nativeType="submit" text="Submit" />
         </div>
       </Form>
       <div style={{ padding: '0 1rem', 'font-size': '0.8rem', color: '#6b7280' }}>
-        提交值: {JSON.stringify(val())}
+        Submit value: {JSON.stringify(val())}
       </div>
     </>
   );
 };
 
 const CodeBasic = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}>
-  <FormItem name="username" label="用户名" rules={[{
+  <FormItem name="username" label="Username" rules={[{
     validator: v => v?.length >= 2,
-    message: '至少 2 个字符',
+    message: 'At least 2 characters',
   }]}>
-    <Input placeholder="请输入用户名" />
+    <Input placeholder="Enter username" />
   </FormItem>
-  <FormItem name="phone" label="手机号">
-    <Input type="tel" placeholder="请输入手机号" maxlength={11} />
+  <FormItem name="phone" label="Phone">
+    <Input type="tel" placeholder="Enter phone number" maxlength={11} />
   </FormItem>
-  <Button type="primary" block nativeType="submit" text="提交" />
+  <Button type="primary" block nativeType="submit" text="Submit" />
 </Form>`;
 
 /* ── Main ── */
@@ -341,7 +341,7 @@ export const FormDocPage: Component = () => {
   return (
     <DocLayout>
       <div style={{ padding: '16px', 'max-width': '960px' }}>
-        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Form 表单</h1>
+        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Form</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
           {t('componentIntro.FormIntro')}
         </p>

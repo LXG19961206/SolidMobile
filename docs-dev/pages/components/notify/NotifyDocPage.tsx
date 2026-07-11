@@ -27,31 +27,31 @@ const NotifyDocInner: Component = () => {
 
   return (
     <div style={{ padding: '16px', 'max-width': '960px' }}>
-      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Notify 通知栏</h1>
+      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Notify</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px' }}>
-        顶部/底部弹出式通知栏，命令式 API 调用，开箱即用。
+        Top/bottom notification bar, imperative API, works out of the box.
       </p>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />
 
-      <DemoBlock title={t('demo.toastPrimary')} desc={t('demoDesc.notify_primary')} code="Notify.primary('这是一条主要通知');" groupCode="基础类型">
-        <Cell title={t('demo.toastPrimary')} clickable onClick={() => noti(Notify.primary, '这是一条主要通知')} />
+      <DemoBlock title={t('demo.toastPrimary')} desc={t('demoDesc.notify_primary')} code="Notify.primary('This is a primary notification');" groupCode="基础类型">
+        <Cell title={t('demo.toastPrimary')} clickable onClick={() => noti(Notify.primary, 'This is a primary notification')} />
       </DemoBlock>
       <DemoBlock title={t('demo.toastSuccess')} desc={t('demoDesc.notify_success')} code="Notify.success('操作成功');" groupCode="基础类型">
         <Cell title={t('demo.toastSuccess')} clickable onClick={() => noti(Notify.success, '操作成功')} />
       </DemoBlock>
-      <DemoBlock title={t('demo.toastWarning')} desc={t('demoDesc.notify_warning')} code="Notify.warning('请注意');" groupCode="提示">
-        <Cell title={t('demo.toastWarning')} clickable onClick={() => noti(Notify.warning, '请注意')} />
+      <DemoBlock title={t('demo.toastWarning')} desc={t('demoDesc.notify_warning')} code="Notify.warning('Attention');" groupCode="提示">
+        <Cell title={t('demo.toastWarning')} clickable onClick={() => noti(Notify.warning, 'Attention')} />
       </DemoBlock>
       <DemoBlock title={t('demo.toastDanger')} desc={t('demoDesc.notify_danger')} code="Notify.danger('操作失败');" groupCode="提示">
         <Cell title={t('demo.toastDanger')} clickable onClick={() => noti(Notify.danger, '操作失败')} />
       </DemoBlock>
-      <DemoBlock title={t('demo.bottomPopup')} desc="position: 'bottom'。" code={`Notify.success('已添加', { position: 'bottom' });`} groupCode="其他">
-        <Cell title={t('demo.bottomPopup')} clickable onClick={() => noti(Notify.success, '已添加至购物车', { position: 'bottom' })} />
+      <DemoBlock title={t('demo.bottomPopup')} desc="position: 'bottom'。" code={`Notify.success('Added', { position: 'bottom' });`} groupCode="其他">
+        <Cell title={t('demo.bottomPopup')} clickable onClick={() => noti(Notify.success, 'Added to cart', { position: 'bottom' })} />
       </DemoBlock>
-      <DemoBlock title={t('demo.noAutoDismiss')} desc={t('demoDesc.notify_manual')} code="Notify.primary('点击关闭', { duration: 0 });" groupCode="其他">
-        <Cell title={t('demo.noAutoDismiss')} clickable onClick={() => Notify.primary('点击任意位置手动关闭', { duration: 0, teleport: m() })} />
+      <DemoBlock title={t('demo.noAutoDismiss')} desc={t('demoDesc.notify_manual')} code="Notify.primary('Tap to close', { duration: 0 });" groupCode="其他">
+        <Cell title={t('demo.noAutoDismiss')} clickable onClick={() => Notify.primary('Tap anywhere to dismiss', { duration: 0, teleport: m() })} />
       </DemoBlock>
 
       <GroupCodePhone />

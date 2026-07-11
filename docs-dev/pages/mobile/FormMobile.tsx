@@ -150,9 +150,9 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
             </FormItem>
             <FormItem name="lang" label="Language">
               <RadioGroup direction="horizontal">
-                <Radio value="zh" label="中文" />
+                <Radio value="zh" label="Chinese" />
                 <Radio value="en" label="English" />
-                <Radio value="ja" label="日本語" />
+                <Radio value="ja" label="Japanese" />
                 <Radio value="ko" label="한국어" />
               </RadioGroup>
             </FormItem>
@@ -196,9 +196,9 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
               message: 'Please select language',
             }]}>
               <RadioGroup direction="horizontal">
-                <Radio value="zh" label="中文" />
+                <Radio value="zh" label="Chinese" />
                 <Radio value="en" label="English" />
-                <Radio value="ja" label="日本語" />
+                <Radio value="ja" label="Japanese" />
                 <Radio value="ko" label="한국어" />
               </RadioGroup>
             </FormItem>

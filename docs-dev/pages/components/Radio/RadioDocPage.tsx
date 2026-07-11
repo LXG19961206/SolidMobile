@@ -28,7 +28,7 @@ const groupProps: PropRow[] = [
   { name: 'defaultValue', type: 'unknown', default: '—', required: false, desc: 'componentProps.radioGroup.defaultValue' },
   { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: 'componentProps.radioGroup.onChange' },
   { name: 'direction', type: "'vertical' | 'horizontal'", default: "'vertical'", required: false, desc: 'componentProps.radioGroup.direction' },
-  { name: 'gap', type: 'string | number', default: "'12px'(横向) / '0'(纵向)", required: false, desc: 'componentProps.radioGroup.gap' },
+  { name: 'gap', type: 'string | number', default: "'12px'(horizontal) / '0'(vertical)", required: false, desc: 'componentProps.radioGroup.gap' },
   { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.radioGroup.disabled' },
   { name: 'iconSize', type: 'number | string', default: "'20px'", required: false, desc: 'componentProps.radioGroup.iconSize' },
   { name: 'checkedColor', type: 'string', default: "'#1989fa'", required: false, desc: 'componentProps.radioGroup.checkedColor' },
@@ -48,42 +48,42 @@ const radioCssVars: PropRow[] = [
 ];
 
 const codeBasic = `<RadioGroup value={basicVal()} onChange={setBasicVal}>
-  <Radio value="a" label="选项 A" />
-  <Radio value="b" label="选项 B" />
-  <Radio value="c" label="选项 C" />
+  <Radio value="a" label="Option A" />
+  <Radio value="b" label="Option B" />
+  <Radio value="c" label="Option C" />
 </RadioGroup>`;
 
 const codeDisabled = `<RadioGroup value={disabledVal()} onChange={setDisabledVal}>
-  <Radio value="a" label="正常" />
-  <Radio value="b" label="禁用" disabled />
-  <Radio value="c" label="也正常" />
+  <Radio value="a" label="Normal" />
+  <Radio value="b" label="Disabled" disabled />
+  <Radio value="c" label="Also Normal" />
 </RadioGroup>`;
 
 const codeShape = `<RadioGroup value={shapeVal()} onChange={setShapeVal}>
-  <Radio value="a" label="Round（默认）" />
+  <Radio value="a" label="Round (default)" />
   <Radio value="b" label="Square" shape="square" />
   <Radio value="c" label="Dot" shape="dot" />
 </RadioGroup>`;
 
 const codeColor = `<RadioGroup value={colorVal()} onChange={setColorVal} checkedColor="#22c55e">
-  <Radio value="a" label="绿色" />
-  <Radio value="b" label="绿色" />
-  <Radio value="c" label="绿色" />
+  <Radio value="a" label="Green" />
+  <Radio value="b" label="Green" />
+  <Radio value="c" label="Green" />
 </RadioGroup>`;
 
 const codeHorizontal = `<RadioGroup direction="horizontal" value={hVal()} onChange={setHVal}>
-  <Radio value="a" label="浅色" />
-  <Radio value="b" label="深色" />
+  <Radio value="a" label="Light" />
+  <Radio value="b" label="Dark" />
 </RadioGroup>`;
 
 const codeCustomIcon = `<RadioGroup value={iconVal()} onChange={setIconVal}>
-  <Radio value="like" label="好评"
+  <Radio value="like" label="Good"
     checkedIcon={<LikeIcon />}
     uncheckedIcon={<LikeIcon />} />
-  <Radio value="normal" label="一般"
+  <Radio value="normal" label="Average"
     checkedIcon={<MehIcon />}
     uncheckedIcon={<MehIcon />} />
-  <Radio value="bad" label="差评"
+  <Radio value="bad" label="Poor"
     checkedIcon={<BadIcon />}
     uncheckedIcon={<BadIcon />} />
 </RadioGroup>`;
@@ -118,25 +118,25 @@ const BadIcon = () => (
 );
 
 const codeForm = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}>
-  <FormItem name="lang" label="语言" contentFlex rules={[{
+  <FormItem name="lang" label="Language" contentFlex rules={[{
     validator: (v) => !!v,
-    message: '请选择语言',
+    message: 'Please select language',
   }]}>
     <RadioGroup direction="horizontal">
-      <Radio value="zh" label="中文" />
+      <Radio value="zh" label="Chinese" />
       <Radio value="en" label="English" />
-      <Radio value="ja" label="日本語" />
+      <Radio value="ja" label="Japanese" />
     </RadioGroup>
   </FormItem>
-  <FormItem name="level" label="会员等级" contentFlex>
+  <FormItem name="level" label="Membership" contentFlex>
     <RadioGroup direction="horizontal">
-      <Radio value="bronze" label="青铜" />
-      <Radio value="silver" label="白银" />
-      <Radio value="gold" label="黄金" />
+      <Radio value="bronze" label="Bronze" />
+      <Radio value="silver" label="Silver" />
+      <Radio value="gold" label="Gold" />
     </RadioGroup>
   </FormItem>
   <div style={{ padding: '12px 1rem' }}>
-    <Button type="primary" block nativeType="submit" text="提交" />
+    <Button type="primary" block nativeType="submit" text="Submit" />
   </div>
 </Form>`;
 
@@ -146,35 +146,35 @@ const FormDemo: Component = () => {
   const [formVal, setFormVal] = createSignal({});
   return (
     <>
-      <Form onSubmit={(v) => { setFormVal(v); Toast.success('提交: ' + JSON.stringify(v)); }}>
+      <Form onSubmit={(v) => { setFormVal(v); Toast.success('Submit: ' + JSON.stringify(v)); }}>
         <FormItem
           name="lang"
-          label="语言"
+          label="Language"
           contentFlex
           rules={[{
             validator: (v: unknown) => !!v,
-            message: '请选择语言',
+            message: 'Please select language',
           }]}
         >
           <RadioGroup direction="horizontal">
-            <Radio value="zh" label="中文" />
+            <Radio value="zh" label="Chinese" />
             <Radio value="en" label="English" />
-            <Radio value="ja" label="日本語" />
+            <Radio value="ja" label="Japanese" />
           </RadioGroup>
         </FormItem>
-        <FormItem name="level" label="会员等级" contentFlex>
+        <FormItem name="level" label="Membership" contentFlex>
           <RadioGroup direction="horizontal">
-            <Radio value="bronze" label="青铜" />
-            <Radio value="silver" label="白银" />
-            <Radio value="gold" label="黄金" />
+            <Radio value="bronze" label="Bronze" />
+            <Radio value="silver" label="Silver" />
+            <Radio value="gold" label="Gold" />
           </RadioGroup>
         </FormItem>
         <div style={{ padding: '12px 1rem' }}>
-          <Button type="primary" block nativeType="submit" text="提交" />
+          <Button type="primary" block nativeType="submit" text="Submit" />
         </div>
       </Form>
       <div style={{ padding: '0 1rem', 'font-size': '0.8rem', color: '#6b7280' }}>
-        提交值: {JSON.stringify(formVal())}
+        Submit value: {JSON.stringify(formVal())}
       </div>
     </>
   );
@@ -193,7 +193,7 @@ export const RadioDocPage: Component = () => {
   return (
     <DocLayout>
       <div style={{ padding: '16px', 'max-width': '960px' }}>
-        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Radio 单选框</h1>
+        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Radio</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
           {t('componentIntro.RadioIntro')}
         </p>
@@ -209,55 +209,55 @@ export const RadioDocPage: Component = () => {
 
         <DemoBlock title={t('demo.basic')} code={codeBasic}>
           <RadioGroup value={basicVal()} onChange={setBasicVal}>
-            <Radio value="a" label="选项 A" />
-            <Radio value="b" label="选项 B" />
-            <Radio value="c" label="选项 C" />
+            <Radio value="a" label="Option A" />
+            <Radio value="b" label="Option B" />
+            <Radio value="c" label="Option C" />
           </RadioGroup>
           <div style={{ 'font-size': '0.8rem', color: '#6b7280', 'margin-top': '8px' }}>
-            当前值: {basicVal()}
+            Current: {basicVal()}
           </div>
         </DemoBlock>
 
         <DemoBlock title={t('demo.disabled')} desc={t('demo.disabledDesc')} code={codeDisabled}>
           <RadioGroup value={disabledVal()} onChange={setDisabledVal}>
-            <Radio value="a" label="正常" />
-            <Radio value="b" label="禁用" disabled />
-            <Radio value="c" label="也正常" />
+            <Radio value="a" label="Normal" />
+            <Radio value="b" label="Disabled" disabled />
+            <Radio value="c" label="Also Normal" />
           </RadioGroup>
           <div style={{ 'font-size': '0.8rem', color: '#6b7280', 'margin-top': '8px' }}>
-            当前值: {disabledVal()}
+            Current: {disabledVal()}
           </div>
         </DemoBlock>
 
         <DemoBlock title={t('demo.shape')} desc={t('demo.shapeDesc')} code={codeShape}>
           <RadioGroup value={shapeVal()} onChange={setShapeVal}>
-            <Radio value="a" label="Round（默认）" />
+            <Radio value="a" label="Round (default)" />
             <Radio value="b" label="Square" shape="square" />
             <Radio value="c" label="Dot" shape="dot" />
           </RadioGroup>
           <div style={{ 'font-size': '0.8rem', color: '#6b7280', 'margin-top': '8px' }}>
-            当前值: {shapeVal()}
+            Current: {shapeVal()}
           </div>
         </DemoBlock>
 
         <DemoBlock title={t('demo.customColor')} desc={t('demo.customColorDesc')} code={codeColor}>
           <RadioGroup value={colorVal()} onChange={setColorVal} checkedColor="#22c55e">
-            <Radio value="a" label="绿色" />
-            <Radio value="b" label="绿色" />
-            <Radio value="c" label="绿色" />
+            <Radio value="a" label="Green" />
+            <Radio value="b" label="Green" />
+            <Radio value="c" label="Green" />
           </RadioGroup>
           <div style={{ 'font-size': '0.8rem', color: '#6b7280', 'margin-top': '8px' }}>
-            当前值: {colorVal()}
+            Current: {colorVal()}
           </div>
         </DemoBlock>
 
         <DemoBlock title={t('demo.horizontal')} desc={t('demo.horizontalDesc')} code={codeHorizontal}>
           <RadioGroup direction="horizontal" value={hVal()} onChange={setHVal}>
-            <Radio value="a" label="浅色" />
-            <Radio value="b" label="深色" />
+            <Radio value="a" label="Light" />
+            <Radio value="b" label="Dark" />
           </RadioGroup>
           <div style={{ 'font-size': '0.8rem', color: '#6b7280', 'margin-top': '8px' }}>
-            当前值: {hVal()}
+            Current: {hVal()}
           </div>
         </DemoBlock>
 
@@ -265,43 +265,43 @@ export const RadioDocPage: Component = () => {
           <RadioGroup value={iconVal()} onChange={setIconVal} iconSize="28px" checkedColor="var(--sc-color-primary, #1677ff)">
             <Radio
               value="like"
-              label="好评"
+              label="Good"
               checkedIcon={<LikeIcon />}
               uncheckedIcon={<LikeIcon />}
             />
             <Radio
               value="normal"
-              label="一般"
+              label="Average"
               checkedIcon={<MehIcon />}
               uncheckedIcon={<MehIcon />}
             />
             <Radio
               value="bad"
-              label="差评"
+              label="Poor"
               checkedIcon={<BadIcon />}
               uncheckedIcon={<BadIcon />}
             />
           </RadioGroup>
           <div style={{ 'font-size': '0.8rem', color: '#6b7280', 'margin-top': '8px' }}>
-            当前值: {iconVal() === 'like' ? '好评' : iconVal() === 'normal' ? '一般' : '差评'}
+            Current: {iconVal() === 'like' ? 'Good' : iconVal() === 'normal' ? 'Average' : 'Poor'}
           </div>
         </DemoBlock>
 
         <DemoBlock title={t('demo.standalone')} desc={t('demoDesc.radio_standalone')} code={`const [checked, setChecked] = createSignal(false);
 <Radio
   value="x"
-  label="点击切换"
+  label="Tap to toggle"
   checked={checked()}
   onChange={setChecked}
 />`}>
           <Radio
             value="standalone"
-            label="点击我切换（独立模式）"
+            label="Tap me to toggle (standalone)"
             checked={standaloneChecked()}
             onChange={setStandaloneChecked}
           />
           <div style={{ 'font-size': '0.8rem', color: '#6b7280', 'margin-top': '8px' }}>
-            当前选中: {String(standaloneChecked())}
+            Selected: {String(standaloneChecked())}
           </div>
         </DemoBlock>
 

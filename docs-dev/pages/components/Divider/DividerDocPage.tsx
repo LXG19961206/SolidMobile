@@ -13,9 +13,9 @@ const propsData: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'horizontal', title: '水平分割线' },
-  { id: 'vertical', title: '垂直分割线' },
+  { id: 'props', title: 'Props' },
+  { id: 'horizontal', title: 'Horizontal' },
+  { id: 'vertical', title: 'Vertical' },
 ];
 
 export const DividerDocPage = () => {
@@ -24,7 +24,7 @@ export const DividerDocPage = () => {
   <DocLayout>
 
     <div class={css.page}>
-      <h1 class={css.h1}>Divider 分割线</h1>
+      <h1 class={css.h1}>Divider</h1>
       <p class={css.intro}>{t('componentIntro.DividerIntro')}</p>
 
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>
@@ -34,16 +34,16 @@ export const DividerDocPage = () => {
       <DemoBlock title={t('demo.basic')} code="<Divider />">
         <Divider />
       </DemoBlock>
-      <DemoBlock title={t('demo.dividerText')} desc={'text="或者"'} code={'<Divider text="或者" />'}>
-        <Divider text="或者" />
+      <DemoBlock title={t('demo.dividerText')} desc={'text="or"'} code={'<Divider text="or" />'}>
+        <Divider text="or" />
       </DemoBlock>
       <DemoBlock title={t('demo.dashed')} code="<Divider dashed />">
         <Divider dashed />
       </DemoBlock>
 
       <h2 id="vertical" class={css.h2}>{t('section.verticalDivider')}</h2>
-      <DemoBlock title={t('demo.verticalDir')} desc={t('demoDesc.divider_vertical')} code={'文字A <Divider direction="vertical" /> 文字B'}>
-        <span>文字A <Divider direction="vertical" /> 文字B</span>
+      <DemoBlock title={t('demo.verticalDir')} desc={t('demoDesc.divider_vertical')} code={'Text A <Divider direction="vertical" /> Text B'}>
+        <span>Text A <Divider direction="vertical" /> Text B</span>
       </DemoBlock>
     </div>
   </DocLayout>

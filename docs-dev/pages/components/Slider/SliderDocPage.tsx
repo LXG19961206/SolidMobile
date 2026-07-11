@@ -26,26 +26,26 @@ const sliderProps: PropRow[] = [
 
 const codeBasic = `const [val, setVal] = createSignal(30);
 <Slider value={val()} onChange={setVal} />
-当前: {val()}`;
+Current: {val()}`;
 
 const codeRange = `const [val, setVal] = createSignal([20, 60]);
 <Slider count={2} value={val()} onChange={setVal} />
-当前: [{val()[0]}, {val()[1]}]`;
+Current: [{val()[0]}, {val()[1]}]`;
 
 const codeThree = `const [val, setVal] = createSignal([10, 50, 90]);
 <Slider count={3} value={val()} onChange={setVal} />`;
 
 const codeCustom = `const [v, setV] = createSignal(40);
 <Slider value={v()} onChange={setV} activeColor="#22c55e" barHeight={4} buttonSize={28} />
-当前: {v()}`;
+Current: {v()}`;
 
 const codeDisabled = `<Slider value={50} disabled />`;
 
 const codeCustomThumb = `const [val, setVal] = createSignal(50);
 <Slider value={val()} onChange={setVal} buttonSize={32} thumbRender={(v) => v} />
-当前: {val()}`;
+Current: {val()}`;
 
-const codeForm = `<FormItem name="score" label="评分">
+const codeForm = `<FormItem name="score" label="Rating">
   <Slider />
 </FormItem>`;
 
@@ -61,7 +61,7 @@ export const SliderDocPage: Component = () => {
   return (
     <DocLayout>
       <div style={{ padding: '16px', 'max-width': '960px' }}>
-        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Slider 滑块</h1>
+        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Slider</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
           {t('componentIntro.SliderIntro')}
         </p>
@@ -74,7 +74,7 @@ export const SliderDocPage: Component = () => {
             <Slider value={basicVal()} onChange={setBasicVal} />
           </div>
           <div style={{ 'font-size': '0.85rem', color: '#6b7280', 'margin-top': '8px' }}>
-            当前: {basicVal()}
+            Current: {basicVal()}
           </div>
         </DemoBlock>
 
@@ -83,7 +83,7 @@ export const SliderDocPage: Component = () => {
             <Slider count={2} value={rangeVal()} onChange={setRangeVal} />
           </div>
           <div style={{ 'font-size': '0.85rem', color: '#6b7280', 'margin-top': '8px' }}>
-            当前: {rangeVal()[0]} ~ {rangeVal()[1]}
+            Current: {rangeVal()[0]} ~ {rangeVal()[1]}
           </div>
         </DemoBlock>
 
@@ -92,7 +92,7 @@ export const SliderDocPage: Component = () => {
             <Slider count={3} value={threeVal()} onChange={setThreeVal} />
           </div>
           <div style={{ 'font-size': '0.85rem', color: '#6b7280', 'margin-top': '8px' }}>
-            当前: {threeVal().join(', ')}
+            Current: {threeVal().join(', ')}
           </div>
         </DemoBlock>
 
@@ -101,7 +101,7 @@ export const SliderDocPage: Component = () => {
             <Slider value={styleVal()} onChange={setStyleVal} activeColor="#22c55e" barHeight={4} buttonSize={28} />
           </div>
           <div style={{ 'font-size': '0.85rem', color: '#6b7280', 'margin-top': '8px' }}>
-            当前: {styleVal()}
+            Current: {styleVal()}
           </div>
         </DemoBlock>
 
@@ -116,23 +116,23 @@ export const SliderDocPage: Component = () => {
             <Slider value={customVal()} onChange={setCustomVal} buttonSize={32} thumbRender={(v) => v} />
           </div>
           <div style={{ 'font-size': '0.85rem', color: '#6b7280', 'margin-top': '8px' }}>
-            当前: {customVal()}
+            Current: {customVal()}
           </div>
         </DemoBlock>
 
         <DemoBlock title={t('demo.form')} desc={t('demo.formDesc')} code={codeForm}>
-          <Form onSubmit={(v) => { setFormVal(v); Toast.success('提交: ' + JSON.stringify(v)); }}>
-            <FormItem name="score" label="评分" contentFlex>
+          <Form onSubmit={(v) => { setFormVal(v); Toast.success('Submit: ' + JSON.stringify(v)); }}>
+            <FormItem name="score" label="Rating" contentFlex>
               <div style={{ padding: '12px 4px', flex: '1', 'min-width': '0' }}>
                 <Slider />
               </div>
             </FormItem>
             <div style={{ padding: '12px 1rem' }}>
-              <Button type="primary" block nativeType="submit" text="提交" />
+              <Button type="primary" block nativeType="submit" text="Submit" />
             </div>
           </Form>
           <div style={{ padding: '0 1rem', 'font-size': '0.8rem', color: '#6b7280' }}>
-            提交值: {JSON.stringify(formVal())}
+            Submit value: {JSON.stringify(formVal())}
           </div>
         </DemoBlock>
       </div>

@@ -11,7 +11,7 @@ const propsData: PropRow[] = [
   { name: 'rightActions', type: 'SwipeAction[]', default: '—', required: false, desc: 'componentProps.swipecell.rightActions' },
   { name: 'leftActions', type: 'SwipeAction[]', default: '—', required: false, desc: 'componentProps.swipecell.leftActions' },
   { name: 'threshold', type: 'number', default: '30', required: false, desc: 'componentProps.swipecell.threshold' },
-  { name: 'actionsWidth', type: 'number', default: '自适应', required: false, desc: 'componentProps.swipecell.actionsWidth' },
+  { name: 'actionsWidth', type: 'number', default: 'Auto', required: false, desc: 'componentProps.swipecell.actionsWidth' },
   { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.swipecell.disabled' },
   { name: 'onOpen', type: '() => void', default: '—', required: false, desc: 'componentProps.swipecell.onOpen' },
   { name: 'onClose', type: '() => void', default: '—', required: false, desc: 'componentProps.swipecell.onClose' },
@@ -29,9 +29,9 @@ const actionRows: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
+  { id: 'props', title: 'Props' },
   { id: 'actions', title: 'SwipeAction' },
-  { id: 'demo', title: '示例' },
+  { id: 'demo', title: 'Examples' },
 ];
 
 /* ── Demo Components ── */
@@ -39,12 +39,12 @@ const tocItems: TOCItem[] = [
 const RightActionsDemo: Component = () => {
   const phone = useContext(PhoneTargetContext);
   const actions: SwipeAction[] = [
-    { text: '删除', theme: 'danger', onClick: () => Toast.success('删除', { portalMount: phone?.() }) },
-    { text: '收藏', theme: 'warning', onClick: () => Toast.success('收藏', { portalMount: phone?.() }) },
+    { text: 'Delete', theme: 'danger', onClick: () => Toast.success('Delete', { portalMount: phone?.() }) },
+    { text: 'Favorite', theme: 'warning', onClick: () => Toast.success('Favorite', { portalMount: phone?.() }) },
   ];
   return (
     <SwipeCell rightActions={actions}>
-      <Cell title="左滑试试" description="显示右侧两个操作按钮" />
+      <Cell title="Swipe left" description="Shows two action buttons on the right" />
     </SwipeCell>
   );
 };
@@ -52,11 +52,11 @@ const RightActionsDemo: Component = () => {
 const LeftActionsDemo: Component = () => {
   const phone = useContext(PhoneTargetContext);
   const actions: SwipeAction[] = [
-    { text: '标为已读', theme: 'primary', onClick: () => Toast.success('已读', { portalMount: phone?.() }) },
+    { text: 'Mark Read', theme: 'primary', onClick: () => Toast.success('Read', { portalMount: phone?.() }) },
   ];
   return (
     <SwipeCell leftActions={actions}>
-      <Cell title="右滑试试" description="显示左侧操作按钮" />
+      <Cell title="Swipe right" description="Shows action button on the left" />
     </SwipeCell>
   );
 };
@@ -65,13 +65,13 @@ const BothActionsDemo: Component = () => {
   const phone = useContext(PhoneTargetContext);
   return (
     <SwipeCell
-      leftActions={[{ text: '置顶', theme: 'success', onClick: () => Toast.success('置顶', { portalMount: phone?.() }) }]}
+      leftActions={[{ text: 'Pin', theme: 'success', onClick: () => Toast.success('Pin', { portalMount: phone?.() }) }]}
       rightActions={[
-        { text: '删除', theme: 'danger', onClick: () => Toast.success('删除', { portalMount: phone?.() }) },
-        { text: '归档', theme: 'primary', onClick: () => Toast.success('归档', { portalMount: phone?.() }) },
+        { text: 'Delete', theme: 'danger', onClick: () => Toast.success('Delete', { portalMount: phone?.() }) },
+        { text: 'Archive', theme: 'primary', onClick: () => Toast.success('Archive', { portalMount: phone?.() }) },
       ]}
     >
-      <Cell title="双向滑动" description="左右都有操作按钮" />
+      <Cell title="Two-way Swipe" description="Action buttons on both sides" />
     </SwipeCell>
   );
 };
@@ -79,18 +79,18 @@ const BothActionsDemo: Component = () => {
 const MultiCellDemo: Component = () => {
   const phone = useContext(PhoneTargetContext);
   const delAction: SwipeAction[] = [
-    { text: '删除', theme: 'danger', onClick: () => Toast.success('删除', { portalMount: phone?.() }) },
+    { text: 'Delete', theme: 'danger', onClick: () => Toast.success('Delete', { portalMount: phone?.() }) },
   ];
   return (
     <>
       <div style={{ 'font-size': '0.85rem', color: '#6b7280', 'margin-bottom': '8px' }}>
-        SwipeCell 是容器组件，可以包裹任意内容，Cell 是最常见的搭配。
+        SwipeCell is a container; it can wrap any content. Cell is the most common pairing.
       </div>
       <SwipeCell rightActions={delAction}>
-        <Cell title="可滑动项" description="Cell 完全作为 SwipeCell 的子元素" />
+        <Cell title="Swipable item" description="Cell as a child of SwipeCell" />
       </SwipeCell>
       <SwipeCell rightActions={delAction}>
-        <Cell title="第二项" description="每项独立管理滑动状态" />
+        <Cell title="Second item" description="Each item manages its own swipe state" />
       </SwipeCell>
     </>
   );
@@ -99,27 +99,27 @@ const MultiCellDemo: Component = () => {
 /* ── Code Snippets ── */
 
 const codeRight = `<SwipeCell rightActions={[
-  { text: '删除', theme: 'danger', onClick: () => del() },
-  { text: '收藏', theme: 'warning', onClick: () => fav() },
+  { text: 'Delete', theme: 'danger', onClick: () => del() },
+  { text: 'Favorite', theme: 'warning', onClick: () => fav() },
 ]}>
-  <Cell title="左滑试试" description="显示右侧两个操作按钮" />
+  <Cell title="Swipe left" description="Shows two action buttons on the right" />
 </SwipeCell>`;
 
 const codeLeft = `<SwipeCell leftActions={[
-  { text: '标为已读', theme: 'primary', onClick: () => mark() },
+  { text: 'Mark Read', theme: 'primary', onClick: () => mark() },
 ]}>
-  <Cell title="右滑试试" description="显示左侧操作按钮" />
+  <Cell title="Swipe right" description="Shows action button on the left" />
 </SwipeCell>`;
 
 const codeBoth = `<SwipeCell
-  leftActions={[{ text: '置顶', theme: 'success', onClick: () => pin() }]}
-  rightActions={[{ text: '删除', theme: 'danger', onClick: () => del() }]}
+  leftActions={[{ text: 'Pin', theme: 'success', onClick: () => pin() }]}
+  rightActions={[{ text: 'Delete', theme: 'danger', onClick: () => del() }]}
 >
-  <Cell title="双向滑动" description="左右都有操作按钮" />
+  <Cell title="Two-way Swipe" description="Action buttons on both sides" />
 </SwipeCell>`;
 
-const codeNested = `<SwipeCell rightActions={[{ text: '删除', theme: 'danger' }]}>
-  <Cell title="可滑动项" description="Cell 完全作为 SwipeCell 的子元素" />
+const codeNested = `<SwipeCell rightActions={[{ text: 'Delete', theme: 'danger' }]}>
+  <Cell title="Swipable item" description="Cell as a child of SwipeCell" />
 </SwipeCell>`;
 
 /* ── Main ── */

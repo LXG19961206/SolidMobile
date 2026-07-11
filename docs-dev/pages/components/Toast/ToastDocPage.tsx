@@ -35,7 +35,7 @@ const ToastDocInner: Component = () => {
 
   return (
     <div class={styles.page}>
-      <h1 class={styles.h1}>Toast 轻提示</h1>
+      <h1 class={styles.h1}>Toast</h1>
       <p class={styles.lead}>{t('componentIntro.ToastIntro')}</p>
 
       <h2 id="props" class={styles.h2}>{t('common.props')}</h2>
@@ -44,33 +44,33 @@ const ToastDocInner: Component = () => {
       <h2 id="methods" class={styles.h2}>{t('section.methods')}</h2>
       <PropsTable rows={methodsData} />
 
-      <DemoBlock title={t('demo.toastShorthand')} desc={t('demoDesc.toast_shorthand')} code={`Toast.success('操作成功！');\nToast.error('操作失败');\nToast.info('这是一条消息');`} groupCode="结果反馈">
-        <Cell title={t('demo.toastSuccess')} clickable onClick={() => Toast.success('操作成功！', { portalMount: m() })} />
+      <DemoBlock title={t('demo.toastShorthand')} desc={t('demoDesc.toast_shorthand')} code={`Toast.success('Success！');\nToast.error('Failed');\nToast.info('This is a message');`} groupCode="结果反馈">
+        <Cell title={t('demo.toastSuccess')} clickable onClick={() => Toast.success('Success！', { portalMount: m() })} />
       </DemoBlock>
-      <DemoBlock title={t('demo.toastError')} code={`Toast.error('操作失败，请重试');`} groupCode="结果反馈">
-        <Cell title={t('demo.toastError')} clickable onClick={() => Toast.error('操作失败，请重试', { portalMount: m(), overlay: false })} />
+      <DemoBlock title={t('demo.toastError')} code={`Toast.error('Failed, please retry');`} groupCode="结果反馈">
+        <Cell title={t('demo.toastError')} clickable onClick={() => Toast.error('Failed, please retry', { portalMount: m(), overlay: false })} />
       </DemoBlock>
-      <DemoBlock title={t('demo.toastWarning')} code={`Toast.warning('请注意检查输入');`} groupCode="提示">
-        <Cell title={t('demo.toastWarning')} clickable onClick={() => Toast.warning('请注意检查输入', { portalMount: m() })} />
+      <DemoBlock title={t('demo.toastWarning')} code={`Toast.warning('Warning: check your input');`} groupCode="提示">
+        <Cell title={t('demo.toastWarning')} clickable onClick={() => Toast.warning('Warning: check your input', { portalMount: m() })} />
       </DemoBlock>
-      <DemoBlock title={t('demo.toastInfo')} code={`Toast.info('这是一条消息');`} groupCode="提示">
-        <Cell title={t('demo.toastInfo')} clickable onClick={() => Toast.info('这是一条消息', { portalMount: m() })} />
+      <DemoBlock title={t('demo.toastInfo')} code={`Toast.info('This is a message');`} groupCode="提示">
+        <Cell title={t('demo.toastInfo')} clickable onClick={() => Toast.info('This is a message', { portalMount: m() })} />
       </DemoBlock>
-      <DemoBlock title={t('demo.toastLoading')} code={`const h = Toast.loading('加载中...');\n// 完成后\nh.dismiss();`} groupCode="提示">
+      <DemoBlock title={t('demo.toastLoading')} code={`const h = Toast.loading('Loading...');\n// 完成后\nh.dismiss();`} groupCode="提示">
         <Cell title="Loading（2s 后关闭）" clickable onClick={() => {
-          const h = Toast.loading('加载中...', { portalMount: m(), overlay: false });
+          const h = Toast.loading('Loading...', { portalMount: m(), overlay: false });
           setTimeout(() => h.dismiss(), 2000);
         }} />
       </DemoBlock>
-      <DemoBlock title={t('demo.customPosition')} code={`Toast.success('顶部提示', { position: 'top' });`} groupCode="提示">
-        <Cell title="顶部弹出" clickable onClick={() => Toast.success('顶部提示', { position: 'top', portalMount: m() })} />
+      <DemoBlock title={t('demo.customPosition')} code={`Toast.success('Top notification', { position: 'top' });`} groupCode="提示">
+        <Cell title="Top Position" clickable onClick={() => Toast.success('Top notification', { position: 'top', portalMount: m() })} />
       </DemoBlock>
 
-      <DemoBlock title={t('demo.overlayMode')} desc={t('demoDesc.toast_overlay')} code={`Toast.error('操作失败', { overlay: true });`} groupCode="遮罩">
-        <Cell title="Error + 遮罩" clickable onClick={() => Toast.error('操作失败，请重试', { portalMount: m() })} />
+      <DemoBlock title={t('demo.overlayMode')} desc={t('demoDesc.toast_overlay')} code={`Toast.error('Failed', { overlay: true });`} groupCode="遮罩">
+        <Cell title="Error + Overlay" clickable onClick={() => Toast.error('Failed, please retry', { portalMount: m() })} />
       </DemoBlock>
-      <DemoBlock title={t('demo.loadingOverlay')} desc={t('demoDesc.toast_loading')} code={`Toast.loading('加载中...', { overlay: true });`} groupCode="遮罩">
-        <Cell title="Loading + 遮罩" clickable onClick={() => Toast.loading('加载中...', { portalMount: m(), overlay: true })} />
+      <DemoBlock title={t('demo.loadingOverlay')} desc={t('demoDesc.toast_loading')} code={`Toast.loading('Loading...', { overlay: true });`} groupCode="遮罩">
+        <Cell title="Loading + Overlay" clickable onClick={() => Toast.loading('Loading...', { portalMount: m(), overlay: true })} />
       </DemoBlock>
       <GroupCodePhone />
     </div>

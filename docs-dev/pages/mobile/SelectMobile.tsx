@@ -140,7 +140,7 @@ export const SelectMobile: Component<SelectMobileProps> = (props) => {
             value={status()}
             onChange={(v) => setStatus(v as string)}
             title="Task Status"
-            placeholder="选择任务状态"
+            placeholder="Select task status"
           />
           <span style={{ 'font-size': '0.8rem', color: 'var(--sc-doc-card-desc, #6b7280)' }}>Selected: {status() || 'None'}</span>
         </div>

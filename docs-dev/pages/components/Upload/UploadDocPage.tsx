@@ -65,7 +65,7 @@ export const UploadDocPage: Component = () => {
   return (
     <DocLayout>
       <div style={{ padding: '16px', 'max-width': '960px' }}>
-        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Upload 文件上传</h1>
+        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Upload</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
           {t('componentIntro.UploadIntro')}
         </p>
@@ -76,31 +76,31 @@ export const UploadDocPage: Component = () => {
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.design')}</h2>
 
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
-          最理想的构想，一个 URL 即可完成上传：
+          The ideal: upload with a single URL:
         </p>
         <CodeBlock code={`<Upload action="/api/upload" />`} />
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin': '12px 0' }}>
-          但在实际企业级工程中，情况远不止于此：
+          But in real enterprise projects, things are far more complex:
         </p>
         <ul style={{ color: '#6b7280', 'line-height': 2, 'padding-left': '1.5rem', 'margin': '0 0 16px', 'font-size': '0.85rem' }}>
-          <li>method 一定是 POST 吗？</li>
-          <li>binary 还是 form-data，或是其他编码格式？</li>
-          <li>额外的请求头（Authorization、Content-Type 等）如何传递？</li>
-          <li>BaseURL 从哪来？</li>
-          <li>超时、重试策略如何配置？</li>
-          <li>上传异常如何处理？进度如何反馈？</li>
+          <li>Is the method always POST?</li>
+          <li>Binary or form-data, or another encoding?</li>
+          <li>How are extra headers (Authorization, Content-Type, etc.) passed?</li>
+          <li>Where does the BaseURL come from?</li>
+          <li>How are timeout and retry strategies configured?</li>
+          <li>How are errors handled? How is progress reported?</li>
         </ul>
         <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>{t('section.noHttp')}</h3>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
-          传统组件库替开发者代发上传请求，看似方便，实则将请求逻辑固化在 props 层面，难以充分利用项目已有的全局 HTTP 配置（拦截器、Token 刷新、统一错误处理等）。就算勉强通过 Props 拼凑出相同的配置，也必然和现有工程产生冗余——后续变更一旦漏改其中一方，就会埋下隐患。<strong>请求应归属业务层，而非组件层。</strong>
+          Traditional component libraries send upload requests on behalf of developers. It seems convenient, but it bakes request logic into props, making it difficult to leverage your existing global HTTP configuration (interceptors, token refresh, unified error handling, etc.). Even if you manage to piece together the same config through props, redundancy with existing infrastructure is inevitable — miss an update on either side and you have a bug. <strong>Requests belong to the business layer, not the component layer.</strong>
         </p>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
-          因此 Upload <strong>不做请求的构造与发起</strong>，不提供 action、headers、data、withCredentials 等请求相关属性。上传请求由开发者自行发起，组件库不介入这一过程。
+          Therefore, Upload <strong>does not construct or initiate requests</strong>. It does not provide action, headers, data, withCredentials, or any request-related props. Upload requests are initiated by you; the library stays out of it.
         </p>
 
-        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>控制反转（IoC）— 面向接口，而非实现</h3>
+        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>Inversion of Control (IoC) — Program to an interface, not an implementation</h3>
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
-          Upload 只做一件事：<strong>管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你通过 api 属性注入——你写一个返回 Promise 的函数，Upload 调用它。这就是控制反转：组件定义<strong>接口</strong>（一个返回 Promise 的函数），你提供<strong>实现</strong>。token、拦截器、请求库都在你自己掌控之中。
+          Upload does one thing: <strong>manage the file lifecycle</strong> (select → validate → display → delete). "How to upload" is a <strong>strategy</strong>, injected by you through the api prop — you write a function that returns a Promise, and Upload calls it. This is Inversion of Control: the component defines an <strong>interface</strong> (a function returning a Promise), and you provide the <strong>implementation</strong>. Tokens, interceptors, and HTTP libraries are all under your control.
         </p>
         <CodeBlock code={`// 你的 IoC 容器 — 封装好的请求实例
 import { request } from '@/services/http';
@@ -113,15 +113,15 @@ import { request } from '@/services/http';
   }
 />`} />
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '12px' }}>
-          如果不传 api，Upload 退化为「文件选择器 + 列表管理器」。
+          Without the api prop, Upload degrades to a "file picker + list manager".
         </p>
 
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-top': '12px' }}>
-          这一设计的背后，是我们相信：一个成熟的工程，本就有自己的 HTTP 基础设施。
-          Upload 不替代它，而是<strong>融入它</strong>。
+          Behind this design is a belief: a mature project already has its own HTTP infrastructure.
+          Upload does not replace it — it <strong>integrates with it</strong>.
         </p>
 
-        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>这意味着</h3>
+        <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '24px 0 8px' }}>This means:</h3>
         <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.8125rem', 'line-height': 1.7, 'margin-bottom': '12px' }}>
           <thead><tr style={{ 'border-bottom': '1px solid #e5e7eb', 'text-align': 'left' }}>
             <th style={{ padding: '8px 12px', 'width': '25%' }}></th>
@@ -129,25 +129,25 @@ import { request } from '@/services/http';
           </tr></thead>
           <tbody>
             <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>不绑 HTTP 库</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>Upload 只管理文件生命周期，网络请求完全交由你掌控。fetch、axios、ky、wx.uploadFile——你选什么是什么，组件与 HTTP 层彻底解耦。</td>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>No HTTP library lock-in</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>Upload only manages the file lifecycle; network requests are fully under your control. fetch, axios, ky, wx.uploadFile — you choose, and the component stays fully decoupled from the HTTP layer.</td>
             </tr>
             <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>不绕过基础设施</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>request 实例的拦截器、token 刷新、统一错误处理、loading 态全部照常工作。</td>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>Doesn't bypass infrastructure</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>Your request instance — interceptors, token refresh, unified error handling, loading state — all work as usual.</td>
             </tr>
             <tr style={{ 'border-bottom': '1px solid #f3f4f6' }}>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>兼容任意上传流程</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>OSS 签名、COS 鉴权、回调通知——均可通过一个异步函数完成。传统的 <code>action + data</code> 已无法描述此类场景。</td>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>Any Upload Flow</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>OSS signatures, COS auth headers, callback notifications — all achievable through a single async function. The traditional <code>action + data</code> model cannot describe such scenarios.</td>
             </tr>
             <tr>
-              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>天然可测</td>
-              <td style={{ padding: '8px 12px', color: '#6b7280' }}>传入 <code>{`async () => ({ url: "/fake" })`}</code> 即可，无需 mock 任何 HTTP 库。上传逻辑与 UI 彻底分离，测试仅需验证 UI 行为。</td>
+              <td style={{ padding: '8px 12px', 'font-weight': 600, 'white-space': 'nowrap' }}>Naturally Testable</td>
+              <td style={{ padding: '8px 12px', color: '#6b7280' }}>Pass <code>{`async () => ({ url: "/fake" })`}</code> — no HTTP mocking required. Upload logic is fully decoupled from UI; tests verify UI behavior only.</td>
             </tr>
           </tbody>
         </table>
 
-        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>示例</h2>
+        <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>Examples</h2>
 
         <DemoBlock title={t('demo.imageUpload')} desc={t('demo.imageUploadDesc')} code={`// api 返回上传后的文件 URL，组件用于反显和预览
 const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
@@ -219,15 +219,15 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
           />
         </DemoBlock>
 
-        <DemoBlock title={t('demo.customTrigger')} desc={t('demoDesc.upload_custom_button')} code={`<Upload>\n  <button style={{ padding: '8px 16px', background: 'var(--sc-color-primary, #1677ff)', color: '#fff', 'border-radius': '6px', border: 'none', 'white-space': 'nowrap' }}>\n    + 上传图片\n  </button>\n</Upload>`}>
+        <DemoBlock title={t('demo.customTrigger')} desc={t('demoDesc.upload_custom_button')} code={`<Upload>\n  <button style={{ padding: '8px 16px', background: 'var(--sc-color-primary, #1677ff)', color: '#fff', 'border-radius': '6px', border: 'none', 'white-space': 'nowrap' }}>\n    + Upload Image\n  </button>\n</Upload>`}>
           <Upload>
             <button style={{ padding: '8px 16px', background: 'var(--sc-color-primary, #1677ff)', color: '#fff', 'border-radius': '6px', border: 'none', cursor: 'pointer', 'font-size': '0.8125rem', 'white-space': 'nowrap' }}>
-              + 上传图片
+              + Upload Image
             </button>
           </Upload>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.customRender')} desc={t('demoDesc.upload_custom_render')} code={`<Upload\n  defaultFileList={[\n    { uid:'1', name:'photo.png', size:20480, type:'image/png', status:'done', url:'/photo.png' },\n  ]}\n  renderFile={(f) => (\n    <div style={{ display:'flex', 'align-items':'center', gap:8, padding:'4px 0' }}>\n      <img src={f.url} style={{ width:40, height:40, 'border-radius':4, 'object-fit':'cover', background:'#f0f0f0' }} />\n      <span style={{ 'font-size':'0.8125rem' }}>{f.name}</span>\n      <span style={{ 'font-size':'0.7rem', color:'#999', 'margin-left':'auto' }}>{fmtSize(f.size)}</span>\n    </div>\n  )}\n>\n  <button style={{ padding:'8px 16px', width:'100%', background:'#f7f8fa', border:'1px dashed #dcdee0', 'border-radius':'6px', color:'#969799', cursor:'pointer' }}>\n    + 选择文件\n  </button>\n</Upload>`}>
+        <DemoBlock title={t('demo.customRender')} desc={t('demoDesc.upload_custom_render')} code={`<Upload\n  defaultFileList={[\n    { uid:'1', name:'photo.png', size:20480, type:'image/png', status:'done', url:'/photo.png' },\n  ]}\n  renderFile={(f) => (\n    <div style={{ display:'flex', 'align-items':'center', gap:8, padding:'4px 0' }}>\n      <img src={f.url} style={{ width:40, height:40, 'border-radius':4, 'object-fit':'cover', background:'#f0f0f0' }} />\n      <span style={{ 'font-size':'0.8125rem' }}>{f.name}</span>\n      <span style={{ 'font-size':'0.7rem', color:'#999', 'margin-left':'auto' }}>{fmtSize(f.size)}</span>\n    </div>\n  )}\n>\n  <button style={{ padding:'8px 16px', width:'100%', background:'#f7f8fa', border:'1px dashed #dcdee0', 'border-radius':'6px', color:'#969799', cursor:'pointer' }}>\n    + Select File\n  </button>\n</Upload>`}>
           <Upload
             defaultFileList={[
               { uid: '1', name: 'photo.png', size: 20480, type: 'image/png', status: 'done', url: 'https://picsum.photos/seed/u1/80/80' },
@@ -241,7 +241,7 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
             )}
           >
             <button style={{ padding: '8px 16px', width: '100%', background: '#f7f8fa', border: '1px dashed #dcdee0', 'border-radius': '6px', color: '#969799', cursor: 'pointer', 'font-size': '0.8125rem' }}>
-              + 选择文件
+              + Select File
             </button>
           </Upload>
         </DemoBlock>

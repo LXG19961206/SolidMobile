@@ -15,8 +15,8 @@ const datePickerProps: PropRow[] = [
   { name: 'startDate', type: 'string', default: "'2014-01-01'", required: false, desc: 'componentProps.datepicker.startDate' },
   { name: 'endDate', type: 'string', default: "'2034-12-31'", required: false, desc: 'componentProps.datepicker.endDate' },
   { name: 'type', type: "'date' | 'year-month' | 'datetime'", default: "'date'", required: false, desc: 'componentProps.datepicker.type' },
-  { name: 'placeholder', type: 'string', default: "'请选择日期'", required: false, desc: 'componentProps.datepicker.placeholder' },
-  { name: 'title', type: 'string', default: "'选择日期'", required: false, desc: 'componentProps.datepicker.title' },
+  { name: 'placeholder', type: 'string', default: "'Select Date'", required: false, desc: 'componentProps.datepicker.placeholder' },
+  { name: 'title', type: 'string', default: "'Select Date'", required: false, desc: 'componentProps.datepicker.title' },
   { name: 'cancelText', type: 'string', default: '—', required: false, desc: 'componentProps.datepicker.cancelText' },
   { name: 'confirmText', type: 'string', default: '—', required: false, desc: 'componentProps.datepicker.confirmText' },
   { name: 'disabledDate', type: '(year, month, day) => boolean', default: '—', required: false, desc: 'componentProps.datepicker.disabledDate' },
@@ -46,13 +46,13 @@ const codeDisabled = `<DatePicker
 
 />`;
 
-const codeDateTime = `<DatePicker type="datetime" placeholder="选择日期时间" />`;
+const codeDateTime = `<DatePicker type="datetime" placeholder="Select date & time" />`;
 
 const codeForm = `<Form onSubmit={(v) => { ... }}>
   <FormItem name="birthday" label="生日">
-    <DatePicker placeholder="请选择出生日期"  />
+    <DatePicker placeholder="Select birth date"  />
   </FormItem>
-  <Button type="primary" block nativeType="submit" text="提交" />
+  <Button type="primary" block nativeType="submit" text="Submit" />
 </Form>`;
 
 /* ── Basic Demo ── */
@@ -61,7 +61,7 @@ const BasicDemo: Component = () => {
   const phone = useContext(PhoneTargetContext);
   const [val, setVal] = createSignal('');
   return (
-    <DatePicker value={val()} onChange={setVal} placeholder="点击选择日期" teleport={phone?.()} />
+    <DatePicker value={val()} onChange={setVal} placeholder="Tap to select date" teleport={phone?.()} />
   );
 };
 
@@ -92,7 +92,7 @@ const YearMonthDemo: Component = () => {
       value={val()}
       onChange={setVal}
       type="year-month"
-      placeholder="选择年月"
+      placeholder="Select year-month"
       teleport={phone?.()}
     />
   );
@@ -107,7 +107,7 @@ const DisabledDateDemo: Component = () => {
     <DatePicker
       value={val()}
       onChange={setVal}
-      placeholder="周末不可选"
+      placeholder="Weekends disabled"
       disabledDate={(y, m, d) => [0, 6].includes(new Date(y, m - 1, d).getDay())}
       teleport={phone?.()}
     />
@@ -124,7 +124,7 @@ const DateTimeDemo: Component = () => {
       value={val()}
       onChange={setVal}
       type="datetime"
-      placeholder="选择日期时间"
+      placeholder="Select date & time"
       teleport={phone?.()}
     />
   );
@@ -137,16 +137,16 @@ const FormDemo: Component = () => {
   const [formVal, setFormVal] = createSignal({});
   return (
     <>
-      <Form onSubmit={(v) => { setFormVal(v); Toast.success('提交: ' + JSON.stringify(v)); }}>
+      <Form onSubmit={(v) => { setFormVal(v); Toast.success('Submit: ' + JSON.stringify(v)); }}>
         <FormItem name="birthday" label="生日">
-          <DatePicker placeholder="请选择出生日期" teleport={phone?.()} />
+          <DatePicker placeholder="Select birth date" teleport={phone?.()} />
         </FormItem>
         <div style={{ padding: '12px 1rem' }}>
-          <Button type="primary" block nativeType="submit" text="提交" />
+          <Button type="primary" block nativeType="submit" text="Submit" />
         </div>
       </Form>
       <div style={{ padding: '0 1rem', 'font-size': '0.8rem', color: '#6b7280' }}>
-        提交值: {JSON.stringify(formVal())}
+        Submit value: {JSON.stringify(formVal())}
       </div>
     </>
   );
@@ -157,7 +157,7 @@ export const DatePickerDocPage: Component = () => {
   return (
   <DocLayout>
     <div style={{ padding: '16px', 'max-width': '960px' }}>
-      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>DatePicker 日期选择</h1>
+      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>DatePicker</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
         {t('demo.basicDesc')}
       </p>

@@ -43,7 +43,7 @@ const codeCustomIcon = `<Stepper defaultValue={0}\n  minusIcon={\n    <span styl
 
 const codeDisabled = `<Stepper value={3} disabled />`;
 
-const codeForm = `<FormItem name="count" label="数量">
+const codeForm = `<FormItem name="count" label="Quantity">
   <Stepper />
 </FormItem>`;
 
@@ -55,7 +55,7 @@ export const StepperDocPage: Component = () => {
   return (
     <DocLayout>
       <div style={{ padding: '16px', 'max-width': '960px' }}>
-        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Stepper 步进器</h1>
+        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Stepper</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
           {t('componentIntro.StepperIntro')}
         </p>
@@ -66,11 +66,11 @@ export const StepperDocPage: Component = () => {
         <GroupCodePhone />
 
         <DemoBlock title={t('demo.basic')} code={codeBasic} groupCode="Stepper">
-          <Cell title="数量" value={<Stepper value={basicVal()} onChange={setBasicVal} />} />
+          <Cell title="Quantity" value={<Stepper value={basicVal()} onChange={setBasicVal} />} />
         </DemoBlock>
 
         <DemoBlock title={t('demo.range')} code={codeRange} groupCode="Stepper">
-          <Cell title="范围 0~10" value={<Stepper defaultValue={5} min={0} max={10} />} />
+          <Cell title="Range 0~10" value={<Stepper defaultValue={5} min={0} max={10} />} />
         </DemoBlock>
 
         <DemoBlock title={t('demo.step')} code={codeStep} groupCode="Stepper">
@@ -94,16 +94,16 @@ export const StepperDocPage: Component = () => {
         </DemoBlock>
 
         <DemoBlock title={t('demo.form')} desc={t('demo.formDesc')} code={codeForm}>
-          <Form onSubmit={(v) => { setFormVal(v); Toast.success('提交: ' + JSON.stringify(v)); }}>
-            <FormItem name="count" label="数量">
+          <Form onSubmit={(v) => { setFormVal(v); Toast.success('Submit: ' + JSON.stringify(v)); }}>
+            <FormItem name="count" label="Quantity">
               <Stepper />
             </FormItem>
             <div style={{ padding: '12px 1rem' }}>
-              <Button type="primary" block nativeType="submit" text="提交" />
+              <Button type="primary" block nativeType="submit" text="Submit" />
             </div>
           </Form>
           <div style={{ padding: '0 1rem', 'font-size': '0.8rem', color: '#6b7280' }}>
-            提交值: {JSON.stringify(formVal())}
+            Submit value: {JSON.stringify(formVal())}
           </div>
         </DemoBlock>
       </div>

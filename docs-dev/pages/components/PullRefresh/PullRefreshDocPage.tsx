@@ -20,10 +20,10 @@ const pullRefreshProps: PropRow[] = [
   { name: 'successDuration', type: 'number', default: '500', required: false, desc: 'componentProps.pullrefresh.successDuration' },
   { name: 'animationDuration', type: 'number', default: '300', required: false, desc: 'componentProps.pullrefresh.animationDuration' },
   { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.pullrefresh.disabled' },
-  { name: 'pullingText', type: 'string', default: "'下拉刷新'", required: false, desc: 'componentProps.pullrefresh.pullingText' },
-  { name: 'loosingText', type: 'string', default: "'释放刷新'", required: false, desc: 'componentProps.pullrefresh.loosingText' },
-  { name: 'loadingText', type: 'string', default: "'刷新中...'", required: false, desc: 'componentProps.pullrefresh.loadingText' },
-  { name: 'successText', type: 'string', default: "'刷新成功'", required: false, desc: 'componentProps.pullrefresh.successText' },
+  { name: 'pullingText', type: 'string', default: "'Pull to Refresh'", required: false, desc: 'componentProps.pullrefresh.pullingText' },
+  { name: 'loosingText', type: 'string', default: "'Release to Refresh'", required: false, desc: 'componentProps.pullrefresh.loosingText' },
+  { name: 'loadingText', type: 'string', default: "'Refreshing...'", required: false, desc: 'componentProps.pullrefresh.loadingText' },
+  { name: 'successText', type: 'string', default: "'Refresh successful'", required: false, desc: 'componentProps.pullrefresh.successText' },
 ];
 
 export const PullRefreshDocPage: Component = () => {
@@ -39,7 +39,7 @@ export const PullRefreshDocPage: Component = () => {
   return (
     <DocLayout>
       <div style={{ padding: '16px', 'max-width': '960px' }}>
-        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>PullRefresh 下拉刷新</h1>
+        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>PullRefresh Pull to Refresh</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
           {t('componentIntro.PullRefreshIntro')}
         </p>
@@ -51,24 +51,24 @@ export const PullRefreshDocPage: Component = () => {
           <div style={{ background: '#fff', 'border-radius': '8px', padding: '12px', 'text-align': 'center', color: '#969799', 'font-size': '0.8rem' }}>
             <PullRefresh onRefresh={mockRefresh}>
               <div style={{ padding: '40px 0' }}>
-                <div style={{ 'font-size': '0.9rem', color: '#323233', 'margin-bottom': '8px' }}>下拉试试</div>
-                <div style={{ 'font-size': '0.75rem' }}>刷新次数: {count()}</div>
+                <div style={{ 'font-size': '0.9rem', color: '#323233', 'margin-bottom': '8px' }}>Pull down</div>
+                <div style={{ 'font-size': '0.75rem' }}>Refresh count: {count()}</div>
               </div>
             </PullRefresh>
           </div>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.pullCustomText')} desc={t('demoDesc.pullrefresh_custom_text')} code={`<PullRefresh\n  pullingText="再用力一点"\n  loosingText="松手刷新"\n  loadingText="加载中..."\n  successText="加载完成"\n/>`}>
+        <DemoBlock title={t('demo.pullCustomText')} desc={t('demoDesc.pullrefresh_custom_text')} code={`<PullRefresh\n  pullingText="再用力一点"\n  loosingText="Release to refresh"\n  loadingText="Loading..."\n  successText="加载完成"\n/>`}>
           <div style={{ background: '#fff', 'border-radius': '8px', padding: '12px', 'text-align': 'center', color: '#969799', 'font-size': '0.8rem' }}>
             <PullRefresh
               onRefresh={mockRefresh}
               pullingText="再用力一点"
-              loosingText="松手刷新"
-              loadingText="加载中..."
+              loosingText="Release to refresh"
+              loadingText="Loading..."
               successText="加载完成"
             >
               <div style={{ padding: '40px 0', color: '#323233' }}>
-                自定义文案下拉刷新
+                自定义文案Pull to Refresh
               </div>
             </PullRefresh>
           </div>

@@ -17,10 +17,10 @@ const propsData: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'flex', title: 'Flex 居中' },
-  { id: 'text', title: 'Text 居中' },
-  { id: 'position', title: '绝对居中' },
+  { id: 'props', title: 'Props' },
+  { id: 'flex', title: 'Flex Center' },
+  { id: 'text', title: 'Text Center' },
+  { id: 'position', title: 'Absolute Center' },
 ];
 
 const Box = (props: { children?: any }) => <div class={styles.demoBox}>{props.children}</div>;
@@ -31,7 +31,7 @@ export const CenterDocPage = () => {
     <DocLayout>
 
     <div class={styles.page}>
-      <h1 class={styles.h1}>Center 居中</h1>
+      <h1 class={styles.h1}>Center</h1>
       <p class={styles.intro}>
         {t('componentIntro.CenterIntro')}
       </p>
@@ -45,30 +45,30 @@ export const CenterDocPage = () => {
       <DemoBlock
         title={t('demo.centerDefault')}
         desc={t('demoDesc.center_default')}
-        code={`<Center>\n  <div>居中的内容</div>\n</Center>`}
+        code={`<Center>\n  <div>Centered content</div>\n</Center>`}
       >
         <div class={styles.demoContainer}>
-          <Center><Box>两轴居中</Box></Center>
+          <Center><Box>Both axes centered</Box></Center>
         </div>
       </DemoBlock>
 
       <DemoBlock
         title={t('demo.centerFlexX')}
         desc={t('demoDesc.center_horizontal')}
-        code={`<Center flexX>\n  <div>水平居中</div>\n</Center>`}
+        code={`<Center flexX>\n  <div>Horizontally centered</div>\n</Center>`}
       >
         <div class={styles.demoContainer}>
-          <Center flexX><Box>水平居中</Box></Center>
+          <Center flexX><Box>Horizontally centered</Box></Center>
         </div>
       </DemoBlock>
 
       <DemoBlock
         title={t('demo.centerFlexY')}
         desc={t('demoDesc.center_vertical')}
-        code={`<div style={{ height: 160 }}>\n  <Center flexY>\n    <div>垂直居中</div>\n  </Center>\n</div>`}
+        code={`<div style={{ height: 160 }}>\n  <Center flexY>\n    <div>Vertically centered</div>\n  </Center>\n</div>`}
       >
         <div class={styles.demoContainer}>
-          <Center flexY><Box>垂直居中</Box></Center>
+          <Center flexY><Box>Vertically centered</Box></Center>
         </div>
       </DemoBlock>
 
@@ -108,7 +108,7 @@ export const CenterDocPage = () => {
       <h2 id="position" class={styles.h2}>{t('section.absoluteCenter')}</h2>
       <DemoBlock
         title={t('demo.centerPosition')}
-        desc={'absolute + transform 居中。Center 自身作为定位容器，父级只需给高度即可。'}
+        desc={'absolute + transform centering. Center acts as a positioning container; the parent only needs a height.'}
         code={`<div style={{ height: 160 }}>\n  <Center position>\n    <div>绝对居中</div>\n  </Center>\n</div>`}
       >
         <div class={styles.demoContainer}>

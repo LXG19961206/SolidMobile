@@ -30,7 +30,7 @@ const groupProps: PropRow[] = [
   { name: 'defaultValue', type: 'unknown[]', default: '[]', required: false, desc: 'componentProps.checkboxGroup.defaultValue' },
   { name: 'onChange', type: '(values) => void', default: '—', required: false, desc: 'componentProps.checkboxGroup.onChange' },
   { name: 'direction', type: "'vertical' | 'horizontal'", default: "'vertical'", required: false, desc: 'componentProps.checkboxGroup.direction' },
-  { name: 'gap', type: 'string | number', default: "'12px'(横向) / '0'(纵向)", required: false, desc: 'componentProps.checkboxGroup.gap' },
+  { name: 'gap', type: 'string | number', default: "'12px'(horizontal) / '0'(vertical)", required: false, desc: 'componentProps.checkboxGroup.gap' },
   { name: 'disabled', type: 'boolean', default: 'false', required: false, desc: 'componentProps.checkboxGroup.disabled' },
   { name: 'max', type: 'number', default: '—', required: false, desc: 'componentProps.checkboxGroup.max' },
   { name: 'min', type: 'number', default: '—', required: false, desc: 'componentProps.checkboxGroup.min' },
@@ -55,27 +55,27 @@ const checkboxCssVars: PropRow[] = [
 ];
 
 const codeBasic = `<CheckboxGroup value={basicVal()} onChange={setBasicVal}>
-  <Checkbox value="a" label="选项 A" />
-  <Checkbox value="b" label="选项 B" />
-  <Checkbox value="c" label="选项 C" />
+  <Checkbox value="a" label="Option A" />
+  <Checkbox value="b" label="Option B" />
+  <Checkbox value="c" label="Option C" />
 </CheckboxGroup>`;
 
 const codeDisabled = `<CheckboxGroup>
-  <Checkbox value="a" label="正常" />
-  <Checkbox value="b" label="禁用" disabled />
-  <Checkbox value="c" label="也正常" checked />
+  <Checkbox value="a" label="Normal" />
+  <Checkbox value="b" label="Disabled" disabled />
+  <Checkbox value="c" label="Also Normal" checked />
 </CheckboxGroup>`;
 
 const codeShape = `<CheckboxGroup>
-  <Checkbox value="a" label="Square（默认）" />
+  <Checkbox value="a" label="Square (default)" />
   <Checkbox value="b" label="Round" shape="round" />
 </CheckboxGroup>`;
 
 const codeCustomIcon = `<CheckboxGroup checkedColor="#e74c3c" defaultValue={['star']}>
-  <Checkbox value="star" label="标星"
+  <Checkbox value="star" label="Star"
     checkedIcon={<StarIcon />}
     uncheckedIcon={<StarIcon />} />
-  <Checkbox value="heart" label="红心"
+  <Checkbox value="heart" label="Heart"
     checkedIcon={<HeartIcon />}
     uncheckedIcon={<HeartIcon />} />
 </CheckboxGroup>`;
@@ -95,15 +95,15 @@ const HeartIcon = () => (
 );
 
 const codeColor = `<CheckboxGroup checkedColor="#22c55e" defaultValue={['a', 'c']}>
-  <Checkbox value="a" label="绿色" />
-  <Checkbox value="b" label="绿色" />
-  <Checkbox value="c" label="绿色" />
+  <Checkbox value="a" label="Green" />
+  <Checkbox value="b" label="Green" />
+  <Checkbox value="c" label="Green" />
 </CheckboxGroup>`;
 
 const codeHorizontal = `<CheckboxGroup direction="horizontal" defaultValue={['a']}>
-  <Checkbox value="a" label="选项 A" />
-  <Checkbox value="b" label="选项 B" />
-  <Checkbox value="c" label="选项 C" />
+  <Checkbox value="a" label="Option A" />
+  <Checkbox value="b" label="Option B" />
+  <Checkbox value="c" label="Option C" />
 </CheckboxGroup>`;
 
 const codeIndeterminate = `<Checkbox indeterminate={indet()} onChange={setIndet}>
@@ -114,21 +114,21 @@ const codeIndeterminate = `<Checkbox indeterminate={indet()} onChange={setIndet}
 </CheckboxGroup>`;
 
 const codeMaxMin = `<CheckboxGroup max={2} min={1} defaultValue={['a']}>
-  <Checkbox value="a" label="至少选 1 个，最多 2 个" />
-  <Checkbox value="b" label="选项 B" />
-  <Checkbox value="c" label="选项 C" />
+  <Checkbox value="a" label="Min 1, max 2" />
+  <Checkbox value="b" label="Option B" />
+  <Checkbox value="c" label="Option C" />
 </CheckboxGroup>`;
 
 const codeForm = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}>
-  <FormItem name="hobbies" label="爱好" contentFlex>
+  <FormItem name="hobbies" label="Hobbies" contentFlex>
     <CheckboxGroup direction="horizontal" style={{ 'margin-left': 'auto' }}>
-      <Checkbox value="coding" label="写代码" />
-      <Checkbox value="reading" label="阅读" />
-      <Checkbox value="gaming" label="游戏" />
+      <Checkbox value="coding" label="Coding" />
+      <Checkbox value="reading" label="Reading" />
+      <Checkbox value="gaming" label="Gaming" />
     </CheckboxGroup>
   </FormItem>
   <div style={{ padding: '12px 1rem' }}>
-    <Button type="primary" block nativeType="submit" text="提交" />
+    <Button type="primary" block nativeType="submit" text="Submit" />
   </div>
 </Form>`;
 
@@ -148,16 +148,16 @@ const IndeterminateDemo: Component = () => {
     <>
       <Checkbox
         value="all"
-        label="全选"
+        label="Select All"
         indeterminate={someChecked()}
         checked={allChecked()}
         onChange={toggleAll}
       />
       <div style={{ height: '8px' }} />
       <CheckboxGroup value={checkedList()} onChange={setCheckedList}>
-        <Checkbox value="a" label="选项 A" />
-        <Checkbox value="b" label="选项 B" />
-        <Checkbox value="c" label="选项 C" />
+        <Checkbox value="a" label="Option A" />
+        <Checkbox value="b" label="Option B" />
+        <Checkbox value="c" label="Option C" />
       </CheckboxGroup>
     </>
   );
@@ -169,20 +169,20 @@ const FormDemo: Component = () => {
   const [formVal, setFormVal] = createSignal({});
   return (
     <>
-      <Form onSubmit={(v) => { setFormVal(v); Toast.success('提交: ' + JSON.stringify(v)); }}>
-        <FormItem name="hobbies" label="爱好" contentFlex>
+      <Form onSubmit={(v) => { setFormVal(v); Toast.success('Submit: ' + JSON.stringify(v)); }}>
+        <FormItem name="hobbies" label="Hobbies" contentFlex>
           <CheckboxGroup direction="horizontal" style={{ 'margin-left': 'auto' }}>
-            <Checkbox value="coding" label="写代码" />
-            <Checkbox value="reading" label="阅读" />
-            <Checkbox value="gaming" label="游戏" />
+            <Checkbox value="coding" label="Coding" />
+            <Checkbox value="reading" label="Reading" />
+            <Checkbox value="gaming" label="Gaming" />
           </CheckboxGroup>
         </FormItem>
         <div style={{ padding: '12px 1rem' }}>
-          <Button type="primary" block nativeType="submit" text="提交" />
+          <Button type="primary" block nativeType="submit" text="Submit" />
         </div>
       </Form>
       <div style={{ padding: '0 1rem', 'font-size': '0.8rem', color: '#6b7280' }}>
-        提交值: {JSON.stringify(formVal())}
+        Submit value: {JSON.stringify(formVal())}
       </div>
     </>
   );
@@ -197,7 +197,7 @@ export const CheckboxDocPage: Component = () => {
   return (
     <DocLayout>
       <div style={{ padding: '16px', 'max-width': '960px' }}>
-        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Checkbox 复选框</h1>
+        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Checkbox</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
           {t('componentIntro.CheckboxIntro')}
         </p>
@@ -213,26 +213,26 @@ export const CheckboxDocPage: Component = () => {
 
         <DemoBlock title={t('demo.basic')} code={codeBasic}>
           <CheckboxGroup value={basicVal()} onChange={setBasicVal}>
-            <Checkbox value="a" label="选项 A" />
-            <Checkbox value="b" label="选项 B" />
-            <Checkbox value="c" label="选项 C" />
+            <Checkbox value="a" label="Option A" />
+            <Checkbox value="b" label="Option B" />
+            <Checkbox value="c" label="Option C" />
           </CheckboxGroup>
           <div style={{ 'font-size': '0.8rem', color: '#6b7280', 'margin-top': '8px' }}>
-            当前值: {JSON.stringify(basicVal())}
+            Current: {JSON.stringify(basicVal())}
           </div>
         </DemoBlock>
 
         <DemoBlock title={t('demo.disabled')} desc={t('demo.disabledDesc')} code={codeDisabled}>
           <CheckboxGroup>
-            <Checkbox value="a" label="正常" />
-            <Checkbox value="b" label="禁用" disabled />
-            <Checkbox value="c" label="也正常" checked />
+            <Checkbox value="a" label="Normal" />
+            <Checkbox value="b" label="Disabled" disabled />
+            <Checkbox value="c" label="Also Normal" checked />
           </CheckboxGroup>
         </DemoBlock>
 
         <DemoBlock title={t('demo.shape')} desc={t('demo.shapeDesc')} code={codeShape}>
           <CheckboxGroup>
-            <Checkbox value="a" label="Square（默认）" />
+            <Checkbox value="a" label="Square (default)" />
             <Checkbox value="b" label="Round" shape="round" />
           </CheckboxGroup>
         </DemoBlock>
@@ -241,13 +241,13 @@ export const CheckboxDocPage: Component = () => {
           <CheckboxGroup checkedColor="#e74c3c" defaultValue={['star']}>
             <Checkbox
               value="star"
-              label="标星"
+              label="Star"
               checkedIcon={<StarIcon />}
               uncheckedIcon={<StarIcon />}
             />
             <Checkbox
               value="heart"
-              label="红心"
+              label="Heart"
               checkedIcon={<HeartIcon />}
               uncheckedIcon={<HeartIcon />}
             />
@@ -256,20 +256,20 @@ export const CheckboxDocPage: Component = () => {
 
         <DemoBlock title={t('demo.customColor')} desc={t('demo.customColorDesc')} code={codeColor}>
           <CheckboxGroup checkedColor="#22c55e" defaultValue={['a', 'c']}>
-            <Checkbox value="a" label="绿色" />
-            <Checkbox value="b" label="绿色" />
-            <Checkbox value="c" label="绿色" />
+            <Checkbox value="a" label="Green" />
+            <Checkbox value="b" label="Green" />
+            <Checkbox value="c" label="Green" />
           </CheckboxGroup>
           <div style={{ 'font-size': '0.8rem', color: '#6b7280', 'margin-top': '8px' }}>
-            defaultValue={['a', 'c']} 默认选中 A 和 C
+            defaultValue={['a', 'c']} Defaults to A and C selected
           </div>
         </DemoBlock>
 
         <DemoBlock title={t('demo.horizontal')} desc={t('demo.horizontalDesc')} code={codeHorizontal}>
           <CheckboxGroup direction="horizontal" defaultValue={['a']}>
-            <Checkbox value="a" label="选项 A" />
-            <Checkbox value="b" label="选项 B" />
-            <Checkbox value="c" label="选项 C" />
+            <Checkbox value="a" label="Option A" />
+            <Checkbox value="b" label="Option B" />
+            <Checkbox value="c" label="Option C" />
           </CheckboxGroup>
         </DemoBlock>
 
@@ -279,19 +279,19 @@ export const CheckboxDocPage: Component = () => {
 
         <DemoBlock title={t('demo.minMaxCheck')} desc={t('demoDesc.checkbox_minmax')} code={codeMaxMin}>
           <CheckboxGroup max={2} min={1} defaultValue={['a']}>
-            <Checkbox value="a" label="至少选 1 个，最多 2 个" />
-            <Checkbox value="b" label="选项 B" />
-            <Checkbox value="c" label="选项 C" />
+            <Checkbox value="a" label="Min 1, max 2" />
+            <Checkbox value="b" label="Option B" />
+            <Checkbox value="c" label="Option C" />
           </CheckboxGroup>
         </DemoBlock>
 
         <DemoBlock title={t('demo.standalone')} desc={t('demoDesc.checkbox_standalone')} code={`<Checkbox value="x" label="非受控" defaultChecked />
-<Checkbox value="y" label="受控" checked={val()} onChange={setVal} />`}>
-          <Checkbox value="x" label="点击我切换（非受控，defaultChecked）" defaultChecked />
+<Checkbox value="y" label="Controlled" checked={val()} onChange={setVal} />`}>
+          <Checkbox value="x" label="Tap to toggle (uncontrolled, defaultChecked)" defaultChecked />
           <div style={{ height: '8px' }} />
-          <Checkbox value="y" label="受控模式" checked={indet()} onChange={setIndet} />
+          <Checkbox value="y" label="Controlled mode" checked={indet()} onChange={setIndet} />
           <div style={{ 'font-size': '0.8rem', color: '#6b7280', 'margin-top': '8px' }}>
-            受控选中: {String(indet())}
+            Controlled value: {String(indet())}
           </div>
         </DemoBlock>
 

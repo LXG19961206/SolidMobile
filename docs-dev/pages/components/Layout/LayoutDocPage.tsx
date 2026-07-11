@@ -17,11 +17,11 @@ const colProps: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'row-props', title: 'Row 属性' },
-  { id: 'col-props', title: 'Col 属性' },
-  { id: 'grid', title: 'Flex 栅格' },
-  { id: 'offset', title: '偏移' },
-  { id: 'gap', title: '间距 & 对齐' },
+  { id: 'row-props', title: 'Row Props' },
+  { id: 'col-props', title: 'Col Props' },
+  { id: 'grid', title: 'Grid' },
+  { id: 'offset', title: 'Offset' },
+  { id: 'gap', title: 'Gap & Align' },
 ];
 
 const Bar = (props: { children: any; color?: string }) => (
@@ -34,7 +34,7 @@ export const LayoutDocPage = () => {
   <DocLayout>
 
     <div class={css.page}>
-      <h1 class={css.h1}>Layout 布局</h1>
+      <h1 class={css.h1}>Layout</h1>
       <p class={css.intro}>{t('componentIntro.LayoutIntro')}</p>
 
       <h2 id="row-props" class={css.h2}>{t('common.rowProps')}</h2>
@@ -52,7 +52,7 @@ export const LayoutDocPage = () => {
       </DemoBlock>
 
       <h2 id="offset" class={css.h2}>{t('demo.layoutOffset')}</h2>
-      <DemoBlock title={t('demo.layoutOffset')} desc={t('demoDesc.layout_offset')} code={'<Row>\n  <Col span={8} offset={8}><div>居中</div></Col>\n</Row>'}>
+      <DemoBlock title={t('demo.layoutOffset')} desc={t('demoDesc.layout_offset')} code={'<Row>\n  <Col span={8} offset={8}><div>Centered</div></Col>\n</Row>'}>
         <Row><Col span={8} offset={8}><Bar>span=8 offset=8</Bar></Col></Row>
       </DemoBlock>
 
@@ -60,7 +60,7 @@ export const LayoutDocPage = () => {
       <DemoBlock title={t('demo.layoutGapAlign')} desc={t('demoDesc.layout_gap_align')} code={'<Row gap={16} align="center">\n  <Col span={6}><div>A</div></Col>\n  <Col span={6}><div style={{padding:24}}>B</div></Col>\n  <Col span={6}><div>C</div></Col>\n</Row>'}>
         <Row gap={16} align="center">
           <Col span={6}><Bar>短</Bar></Col>
-          <Col span={6}><div style={{ background: 'var(--sc-color-primary-hover, #4995ff)', color: '#fff', 'text-align': 'center', padding: '24px 8px', 'border-radius': '4px', 'font-size': '0.8rem' }}>高</div></Col>
+          <Col span={6}><div style={{ background: 'var(--sc-color-primary-hover, #4995ff)', color: '#fff', 'text-align': 'center', padding: '24px 8px', 'border-radius': '4px', 'font-size': '0.8rem' }}>Tall</div></Col>
           <Col span={6}><Bar>短</Bar></Col>
         </Row>
       </DemoBlock>

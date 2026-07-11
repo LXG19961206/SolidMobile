@@ -27,7 +27,7 @@ const OverlayDocInner = () => {
 
   return (
     <div style={{ padding: '16px', 'max-width': '960px' }}>
-      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Overlay 遮罩层</h1>
+      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Overlay</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px' }}>{t('componentIntro.OverlayIntro')}</p>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
@@ -46,7 +46,7 @@ const OverlayDocInner = () => {
 
       <DemoBlock title={t('demo.overlayActionSheet')} desc={t('demoDesc.overlay_actionsheet')} code={`<ActionSheet open={open} onClose={...} items={...} />`} groupCode="overlayDemo">
         <Cell title="ActionSheet" clickable onClick={() => s2s(true)} />
-        <ActionSheet mount={pm()} open={s2()} onClose={() => s2s(false)} title="选择操作" closeable items={[{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }]} cancelText="取消" />
+        <ActionSheet mount={pm()} open={s2()} onClose={() => s2s(false)} title="选择操作" closeable items={[{ name: 'Option 1' }, { name: 'Option 2' }, { name: 'Option 3' }]} cancelText="Cancel" />
       </DemoBlock>
 
       <DemoBlock title={t('demo.noScrollLock')} desc={t('demo.noScrollLockDesc')} code={`<Overlay open={open} onClose={...} lockScroll={false}>...</Overlay>`} groupCode="overlayDemo">

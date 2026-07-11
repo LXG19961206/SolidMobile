@@ -21,12 +21,12 @@ const propsData: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'types', title: '内置类型' },
-  { id: 'size-color', title: '尺寸 & 颜色' },
-  { id: 'vertical', title: '纵向布局' },
-  { id: 'custom', title: '自定义图标' },
-  { id: 'overlay', title: '全屏遮罩' },
+  { id: 'props', title: 'Props' },
+  { id: 'types', title: 'Built-in Types' },
+  { id: 'size-color', title: 'Size & Color' },
+  { id: 'vertical', title: 'Vertical Layout' },
+  { id: 'custom', title: 'Custom Icon' },
+  { id: 'overlay', title: 'Overlay' },
 ];
 
 const LoadingDocInner = () => {
@@ -39,7 +39,7 @@ const LoadingDocInner = () => {
     <>
 
       <div class={styles.page}>
-        <h1 class={styles.h1}>Loading 加载</h1>
+        <h1 class={styles.h1}>Loading</h1>
         <p class={styles.intro}>
           {t('componentIntro.LoadingIntro')}
         </p>
@@ -53,12 +53,12 @@ const LoadingDocInner = () => {
         <DemoBlock
           title={t('demo.loadingTypes')}
           desc={t('demoDesc.loading_types')}
-          code={`<Loading type="spinner" text="加载中..." />\n<Loading type="circular" text="加载中..." />\n<Loading type="dots" text="加载中..." />`}
+          code={`<Loading type="spinner" text="Loading..." />\n<Loading type="circular" text="Loading..." />\n<Loading type="dots" text="Loading..." />`}
         >
           <div class={styles.demoArea}>
-            <Loading type="spinner" text="加载中..." />
-            <Loading type="circular" text="加载中..." />
-            <Loading type="dots" text="加载中..." />
+            <Loading type="spinner" text="Loading..." />
+            <Loading type="circular" text="Loading..." />
+            <Loading type="dots" text="Loading..." />
           </div>
         </DemoBlock>
 
@@ -93,11 +93,11 @@ const LoadingDocInner = () => {
         <DemoBlock
           title={t('demo.centerVertical')}
           desc={t('demoDesc.loading_vertical')}
-          code={`<Loading vertical text="正在加载数据..." />\n<Loading vertical type="dots" text="搜索中..." />`}
+          code={`<Loading vertical text="Loading data..." />\n<Loading vertical type="dots" text="Searching..." />`}
         >
           <div class={styles.demoArea}>
-            <Loading vertical text="正在加载数据..." />
-            <Loading vertical type="dots" text="搜索中..." color="var(--sc-color-primary, #1677ff)" />
+            <Loading vertical text="Loading data..." />
+            <Loading vertical type="dots" text="Searching..." color="var(--sc-color-primary, #1677ff)" />
           </div>
         </DemoBlock>
 
@@ -106,7 +106,7 @@ const LoadingDocInner = () => {
         <DemoBlock
           title={t('demo.loadingIconProp')}
           desc={t('demoDesc.loading_custom_icon')}
-          code={`<Loading icon={<Icon name="refresh" size={24} />} text="刷新中..." />`}
+          code={`<Loading icon={<Icon name="refresh" size={24} />} text="Refreshing..." />`}
         >
           <div class={styles.demoArea}>
             <Loading
@@ -115,7 +115,7 @@ const LoadingDocInner = () => {
                   <Icon name="refresh" size={24} color="var(--sc-color-primary, #1677ff)" />
                 </span>
               }
-              text="刷新中..."
+              text="Refreshing..."
             />
           </div>
         </DemoBlock>
@@ -125,7 +125,7 @@ const LoadingDocInner = () => {
         <DemoBlock
           title={t('demo.loadingOverlayMode')}
           desc={t('demoDesc.loading_overlay')}
-          code={`import { createSignal } from 'solid-js';\nimport { Loading } from 'solid-mobile';\n\nfunction Demo() {\n  const [loading, setLoading] = createSignal(false);\n\n  const handleSubmit = async () => {\n    setLoading(true);\n    await fetchData();\n    setLoading(false);\n  };\n\n  return (\n    <>\n      <button onClick={handleSubmit}>提交</button>\n      {loading() && <Loading overlay text="正在处理..." />}\n    </>\n  );\n}`}
+          code={`import { createSignal } from 'solid-js';\nimport { Loading } from 'solid-mobile';\n\nfunction Demo() {\n  const [loading, setLoading] = createSignal(false);\n\n  const handleSubmit = async () => {\n    setLoading(true);\n    await fetchData();\n    setLoading(false);\n  };\n\n  return (\n    <>\n      <button onClick={handleSubmit}>Submit</button>\n      {loading() && <Loading overlay text="Processing..." />}\n    </>\n  );\n}`}
         >
           <div class={styles.demoArea}>
             <button class={styles.btn} onClick={() => {
@@ -134,7 +134,7 @@ const LoadingDocInner = () => {
             }}>
               演示遮罩加载（2s 后自动关闭）
             </button>
-            {overlayOpen() && <Loading overlay mount={phoneMount()} text="正在处理..." />}
+            {overlayOpen() && <Loading overlay mount={phoneMount()} text="Processing..." />}
           </div>
         </DemoBlock>
       </div>

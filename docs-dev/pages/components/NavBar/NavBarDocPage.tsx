@@ -24,8 +24,8 @@ const propsData: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'demo', title: '示例' },
+  { id: 'props', title: 'Props' },
+  { id: 'demo', title: 'Examples' },
 ];
 
 export const NavBarDocPage = () => {
@@ -33,7 +33,7 @@ export const NavBarDocPage = () => {
   return (
   <DocLayout>
     <div class={css.page}>
-      <h1 class={css.h1}>NavBar 导航栏</h1>
+      <h1 class={css.h1}>NavBar</h1>
       <p class={css.intro}>
         {t('componentIntro.NavBarIntro')}
       </p>
@@ -53,20 +53,20 @@ export const NavBarDocPage = () => {
         </div>
       </DemoBlock>
 
-      <DemoBlock title={t('demo.basic')} desc={t('demoDesc.navbar_basic')} code={'<NavBar title="页面标题" />'}>
-        <div class={css.demoBox}><NavBar title="页面标题" /></div>
+      <DemoBlock title={t('demo.basic')} desc={t('demoDesc.navbar_basic')} code={'<NavBar title="Page Title" />'}>
+        <div class={css.demoBox}><NavBar title="Page Title" /></div>
       </DemoBlock>
 
-      <DemoBlock title={t('demo.navBackArrow')} desc={t('demoDesc.navbar_back')} code={'<NavBar title="详情" backArrow onBack={() => history.back()} />'}>
-        <div class={css.demoBox}><NavBar title="详情" backArrow onBack={() => { }} /></div>
+      <DemoBlock title={t('demo.navBackArrow')} desc={t('demoDesc.navbar_back')} code={'<NavBar title="Details" backArrow onBack={() => history.back()} />'}>
+        <div class={css.demoBox}><NavBar title="Details" backArrow onBack={() => { }} /></div>
       </DemoBlock>
 
       <DemoBlock title={t('demo.navRightAction')} desc={t('demoDesc.navbar_right')} code={'<NavBar\n  title="编辑资料"\n  backArrow\n  right={<Button size="sm">保存</Button>}\n/>'}>
         <div class={css.demoBox}><NavBar title="编辑资料" backArrow right={<Button size="sm">保存</Button>} /></div>
       </DemoBlock>
 
-      <DemoBlock title={t('demo.navCustomSides')} desc={t('demoDesc.navbar_custom')} code={'<NavBar\n  title="消息"\n  left={<Icon name="settings" size={20} />}\n  right={<Icon name="search" size={20} />}\n/>'}>
-        <div class={css.demoBox}><NavBar title="消息" left={<Icon name="settings" size={20} />} right={<Icon name="search" size={20} />} /></div>
+      <DemoBlock title={t('demo.navCustomSides')} desc={t('demoDesc.navbar_custom')} code={'<NavBar\n  title="Messages"\n  left={<Icon name="settings" size={20} />}\n  right={<Icon name="search" size={20} />}\n/>'}>
+        <div class={css.demoBox}><NavBar title="Messages" left={<Icon name="settings" size={20} />} right={<Icon name="search" size={20} />} /></div>
       </DemoBlock>
 
 

@@ -16,10 +16,10 @@ const propsData: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'basic', title: '基础用法' },
-  { id: 'fallback', title: '降级策略' },
-  { id: 'shape', title: '形状 & 尺寸' },
+  { id: 'props', title: 'Props' },
+  { id: 'basic', title: 'Basic Usage' },
+  { id: 'fallback', title: 'Fallback Strategy' },
+  { id: 'shape', title: 'Shape & Size' },
 ];
 
 const SRC = 'https://picsum.photos/seed/avatar/100/100';
@@ -30,7 +30,7 @@ export const AvatarDocPage = () => {
   <DocLayout>
 
     <div class={css.page}>
-      <h1 class={css.h1}>Avatar 头像</h1>
+      <h1 class={css.h1}>Avatar</h1>
       <p class={css.intro}>
         {t('componentIntro.AvatarIntro')}
       </p>
@@ -56,20 +56,20 @@ export const AvatarDocPage = () => {
           <Avatar icon="settings" size="md" color="#22c55e" />
         </div>
       </DemoBlock>
-      <DemoBlock title={t('demo.avatarText')} desc={t('demoDesc.avatar_text_fallback')} code={'<Avatar text="张三" color="#f59e0b" />\n<Avatar text="李四" color="#22c55e" />\n<Avatar text="王五" color="#ef4444" />\n<Avatar text="赵" color="#8b5cf6" size="xl" />'}>
+      <DemoBlock title={t('demo.avatarText')} desc={t('demoDesc.avatar_text_fallback')} code={'<Avatar text="Alice" color="#f59e0b" />\n<Avatar text="Bob" color="#22c55e" />\n<Avatar text="Carol" color="#ef4444" />\n<Avatar text="D" color="#8b5cf6" size="xl" />'}>
         <div class={css.row}>
-          <Avatar text="张三" color="#f59e0b" />
-          <Avatar text="李四" color="#22c55e" />
-          <Avatar text="王五" color="#ef4444" />
-          <Avatar text="赵" color="#8b5cf6" size="xl" />
+          <Avatar text="Alice" color="#f59e0b" />
+          <Avatar text="Bob" color="#22c55e" />
+          <Avatar text="Carol" color="#ef4444" />
+          <Avatar text="D" color="#8b5cf6" size="xl" />
         </div>
       </DemoBlock>
 
       <h2 id="shape" class={css.h2}>{t('section.shapeSize')}</h2>
-      <DemoBlock title={t('demo.avatarSquare')} desc={t('demoDesc.avatar_square')} code={'<Avatar src="./logo.png" square size="xl" />\n<Avatar text="品" square color="#1677ff" size="lg" />\n<Avatar icon="computer" square size="md" color="#8b5cf6" />'}>
+      <DemoBlock title={t('demo.avatarSquare')} desc={t('demoDesc.avatar_square')} code={'<Avatar src="./logo.png" square size="xl" />\n<Avatar text="B" square color="#1677ff" size="lg" />\n<Avatar icon="computer" square size="md" color="#8b5cf6" />'}>
         <div class={css.row}>
           <Avatar src={SRC} square size="xl" />
-          <Avatar text="品" square color="var(--sc-color-primary, #1677ff)" size="lg" />
+          <Avatar text="B" square color="var(--sc-color-primary, #1677ff)" size="lg" />
           <Avatar icon="computer" square size="md" color="#8b5cf6" />
         </div>
       </DemoBlock>

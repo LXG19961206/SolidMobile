@@ -27,47 +27,47 @@ const rateProps: PropRow[] = [
 
 const codeBasic = `const [val, setVal] = createSignal(3);
 <Rate value={val()} onChange={setVal} />
-当前: {val()}`;
+Current: {val()}`;
 
 const codeColor = `const [val, setVal] = createSignal(3);
 <Rate value={val()} onChange={setVal} color="#ff7d00" voidColor="#eee" />
-当前: {val()}`;
+Current: {val()}`;
 
 const codeCount = `const [val, setVal] = createSignal(2);
 <Rate value={val()} onChange={setVal} count={8} />
-当前: {val()}`;
+Current: {val()}`;
 
 const codeSize = `const [val, setVal] = createSignal(3);
 <Rate value={val()} onChange={setVal} size={28} gutter={8} />
-当前: {val()}`;
+Current: {val()}`;
 
 const codeHalf = `const [val, setVal] = createSignal(3.5);
 <Rate value={val()} onChange={setVal} allowHalf />
-当前: {val()}`;
+Current: {val()}`;
 
 const codeClearable = `const [val, setVal] = createSignal(3);
 <Rate value={val()} onChange={setVal} clearable />
-当前: {val()}`;
+Current: {val()}`;
 
 const codeDisabled = `const [val, setVal] = createSignal(3);
 <Rate value={val()} onChange={setVal} disabled />
-当前: {val()}`;
+Current: {val()}`;
 
 const codeReadonly = `const [val, setVal] = createSignal(4);
 <Rate value={val()} onChange={setVal} readonly />
-当前: {val()}`;
+Current: {val()}`;
 
 const codeCustom = `const [val, setVal] = createSignal(3);
 <Rate value={val()} onChange={setVal} icon="heart" voidIcon="heart" color="#ff4d4f" voidColor="#f5d0d0" />
-当前: {val()}`;
+Current: {val()}`;
 
 const codeForm = `const [formVal, setFormVal] = createSignal({});
 
 <Form onSubmit={(v) => Toast.success(JSON.stringify(v))}>
-  <FormItem name="score" label="评分">
+  <FormItem name="score" label="Rating">
     <Rate />
   </FormItem>
-  <Button type="primary" block nativeType="submit" text="提交" />
+  <Button type="primary" block nativeType="submit" text="Submit" />
 </Form>`;
 
 /* ── Form Demo ── */
@@ -76,16 +76,16 @@ const FormDemo: Component = () => {
   const [formVal, setFormVal] = createSignal({});
   return (
     <>
-      <Form onSubmit={(v) => { setFormVal(v); Toast.success('提交: ' + JSON.stringify(v)); }}>
-        <FormItem name="score" label="评分">
+      <Form onSubmit={(v) => { setFormVal(v); Toast.success('Submit: ' + JSON.stringify(v)); }}>
+        <FormItem name="score" label="Rating">
           <Rate />
         </FormItem>
         <div style={{ padding: '12px 1rem' }}>
-          <Button type="primary" block nativeType="submit" text="提交" />
+          <Button type="primary" block nativeType="submit" text="Submit" />
         </div>
       </Form>
       <div style={{ padding: '0 1rem', 'font-size': '0.8rem', color: '#6b7280' }}>
-        提交值: {JSON.stringify(formVal())}
+        Submit value: {JSON.stringify(formVal())}
       </div>
     </>
   );
@@ -105,14 +105,14 @@ export const RateDocPage: Component = () => {
 
   const Value = (v: () => number) => (
     <div style={{ 'font-size': '0.85rem', color: '#6b7280', 'margin-top': '8px' }}>
-      当前: {v()}
+      Current: {v()}
     </div>
   );
 
   return (
     <DocLayout>
       <div style={{ padding: '16px', 'max-width': '960px' }}>
-        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Rate 评分</h1>
+        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Rate Rating</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
           {t('componentIntro.RateIntro')}
         </p>

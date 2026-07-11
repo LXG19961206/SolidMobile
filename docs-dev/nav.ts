@@ -1,11 +1,14 @@
 export interface MenuGroup {
   title: string;
+  /** i18n key for the group title — resolve via t(`nav.${titleKey}`) */
+  titleKey: string;
   items: { name: string; key: string }[];
 }
 
 export const GROUPS: MenuGroup[] = [
   {
     title: 'Basic 基础',
+    titleKey: 'groupBasic',
     items: [
       { name: 'Button 按钮', key: 'button' }, { name: 'Icon 图标', key: 'icon' }, { name: 'Center 居中', key: 'center' },
       { name: 'Divider 分割线', key: 'divider' }, { name: 'Layout 布局', key: 'layout' }, { name: 'SafeArea 安全区', key: 'safearea' },
@@ -13,6 +16,7 @@ export const GROUPS: MenuGroup[] = [
   },
   {
     title: 'Display 展示',
+    titleKey: 'groupDisplay',
     items: [
       { name: 'Avatar 头像', key: 'avatar' }, { name: 'Badge 徽标', key: 'badge' }, { name: 'Tag 标签', key: 'tag' },
       { name: 'Image 图片', key: 'image' }, { name: 'Empty 空状态', key: 'empty' }, { name: 'Lazyload 懒加载', key: 'lazyload' },
@@ -22,6 +26,7 @@ export const GROUPS: MenuGroup[] = [
   },
   {
     title: 'Nav 导航',
+    titleKey: 'groupNav',
     items: [
       { name: 'Tabs 标签页', key: 'tabs' }, { name: 'TabBar 标签栏', key: 'tabbar' },
       { name: 'NavBar 导航栏', key: 'navbar' }, { name: 'Cell 单元格', key: 'cell' },
@@ -29,6 +34,7 @@ export const GROUPS: MenuGroup[] = [
   },
   {
     title: 'Picker 选择器',
+    titleKey: 'groupPicker',
     items: [
       { name: 'Picker 滚轮选择', key: 'picker' }, { name: 'Calendar 日历', key: 'calendar' },
       { name: 'Cascader 级联选择', key: 'cascader' }, { name: 'DatePicker 日期选择', key: 'datepicker' },
@@ -37,6 +43,7 @@ export const GROUPS: MenuGroup[] = [
   },
   {
     title: 'Feedback 反馈',
+    titleKey: 'groupFeedback',
     items: [
       { name: 'Toast 轻提示', key: 'toast' }, { name: 'Notify 通知', key: 'notify' }, { name: 'Dialog 弹窗', key: 'dialog' },
       { name: 'Overlay 遮罩层', key: 'overlay' }, { name: 'ActionSheet 动作面板', key: 'actionsheet' }, { name: 'Loading 加载', key: 'loading' },
@@ -44,6 +51,7 @@ export const GROUPS: MenuGroup[] = [
   },
   {
     title: 'Form 表单',
+    titleKey: 'groupForm',
     items: [
       { name: 'Form 表单', key: 'form' }, { name: 'Input 输入框', key: 'input' }, { name: 'Textarea 多行', key: 'textarea' },
       { name: 'Radio 单选框', key: 'radio' }, { name: 'Checkbox 复选框', key: 'checkbox' }, { name: 'Switch 开关', key: 'switch' },
@@ -56,6 +64,7 @@ export const GROUPS: MenuGroup[] = [
 export const GUIDE_GROUPS: MenuGroup[] = [
   {
     title: 'Guide 指南',
+    titleKey: 'groupGuide',
     items: [
       { name: 'Quick Start 快速开始', key: 'guide' },
       { name: 'ConfigProvider 全局配置', key: 'config' },
@@ -66,6 +75,7 @@ export const GUIDE_GROUPS: MenuGroup[] = [
   },
   {
     title: 'About 关于',
+    titleKey: 'groupAbout',
     items: [
       { name: 'About Solid.js 关于框架', key: 'solidjs' },
       { name: 'About 关于项目', key: 'about' },

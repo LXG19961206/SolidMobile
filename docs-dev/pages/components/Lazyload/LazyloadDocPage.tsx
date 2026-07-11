@@ -20,18 +20,18 @@ const propsData: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'basic', title: '列表懒加载' },
-  { id: 'controlled', title: '受控模式' },
-  { id: 'scroll', title: '滚动画廊' },
+  { id: 'props', title: 'Props' },
+  { id: 'basic', title: 'List Lazy Load' },
+  { id: 'controlled', title: 'Controlled' },
+  { id: 'scroll', title: 'Scroll Gallery' },
 ];
 
 /* ── Data ── */
 
 const COLORS = ['#1677ff', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6', '#f97316', '#6366f1', '#84cc16'];
 const ICONS = ['person', 'star', 'map-pin', 'mail', 'calendar', 'chat', 'book', 'settings', 'clock', 'tag'];
-const TITLES = ['产品设计稿', '前端架构文档', '数据库 ER 图', 'API 接口规范', '测试用例报告', '部署运维手册', '用户调研分析', '竞品对比矩阵', '迭代计划排期', 'OKR 季度回顾'];
-const SUBTITLES = ['更新于 2 小时前', '更新于 昨天', '更新于 3 天前', '更新于 1 周前', '更新于 上周', '更新于 2 周前', '更新于 1 个月前', '更新于 刚刚', '更新于 5 小时前', '更新于 昨天'];
+const TITLES = ['Product Design', 'Frontend Architecture', 'Database ER Diagram', 'API Specification', 'Test Report', 'Deployment Guide', 'User Research', 'Competitive Analysis', 'Sprint Plan', 'OKR Review'];
+const SUBTITLES = ['Updated 2 hours ago', 'Updated yesterday', 'Updated 3 days ago', 'Updated 1 week ago', 'Updated last week', 'Updated 2 weeks ago', 'Updated 1 month ago', 'Updated just now', 'Updated 5 hours ago', 'Updated yesterday'];
 
 /* ── DeferredContent — 模拟网络延迟，展现懒加载的完整生命周期 ── */
 
@@ -97,8 +97,8 @@ const ControlledDemo: Component = () => {
   return (
     <div style={{ display: 'flex', 'flex-direction': 'column', gap: '0.75rem', 'align-items': 'flex-start' }}>
       <div style={{ display: 'flex', gap: '0.5rem', 'align-items': 'center' }}>
-        <Button type="primary" size="sm" text={loaded() ? '已激活' : '点击加载'} onClick={() => setLoaded(!loaded())} />
-        <Button variant="outline" size="sm" text="重置" onClick={() => setLoaded(false)} />
+        <Button type="primary" size="sm" text={loaded() ? 'Activated' : 'Click to load'} onClick={() => setLoaded(!loaded())} />
+        <Button variant="outline" size="sm" text="Reset" onClick={() => setLoaded(false)} />
       </div>
       <Lazyload active={loaded()} height={64} placeholder={<SkeletonCard />}>
         <DeferredContent>
@@ -127,7 +127,7 @@ const codeBasic = `<Lazyload rootMargin="100px" placeholder={<Skeleton />}>
   </DeferredContent>
 </Lazyload>`;
 
-const codeControlled = `<Button onClick={() => setLoaded(true)}>加载</Button>
+const codeControlled = `<Button onClick={() => setLoaded(true)}>Load</Button>
 <Lazyload active={loaded()} placeholder={<Skeleton />}>
   <DeferredContent><DocCard /></DeferredContent>
 </Lazyload>`;
@@ -151,7 +151,7 @@ export const LazyloadDocPage: Component = () => {
   return (
     <DocLayout>
       <div class={css.page}>
-        <h1 class={css.h1}>Lazyload 懒加载</h1>
+        <h1 class={css.h1}>Lazyload</h1>
         <p class={css.intro}>
           {t('componentIntro.LazyloadIntro')}
         </p>
@@ -173,8 +173,8 @@ export const LazyloadDocPage: Component = () => {
               'align-items': 'center', 'justify-content': 'center',
               color: '#999', 'text-align': 'center', padding: '0 24px',
             }}>
-              <div style={{ 'font-size': '0.9rem', 'margin-bottom': '8px' }}>⬇ 向下滚动查看更多</div>
-              <div style={{ 'font-size': '0.75rem' }}>下方内容进入视口后自动加载</div>
+              <div style={{ 'font-size': '0.9rem', 'margin-bottom': '8px' }}>⬇ Scroll down to see more</div>
+              <div style={{ 'font-size': '0.75rem' }}>Content below loads automatically on entering viewport</div>
             </div>
             {/* 懒加载列表 */}
             <For each={Array.from({ length: 12 })}>
@@ -213,8 +213,8 @@ export const LazyloadDocPage: Component = () => {
               'align-items': 'center', 'justify-content': 'center',
               color: '#999', 'text-align': 'center', padding: '0 24px',
             }}>
-              <div style={{ 'font-size': '0.9rem', 'margin-bottom': '8px' }}>⬇ 向下滚动查看更多</div>
-              <div style={{ 'font-size': '0.75rem' }}>图片卡片将在进入视口后加载</div>
+              <div style={{ 'font-size': '0.9rem', 'margin-bottom': '8px' }}>⬇ Scroll down to see more</div>
+              <div style={{ 'font-size': '0.75rem' }}>Image cards will load when entering viewport</div>
             </div>
             {/* 懒加载网格 */}
             <div style={{ display: 'grid', 'grid-template-columns': '1fr 1fr', gap: '8px', padding: '4px' }}>

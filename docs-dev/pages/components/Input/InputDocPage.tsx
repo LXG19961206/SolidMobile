@@ -28,38 +28,38 @@ const propsData: PropRow[] = [
 ];
 
 const codeBasic = `<CellGroup>
-  <Cell title="文本" value={<Input placeholder="请输入" />} />
-  <Cell title="密码" value={<Input type="password" placeholder="密码" showPasswordToggle />} />
-  <Cell title="数字" value={<Input type="number" placeholder="数字" />} />
+  <Cell title="Text" value={<Input placeholder="Enter text" />} />
+  <Cell title="Password" value={<Input type="password" placeholder="Password" showPasswordToggle />} />
+  <Cell title="Number" value={<Input type="number" placeholder="Number" />} />
 </CellGroup>`;
 
 const codeClearable = `<CellGroup>
-  <Cell title="清除" value={<Input clearable placeholder="输入点东西试试" />} />
-  <Cell title="预设值" value={<Input clearable defaultValue="点 X 可清除" />} />
+  <Cell title="Clearable" value={<Input clearable placeholder="Type something..." />} />
+  <Cell title="Default Value" value={<Input clearable defaultValue="Tap X to clear" />} />
 </CellGroup>`;
 
 const codeCount = `<CellGroup>
-  <Cell title="简介" value={<Input showCount maxlength={20} placeholder="最多 20 字" />} />
-  <Cell title="签名" value={<Input showCount maxlength={50} placeholder="个性签名" />} />
+  <Cell title="Bio" value={<Input showCount maxlength={20} placeholder="Max 20 chars" />} />
+  <Cell title="Signature" value={<Input showCount maxlength={50} placeholder="Your signature" />} />
 </CellGroup>`;
 
 const codeAffix = `<CellGroup>
-  <Cell title="用户名" value={<Input placeholder="请输入" prefix={<span style="color:#999">@</span>} />} />
-  <Cell title="邮箱" value={<Input placeholder="example" suffix={<span style="color:#999;font-size:0.85rem">@gmail.com</span>} />} />
+  <Cell title="Username" value={<Input placeholder="Enter text" prefix={<span style="color:#999">@</span>} />} />
+  <Cell title="Email" value={<Input placeholder="example" suffix={<span style="color:#999;font-size:0.85rem">@gmail.com</span>} />} />
 </CellGroup>`;
 
 const codeSearch = `
-        <Input placeholder="搜索文章" clearable size="md" prefix={<Icon name="search" color="#999" />} style={{ 'border-radius': '16px', border: 'none', padding: '0 16px' }} />
+        <Input placeholder="Search articles" clearable size="md" prefix={<Icon name="search" color="#999" />} style={{ 'border-radius': '16px', border: 'none', padding: '0 16px' }} />
 `;
 
 const codeWithForm = `<Form>
-  <FormItem name="username" label="用户名" rules={[{
+  <FormItem name="username" label="Username" rules={[{
     validator: v => (v as string)?.length >= 2,
-    message: '至少 2 个字符',
+    message: 'At least 2 characters',
   }]}>
-    <Input placeholder="请输入用户名" clearable />
+    <Input placeholder="Enter username" clearable />
   </FormItem>
-  <Button type="primary" block nativeType="submit" text="提交" />
+  <Button type="primary" block nativeType="submit" text="Submit" />
 </Form>`;
 
 const SmsDemo: Component = () => {
@@ -83,19 +83,19 @@ const SmsDemo: Component = () => {
       color: countdown() > 0 ? '#999' : 'var(--sc-color-primary, #1677ff)',
       cursor: countdown() > 0 ? 'default' : 'pointer',
     }}>
-      {countdown() > 0 ? `${countdown()}s` : '发送验证码'}
+      {countdown() > 0 ? `${countdown()}s` : 'Send Code'}
     </span>
   );
 
   return (
     <CellGroup>
-      <Cell title="手机号" value={<Input type="tel" placeholder="请输入手机号" maxlength={11} suffix={btn()} />} />
+      <Cell title="Phone" value={<Input type="tel" placeholder="Enter phone number" maxlength={11} suffix={btn()} />} />
     </CellGroup>
   );
 };
 
 const codeSms = `<CellGroup>
-  <Cell title="手机号" value={<Input type="tel" maxlength={11} suffix={btn()} />} />
+  <Cell title="Phone" value={<Input type="tel" maxlength={11} suffix={btn()} />} />
 </CellGroup>`;
 
 export const InputDocPage: Component = () => {
@@ -103,7 +103,7 @@ export const InputDocPage: Component = () => {
   return (
   <DocLayout>
     <div style={{ padding: '16px', 'max-width': '960px' }}>
-      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Input 输入框</h1>
+      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Input</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
         {t('componentIntro.InputIntro')}
       </p>
@@ -129,37 +129,37 @@ export const InputDocPage: Component = () => {
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.basicTypes')}</h2>
       <DemoBlock title={t('demo.basic')} code={codeBasic}>
         <CellGroup>
-          <Cell title="文本" value={<Input placeholder="请输入" />} />
-          <Cell title="密码" value={<Input type="password" placeholder="密码" showPasswordToggle />} />
-          <Cell title="数字" value={<Input type="number" placeholder="数字" />} />
+          <Cell title="Text" value={<Input placeholder="Enter text" />} />
+          <Cell title="Password" value={<Input type="password" placeholder="Password" showPasswordToggle />} />
+          <Cell title="Number" value={<Input type="number" placeholder="Number" />} />
         </CellGroup>
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.clearable')}</h2>
       <DemoBlock title={t('demo.clearable')} desc={t('demoDesc.input_clearable')} code={codeClearable}>
         <CellGroup>
-          <Cell title="清除" value={<Input clearable placeholder="输入点东西试试" />} />
-          <Cell title="预设值" value={<Input clearable defaultValue="点 X 可清除" />} />
+          <Cell title="Clearable" value={<Input clearable placeholder="Type something..." />} />
+          <Cell title="Default Value" value={<Input clearable defaultValue="Tap X to clear" />} />
         </CellGroup>
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.charCount')}</h2>
       <DemoBlock title={t('demo.inputShowCount')} code={codeCount}>
         <CellGroup>
-          <Cell title="简介" value={<Input showCount maxlength={20} placeholder="最多 20 字" />} />
-          <Cell title="签名" value={<Input showCount maxlength={50} placeholder="个性签名" />} />
+          <Cell title="Bio" value={<Input showCount maxlength={20} placeholder="Max 20 chars" />} />
+          <Cell title="Signature" value={<Input showCount maxlength={50} placeholder="Your signature" />} />
         </CellGroup>
       </DemoBlock>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.affix')}</h2>
       <DemoBlock title={t('demo.inputAffix')} code={codeAffix}>
         <CellGroup>
-          <Cell title="用户名" value={<Input placeholder="请输入" prefix={<span style={{ color: '#999' }}>@</span>} />} />
-          <Cell title="邮箱" value={<Input placeholder="example" suffix={<span style={{ color: '#999', 'font-size': '0.85rem' }}>@gmail.com</span>} />} />
+          <Cell title="Username" value={<Input placeholder="Enter text" prefix={<span style={{ color: '#999' }}>@</span>} />} />
+          <Cell title="Email" value={<Input placeholder="example" suffix={<span style={{ color: '#999', 'font-size': '0.85rem' }}>@gmail.com</span>} />} />
         </CellGroup>
       </DemoBlock>
       <DemoBlock title={t('demo.searchInput')} desc={t('demoDesc.input_search')} code={codeSearch}>
-        <Input placeholder="搜索文章" clearable size="md" prefix={<Icon name="search" color="#999" />} style={{ 'border-radius': '16px', border: 'none', padding: '0 16px' }} />
+        <Input placeholder="Search articles" clearable size="md" prefix={<Icon name="search" color="#999" />} style={{ 'border-radius': '16px', border: 'none', padding: '0 16px' }} />
       </DemoBlock>
 
 
@@ -180,17 +180,17 @@ export const InputDocPage: Component = () => {
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.form')}</h2>
       <DemoBlock title={t('demo.inputForm')} desc={t('demoDesc.input_form')} code={codeWithForm}>
         <Form>
-          <FormItem name="username" label="用户名" rules={[{
+          <FormItem name="username" label="Username" rules={[{
             validator: (v: any) => (v as string)?.length >= 2,
-            message: '至少 2 个字符',
+            message: 'At least 2 characters',
           }]}>
-            <Input placeholder="请输入用户名" clearable />
+            <Input placeholder="Enter username" clearable />
           </FormItem>
           <FormItem name="email" label="邮箱">
             <Input type="email" placeholder="请输入邮箱" clearable />
           </FormItem>
           <div style={{ padding: '12px 1rem' }}>
-            <Button type="primary" block nativeType="submit" text="提交" />
+            <Button type="primary" block nativeType="submit" text="Submit" />
           </div>
         </Form>
       </DemoBlock>

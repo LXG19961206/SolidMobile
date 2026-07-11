@@ -29,13 +29,13 @@ const groupProps: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'cell-props', title: 'Cell 属性' },
-  { id: 'group-props', title: 'CellGroup 属性' },
-  { id: 'basic', title: '基础列表' },
-  { id: 'clickable', title: '可点击' },
-  { id: 'icon', title: '图标 & 必填' },
-  { id: 'size', title: '尺寸' },
-  { id: 'card', title: '卡片模式' },
+  { id: 'cell-props', title: 'Cell Props' },
+  { id: 'group-props', title: 'CellGroup Props' },
+  { id: 'basic', title: 'Basic List' },
+  { id: 'clickable', title: 'Clickable' },
+  { id: 'icon', title: 'Icon & Required' },
+  { id: 'size', title: 'Size' },
+  { id: 'card', title: 'Card Mode' },
 ];
 
 export const CellDocPage = () => {
@@ -44,7 +44,7 @@ export const CellDocPage = () => {
     <DocLayout>
 
     <div class={styles.page}>
-      <h1 class={styles.h1}>Cell / CellGroup 单元格</h1>
+      <h1 class={styles.h1}>Cell / CellGroup</h1>
       <p class={styles.intro}>
         {t('componentIntro.CellIntro')}
       </p>
@@ -60,13 +60,13 @@ export const CellDocPage = () => {
       <DemoBlock
         title={t('demo.cellBasic')}
         desc={t('demoDesc.cell_basic')}
-        code={`<CellGroup title="基本信息">\n  <Cell title="用户名" value="张三" />\n  <Cell title="手机号" value="138****8888" />\n  <Cell title="简介" description="这是一段描述文字" />\n</CellGroup>`}
+        code={`<CellGroup title="Basic Info">\n  <Cell title="Username" value="John" />\n  <Cell title="Phone" value="138****8888" />\n  <Cell title="Bio" description="This is a description" />\n</CellGroup>`}
       >
         <div class={styles.demo}>
-          <CellGroup title="基本信息">
-            <Cell title="用户名" value="张三" />
-            <Cell title="手机号" value="138****8888" />
-            <Cell title="简介" description="这是一段描述文字" />
+          <CellGroup title="Basic Info">
+            <Cell title="Username" value="John" />
+            <Cell title="Phone" value="138****8888" />
+            <Cell title="Bio" description="This is a description" />
           </CellGroup>
         </div>
       </DemoBlock>
@@ -76,13 +76,13 @@ export const CellDocPage = () => {
       <DemoBlock
         title={t('demo.cellClickable')}
         desc={t('demoDesc.cell_clickable')}
-        code={`<CellGroup title="设置">\n  <Cell title="个人资料" clickable onClick={() => {}} />\n  <Cell title="账号安全" clickable />\n  <Cell title="通知设置" clickable value="已开启" />\n</CellGroup>`}
+        code={`<CellGroup title="Settings">\n  <Cell title="Profile" clickable onClick={() => {}} />\n  <Cell title="Account Security" clickable />\n  <Cell title="Notification Settings" clickable value="Enabled" />\n</CellGroup>`}
       >
         <div class={styles.demo}>
-          <CellGroup title="设置">
-            <Cell title="个人资料" clickable />
-            <Cell title="账号安全" clickable />
-            <Cell title="通知设置" clickable value="已开启" />
+          <CellGroup title="Settings">
+            <Cell title="Profile" clickable />
+            <Cell title="Account Security" clickable />
+            <Cell title="Notification Settings" clickable value="Enabled" />
           </CellGroup>
         </div>
       </DemoBlock>
@@ -92,17 +92,17 @@ export const CellDocPage = () => {
       <DemoBlock
         title={t('demo.cellIconRequired')}
         desc={t('demoDesc.cell_icon_required')}
-        code={`<Cell icon="user" title="姓名" required value="张三" />\n<Cell icon="phone" title="手机号" clickable />\n<Cell icon="mail" title="邮箱" value="zhang@example.com" />\n<Cell\n  icon="palette"\n  title="主题色"\n  value={<span><span style={{ width:14,height:14,borderRadius:'50%',background: 'var(--sc-color-primary, #1677ff)',display:'inline-block' }} /> 品牌蓝</span>}\n/>`}
+        code={`<Cell icon="user" title="Name" required value="John" />\n<Cell icon="phone" title="Phone" clickable />\n<Cell icon="mail" title="Email" value="zhang@example.com" />\n<Cell\n  icon="palette"\n  title="Theme Color"\n  value={<span><span style={{ width:14,height:14,borderRadius:'50%',background: 'var(--sc-color-primary, #1677ff)',display:'inline-block' }} /> Brand Blue</span>}\n/>`}
       >
         <div class={styles.demo}>
           <CellGroup>
-            <Cell icon="user" title="姓名" required value="张三" />
-            <Cell icon="phone" title="手机号" clickable />
-            <Cell icon="mail" title="邮箱" value="zhang@example.com" />
+            <Cell icon="user" title="Name" required value="John" />
+            <Cell icon="phone" title="Phone" clickable />
+            <Cell icon="mail" title="Email" value="zhang@example.com" />
             <Cell
               icon="palette"
-              title="主题色"
-              value={<span style={{ display:'inline-flex','align-items':'center',gap:'0.4rem' }}><span style={{ width:14,height:14,'border-radius':'50%',background: 'var(--sc-color-primary, #1677ff)',display:'inline-block' }} /> 品牌蓝</span>}
+              title="Theme Color"
+              value={<span style={{ display:'inline-flex','align-items':'center',gap:'0.4rem' }}><span style={{ width:14,height:14,'border-radius':'50%',background: 'var(--sc-color-primary, #1677ff)',display:'inline-block' }} /> Brand Blue</span>}
             />
           </CellGroup>
         </div>
@@ -113,13 +113,13 @@ export const CellDocPage = () => {
       <DemoBlock
         title="sm / md / lg"
         desc={t('demoDesc.cell_sizes')}
-        code={`<Cell size="sm" title="小号" />\n<Cell size="md" title="中号" />\n<Cell size="lg" title="大号" />`}
+        code={`<Cell size="sm" title="Small" />\n<Cell size="md" title="Medium" />\n<Cell size="lg" title="Large" />`}
       >
         <div class={styles.demo}>
           <CellGroup>
-            <Cell size="sm" title="小号 Cell" value="40px" />
-            <Cell size="md" title="中号 Cell（默认）" value="48px" />
-            <Cell size="lg" title="大号 Cell" value="56px" />
+            <Cell size="sm" title="Small Cell" value="40px" />
+            <Cell size="md" title="Medium Cell (default)" value="48px" />
+            <Cell size="lg" title="Large Cell" value="56px" />
           </CellGroup>
         </div>
       </DemoBlock>
@@ -129,13 +129,13 @@ export const CellDocPage = () => {
       <DemoBlock
         title="card"
         desc={t('demoDesc.cell_card')}
-        code={`<CellGroup title="关于" card>\n  <Cell title="版本号" value="1.0.0" />\n  <Cell title="开源协议" value="MIT" clickable />\n</CellGroup>`}
+        code={`<CellGroup title="About" card>\n  <Cell title="Version" value="1.0.0" />\n  <Cell title="License" value="MIT" clickable />\n</CellGroup>`}
       >
         <div class={styles.demo} style={{ background: '#eff2f5', padding: '1rem 0', 'border-radius': '8px' }}>
-          <CellGroup title="关于" card>
-            <Cell title="版本号" value="1.0.0" />
-            <Cell title="开源协议" value="MIT" clickable />
-            <Cell title="作者" value="solid-component" />
+          <CellGroup title="About" card>
+            <Cell title="Version" value="1.0.0" />
+            <Cell title="License" value="MIT" clickable />
+            <Cell title="Author" value="solid-component" />
           </CellGroup>
         </div>
       </DemoBlock>

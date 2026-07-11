@@ -21,12 +21,12 @@ const propsData: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'basic', title: '基础用法' },
-  { id: 'controlled', title: '受控模式' },
-  { id: 'color', title: '自定义颜色' },
-  { id: 'size', title: '尺寸' },
-  { id: 'disabled', title: '禁用状态' },
+  { id: 'props', title: 'Props' },
+  { id: 'basic', title: 'Basic Usage' },
+  { id: 'controlled', title: 'Controlled' },
+  { id: 'color', title: 'Custom Color' },
+  { id: 'size', title: 'Size' },
+  { id: 'disabled', title: 'Disabled' },
 ];
 
 export const SwitchDocPage = () => {
@@ -37,13 +37,13 @@ export const SwitchDocPage = () => {
     <DocLayout>
 
       <div class={styles.page}>
-        <h1 class={styles.h1}>Switch 开关</h1>
+        <h1 class={styles.h1}>Switch</h1>
         <p class={styles.intro}>
           {t('componentIntro.SwitchIntro')}
         </p>
         <div style={{ background: '#fff3cd', border: '1px solid #ffc107', 'border-radius': '6px', padding: '10px 14px', 'font-size': '0.85rem', 'line-height': 1.6, margin: '12px 0', color: '#856404' }}>
-          为避免与 Solid.js 内置的 <code>&lt;Switch&gt;/&lt;Match&gt;</code> 组件冲突，<strong>推荐使用 <code>Toggle</code> 别名</strong>导入：<br />
-          <code>import {'{ Toggle }'} from 'solid-mobile';</code> &nbsp;（<code>Switch</code> 仍可用，但需手动处理命名冲突）
+          To avoid conflict with the built-in Solid.js <code>&lt;Switch&gt;/&lt;Match&gt;</code> component, <strong>use the <code>Toggle</code> alias</strong> for import:<br />
+          <code>import {'{ Toggle }'} from 'solid-mobile';</code> &nbsp;（<code>Switch</code> still works but requires manual conflict resolution)
         </div>
 
         {/* Props */}
@@ -73,7 +73,7 @@ export const SwitchDocPage = () => {
           <div class={styles.demoArea}>
             <Toggle checked={controlledOn()} onChange={setControlledOn} />
             <span class={styles.result}>
-              当前状态: {controlledOn() ? '开' : '关'}
+              Current: {controlledOn() ? 'On' : 'Off'}
             </span>
           </div>
         </DemoBlock>

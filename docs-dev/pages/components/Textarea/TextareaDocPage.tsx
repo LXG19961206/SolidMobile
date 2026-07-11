@@ -24,27 +24,27 @@ const propsData: PropRow[] = [
   { name: 'onEnter', type: '(e: KeyboardEvent) => void', default: '—', required: false, desc: 'componentProps.textarea.onEnter' },
 ];
 
-const codeBasic = `<Textarea placeholder="请输入" />
-<Textarea rows={5} placeholder="5 行高度" />`;
+const codeBasic = `<Textarea placeholder="Enter text" />
+<Textarea rows={5} placeholder="5 rows tall" />`;
 
-const codeAutoSize = `<Textarea autoSize placeholder="输入文字自动撑高" />
-<Textarea autoSize={{ minRows: 2, maxRows: 6 }} placeholder="最少2行最多6行" />`;
+const codeAutoSize = `<Textarea autoSize placeholder="Auto-expand as you type" />
+<Textarea autoSize={{ minRows: 2, maxRows: 6 }} placeholder="Min 2, max 6 rows" />`;
 
-const codeStates = `<Textarea rows={3} placeholder="请输入" />
-<Textarea rows={5} placeholder="5 行高度" />
-<Textarea disabled value="不可编辑" />
-<Textarea readonly value="可聚焦复制" />
-<Textarea error value="格式不正确" />
-<Textarea clearable defaultValue="点 X 清除" />`;
+const codeStates = `<Textarea rows={3} placeholder="Enter text" />
+<Textarea rows={5} placeholder="5 rows tall" />
+<Textarea disabled value="Not editable" />
+<Textarea readonly value="Focusable & copyable" />
+<Textarea error value="Invalid format" />
+<Textarea clearable defaultValue="Tap X to clear" />`;
 
 const codeWithForm = `<Form>
-  <FormItem name="remark" label="备注" contentFlex rules={[{
+  <FormItem name="remark" label="Note" contentFlex rules={[{
     validator: v => (v as string)?.length <= 200,
-    message: '最多 200 字',
+    message: 'Max 200 chars',
   }]}>
-    <Textarea placeholder="请输入备注" showCount maxlength={200} rows={4} />
+    <Textarea placeholder="Enter note" showCount maxlength={200} rows={4} />
   </FormItem>
-  <Button type="primary" block nativeType="submit" text="提交" />
+  <Button type="primary" block nativeType="submit" text="Submit" />
 </Form>`;
 
 export const TextareaDocPage: Component = () => {
@@ -52,7 +52,7 @@ export const TextareaDocPage: Component = () => {
   return (
     <DocLayout>
     <div style={{ padding: '16px', 'max-width': '960px' }}>
-      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Textarea 多行输入</h1>
+      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Textarea</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
         {t('componentIntro.TextareaIntro')}
       </p>
@@ -76,28 +76,28 @@ export const TextareaDocPage: Component = () => {
       <DemoBlock title={t('demo.textareaStates')} code={codeStates}>
         <div style={{ display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
           <div>
-            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>3 行</div>
-            <Textarea rows={3} placeholder="请输入" />
+            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>3 rows</div>
+            <Textarea rows={3} placeholder="Enter text" />
           </div>
           <div>
-            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>5 行</div>
-            <Textarea rows={5} placeholder="5 行高度" />
+            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>5 rows</div>
+            <Textarea rows={5} placeholder="5 rows tall" />
           </div>
           <div>
-            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>禁用</div>
-            <Textarea disabled value="不可编辑" />
+            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>Disabled</div>
+            <Textarea disabled value="Not editable" />
           </div>
           <div>
-            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>只读</div>
-            <Textarea readonly value="可聚焦复制" />
+            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>Readonly</div>
+            <Textarea readonly value="Focusable & copyable" />
           </div>
           <div>
-            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>错误</div>
-            <Textarea error value="格式不正确" />
+            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>Error</div>
+            <Textarea error value="Invalid format" />
           </div>
           <div>
-            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>可清除</div>
-            <Textarea clearable defaultValue="点 X 清除" />
+            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>Clearable</div>
+            <Textarea clearable defaultValue="Tap X to clear" />
           </div>
         </div>
       </DemoBlock>
@@ -106,12 +106,12 @@ export const TextareaDocPage: Component = () => {
       <DemoBlock title={t('demo.textareaAutoSize')} desc={t('demoDesc.textarea_autosize')} code={codeAutoSize}>
         <div style={{ display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
           <div>
-            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>自动撑高</div>
-            <Textarea autoSize placeholder="输入文字自动撑高" />
+            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>Auto size</div>
+            <Textarea autoSize placeholder="Auto-expand as you type" />
           </div>
           <div>
-            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>2~6 行</div>
-            <Textarea autoSize={{ minRows: 2, maxRows: 6 }} placeholder="最少2行，最多6行" />
+            <div style={{ 'font-size': '0.85rem', 'font-weight': 500, 'margin-bottom': '4px', color: '#666' }}>2~6 rows</div>
+            <Textarea autoSize={{ minRows: 2, maxRows: 6 }} placeholder="Min 2 rows, max 6 rows" />
           </div>
         </div>
       </DemoBlock>
@@ -119,14 +119,14 @@ export const TextareaDocPage: Component = () => {
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('demo.form')}</h2>
       <DemoBlock title={t('demo.textareaForm')} desc={t('demoDesc.textarea_form')} code={codeWithForm}>
         <Form>
-          <FormItem name="remark" label="备注" contentFlex rules={[{
+          <FormItem name="remark" label="Note" contentFlex rules={[{
             validator: (v: any) => (v as string)?.length <= 200,
-            message: '最多 200 字',
+            message: 'Max 200 chars',
           }]}>
-            <Textarea placeholder="请输入备注" showCount maxlength={200} rows={4} />
+            <Textarea placeholder="Enter note" showCount maxlength={200} rows={4} />
           </FormItem>
           <div style={{ padding: '12px 1rem' }}>
-            <Button type="primary" block nativeType="submit" text="提交" />
+            <Button type="primary" block nativeType="submit" text="Submit" />
           </div>
         </Form>
       </DemoBlock>

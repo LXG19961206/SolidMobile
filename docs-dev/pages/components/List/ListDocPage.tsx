@@ -17,8 +17,8 @@ const listProps: PropRow[] = [
   { name: 'finished', type: 'boolean', default: 'false', required: false, desc: 'componentProps.list.finished' },
   { name: 'children', type: '(item: I, index: number) => JSX.Element', default: '—', required: true, desc: 'componentProps.list.children' },
   { name: 'empty', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.list.empty' },
-  { name: 'loadMoreText', type: 'string', default: "'加载中...'", required: false, desc: 'componentProps.list.loadMoreText' },
-  { name: 'finishedText', type: 'string', default: "'没有更多了'", required: false, desc: 'componentProps.list.finishedText' },
+  { name: 'loadMoreText', type: 'string', default: "'Loading...'", required: false, desc: 'componentProps.list.loadMoreText' },
+  { name: 'finishedText', type: 'string', default: "'No more'", required: false, desc: 'componentProps.list.finishedText' },
   { name: 'offset', type: 'number', default: '100', required: false, desc: 'componentProps.list.offset' },
   { name: 'virtual', type: 'boolean', default: 'false', required: false, desc: 'componentProps.list.virtual' },
   { name: 'itemHeight', type: 'number', default: '—', required: false, desc: 'componentProps.list.itemHeight' },
@@ -27,8 +27,8 @@ const listProps: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'demo', title: '示例' },
+  { id: 'props', title: 'Props' },
+  { id: 'demo', title: 'Examples' },
 ];
 
 /* ── Data ── */
@@ -40,8 +40,8 @@ interface Item {
   avatar: string;
 }
 
-const NAMES = ['张三', '李四', '王五', '赵六', '孙七', '周八', '吴九', '郑十', '钱一', '陈二'];
-const DESCS = ['产品经理', '前端工程师', '设计师', '后端工程师', '测试工程师', '运营专员', '市场经理', '数据科学家', '技术支持', '架构师'];
+const NAMES = ['Alice', 'Bob', 'Charlie', 'Diana', 'Edward', 'Fiona', 'George', 'Hannah', 'Ivan', 'Julia'];
+const DESCS = ['Product Manager', 'Frontend Developer', 'Designer', 'Backend Developer', 'QA Engineer', 'Operations', 'Marketing Manager', 'Data Scientist', 'Support', 'Architect'];
 const COLORS = ['#1677ff', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6', '#f97316', '#6366f1', '#84cc16'];
 
 function genItems(n: number): Item[] {
@@ -59,7 +59,7 @@ const ControlledTab: Component = () => {
   const phone = useContext(PhoneTargetContext);
   const items = genItems(20);
   const delAction: SwipeAction[] = [
-    { text: '删除', theme: 'danger', onClick: () => Toast.success('删除', { portalMount: phone?.() }) },
+    { text: 'Delete', theme: 'danger', onClick: () => Toast.success('Deleted', { portalMount: phone?.() }) },
   ];
   return (
     <div class={css.demoList}>
@@ -71,7 +71,7 @@ const ControlledTab: Component = () => {
               description={item.desc}
               icon={<Avatar size="sm" color={item.avatar} text={item.name[0]} />}
               clickable
-              onClick={() => Toast.success(`点击了 ${item.name}`, { portalMount: phone?.() })}
+              onClick={() => Toast.success(`Clicked ${item.name}`, { portalMount: phone?.() })}
             />
           </SwipeCell>
         )}
@@ -96,13 +96,13 @@ const AutoloadTab: Component = () => {
   };
 
   const delAction: SwipeAction[] = [
-    { text: '删除', theme: 'danger', onClick: () => Toast.success('删除', { portalMount: phone?.() }) },
-    { text: '收藏', theme: 'warning', onClick: () => Toast.success('收藏', { portalMount: phone?.() }) },
+    { text: 'Delete', theme: 'danger', onClick: () => Toast.success('Deleted', { portalMount: phone?.() }) },
+    { text: 'Favorite', theme: 'warning', onClick: () => Toast.success('Favorited', { portalMount: phone?.() }) },
   ];
 
   return (
     <div class={css.demoList} style="height: 520px">
-      <List onLoad={onLoad} finished={finished()} empty="暂无数据" loadMoreText="加载中..." finishedText="— 没有更多了 —">
+      <List onLoad={onLoad} finished={finished()} empty="No data" loadMoreText="Loading..." finishedText="— No more —">
         {(item: Item) => (
           <SwipeCell rightActions={delAction}>
             <Cell title={item.name} description={item.desc} icon={<Avatar size="sm" color={item.avatar} text={item.name[0]} />} />
@@ -129,7 +129,7 @@ const VirtualTab: Component = () => {
 
   return (
     <div class={css.demoList} style="height: 520px">
-      <List virtual itemHeight={60} onLoad={onLoad} finished={finished()} empty="暂无数据" loadMoreText="加载中..." finishedText="— 全部加载完成 —">
+      <List virtual itemHeight={60} onLoad={onLoad} finished={finished()} empty="No data" loadMoreText="Loading..." finishedText="— All loaded —">
         {(item: Item) => (
           <div style={{ height: '60px', display: 'flex', 'align-items': 'center', padding: '0 1rem', gap: '12px', 'box-sizing': 'border-box' }}>
             <Avatar size="md" color={item.avatar} text={item.name[0]} />
@@ -137,7 +137,7 @@ const VirtualTab: Component = () => {
               <div style={{ 'font-weight': 500 }}>{item.id}. {item.name}</div>
               <div style={{ 'font-size': '0.8rem', color: '#999' }}>{item.desc}</div>
             </div>
-            <span style={{ 'margin-left': 'auto', color: '#999', 'font-size': '0.8rem' }}>{item.id % 7 === 0 ? '今天' : item.id % 5 === 0 ? '昨天' : '更早'}</span>
+            <span style={{ 'margin-left': 'auto', color: '#999', 'font-size': '0.8rem' }}>{item.id % 7 === 0 ? 'Today' : item.id % 5 === 0 ? 'Yesterday' : 'Older'}</span>
           </div>
         )}
       </List>
@@ -147,7 +147,7 @@ const VirtualTab: Component = () => {
 
 const EmptyTab: Component = () => (
   <div class={css.demoList}>
-    <List data={[]} empty="暂无记录">
+    <List data={[]} empty="No records">
       {(item: Item) => <Cell title={item.name} />}
     </List>
   </div>
@@ -159,7 +159,7 @@ const PullRefreshTab: Component = () => {
 
   const handleRefresh = async () => {
     await new Promise((r) => setTimeout(r, 1200));
-    setItems(Array.from({ length: 20 }, (_, i) => `Item ${i + 1} (刷新于 ${Date.now().toString().slice(-5)})`));
+    setItems(Array.from({ length: 20 }, (_, i) => `Item ${i + 1} (refreshed at ${Date.now().toString().slice(-5)})`));
   };
 
   return (
@@ -176,14 +176,14 @@ const PullRefreshTab: Component = () => {
 const codes: Record<string, string> = {
   controlled: `<List data={items.slice(0, 6)}>
   {(item) => (
-    <SwipeCell rightActions={[{ text: '删除', theme: 'danger' }]}>
+    <SwipeCell rightActions={[{ text: 'Delete', theme: 'danger' }]}>
       <Cell title={item.name} description={item.desc}
         icon={<Avatar size="sm" color={item.avatar} text={item.name[0]} />} />
     </SwipeCell>
   )}
 </List>`,
   autoload: `<div style={{ height: '520px' }}>
-  <List onLoad={onLoad} finished={finished()} finishedText="— 没有更多了 —">
+  <List onLoad={onLoad} finished={finished()} finishedText="— No more —">
     {(item) => (
       <SwipeCell rightActions={actions}>
         <Cell title={item.name} description={item.desc}
@@ -201,12 +201,12 @@ const codes: Record<string, string> = {
           <div style={{ fontWeight: 500 }}>{item.id}. {item.name}</div>
           <div style={{ fontSize: '0.8rem', color: '#999' }}>{item.desc}</div>
         </div>
-        <span style={{ marginLeft: 'auto', color: '#999' }}>更早</span>
+        <span style={{ marginLeft: 'auto', color: '#999' }}>Older</span>
       </div>
     )}
   </List>
 </div>`,
-  empty: `<List data={[]} empty="暂无记录">
+  empty: `<List data={[]} empty="No records">
   {(item) => <Cell title={item.name} />}
 </List>`,
   pullrefresh: `<List
@@ -228,7 +228,7 @@ export const ListDocPage: Component = () => {
   return (
     <DocLayout>
       <div class={css.page}>
-        <h1 class={css.h1}>List 列表</h1>
+        <h1 class={css.h1}>List</h1>
         <p class={css.intro}>
           {t('componentIntro.ListIntro')}
         </p>
@@ -245,10 +245,10 @@ export const ListDocPage: Component = () => {
           flush
         >
           <Tabs active={activeTab()} onChange={setActiveTab} style={{ 'margin-top': '8px' }}>
-            <Tab title="受控" name="controlled"><ControlledTab /></Tab>
-            <Tab title="不受控" name="autoload"><AutoloadTab /></Tab>
-            <Tab title="虚拟列表" name="virtual"><VirtualTab /></Tab>
-            <Tab title="空数据" name="empty"><EmptyTab /></Tab>
+            <Tab title="Controlled" name="controlled"><ControlledTab /></Tab>
+            <Tab title="Uncontrolled" name="autoload"><AutoloadTab /></Tab>
+            <Tab title="Virtual List" name="virtual"><VirtualTab /></Tab>
+            <Tab title="Empty Data" name="empty"><EmptyTab /></Tab>
             <Tab title={t('demo.refresh')} name="pullrefresh"><PullRefreshTab /></Tab>
           </Tabs>
         </DemoBlock>

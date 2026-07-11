@@ -68,7 +68,7 @@ export const TabBarDocPage: Component = () => {
   return (
     <DocLayout>
       <div style={{ padding: '16px', 'max-width': '960px' }}>
-        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>TabBar 标签栏</h1>
+        <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>TabBar</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
           {t('componentIntro.TabBarIntro')}
         </p>
@@ -79,32 +79,32 @@ export const TabBarDocPage: Component = () => {
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>TabBarItem {t('common.props')}</h2>
         <PropsTable rows={itemProps} />
 
-        <DemoBlock title={t('demo.basic')} desc={t('demo.basicDesc')} code={`<TabBar value={val()} onChange={setVal}>\n  <TabBarItem name="home" icon="home" label="首页" />\n  <TabBarItem name="cart" icon="shopping-cart" label="购物车" />\n  <TabBarItem name="user" icon="user" label="我的" />\n</TabBar>`}>
+        <DemoBlock title={t('demo.basic')} desc={t('demo.basicDesc')} code={`<TabBar value={val()} onChange={setVal}>\n  <TabBarItem name="home" icon="home" label="Home" />\n  <TabBarItem name="cart" icon="shopping-cart" label="Cart" />\n  <TabBarItem name="user" icon="user" label="Profile" />\n</TabBar>`}>
           <div style={{ position: 'relative', height: '60px' }}>
             <TabBar value={val1()} onChange={setVal1} fixed={false}>
-              <TabBarItem name="home" icon="home" label="首页" />
-              <TabBarItem name="cart" icon="shopping-cart" label="购物车" />
-              <TabBarItem name="user" icon="user" label="我的" />
+              <TabBarItem name="home" icon="home" label="Home" />
+              <TabBarItem name="cart" icon="shopping-cart" label="Cart" />
+              <TabBarItem name="user" icon="user" label="Profile" />
             </TabBar>
           </div>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.badgeDot')} desc={t('demoDesc.tabbar_badge')} code={`<TabBar value={val()} onChange={setVal}>\n  <TabBarItem name={0} icon="home" label="首页" badge={5} />\n  <TabBarItem name={1} icon="chat" label="消息" dot />\n  <TabBarItem name={2} icon="settings" label="设置" badge={99} />\n</TabBar>`}>
+        <DemoBlock title={t('demo.badgeDot')} desc={t('demoDesc.tabbar_badge')} code={`<TabBar value={val()} onChange={setVal}>\n  <TabBarItem name={0} icon="home" label="Home" badge={5} />\n  <TabBarItem name={1} icon="chat" label="Messages" dot />\n  <TabBarItem name={2} icon="settings" label="Settings" badge={99} />\n</TabBar>`}>
           <div style={{ position: 'relative', height: '60px' }}>
             <TabBar value={val2()} onChange={setVal2} fixed={false}>
-              <TabBarItem name={0} icon="home" label="首页" badge={5} />
-              <TabBarItem name={1} icon="chat" label="消息" dot />
-              <TabBarItem name={2} icon="settings" label="设置" badge={99} />
+              <TabBarItem name={0} icon="home" label="Home" badge={5} />
+              <TabBarItem name={1} icon="chat" label="Messages" dot />
+              <TabBarItem name={2} icon="settings" label="Settings" badge={99} />
             </TabBar>
           </div>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.tabbarAnimated')} desc={t('demoDesc.tabbar_animated_icon')} code={`/* 1. 定义 keyframes 并注入页面 */\nconst keyframes = \`\n  @keyframes tb-pop { 0%{transform:scale(1)} 40%{transform:scale(1.28)} 70%{transform:scale(.92)} 100%{transform:scale(1)} }\n  @keyframes tb-fill { from{fill-opacity:.2} to{fill-opacity:1} }\n\`;\nconst s = document.createElement('style');\ns.textContent = keyframes;\ndocument.head.appendChild(s);\n\n/* 2. 编写三个带动画的 SVG 图标组件 */\nconst pop = { display:'inline-block', animation:'tb-pop .4s ease', transformOrigin:'center' };\nconst fill = { animation:'tb-fill .3s ease' };\n\nconst HomeIcon = (p: { active: boolean }) => (\n  <svg viewBox="0 0 24 24" width="22" height="22"\n    fill="none" stroke="currentColor" stroke-width="1.8"\n    stroke-linecap="round" stroke-linejoin="round"\n    style={p.active ? pop : undefined}>\n    <path d="M3 12L12 3l9 9" />\n    <path d="M5 10v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V10"\n      fill={p.active ? 'currentColor' : 'none'}\n      fill-opacity={p.active ? 1 : 0}\n      style={p.active ? fill : undefined} />\n  </svg>\n);\n\nconst StarIcon = (p: { active: boolean }) => (\n  <svg viewBox="0 0 24 24" width="22" height="22"\n    fill="none" stroke="currentColor" stroke-width="1.8"\n    stroke-linejoin="round"\n    style={p.active ? pop : undefined}>\n    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"\n      fill={p.active ? 'currentColor' : 'none'}\n      fill-opacity={p.active ? 1 : 0}\n      style={p.active ? fill : undefined} />\n  </svg>\n);\n\nconst UserIcon = (p: { active: boolean }) => (\n  <svg viewBox="0 0 24 24" width="22" height="22"\n    fill="none" stroke="currentColor" stroke-width="1.8"\n    stroke-linecap="round" stroke-linejoin="round"\n    style={p.active ? pop : undefined}>\n    <circle cx="12" cy="8" r="4"\n      fill={p.active ? 'currentColor' : 'none'}\n      fill-opacity={p.active ? 1 : 0}\n      style={p.active ? fill : undefined} />\n    <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />\n  </svg>\n);\n\n/* 3. 传入 TabBarItem 的 icon 属性 */\n<TabBar defaultValue="a">\n  <TabBarItem name="a" icon={HomeIcon} label="首页" />\n  <TabBarItem name="b" icon={StarIcon} label="收藏" />\n  <TabBarItem name="c" icon={UserIcon} label="我的" />\n</TabBar>`}>
+        <DemoBlock title={t('demo.tabbarAnimated')} desc={t('demoDesc.tabbar_animated_icon')} code={`/* 1. 定义 keyframes 并注入页面 */\nconst keyframes = \`\n  @keyframes tb-pop { 0%{transform:scale(1)} 40%{transform:scale(1.28)} 70%{transform:scale(.92)} 100%{transform:scale(1)} }\n  @keyframes tb-fill { from{fill-opacity:.2} to{fill-opacity:1} }\n\`;\nconst s = document.createElement('style');\ns.textContent = keyframes;\ndocument.head.appendChild(s);\n\n/* 2. 编写三个带动画的 SVG 图标组件 */\nconst pop = { display:'inline-block', animation:'tb-pop .4s ease', transformOrigin:'center' };\nconst fill = { animation:'tb-fill .3s ease' };\n\nconst HomeIcon = (p: { active: boolean }) => (\n  <svg viewBox="0 0 24 24" width="22" height="22"\n    fill="none" stroke="currentColor" stroke-width="1.8"\n    stroke-linecap="round" stroke-linejoin="round"\n    style={p.active ? pop : undefined}>\n    <path d="M3 12L12 3l9 9" />\n    <path d="M5 10v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V10"\n      fill={p.active ? 'currentColor' : 'none'}\n      fill-opacity={p.active ? 1 : 0}\n      style={p.active ? fill : undefined} />\n  </svg>\n);\n\nconst StarIcon = (p: { active: boolean }) => (\n  <svg viewBox="0 0 24 24" width="22" height="22"\n    fill="none" stroke="currentColor" stroke-width="1.8"\n    stroke-linejoin="round"\n    style={p.active ? pop : undefined}>\n    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"\n      fill={p.active ? 'currentColor' : 'none'}\n      fill-opacity={p.active ? 1 : 0}\n      style={p.active ? fill : undefined} />\n  </svg>\n);\n\nconst UserIcon = (p: { active: boolean }) => (\n  <svg viewBox="0 0 24 24" width="22" height="22"\n    fill="none" stroke="currentColor" stroke-width="1.8"\n    stroke-linecap="round" stroke-linejoin="round"\n    style={p.active ? pop : undefined}>\n    <circle cx="12" cy="8" r="4"\n      fill={p.active ? 'currentColor' : 'none'}\n      fill-opacity={p.active ? 1 : 0}\n      style={p.active ? fill : undefined} />\n    <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />\n  </svg>\n);\n\n/* 3. 传入 TabBarItem 的 icon 属性 */\n<TabBar defaultValue="a">\n  <TabBarItem name="a" icon={HomeIcon} label="Home" />\n  <TabBarItem name="b" icon={StarIcon} label="Favorites" />\n  <TabBarItem name="c" icon={UserIcon} label="Profile" />\n</TabBar>`}>
           <div style={{ position: 'relative', height: '60px' }}>
             <TabBar defaultValue="a" fixed={false}>
-              <TabBarItem name="a" icon={AnimatedHomeIcon} label="首页" />
-              <TabBarItem name="b" icon={AnimatedStarIcon} label="收藏" />
-              <TabBarItem name="c" icon={AnimatedUserIcon} label="我的" />
+              <TabBarItem name="a" icon={AnimatedHomeIcon} label="Home" />
+              <TabBarItem name="b" icon={AnimatedStarIcon} label="Favorites" />
+              <TabBarItem name="c" icon={AnimatedUserIcon} label="Profile" />
             </TabBar>
           </div>
           <p style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'line-height': 1.6, margin: '8px 0 0' }}>
@@ -112,11 +112,11 @@ export const TabBarDocPage: Component = () => {
           </p>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.fixedBottom')} desc={t('demoDesc.tabbar_fixed')} code={`<TabBar defaultValue="home" placeholder>\n  <TabBarItem name="home" icon="home" label="首页" badge={5} />\n  <TabBarItem name="cart" icon="shopping-cart" label="购物车" dot />\n  <TabBarItem name="user" icon="user" label="我的" />\n</TabBar>`}>
+        <DemoBlock title={t('demo.fixedBottom')} desc={t('demoDesc.tabbar_fixed')} code={`<TabBar defaultValue="home" placeholder>\n  <TabBarItem name="home" icon="home" label="Home" badge={5} />\n  <TabBarItem name="cart" icon="shopping-cart" label="Cart" dot />\n  <TabBarItem name="user" icon="user" label="Profile" />\n</TabBar>`}>
           <TabBar defaultValue="home" placeholder>
-            <TabBarItem name="home" icon="home" label="首页" badge={5} />
-            <TabBarItem name="cart" icon="shopping-cart" label="购物车" dot />
-            <TabBarItem name="user" icon="user" label="我的" />
+            <TabBarItem name="home" icon="home" label="Home" badge={5} />
+            <TabBarItem name="cart" icon="shopping-cart" label="Cart" dot />
+            <TabBarItem name="user" icon="user" label="Profile" />
           </TabBar>
         </DemoBlock>
 

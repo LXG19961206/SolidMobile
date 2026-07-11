@@ -16,8 +16,8 @@ const propsData: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'basic', title: '基础用法' },
+  { id: 'props', title: 'Props' },
+  { id: 'basic', title: 'Basic Usage' },
 ];
 
 export const BadgeDocPage = () => {
@@ -26,7 +26,7 @@ export const BadgeDocPage = () => {
   <DocLayout>
 
     <div class={css.page}>
-      <h1 class={css.h1}>Badge 徽标</h1>
+      <h1 class={css.h1}>Badge</h1>
       <p class={css.intro}>{t('componentIntro.BadgeIntro')}</p>
 
       <h2 id="props" class={css.h2}>{t('common.props')}</h2>
@@ -49,35 +49,35 @@ export const BadgeDocPage = () => {
       <DemoBlock
         title={t('demo.withButton')}
         desc={t('demoDesc.badge_with_button')}
-        code={`<Badge content={3}>\n  <Button size="sm">消息</Button>\n</Badge>\n<Badge content={8}>\n  <Button size="sm" variant="outline">订单</Button>\n</Badge>\n<Badge dot>\n  <Button size="sm">系统</Button>\n</Badge>`}
+        code={`<Badge content={3}>\n  <Button size="sm">Messages</Button>\n</Badge>\n<Badge content={8}>\n  <Button size="sm" variant="outline">Orders</Button>\n</Badge>\n<Badge dot>\n  <Button size="sm">System</Button>\n</Badge>`}
       >
         <div class={css.row} style="gap:1rem">
-          <Badge content={3}><Button size="sm">消息</Button></Badge>
-          <Badge content={8}><Button size="sm" variant="outline">订单</Button></Badge>
-          <Badge dot><Button size="sm">系统</Button></Badge>
+          <Badge content={3}><Button size="sm">Messages</Button></Badge>
+          <Badge content={8}><Button size="sm" variant="outline">Orders</Button></Badge>
+          <Badge dot><Button size="sm">System</Button></Badge>
         </div>
       </DemoBlock>
 
       <DemoBlock
         title={t('demo.withTab')}
         desc={t('demoDesc.badge_with_tab')}
-        code={`<Tabs>\n  <Tab title={<span>全部 <Badge content={12} /></span>} name="all" />\n  <Tab title={<span>待处理 <Badge dot /></span>} name="pending" />\n  <Tab title={<span>已完成 <Badge content={99} max={99} /></span>} name="done" />\n</Tabs>`}
+        code={`<Tabs>\n  <Tab title={<span>All <Badge content={12} /></span>} name="all" />\n  <Tab title={<span>Pending <Badge dot /></span>} name="pending" />\n  <Tab title={<span>Completed <Badge content={99} max={99} /></span>} name="done" />\n</Tabs>`}
       >
         <Tabs>
-          <Tab title={<span>全部 <Badge content={12} /></span>} name="all" />
-          <Tab title={<span>待处理 <Badge dot /></span>} name="pending" />
-          <Tab title={<span>已完成 <Badge content={99} max={99} /></span>} name="done" />
+          <Tab title={<span>All <Badge content={12} /></span>} name="all" />
+          <Tab title={<span>Pending <Badge dot /></span>} name="pending" />
+          <Tab title={<span>Completed <Badge content={99} max={99} /></span>} name="done" />
         </Tabs>
       </DemoBlock>
 
       <DemoBlock
         title={t('demo.standalone')}
         desc={t('demoDesc.badge_standalone')}
-        code={`<div style="display:flex;align-items:center;gap:0.5rem">\n  新消息 <Badge content={99} />\n</div>\n<Badge dot /> 在线`}
+        code={`<div style="display:flex;align-items:center;gap:0.5rem">\n  New <Badge content={99} />\n</div>\n<Badge dot /> Online`}
       >
         <div class={css.row} style="gap:1.5rem;align-items:center">
-          <span style="font-size:0.85rem">新消息 <Badge content={99} /></span>
-          <span style="font-size:0.85rem"><Badge dot /> 在线</span>
+          <span style="font-size:0.85rem">New <Badge content={99} /></span>
+          <span style="font-size:0.85rem"><Badge dot /> Online</span>
         </div>
       </DemoBlock>
     </div>

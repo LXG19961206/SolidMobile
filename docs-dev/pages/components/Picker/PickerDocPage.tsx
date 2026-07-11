@@ -10,53 +10,53 @@ import { useT } from '../../../doc-i18n';
 
 const cityTree: PickerOption[] = [
   {
-    text: '北京', value: 'beijing', children: [
-      { text: '海淀区', value: 'haidian' }, { text: '朝阳区', value: 'chaoyang' }, { text: '东城区', value: 'dongcheng' },
+    text: 'Beijing', value: 'beijing', children: [
+      { text: 'Haidian', value: 'haidian' }, { text: 'Chaoyang', value: 'chaoyang' }, { text: 'Dongcheng', value: 'dongcheng' },
     ]
   },
   {
-    text: '上海', value: 'shanghai', children: [
-      { text: '浦东新区', value: 'pudong' }, { text: '静安区', value: 'jingan' },
+    text: 'Shanghai', value: 'shanghai', children: [
+      { text: 'Pudong', value: 'pudong' }, { text: "Jing'an", value: 'jingan' },
     ]
   },
   {
-    text: '广东', value: 'guangdong', children: [
+    text: 'Guangdong', value: 'guangdong', children: [
       {
-        text: '深圳市', value: 'shenzhen', children: [
-          { text: '南山区', value: 'nanshan' }, { text: '福田区', value: 'futian' },
+        text: 'Shenzhen', value: 'shenzhen', children: [
+          { text: 'Nanshan', value: 'nanshan' }, { text: 'Futian', value: 'futian' },
         ]
       },
-      { text: '广州市', value: 'guangzhou', children: [{ text: '天河区', value: 'tianhe' }] },
+      { text: 'Guangzhou', value: 'guangzhou', children: [{ text: 'Tianhe', value: 'tianhe' }] },
     ]
   },
 ];
 
 const thisYear = new Date().getFullYear();
 const dateCols: PickerOption[][] = [
-  Array.from({ length: 10 }, (_, i) => ({ text: `${thisYear - 5 + i}年`, value: thisYear - 5 + i })),
-  Array.from({ length: 12 }, (_, i) => ({ text: `${i + 1}月`, value: i + 1 })),
+  Array.from({ length: 10 }, (_, i) => ({ text: `${thisYear - 5 + i}y`, value: thisYear - 5 + i })),
+  Array.from({ length: 12 }, (_, i) => ({ text: `${i + 1}mo`, value: i + 1 })),
 ];
 
 const timeCols: PickerOption[][] = [
-  Array.from({ length: 24 }, (_, i) => ({ text: `${String(i).padStart(2, '0')}时`, value: i })),
-  Array.from({ length: 60 }, (_, i) => ({ text: `${String(i).padStart(2, '0')}分`, value: i })),
+  Array.from({ length: 24 }, (_, i) => ({ text: `${String(i).padStart(2, '0')}h`, value: i })),
+  Array.from({ length: 60 }, (_, i) => ({ text: `${String(i).padStart(2, '0')}min`, value: i })),
 ];
 
 const colsDisabled: PickerOption[][] = [[
-  { text: '选项 A', value: 'a' }, { text: '选项 B (禁用)', value: 'b', disabled: true },
-  { text: '选项 C', value: 'c' }, { text: '选项 D (禁用)', value: 'd', disabled: true },
-  { text: '选项 E', value: 'e' },
+  { text: 'Option A', value: 'a' }, { text: 'Option B (Disabled)', value: 'b', disabled: true },
+  { text: 'Option C', value: 'c' }, { text: 'Option D (Disabled)', value: 'd', disabled: true },
+  { text: 'Option E', value: 'e' },
 ]];
 
 const deepTree: PickerOption[] = [
   {
-    text: '电子产品', value: 'e', children: [
+    text: 'Electronics', value: 'e', children: [
       {
-        text: '手机', value: 'phone', children: [
+        text: 'Phones', value: 'phone', children: [
           {
-            text: '智能机', value: 'smart', children: [
+            text: 'Smartphones', value: 'smart', children: [
               {
-                text: '旗舰', value: 'flagship', children: [
+                text: 'Flagship', value: 'flagship', children: [
                   { text: '512GB', value: '512' }, { text: '1TB', value: '1tb' },
                 ]
               },
@@ -67,14 +67,14 @@ const deepTree: PickerOption[] = [
     ]
   },
   {
-    text: '食品', value: 'food', children: [
+    text: 'Food', value: 'food', children: [
       {
-        text: '零食', value: 'snack', children: [
+        text: 'Snacks', value: 'snack', children: [
           {
-            text: '膨化', value: 'puffed', children: [
+            text: 'Puffed', value: 'puffed', children: [
               {
-                text: '原味', value: 'ori', children: [
-                  { text: '小包', value: 's' }, { text: '大包', value: 'l' },
+                text: 'Original', value: 'ori', children: [
+                  { text: 'Small Pack', value: 's' }, { text: 'Large Pack', value: 'l' },
                 ]
               },
             ]
@@ -97,13 +97,13 @@ const propsData: PropRow[] = [
   { name: 'onChange', type: '(selected, value) => void', default: '—', required: false, desc: 'componentProps.picker.onChange' },
   { name: 'show', type: 'boolean', default: '—', required: false, desc: 'componentProps.picker.show' },
   { name: 'onUpdateShow', type: '(show) => void', default: '—', required: false, desc: 'componentProps.picker.onUpdateShow' },
-  { name: 'title', type: 'string', default: "'请选择'", required: false, desc: 'componentProps.picker.title' },
+  { name: 'title', type: 'string', default: "'Please Select'", required: false, desc: 'componentProps.picker.title' },
   { name: 'visibleItemCount', type: 'number', default: '7', required: false, desc: 'componentProps.picker.visibleItemCount' },
   { name: 'optionHeight', type: 'number', default: '50', required: false, desc: 'componentProps.picker.optionHeight' },
   { name: 'ratio', type: 'number', default: '1.5', required: false, desc: 'componentProps.picker.ratio' },
   { name: 'swipeDuration', type: 'number', default: '1', required: false, desc: 'componentProps.picker.swipeDuration' },
-  { name: 'cancelText', type: 'string', default: '跟随 locale', required: false, desc: 'componentProps.picker.cancelText' },
-  { name: 'confirmText', type: 'string', default: '跟随 locale', required: false, desc: 'componentProps.picker.confirmText' },
+  { name: 'cancelText', type: 'string', default: 'Follows locale', required: false, desc: 'componentProps.picker.cancelText' },
+  { name: 'confirmText', type: 'string', default: 'Follows locale', required: false, desc: 'componentProps.picker.confirmText' },
   { name: 'placeholders', type: 'string | string[]', default: '—', required: false, desc: 'componentProps.picker.placeholders' },
   { name: 'teleport', type: 'string | Element', default: 'document.body', required: false, desc: 'componentProps.picker.teleport' },
 ];
@@ -118,8 +118,8 @@ const CityPicker: Component = () => {
   const [val, setVal] = createSignal<(string | number)[]>([]);
   return (
     <>
-      <Cell title="Tree 级联" value={val().length ? val().join(' / ') : '请选择'} clickable onClick={() => setShow(true)} />
-      <Picker show={show()} onUpdateShow={setShow} columns={cityTree} title="选择城市"
+      <Cell title="Tree Cascade" value={val().length ? val().join(' / ') : 'Please Select'} clickable onClick={() => setShow(true)} />
+      <Picker show={show()} onUpdateShow={setShow} columns={cityTree} title="Select City"
         onChange={(_, v) => setVal(v)} onConfirm={(_, v) => { setVal(v); setShow(false); }}
         onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
@@ -132,8 +132,8 @@ const DatePickerDemo: Component = () => {
   const [val, setVal] = createSignal<(string | number)[]>([]);
   return (
     <>
-      <Cell title="Flat 年月" value={val().length ? val().join(' / ') : '请选择'} clickable onClick={() => setShow(true)} />
-      <Picker show={show()} onUpdateShow={setShow} columns={dateCols} title="选择年月"
+      <Cell title="Flat Year-Month" value={val().length ? val().join(' / ') : 'Please Select'} clickable onClick={() => setShow(true)} />
+      <Picker show={show()} onUpdateShow={setShow} columns={dateCols} title="Select Year-Month"
         onChange={(_, v) => setVal(v)} onConfirm={(_, v) => { setVal(v); setShow(false); }}
         onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
@@ -147,8 +147,8 @@ const TimePickerDemo: Component = () => {
   const [label, setLabel] = createSignal('');
   return (
     <>
-      <Cell title={t('demo.timeSelect')} value={label() || '请选择'} clickable onClick={() => setShow(true)} />
-      <Picker show={show()} onUpdateShow={setShow} columns={timeCols} title="选择时间"
+      <Cell title={t('demo.timeSelect')} value={label() || 'Please Select'} clickable onClick={() => setShow(true)} />
+      <Picker show={show()} onUpdateShow={setShow} columns={timeCols} title="Select Time"
         onChange={(_, v) => setLabel(`${String(v[0]).padStart(2, '0')}:${String(v[1]).padStart(2, '0')}`)}
         onConfirm={(_items, v) => { setLabel(`${String(v[0]).padStart(2, '0')}:${String(v[1]).padStart(2, '0')}`); setShow(false); }}
         onCancel={() => setShow(false)} teleport={phone?.()} />
@@ -163,7 +163,7 @@ const DisabledPicker: Component = () => {
   const [label, setLabel] = createSignal('');
   return (
     <>
-      <Cell title="含禁用项" value={label() || '请选择'} clickable onClick={() => setShow(true)} />
+      <Cell title="With Disabled" value={label() || 'Please Select'} clickable onClick={() => setShow(true)} />
       <Picker show={show()} onUpdateShow={setShow} columns={colsDisabled} title={t('demo.actionOptions')}
         onChange={(items) => setLabel(String(items[0]?.text ?? ''))}
         onConfirm={(items) => { setLabel(String(items[0]?.text ?? '')); setShow(false); }}
@@ -179,8 +179,8 @@ const PlaceholderPicker: Component = () => {
   const [label, setLabel] = createSignal('');
   return (
     <>
-      <Cell title={t('demo.placeholder')} value={label() || '请选择'} clickable onClick={() => setShow(true)} />
-      <Picker show={show()} onUpdateShow={setShow} columns={makeFlatCols(3)} title="请选择" placeholders="请选择"
+      <Cell title={t('demo.placeholder')} value={label() || 'Please Select'} clickable onClick={() => setShow(true)} />
+      <Picker show={show()} onUpdateShow={setShow} columns={makeFlatCols(3)} title="Please Select" placeholders="Please Select"
         onChange={(items, vals) => setLabel(vals[0] ? String(items[0]?.text ?? '') : '')}
         onConfirm={(items, vals) => { setLabel(vals[0] ? String(items[0]?.text ?? '') : ''); setShow(false); }}
         onCancel={() => setShow(false)} teleport={phone?.()} />
@@ -194,8 +194,8 @@ const DeepPicker: Component = () => {
   const [val, setVal] = createSignal<(string | number)[]>([]);
   return (
     <>
-      <Cell title="5 层级联" value={val().length ? `${val().length} 层已选` : '请选择'} clickable onClick={() => setShow(true)} />
-      <Picker show={show()} onUpdateShow={setShow} columns={deepTree} title="逐级选择"
+      <Cell title="5-Level Cascade" value={val().length ? `${val().length} levels selected` : 'Please Select'} clickable onClick={() => setShow(true)} />
+      <Picker show={show()} onUpdateShow={setShow} columns={deepTree} title="Select Level by Level"
         onChange={(_, v) => setVal(v)} onConfirm={(_, v) => { setVal(v); setShow(false); }}
         onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
@@ -207,8 +207,8 @@ const ControlledPicker: Component = () => {
   const [show, setShow] = createSignal(false);
   return (
     <>
-      <Cell title="受控值（预设 北京/海淀）" clickable onClick={() => setShow(true)} />
-      <Picker show={show()} onUpdateShow={setShow} columns={cityTree} title="选择城市"
+      <Cell title="Controlled (preset: Beijing/Haidian)" clickable onClick={() => setShow(true)} />
+      <Picker show={show()} onUpdateShow={setShow} columns={cityTree} title="Select City"
         value={['beijing', 'haidian']} onConfirm={() => setShow(false)} onCancel={() => setShow(false)} teleport={phone?.()} />
     </>
   );
@@ -217,29 +217,29 @@ const ControlledPicker: Component = () => {
 /* ── Code Snippets ── */
 
 const codeTree = `<Picker columns={cityTree} show={show} onUpdateShow={setShow}
-  title="选择城市"
+  title="Select City"
   onChange={(_, v) => setVal(v)}
   onConfirm={(_, v) => { setVal(v); setShow(false); }} />`;
 
 const codeFlat = `<Picker columns={dateCols} show={show} onUpdateShow={setShow}
-  title="选择年月"  />`;
+  title="Select Year-Month"  />`;
 
 const codeTime = `<Picker columns={timeCols} show={show} onUpdateShow={setShow}
-  title="选择时间"  />`;
+  title="Select Time"  />`;
 
 const codeDisabled = `<Picker columns={colsDisabled} show={show} onUpdateShow={setShow}
   title={t('demo.actionOptions')}  />`;
 
 const codePlaceholder = `<Picker columns={flatCols} show={show} onUpdateShow={setShow}
-  title="请选择" placeholders="请选择"  />`;
+  title="Please Select" placeholders="Please Select"  />`;
 
 const codeDeep = `<Picker columns={deepTree} show={show} onUpdateShow={setShow}
-  title="逐级选择"
+  title="Select Level by Level"
   onChange={(_, v) => setDeepVal(v)}
   onConfirm={(_, v) => { setDeepVal(v); setShow(false); }} />`;
 
 const codeControlled = `<Picker columns={cityTree} show={show} onUpdateShow={setShow}
-  title="选择城市"
+  title="Select City"
   value={['beijing', 'haidian']} />`;
 
 /* ── Page ── */
@@ -249,7 +249,7 @@ export const PickerDocPage: Component = () => {
   return (
   <DocLayout>
     <div style={{ padding: '16px', 'max-width': '960px' }}>
-      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Picker 选择器</h1>
+      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Picker</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
         {t('componentIntro.PickerIntro')}
       </p>

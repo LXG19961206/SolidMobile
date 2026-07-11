@@ -25,36 +25,36 @@ const selectProps: PropRow[] = [
 
 const codeBasic = `<Select
   options={[
-    { text: '选项 A', value: 'a' },
-    { text: '选项 B', value: 'b' },
-    { text: '选项 C', value: 'c' },
+    { text: 'Option A', value: 'a' },
+    { text: 'Option B', value: 'b' },
+    { text: 'Option C', value: 'c' },
   ]}
 
 />`;
 
 const codeCustomText = `<Select
   options={[
-    { text: '选项 A', value: 'a' },
-    { text: '选项 B', value: 'b' },
-    { text: '选项 C', value: 'c' },
+    { text: 'Option A', value: 'a' },
+    { text: 'Option B', value: 'b' },
+    { text: 'Option C', value: 'c' },
   ]}
-  title="请选择一项"
-  cancelText="算了"
-  confirmText="就这个"
-  placeholder="点击选择"
+  title="Select an option"
+  cancelText="Cancel"
+  confirmText="OK"
+  placeholder="Tap to select"
 />`;
 
 const codeControlled = `const [show, setShow] = createSignal(false);
 const [val, setVal] = createSignal('');
 
 <>
-  <Button text="打开选择器" onClick={() => setShow(true)} />
-  <span>已选: {val() || '-'}</span>
+  <Button text="Open Selector" onClick={() => setShow(true)} />
+  <span>Selected: {val() || '-'}</span>
   <Select
     options={[
-      { text: '选项 A', value: 'a' },
-      { text: '选项 B', value: 'b' },
-      { text: '选项 C', value: 'c' },
+      { text: 'Option A', value: 'a' },
+      { text: 'Option B', value: 'b' },
+      { text: 'Option C', value: 'c' },
     ]}
     show={show()}
     onUpdateShow={setShow}
@@ -66,32 +66,32 @@ const [val, setVal] = createSignal('');
 
 const codeManyOptions = `<Select
   options={[
-    { text: '北京', value: 'beijing' },
-    { text: '上海', value: 'shanghai' },
-    { text: '广州', value: 'guangzhou' },
-    { text: '深圳', value: 'shenzhen' },
-    { text: '杭州', value: 'hangzhou' },
-    { text: '成都', value: 'chengdu' },
-    { text: '武汉', value: 'wuhan' },
-    { text: '南京', value: 'nanjing' },
-    { text: '西安', value: 'xian' },
-    { text: '重庆', value: 'chongqing' },
+    { text: 'Beijing', value: 'beijing' },
+    { text: 'Shanghai', value: 'shanghai' },
+    { text: 'Guangzhou', value: 'guangzhou' },
+    { text: 'Shenzhen', value: 'shenzhen' },
+    { text: 'Hangzhou', value: 'hangzhou' },
+    { text: 'Chengdu', value: 'chengdu' },
+    { text: 'Wuhan', value: 'wuhan' },
+    { text: 'Nanjing', value: 'nanjing' },
+    { text: "Xi'an", value: 'xian' },
+    { text: 'Chongqing', value: 'chongqing' },
   ]}
-  placeholder="选择城市"
+  placeholder="Select city"
 />`;
 
 const codeForm = `<Form onSubmit={(v) => { ... }} controlAlign="right">
-  <FormItem name="city" label="城市" labelWidth="4em">
+  <FormItem name="city" label="City" labelWidth="4em">
     <Select
       options={[
-        { text: '北京', value: 'beijing' },
-        { text: '上海', value: 'shanghai' },
-        { text: '广州', value: 'guangzhou' },
+        { text: 'Beijing', value: 'beijing' },
+        { text: 'Shanghai', value: 'shanghai' },
+        { text: 'Guangzhou', value: 'guangzhou' },
       ]}
 
     />
   </FormItem>
-  <Button type="primary" block nativeType="submit" text="提交" />
+  <Button type="primary" block nativeType="submit" text="Submit" />
 </Form>`;
 
 /* ── Basic Demo ── */
@@ -102,13 +102,13 @@ const BasicDemo: Component = () => {
   return (
     <Select
       options={[
-        { text: '选项 A', value: 'a' },
-        { text: '选项 B', value: 'b' },
-        { text: '选项 C', value: 'c' },
+        { text: 'Option A', value: 'a' },
+        { text: 'Option B', value: 'b' },
+        { text: 'Option C', value: 'c' },
       ]}
       value={val()}
       onChange={setVal}
-      placeholder="点击选择"
+      placeholder="Tap to select"
       teleport={phone?.()}
     />
   );
@@ -121,23 +121,23 @@ const FormDemo: Component = () => {
   const [formVal, setFormVal] = createSignal({});
   return (
     <>
-      <Form onSubmit={(v) => { setFormVal(v); Toast.success('提交: ' + JSON.stringify(v)); }} controlAlign="right">
-        <FormItem name="city" label="城市" labelWidth="4em" contentFlex>
+      <Form onSubmit={(v) => { setFormVal(v); Toast.success('Submit: ' + JSON.stringify(v)); }} controlAlign="right">
+        <FormItem name="city" label="City" labelWidth="4em" contentFlex>
           <Select
             options={[
-              { text: '北京', value: 'beijing' },
-              { text: '上海', value: 'shanghai' },
-              { text: '广州', value: 'guangzhou' },
+              { text: 'Beijing', value: 'beijing' },
+              { text: 'Shanghai', value: 'shanghai' },
+              { text: 'Guangzhou', value: 'guangzhou' },
             ]}
             teleport={phone?.()}
           />
         </FormItem>
         <div style={{ padding: '12px 1rem' }}>
-          <Button type="primary" block nativeType="submit" text="提交" />
+          <Button type="primary" block nativeType="submit" text="Submit" />
         </div>
       </Form>
       <div style={{ padding: '0 1rem', 'font-size': '0.8rem', color: '#6b7280' }}>
-        提交值: {JSON.stringify(formVal())}
+        Submit value: {JSON.stringify(formVal())}
       </div>
     </>
   );
@@ -150,14 +150,14 @@ const CustomTextDemo: Component = () => {
   return (
     <Select
       options={[
-        { text: '选项 A', value: 'a' },
-        { text: '选项 B', value: 'b' },
-        { text: '选项 C', value: 'c' },
+        { text: 'Option A', value: 'a' },
+        { text: 'Option B', value: 'b' },
+        { text: 'Option C', value: 'c' },
       ]}
-      title="请选择一项"
-      cancelText="算了"
-      confirmText="就这个"
-      placeholder="点击选择"
+      title="Select an option"
+      cancelText="Cancel"
+      confirmText="OK"
+      placeholder="Tap to select"
       teleport={phone?.()}
     />
   );
@@ -171,15 +171,15 @@ const ControlledShowDemo: Component = () => {
   const [val, setVal] = createSignal('');
   return (
     <div style={{ display: 'flex', 'align-items': 'center', gap: '12px' }}>
-      <Button text="打开选择器" onClick={() => setShow(true)} />
+      <Button text="Open Selector" onClick={() => setShow(true)} />
       <span style={{ 'font-size': '0.85rem', color: '#6b7280' }}>
-        已选: {val() || '-'}
+        Selected: {val() || '-'}
       </span>
       <Select
         options={[
-          { text: '选项 A', value: 'a' },
-          { text: '选项 B', value: 'b' },
-          { text: '选项 C', value: 'c' },
+          { text: 'Option A', value: 'a' },
+          { text: 'Option B', value: 'b' },
+          { text: 'Option C', value: 'c' },
         ]}
         show={show()}
         onUpdateShow={setShow}
@@ -197,21 +197,21 @@ const ControlledShowDemo: Component = () => {
 const ManyOptionsDemo: Component = () => {
   const phone = useContext(PhoneTargetContext);
   const cityOptions = [
-    { text: '北京', value: 'beijing' },
-    { text: '上海', value: 'shanghai' },
-    { text: '广州', value: 'guangzhou' },
-    { text: '深圳', value: 'shenzhen' },
-    { text: '杭州', value: 'hangzhou' },
-    { text: '成都', value: 'chengdu' },
-    { text: '武汉', value: 'wuhan' },
-    { text: '南京', value: 'nanjing' },
-    { text: '西安', value: 'xian' },
-    { text: '重庆', value: 'chongqing' },
+    { text: 'Beijing', value: 'beijing' },
+    { text: 'Shanghai', value: 'shanghai' },
+    { text: 'Guangzhou', value: 'guangzhou' },
+    { text: 'Shenzhen', value: 'shenzhen' },
+    { text: 'Hangzhou', value: 'hangzhou' },
+    { text: 'Chengdu', value: 'chengdu' },
+    { text: 'Wuhan', value: 'wuhan' },
+    { text: 'Nanjing', value: 'nanjing' },
+    { text: "Xi'an", value: 'xian' },
+    { text: 'Chongqing', value: 'chongqing' },
   ];
   return (
     <Select
       options={cityOptions}
-      placeholder="选择城市"
+      placeholder="Select city"
       teleport={phone?.()}
     />
   );
@@ -244,7 +244,7 @@ const codeCustomRender = `<Select
       </span>
     },
   ]}
-  placeholder="选择状态颜色"
+  placeholder="Select status color"
 />`;
 
 /* ── Custom Render Demo ── */
@@ -272,7 +272,7 @@ const CustomRenderDemo: Component = () => {
   return (
     <Select
       options={statusOpts}
-      placeholder="选择状态颜色"
+      placeholder="Select status color"
       teleport={phone?.()}
     />
   );
@@ -283,7 +283,7 @@ export const SelectDocPage: Component = () => {
   return (
   <DocLayout>
     <div style={{ padding: '16px', 'max-width': '960px' }}>
-      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Select 选择器</h1>
+      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Select</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
         {t('componentIntro.SelectIntro')}
       </p>

@@ -9,9 +9,9 @@ const safeAreaProps: PropRow[] = [
 ];
 
 const codeTop = `<SafeArea position="top" />
-<!-- 顶部内容，避开刘海／状态栏 -->`;
+<!-- Top content, avoid notch/status bar -->`;
 
-const codeBottom = `<!-- 底部内容，避开 Home Indicator -->
+const codeBottom = `<!-- Bottom content, avoid Home Indicator -->
 <SafeArea position="bottom" />`;
 
 const codeCSS = `/* CSS 变量优先级 */
@@ -21,8 +21,8 @@ env(safe-area-inset-top);         /* 2. 设备原生安全区域 */
 
 const codeLayout = `<div style={{ display: 'flex', 'flex-direction': 'column', height: '100vh' }}>
   <SafeArea position="top" />
-  <NavBar title="首页" />
-  <div style={{ flex: 1 }}>页面内容</div>
+  <NavBar title="Home" />
+  <div style={{ flex: 1 }}>Page content</div>
   <Tabbar />
   <SafeArea position="bottom" />
 </div>`;
@@ -32,7 +32,7 @@ export const SafeAreaDocPage: Component = () => {
   return (
   <DocLayout>
     <div style={{ padding: '16px', 'max-width': '960px' }}>
-      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>SafeArea 安全区域</h1>
+      <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>SafeArea</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
         {t('componentIntro.SafeAreaIntro')}
       </p>
@@ -42,19 +42,19 @@ export const SafeAreaDocPage: Component = () => {
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.implementation')}</h2>
       <p style={{ 'line-height': 1.8, color: '#374151' }}>
-        SafeArea 是一个纯样式占位组件。高度读取 CSS 变量 <code>--sc-safe-area-top</code> 或 <code>--sc-safe-area-bottom</code>，
-        分别回退到 <code>env(safe-area-inset-top)</code> / <code>env(safe-area-inset-bottom)</code>，最后兜底 <code>0px</code>。
+        SafeArea is a pure style spacer component. Its height reads from CSS variable <code>--sc-safe-area-top</code> 或 <code>--sc-safe-area-bottom</code>，
+        , falling back to <code>env(safe-area-inset-top)</code> / <code>env(safe-area-inset-bottom)</code>, and finally to <code>0px</code>。
       </p>
 
       <DemoBlock title={t('demo.cssVarLevel')} code={codeCSS} hideTitle>
         <div style={{ padding: '12px', 'font-size': '0.85rem', color: '#6b7280', 'text-align': 'center' }}>
-          CSS 变量层级见左侧代码
+          See CSS variable hierarchy in code on left
         </div>
       </DemoBlock>
 
       <p style={{ 'line-height': 1.8, color: '#374151', 'margin-top': '1rem' }}>
-        在应用根节点或任意父级元素上设置 <code>--sc-safe-area-top</code> 即可覆盖 SafeArea 的高度。
-        组件库的 PhoneSimulator 已预设 <code>--sc-safe-area-top: 32px</code> 模拟刘海。
+        Set on app root or any parent element: <code>--sc-safe-area-top</code> to override SafeArea height.
+        The PhoneSimulator already presets <code>--sc-safe-area-top: 32px</code> to simulate a notch.
       </p>
 
       <DemoBlock title={t('demo.safeTop')} desc={t('demoDesc.safearea_top')} code={codeTop}>
@@ -65,7 +65,7 @@ export const SafeAreaDocPage: Component = () => {
         }}>
           <SafeArea position="top" />
           <div style={{ padding: '12px', color: 'var(--sc-color-primary, #1677ff)', 'font-size': '0.9rem', 'text-align': 'center' }}>
-            顶部内容（SafeArea 已撑开间距）
+            Top content (SafeArea spacing applied)
           </div>
         </div>
       </DemoBlock>
@@ -95,11 +95,11 @@ export const SafeAreaDocPage: Component = () => {
       </DemoBlock>
 
       <div style={{ background: '#fff7ed', border: '1px solid #fed7aa', 'border-radius': '8px', padding: '12px', 'margin-top': '16px' }}>
-        <strong style={{ color: '#c2410c' }}>⚠️ 注意事项</strong>
+        <strong style={{ color: '#c2410c' }}>⚠️ Note</strong>
         <ul style={{ margin: '8px 0 0', 'padding-left': '20px', 'line-height': 1.8 }}>
           <li><code>env(safe-area-inset-*)</code> 仅在 iOS Safari 和部分 Android WebView 中生效。桌面浏览器返回 <code>0px</code>。</li>
           <li>如需在所有环境下生效，请通过 <code>--sc-safe-area-top</code> CSS 变量手动设置。</li>
-          <li>组件库的 PhoneSimulator 已预设 <code>--sc-safe-area-top: 32px</code> 模拟刘海。</li>
+          <li>The PhoneSimulator already presets <code>--sc-safe-area-top: 32px</code> to simulate a notch.</li>
         </ul>
       </div>
     </div>

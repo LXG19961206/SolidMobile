@@ -35,14 +35,14 @@ const propsData: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'events', title: '事件 / Events' },
-  { id: 'basic', title: '基础用法' },
-  { id: 'icons', title: '图标按钮' },
-  { id: 'states', title: '状态' },
-  { id: 'link', title: '链接模式' },
-  { id: 'custom-color', title: '自定义颜色' },
-  { id: 'examples', title: '典型场景' },
+  { id: 'props', title: 'Props' },
+  { id: 'events', title: 'Events' },
+  { id: 'basic', title: 'Basic Usage' },
+  { id: 'icons', title: 'Icon Button' },
+  { id: 'states', title: 'States' },
+  { id: 'link', title: 'Link Mode' },
+  { id: 'custom-color', title: 'Custom Color' },
+  { id: 'examples', title: 'Typical Scenarios' },
 ];
 
 /* ---------------------------------------------------------------------- */
@@ -61,7 +61,7 @@ export const ButtonDocPage: Component = () => {
     <DocLayout>
 
       <div class={styles.page}>
-        <h1 class={styles.h1}>Button 按钮</h1>
+        <h1 class={styles.h1}>Button</h1>
         <p class={styles.lead}>{t('componentIntro.ButtonIntro')}</p>
 
         {/* ---- Props Table ---- */}
@@ -86,13 +86,13 @@ export const ButtonDocPage: Component = () => {
       <div class={styles.tableWrap}>
         <table class={styles.table}>
           <thead>
-            <tr><th>事件名</th><th>参数</th><th>说明</th></tr>
+            <tr><th>Event</th><th>Params</th><th>Description</th></tr>
           </thead>
           <tbody>
             <tr>
               <td><code>onClick</code></td>
               <td><code>(e: MouseEvent) =&gt; void</code></td>
-              <td>点击按钮时触发。disabled 或 loading 状态下不触发。</td>
+              <td>Fires on click. Not triggered when disabled or loading.</td>
             </tr>
           </tbody>
         </table>
@@ -135,10 +135,10 @@ export const ButtonDocPage: Component = () => {
       </DemoBlock>
 
       <DemoBlock title={t('demo.round')} desc={t('demoDesc.button_round')}
-        code={`<Button type="primary" round text="胶囊" />\n<Button type="primary" variant="outline" round text="Outline" />`}
+        code={`<Button type="primary" round text="Capsule" />\n<Button type="primary" variant="outline" round text="Outline" />`}
       >
         <div class={styles.row}>
-          <Button type="primary" round text="胶囊" />
+          <Button type="primary" round text="Capsule" />
           <Button type="primary" variant="outline" round text="Outline" />
           <Button type="danger" variant="outline" round text="Danger" />
         </div>
@@ -147,33 +147,33 @@ export const ButtonDocPage: Component = () => {
       {/* ---- 图标 ---- */}
       <h2 id="icons" class={styles.h2}>{t('section.iconButton')}</h2>
       <DemoBlock title={t('demo.iconText')} desc={t('demoDesc.button_icon_text')}
-        code={`<Button icon="star" text="收藏" />\n<Button icon="arrow-right" text="下一步" iconPosition="right" type="primary" />\n<Button icon="edit" text="编辑" variant="outline" />\n{/* 也支持传入 JSX */}\n<Button icon={<MyCustomIcon />} text="自定义" />`}
+        code={`<Button icon="star" text="Favorite" />\n<Button icon="arrow-right" text="Next" iconPosition="right" type="primary" />\n<Button icon="edit" text="Edit" variant="outline" />\n{/* 也支持传入 JSX */}\n<Button icon={<MyCustomIcon />} text="自定义" />`}
       >
         <div class={styles.row}>
-          <Button icon="star" text="收藏" />
-          <Button icon="arrow-right" text="下一步" iconPosition="right" type="primary" />
-          <Button icon="edit" text="编辑" variant="outline" />
+          <Button icon="star" text="Favorite" />
+          <Button icon="arrow-right" text="Next" iconPosition="right" type="primary" />
+          <Button icon="edit" text="Edit" variant="outline" />
         </div>
       </DemoBlock>
 
       <DemoBlock title={t('demo.iconOnly')} desc={t('demoDesc.button_icon_only')}
-        code={`<Button icon="search" aria-label="搜索" variant="ghost" />\n<Button icon="settings" aria-label="设置" variant="ghost" />\n<Button icon="close" aria-label="关闭" variant="ghost" />`}
+        code={`<Button icon="search" aria-label="Search" variant="ghost" />\n<Button icon="settings" aria-label="Settings" variant="ghost" />\n<Button icon="close" aria-label="Close" variant="ghost" />`}
       >
         <div class={styles.row}>
-          <Button icon="search" aria-label="搜索" variant="ghost" />
-          <Button icon="settings" aria-label="设置" variant="ghost" />
-          <Button icon="close" aria-label="关闭" variant="ghost" />
+          <Button icon="search" aria-label="Search" variant="ghost" />
+          <Button icon="settings" aria-label="Settings" variant="ghost" />
+          <Button icon="close" aria-label="Close" variant="ghost" />
         </div>
       </DemoBlock>
 
       {/* ---- 状态 ---- */}
       <h2 id="states" class={styles.h2}>{t('section.states')}</h2>
       <DemoBlock title={t('demo.loading')}
-        code={`<Button loading={loading} loadingText="提交中..." onClick={submit}>{loading ? '提交中...' : '提交'}</Button>`}
+        code={`<Button loading={loading} loadingText="Submitting..." onClick={submit}>{loading ? 'Submitting...' : 'Submit'}</Button>`}
       >
         <div class={styles.row}>
-          <Button type="primary" text={loading() ? '提交中...' : '点击提交'} loading={loading()} loadingText="提交中..." onClick={handleLoadingDemo} />
-          <Button variant="outline" text="取消" disabled={loading()} />
+          <Button type="primary" text={loading() ? 'Submitting...' : 'Click to Submit'} loading={loading()} loadingText="Submitting..." onClick={handleLoadingDemo} />
+          <Button variant="outline" text="Cancel" disabled={loading()} />
         </div>
       </DemoBlock>
 
@@ -195,8 +195,8 @@ export const ButtonDocPage: Component = () => {
       >
         <div class={styles.row}>
           <Button href="https://github.com" target="_blank" type="primary" text="打开链接" />
-          <Button href="#" variant="outline" text="跳转页面" />
-          <Button href="#" variant="ghost" text="了解更多 →" />
+          <Button href="#" variant="outline" text="Go to Page" />
+          <Button href="#" variant="ghost" text="Learn more →" />
         </div>
       </DemoBlock>
 
@@ -216,42 +216,42 @@ export const ButtonDocPage: Component = () => {
       {/* ---- 典型场景 ---- */}
       <h2 id="examples" class={styles.h2}>{t('section.typicalScenes')}</h2>
       <DemoBlock title={t('demo.formActions')} desc={t('demoDesc.button_form_actions')}
-        code={`<div style={{ display:'flex', gap:12, justifyContent:'flex-end' }}>\n  <Button variant="outline">取消</Button>\n  <Button type="primary">保存</Button>\n</div>`}
+        code={`<div style={{ display:'flex', gap:12, justifyContent:'flex-end' }}>\n  <Button variant="outline">Cancel</Button>\n  <Button type="primary">Save</Button>\n</div>`}
       >
         <div class={styles.row} style={{ 'justify-content': 'flex-end' }}>
-          <Button variant="outline" text="取消" />
-          <Button type="primary" text="保存" />
+          <Button variant="outline" text="Cancel" />
+          <Button type="primary" text="Save" />
         </div>
       </DemoBlock>
 
       <DemoBlock title={t('demo.mobileActions')} desc={t('demoDesc.button_mobile_actions')}
-        code={`<Button type="primary" block round size="lg">立即购买</Button>\n<Button variant="outline" block>加入购物车</Button>`}
+        code={`<Button type="primary" block round size="lg">Buy Now</Button>\n<Button variant="outline" block>Add to Cart</Button>`}
       >
         <div style="width:320px;display:flex;flex-direction:column;gap:0.5rem;">
-          <Button type="primary" block round size="lg" text="立即购买" />
+          <Button type="primary" block round size="lg" text="Buy Now" />
           <div style="display:flex;gap:0.5rem;">
-            <Button variant="outline" block text="加入购物车" />
-            <Button variant="ghost" block text="收藏" />
+            <Button variant="outline" block text="Add to Cart" />
+            <Button variant="ghost" block text="Favorite" />
           </div>
         </div>
       </DemoBlock>
 
       <DemoBlock title={t('demo.dangerConfirm')} desc={t('demoDesc.button_danger')}
-        code={`<Button variant="outline">取消</Button>\n<Button type="danger">确认删除</Button>`}
+        code={`<Button variant="outline">Cancel</Button>\n<Button type="danger">Confirm Delete</Button>`}
       >
         <div class={styles.row}>
-          <Button variant="outline" text="取消" />
-          <Button type="danger" text="确认删除" />
-          <Button type="danger" variant="outline" text="删除" size="xs" />
+          <Button variant="outline" text="Cancel" />
+          <Button type="danger" text="Confirm Delete" />
+          <Button type="danger" variant="outline" text="Delete" size="xs" />
         </div>
       </DemoBlock>
 
       <DemoBlock title={t('demo.submit')} desc={t('demoDesc.button_submit')}
-        code={`<form onSubmit={handleSubmit}>\n  <Button nativeType="submit">提交</Button>\n</form>`}
+        code={`<form onSubmit={handleSubmit}>\n  <Button nativeType="submit">Submit</Button>\n</form>`}
       >
         <div class={styles.row}>
-          <Button type="primary" nativeType="submit" text="提交" />
-          <Button variant="outline" nativeType="reset" text="重置" />
+          <Button type="primary" nativeType="submit" text="Submit" />
+          <Button variant="outline" nativeType="reset" text="Reset" />
         </div>
       </DemoBlock>
       </div>

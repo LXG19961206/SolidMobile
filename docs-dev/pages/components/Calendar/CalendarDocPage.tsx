@@ -12,12 +12,12 @@ const propsData: PropRow[] = [
   { name: 'onChange', type: '(value) => void', default: '—', required: false, desc: 'componentProps.calendar.onChange' },
   { name: 'popup', type: 'boolean', default: 'true', required: false, desc: 'componentProps.calendar.popup' },
   { name: 'show', type: 'boolean', default: '—', required: false, desc: 'componentProps.calendar.show' },
-  { name: 'title', type: 'string | JSX.Element', default: "'选择日期'", required: false, desc: 'componentProps.calendar.title' },
+  { name: 'title', type: 'string | JSX.Element', default: "'Select Date'", required: false, desc: 'componentProps.calendar.title' },
   { name: 'closeable', type: 'boolean', default: 'false', required: false, desc: 'componentProps.calendar.closeable' },
   { name: 'minDate', type: 'Date', default: '—', required: false, desc: 'componentProps.calendar.minDate' },
   { name: 'maxDate', type: 'Date', default: '—', required: false, desc: 'componentProps.calendar.maxDate' },
   { name: 'firstDayOfWeek', type: 'number', default: '0', required: false, desc: 'componentProps.calendar.firstDayOfWeek' },
-  { name: 'weekdays', type: 'string[]', default: "['日','一',...]", required: false, desc: 'componentProps.calendar.weekdays' },
+  { name: 'weekdays', type: 'string[]', default: "['Sun','Mon',...]", required: false, desc: 'componentProps.calendar.weekdays' },
   { name: 'titleFormatter', type: '(y, m) => string', default: '—', required: false, desc: 'componentProps.calendar.titleFormatter' },
   { name: 'activeColor', type: 'string', default: "'#1677ff'", required: false, desc: 'componentProps.calendar.activeColor' },
   { name: 'dayRender', type: '(day: DayInfo) => JSX.Element', default: '—', required: false, desc: 'componentProps.calendar.dayRender' },
@@ -48,9 +48,9 @@ const cssVarRows: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'cssvars', title: 'CSS 变量' },
-  { id: 'demo', title: '示例' },
+  { id: 'props', title: 'Props' },
+  { id: 'cssvars', title: 'CSS Variables' },
+  { id: 'demo', title: 'Examples' },
 ];
 
 const fmt = (d: Date) => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
@@ -62,7 +62,7 @@ const PopupSingle = () => {
   const [date, setDate] = createSignal<Date | null>(null);
   return (
     <>
-      <Cell title={t('demo.calendarSingle')} value={date() ? fmt(date()!) : '请选择'} clickable onClick={() => setShow(true)} />
+      <Cell title={t('demo.calendarSingle')} value={date() ? fmt(date()!) : 'Please Select'} clickable onClick={() => setShow(true)} />
       <Calendar show={show()} onUpdateShow={setShow} value={date() || undefined} onChange={(v) => { setDate(v as Date); setShow(false); }} closeable teleport={pt?.()} />
     </>
   );
@@ -75,7 +75,7 @@ const PopupRange = () => {
   const [range, setRange] = createSignal<[Date, Date] | null>(null);
   return (
     <>
-      <Cell title={t('demo.calendarRange')} value={range() ? `${fmt(range()![0])} ~ ${fmt(range()![1])}` : '请选择'} clickable onClick={() => setShow(true)} />
+      <Cell title={t('demo.calendarRange')} value={range() ? `${fmt(range()![0])} ~ ${fmt(range()![1])}` : 'Please Select'} clickable onClick={() => setShow(true)} />
       <Calendar type="range" showConfirm show={show()} onUpdateShow={setShow} value={range() || undefined} onChange={(v) => { setRange(v as [Date, Date]); }} closeable teleport={pt?.()} />
     </>
   );
@@ -88,7 +88,7 @@ const PopupColor = () => {
   const [range, setRange] = createSignal<[Date, Date] | null>(null);
   return (
     <>
-      <Cell title={t('demo.customColor')} value={range() ? `${fmt(range()![0])} ~ ${fmt(range()![1])}` : '请选择'} clickable onClick={() => setShow(true)} />
+      <Cell title={t('demo.customColor')} value={range() ? `${fmt(range()![0])} ~ ${fmt(range()![1])}` : 'Please Select'} clickable onClick={() => setShow(true)} />
       <Calendar type="range" showConfirm show={show()} onUpdateShow={setShow} value={range() || undefined} onChange={(v) => setRange(v as [Date, Date])} closeable activeColor="#22c55e" dayRender={(d) => d.isToday ? <span style="font-weight:800">今</span> : <>{d.day}</>} teleport={pt?.()} />
     </>
   );
@@ -103,11 +103,11 @@ for (let d = 1; d <= 31; d++) {
   const date = new Date(y, m - 1, d);
   if (date.getMonth() + 1 !== m) continue;
   const dow = date.getDay();
-  if (dow === 0 || dow === 6) specialDates[`${y}-${m}-${d}`] = { label: '休', color: '#f59e0b' };
+  if (dow === 0 || dow === 6) specialDates[`${y}-${m}-${d}`] = { label: 'Off', color: '#f59e0b' };
 }
 // Mark some as holidays
-specialDates[`${y}-${m}-1`] = { label: '假', color: '#ef4444' };
-specialDates[`${y}-${m}-15`] = { label: '假', color: '#ef4444' };
+specialDates[`${y}-${m}-1`] = { label: 'Holiday', color: '#ef4444' };
+specialDates[`${y}-${m}-15`] = { label: 'Holiday', color: '#ef4444' };
 
 const PopupHoliday = () => {
   const t = useT();
@@ -116,13 +116,13 @@ const PopupHoliday = () => {
   const [date, setDate] = createSignal<Date | null>(null);
   return (
     <>
-      <Cell title={t('demo.calendarHoliday')} value={date() ? fmt(date()!) : '请选择'} clickable onClick={() => setShow(true)} />
+      <Cell title={t('demo.calendarHoliday')} value={date() ? fmt(date()!) : 'Please Select'} clickable onClick={() => setShow(true)} />
       <Show when={date()}><span class={css.result}>{fmt(date()!)}</span></Show>
       <Calendar
         show={show()} onUpdateShow={setShow}
         value={date() || undefined}
         onChange={(v) => { setDate(v as Date); setShow(false); }}
-        title="选择日期" closeable
+        title="Select Date" closeable
         dayRender={(d) => {
           const key = `${d.year}-${d.month}-${d.day}`;
           const spec = specialDates[key];
@@ -144,7 +144,7 @@ export const CalendarDocPage = () => {
   return (
     <DocLayout>
     <div class={css.page}>
-      <h1 class={css.h1}>Calendar 日历</h1>
+      <h1 class={css.h1}>Calendar</h1>
       <p class={css.intro}>
         {t('componentIntro.CalendarIntro')}
       </p>
@@ -173,7 +173,7 @@ export const CalendarDocPage = () => {
       <DemoBlock
         title={t('demo.calendarHoliday')}
         desc={t('demoDesc.calendar_holidays')}
-        code={`// 构建特殊日期映射\nconst special = { '2026-6-1': { label: '假', color: '#ef4444' } };\n\n<Calendar\n  dayRender={(d) => {\n    const spec = special[\`$\{d.year}-$\{d.month}-$\{d.day}\`];\n    return (\n      <span>\n        <span>{d.day}</span>\n        {spec && <small style={{color:spec.color}}>{spec.label}</small>}\n      </span>\n    );\n  }}\n  show={show()}\n  onUpdateShow={setShow}\n  title="选择日期"\n/>`}
+        code={`// 构建特殊日期映射\nconst special = { '2026-6-1': { label: 'Holiday', color: '#ef4444' } };\n\n<Calendar\n  dayRender={(d) => {\n    const spec = special[\`$\{d.year}-$\{d.month}-$\{d.day}\`];\n    return (\n      <span>\n        <span>{d.day}</span>\n        {spec && <small style={{color:spec.color}}>{spec.label}</small>}\n      </span>\n    );\n  }}\n  show={show()}\n  onUpdateShow={setShow}\n  title="Select Date"\n/>`}
       >
         <PopupHoliday />
       </DemoBlock>

@@ -20,9 +20,9 @@ const propsData: PropRow[] = [
 ];
 
 const tocItems: TOCItem[] = [
-  { id: 'props', title: '属性 / Props' },
-  { id: 'usage', title: '使用方式' },
-  { id: 'gallery', title: '图标库' },
+  { id: 'props', title: 'Props' },
+  { id: 'usage', title: 'Usage' },
+  { id: 'gallery', title: 'Icon Library' },
 ];
 
 interface Category {
@@ -32,7 +32,7 @@ interface Category {
 
 const CATEGORIES: Category[] = [
   {
-    title: '🧭 导航 Navigation',
+    title: '🧭 Navigation',
     icons: [
       'arrow-left', 'arrow-right', 'arrow-up', 'arrow-down',
       'arrow-up-down', 'arrow-left-right', 'arrow-go-back', 'arrow-go-forward',
@@ -41,7 +41,7 @@ const CATEGORIES: Category[] = [
     ],
   },
   {
-    title: '⚡ 操作 Actions',
+    title: '⚡ Actions',
     icons: [
       'add', 'close', 'subtract', 'edit', 'delete-bin', 'search',
       'share', 'download', 'upload', 'refresh',
@@ -49,7 +49,7 @@ const CATEGORIES: Category[] = [
     ],
   },
   {
-    title: '✅ 状态反馈 Status',
+    title: '✅ Status',
     icons: [
       'check', 'close-circle', 'error-warning', 'information',
       'question', 'indeterminate-circle',
@@ -58,7 +58,7 @@ const CATEGORIES: Category[] = [
     ],
   },
   {
-    title: '👤 用户 & 通讯 User & Communication',
+    title: '👤 User & Communication',
     icons: [
       'user', 'user-3', 'group', 'team',
       'account-circle', 'account-box', 'user-add', 'user-follow',
@@ -67,7 +67,7 @@ const CATEGORIES: Category[] = [
     ],
   },
   {
-    title: '📁 文件 & 编辑 Document & Editor',
+    title: '📁 Document & Editor',
     icons: [
       'file', 'folder', 'folder-open', 'file-text', 'file-copy',
       'file-download', 'file-upload', 'folder-add', 'clipboard', 'todo',
@@ -77,14 +77,14 @@ const CATEGORIES: Category[] = [
     ],
   },
   {
-    title: '📅 时间 & 数据 Time & Analytics',
+    title: '📅 Time & Analytics',
     icons: [
       'calendar', 'calendar-2', 'time', 'history', 'dashboard',
       'bar-chart', 'line-chart', 'pie-chart',
     ],
   },
   {
-    title: '💼 商务 & 金融 Business & Finance',
+    title: '💼 Business & Finance',
     icons: [
       'money', 'shopping-cart', 'shopping-bag', 'bank-card', 'wallet',
       'coupon', 'safe', 'bookmark', 'price-tag', 'percent',
@@ -92,7 +92,7 @@ const CATEGORIES: Category[] = [
     ],
   },
   {
-    title: '🎮 媒体 & 设备 Media & Device',
+    title: '🎮 Media & Device',
     icons: [
       'play', 'pause', 'stop', 'volume-up', 'volume-mute',
       'camera', 'image', 'video', 'music', 'headphone',
@@ -100,7 +100,7 @@ const CATEGORIES: Category[] = [
     ],
   },
   {
-    title: '🌐 通用 General',
+    title: '🌐 General',
     icons: [
       'earth', 'map-pin', 'compass', 'sun', 'moon', 'cloud',
       'settings', 'settings-3', 'lock', 'unlock', 'shield', 'palette',
@@ -136,7 +136,7 @@ export const IconDocPage: Component = () => {
     <DocLayout>
 
       <div class={styles.page}>
-        <h1 class={styles.h1}>Icon 图标</h1>
+        <h1 class={styles.h1}>Icon</h1>
         <p class={styles.intro}>
           {t('componentIntro.IconIntro')}
         </p>
@@ -214,32 +214,32 @@ export const IconDocPage: Component = () => {
         <DemoBlock
           title={t('demo.iconWithButton')}
           desc={t('demoDesc.icon_color')}
-          code={`<Button icon="add" text="新建" />\n<Button icon="download" text="下载" variant="outline" />\n<Button icon="delete-bin" text="删除" type="danger" variant="outline" />\n{/* 也可以传 JSX: icon={<MyIcon />} */}`}
+          code={`<Button icon="add" text="New" />\n<Button icon="download" text="Download" variant="outline" />\n<Button icon="delete-bin" text="Delete" type="danger" variant="outline" />\n{/* 也可以传 JSX: icon={<MyIcon />} */}`}
         >
           <div class={styles.demoArea}>
-            <Button icon="add" text="新建" />
-            <Button icon="download" text="下载" variant="outline" />
-            <Button icon="delete-bin" text="删除" type="danger" variant="outline" />
+            <Button icon="add" text="New" />
+            <Button icon="download" text="Download" variant="outline" />
+            <Button icon="delete-bin" text="Delete" type="danger" variant="outline" />
           </div>
         </DemoBlock>
 
         <DemoBlock
           title={t('demo.iconClickable')}
           desc={t('demoDesc.icon_clickable')}
-          code={`<Icon name="close" aria-label="关闭" size={24} style={{ cursor: 'pointer' }} />\n<Icon name="heart" variant="fill" aria-label="收藏" size={24} color="#ff4d4f" style={{ cursor: 'pointer' }} />`}
+          code={`<Icon name="close" aria-label="Close" size={24} style={{ cursor: 'pointer' }} />\n<Icon name="heart" variant="fill" aria-label="Favorite" size={24} color="#ff4d4f" style={{ cursor: 'pointer' }} />`}
         >
           <div class={styles.demoArea}>
-            <Icon name="close" aria-label="关闭" size={24} style={{ cursor: 'pointer' }} />
-            <Icon name="heart" variant="fill" aria-label="收藏" size={24} color="#ff4d4f" style={{ cursor: 'pointer' }} />
-            <Icon name="share" aria-label="分享" size={24} style={{ cursor: 'pointer' }} />
-            <Icon name="refresh" aria-label="刷新" size={24} style={{ cursor: 'pointer' }} />
+            <Icon name="close" aria-label="Close" size={24} style={{ cursor: 'pointer' }} />
+            <Icon name="heart" variant="fill" aria-label="Favorite" size={24} color="#ff4d4f" style={{ cursor: 'pointer' }} />
+            <Icon name="share" aria-label="Share" size={24} style={{ cursor: 'pointer' }} />
+            <Icon name="refresh" aria-label="Refresh" size={24} style={{ cursor: 'pointer' }} />
           </div>
         </DemoBlock>
 
         {/* ═══ Icon Gallery ═══ */}
         <h2 id="gallery" class={styles.h2}>{t('section.iconLibrary')}</h2>
         <p class={styles.intro} style="margin-bottom:1rem">
-          共 129 个图标，点击即可复制 JSX 代码。支持搜索和线/填充风格切换。
+          129 icons total. Click to copy JSX code. Supports search and line/fill style switching.
         </p>
 
         {/* Controls */}
@@ -247,7 +247,7 @@ export const IconDocPage: Component = () => {
           <input
             class={styles.searchInput}
             type="text"
-            placeholder="搜索图标名称..."
+            placeholder="Search icons..."
             value={search()}
             onInput={(e) => setSearch(e.currentTarget.value)}
           />
@@ -270,7 +270,7 @@ export const IconDocPage: Component = () => {
           </div>
 
           <div class={styles.sizeSlider}>
-            <span>尺寸</span>
+            <span>Size</span>
             <input
               type="range"
               min="16"
@@ -310,7 +310,7 @@ export const IconDocPage: Component = () => {
         {/* Copied toast */}
         {copiedName() && (
           <div class={styles.copiedToast}>
-            已复制: &lt;Icon name="{copiedName()}" /&gt;
+            Copied: &lt;Icon name="{copiedName()}" /&gt;
           </div>
         )}
       </div>
