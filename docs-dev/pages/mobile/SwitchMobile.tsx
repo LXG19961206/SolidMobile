@@ -6,7 +6,7 @@ export interface SwitchMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
-import { Switch } from '../../../src/components/Switch';
+import { Switch as Toggle } from '../../../src/components/Switch';
 
 const propsData = [
   { name: 'checked (value)', type: 'boolean', desc: 'componentProps.switch.checked (value)' },
@@ -27,7 +27,7 @@ const CARD = {
   body: { padding: '0 16px 16px', display: 'flex' as const, 'flex-wrap': 'wrap' as const, gap: '12px', 'align-items': 'center' as const },
 };
 
-export const SwitchMobile: Component<SwitchMobileProps> = (props) => {
+export const SwitchMobile: Component<ToggleMobileProps> = (props) => {
   const t = useT();
   const [val1, setVal1] = createSignal(true);
   const [val2, setVal2] = createSignal(false);
@@ -40,15 +40,15 @@ export const SwitchMobile: Component<SwitchMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.switchBasicDesc')}</div>
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
-            <Switch checked={val1()} onChange={setVal1} />
+            <Toggle checked={val1()} onChange={setVal1} />
             <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>Controlled: {val1() ? 'On' : 'Off'}</span>
           </div>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
-            <Switch defaultChecked />
+            <Toggle defaultChecked />
             <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>Default On</span>
           </div>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
-            <Switch checked={val2()} onChange={setVal2} />
+            <Toggle checked={val2()} onChange={setVal2} />
             <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>Default Off</span>
           </div>
         </div>
@@ -60,11 +60,11 @@ export const SwitchMobile: Component<SwitchMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.switchColorTextDesc')}</div>
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
-            <Switch defaultChecked activeColor="#22c55e" />
+            <Toggle defaultChecked activeColor="#22c55e" />
             <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>Color Green</span>
           </div>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
-            <Switch defaultChecked activeText="On" inactiveText="Off" />
+            <Toggle defaultChecked activeText="On" inactiveText="Off" />
             <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>With Text</span>
           </div>
         </div>
@@ -76,19 +76,19 @@ export const SwitchMobile: Component<SwitchMobileProps> = (props) => {
         <div style={CARD.desc}>{t('demo.switchSizeDisabledDesc')}</div>
         <div style={CARD.body}>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
-            <Switch defaultChecked size={20} />
+            <Toggle defaultChecked size={20} />
             <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>20px</span>
           </div>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
-            <Switch defaultChecked size={28} />
+            <Toggle defaultChecked size={28} />
             <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>28px</span>
           </div>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
-            <Switch defaultChecked size={36} />
+            <Toggle defaultChecked size={36} />
             <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)' }}>36px</span>
           </div>
           <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
-            <Switch defaultChecked disabled />
+            <Toggle defaultChecked disabled />
             <span style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>Disabled</span>
           </div>
         </div>

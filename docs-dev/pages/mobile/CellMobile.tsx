@@ -8,7 +8,7 @@ export interface CellMobileProps {
 import { Cell, CellGroup } from '../../../src/components/Cell';
 import { Icon } from '../../../src/components/Icon';
 import { useT } from '../../doc-i18n';
-import { Switch } from '../../../src/components/Switch';
+import { Switch as Toggle } from '../../../src/components/Switch';
 
 const propsData = [
   { name: 'Cell.title', type: 'string | JSX.Element', desc: 'componentProps.cell.Cell.title' },

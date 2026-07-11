@@ -113,7 +113,7 @@ export type { RadioProps, RadioGroupProps, RadioShape } from './components/Radio
 export { Checkbox, CheckboxGroup } from './components/Checkbox';
 export type { CheckboxProps, CheckboxGroupProps, CheckboxShape } from './components/Checkbox';
 
-export { Switch } from './components/Switch';
+export { Switch, Switch as Toggle } from './components/Switch';
 export type { SwitchProps } from './components/Switch';
 
 export { Rate } from './components/Rate';
@@ -148,7 +148,7 @@ export type {
 } from './config';
 
 // ── i18n ───────────────────────────────────────────────────────────────
-export { LocaleProvider, useLocale, useT, setUserMessages, messages } from './i18n';
+export { LocaleProvider, useLocale, useT, setGlobalLocale, setUserMessages, messages } from './i18n';
 export type { Locale, LocaleProviderProps, TranslationDict, UserLocaleMessages } from './i18n';
 
 // ── Event Bus ──────────────────────────────────────────────────────────

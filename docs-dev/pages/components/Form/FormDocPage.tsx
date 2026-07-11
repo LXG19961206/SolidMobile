@@ -3,7 +3,7 @@ import { Form, FormItem } from '../../../../src/components/Form';
 import { Input } from '../../../../src/components/Input';
 import { Textarea } from '../../../../src/components/Textarea';
 import { Button } from '../../../../src/components/Button';
-import { Switch } from '../../../../src/components/Switch';
+import { Switch as Toggle } from '../../../../src/components/Switch';
 import { Radio, RadioGroup } from '../../../../src/components/Radio';
 import { Checkbox, CheckboxGroup } from '../../../../src/components/Checkbox';
 import { Rate } from '../../../../src/components/Rate';
@@ -90,7 +90,7 @@ const FullDemoCode = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}
   <div style="display:flex;align-items:center;min-height:40px;padding:8px 1rem">
     <span style="width:5em;flex-shrink:0;font-size:0.9rem;font-weight:500">Ctrl Right:</span>
     <div style="flex:1;min-width:0;display:flex;justify-content:flex-end">
-      <Switch checked={ctrlRight()} onChange={(v) => setCtrlRight(v)} />
+      <Toggle checked={ctrlRight()} onChange={(v) => setCtrlRight(v)} />
     </div>
   </div>
 
@@ -125,7 +125,7 @@ const FullDemoCode = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}
     </div>
   </FormItem>
   <FormItem name="agree" label="同意协议">
-    <Switch />
+    <Toggle />
   </FormItem>
   <FormItem name="city" label="所在城市">
     <Select
@@ -187,7 +187,7 @@ const FullFormDemo: Component = () => {
         <div style={{ display: 'flex', 'align-items': 'center', 'min-height': 'var(--sc-form-control-height)', padding: '8px 1rem', background: 'var(--sc-color-cell-bg, #fff)', 'border-bottom': '1px solid var(--sc-color-border, #ebedf0)' }}>
           <span style={{ width: '5em', 'flex-shrink': 0, 'font-size': '0.9rem', 'font-weight': 500, color: 'var(--sc-color-text, #323233)', 'margin-right': '12px' }}>Ctrl Right:</span>
           <div style={{ flex: 1, 'min-width': 0, display: 'flex', 'justify-content': 'flex-end' }}>
-            <Switch checked={ctrlRight()} onChange={(v) => setCtrlRight(v)} />
+            <Toggle checked={ctrlRight()} onChange={(v) => setCtrlRight(v)} />
           </div>
         </div>
 
@@ -229,7 +229,7 @@ const FullFormDemo: Component = () => {
 
         {/* ── Switch ── */}
         <FormItem name="agree" label="同意协议">
-          <Switch />
+          <Toggle />
         </FormItem>
 
         {/* ── Rate ── */}

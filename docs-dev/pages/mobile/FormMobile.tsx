@@ -10,7 +10,7 @@ import { Form, FormItem } from '../../../src/components/Form';
 import { Input } from '../../../src/components/Input';
 import { Textarea } from '../../../src/components/Textarea';
 import { Button } from '../../../src/components/Button';
-import { Switch } from '../../../src/components/Switch';
+import { Switch as Toggle } from '../../../src/components/Switch';
 import { Radio, RadioGroup } from '../../../src/components/Radio';
 import { Checkbox, CheckboxGroup } from '../../../src/components/Checkbox';
 import { Rate } from '../../../src/components/Rate';
@@ -128,7 +128,7 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
         <div style={CARD.body}>
           <Form>
             <FormItem name="agree" label="Agree">
-              <Switch />
+              <Toggle />
             </FormItem>
             <FormItem name="note" label="Note">
               <Input placeholder="Optional" clearable />
@@ -158,7 +158,7 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
               </RadioGroup>
             </FormItem>
             <FormItem name="notify" label="Notify">
-              <Switch />
+              <Toggle />
             </FormItem>
           </Form>
         </div>
@@ -180,7 +180,7 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
             <div style={{ display: 'flex', 'align-items': 'center', 'min-height': 'var(--sc-form-control-height)', padding: '8px 1rem', background: 'var(--sc-color-cell-bg, #fff)', 'border-bottom': '1px solid var(--sc-color-border, #ebedf0)' }}>
               <span style={{ width: '6em', 'flex-shrink': 0, 'font-size': '0.9rem', 'font-weight': 500, color: 'var(--sc-color-text, #323233)', 'margin-right': '12px' }}>Ctrl Right:</span>
               <div style={{ flex: 1, 'min-width': 0, display: 'flex', 'justify-content': 'flex-end' }}>
-                <Switch checked={controlRight()} onChange={(v) => setControlRight(v)} />
+                <Toggle checked={controlRight()} onChange={(v) => setControlRight(v)} />
               </div>
             </div>
             <FormItem name="username" label="Username" required rules={[{
@@ -218,7 +218,7 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
               <Stepper />
             </FormItem>
             <FormItem name="agree" label="Agree">
-              <Switch />
+              <Toggle />
             </FormItem>
             <FormItem name="range" label="Range">
               <div style={{ padding: '8px 4px', flex: '1', 'min-width': '0' }}>
