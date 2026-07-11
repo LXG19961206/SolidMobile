@@ -5,7 +5,7 @@ export interface NotifyMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
-import { Notify, NotifyRenderer } from '../../../src/components/notify';
+import { Notify } from '../../../src/components/notify';
 import { Button } from '../../../src/components/Button';
 import { useT } from '../../doc-i18n';
 
@@ -29,7 +29,6 @@ export const NotifyMobile: Component<NotifyMobileProps> = (props) => {
   const t = useT();
   return (
     <MobilePreview title="Notify 通知栏" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      <NotifyRenderer />
 
       {/* 四种类型 */}
       <div style={CARD.wrapper}>

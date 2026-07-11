@@ -1,4 +1,5 @@
 import { createSignal, For } from 'solid-js';
+import { render } from 'solid-js/web';
 import { DialogComponent } from './Dialog';
 import type { DialogOptions, DialogHandle } from './types';
 import { emitEvent } from '../../event-bus';
@@ -14,12 +15,23 @@ interface DialogEntry extends DialogOptions {
 
 let nextId = 0;
 const [dialogs, setDialogs] = createSignal<DialogEntry[]>([]);
+const autoMounted = false;
 
 function remove(id: number) {
   setDialogs((prev) => prev.filter((d) => d.id !== id));
 }
 
+function ensureRenderer() {
+  if (document.querySelector('[data-sc-dialog-root]')) return;
+  const root = document.createElement('div');
+  root.setAttribute('data-sc-dialog-root', '');
+  document.body.appendChild(root);
+  render(() => <DialogRenderer />, root);
+}
+
 function add(options: DialogOptions): DialogHandle {
+  ensureRenderer();
+
   const id = ++nextId;
   const entry: DialogEntry = { ...options, id, show: true };
   setDialogs((prev) => [...prev, entry]);

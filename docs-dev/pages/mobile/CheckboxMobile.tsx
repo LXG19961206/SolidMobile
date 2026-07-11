@@ -9,7 +9,7 @@ import { Checkbox, CheckboxGroup } from '../../../src/components/Checkbox';
 import { Form, FormItem } from '../../../src/components/Form';
 import { Button } from '../../../src/components/Button';
 import { useT } from '../../doc-i18n';
-import { Toast, ToastRenderer } from '../../../src/components/Toast';
+import { Toast } from '../../../src/components/Toast';
 
 const propsData = [
   { name: 'Checkbox.value', type: 'unknown', desc: 'componentProps.checkbox.Checkbox.value' },
@@ -62,7 +62,6 @@ export const CheckboxMobile: Component<CheckboxMobileProps> = (props) => {
 
   return (
     <MobilePreview title={t('nav.checkbox')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      <ToastRenderer />
 
       {/* 基础 & 禁用 */}
       <div style={CARD.wrapper}>

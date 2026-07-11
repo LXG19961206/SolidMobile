@@ -4,7 +4,7 @@ import { CodeBlock } from '../../doc-utils';
 import { useT, useLocale } from '../../doc-i18n';
 import { Upload } from '../../../src/components/Upload';
 import type { UploadFile } from '../../../src/components/Upload';
-import { ToastRenderer, Toast } from '../../../src/components/Toast';
+import { Toast } from '../../../src/components/Toast';
 
 export interface UploadMobileProps {
   components?: ComponentEntry[];
@@ -67,7 +67,6 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
 
   return (
     <MobilePreview title="Upload 上传" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      <ToastRenderer />
 
       {/* Design */}
       <div style={CARD.wrapper}>

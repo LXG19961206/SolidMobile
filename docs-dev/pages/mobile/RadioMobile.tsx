@@ -8,7 +8,7 @@ export interface RadioMobileProps {
 import { Radio, RadioGroup } from '../../../src/components/Radio';
 import { Form, FormItem } from '../../../src/components/Form';
 import { Button } from '../../../src/components/Button';
-import { Toast, ToastRenderer } from '../../../src/components/Toast';
+import { Toast } from '../../../src/components/Toast';
 import { useT } from '../../doc-i18n';
 
 const propsData = [
@@ -65,7 +65,6 @@ export const RadioMobile: Component<RadioMobileProps> = (props) => {
 
   return (
     <MobilePreview title="Radio" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      <ToastRenderer />
 
       {/* 基础 */}
       <div style={CARD.wrapper}>

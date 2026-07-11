@@ -1,5 +1,5 @@
 import { createSignal, Show, useContext, type Component } from 'solid-js';
-import { DialogAPI as Dialog, DialogRenderer } from '../../../../src/components/Dialog/DialogManager';
+import { DialogAPI as Dialog } from '../../../../src/components/Dialog/DialogManager';
 import { DialogComponent } from '../../../../src/components/Dialog';
 import { Cell } from '../../../../src/components/Cell';
 import { useT } from '../../../doc-i18n';
@@ -50,7 +50,6 @@ const DialogDocInner: Component = () => {
 
   return (
     <>
-      <DialogRenderer />
       <div class={css.page}>
         <h1 class={css.h1}>Dialog 弹窗</h1>
         <p class={css.intro}>
@@ -61,14 +60,9 @@ const DialogDocInner: Component = () => {
         <PropsTable rows={propsData} />
 
         <h2 id="api" class={css.h2}>{t('section.imperativeApi')}</h2>
-        <DemoBlock
-          title={t('demo.dialogRenderer')}
-          desc={'命令式调用需要在应用根组件中挂载 <DialogRenderer />。它负责渲染所有通过 Dialog.show() 等命令式方法创建的弹窗实例，本身不产生任何 DOM 节点。'}
-          code={`// main.tsx 或 App.tsx 根组件\nimport { DialogRenderer } from 'solid-mobile';\n\nrender(() => (\n  <>\n    <App />\n    <DialogRenderer />\n  </>\n), document.getElementById('root'));`}
-          phone={false}
-        >
-          <div />
-        </DemoBlock>
+        <div style={{ background: '#e8f5e9', border: '1px solid #66bb6a', 'border-radius': '6px', padding: '10px 14px', 'font-size': '0.85rem', 'line-height': 1.6, margin: '12px 0', color: '#2e7d32' }}>
+          首次调用 <code>Dialog.show()</code> 等命令式方法时，渲染器会自动挂载到 <code>document.body</code>，<strong>无需手动添加 <code>&lt;DialogRenderer /&gt;</code></strong>。如需控制挂载位置（如放在 ProviderConfig 内部），仍可显式放置，自动检测会跳过。
+        </div>
         <PropsTable rows={[
           { name: 'Dialog.show(options)', type: 'DialogHandle', default: '—', required: false, desc: 'componentProps.dialog.Dialog.show(options)' },
           { name: 'Dialog.alert(options)', type: 'DialogHandle', default: '—', required: false, desc: 'componentProps.dialog.Dialog.alert(options)' },

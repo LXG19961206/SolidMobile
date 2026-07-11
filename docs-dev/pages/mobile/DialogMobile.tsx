@@ -6,7 +6,7 @@ export interface DialogMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
-import { DialogAPI as Dialog, DialogRenderer } from '../../../src/components/Dialog/DialogManager';
+import { DialogAPI as Dialog } from '../../../src/components/Dialog/DialogManager';
 import { DialogComponent } from '../../../src/components/Dialog';
 import { Button } from '../../../src/components/Button';
 import { Cell, CellGroup } from '../../../src/components/Cell';
@@ -40,7 +40,6 @@ export const DialogMobile: Component<DialogMobileProps> = (props) => {
 
   return (
     <MobilePreview title="Dialog" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      <DialogRenderer />
 
       {/* Basic dialogs */}
       <div style={CARD.wrapper}>

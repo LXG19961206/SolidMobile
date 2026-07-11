@@ -1,5 +1,5 @@
 import { useContext, type Component } from 'solid-js';
-import { Notify, NotifyRenderer } from '../../../../src/components/notify/NotifyManager';
+import { Notify } from '../../../../src/components/notify/NotifyManager';
 import { Cell } from '../../../../src/components/Cell';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
@@ -27,9 +27,10 @@ const NotifyDocInner: Component = () => {
 
   return (
     <div style={{ padding: '16px', 'max-width': '960px' }}>
-      <NotifyRenderer />
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Notify 通知栏</h1>
-      <p style={{ color: '#6b7280', margin: '0 0 24px' }}>顶部/底部弹出式通知栏，命令式 API 调用。</p>
+      <p style={{ color: '#6b7280', margin: '0 0 24px' }}>
+        顶部/底部弹出式通知栏，命令式 API 调用。首次调用时自动挂载渲染器，<strong>无需手动添加 <code>&lt;NotifyRenderer /&gt;</code></strong>。
+      </p>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>
       <PropsTable rows={propsData} />

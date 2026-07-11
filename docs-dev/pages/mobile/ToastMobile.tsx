@@ -6,7 +6,7 @@ export interface ToastMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
-import { Toast, ToastRenderer } from '../../../src/components/Toast';
+import { Toast } from '../../../src/components/Toast';
 import { Button } from '../../../src/components/Button';
 
 const propsData = [
@@ -30,7 +30,6 @@ export const ToastMobile: Component<ToastMobileProps> = (props) => {
   const t = useT();
   return (
     <MobilePreview title={t('demo.toastMobileTitle')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      <ToastRenderer />
 
       {/* Basic types */}
       <div style={CARD.wrapper}>

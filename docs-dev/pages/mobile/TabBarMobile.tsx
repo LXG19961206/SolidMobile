@@ -7,7 +7,7 @@ export interface TabBarMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { TabBar, TabBarItem } from '../../../src/components/TabBar';
-import { ToastRenderer } from '../../../src/components/Toast';
+
 
 const propsData = [
   { name: 'TabBar.value', type: 'number | string', desc: 'componentProps.tabbar.TabBar.value' },
@@ -85,7 +85,6 @@ export const TabBarMobile: Component<TabBarMobileProps> = (props) => {
 
   return (
     <MobilePreview title="TabBar" props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      <ToastRenderer />
 
       {/* Basic */}
       <div style={CARD.wrapper}>

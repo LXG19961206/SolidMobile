@@ -20,7 +20,7 @@ import { Select } from '../../../src/components/Select';
 import { DatePicker } from '../../../src/components/DatePicker';
 import { Upload } from '../../../src/components/Upload';
 import { TimePicker } from '../../../src/components/TimePicker';
-import { Toast, ToastRenderer } from '../../../src/components/Toast';
+import { Toast } from '../../../src/components/Toast';
 
 const propsData = [
   { name: 'Form.value', type: 'FormValue', desc: 'componentProps.form.Form.value' },
@@ -75,7 +75,6 @@ export const FormMobile: Component<FormMobileProps> = (props) => {
 
   return (
     <MobilePreview title={t('nav.form')} props={propsData} components={props.components} onNavigate={props.onNavigate}>
-      <ToastRenderer />
 
       {/* Layout strategy */}
       <div style={CARD.wrapper}>
