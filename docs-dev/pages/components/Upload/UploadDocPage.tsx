@@ -2,7 +2,7 @@ import { createSignal, type Component, type JSX } from 'solid-js';
 import { Upload } from '../../../../src/components/Upload';
 import type { UploadFile } from '../../../../src/components/Upload';
 import { useT } from '../../../doc-i18n';
-import { ToastRenderer, Toast } from '../../../../src/components/Toast';
+import { Toast } from '../../../../src/components/Toast';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
 import Prism from 'prismjs';
@@ -65,7 +65,6 @@ export const UploadDocPage: Component = () => {
   return (
     <DocLayout>
       <div style={{ padding: '16px', 'max-width': '960px' }}>
-        <ToastRenderer />
         <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Upload 文件上传</h1>
         <p style={{ color: '#6b7280', margin: '0 0 24px', 'line-height': 1.6 }}>
           {t('componentIntro.UploadIntro')}

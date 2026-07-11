@@ -27,14 +27,11 @@ const GuidePage: Component = () => {
 import 'solid-mobile/styles.css';`} />
 
       <h2 style={H2}>{isEn() ? 'Basic Usage' : '基础用法'}</h2>
-      <CodeBlock lang="tsx" code={`import { Button, Toast, ToastRenderer } from 'solid-mobile';
+      <CodeBlock lang="tsx" code={`import { Button, Toast } from 'solid-mobile';
 
 function App() {
   return (
-    <>
-      <Button type="primary" text="Hello" onClick={() => Toast.success('你好')} />
-      <ToastRenderer />
-    </>
+    <Button type="primary" text="Hello" onClick={() => Toast.success('你好')} />
   );
 }`} />
 

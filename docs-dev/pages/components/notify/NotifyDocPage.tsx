@@ -29,7 +29,7 @@ const NotifyDocInner: Component = () => {
     <div style={{ padding: '16px', 'max-width': '960px' }}>
       <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '16px 0 8px' }}>Notify 通知栏</h1>
       <p style={{ color: '#6b7280', margin: '0 0 24px' }}>
-        顶部/底部弹出式通知栏，命令式 API 调用。首次调用时自动挂载渲染器，<strong>无需手动添加 <code>&lt;NotifyRenderer /&gt;</code></strong>。
+        顶部/底部弹出式通知栏，命令式 API 调用，开箱即用。
       </p>
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('common.props')}</h2>

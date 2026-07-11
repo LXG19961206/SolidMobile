@@ -52,8 +52,6 @@ import { CascaderDocPage } from './pages/components/Cascader/CascaderDocPage';
 import { CalendarDocPage } from './pages/components/Calendar/CalendarDocPage';
 import { PickerDocPage } from './pages/components/Picker/PickerDocPage';
 import { ToastDocPage } from './pages/components/Toast/ToastDocPage';
-import { ToastRenderer } from '../src/components/Toast';
-import { DialogRenderer } from '../src/components/Dialog/DialogManager';
 import { DialogDocPage } from './pages/components/Dialog/DialogDocPage';
 import { NotifyDocPage } from './pages/components/notify/NotifyDocPage';
 import { OverlayDocPage } from './pages/components/Overlay/OverlayDocPage';
@@ -344,7 +342,6 @@ export function App() {
         <DrawerContext.Provider value={openMobileDrawer}>
           <Dynamic component={mobilePageComp()}
             components={allComponents()} onNavigate={navigateTo} />
-          <DialogRenderer />
 
           {/* Persistent drawer — never unmounted, scroll position preserved */}
           <Show when={mobileDrawerOpen()}>
@@ -516,8 +513,6 @@ export function App() {
               </div>
             </div>
           </div>
-          <ToastRenderer />
-          <DialogRenderer />
         </div>
       </Show>
     </ProviderConfig>

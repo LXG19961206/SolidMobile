@@ -60,9 +60,6 @@ const DialogDocInner: Component = () => {
         <PropsTable rows={propsData} />
 
         <h2 id="api" class={css.h2}>{t('section.imperativeApi')}</h2>
-        <div style={{ background: '#e8f5e9', border: '1px solid #66bb6a', 'border-radius': '6px', padding: '10px 14px', 'font-size': '0.85rem', 'line-height': 1.6, margin: '12px 0', color: '#2e7d32' }}>
-          首次调用 <code>Dialog.show()</code> 等命令式方法时，渲染器会自动挂载到 <code>document.body</code>，<strong>无需手动添加 <code>&lt;DialogRenderer /&gt;</code></strong>。如需控制挂载位置（如放在 ProviderConfig 内部），仍可显式放置，自动检测会跳过。
-        </div>
         <PropsTable rows={[
           { name: 'Dialog.show(options)', type: 'DialogHandle', default: '—', required: false, desc: 'componentProps.dialog.Dialog.show(options)' },
           { name: 'Dialog.alert(options)', type: 'DialogHandle', default: '—', required: false, desc: 'componentProps.dialog.Dialog.alert(options)' },
