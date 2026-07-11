@@ -2,7 +2,9 @@
 
 > A Solid.js mobile UI component library with 40+ components, theme system, and i18n support.
 
-📦 [npm](https://www.npmjs.com/package/solid-mobile) · 📖 [Docs](https://lxg19961206.github.io/SolidMobile/)
+[![npm version](https://img.shields.io/npm/v/solid-mobile)](https://www.npmjs.com/package/solid-mobile)
+[![license](https://img.shields.io/npm/l/solid-mobile)](./LICENSE)
+[![docs](https://img.shields.io/badge/docs-online-1677ff)](https://lxg19961206.github.io/SolidMobile/)
 
 ## Installation
 
