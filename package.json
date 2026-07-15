@@ -1,7 +1,7 @@
 {
   "name": "solid-mobile",
   "version": "0.0.5",
-  "description": "A Solid.js mobile UI component library with 42+ components, theme system, and i18n support.",
+  "description": "50+ mobile UI components for Solid.js — theme system, i18n, dark mode, tree-shakable, TypeScript.",
   "type": "module",
   "license": "MIT",
   "author": "LXG19961206",
@@ -16,8 +16,16 @@
     "mobile",
     "component-library",
     "ui",
+    "ui-components",
+    "ui-library",
     "vant",
-    "typescript"
+    "typescript",
+    "dark-mode",
+    "i18n",
+    "theme",
+    "solidjs-components",
+    "mobile-ui",
+    "touch"
   ],
   "files": [
     "dist"
