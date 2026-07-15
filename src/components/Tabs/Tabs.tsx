@@ -11,6 +11,7 @@ import {
   createContext,
   useContext,
   onMount,
+  onCleanup,
 } from 'solid-js';
 import { cn, scopedStyle } from '../../utils';
 import type { TabsProps, TabProps } from './types';
@@ -119,6 +120,7 @@ export const Tabs: Component<TabsProps> = (rawProps) => {
 
   // ── Indicator ──
   let headerRef!: HTMLDivElement;
+  let navRef!: HTMLDivElement;
   const [indicatorStyle, setIndicatorStyle] = createSignal<JSX.CSSProperties>({});
 
   const updateIndicator = () => {
@@ -127,7 +129,8 @@ export const Tabs: Component<TabsProps> = (rawProps) => {
     const titles = headerRef.querySelectorAll('[data-tab-title]');
     const el = titles[idx] as HTMLElement | undefined;
     if (el) {
-      setIndicatorStyle({ left: `${el.offsetLeft}px`, width: `${el.offsetWidth}px` });
+      const scrollOffset = navRef ? navRef.scrollLeft : 0;
+      setIndicatorStyle({ left: `${el.offsetLeft - scrollOffset}px`, width: `${el.offsetWidth}px` });
     }
   };
 
@@ -136,6 +139,13 @@ export const Tabs: Component<TabsProps> = (rawProps) => {
   if (typeof window !== 'undefined') {
     window.addEventListener('resize', updateIndicator);
   }
+  // 横向滚动时同步 indicator 位置
+  onMount(() => {
+    navRef?.addEventListener('scroll', updateIndicator, { passive: true });
+  });
+  onCleanup(() => {
+    navRef?.removeEventListener('scroll', updateIndicator);
+  });
 
   // ── Switch tab ──
   const switchTo = async (name: string) => {
@@ -191,7 +201,7 @@ export const Tabs: Component<TabsProps> = (rawProps) => {
           }}
           ref={headerRef!}
         >
-          <div class={styles.nav}>
+          <div ref={navRef!} class={styles.nav}>
             <For each={tabs()}>
               {(tab) => {
                 const isActive = () => tab.name === activeName();

@@ -60,6 +60,22 @@ export const TabsMobile: Component<TabsMobileProps> = (props) => {
         </div>
       </div>
 
+      {/* Scrollable */}
+      <div style={CARD.wrapper}>
+        <div style={CARD.title}>{t('demo.tabsScrollable')}</div>
+        <div style={CARD.desc}>Tab titles overflow horizontally — swipe or use trackpad to scroll.</div>
+        <div style={CARD.body}>
+          <Tabs active={active3()} onChange={setActive3}>
+            <Tab name={0} title="First"><div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Content A</div></Tab>
+            <Tab name={1} title="Second"><div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Content B</div></Tab>
+            <Tab name={2} title="Third"><div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Content C</div></Tab>
+            <Tab name={3} title="Fourth"><div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Content D</div></Tab>
+            <Tab name={4} title="Fifth"><div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Content E</div></Tab>
+            <Tab name={5} title="Sixth"><div style={{ padding: '16px', color: 'var(--sc-doc-card-text, #374151)' }}>Content F</div></Tab>
+          </Tabs>
+        </div>
+      </div>
+
       {/* Card Mode */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.cardMode')}</div>

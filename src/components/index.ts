@@ -126,3 +126,9 @@ export type { UploadProps, UploadFile } from './Upload';
 
 export { PullRefresh } from './PullRefresh';
 export type { PullRefreshProps } from './PullRefresh';
+
+export { Ellipsis } from './Ellipsis';
+export type { EllipsisProps } from './Ellipsis';
+
+export { Tooltip } from './Tooltip';
+export type { TooltipProps, TooltipPlacement, TooltipTrigger, TooltipDelay } from './Tooltip';

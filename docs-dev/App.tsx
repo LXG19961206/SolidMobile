@@ -74,6 +74,8 @@ import { SafeAreaDocPage } from './pages/components/SafeArea/SafeAreaDocPage';
 import { SliderDocPage } from './pages/components/Slider/SliderDocPage';
 import { UploadDocPage } from './pages/components/Upload/UploadDocPage';
 import { PullRefreshDocPage } from './pages/components/PullRefresh/PullRefreshDocPage';
+import { EllipsisDocPage } from './pages/components/Ellipsis/EllipsisDocPage';
+import { TooltipDocPage } from './pages/components/Tooltip/TooltipDocPage';
 import { SelectDocPage } from './pages/components/Select/SelectDocPage';
 import { PickerMobile } from './pages/mobile/PickerMobile';
 import { ButtonMobile } from './pages/mobile/ButtonMobile';
@@ -118,6 +120,8 @@ import { SliderMobile } from './pages/mobile/SliderMobile';
 import { SelectMobile } from './pages/mobile/SelectMobile';
 import { UploadMobile } from './pages/mobile/UploadMobile';
 import { PullRefreshMobile } from './pages/mobile/PullRefreshMobile';
+import { EllipsisMobile } from './pages/mobile/EllipsisMobile';
+import { TooltipMobile } from './pages/mobile/TooltipMobile';
 import { DesignTokensMobile } from './pages/mobile/DesignTokensMobile';
 import { EventBusMobile } from './pages/mobile/EventBusMobile';
 import { I18nMobile } from './pages/mobile/I18nMobile';
@@ -197,6 +201,8 @@ const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key:
   select: SelectMobile,
   upload: UploadMobile,
   pullrefresh: PullRefreshMobile,
+  ellipsis: EllipsisMobile,
+  tooltip: TooltipMobile,
 };
 
 const PAGES: Record<string, Component> = {
@@ -210,7 +216,7 @@ const PAGES: Record<string, Component> = {
   swiper: SwiperDocPage, form: FormDocPage, input: InputDocPage, textarea: TextareaDocPage, radio: RadioDocPage,
   checkbox: CheckboxDocPage, datepicker: DatePickerDocPage, citypicker: CityPickerDocPage, timepicker: TimePickerDocPage,
   rate: RateDocPage, stepper: StepperDocPage, safearea: SafeAreaDocPage, slider: SliderDocPage, select: SelectDocPage,
-  upload: UploadDocPage, pullrefresh: PullRefreshDocPage,
+  upload: UploadDocPage, pullrefresh: PullRefreshDocPage, ellipsis: EllipsisDocPage, tooltip: TooltipDocPage,
 };
 
 const GUIDE_PAGES: Record<string, Component> = {

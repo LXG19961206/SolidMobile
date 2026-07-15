@@ -21,7 +21,9 @@ export const GROUPS: MenuGroup[] = [
       { name: 'Avatar 头像', key: 'avatar' }, { name: 'Badge 徽标', key: 'badge' }, { name: 'Tag 标签', key: 'tag' },
       { name: 'Image 图片', key: 'image' }, { name: 'Empty 空状态', key: 'empty' }, { name: 'Lazyload 懒加载', key: 'lazyload' },
       { name: 'List 列表', key: 'list' }, { name: 'SwipeCell 滑动单元格', key: 'swipecell' },
-      { name: 'Swiper 轮播', key: 'swiper' }, { name: 'PullRefresh 下拉刷新', key: 'pullrefresh' },
+      { name: 'Swiper 轮播', key: 'swiper' }, { name: 'Ellipsis 文字省略', key: 'ellipsis' },
+      { name: 'Tooltip 气泡提示', key: 'tooltip' },
+      { name: 'PullRefresh 下拉刷新', key: 'pullrefresh' },
     ],
   },
   {

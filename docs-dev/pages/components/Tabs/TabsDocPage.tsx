@@ -64,6 +64,17 @@ export const TabsDocPage = () => {
           </Tabs>
         </DemoBlock>
 
+        <DemoBlock title={t('demo.tabsScrollable')} desc="Tab titles overflow horizontally — swipe or use trackpad to scroll. The indicator tracks scroll position automatically." code={`<Tabs>\n  <Tab title="First" name="a"><div>A</div></Tab>\n  <Tab title="Second" name="b"><div>B</div></Tab>\n  <Tab title="Third" name="c"><div>C</div></Tab>\n  <Tab title="Fourth" name="d"><div>D</div></Tab>\n  <Tab title="Fifth" name="e"><div>E</div></Tab>\n  <Tab title="Sixth" name="f"><div>F</div></Tab>\n</Tabs>`}>
+          <Tabs>
+            <Tab title="First" name="a"><div class={css.demoPanel}>Content A</div></Tab>
+            <Tab title="Second" name="b"><div class={css.demoPanel}>Content B</div></Tab>
+            <Tab title="Third" name="c"><div class={css.demoPanel}>Content C</div></Tab>
+            <Tab title="Fourth" name="d"><div class={css.demoPanel}>Content D</div></Tab>
+            <Tab title="Fifth" name="e"><div class={css.demoPanel}>Content E</div></Tab>
+            <Tab title="Sixth" name="f"><div class={css.demoPanel}>Content F</div></Tab>
+          </Tabs>
+        </DemoBlock>
+
         <DemoBlock title={t('demo.jsxTitle')} desc={t('demoDesc.tabs_jsx')} code={`<Tabs>\n  <Tab title={<span>🔔 Notifications</span>} name="a"><div>Notification content</div></Tab>\n  <Tab title={<span>⚙ Settings</span>} name="b"><div>Settings content</div></Tab>\n  <Tab title="Account" name="c"><div>Account content</div></Tab>\n</Tabs>`}>
           <Tabs>
             <Tab title={<span>🔔 Notifications</span>} name="a"><div class={css.demoPanel}>Notification content</div></Tab>

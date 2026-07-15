@@ -57,7 +57,6 @@
   transition: color 0.12s ease;
   border-bottom: 2px solid transparent;
   box-sizing: border-box;
-  min-width: 0;
   position: relative;
 }
 
