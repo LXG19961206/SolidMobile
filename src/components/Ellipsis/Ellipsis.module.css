@@ -1,0 +1,59 @@
+.root {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+/* ── 非展开态截断 ── */
+.singleLine {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.multiLine {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── 可展开时的行内布局 ── */
+.expandableInline {
+  display: flex;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.expandableContent {
+  flex: 1 1 0%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* ── 展开/收起按钮（原生 button）── */
+.action {
+  --_el-color: var(--sc-ellipsis-action-color, var(--sc-color-primary, #1989fa));
+
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sc-ellipsis-action-gap, 2px);
+  margin: 0;
+  padding: 0 0 0 var(--sc-ellipsis-action-padding, 4px);
+  border: none;
+  background: none;
+  font: inherit;
+  color: var(--_el-color);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+.action:hover {
+  opacity: var(--sc-ellipsis-action-hover-opacity, 0.8);
+}
+
+.action:focus-visible {
+  outline: 2px solid var(--_el-color);
+  outline-offset: 1px;
+  border-radius: 2px;
+}
