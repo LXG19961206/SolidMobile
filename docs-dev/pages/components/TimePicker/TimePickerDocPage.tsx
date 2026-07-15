@@ -75,7 +75,7 @@ const FormDemo: Component = () => {
   const [formVal, setFormVal] = createSignal({});
   return (
     <>
-      <Form onSubmit={(v) => setFormVal(v)} labelWidth="4em">
+      <Form onSubmit={(v) => { setFormVal(v); }} labelWidth="4em">
         <FormItem name="startTime" label="开始时间" required>
           <TimePicker placeholder="选择开始时间" teleport={phone?.()} />
         </FormItem>

@@ -1,4 +1,4 @@
-import { createSignal, useContext, type Component } from 'solid-js';
+import { createSignal, useContext, type Component, type JSX } from 'solid-js';
 import { Select } from '../../../../src/components/Select';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import { useT } from '../../../doc-i18n';

@@ -82,7 +82,7 @@ const AboutPage: Component = () => {
           { title: isEn() ? 'Feedback' : '反馈', items: ['Toast', 'Notify', 'Dialog', 'Overlay', 'ActionSheet', 'Loading'] },
           { title: isEn() ? 'Selector' : '选择器', items: ['Picker', 'Calendar', 'Cascader', 'DatePicker', 'TimePicker', 'CityPicker'] },
         ]).map(cat => (
-          <div key={cat.title} style={{
+          <div style={{
             background: 'var(--sc-doc-card-placeholder, #f9fafb)',
             'border-radius': '8px', padding: '12px 14px',
           }}>

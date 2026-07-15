@@ -27,7 +27,7 @@ const CARD = {
   body: { padding: '0 16px 16px', display: 'flex' as const, 'flex-wrap': 'wrap' as const, gap: '12px', 'align-items': 'center' as const },
 };
 
-export const SwitchMobile: Component<ToggleMobileProps> = (props) => {
+export const SwitchMobile: Component<SwitchMobileProps> = (props) => {
   const t = useT();
   const [val1, setVal1] = createSignal(true);
   const [val2, setVal2] = createSignal(false);

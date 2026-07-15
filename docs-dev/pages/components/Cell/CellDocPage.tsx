@@ -92,7 +92,7 @@ export const CellDocPage = () => {
       <DemoBlock
         title={t('demo.cellIconRequired')}
         desc={t('demoDesc.cell_icon_required')}
-        code={`<Cell icon="user" title="Name" required value="John" />\n<Cell icon="phone" title="Phone" clickable />\n<Cell icon="mail" title="Email" value="zhang@example.com" />\n<Cell\n  icon="palette"\n  title="Theme Color"\n  value={<span><span style={{ width:14,height:14,borderRadius:'50%',background: 'var(--sc-color-primary, #1677ff)',display:'inline-block' }} /> Brand Blue</span>}\n/>`}
+        code={`<Cell icon="user" title="Name" required value="John" />\n<Cell icon="phone" title="Phone" clickable />\n<Cell icon="mail" title="Email" value="zhang@example.com" />\n<Cell\n  icon="palette"\n  title="Theme Color"\n  value={<span><span style={{ width:'14px',height:'14px',borderRadius:'50%',background: 'var(--sc-color-primary, #1677ff)',display:'inline-block' }} /> Brand Blue</span>}\n/>`}
       >
         <div class={styles.demo}>
           <CellGroup>
@@ -102,7 +102,7 @@ export const CellDocPage = () => {
             <Cell
               icon="palette"
               title="Theme Color"
-              value={<span style={{ display:'inline-flex','align-items':'center',gap:'0.4rem' }}><span style={{ width:14,height:14,'border-radius':'50%',background: 'var(--sc-color-primary, #1677ff)',display:'inline-block' }} /> Brand Blue</span>}
+              value={<span style={{ display:'inline-flex','align-items':'center',gap:'0.4rem' }}><span style={{ width:'14px',height:'14px','border-radius':'50%',background: 'var(--sc-color-primary, #1677ff)',display:'inline-block' }} /> Brand Blue</span>}
             />
           </CellGroup>
         </div>

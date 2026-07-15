@@ -75,7 +75,7 @@ export const TimePickerMobile: Component<TimePickerMobileProps> = (props) => {
         <div style={CARD.title}>{t('demo.withForm')}</div>
         <div style={CARD.desc}>{t('demo.withFormDesc')}</div>
         <div style={CARD.body}>
-          <Form onSubmit={(v) => setFormVal(v)} labelWidth="5em">
+          <Form onSubmit={(v) => { setFormVal(v); }} labelWidth="5em">
             <FormItem name="startTime" label="Start Time" required>
               <TimePicker placeholder="Select start time" />
             </FormItem>
