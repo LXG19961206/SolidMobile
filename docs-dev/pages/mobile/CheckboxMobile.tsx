@@ -8,7 +8,10 @@ export interface CheckboxMobileProps {
 import { Checkbox, CheckboxGroup } from '../../../src/components/Checkbox';
 import { Form, FormItem } from '../../../src/components/Form';
 import { Button } from '../../../src/components/Button';
-import { useT } from '../../doc-i18n';
+import { useT, registerLocale } from '../../doc-i18n';
+import zhCN from '../../i18n/checkbox/zh-CN';
+import enUS from '../../i18n/checkbox/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { Toast } from '../../../src/components/Toast';
 
 const propsData = [

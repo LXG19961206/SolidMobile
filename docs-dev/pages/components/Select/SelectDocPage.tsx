@@ -1,7 +1,10 @@
 import { createSignal, useContext, type Component, type JSX } from 'solid-js';
 import { Select } from '../../../../src/components/Select';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/select/zh-CN';
+import enUS from '../../../i18n/select/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Icon } from '../../../../src/components/Icon';

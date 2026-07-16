@@ -3,7 +3,10 @@ import { TimePicker } from '../../../../src/components/TimePicker';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/timepicker/zh-CN';
+import enUS from '../../../i18n/timepicker/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
 

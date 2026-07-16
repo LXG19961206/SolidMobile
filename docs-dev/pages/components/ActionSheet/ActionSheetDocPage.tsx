@@ -2,7 +2,10 @@ import { createSignal, useContext } from 'solid-js';
 import { ActionSheet } from '../../../../src/components/ActionSheet';
 import { Cell } from '../../../../src/components/Cell';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/actionsheet/zh-CN';
+import enUS from '../../../i18n/actionsheet/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import type { PropRow } from '../../../doc-utils';
 import type { ActionSheetItem } from '../../../../src/components/ActionSheet/types';
 

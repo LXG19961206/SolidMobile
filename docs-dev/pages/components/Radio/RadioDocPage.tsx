@@ -6,7 +6,10 @@ import { Input } from '../../../../src/components/Input';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
 import type { PropRow } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/radio/zh-CN';
+import enUS from '../../../i18n/radio/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const radioProps: PropRow[] = [
   { name: 'value', type: 'unknown', default: '—', required: true, desc: 'componentProps.radio.value' },

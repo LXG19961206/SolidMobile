@@ -1,7 +1,10 @@
 import { createSignal, type Component, type JSX } from 'solid-js';
 import { Upload } from '../../../../src/components/Upload';
 import type { UploadFile } from '../../../../src/components/Upload';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/upload/zh-CN';
+import enUS from '../../../i18n/upload/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { Toast } from '../../../../src/components/Toast';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';

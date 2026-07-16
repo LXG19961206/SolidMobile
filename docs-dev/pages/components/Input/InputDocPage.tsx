@@ -6,7 +6,10 @@ import { Button } from '../../../../src/components/Button';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/input/zh-CN';
+import enUS from '../../../i18n/input/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const propsData: PropRow[] = [
   { name: 'type', type: "'text' | 'number' | 'password' | 'tel' | 'email' | 'url'", default: "'text'", required: false, desc: 'componentProps.input.type' },

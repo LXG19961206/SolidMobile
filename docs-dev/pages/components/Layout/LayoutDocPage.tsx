@@ -1,5 +1,8 @@
 import { Row, Col } from '../../../../src/components/Layout';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/layout/zh-CN';
+import enUS from '../../../i18n/layout/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './LayoutDocPage.module.css';

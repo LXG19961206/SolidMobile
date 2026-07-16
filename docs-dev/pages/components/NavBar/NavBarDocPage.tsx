@@ -4,7 +4,10 @@ import { Icon } from '../../../../src/components/Icon';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './NavBarDocPage.module.css';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/navbar/zh-CN';
+import enUS from '../../../i18n/navbar/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const propsData: PropRow[] = [
   { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.navbar.title' },

@@ -1,7 +1,10 @@
 import { Tag } from '../../../../src/components/Tag';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/tag/zh-CN';
+import enUS from '../../../i18n/tag/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import css from './TagDocPage.module.css';
 
 const propsData: PropRow[] = [

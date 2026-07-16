@@ -5,7 +5,10 @@ export interface CalendarMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
-import { useT } from '../../doc-i18n';
+import { useT, registerLocale } from '../../doc-i18n';
+import zhCN from '../../i18n/calendar/zh-CN';
+import enUS from '../../i18n/calendar/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { Calendar } from '../../../src/components/Calendar';
 
 const propsData = [

@@ -2,7 +2,10 @@ import { createSignal } from 'solid-js';
 import { Switch as Toggle } from '../../../../src/components/Switch';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/switch/zh-CN';
+import enUS from '../../../i18n/switch/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import styles from './SwitchDocPage.module.css';
 
 const propsData: PropRow[] = [

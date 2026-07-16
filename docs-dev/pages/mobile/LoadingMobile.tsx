@@ -7,7 +7,10 @@ export interface LoadingMobileProps {
 }
 import { Loading } from '../../../src/components/Loading';
 import { Button } from '../../../src/components/Button';
-import { useT } from '../../doc-i18n';
+import { useT, registerLocale } from '../../doc-i18n';
+import zhCN from '../../i18n/loading/zh-CN';
+import enUS from '../../i18n/loading/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const propsData = [
   { name: 'type', type: "'spinner' | 'circular' | 'dots'", desc: 'componentProps.loading.type' },

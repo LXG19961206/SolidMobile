@@ -5,7 +5,10 @@ import { Toast } from '../../../../src/components/Toast';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import type { SwipeAction } from '../../../../src/components/SwipeCell/types';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/swipecell/zh-CN';
+import enUS from '../../../i18n/swipecell/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const propsData: PropRow[] = [
   { name: 'rightActions', type: 'SwipeAction[]', default: '—', required: false, desc: 'componentProps.swipecell.rightActions' },

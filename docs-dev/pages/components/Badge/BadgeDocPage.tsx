@@ -3,7 +3,10 @@ import { Button } from '../../../../src/components/Button';
 import { Avatar } from '../../../../src/components/Avatar';
 import { Tabs, Tab } from '../../../../src/components/Tabs';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/badge/zh-CN';
+import enUS from '../../../i18n/badge/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './BadgeDocPage.module.css';
 

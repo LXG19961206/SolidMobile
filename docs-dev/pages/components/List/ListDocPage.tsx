@@ -9,7 +9,10 @@ import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../d
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import type { SwipeAction } from '../../../../src/components/SwipeCell';
 import css from './ListDocPage.module.css';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/list/zh-CN';
+import enUS from '../../../i18n/list/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const listProps: PropRow[] = [
   { name: 'data', type: 'I[]', default: '—', required: false, desc: 'componentProps.list.data' },

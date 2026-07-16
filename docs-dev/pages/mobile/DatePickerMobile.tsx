@@ -5,7 +5,10 @@ export interface DatePickerMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
-import { useT } from '../../doc-i18n';
+import { useT, registerLocale } from '../../doc-i18n';
+import zhCN from '../../i18n/datepicker/zh-CN';
+import enUS from '../../i18n/datepicker/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { DatePicker } from '../../../src/components/DatePicker';
 
 const propsData = [

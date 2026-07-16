@@ -1,6 +1,9 @@
 import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
-import { useT } from '../../doc-i18n';
+import { useT, registerLocale } from '../../doc-i18n';
+import zhCN from '../../i18n/divider/zh-CN';
+import enUS from '../../i18n/divider/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 export interface DividerMobileProps {
   components?: ComponentEntry[];

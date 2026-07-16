@@ -5,7 +5,10 @@ import { Cell } from '../../../../src/components/Cell';
 import { Button } from '../../../../src/components/Button';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/overlay/zh-CN';
+import enUS from '../../../i18n/overlay/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import styles from './OverlayDocPage.module.css';
 
 const propsData: PropRow[] = [

@@ -6,7 +6,10 @@ import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../d
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/citypicker/zh-CN';
+import enUS from '../../../i18n/citypicker/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import type { PickerOption } from '../../../../src/components/Picker';
 import type { PropRow } from '../../../doc-utils';
 

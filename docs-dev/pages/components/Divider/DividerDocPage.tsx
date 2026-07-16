@@ -1,5 +1,8 @@
 import { Divider } from '../../../../src/components/Divider';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/divider/zh-CN';
+import enUS from '../../../i18n/divider/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './DividerDocPage.module.css';

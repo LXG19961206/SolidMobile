@@ -3,7 +3,10 @@ import { Toast } from '../../../../src/components/Toast/ToastManager';
 import { Cell } from '../../../../src/components/Cell';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/toast/zh-CN';
+import enUS from '../../../i18n/toast/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import styles from './ToastDocPage.module.css';
 
 const propsData: PropRow[] = [

@@ -7,7 +7,10 @@ export interface NotifyMobileProps {
 }
 import { Notify } from '../../../src/components/notify';
 import { Button } from '../../../src/components/Button';
-import { useT } from '../../doc-i18n';
+import { useT, registerLocale } from '../../doc-i18n';
+import zhCN from '../../i18n/notify/zh-CN';
+import enUS from '../../i18n/notify/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const propsData = [
   { name: 'Notify.primary(msg)', type: 'NotifyHandle', desc: 'componentProps.notify.Notify.primary(msg)' },

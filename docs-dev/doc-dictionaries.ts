@@ -3270,7 +3270,7 @@ export const docMessages: LocaleMessages = {
     },
     common: {
       and: '和',
-      cssVars: 'CSS 变量',
+      cssVars: 'CSS Variables',
       events: '事件 / Events',
       cellProps: 'Cell 属性',
       cellGroupProps: 'CellGroup 属性',

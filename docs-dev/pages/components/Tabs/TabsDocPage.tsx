@@ -2,7 +2,10 @@ import { createSignal } from 'solid-js';
 import { Tabs, Tab } from '../../../../src/components/Tabs';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/tabs/zh-CN';
+import enUS from '../../../i18n/tabs/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import css from './TabsDocPage.module.css';
 
 const tabsProps: PropRow[] = [

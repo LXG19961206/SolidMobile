@@ -6,7 +6,10 @@ export interface CityPickerMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { CityPicker } from '../../../src/components/CityPicker';
-import { useT } from '../../doc-i18n';
+import { useT, registerLocale } from '../../doc-i18n';
+import zhCN from '../../i18n/citypicker/zh-CN';
+import enUS from '../../i18n/citypicker/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import type { PickerOption } from '../../../src/components/Picker';
 
 const propsData = [

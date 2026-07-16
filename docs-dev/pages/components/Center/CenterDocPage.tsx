@@ -1,7 +1,10 @@
 import { Center } from '../../../../src/components/Center';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/center/zh-CN';
+import enUS from '../../../i18n/center/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import styles from './CenterDocPage.module.css';
 
 const propsData: PropRow[] = [

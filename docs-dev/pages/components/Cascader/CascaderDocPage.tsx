@@ -6,7 +6,10 @@ import { Loading } from '../../../../src/components/Loading';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import type { CascaderOption } from '../../../../src/components/Cascader/types';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/cascader/zh-CN';
+import enUS from '../../../i18n/cascader/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import css from './CascaderDocPage.module.css';
 
 const regionOptions: CascaderOption[] = [

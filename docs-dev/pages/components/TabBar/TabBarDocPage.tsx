@@ -2,7 +2,10 @@ import { createSignal, type Component } from 'solid-js';
 import { TabBar, TabBarItem } from '../../../../src/components/TabBar';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/tabbar/zh-CN';
+import enUS from '../../../i18n/tabbar/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const tabBarProps: PropRow[] = [
   { name: 'value', type: 'number | string', default: '—', required: false, desc: 'componentProps.tabbar.value' },

@@ -4,7 +4,10 @@ import { Icon } from '../../../../src/components/Icon';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import styles from './LoadingDocPage.module.css';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/loading/zh-CN';
+import enUS from '../../../i18n/loading/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const propsData: PropRow[] = [
   { name: 'text', type: 'string', default: '—', required: false, desc: 'componentProps.loading.text' },

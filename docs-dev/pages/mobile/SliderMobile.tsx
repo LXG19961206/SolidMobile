@@ -6,7 +6,10 @@ export interface SliderMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { Slider } from '../../../src/components/Slider';
-import { useT } from '../../doc-i18n';
+import { useT, registerLocale } from '../../doc-i18n';
+import zhCN from '../../i18n/slider/zh-CN';
+import enUS from '../../i18n/slider/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const propsData = [
   { name: 'value', type: 'number | number[]', desc: 'componentProps.slider.value' },

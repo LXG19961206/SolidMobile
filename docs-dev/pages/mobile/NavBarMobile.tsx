@@ -7,7 +7,10 @@ export interface NavBarMobileProps {
 }
 import { NavBar } from '../../../src/components/NavBar';
 import { Icon } from '../../../src/components/Icon';
-import { useT } from '../../doc-i18n';
+import { useT, registerLocale } from '../../doc-i18n';
+import zhCN from '../../i18n/navbar/zh-CN';
+import enUS from '../../i18n/navbar/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const propsData = [
   { name: 'title', type: 'string | JSX.Element', desc: 'componentProps.navbar.title' },

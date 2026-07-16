@@ -6,7 +6,10 @@ export interface SafeAreaMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { SafeArea } from '../../../src/components/SafeArea';
-import { useT } from '../../doc-i18n';
+import { useT, registerLocale } from '../../doc-i18n';
+import zhCN from '../../i18n/safearea/zh-CN';
+import enUS from '../../i18n/safearea/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const propsData = [
   { name: 'position', type: "'top' | 'bottom'", desc: 'componentProps.safearea.position' },
