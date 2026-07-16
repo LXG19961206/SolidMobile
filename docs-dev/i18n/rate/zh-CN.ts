@@ -1,6 +1,5 @@
 export default {
     demo: {
-        customSizeDemo: '自定义尺寸',
         rateCount: 'Count',
         rateCountDesc: 'Custom count.',
         rateBasic: 'Basic Rating',

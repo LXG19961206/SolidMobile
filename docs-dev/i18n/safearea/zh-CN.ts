@@ -14,9 +14,5 @@ export default {
         safearea: {
             position: '安全区域位置：top / bottom / both。'
         }
-    },
-    section: {
-        withNavBar: '配合导航栏',
-    },
-
+    }
 };

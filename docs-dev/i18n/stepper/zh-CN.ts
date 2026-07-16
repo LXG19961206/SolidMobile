@@ -1,6 +1,5 @@
 export default {
     demo: {
-        customSizeMobile: '自定义尺寸',
         stepperBasic: 'Stepper Basic',
         stepperBasicDesc: 'Stepper Basic Desc',
         stepperDisabledReadonly: 'Stepper Disabled Readonly',

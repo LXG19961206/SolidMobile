@@ -1,8 +1,7 @@
 export default {
     demo: {
-        examples: '示例',
-        listExample: 'Example',
-        listExampleDesc: 'Example.',
+        listExample: '示例',
+        listExampleDesc: '示例。',
         listLazy: 'List Lazy Load',
         listLazyDesc: 'Lazy load.',
         listLazyLoadDesc: 'List Lazy Load Desc',

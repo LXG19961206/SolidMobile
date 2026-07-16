@@ -1,9 +1,8 @@
 export default {
     demo: {
-        asyncLoading: '异步加载',
         dialogAlert: 'Alert',
         dialogAlertDesc: 'Alert.',
-        dialogConfirm: 'Confirm',
+        dialogConfirm: '确认',
         dialogConfirmDesc: 'Confirm.',
         dialogCustomText: 'Custom Text',
         dialogCustomTextDesc: 'Custom text.',

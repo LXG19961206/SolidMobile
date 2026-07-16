@@ -1,6 +1,5 @@
 export default {
     demo: {
-        asyncLoading: 'Async Loading',
         dialogAlert: 'Alert',
         dialogAlertDesc: 'Alert.',
         dialogConfirm: 'Confirm',

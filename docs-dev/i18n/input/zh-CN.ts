@@ -1,12 +1,10 @@
 export default {
     demo: {
-        searchInput: '搜索输入框',
-        affix: '前后缀',
         inputAffix: 'Affix',
         inputAffixDesc: 'Prefix/suffix.',
         inputCountdown: 'Countdown',
         inputCountdownDesc: 'Countdown.',
-        inputForm: 'Form',
+        inputForm: '表单',
         inputFormDesc: 'Input form.',
         inputSearch: 'Search',
         inputSearchDesc: 'Search.',
@@ -14,7 +12,7 @@ export default {
         inputShowCountDesc: 'Show count.',
         inputStates: 'States',
         inputStatesDesc: 'Input states.',
-        inputTypes: 'Types',
+        inputTypes: '类型',
         inputTypesDesc: 'Input types.',
         inputBasicMobile: 'Input Basic Mobile',
         inputBasicMobileDesc: 'Input Basic Mobile Desc',
@@ -90,9 +88,5 @@ export default {
             onFocus: '聚焦回调。',
             onEnter: '回车回调。'
         }
-    },
-    section: {
-        verifyCode: '验证码',
-    },
-
+    }
 };

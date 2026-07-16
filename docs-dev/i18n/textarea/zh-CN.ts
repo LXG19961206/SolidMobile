@@ -2,7 +2,7 @@ export default {
     demo: {
         textareaAutoSize: 'AutoSize',
         textareaAutoSizeDesc: 'Auto size.',
-        textareaForm: 'Form',
+        textareaForm: '表单',
         textareaFormDesc: 'Textarea form.',
         textareaStates: 'States',
         textareaStatesDesc: 'States.',

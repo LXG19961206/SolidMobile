@@ -1,6 +1,5 @@
 export default {
     demo: {
-        examples: 'Examples',
         listExample: 'Example',
         listExampleDesc: 'Example.',
         listLazy: 'List Lazy Load',

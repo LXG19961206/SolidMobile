@@ -1,13 +1,13 @@
 export default {
     demo: {
         overlayCenter: 'Overlay absolute center',
-        overlayActionSheet: 'ActionSheet',
+        overlayActionSheet: '动作面板',
         overlayActionSheetDesc: 'ActionSheet.',
         overlayClose: 'Close',
         overlayCloseDesc: 'Click to close.',
-        overlayMode: 'Overlay',
+        overlayMode: '遮罩',
         overlayModeDesc: 'Overlay.',
-        overlayProp: 'Overlay',
+        overlayProp: '遮罩',
         overlayPropDesc: 'Overlay.',
         overlayBasic: 'Basic Overlay',
         overlayBasicDesc: 'Semi-transparent overlay, click backdrop to close',
@@ -15,7 +15,7 @@ export default {
         overlayWithContentDesc: 'Place a Loading card on the overlay, common for async operations'
     },
     section: {
-        overlay: 'Overlay'
+        overlay: '遮罩'
     },
     componentIntro: {
         OverlayIntro: '全屏半透明遮罩，所有弹出层组件的基础设施。'

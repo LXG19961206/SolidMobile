@@ -1,6 +1,5 @@
 export default {
     demo: {
-        verticalDir: 'Vertical',
         dividerDefault: 'Default',
         dividerText: 'Text',
         dividerTextDesc: 'With text.'

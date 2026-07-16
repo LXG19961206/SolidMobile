@@ -1,7 +1,5 @@
 export default {
     demo: {
-        imageCustomJSX: 'JSX Image',
-        customImage: 'Custom Image',
         emptyChildren: 'Children',
         emptyChildrenDesc: 'Children.',
         emptyDefault: 'Default',
@@ -26,9 +24,5 @@ export default {
             children: 'Custom bottom content (e.g. button).',
             class: 'Custom CSS class.'
         }
-    },
-    section: {
-        fallback: 'Fallback',
-    },
-
+    }
 };

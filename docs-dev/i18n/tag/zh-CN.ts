@@ -8,9 +8,9 @@ export default {
         tagDictDesc: 'Key-value.',
         tagFilter: 'Filter',
         tagFilterDesc: 'Tag filter.',
-        tagOutlineRound: 'Outline',
+        tagOutlineRound: '线框',
         tagOutlineRoundDesc: 'Outline & round.',
-        tagTypes: 'Types',
+        tagTypes: '类型',
         tagTypesDesc: 'Tag types.',
         tagCapsule: 'Tag Capsule',
         tagClosable: 'Tag Closable',
@@ -51,9 +51,5 @@ export default {
             onClose: '关闭回调。',
             color: '自定义颜色。'
         }
-    },
-    section: {
-        semantic: '语义类型',
-    },
-
+    }
 };

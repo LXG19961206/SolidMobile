@@ -75,9 +75,5 @@ export default {
             style: 'Inline styles.',
             'aria-label': 'Accessibility label. Required for icon-only buttons.'
         }
-    },
-    section: {
-        linkMode: 'Link Mode',
-    },
-
+    }
 };

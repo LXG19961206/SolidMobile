@@ -2,7 +2,7 @@ export default {
     demo: {
         cascaderAsync: 'Async',
         cascaderAsyncDesc: 'Async load.',
-        cascaderDisabled: 'Disabled',
+        cascaderDisabled: '禁用',
         cascaderDisabledDesc: 'Disabled options.',
         cascaderRegion: 'Region',
         cascaderRegionDesc: 'Region select.',

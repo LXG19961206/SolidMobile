@@ -1,7 +1,5 @@
 export default {
     demo: {
-        searchInput: 'Search Input',
-        affix: 'Affix',
         inputAffix: 'Affix',
         inputAffixDesc: 'Prefix/suffix.',
         inputCountdown: 'Countdown',
@@ -90,9 +88,5 @@ export default {
             onFocus: 'Focus callback.',
             onEnter: 'Enter key callback.'
         }
-    },
-    section: {
-        verifyCode: 'Verify Code',
-    },
-
+    }
 };

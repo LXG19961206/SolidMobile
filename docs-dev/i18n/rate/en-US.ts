@@ -1,6 +1,5 @@
 export default {
     demo: {
-        customSizeDemo: 'Custom Size',
         rateCount: 'Count',
         rateCountDesc: 'Custom count.',
         rateBasic: 'Basic Rating',

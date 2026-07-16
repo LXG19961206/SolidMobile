@@ -1,8 +1,7 @@
 export default {
     demo: {
-        verticalDir: '垂直方向',
-        dividerDefault: 'Default',
-        dividerText: 'Text',
+        dividerDefault: '默认',
+        dividerText: '文字',
         dividerTextDesc: 'With text.'
     },
     componentIntro: {
