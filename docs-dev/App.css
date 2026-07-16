@@ -571,6 +571,20 @@ html.dark .guide-table-wrap td {
 }
 
 .guide-table-wrap tr:last-child td {
+/* ── Global scrollbar ── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(0 0% 60% / 0.4) transparent;
+}
+*::-webkit-scrollbar { width: 6px; height: 6px; }
+*::-webkit-scrollbar-thumb { background: hsl(0 0% 60% / 0.3); border-radius: 3px; }
+*::-webkit-scrollbar-thumb:hover { background: hsl(0 0% 60% / 0.5); }
+html.dark * {
+  scrollbar-color: hsl(0 0% 40% / 0.4) transparent;
+}
+html.dark *::-webkit-scrollbar-thumb { background: hsl(0 0% 40% / 0.3); }
+html.dark *::-webkit-scrollbar-thumb:hover { background: hsl(0 0% 40% / 0.5); }
+
   border-bottom: none;
 }
 
