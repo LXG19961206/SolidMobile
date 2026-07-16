@@ -7,12 +7,21 @@ const PAGES = path.join(DOCS, 'pages');
 const MOBILE = path.join(PAGES, 'mobile');
 const COMPONENTS = path.join(PAGES, 'components');
 
-const dirToKey = {
+// Map dir -> key
+const keyMap = {};
+const dirs = fs.readdirSync(I18N);
+for (const d of dirs) {
+  const dp = path.join(I18N, d);
+  if (!fs.statSync(dp).isDirectory() || d === 'common') continue;
+  keyMap[d.toLowerCase()] = d;
+}
+// Also manual mappings for capitalized dirs
+const extra = {
   actionsheet: 'actionsheet', avatar: 'avatar', badge: 'badge', button: 'button',
-  BackTop: 'backtop', calendar: 'calendar', cascader: 'cascader', cell: 'cell',
+  backtop: 'backtop', calendar: 'calendar', cascader: 'cascader', cell: 'cell',
   center: 'center', checkbox: 'checkbox', citypicker: 'citypicker',
   datepicker: 'datepicker', dialog: 'dialog', divider: 'divider',
-  Ellipsis: 'ellipsis', empty: 'empty', FloatingBall: 'floatingball',
+  ellipsis: 'ellipsis', empty: 'empty', floatingball: 'floatingball',
   form: 'form', icon: 'icon', image: 'image', input: 'input',
   layout: 'layout', lazyload: 'lazyload', list: 'list', loading: 'loading',
   navbar: 'navbar', notify: 'notify', overlay: 'overlay', picker: 'picker',
@@ -20,59 +29,47 @@ const dirToKey = {
   select: 'select', slider: 'slider', stepper: 'stepper',
   swipecell: 'swipecell', swiper: 'swiper', switch: 'switch',
   tabbar: 'tabbar', tabs: 'tabs', tag: 'tag', textarea: 'textarea',
-  timepicker: 'timepicker', toast: 'toast', Tooltip: 'tooltip', upload: 'upload',
+  timepicker: 'timepicker', toast: 'toast', tooltip: 'tooltip', upload: 'upload',
 };
+Object.assign(keyMap, extra);
 
 function getKey(dirName) {
-  if (dirToKey[dirName]) return dirToKey[dirName];
+  if (keyMap[dirName]) return keyMap[dirName];
   const l = dirName.toLowerCase();
-  for (const [k, v] of Object.entries(dirToKey)) {
-    if (k.toLowerCase() === l) return v;
-  }
+  if (keyMap[l]) return keyMap[l];
   return null;
 }
 
-function hasI18n(key) {
-  return fs.existsSync(path.join(I18N, key));
-}
-
-function injectPage(filePath, key, depth) {
+function injectFile(filePath, key, depth) {
   if (!fs.existsSync(filePath)) return;
   let content = fs.readFileSync(filePath, 'utf8');
+  if (content.includes('registerLocale') && content.includes("import zhCN from '")) return; // already static
 
-  // Remove any old static i18n imports (zhCN/enUS + registerLocale calls)
-  content = content.replace(/\nimport zhCN from '[^']*i18n\/[^']*zh-CN';\n/g, '\n');
-  content = content.replace(/\nimport enUS from '[^']*i18n\/[^']*en-US';\n/g, '\n');
-  content = content.replace(/\nregisterLocale\(\{[^}]+\}\);\n/g, '\n');
-  content = content.replace(/, registerLocale/g, '');
-  content = content.replace(/registerLocale, /g, '');
+  const importPath = depth + 'i18n/' + key + '/';
 
-  // Replace useT import to add loadLocale
-  const useTLine = `import { useT } from '${depth}doc-i18n';`;
-  const useTLoadLine = `import { useT, loadLocale } from '${depth}doc-i18n';`;
+  // Remove old loadLocale / registerLocale patterns
+  content = content.replace(/import \{ useT, loadLocale \} from '[^']+doc-i18n';\nloadLocale\('[^']+'\);\n/g, '');
+  content = content.replace(/import zhCN from '[^']+i18n\/[^']+zh-CN';\n/g, '');
+  content = content.replace(/import enUS from '[^']+i18n\/[^']+en-US';\n/g, '');
+  content = content.replace(/registerLocale\(\{[^}]+\}\);\n/g, '');
 
-  if (content.includes(useTLine) && !content.includes('loadLocale')) {
-    content = content.replace(useTLine, useTLoadLine);
-  } else if (content.includes("import { useT } from") && !content.includes('loadLocale')) {
-    // Handle minor variations
-    const match = content.match(/import \{ useT \} from '[^']*doc-i18n';/);
-    if (match) {
-      content = content.replace(match[0], match[0].replace('useT', 'useT, loadLocale'));
-    }
-  } else {
-    console.log(`  SKIP: ${path.relative(DOCS, filePath)}`);
-    return;
-  }
+  // Add static imports
+  const staticBlock = `import zhCN from '${importPath}zh-CN';\nimport enUS from '${importPath}en-US';\nimport { registerLocale } from '${depth}doc-i18n';\nregisterLocale({ 'zh-CN': zhCN, 'en-US': enUS });\n`;
 
-  // Add loadLocale call right after the useT import line
-  const loadCall = `\nloadLocale('${key}');`;
-  const importLine = `import { useT, loadLocale } from '${depth}doc-i18n';`;
-  if (!content.includes(importLine + loadCall)) {
-    content = content.replace(importLine, importLine + loadCall);
-  }
+  // Make sure useT import doesn't include loadLocale/registerLocale
+  content = content.replace(/import \{ useT, loadLocale \} from '[^']+doc-i18n';/, "import { useT } from '" + depth + "doc-i18n';");
+  content = content.replace(/import \{ useT, registerLocale \} from '[^']+doc-i18n';/, "import { useT } from '" + depth + "doc-i18n';");
+
+  if (!content.includes("import { useT } from '" + depth + "doc-i18n'")) return;
+
+  // Insert the static imports before the useT import
+  content = content.replace(
+    "import { useT } from '" + depth + "doc-i18n';",
+    staticBlock + "import { useT } from '" + depth + "doc-i18n';"
+  );
 
   fs.writeFileSync(filePath, content, 'utf8');
-  console.log(`  ${path.relative(DOCS, filePath)}`);
+  console.log('  ' + path.relative(DOCS, filePath));
 }
 
 // Process desktop pages
@@ -80,9 +77,9 @@ for (const dir of fs.readdirSync(COMPONENTS)) {
   const compDir = path.join(COMPONENTS, dir);
   if (!fs.statSync(compDir).isDirectory()) continue;
   const key = getKey(dir);
-  if (!key || !hasI18n(key)) continue;
+  if (!key) continue;
   for (const f of fs.readdirSync(compDir).filter(f => f.endsWith('DocPage.tsx'))) {
-    injectPage(path.join(compDir, f), key, '../../../');
+    injectFile(path.join(compDir, f), key, '../../../');
   }
 }
 
@@ -90,8 +87,8 @@ for (const dir of fs.readdirSync(COMPONENTS)) {
 for (const f of fs.readdirSync(MOBILE).filter(f => f.endsWith('Mobile.tsx'))) {
   const name = f.replace('Mobile.tsx', '');
   const key = getKey(name);
-  if (!key || !hasI18n(key)) continue;
-  injectPage(path.join(MOBILE, f), key, '../../');
+  if (!key) continue;
+  injectFile(path.join(MOBILE, f), key, '../../');
 }
 
 console.log('\nDone!');
