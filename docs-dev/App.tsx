@@ -1,6 +1,7 @@
 import { createSignal, createMemo, onMount, For, Show, type Component, lazy } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
-// i18n is handled by doc-i18n.ts (lazy per-component loading)
+// 启动时注册 common 通用词条（nav 等），后续各 doc 页懒加载自己的词条
+import './doc-i18n';
 
 import { setGlobalLocale, useLocale, useT } from '../src/i18n';
 import { ProviderConfig } from '../src/config';
