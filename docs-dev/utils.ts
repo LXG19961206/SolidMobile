@@ -16,10 +16,15 @@ export function showI18nNotice() {
   }, 100);
 }
 
-export type Section = 'guide' | 'components';
+export type Section = 'guide' | 'components' | 'mobile';
 
 export function parseHash(): { section: Section; pageKey: string } {
   const raw = window.location.hash.replace('#', '') || '';
+  // #mobile/<key> → mobile demo route
+  if (raw.startsWith('mobile/')) {
+    const key = raw.replace('mobile/', '');
+    return { section: 'mobile', pageKey: key };
+  }
   if (raw.startsWith('/')) {
     const parts = raw.split('/').filter(Boolean);
     const section = (parts[0] || 'guide') as Section;

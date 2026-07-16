@@ -14,15 +14,16 @@ export interface PhoneSimulatorProps {
  * 不再使用 translateZ(0) + Portal 黑魔法，fixed 定位在 iframe 中天生正确。
  */
 export function PhoneSimulator(props: PhoneSimulatorProps) {
-  // 从当前 URL 中提取组件 key，拼出移动端 demo 路径
-  const getHash = () => {
+  // 从当前 URL hash 中提取组件 key
+  // hash 格式: #/components/button 或 #/button → key = button
+  const getKey = () => {
     if (typeof window === 'undefined') return '';
     const hash = window.location.hash.replace('#/', '').split('?')[0];
-    return hash;
+    return hash.replace(/^components\//, '');
   };
 
   const src = () => {
-    const key = getHash();
+    const key = getKey();
     if (!key) return 'about:blank';
     return `/#mobile/${key}`;
   };

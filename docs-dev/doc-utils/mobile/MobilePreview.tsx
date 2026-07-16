@@ -124,9 +124,11 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
     props.onNavigate?.(key);
   };
 
+  const inIframe = () => typeof window !== 'undefined' && window.top !== window.self;
+
   return (
     <div class={styles.shell}>
-      <Show when={!props.hideTitle}>
+      <Show when={!props.hideTitle && !inIframe()}>
         <SafeArea position="top" />
         <NavBar
           title={props.title}
@@ -157,13 +159,18 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
       />
       </Show>
 
+      {/* iframe 中用占位 div 保持同样的顶部间距 */}
+      <Show when={inIframe()}>
+        <div style={{ height: 'var(--sc-navbar-height, 46px)', 'flex-shrink': 0 }} />
+      </Show>
+
       {/* Scrollable demo area */}
       <div class={styles.body}>
         {props.children}
       </div>
 
-      {/* Prev / Next — fixed footer below scroll area */}
-      <Show when={nav().prev || nav().next}>
+      {/* Prev / Next — fixed footer below scroll area, hidden in iframe */}
+      <Show when={(nav().prev || nav().next) && !inIframe()}>
         <div style={{
           display: 'flex', 'justify-content': 'space-between',
           padding: '10px 16px', 'flex-shrink': 0,
