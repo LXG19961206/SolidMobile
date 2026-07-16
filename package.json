@@ -57,8 +57,6 @@
     "dev:docs": "vite --mode docs",
     "dev:docs:dist": "npm run build:local && USE_DIST=1 vite --mode docs",
     "preview": "vite preview playground",
-    "storybook": "storybook dev -p 6006 --no-open",
-    "build-storybook": "storybook build -o dist-storybook",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -83,11 +81,12 @@
     "prettier": "^3.4.2",
     "prismjs": "^1.30.0",
     "solid-js": "^1.9.4",
-    "storybook": "^10.4.6",
-    "storybook-solidjs-vite": "^10.5.2",
     "typescript": "^5.7.2",
     "vite": "^7.3.5",
     "vite-plugin-solid": "^2.11.12",
     "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "@testing-library/user-event": "^14.6.1"
   }
 }
