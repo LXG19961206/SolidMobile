@@ -62,8 +62,8 @@ export const NavBarDocPage = () => {
         <div class={css.demoBox}><NavBar title="Details" backArrow onBack={() => { }} /></div>
       </DemoBlock>
 
-      <DemoBlock title={t('demo.navRightAction')} desc={t('demoDesc.navbar_right')} code={'<NavBar\n  title="Edit Profile"\n  backArrow\n  right={<Button size="sm">保存</Button>}\n/>'}>
-        <div class={css.demoBox}><NavBar title="Edit Profile" backArrow right={<Button size="sm">保存</Button>} /></div>
+      <DemoBlock title={t('demo.navRightAction')} desc={t('demoDesc.navbar_right')} code={'<NavBar\n  title="Edit Profile"\n  backArrow\n  right={<Button size="sm">Save</Button>}\n/>'}>
+        <div class={css.demoBox}><NavBar title="Edit Profile" backArrow right={<Button size="sm">Save</Button>} /></div>
       </DemoBlock>
 
       <DemoBlock title={t('demo.navCustomSides')} desc={t('demoDesc.navbar_custom')} code={'<NavBar\n  title="Messages"\n  left={<Icon name="settings" size={20} />}\n  right={<Icon name="search" size={20} />}\n/>'}>

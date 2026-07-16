@@ -78,7 +78,7 @@ export const SafeAreaDocPage: Component = () => {
           'border-radius': '8px',
         }}>
           <div style={{ padding: '12px', color: '#22c55e', 'font-size': '0.9rem', 'text-align': 'center' }}>
-            底部内容
+            Bottom Content
           </div>
           <SafeArea position="bottom" />
         </div>

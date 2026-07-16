@@ -39,8 +39,8 @@ const NotifyDocInner: Component = () => {
       <DemoBlock title={t('demo.toastPrimary')} desc={t('demoDesc.notify_primary')} code="Notify.primary('This is a primary notification');" groupCode="基础类型">
         <Cell title={t('demo.toastPrimary')} clickable onClick={() => noti(Notify.primary, 'This is a primary notification')} />
       </DemoBlock>
-      <DemoBlock title={t('demo.toastSuccess')} desc={t('demoDesc.notify_success')} code="Notify.success('操作成功');" groupCode="基础类型">
-        <Cell title={t('demo.toastSuccess')} clickable onClick={() => noti(Notify.success, '操作成功')} />
+      <DemoBlock title={t('demo.toastSuccess')} desc={t('demoDesc.notify_success')} code="Notify.success('操作Success');" groupCode="基础类型">
+        <Cell title={t('demo.toastSuccess')} clickable onClick={() => noti(Notify.success, '操作Success')} />
       </DemoBlock>
       <DemoBlock title={t('demo.toastWarning')} desc={t('demoDesc.notify_warning')} code="Notify.warning('Attention');" groupCode="Notice">
         <Cell title={t('demo.toastWarning')} clickable onClick={() => noti(Notify.warning, 'Attention')} />
