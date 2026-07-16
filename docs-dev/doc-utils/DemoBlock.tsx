@@ -151,18 +151,9 @@ export function DemoBlock(props: DemoBlockProps) {
       {!props.hideTitle && <h3 class={styles.title}>{props.title}</h3>}
       {props.desc && <p class={styles.desc}>{props.desc}</p>}
 
-      {/* Phone demo: skip if in a group (rendered by GroupCodePhone) */}
+      {/* Demo: always render inline. Phone simulator shows mobile page via iframe. */}
       {!props.codeOnly && !inGroup() && (
-        usePhone() ? (
-          <Portal mount={phoneTarget?.()!}>
-            <div class={styles.phoneDemo} classList={{ [styles.flush!]: props.flush }}>
-              {!props.hideTitle && <div class={styles.phoneDemoTitle}>{props.title}</div>}
-              <div class={styles.phoneDemoBody}>{props.children}</div>
-            </div>
-          </Portal>
-        ) : (
-          <div class={styles.demo}>{props.children}</div>
-        )
+        <div class={styles.demo}>{props.children}</div>
       )}
 
       <details class={styles.codeDetails} open>

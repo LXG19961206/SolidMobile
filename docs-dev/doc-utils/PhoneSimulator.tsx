@@ -1,53 +1,45 @@
 import { Show } from 'solid-js';
 import { cn, scopedStyle } from '../../src/utils';
-import { NavBar } from '../../src/components/NavBar';
 import rawStyles from './PhoneSimulator.module.css';
 const styles = scopedStyle(rawStyles, 'sc-doc-phone-simulator');
 
 export interface PhoneSimulatorProps {
   children?: any;
   class?: string;
-  /** 隐藏顶部标题栏 */
   hideTitle?: boolean;
 }
 
-function getTitle(): string {
-  if (typeof window === 'undefined') return '';
-  const hash = window.location.hash.replace('#', '');
-  const map: Record<string, string> = {
-    'design-tokens': '视觉规范',
-    button: 'Button 按钮', icon: 'Icon 图标', center: 'Center 居中',
-    divider: 'Divider 分割线', layout: 'Layout 布局',
-    avatar: 'Avatar 头像', badge: 'Badge 徽标', tag: 'Tag 标签',
-    image: 'Image 图片', empty: 'Empty 空状态', lazyload: 'Lazyload 懒加载',
-    list: 'List 列表',
-    navbar: 'NavBar 导航栏', tabs: 'Tabs 标签页', cell: 'Cell 单元格',
-    toast: 'Toast 轻提示', dialog: 'Dialog 弹窗', notify: 'Notify 通知栏',
-    overlay: 'Overlay 遮罩层', actionsheet: 'ActionSheet 动作面板',
-    loading: 'Loading 加载', cascader: 'Cascader 级联选择',
-    switch: 'Switch 开关',
-  };
-  return map[hash] || '';
-}
-
 /**
- * 手机模拟器容器 — 在文档中模拟移动端视口。
- * 顶部显示当前组件名称，内部使用 transform 生成新的 fixed 定位包含块。
+ * 手机模拟器容器 — 通过 iframe 加载移动端 demo 页面。
+ * 不再使用 translateZ(0) + Portal 黑魔法，fixed 定位在 iframe 中天生正确。
  */
 export function PhoneSimulator(props: PhoneSimulatorProps) {
-  const title = getTitle();
-  /** NavBar 页面自身有 fixed 导航，隐藏模拟器标题避免冲突 */
-  const isNavPage = () => typeof window !== 'undefined' && window.location.hash.includes('navbar');
-  const showTitle = () => title && !props.hideTitle && !isNavPage();
+  // 从当前 URL 中提取组件 key，拼出移动端 demo 路径
+  const getHash = () => {
+    if (typeof window === 'undefined') return '';
+    const hash = window.location.hash.replace('#/', '').split('?')[0];
+    return hash;
+  };
+
+  const src = () => {
+    const key = getHash();
+    if (!key) return 'about:blank';
+    return `/#mobile/${key}`;
+  };
+
   return (
     <div class={cn(styles.frame, props.class)}>
-      <div class={styles.screen} style="--sc-safe-area-top: 32px; --sc-safe-area-bottom: 0px;">
-        <Show when={showTitle()}>
-          <NavBar title={title} fixed border placeholder />
-        </Show>
-        <div class={styles.scroll}>
-          {props.children}
-        </div>
+      <div class={styles.screen}>
+        <iframe
+          src={src()}
+          style={{
+            width: '100%',
+            height: '100%',
+            border: 'none',
+            background: '#f7f8fa',
+          }}
+          title="Mobile Preview"
+        />
       </div>
     </div>
   );
