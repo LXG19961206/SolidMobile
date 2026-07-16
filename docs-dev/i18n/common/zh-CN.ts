@@ -603,7 +603,7 @@ export default {
         cellGroupProps: 'CellGroup Props',
         colProps: 'Col Props',
         rowProps: 'Row Props',
-        examples: 'Examples',
+        examples: '示例',
         props: '属性 / Props',
         copyCode: '复制代码',
         copied: '已复制!',

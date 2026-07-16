@@ -592,7 +592,7 @@ export default {
         cellGroupProps: 'CellGroup Props',
         colProps: 'Col Props',
         rowProps: 'Row Props',
-        examples: 'examples',
+        examples: 'Examples',
         props: 'Props',
         copyCode: 'Copy Code',
         copied: 'Copied!',
