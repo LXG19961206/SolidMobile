@@ -1,9 +1,6 @@
 import { createSignal, useContext, type Component } from 'solid-js';
 
-import zhCN from '../../../i18n/datepicker/zh-CN';
-import enUS from '../../../i18n/datepicker/en-US';
-import { registerLocale } from '../../../doc-i18n';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
 import { useT } from '../../../doc-i18n';
 import { DatePicker } from '../../../../src/components/DatePicker';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';

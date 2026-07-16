@@ -1,9 +1,6 @@
 import { type Component } from 'solid-js';
 
-import zhCN from '../../../i18n/textarea/zh-CN';
-import enUS from '../../../i18n/textarea/en-US';
-import { registerLocale } from '../../../doc-i18n';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
 import { useT } from '../../../doc-i18n';
 import { Textarea } from '../../../../src/components/Textarea';
 import { Form, FormItem } from '../../../../src/components/Form';

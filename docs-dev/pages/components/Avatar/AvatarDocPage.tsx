@@ -1,7 +1,4 @@
-import zhCN from '../../../i18n/avatar/zh-CN';
-import enUS from '../../../i18n/avatar/en-US';
-import { registerLocale } from '../../../doc-i18n';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
 import { useT } from '../../../doc-i18n';
 import { Avatar } from '../../../../src/components/Avatar';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';

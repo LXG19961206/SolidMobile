@@ -1,9 +1,6 @@
 import { createSignal, Show, useContext } from 'solid-js';
 
-import zhCN from '../../../i18n/cascader/zh-CN';
-import enUS from '../../../i18n/cascader/en-US';
-import { registerLocale } from '../../../doc-i18n';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
 import { useT } from '../../../doc-i18n';
 import { Cascader } from '../../../../src/components/Cascader';
 import { Cell } from '../../../../src/components/Cell';

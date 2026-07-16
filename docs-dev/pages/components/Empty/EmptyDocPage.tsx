@@ -1,7 +1,4 @@
-import zhCN from '../../../i18n/empty/zh-CN';
-import enUS from '../../../i18n/empty/en-US';
-import { registerLocale } from '../../../doc-i18n';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
 import { useT } from '../../../doc-i18n';
 import { Empty } from '../../../../src/components/Empty';
 import { Button } from '../../../../src/components/Button';

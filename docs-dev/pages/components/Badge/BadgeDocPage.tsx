@@ -1,7 +1,4 @@
-import zhCN from '../../../i18n/badge/zh-CN';
-import enUS from '../../../i18n/badge/en-US';
-import { registerLocale } from '../../../doc-i18n';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
 import { useT } from '../../../doc-i18n';
 import { Badge } from '../../../../src/components/Badge';
 import { Button } from '../../../../src/components/Button';

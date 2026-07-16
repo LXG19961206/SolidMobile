@@ -1,7 +1,4 @@
-import zhCN from '../../../i18n/backtop/zh-CN';
-import enUS from '../../../i18n/backtop/en-US';
-import { registerLocale } from '../../../doc-i18n';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
 import { useT } from '../../../doc-i18n';
 import { BackTop } from '../../../../src/components/BackTop';
 import { Cell, CellGroup } from '../../../../src/components/Cell';

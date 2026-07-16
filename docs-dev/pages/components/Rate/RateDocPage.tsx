@@ -1,9 +1,6 @@
 import { createSignal, type Component } from 'solid-js';
 
-import zhCN from '../../../i18n/rate/zh-CN';
-import enUS from '../../../i18n/rate/en-US';
-import { registerLocale } from '../../../doc-i18n';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
 import { useT } from '../../../doc-i18n';
 import { Rate } from '../../../../src/components/Rate';
 import { Cell, CellGroup } from '../../../../src/components/Cell';

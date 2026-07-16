@@ -1,9 +1,6 @@
 import { createSignal, type Component, type JSX } from 'solid-js';
 
-import zhCN from '../../../i18n/upload/zh-CN';
-import enUS from '../../../i18n/upload/en-US';
-import { registerLocale } from '../../../doc-i18n';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
 import { useT } from '../../../doc-i18n';
 import { Upload } from '../../../../src/components/Upload';
 import type { UploadFile } from '../../../../src/components/Upload';

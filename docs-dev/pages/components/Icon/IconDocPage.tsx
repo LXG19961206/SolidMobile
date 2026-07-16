@@ -1,9 +1,6 @@
 import { createSignal, For, type Component } from 'solid-js';
 
-import zhCN from '../../../i18n/icon/zh-CN';
-import enUS from '../../../i18n/icon/en-US';
-import { registerLocale } from '../../../doc-i18n';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
 import { useT } from '../../../doc-i18n';
 import { Icon } from '../../../../src/components/Icon';
 import { Button } from '../../../../src/components/Button';

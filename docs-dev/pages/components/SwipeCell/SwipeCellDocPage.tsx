@@ -1,9 +1,6 @@
 import { type Component, useContext } from 'solid-js';
 
-import zhCN from '../../../i18n/swipecell/zh-CN';
-import enUS from '../../../i18n/swipecell/en-US';
-import { registerLocale } from '../../../doc-i18n';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
 import { useT } from '../../../doc-i18n';
 import { SwipeCell } from '../../../../src/components/SwipeCell';
 import { Cell } from '../../../../src/components/Cell';

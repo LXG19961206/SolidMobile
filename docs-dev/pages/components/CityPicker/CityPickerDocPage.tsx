@@ -1,9 +1,6 @@
 import { createSignal, useContext, type Component } from 'solid-js';
 
-import zhCN from '../../../i18n/citypicker/zh-CN';
-import enUS from '../../../i18n/citypicker/en-US';
-import { registerLocale } from '../../../doc-i18n';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
 import { useT } from '../../../doc-i18n';
 import { CityPicker } from '../../../../src/components/CityPicker';
 import { Picker } from '../../../../src/components/Picker';

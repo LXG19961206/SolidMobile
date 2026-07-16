@@ -1,9 +1,6 @@
 import { createSignal, type Component } from 'solid-js';
 
-import zhCN from '../../i18n/button/zh-CN';
-import enUS from '../../i18n/button/en-US';
-import { registerLocale } from '../../doc-i18n';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
 import { useT } from '../../doc-i18n';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 

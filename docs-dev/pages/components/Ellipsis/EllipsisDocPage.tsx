@@ -1,9 +1,6 @@
 import { createSignal } from 'solid-js';
 
-import zhCN from '../../../i18n/ellipsis/zh-CN';
-import enUS from '../../../i18n/ellipsis/en-US';
-import { registerLocale } from '../../../doc-i18n';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
 import { useT } from '../../../doc-i18n';
 import { Ellipsis } from '../../../../src/components/Ellipsis';
 import { Icon } from '../../../../src/components/Icon';
