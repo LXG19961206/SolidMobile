@@ -70,7 +70,7 @@ const DialogDocInner: Component = () => {
         <DemoBlock
           title={t('demo.dialogDismiss')}
           desc={'show/alert/confirm all return a { dismiss: () => void } handle. Call handle.dismiss() to programmatically close the dialog, useful for async workflows.'}
-          code={`const handle = Dialog.show({\n  title: 'Processing',\n  message: 'Please wait...',\n  showConfirmButton: false,\n});\n\n// 异步操作完成后手动关闭\nawait doSomethingAsync();\nhandle.dismiss();`}
+          code={`const handle = Dialog.show({\n  title: 'Processing',\n  message: 'Please wait...',\n  showConfirmButton: false,\n});\n\n// Dismiss manually after async operation\nawait doSomethingAsync();\nhandle.dismiss();`}
           phone={false}
         >
           <div />
@@ -94,7 +94,7 @@ const DialogDocInner: Component = () => {
           <Cell title={t('demo.customTrigger')} clickable onClick={() => show({ title: 'Save Draft', message: '是否保存当前编辑内容？', showCancelButton: true, confirmText: 'Save', cancelText: 'Discard' })} />
         </DemoBlock>
         <DemoBlock title={t('demo.dialogJSX')} desc={t('demoDesc.dialog_jsx')} code={`Dialog.alert({\n  title: 'Release Notes',\n  message: <div>...</div>,\n});`} groupCode="高级弹窗">
-          <Cell title="Release Notes" clickable onClick={() => show({ title: 'Release Notes', message: (<div><p>v2.0 版本已发布</p></div>) })} />
+          <Cell title="Release Notes" clickable onClick={() => show({ title: 'Release Notes', message: (<div><p>v2.0 Release is now available</p></div>) })} />
         </DemoBlock>
         <DemoBlock title={t('demo.asyncLoading')} desc={t('demoDesc.dialog_async')} code={`Dialog.confirm({\n  title: 'Confirm Submission',\n  onConfirm: async () => { await fetch(...); },\n});`} groupCode="高级弹窗">
           <Cell title="Async Submit" clickable onClick={() => show({ title: 'Confirm Submission', message: 'Are you sure? This cannot be undone.', showCancelButton: true, confirmText: 'Submit', onConfirm: () => new Promise(r => setTimeout(r, 1500)) })} />
@@ -106,7 +106,7 @@ const DialogDocInner: Component = () => {
           title={t('demo.componentUsage')}
           desc={t('demoDesc.dialog_component')}
           groupCode="Component Usage"
-          code={`import { createSignal } from 'solid-js';\nimport { DialogComponent } from 'solid-mobile';\n\nfunction Demo() {\n  const [show, setShow] = createSignal(false);\n\n  return (\n    <>\n      <Button onClick={() => setShow(true)}>打开弹窗</Button>\n      <DialogComponent\n        show={show()}\n        onUpdateShow={setShow}\n        title="Component Dialog"\n        message="Dialog Component Usage的弹窗。"\n        showCancelButton\n        onConfirm={() => { /* ... */ }}\n        onCancel={() => setShow(false)}\n      />\n    </>\n  );\n}`}
+          code={`import { createSignal } from 'solid-js';\nimport { DialogComponent } from 'solid-mobile';\n\nfunction Demo() {\n  const [show, setShow] = createSignal(false);\n\n  return (\n    <>\n      <Button onClick={() => setShow(true)}>Open Dialog</Button>\n      <DialogComponent\n        show={show()}\n        onUpdateShow={setShow}\n        title="Component Dialog"\n        message="Dialog Component Usage dialog."\n        showCancelButton\n        onConfirm={() => { /* ... */ }}\n        onCancel={() => setShow(false)}\n      />\n    </>\n  );\n}`}
         >
           <Cell title={t('demo.componentUsage')} clickable onClick={() => setDeclarativeShow(true)} />
           <DialogComponent

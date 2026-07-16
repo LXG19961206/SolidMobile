@@ -1,5 +1,7 @@
 export default {
     demo: {
+        imageCustomJSX: 'JSX图片',
+        customImage: '自定义图片',
         emptyChildren: 'Children',
         emptyChildrenDesc: 'Children.',
         emptyDefault: 'Default',

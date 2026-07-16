@@ -1,5 +1,6 @@
 export default {
     demo: {
+        tabbarAnimated: '动画图标',
         tabbarBasic: 'Basic',
         tabbarBasicDesc: 'Basic tab bar.',
         tabbarAnimatedIcon: 'Tabbar Animated Icon',

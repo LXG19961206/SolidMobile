@@ -43,7 +43,7 @@ export const SafeAreaDocPage: Component = () => {
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.implementation')}</h2>
       <p style={{ 'line-height': 1.8, color: '#374151' }}>
-        SafeArea is a pure style spacer component. Its height reads from CSS variable <code>--sc-safe-area-top</code> or <code>--sc-safe-area-bottom</code>，
+        SafeArea is a pure style spacer component. Its height reads from CSS variables <code>--sc-safe-area-top</code> and <code>--sc-safe-area-bottom</code>, 
         , falling back to <code>env(safe-area-inset-top)</code> / <code>env(safe-area-inset-bottom)</code>, and finally to <code>0px</code>。
       </p>
 

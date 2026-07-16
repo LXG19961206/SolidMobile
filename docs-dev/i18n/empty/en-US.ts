@@ -1,5 +1,7 @@
 export default {
     demo: {
+        imageCustomJSX: 'JSX Image',
+        customImage: 'Custom Image',
         emptyChildren: 'Children',
         emptyChildrenDesc: 'Children.',
         emptyDefault: 'Default',

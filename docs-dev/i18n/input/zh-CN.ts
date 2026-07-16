@@ -1,5 +1,7 @@
 export default {
     demo: {
+        searchInput: '搜索输入框',
+        affix: '前后缀',
         inputAffix: 'Affix',
         inputAffixDesc: 'Prefix/suffix.',
         inputCountdown: 'Countdown',

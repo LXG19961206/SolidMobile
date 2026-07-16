@@ -1,5 +1,7 @@
 export default {
     demo: {
+        searchInput: 'Search Input',
+        affix: 'Affix',
         inputAffix: 'Affix',
         inputAffixDesc: 'Prefix/suffix.',
         inputCountdown: 'Countdown',
