@@ -1,18 +1,18 @@
 export default {
     demo: {
-        centerDefault: '默认',
-        centerDefaultDesc: '默认居中。',
+        centerDefault: 'Default',
+        centerDefaultDesc: 'Default center.',
         centerFlexX: 'Flex X',
         centerFlexXDesc: 'Flex X.',
         centerFlexY: 'Flex Y',
         centerFlexYDesc: 'Flex Y.',
-        centerInline: '行内',
-        centerInlineDesc: '嵌入模式。',
-        centerPosition: '位置',
-        centerPositionDesc: '位置。',
-        centerText: '文字',
+        centerInline: 'Inline',
+        centerInlineDesc: 'Inline.',
+        centerPosition: 'Position',
+        centerPositionDesc: 'Position.',
+        centerText: 'Text',
         centerTextDesc: 'Text center.',
-        centerVertical: '纵向',
+        centerVertical: 'Vertical',
         centerVerticalDesc: 'Vertical.',
         centerDefaultMobile: 'Default (no props)',
         centerDefaultMobileDesc: 'With no props, flexX + flexY are both enabled by default — full horizontal and vertical centering. Note: flexY requires the parent to have an explicit height.',
@@ -33,7 +33,7 @@ export default {
         centerVerticalMobileDesc: 'inline-block + vertical-align: middle. Aligns icons and text vertically within a line. Often used together with inline.',
         centerPositionMobile: 'position absolute center',
         centerPositionMobileDesc: 'Center acts as positioning container (relative + 100% width/height); inner wrapper uses absolute + transform to center. Useful for overlays, watermarks, badges that need to escape normal flow.',
-        center: '居中'
+        center: 'Center'
     },
     componentIntro: {
         CenterIntro: '解决初级开发者最常见的居中难题。默认无参数时采用 flex 两轴居中，也可以通过布尔参数自由组合五种居中策略。'

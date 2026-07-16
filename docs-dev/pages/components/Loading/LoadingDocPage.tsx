@@ -1,6 +1,10 @@
 import { createSignal, useContext } from 'solid-js';
 
 
+import zhCN from '../../../i18n/loading/zh-CN';
+import enUS from '../../../i18n/loading/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { useT } from '../../../doc-i18n';
 import { Loading } from '../../../../src/components/Loading';
 import { Icon } from '../../../../src/components/Icon';

@@ -1,6 +1,10 @@
 import { useContext, type Component } from 'solid-js';
 
 
+import zhCN from '../../../i18n/toast/zh-CN';
+import enUS from '../../../i18n/toast/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { useT } from '../../../doc-i18n';
 import { Toast } from '../../../../src/components/Toast/ToastManager';
 import { Cell } from '../../../../src/components/Cell';

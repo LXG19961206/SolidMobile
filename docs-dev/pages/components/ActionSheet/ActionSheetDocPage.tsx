@@ -1,6 +1,10 @@
 import { createSignal, useContext } from 'solid-js';
 
 
+import zhCN from '../../../i18n/actionsheet/zh-CN';
+import enUS from '../../../i18n/actionsheet/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { useT } from '../../../doc-i18n';
 import { ActionSheet } from '../../../../src/components/ActionSheet';
 import { Cell } from '../../../../src/components/Cell';

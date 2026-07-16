@@ -1,4 +1,8 @@
 
+import zhCN from '../../../i18n/navbar/zh-CN';
+import enUS from '../../../i18n/navbar/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { useT } from '../../../doc-i18n';
 import { NavBar } from '../../../../src/components/NavBar';
 import { Button } from '../../../../src/components/Button';

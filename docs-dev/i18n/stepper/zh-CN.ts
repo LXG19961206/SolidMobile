@@ -5,7 +5,7 @@ export default {
         stepperDisabledReadonly: 'Stepper Disabled Readonly',
         stepperDisabledReadonlyDesc: 'Stepper Disabled Readonly Desc',
         stepperCustomIcon: 'Custom Icons',
-        stepperSize: '自定义尺寸'
+        stepperSize: 'Custom Size'
     },
     componentIntro: {
         StepperIntro: '步进器，用于增加或减少数量。'

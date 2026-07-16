@@ -1,9 +1,9 @@
 export default {
     demo: {
-        badgeDot: '徽标',
-        badgeDotDesc: '徽标和红点。',
-        badgeStandalone: '独立使用',
-        badgeStandaloneDesc: '独立使用。'
+        badgeDot: 'Badge',
+        badgeDotDesc: 'Badge & dot.',
+        badgeStandalone: 'Standalone',
+        badgeStandaloneDesc: 'Standalone.'
     },
     componentIntro: {
         BadgeIntro: '用于消息数量、状态提示的小型徽标，通常附着在图标、按钮、标签页等组件上。'

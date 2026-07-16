@@ -1,6 +1,6 @@
 export default {
     demo: {
-        radioCustomIcon: '自定义图标',
+        radioCustomIcon: 'Custom Icon',
         radioCustomIconDesc: 'Custom icon.',
         radioDisabledShape: 'Radio Disabled Shape',
         radioDisabledShapeDesc: 'Radio Disabled Shape Description',

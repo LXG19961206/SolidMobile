@@ -1,10 +1,10 @@
 export default {
     demo: {
-        cellBasic: '基础',
+        cellBasic: 'Basic',
         cellBasicDesc: 'Basic cell.',
         cellClickable: 'Clickable',
         cellClickableDesc: 'Clickable.',
-        cellIconRequired: '图标',
+        cellIconRequired: 'Icon',
         cellIconRequiredDesc: 'Icon & required.',
         cellBasicTitle: 'Basic Cell',
         cellBasicMobileDesc: 'title label + value on right'

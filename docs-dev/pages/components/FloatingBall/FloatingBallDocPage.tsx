@@ -1,4 +1,8 @@
 
+import zhCN from '../../../i18n/floatingball/zh-CN';
+import enUS from '../../../i18n/floatingball/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { useT } from '../../../doc-i18n';
 import { FloatingBall } from '../../../../src/components/FloatingBall';
 import { Icon } from '../../../../src/components/Icon';

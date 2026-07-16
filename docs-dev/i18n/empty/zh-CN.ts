@@ -2,12 +2,12 @@ export default {
     demo: {
         emptyChildren: 'Children',
         emptyChildrenDesc: 'Children.',
-        emptyDefault: '默认',
+        emptyDefault: 'Default',
         emptyDefaultDesc: 'Default types.',
         emptyJSX: 'JSX',
-        emptyJSXDesc: '自定义 JSX。',
-        emptyPreset: '预设',
-        emptyPresetDesc: '预设类型。'
+        emptyJSXDesc: 'Custom JSX.',
+        emptyPreset: 'Preset',
+        emptyPresetDesc: 'Preset types.'
     },
     componentIntro: {
         EmptyIntro: '数据为空时的占位提示。内置三种预设图片，也支持自定义 JSX 和底部操作。'

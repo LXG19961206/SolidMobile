@@ -1,4 +1,8 @@
 
+import zhCN from '../../../i18n/tag/zh-CN';
+import enUS from '../../../i18n/tag/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { useT } from '../../../doc-i18n';
 import { Tag } from '../../../../src/components/Tag';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';

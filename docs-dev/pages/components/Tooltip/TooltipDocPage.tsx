@@ -4,6 +4,10 @@ import { Icon } from '../../../../src/components/Icon';
 import { createSignal } from 'solid-js';
 
 
+import zhCN from '../../../i18n/tooltip/zh-CN';
+import enUS from '../../../i18n/tooltip/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { useT } from '../../../doc-i18n';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';

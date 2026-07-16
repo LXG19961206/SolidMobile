@@ -1,7 +1,7 @@
 export default {
     demo: {
-        dividerDefault: '默认',
-        dividerText: '文字',
+        dividerDefault: 'Default',
+        dividerText: 'Text',
         dividerTextDesc: 'With text.'
     },
     componentIntro: {

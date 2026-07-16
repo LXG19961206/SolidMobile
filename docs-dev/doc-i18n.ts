@@ -1,14 +1,19 @@
-/// <reference types="vite/client" />
 /**
- * 文档站 i18n 层。
- * 启动时通过 import.meta.glob 一次性加载所有组件词条 + common 词条。
- * 各 doc 页无需任何 i18n 相关 boilerplate，只需 import { useT } from 'doc-i18n'。
+ * 文档站 i18n —— 简单直接，零魔法。
+ *
+ * 每个 doc 页 import 自己组件的 locale 文件：
+ *   import zh from './i18n/ellipsis/zh-CN'
+ *   import en from './i18n/ellipsis/en-US'
+ *   registerLocale({ 'zh-CN': zh, 'en-US': en })
+ *
+ * Common 词条（nav, shared）在启动时自动加载。
  */
 import { messages as libMessages } from '../src/i18n/dictionaries';
 
 function deepMerge(target: any, source: any) {
   for (const key of Object.keys(source)) {
-    if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) && target[key] && typeof target[key] === 'object') {
+    if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])
+      && target[key] && typeof target[key] === 'object') {
       deepMerge(target[key], source[key]);
     } else {
       target[key] = source[key];
@@ -16,24 +21,17 @@ function deepMerge(target: any, source: any) {
   }
 }
 
-function register(mod: any) {
-  const data = mod.default || mod;
-  for (const locale of Object.keys(data)) {
+export function registerLocale(messages: Record<string, Record<string, unknown>>) {
+  for (const locale of Object.keys(messages)) {
     if (!(libMessages as any)[locale]) (libMessages as any)[locale] = {};
-    deepMerge((libMessages as any)[locale], data[locale]);
+    deepMerge((libMessages as any)[locale], messages[locale]);
   }
 }
 
-// ── Eager-load all locale files ──
-const zhModules = import.meta.glob('./i18n/**/zh-CN.ts', { eager: true });
-const enModules = import.meta.glob('./i18n/**/en-US.ts', { eager: true });
-
-for (const [path, mod] of Object.entries(zhModules)) {
-  register({ 'zh-CN': (mod as any).default });
-}
-for (const [path, mod] of Object.entries(enModules)) {
-  register({ 'en-US': (mod as any).default });
-}
+// 启动时加载 common
+import zhCN from './i18n/common/zh-CN';
+import enUS from './i18n/common/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 export { useLocale, useT, setGlobalLocale, LocaleProvider } from '../src/i18n';
 export const docI18nReady = true;

@@ -1,6 +1,10 @@
 import { createSignal, onMount, For, Show, type Component } from 'solid-js';
 
 
+import zhCN from '../../../i18n/lazyload/zh-CN';
+import enUS from '../../../i18n/lazyload/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { useT } from '../../../doc-i18n';
 import { Lazyload } from '../../../../src/components/Lazyload';
 import { Avatar } from '../../../../src/components/Avatar';

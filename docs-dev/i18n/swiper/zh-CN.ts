@@ -1,6 +1,6 @@
 export default {
     demo: {
-        swipeRight: '右侧',
+        swipeRight: 'Right',
         swipeRightDesc: 'Right swipe.',
         swiperCustomContent: 'Swiper Custom Content',
         swiperCustomContentDesc: 'Swiper Custom Content Description'

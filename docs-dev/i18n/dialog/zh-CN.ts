@@ -2,9 +2,9 @@ export default {
     demo: {
         dialogAlert: 'Alert',
         dialogAlertDesc: 'Alert.',
-        dialogConfirm: '确认',
+        dialogConfirm: 'Confirm',
         dialogConfirmDesc: 'Confirm.',
-        dialogCustomText: '自定义文案',
+        dialogCustomText: 'Custom Text',
         dialogCustomTextDesc: 'Custom text.',
         dialogDismiss: 'Dismiss',
         dialogDismissDesc: 'Dismiss.',

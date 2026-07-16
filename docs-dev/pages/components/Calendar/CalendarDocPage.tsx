@@ -1,6 +1,10 @@
 import { createSignal, Show, useContext } from 'solid-js';
 
 
+import zhCN from '../../../i18n/calendar/zh-CN';
+import enUS from '../../../i18n/calendar/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { useT } from '../../../doc-i18n';
 import { Calendar } from '../../../../src/components/Calendar';
 import { Cell } from '../../../../src/components/Cell';

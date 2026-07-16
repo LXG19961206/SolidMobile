@@ -1,6 +1,10 @@
 import { createSignal, Show, useContext, type Component } from 'solid-js';
 
 
+import zhCN from '../../../i18n/dialog/zh-CN';
+import enUS from '../../../i18n/dialog/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 import { useT } from '../../../doc-i18n';
 import { DialogAPI as Dialog } from '../../../../src/components/Dialog/DialogManager';
 import { DialogComponent } from '../../../../src/components/Dialog';
