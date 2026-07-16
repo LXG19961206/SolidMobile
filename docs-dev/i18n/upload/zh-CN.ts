@@ -8,7 +8,7 @@ export default {
         uploadDesignOssDesc: 'OSS signatures, COS auth headers, callbacks — all achievable through a single async function. The traditional action + data model cannot describe such scenarios.',
         uploadDesignTestTitle: 'Naturally testable',
         uploadDesignTestDesc: 'Pass an async () => ({ url: "/fake" }) — no HTTP mocking required. Upload logic is fully decoupled from UI; tests verify UI behavior only.',
-        uploadDesignIoc: '<strong>Upload does one thing: manage the file lifecycle</strong> (select file → validate → display → delete). "How to upload" is a <strong>strategy</strong>, injected by you via the <code>api</code> prop (Inversion of Control / IoC): you write a function that returns a Promise, and Upload calls it. Tokens, interceptors, and HTTP libraries are all under your control. If you do not pass <code>api</code>, Upload degrades to a "file picker + list manager".'
+        uploadDesignIoc: "<strong>Upload does one thing: manage the file lifecycle</strong> (select file → validate → display → delete). \"How to upload\" is a <strong>strategy</strong>, injected by you via the <code>api</code> prop (Inversion of Control / Io C): you write a function that returns a Promise, and 上传 calls it. Tokens, interceptors, and HTTP libraries are all under your control. If you do not pass <code>api</code>, 上传 degrades to a \"file picker + list manager\"."
     },
     componentIntro: {
         UploadIntro: '文件选择、预览与上传组件。支持图片缩略图网格和文件列表两种展示模式，通过 api 属性注入上传策略。'

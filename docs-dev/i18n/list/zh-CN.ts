@@ -12,10 +12,10 @@ export default {
         listVirtualMobile: 'List Virtual Mobile',
         listVirtualMobileDesc: 'List Virtual Mobile Desc',
         listEmptyMobile: 'List Empty Mobile',
-        listEmptyMobileDesc: 'List Empty Mobile Desc'
+        listEmptyMobileDesc: "列表 空状态 移动端 描述"
     },
     section: {
-        listLazy: 'List Lazy Load'
+        listLazy: "列表 懒加载 加载"
     },
     demoDesc: {
         list_example: '切换 Tab 查看不同模式。每个 Tab 独立管理数据源，互不干扰。'

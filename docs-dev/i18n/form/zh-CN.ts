@@ -16,7 +16,7 @@ export default {
         formSubmitValue: 'Form Submit Value',
         formName: '表单',
         formBasicMobileDesc: 'Form Basic  (Mobile) Description',
-        formRange: 'Form Range'
+        formRange: "Form 范围"
     },
     componentIntro: {
         FormIntro: '表单容器，通过 FormItem 统一管理字段值、校验和提交。'

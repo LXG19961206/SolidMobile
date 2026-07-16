@@ -30,7 +30,7 @@ export default {
     section: {
         iconRequired: 'Icon & Required',
         iconLibrary: 'Icon Library',
-        iconButton: 'Icon Button'
+        iconButton: "图标 按钮"
     },
     demoDesc: {
         icon_treeshake: '从 solid-component/icons 导入单个图标组件，打包工具自动 tree-shake，只打包实际使用的图标。',

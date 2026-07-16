@@ -463,7 +463,7 @@ export default {
         customTriggerMobileDesc: '传入 children 自定义触发元素。',
         labelDisabled: 'Label Disabled',
         count: 'Count',
-        loadFailed: 'Load Failed'
+        loadFailed: "加载 Failed"
     },
     section: {
         flexCenter: 'Flex Center',

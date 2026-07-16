@@ -41,7 +41,7 @@ export default {
         toastTop: 'Toast Top',
         toastTopMsg: 'Toast Top Msg',
         toastWarningBtn: 'Toast Warning Btn',
-        toastWarningMsg: 'Toast Warning Msg'
+        toastWarningMsg: "轻提示 警告 Msg"
     },
     componentIntro: {
         ToastIntro: '全局的轻量级反馈提示，命令式 API 调用。'

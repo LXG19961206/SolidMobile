@@ -1,7 +1,7 @@
 export default {
     demo: {
         safeAreaIntro: 'Safe Area Introduction',
-        safeAreaIntroDesc: 'SafeArea adds safe padding for notched screens and bottom indicator bars.'
+        safeAreaIntroDesc: "安全 Area adds safe padding for notched screens and bottom indicator bars."
     },
     componentIntro: {
         SafeAreaIntro: '安全区域占位组件，确保内容不被设备的刘海屏、状态栏、Home Indicator 等遮挡。'

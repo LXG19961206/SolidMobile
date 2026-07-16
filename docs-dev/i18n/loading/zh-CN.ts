@@ -25,7 +25,7 @@ export default {
         loadingSizeColorMobileDesc: 'Loading Size Color Mobile Desc',
         loadingOverlayMobile: 'Loading Overlay Mobile',
         loadingOverlayMobileDesc: 'Loading Overlay Mobile Desc',
-        loadingRegionData: 'Loading region data...'
+        loadingRegionData: "加载 region data..."
     },
     componentIntro: {
         LoadingIntro: '展示加载中状态的视觉反馈。内置三种动画类型，支持自定义图标、文字、纵向布局及全屏遮罩模式。'

@@ -18,7 +18,7 @@ export default {
         buttonSettings: 'Button Settings',
         buttonSizeMobileDesc: 'Button Size  (Mobile) Description',
         buttonSubmitting: 'Button Submitting',
-        buttonVariantMobileDesc: 'Button Variant  (Mobile) Description'
+        buttonVariantMobileDesc: "按钮 变体 (Mobile) 描述"
     },
     componentIntro: {
         ButtonIntro: '通用的操作触发按钮。支持多种变体风格、四种尺寸、图标、加载态、链接模式及自定义颜色。'

@@ -6,7 +6,7 @@ export default {
         sliderDualDesc: 'Slider Dual Desc',
         sliderStepColor: 'Slider Step Color',
         sliderStepColorDesc: 'Slider Step Color Desc',
-        sliderDisabledReadonly: 'Slider Disabled Readonly'
+        sliderDisabledReadonly: "滑块 禁用 只读"
     },
     componentIntro: {
         SliderIntro: '滑块组件，支持单滑块、多滑块、自定义颜色和尺寸。'
