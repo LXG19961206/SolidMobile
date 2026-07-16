@@ -51,5 +51,9 @@ export default {
             onClose: '关闭回调。',
             color: '自定义颜色。'
         }
-    }
+    },
+    section: {
+        semantic: '语义类型',
+    },
+
 };

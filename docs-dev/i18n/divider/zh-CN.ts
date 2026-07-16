@@ -1,5 +1,6 @@
 export default {
     demo: {
+        verticalDir: '垂直方向',
         dividerDefault: 'Default',
         dividerText: 'Text',
         dividerTextDesc: 'With text.'

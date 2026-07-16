@@ -51,5 +51,9 @@ export default {
             onClose: 'Close callback.',
             color: 'Custom color.'
         }
-    }
+    },
+    section: {
+        semantic: 'Semantic Types',
+    },
+
 };

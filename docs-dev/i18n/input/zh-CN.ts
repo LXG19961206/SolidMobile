@@ -90,5 +90,9 @@ export default {
             onFocus: '聚焦回调。',
             onEnter: '回车回调。'
         }
-    }
+    },
+    section: {
+        verifyCode: '验证码',
+    },
+
 };

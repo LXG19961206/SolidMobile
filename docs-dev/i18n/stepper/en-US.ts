@@ -1,5 +1,6 @@
 export default {
     demo: {
+        customSizeMobile: 'Custom Size',
         stepperBasic: 'Stepper Basic',
         stepperBasicDesc: 'Stepper Basic Desc',
         stepperDisabledReadonly: 'Stepper Disabled Readonly',

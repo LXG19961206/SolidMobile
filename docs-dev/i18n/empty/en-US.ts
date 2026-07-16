@@ -26,5 +26,9 @@ export default {
             children: 'Custom bottom content (e.g. button).',
             class: 'Custom CSS class.'
         }
-    }
+    },
+    section: {
+        fallback: 'Fallback',
+    },
+
 };

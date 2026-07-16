@@ -90,5 +90,9 @@ export default {
             onFocus: 'Focus callback.',
             onEnter: 'Enter key callback.'
         }
-    }
+    },
+    section: {
+        verifyCode: 'Verify Code',
+    },
+
 };

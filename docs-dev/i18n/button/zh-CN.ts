@@ -75,5 +75,9 @@ export default {
             style: '内联样式。',
             'aria-label': '无障碍标签，纯图标按钮必须设置。'
         }
-    }
+    },
+    section: {
+        linkMode: '链接模式',
+    },
+
 };

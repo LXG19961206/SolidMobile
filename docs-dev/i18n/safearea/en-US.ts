@@ -14,5 +14,9 @@ export default {
         safearea: {
             position: 'Safe area position: top / bottom / both.'
         }
-    }
+    },
+    section: {
+        withNavBar: 'With NavBar',
+    },
+
 };

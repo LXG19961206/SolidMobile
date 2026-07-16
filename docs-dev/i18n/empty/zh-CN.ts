@@ -26,5 +26,9 @@ export default {
             children: '自定义底部内容（如按钮）。',
             class: '自定义 CSS class。'
         }
-    }
+    },
+    section: {
+        fallback: '加载失败',
+    },
+
 };
