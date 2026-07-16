@@ -132,3 +132,6 @@ export type { EllipsisProps } from './Ellipsis';
 
 export { Tooltip } from './Tooltip';
 export type { TooltipProps, TooltipPlacement, TooltipTrigger, TooltipDelay } from './Tooltip';
+
+export { FloatingBall } from './FloatingBall';
+export type { FloatingBallProps, FloatingBallInset } from './FloatingBall';

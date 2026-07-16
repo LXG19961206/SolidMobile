@@ -205,8 +205,13 @@ export const extraDocMessages: LocaleMessages = {
       tooltipDelay: '延迟控制',
       tooltipControlled: '受控模式',
       tabsScrollable: '横向滚动',
+      floatingballBasic: '基础用法',
+      floatingballSnap: '边缘吸附',
     },
     demoDesc: {
+      floatingball_basic: '固定定位在右下角，可拖动，松手吸附到最近边缘。',
+      floatingball_snap: '拖到屏幕左侧松手，球自动吸附到左边缘。',
+      floatingball_intro: '固定定位的悬浮球，可拖动、松手自动吸附到最近边缘。常用于回到顶部、快捷操作、页面导航等移动端场景。',
       ellipsis_single_line: '默认单行省略，超出部分在末尾显示省略号。',
       ellipsis_multi_line: '通过 lines 属性控制显示行数，超出后在第 N 行末尾打省略号。',
       ellipsis_custom_tag: '通过 as 属性切换渲染标签，如 span、p 等。',
@@ -225,8 +230,17 @@ export const extraDocMessages: LocaleMessages = {
     componentIntro: {
       EllipsisIntro: '文字省略组件，处理文字超出隐藏。支持单行/多行省略、展开/收起。内置 ResizeObserver 自动响应容器尺寸变化，按钮使用原生 button 元素支持键盘无障碍操作。',
       TooltipIntro: '气泡提示组件，hover/click/focus 时在触发元素旁弹出气泡。内置自动翻转定位、CSS 三角箭头、延迟控制，通过 Portal 渲染避免层级遮挡。',
+      FloatingBallIntro: '固定定位的悬浮球组件。支持拖动、松手自动吸附到最近边缘。常用于回到顶部、页面导航、快捷操作等场景。',
     },
     componentProps: {
+      floatingball: {
+        inset: '初始位置，距视口边缘的距离。支持 left/top/right/bottom，默认 { right: 16, bottom: 24 }。',
+        draggable: '是否可拖动，默认 true。',
+        snapToEdge: '松手时自动吸附到最近边缘，默认 true。',
+        zIndex: '层级，默认 999。',
+        class: '自定义 CSS class。',
+        style: '内联样式。',
+      },
       tabs: {
         title: 'Tab 标题，支持字符串或 JSX。',
         name: 'Tab 标识符，对应 Tabs 的 active/defaultActive。',
@@ -271,12 +285,22 @@ export const extraDocMessages: LocaleMessages = {
       ellipsisExpandable: '可展开/收起',
       tooltipBasic: '基础用法',
       tooltipCSSVars: 'CSS 变量',
+      floatingballBasic: '基础用法',
     },
     nav: {
       ellipsis: 'Ellipsis 文字省略',
       tooltip: 'Tooltip 气泡提示',
+      floatingball: 'FloatingBall 悬浮球',
     },
     cssVars: {
+      FloatingBall: {
+        __sc_floating_ball_size: '悬浮球尺寸，默认 44px。',
+        __sc_floating_ball_bg: '背景色，默认跟随 --sc-color-primary。',
+        __sc_floating_ball_color: '内容颜色，默认 #fff。',
+        __sc_floating_ball_shadow: '阴影，默认 0 4px 12px rgba(0,0,0,0.2)。',
+        __sc_floating_ball_radius: '圆角，默认 50%。',
+        __sc_floating_ball_z_index: '层级，默认 999。',
+      },
       Ellipsis: {
         __sc_ellipsis_action_color: '展开/收起按钮颜色。默认为主题主色 --sc-color-primary。',
         __sc_ellipsis_action_hover_opacity: '按钮 hover 态透明度，默认 0.8。',
@@ -494,8 +518,13 @@ export const extraDocMessages: LocaleMessages = {
       tooltipDelay: 'Delay',
       tooltipControlled: 'Controlled Mode',
       tabsScrollable: 'Scrollable Tabs',
+      floatingballBasic: 'Basic Usage',
+      floatingballSnap: 'Snap to Edge',
     },
     demoDesc: {
+      floatingball_basic: 'Fixed at the bottom-right corner. Drag to move, auto-snaps to the nearest edge on release.',
+      floatingball_snap: 'Drag to the left side and release — the ball auto-snaps to the left edge.',
+      floatingball_intro: 'Fixed-position floating ball — draggable, auto-snaps to the nearest edge. Common for back-to-top, quick actions, or page navigation on mobile.',
       ellipsis_single_line: 'Default single-line truncation with ellipsis at the end.',
       ellipsis_multi_line: 'Use the lines prop to set the number of visible lines before truncation.',
       ellipsis_custom_tag: 'Use the as prop to change the rendered HTML tag, e.g. span or p.',
@@ -514,8 +543,17 @@ export const extraDocMessages: LocaleMessages = {
     componentIntro: {
       EllipsisIntro: 'Text truncation component with single/multi-line ellipsis and expand/collapse. Built-in ResizeObserver adapts to container size changes. Toggle buttons use native button elements for keyboard accessibility.',
       TooltipIntro: 'Floating tooltip bubble that appears on hover/click/focus. Features auto-flip positioning, CSS triangle arrow, delay control, and Portal rendering to avoid z-index conflicts.',
+      FloatingBallIntro: 'Fixed-position floating ball. Draggable with auto snap-to-edge. Common for back-to-top buttons, quick actions, or page navigation.',
     },
     componentProps: {
+      floatingball: {
+        inset: 'Initial position from viewport edges. Supports left/top/right/bottom. Default: { right: 16, bottom: 24 }.',
+        draggable: 'Whether the ball is draggable. Default: true.',
+        snapToEdge: 'Auto-snap to the nearest edge on release. Default: true.',
+        zIndex: 'Stack order. Default: 999.',
+        class: 'Custom CSS class.',
+        style: 'Inline style.',
+      },
       tabs: {
         title: 'Tab title. String or JSX.',
         name: 'Tab identifier, matches Tabs active/defaultActive.',
@@ -560,12 +598,17 @@ export const extraDocMessages: LocaleMessages = {
       ellipsisExpandable: 'Expandable',
       tooltipBasic: 'Basic Usage',
       tooltipCSSVars: 'CSS Variables',
-    },
-    nav: {
-      ellipsis: 'Ellipsis',
-      tooltip: 'Tooltip',
+      floatingballBasic: 'Basic Usage',
     },
     cssVars: {
+      FloatingBall: {
+        __sc_floating_ball_size: 'Ball size. Default: 44px.',
+        __sc_floating_ball_bg: 'Background color. Defaults to --sc-color-primary.',
+        __sc_floating_ball_color: 'Content color. Default: #fff.',
+        __sc_floating_ball_shadow: 'Box shadow. Default: 0 4px 12px rgba(0,0,0,0.2).',
+        __sc_floating_ball_radius: 'Border radius. Default: 50%.',
+        __sc_floating_ball_z_index: 'Stack order. Default: 999.',
+      },
       Ellipsis: {
         __sc_ellipsis_action_color: 'Action button text color. Defaults to primary theme color --sc-color-primary.',
         __sc_ellipsis_action_hover_opacity: 'Action button hover opacity. Default: 0.8.',
@@ -582,6 +625,11 @@ export const extraDocMessages: LocaleMessages = {
         __sc_tooltip_arrow_size: 'Triangle arrow size. Default: 5px.',
         __sc_tooltip_z_index: 'Bubble z-index. Default: 1000.',
       },
+    },
+    nav: {
+      ellipsis: 'Ellipsis',
+      tooltip: 'Tooltip',
+      floatingball: 'FloatingBall',
     },
   },
 };

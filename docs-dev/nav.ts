@@ -23,6 +23,7 @@ export const GROUPS: MenuGroup[] = [
       { name: 'List 列表', key: 'list' }, { name: 'SwipeCell 滑动单元格', key: 'swipecell' },
       { name: 'Swiper 轮播', key: 'swiper' }, { name: 'Ellipsis 文字省略', key: 'ellipsis' },
       { name: 'Tooltip 气泡提示', key: 'tooltip' },
+      { name: 'FloatingBall 悬浮球', key: 'floatingball' },
       { name: 'PullRefresh 下拉刷新', key: 'pullrefresh' },
     ],
   },

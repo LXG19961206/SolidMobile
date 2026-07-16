@@ -69,6 +69,8 @@ export interface ComponentEntry {
 export interface MobilePreviewProps {
   /** 组件名称 */
   title: string;
+  /** 隐藏顶部导航栏，默认 false。悬浮类组件（FloatingBall）推荐开启 */
+  hideTitle?: boolean;
   /** 属性列表 */
   props?: { name: string; type: string; desc: string }[];
   /** @deprecated 组件列表，由 App 层抽屉统一管理，此处不再使用 */
@@ -124,12 +126,13 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
 
   return (
     <div class={styles.shell}>
-      <SafeArea position="top" />
-      <NavBar
-        title={props.title}
-        fixed
-        border
-        placeholder
+      <Show when={!props.hideTitle}>
+        <SafeArea position="top" />
+        <NavBar
+          title={props.title}
+          fixed
+          border
+          placeholder
         left={
           openDrawer ? (
             <span class={styles.navBtn} onClick={openDrawer}>
@@ -152,6 +155,7 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
           </div>
         }
       />
+      </Show>
 
       {/* Scrollable demo area */}
       <div class={styles.body}>
