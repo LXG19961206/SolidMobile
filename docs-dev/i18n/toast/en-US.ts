@@ -46,9 +46,6 @@ export default {
     componentIntro: {
         ToastIntro: 'Global lightweight feedback. Imperative API.'
     },
-    nav: {
-        toast: 'Toast'
-    },
     demoDesc: {
         toast_shorthand: 'Click each Cell for corresponding toast type.',
         toast_overlay: 'Error/Loading enable overlay by default.',

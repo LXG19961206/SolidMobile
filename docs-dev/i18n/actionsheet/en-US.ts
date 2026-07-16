@@ -24,9 +24,6 @@ export default {
     componentIntro: {
         ActionSheetIntro: 'Bottom sheet action menu.'
     },
-    nav: {
-        actionsheet: 'ActionSheet'
-    },
     demoDesc: {
         actionsheet_items: 'Pass the items array.',
         actionsheet_description: 'Description displayed below the title.'

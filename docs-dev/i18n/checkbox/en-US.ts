@@ -14,9 +14,6 @@ export default {
     componentIntro: {
         CheckboxIntro: 'Multi-select with CheckboxGroup. Shapes, half-check, custom icons.'
     },
-    nav: {
-        checkbox: 'Checkbox'
-    },
     cssVars: {
         Checkbox: {
             __sc_checkbox_border_color: 'Checkbox border color.',

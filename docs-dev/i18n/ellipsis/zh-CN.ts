@@ -16,9 +16,6 @@ export default {
     componentIntro: {
         EllipsisIntro: '文字省略组件，处理文字超出隐藏。支持单行/多行省略、展开/收起。内置 ResizeObserver 自动响应容器尺寸变化，按钮使用原生 button 元素支持键盘无障碍操作。'
     },
-    nav: {
-        ellipsis: 'Ellipsis 文字省略'
-    },
     cssVars: {
         Ellipsis: {
             __sc_ellipsis_action_color: '展开/收起按钮颜色。默认为主题主色 --sc-color-primary。',

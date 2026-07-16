@@ -11,9 +11,6 @@ export default {
     componentIntro: {
         SliderIntro: 'Slider with single/dual/triple thumbs. Custom colors/sizes.'
     },
-    nav: {
-        slider: 'Slider'
-    },
     demoDesc: {
         slider_range: 'count=2 for dual-thumb range control.',
         slider_triple: 'count=3 for triple-thumb; value is length-3 array.',

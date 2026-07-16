@@ -12,9 +12,6 @@ export default {
     componentIntro: {
         SwitchIntro: 'Toggle control. Controlled/uncontrolled, custom size/color.'
     },
-    nav: {
-        switch: 'Switch'
-    },
     demoDesc: {
         switch_text_label: 'Text displays right of slider. For left-label layout, wrap Switch in a flex container.',
         switch_uncontrolled: 'Self-managed when checked is not passed.',

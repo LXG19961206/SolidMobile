@@ -23,9 +23,6 @@ export default {
     componentIntro: {
         ButtonIntro: '通用的操作触发按钮。支持多种变体风格、四种尺寸、图标、加载态、链接模式及自定义颜色。'
     },
-    nav: {
-        button: 'Button 按钮'
-    },
     cssVars: {
         Button: {
             __sc_border_radius_full: '胶囊圆角（round 模式）。',
@@ -77,24 +74,6 @@ export default {
             class: '自定义 CSS class。',
             style: '内联样式。',
             'aria-label': '无障碍标签，纯图标按钮必须设置。'
-        }
-    },
-    component: {
-        button: {
-            title: 'Button 按钮',
-            intro: '通用按钮组件，支持多种类型、变体和尺寸。',
-            type: '按钮类型',
-            variant: '按钮变体',
-            size: '按钮尺寸',
-            primary: '主要按钮',
-            danger: '危险按钮',
-            default: '默认按钮',
-            text: '文字按钮',
-            dashed: '虚线按钮',
-            block: '块级按钮',
-            loading: '加载状态',
-            disabled: '禁用状态',
-            icon: '图标按钮'
         }
     }
 };

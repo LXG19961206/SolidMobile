@@ -20,9 +20,6 @@ export default {
     componentIntro: {
         OverlayIntro: '全屏半透明遮罩，所有弹出层组件的基础设施。'
     },
-    nav: {
-        overlay: 'Overlay 遮罩层'
-    },
     demoDesc: {
         overlay_dialog: '居中对话框，点击背景关闭。',
         overlay_actionsheet: 'ActionSheet 内部使用 Overlay。'

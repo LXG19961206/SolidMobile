@@ -10,9 +10,6 @@ export default {
     componentIntro: {
         StepperIntro: 'Number stepper for incrementing/decrementing.'
     },
-    nav: {
-        stepper: 'Stepper'
-    },
     demoDesc: {
         stepper_custom_icon: 'Custom minus/plus button icons via minusIcon / plusIcon.',
         stepper_size: 'Quick size adjustment via the size prop.',

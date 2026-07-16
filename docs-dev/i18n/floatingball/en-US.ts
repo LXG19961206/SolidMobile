@@ -9,9 +9,6 @@ export default {
     componentIntro: {
         FloatingBallIntro: 'Fixed-position floating ball. Draggable with auto snap-to-edge. Common for back-to-top buttons, quick actions, or page navigation.'
     },
-    nav: {
-        floatingball: 'FloatingBall'
-    },
     cssVars: {
         FloatingBall: {
             __sc_floating_ball_size: 'Ball size. Default: 44px.',

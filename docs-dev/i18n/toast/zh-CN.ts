@@ -46,9 +46,6 @@ export default {
     componentIntro: {
         ToastIntro: '全局的轻量级反馈提示，命令式 API 调用。'
     },
-    nav: {
-        toast: 'Toast 轻提示'
-    },
     demoDesc: {
         toast_shorthand: '点击 Cell 弹出对应类型。',
         toast_overlay: 'Error / Loading 默认开启 overlay 防止误触。',

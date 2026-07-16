@@ -38,9 +38,6 @@ export default {
     componentIntro: {
         CenterIntro: '解决初级开发者最常见的居中难题。默认无参数时采用 flex 两轴居中，也可以通过布尔参数自由组合五种居中策略。'
     },
-    nav: {
-        center: 'Center 居中'
-    },
     demoDesc: {
         center_default: '不传任何参数时，默认 flex 水平 + 垂直居中。这是最常用的场景。',
         center_horizontal: '只居中水平方向。',

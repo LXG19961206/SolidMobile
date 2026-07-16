@@ -10,9 +10,6 @@ export default {
     componentIntro: {
         TabBarIntro: 'Mobile bottom tab navigation. Icon+text, badge/dot.'
     },
-    nav: {
-        tabbar: 'TabBar'
-    },
     demoDesc: {
         tabbar_badge: 'Badge + dot for unread message count.',
         tabbar_animated_icon: 'Icon accepts any JSX. TabBarItem auto-injects active boolean prop.',

@@ -16,9 +16,6 @@ export default {
     componentIntro: {
         EllipsisIntro: 'Text truncation component with single/multi-line ellipsis and expand/collapse. Built-in ResizeObserver adapts to container size changes. Toggle buttons use native button elements for keyboard accessibility.'
     },
-    nav: {
-        ellipsis: 'Ellipsis'
-    },
     cssVars: {
         Ellipsis: {
             __sc_ellipsis_action_color: 'Action button text color. Defaults to primary theme color --sc-color-primary.',

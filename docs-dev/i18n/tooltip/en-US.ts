@@ -14,9 +14,6 @@ export default {
     componentIntro: {
         TooltipIntro: 'Floating tooltip bubble that appears on hover/click/focus. Features auto-flip positioning, CSS triangle arrow, delay control, and Portal rendering to avoid z-index conflicts.'
     },
-    nav: {
-        tooltip: 'Tooltip'
-    },
     cssVars: {
         Tooltip: {
             __sc_tooltip_bg: 'Bubble background color. Default: #1f2937.',

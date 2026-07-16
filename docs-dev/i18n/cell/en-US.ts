@@ -12,13 +12,6 @@ export default {
     componentIntro: {
         CellIntro: 'List item component. Cell for single row, CellGroup for grouping.'
     },
-    nav: {
-        cell: 'Cell'
-    },
-    common: {
-        cellProps: 'Cell Props',
-        cellGroupProps: 'CellGroup Props'
-    },
     demoDesc: {
         cell_basic: 'Cell has three parts: title (left), value (right), description (bottom).',
         cell_clickable: 'Shows arrow when clickable; entire row is tappable. Use onClick for navigation.',

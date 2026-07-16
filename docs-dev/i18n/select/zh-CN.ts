@@ -31,9 +31,6 @@ export default {
     componentIntro: {
         SelectIntro: '选项选择器，基于 Picker 组件封装。点击触发区域弹出滚轮选择。'
     },
-    nav: {
-        select: 'Select 选择器'
-    },
     demoDesc: {
         select_basic: '不传 show 时，Select 自行管理面板开关，点击即可选择。',
         select_form: '放在 FormItem 中自动集成表单的值管理。',
@@ -57,24 +54,6 @@ export default {
             teleport: 'Portal 挂载目标。',
             show: '是否显示选择器面板。不传时 Select 自动管理。',
             onUpdateShow: '面板开关回调。'
-        }
-    },
-    component: {
-        select: {
-            props: {
-                options: '选项列表。',
-                value: '当前选中值。',
-                onChange: '值变化回调。',
-                onConfirm: '确认按钮点击回调。',
-                placeholder: '无选中时显示的文字。',
-                title: '面板标题。',
-                cancelText: '取消按钮文字。',
-                confirmText: '确认按钮文字。',
-                visibleItemCount: '可见行数。',
-                teleport: 'Portal 挂载目标。',
-                show: '是否显示选择器面板。不传时 Select 自动管理。',
-                onUpdateShow: '面板开关回调。'
-            }
         }
     }
 };

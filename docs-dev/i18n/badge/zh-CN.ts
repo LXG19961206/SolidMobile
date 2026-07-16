@@ -8,9 +8,6 @@ export default {
     componentIntro: {
         BadgeIntro: '用于消息数量、状态提示的小型徽标，通常附着在图标、按钮、标签页等组件上。'
     },
-    nav: {
-        badge: 'Badge 徽标'
-    },
     demoDesc: {
         badge_with_avatar: '最常见场景——头像角标表示未读消息。',
         badge_with_button: '按钮角标提示待处理数量。',

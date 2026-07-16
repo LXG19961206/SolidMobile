@@ -20,9 +20,6 @@ export default {
     componentIntro: {
         OverlayIntro: 'Full-screen semi-transparent overlay. Foundation for popups.'
     },
-    nav: {
-        overlay: 'Overlay'
-    },
     demoDesc: {
         overlay_dialog: 'Centered dialog; click backdrop to close.',
         overlay_actionsheet: 'ActionSheet uses Overlay internally.'

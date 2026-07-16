@@ -1,7 +1,4 @@
 export default {
-    nav: {
-        citypicker: 'CityPicker 城市选择'
-    },
     demoDesc: {
         citypicker_deep: '直接使用 Picker 组件，传入 6 层深度的树形数据即可自动级联。'
     },

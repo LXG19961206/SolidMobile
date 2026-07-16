@@ -2,9 +2,6 @@ export default {
     componentIntro: {
         NavBarIntro: '顶部导航条，提供左中右三区域布局，支持返回箭头、固定定位和占位元素。'
     },
-    nav: {
-        navbar: 'NavBar 导航栏'
-    },
     demoDesc: {
         navbar_fixed: 'fixed + placeholder。手机模拟器的 transform 会创建新的定位上下文，fixed 自动局限在手机屏幕内。',
         navbar_basic: '最简单的导航栏，只有标题。',

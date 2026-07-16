@@ -8,9 +8,6 @@ export default {
     componentIntro: {
         RateIntro: 'Rating with half-star, clearable, custom icons and colors.'
     },
-    nav: {
-        rate: 'Rate'
-    },
     demoDesc: {
         rate_count: 'count controls total icon count.',
         rate_size_gutter: 'size for icon size, gutter for spacing.',

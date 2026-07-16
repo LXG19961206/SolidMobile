@@ -24,9 +24,6 @@ export default {
     componentIntro: {
         ActionSheetIntro: '从底部弹出的选项菜单。'
     },
-    nav: {
-        actionsheet: 'ActionSheet 动作面板'
-    },
     demoDesc: {
         actionsheet_items: '传入 items 数组。',
         actionsheet_description: 'description 显示在标题下方。'

@@ -17,9 +17,6 @@ export default {
         avatarTextIcon: 'Avatar Text Icon',
         avatarTextIconDesc: 'Avatar Text Icon Description'
     },
-    nav: {
-        avatar: 'Avatar 头像'
-    },
     demoDesc: {
         avatar_icon_fallback: '不传 src 时显示 icon 图标。',
         avatar_text_fallback: '不传 src 和 icon 时，取 text 的第一个字符。',

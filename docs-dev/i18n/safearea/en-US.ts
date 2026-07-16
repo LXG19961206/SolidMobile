@@ -6,9 +6,6 @@ export default {
     componentIntro: {
         SafeAreaIntro: 'Safe area spacer to avoid notches and home indicators.'
     },
-    nav: {
-        safearea: 'SafeArea'
-    },
     demoDesc: {
         safearea_top: 'Place at top to avoid notch and status bar.',
         safearea_bottom: 'Place at bottom to avoid Home Indicator.'

@@ -10,9 +10,6 @@ export default {
     componentIntro: {
         PullRefreshIntro: 'Pull-down-to-refresh wrapper with damping and states.'
     },
-    nav: {
-        pullrefresh: 'PullRefresh'
-    },
     demoDesc: {
         pullrefresh_custom_text: 'Customize status text for each state.',
         pullrefresh_with_list: 'List has built-in pullRefresh prop for integration.'

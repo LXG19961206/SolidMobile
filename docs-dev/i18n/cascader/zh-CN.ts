@@ -13,9 +13,6 @@ export default {
     componentIntro: {
         CascaderIntro: '多层级联选择，通过树形数据源逐级展开，支持无限层级。顶部 Tab 显示选中路径，可点击回退。'
     },
-    nav: {
-        cascader: 'Cascader 级联选择'
-    },
     demoDesc: {
         cascader_basic: '三级联动选择，选中叶子节点自动关闭。点击顶部 Tab 可回退到已选层级。',
         cascader_disabled: '设置 disabled: true 可禁用特定选项，点击无反应。',

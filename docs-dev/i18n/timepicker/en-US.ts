@@ -2,9 +2,6 @@ export default {
     componentIntro: {
         TimePickerIntro: 'HH:mm:ss time picker based on Picker. Form integration.'
     },
-    nav: {
-        timepicker: 'TimePicker'
-    },
     componentProps: {
         timepicker: {
             value: 'Current time, format HH:mm:ss.',

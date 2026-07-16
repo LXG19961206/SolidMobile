@@ -10,9 +10,6 @@ export default {
     componentIntro: {
         StepperIntro: '步进器，用于增加或减少数量。'
     },
-    nav: {
-        stepper: 'Stepper 步进器'
-    },
     demoDesc: {
         stepper_custom_icon: 'minusIcon / plusIcon 自定义加减按钮图标。',
         stepper_size: 'size 属性快捷改变整体大小。',

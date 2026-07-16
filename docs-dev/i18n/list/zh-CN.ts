@@ -18,9 +18,6 @@ export default {
     section: {
         listLazy: 'List Lazy Load'
     },
-    nav: {
-        list: 'List 列表'
-    },
     demoDesc: {
         list_example: '切换 Tab 查看不同模式。每个 Tab 独立管理数据源，互不干扰。'
     },

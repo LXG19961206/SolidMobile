@@ -1,7 +1,4 @@
 export default {
-    nav: {
-        datepicker: 'DatePicker'
-    },
     componentProps: {
         datepicker: {
             value: 'Current value, format YYYY-MM-DD or YYYY-MM-DD HH:mm:ss (datetime).',
@@ -20,11 +17,6 @@ export default {
             teleport: 'Picker portal mount target, default document.body.',
             show: 'Controlled: show the panel. Auto-managed when not provided.',
             onUpdateShow: 'Panel visibility callback for controlled mode.'
-        }
-    },
-    component: {
-        datePicker: {
-            title: 'Select Date'
         }
     }
 };

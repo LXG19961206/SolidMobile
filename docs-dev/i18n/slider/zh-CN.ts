@@ -11,9 +11,6 @@ export default {
     componentIntro: {
         SliderIntro: '滑块组件，支持单滑块、多滑块、自定义颜色和尺寸。'
     },
-    nav: {
-        slider: 'Slider 滑块'
-    },
     demoDesc: {
         slider_range: 'count=2 时出现两个滑块，控制一个范围。',
         slider_triple: 'count=3 三个滑块，value 为长度为 3 的数组。',

@@ -2,9 +2,6 @@ export default {
     componentIntro: {
         TimePickerIntro: 'HH:mm:ss 三列时间选择器，基于 Picker 封装。自动适配 Form。'
     },
-    nav: {
-        timepicker: 'TimePicker 时间选择'
-    },
     componentProps: {
         timepicker: {
             value: '当前选中时间，格式 HH:mm:ss。',

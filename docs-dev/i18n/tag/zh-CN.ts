@@ -36,9 +36,6 @@ export default {
     componentIntro: {
         TagIntro: '用于标记和分类的小型标签，支持多种语义色和填充方式。'
     },
-    nav: {
-        tag: 'Tag 标签'
-    },
     demoDesc: {
         tag_dict: '用 outline variant 模拟 key-value 字典效果。',
         tag_cloud: '不同语义色搭配 round 胶囊样式，模拟文章标签或筛选条件。',

@@ -14,9 +14,6 @@ export default {
     componentIntro: {
         CheckboxIntro: '多选组件，配合 CheckboxGroup 使用。支持多种形状、半选状态和自定义图标。'
     },
-    nav: {
-        checkbox: 'Checkbox 复选框'
-    },
     cssVars: {
         Checkbox: {
             __sc_checkbox_border_color: '边框颜色。',

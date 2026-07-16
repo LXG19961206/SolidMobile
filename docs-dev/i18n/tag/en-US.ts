@@ -36,9 +36,6 @@ export default {
     componentIntro: {
         TagIntro: 'Small label for marking/categorizing. Semantic colors.'
     },
-    nav: {
-        tag: 'Tag'
-    },
     demoDesc: {
         tag_dict: 'outline variant for key-value dictionary style.',
         tag_cloud: 'Semantic colors with round pill style for tags or filters.',

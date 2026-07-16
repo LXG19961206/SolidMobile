@@ -49,9 +49,6 @@ export default {
     componentIntro: {
         InputIntro: 'Text input with types, clear button, prefix/suffix, FormItem integration.'
     },
-    nav: {
-        input: 'Input'
-    },
     cssVars: {
         Input: {
             __sc_input_affix_color: 'Input prefix/suffix color.',

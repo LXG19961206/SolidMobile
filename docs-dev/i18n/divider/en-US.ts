@@ -7,9 +7,6 @@ export default {
     componentIntro: {
         DividerIntro: 'Visual divider for content grouping. Horizontal/vertical, dashed.'
     },
-    nav: {
-        divider: 'Divider'
-    },
     demoDesc: {
         divider_vertical: 'Use direction=vertical for inline divider.'
     },

@@ -13,9 +13,6 @@ export default {
     componentIntro: {
         CascaderIntro: 'Multi-level cascade selector with tree data. Unlimited depth supported.'
     },
-    nav: {
-        cascader: 'Cascader'
-    },
     demoDesc: {
         cascader_basic: 'Three-level cascade. Auto-closes on leaf. Click tabs to go back.',
         cascader_disabled: 'Set disabled: true to disable options.',

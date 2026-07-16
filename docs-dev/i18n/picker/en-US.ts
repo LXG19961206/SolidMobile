@@ -2,9 +2,6 @@ export default {
     componentIntro: {
         PickerIntro: 'Scroll-wheel selector. Tree cascade and flat multi-column.'
     },
-    nav: {
-        picker: 'Picker'
-    },
     componentProps: {
         picker: {
             columns: 'Data source. Supports tree cascade and flat multi-column modes.',
@@ -24,29 +21,6 @@ export default {
             placeholders: 'Placeholder text per column. String applies to all, string[] per column.',
             ratio: 'Touch sensitivity multiplier, default 1.5.',
             swipeDuration: 'Inertia scroll duration (seconds), default 1.'
-        }
-    },
-    component: {
-        picker: {
-            props: {
-                columns: 'Data source. Supports tree cascade and flat multi-column modes.',
-                value: 'Current selected values (one per column).',
-                onChange: 'Value change callback.',
-                onConfirm: 'Confirm button callback.',
-                onCancel: 'Cancel button callback.',
-                show: 'Whether to show the picker panel.',
-                onUpdateShow: 'Panel visibility callback.',
-                title: 'Panel title.',
-                cancelText: 'Cancel button text.',
-                confirmText: 'Confirm button text.',
-                visibleItemCount: 'Visible item count (must be odd), default 7.',
-                optionHeight: 'Item height, defaults to CSS variable.',
-                teleport: 'Portal mount target.',
-                zIndex: 'z-index.',
-                placeholders: 'Placeholder option text.',
-                ratio: 'Touch swipe sensitivity ratio.',
-                swipeDuration: 'Inertia animation duration.'
-            }
         }
     }
 };

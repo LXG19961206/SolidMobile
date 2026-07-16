@@ -23,9 +23,6 @@ export default {
     componentIntro: {
         ButtonIntro: 'General-purpose action button with multiple variants, sizes, icons, loading, and link mode.'
     },
-    nav: {
-        button: 'Button'
-    },
     cssVars: {
         Button: {
             __sc_border_radius_full: 'Full border radius (round mode).',
@@ -77,24 +74,6 @@ export default {
             class: 'Custom CSS class.',
             style: 'Inline styles.',
             'aria-label': 'Accessibility label. Required for icon-only buttons.'
-        }
-    },
-    component: {
-        button: {
-            title: 'Button',
-            intro: 'General-purpose button component with multiple types, variants, and sizes.',
-            type: 'Button Type',
-            variant: 'Button Variant',
-            size: 'Button Size',
-            primary: 'Primary Button',
-            danger: 'Danger Button',
-            default: 'Default Button',
-            text: 'Text Button',
-            dashed: 'Dashed Button',
-            block: 'Block Button',
-            loading: 'Loading State',
-            disabled: 'Disabled State',
-            icon: 'Icon Button'
         }
     }
 };

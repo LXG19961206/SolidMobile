@@ -23,9 +23,6 @@ export default {
     componentIntro: {
         TextareaIntro: 'Multi-line text input. Auto-resize, clear, FormItem.'
     },
-    nav: {
-        textarea: 'Textarea'
-    },
     cssVars: {
         Textarea: {
             __sc_textarea_border_color: 'Textarea border color.',

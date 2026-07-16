@@ -26,9 +26,6 @@ export default {
     componentIntro: {
         DialogIntro: 'Centered modal dialog. Declarative component or imperative API.'
     },
-    nav: {
-        dialog: 'Dialog'
-    },
     demoDesc: {
         dialog_alert: 'Basic alert with confirm button only.',
         dialog_confirm: 'With cancel button for delete confirmation.',

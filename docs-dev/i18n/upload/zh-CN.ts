@@ -13,9 +13,6 @@ export default {
     componentIntro: {
         UploadIntro: '文件选择、预览与上传组件。支持图片缩略图网格和文件列表两种展示模式，通过 api 属性注入上传策略。'
     },
-    nav: {
-        upload: 'Upload 文件上传'
-    },
     demoDesc: {
         upload_iconmap: 'iconMap 按文件后缀指定图标，支持内置图标名或自定义 JSX。特殊 key image/video/audio 匹配 MIME 类别，* 为兜底。',
         upload_limits: 'maxCount 限制数量，maxSize 限制单文件大小，beforeUpload 自定义校验。',

@@ -9,9 +9,6 @@ export default {
         tabsMobileTitle: 'Tabs  (Mobile) Title',
         tabsScrollable: '横向滚动'
     },
-    nav: {
-        tabs: 'Tabs 标签页'
-    },
     demoDesc: {
         tabs_line: 'type=\'line\'，底部指示条跟随切换。',
         tabs_jsx: 'title 支持传入任意 JSX。',

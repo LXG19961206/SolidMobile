@@ -4,9 +4,6 @@ export default {
         notifyTypesDesc: 'primary / success / warning / danger (slide from top)',
         notifyCustomDesc: 'color / background custom appearance'
     },
-    nav: {
-        notify: 'Notify'
-    },
     demoDesc: {
         notify_primary: 'Primary notification.',
         notify_success: 'Success notification.',

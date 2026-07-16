@@ -1,7 +1,4 @@
 export default {
-    nav: {
-        datepicker: 'DatePicker 日期选择'
-    },
     componentProps: {
         datepicker: {
             value: '当前值，格式 YYYY-MM-DD 或 YYYY-MM-DD HH:mm:ss（datetime 模式）。',
@@ -20,11 +17,6 @@ export default {
             teleport: 'Picker 的 Portal 挂载目标，默认 document.body。',
             show: '受控模式：是否显示面板。不传时 DatePicker 自动管理。',
             onUpdateShow: '受控模式：面板开关回调。'
-        }
-    },
-    component: {
-        datePicker: {
-            title: '选择日期'
         }
     }
 };

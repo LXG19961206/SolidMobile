@@ -30,9 +30,6 @@ export default {
     componentIntro: {
         LoadingIntro: '展示加载中状态的视觉反馈。内置三种动画类型，支持自定义图标、文字、纵向布局及全屏遮罩模式。'
     },
-    nav: {
-        loading: 'Loading 加载'
-    },
     demoDesc: {
         loading_types: '三种内置动画：spinner 经典旋转圆环、circular 弧形旋转、dots 三点弹跳。',
         loading_pure: '不传 text / children 时只显示动画，适合按钮内或行内场景。',

@@ -22,9 +22,6 @@ export default {
     componentIntro: {
         CalendarIntro: 'Date picker with single and range selection. Popup or inline mode.'
     },
-    nav: {
-        calendar: 'Calendar'
-    },
     cssVars: {
         Calendar: {
             __sc_calendar_active_bg: 'Calendar selected date background.',
@@ -74,17 +71,6 @@ export default {
             readonly: 'Readonly.',
             lunar: '中国玩家的浪漫。',
             teleport: 'Mount target.'
-        }
-    },
-    component: {
-        calendar: {
-            weekdays: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
-            titleFormatter: null,
-            startLabel: 'Start',
-            endLabel: 'End',
-            confirm: 'OK',
-            confirmDisabled: 'Select a date range',
-            placeholder: 'Select Date'
         }
     }
 };

@@ -5,9 +5,6 @@ export default {
     componentIntro: {
         BackTopIntro: 'Back-to-top button built on FloatingBall. Auto-appears when scrolling past threshold. Smooth scroll to top on click.'
     },
-    nav: {
-        backtop: 'BackTop'
-    },
     demoDesc: {
         backtop_basic: 'Auto-appears when scrolling past threshold. Click to smoothly scroll back to top. Default: 200px.',
         backtop_custom: 'Custom children and style via children and style props.'

@@ -2,9 +2,6 @@ export default {
     componentIntro: {
         CityPickerIntro: 'Cascading region picker based on Picker. Provide your own data.'
     },
-    nav: {
-        citypicker: 'CityPicker'
-    },
     demoDesc: {
         citypicker_deep: 'Use Picker directly with 6-level tree data for auto-cascading.'
     },

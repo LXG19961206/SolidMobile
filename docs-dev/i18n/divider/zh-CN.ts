@@ -7,9 +7,6 @@ export default {
     componentIntro: {
         DividerIntro: '将内容分组的视觉分隔线，支持水平/垂直方向、文字和虚线样式。'
     },
-    nav: {
-        divider: 'Divider 分割线'
-    },
     demoDesc: {
         divider_vertical: 'direction=\'vertical\'，行内使用。'
     },

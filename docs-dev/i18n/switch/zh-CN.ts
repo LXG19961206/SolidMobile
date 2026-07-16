@@ -12,9 +12,6 @@ export default {
     componentIntro: {
         SwitchIntro: '在两种状态间切换的交互控件。支持受控 / 非受控模式，自定义尺寸、颜色及禁用状态。'
     },
-    nav: {
-        switch: 'Switch 开关'
-    },
     demoDesc: {
         switch_text_label: '文案显示在滑块右侧。如需"左 label + 滑块"布局，Switch 本身是行内元素，在外部包一个 flex 容器即可轻松实现。',
         switch_uncontrolled: '不传 checked，组件自行管理开关状态。',

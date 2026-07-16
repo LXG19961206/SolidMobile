@@ -21,9 +21,6 @@ export default {
     componentIntro: {
         ListIntro: 'Scroll-loading list. Controlled/uncontrolled, virtual, pull-to-refresh.'
     },
-    nav: {
-        list: 'List'
-    },
     demoDesc: {
         list_example: 'Switch tabs for different modes. Each tab manages its own data.'
     },

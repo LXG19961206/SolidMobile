@@ -15,9 +15,6 @@ export default {
     componentIntro: {
         UploadIntro: 'File selection, preview, upload. Image grid and file list.'
     },
-    nav: {
-        upload: 'Upload'
-    },
     demoDesc: {
         upload_iconmap: 'iconMap maps extensions to icons. Special keys: image/video/audio for MIME, * for fallback.',
         upload_limits: 'maxCount limits files; maxSize limits per-file; beforeUpload for validation.',

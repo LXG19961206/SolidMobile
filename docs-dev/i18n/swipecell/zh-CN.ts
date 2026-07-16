@@ -11,9 +11,6 @@ export default {
         swipeCellDisabled: 'Swipe Cell Disabled',
         swipeCellDisabledDesc: 'Swipe Cell Disabled Desc'
     },
-    nav: {
-        swipecell: 'SwipeCell 滑动单元格'
-    },
     componentProps: {
         swipecell: {
             rightActions: '右侧滑出按钮。',

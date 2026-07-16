@@ -22,9 +22,6 @@ export default {
     componentIntro: {
         CalendarIntro: '支持单选和范围选择，默认弹出模式（底部半屏）。也可平铺展示。所有样式通过 CSS 变量控制。'
     },
-    nav: {
-        calendar: 'Calendar 日历'
-    },
     cssVars: {
         Calendar: {
             __sc_calendar_active_bg: '选中态背景色。',
@@ -74,17 +71,6 @@ export default {
             readonly: '只读。',
             lunar: '中国玩家的浪漫。',
             teleport: '挂载目标。'
-        }
-    },
-    component: {
-        calendar: {
-            weekdays: ["日","一","二","三","四","五","六"],
-            titleFormatter: null,
-            startLabel: '开始',
-            endLabel: '结束',
-            confirm: '确定',
-            confirmDisabled: '请选择日期范围',
-            placeholder: '选择日期'
         }
     }
 };

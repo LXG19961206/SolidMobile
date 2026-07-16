@@ -10,9 +10,6 @@ export default {
     componentIntro: {
         TabBarIntro: '移动端底部标签导航栏，支持图标+文字、徽标红点、自定义颜色。一般配合页面容器使用。'
     },
-    nav: {
-        tabbar: 'TabBar 标签栏'
-    },
     demoDesc: {
         tabbar_badge: 'Badge + dot 展示未读消息数。',
         tabbar_animated_icon: 'icon 属性接受任意 JSX，TabBarItem 自动注入 active 布尔 prop，组件据此切换选中态样式。适合 Lottie / Rive / CSS animation 等方案。',

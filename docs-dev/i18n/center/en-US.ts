@@ -38,9 +38,6 @@ export default {
     componentIntro: {
         CenterIntro: 'Simple centering utility. Flex both-axis by default.'
     },
-    nav: {
-        center: 'Center'
-    },
     demoDesc: {
         center_default: 'Default both-axis flex centering. The most common use case.',
         center_horizontal: 'Center horizontally only.',

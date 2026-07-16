@@ -9,9 +9,6 @@ export default {
     componentIntro: {
         FloatingBallIntro: '固定定位的悬浮球组件。支持拖动、松手自动吸附到最近边缘。常用于回到顶部、页面导航、快捷操作等场景。'
     },
-    nav: {
-        floatingball: 'FloatingBall 悬浮球'
-    },
     cssVars: {
         FloatingBall: {
             __sc_floating_ball_size: '悬浮球尺寸，默认 44px。',

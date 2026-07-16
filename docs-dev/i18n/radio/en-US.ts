@@ -12,9 +12,6 @@ export default {
     componentIntro: {
         RadioIntro: 'Single-select with RadioGroup. Shapes, custom icons, colors.'
     },
-    nav: {
-        radio: 'Radio'
-    },
     cssVars: {
         Radio: {
             __sc_radio_border_color: 'Radio border color.',

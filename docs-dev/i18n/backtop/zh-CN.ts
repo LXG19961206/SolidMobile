@@ -5,9 +5,6 @@ export default {
     componentIntro: {
         BackTopIntro: '基于 FloatingBall 的回到顶部组件。滚动超过阈值自动出现，点击平滑回到顶部。'
     },
-    nav: {
-        backtop: 'BackTop 回到顶部'
-    },
     demoDesc: {
         backtop_basic: '滚动超过阈值自动出现，点击平滑回到顶部。默认阈值 200px。',
         backtop_custom: '自定义内容和样式，通过 children 和 style 属性。'

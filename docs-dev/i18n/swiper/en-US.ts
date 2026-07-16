@@ -8,9 +8,6 @@ export default {
     componentIntro: {
         SwiperIntro: 'Carousel with swipe, autoplay, loop, vertical, custom indicators.'
     },
-    nav: {
-        swiper: 'Swiper'
-    },
     cssVars: {
         Swiper: {
             __sc_swiper_dot_active_color: 'Swiper active indicator color.',

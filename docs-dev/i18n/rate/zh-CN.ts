@@ -8,9 +8,6 @@ export default {
     componentIntro: {
         RateIntro: '评分组件，支持半选、清除、自定义图标和颜色。'
     },
-    nav: {
-        rate: 'Rate 评分'
-    },
     demoDesc: {
         rate_count: 'count 控制图标总数。',
         rate_size_gutter: 'size 图标大小，gutter 间距。',

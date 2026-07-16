@@ -32,9 +32,6 @@ export default {
     componentIntro: {
         IconIntro: '131 curated Remix Icons in line and fill variants.'
     },
-    nav: {
-        icon: 'Icon'
-    },
     demoDesc: {
         icon_treeshake: 'Import from solid-component/icons. Bundler tree-shakes unused icons.',
         icon_with_button: 'variant=\'line\' (default) for outline style, variant=\'fill\' for solid style.',

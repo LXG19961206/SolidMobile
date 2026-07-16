@@ -21,9 +21,6 @@ export default {
     componentIntro: {
         FormIntro: '表单容器，通过 FormItem 统一管理字段值、校验和提交。'
     },
-    nav: {
-        form: 'Form 表单'
-    },
     componentProps: {
         form: {
             value: '受控值。',

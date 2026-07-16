@@ -1,7 +1,4 @@
 export default {
-    nav: {
-        lazyload: 'Lazyload 懒加载'
-    },
     demoDesc: {
         lazyload_list: '上部 320px 是说明区，下面的文档卡片被推出视口。向下滚动后卡片逐个进入视口触发懒加载。',
         lazyload_active: '点击按钮触发 active，同样经历 Loading → 显示内容的延迟过程。',

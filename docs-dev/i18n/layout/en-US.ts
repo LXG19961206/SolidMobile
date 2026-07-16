@@ -18,9 +18,6 @@ export default {
     componentIntro: {
         LayoutIntro: 'Flex-based 24-column grid. Row container, Col with span/offset.'
     },
-    nav: {
-        layout: 'Layout'
-    },
     demoDesc: {
         layout_grid: 'Col span is 1-24. Total exceeding 24 wraps automatically.',
         layout_offset: 'offset sets left margin on 24-grid.',

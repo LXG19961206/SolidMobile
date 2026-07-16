@@ -14,9 +14,6 @@ export default {
     componentIntro: {
         TooltipIntro: '气泡提示组件，hover/click/focus 时在触发元素旁弹出气泡。内置自动翻转定位、CSS 三角箭头、延迟控制，通过 Portal 渲染避免层级遮挡。'
     },
-    nav: {
-        tooltip: 'Tooltip 气泡提示'
-    },
     cssVars: {
         Tooltip: {
             __sc_tooltip_bg: '气泡背景色，默认 #1f2937。',

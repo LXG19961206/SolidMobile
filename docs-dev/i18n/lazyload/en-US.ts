@@ -2,9 +2,6 @@ export default {
     componentIntro: {
         LazyloadIntro: 'Lazy-loads content when scrolled into viewport.'
     },
-    nav: {
-        lazyload: 'Lazyload'
-    },
     demoDesc: {
         lazyload_list: 'Top 320px is description; scroll down for lazy-load cards.',
         lazyload_active: 'Click to toggle active, showing Loading → content lifecycle.',

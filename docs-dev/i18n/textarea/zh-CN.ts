@@ -23,9 +23,6 @@ export default {
     componentIntro: {
         TextareaIntro: '多行文本输入组件。支持自动撑高、字数统计、清除按钮，可通过 FormItem 接入表单。'
     },
-    nav: {
-        textarea: 'Textarea 多行'
-    },
     cssVars: {
         Textarea: {
             __sc_textarea_border_color: '边框颜色。',

@@ -23,9 +23,6 @@ export default {
         dialogComponentDismiss: 'Component & Manual Dismiss',
         dialogComponentDismissDesc: 'Declarative JSX component / handle.dismiss() for manual close'
     },
-    nav: {
-        dialog: 'Dialog 弹窗'
-    },
     demoDesc: {
         dialog_alert: '基础提示，仅确认按钮。',
         dialog_confirm: '带取消按钮，常用于删除确认。',

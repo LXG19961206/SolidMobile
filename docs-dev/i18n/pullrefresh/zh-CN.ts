@@ -10,9 +10,6 @@ export default {
     componentIntro: {
         PullRefreshIntro: '包裹内容区域，支持下拉手势触发刷新，带阻尼反馈、加载状态和成功提示。'
     },
-    nav: {
-        pullrefresh: 'PullRefresh 下拉刷新'
-    },
     demoDesc: {
         pullrefresh_custom_text: '自定义各状态文案。',
         pullrefresh_with_list: 'List 内置 pullRefresh 属性，开启后自动集成下拉刷新。'

@@ -49,9 +49,6 @@ export default {
     componentIntro: {
         InputIntro: '文本输入组件。支持多种类型、清除按钮、前后缀、字数统计，可通过 FormItem 接入表单。'
     },
-    nav: {
-        input: 'Input 输入框'
-    },
     cssVars: {
         Input: {
             __sc_input_affix_color: '前后缀颜色。',

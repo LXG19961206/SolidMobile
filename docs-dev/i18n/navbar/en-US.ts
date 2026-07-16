@@ -2,9 +2,6 @@ export default {
     componentIntro: {
         NavBarIntro: 'Top navigation bar with left/center/right layout.'
     },
-    nav: {
-        navbar: 'NavBar'
-    },
     demoDesc: {
         navbar_fixed: 'fixed + placeholder for top positioning.',
         navbar_basic: 'Simplest navbar with just a title.',

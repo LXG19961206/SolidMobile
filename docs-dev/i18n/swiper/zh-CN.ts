@@ -8,9 +8,6 @@ export default {
     componentIntro: {
         SwiperIntro: '轮播组件，支持手势滑动、自动播放、循环、纵向滚动、自定义指示器。可通过 imgUrls 快速渲染图片轮播。'
     },
-    nav: {
-        swiper: 'Swiper 轮播'
-    },
     cssVars: {
         Swiper: {
             __sc_swiper_dot_active_color: '当前指示器颜色。',

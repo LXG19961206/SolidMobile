@@ -8,9 +8,6 @@ export default {
     componentIntro: {
         BadgeIntro: 'Small badge for message count, attached to icons, buttons, or tabs.'
     },
-    nav: {
-        badge: 'Badge'
-    },
     demoDesc: {
         badge_with_avatar: 'Badge on avatar for unread message count.',
         badge_with_button: 'Badge on button for pending item count.',

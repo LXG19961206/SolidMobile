@@ -11,9 +11,6 @@ export default {
         swipeCellRight: 'Swipe Cell Right',
         swipeCellRightDesc: 'Swipe Cell Right Desc'
     },
-    nav: {
-        swipecell: 'SwipeCell'
-    },
     componentProps: {
         swipecell: {
             rightActions: 'Right-side swipe actions.',

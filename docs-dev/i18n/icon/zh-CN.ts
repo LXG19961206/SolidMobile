@@ -32,9 +32,6 @@ export default {
         iconLibrary: 'Icon Library',
         iconButton: 'Icon Button'
     },
-    nav: {
-        icon: 'Icon 图标'
-    },
     demoDesc: {
         icon_treeshake: '从 solid-component/icons 导入单个图标组件，打包工具自动 tree-shake，只打包实际使用的图标。',
         icon_with_button: 'variant=\'line\'（默认）为线性空心风格，variant=\'fill\' 为填充实心风格。',

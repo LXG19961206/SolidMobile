@@ -12,9 +12,6 @@ export default {
     componentIntro: {
         RadioIntro: '单选组件，配合 RadioGroup 使用。支持多种形状、自定义图标和颜色。'
     },
-    nav: {
-        radio: 'Radio 单选框'
-    },
     cssVars: {
         Radio: {
             __sc_radio_border_color: '边框颜色。',

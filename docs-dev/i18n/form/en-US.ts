@@ -21,9 +21,6 @@ export default {
     componentIntro: {
         FormIntro: 'Form container with FormItem for value management and validation.'
     },
-    nav: {
-        form: 'Form'
-    },
     componentProps: {
         form: {
             value: 'Controlled form value.',

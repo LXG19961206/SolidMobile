@@ -14,9 +14,6 @@ export default {
     componentIntro: {
         EmptyIntro: '数据为空时的占位提示。内置三种预设图片，也支持自定义 JSX 和底部操作。'
     },
-    nav: {
-        empty: 'Empty 空状态'
-    },
     demoDesc: {
         empty_presets: 'image 支持 \'default\'（通用）、\'network\'（网络异常）、\'search\'（无搜索结果）三种预设。',
         empty_custom_image: 'image 支持传入任意 JSX，不再局限于内置图标。',

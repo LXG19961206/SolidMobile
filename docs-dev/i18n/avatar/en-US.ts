@@ -20,9 +20,6 @@ export default {
     componentIntro: {
         AvatarIntro: 'User avatar with fallback: image to icon to first letter.'
     },
-    nav: {
-        avatar: 'Avatar'
-    },
     demoDesc: {
         avatar_icon_fallback: 'Shows icon when src is not provided.',
         avatar_text_fallback: 'When no src or icon, shows first character of text.',

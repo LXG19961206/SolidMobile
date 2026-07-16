@@ -30,9 +30,6 @@ export default {
     componentIntro: {
         SelectIntro: 'Option selector based on Picker. Tap to open.'
     },
-    nav: {
-        select: 'Select'
-    },
     demoDesc: {
         select_basic: 'When show is omitted, Select manages its own state.',
         select_form: 'Inside FormItem for automatic form value management.',
@@ -56,24 +53,6 @@ export default {
             teleport: 'Portal mount target.',
             show: 'Controlled: show the selector. Auto-managed when not provided.',
             onUpdateShow: 'Panel visibility callback.'
-        }
-    },
-    component: {
-        select: {
-            props: {
-                options: 'Options list.',
-                value: 'Current selected value.',
-                onChange: 'Value change callback.',
-                onConfirm: 'Confirm callback.',
-                placeholder: 'Placeholder text when no value selected.',
-                title: 'Panel title.',
-                cancelText: 'Cancel button text.',
-                confirmText: 'Confirm button text.',
-                visibleItemCount: 'Visible item count.',
-                teleport: 'Portal mount target.',
-                show: 'Whether to show the panel. Auto-managed when not set.',
-                onUpdateShow: 'Panel visibility callback.'
-            }
         }
     }
 };

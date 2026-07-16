@@ -30,9 +30,6 @@ export default {
     componentIntro: {
         LoadingIntro: 'Loading state feedback. Three animations, custom icons, overlay.'
     },
-    nav: {
-        loading: 'Loading'
-    },
     demoDesc: {
         loading_types: 'Three animations: spinner, circular, dots.',
         loading_pure: 'Animation only without text. Suitable for inline or button use.',
