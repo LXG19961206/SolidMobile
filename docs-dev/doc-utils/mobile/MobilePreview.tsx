@@ -162,6 +162,40 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
         {props.children}
       </div>
 
+      {/* Prev / Next — fixed footer below scroll area */}
+      <Show when={nav().prev || nav().next}>
+        <div style={{
+          display: 'flex', 'justify-content': 'space-between',
+          padding: '10px 16px', 'flex-shrink': 0,
+          'border-top': '1px solid var(--sc-color-border, #e5e7eb)',
+        }}>
+          <Show when={nav().prev} fallback={<span />}>
+            <span
+              onClick={() => navigateTo(nav().prev!.key)}
+              style={{
+                'font-size': '0.85rem', color: 'var(--sc-color-primary, #1677ff)',
+                cursor: 'pointer', display: 'inline-flex', 'align-items': 'center', gap: '4px',
+              }}
+            >
+              <Icon name="arrow-left" size={14} />
+              {t('nav.' + nav().prev!.key) || nav().prev!.key}
+            </span>
+          </Show>
+          <Show when={nav().next}>
+            <span
+              onClick={() => navigateTo(nav().next!.key)}
+              style={{
+                'font-size': '0.85rem', color: 'var(--sc-color-primary, #1677ff)',
+                cursor: 'pointer', display: 'inline-flex', 'align-items': 'center', gap: '4px',
+              }}
+            >
+              {t('nav.' + nav().next!.key) || nav().next!.key}
+              <Icon name="arrow-right" size={14} />
+            </span>
+          </Show>
+        </div>
+      </Show>
+
       {/* ══ Bottom Sheet — Props ══ */}
       <Show when={showProps()}>
         <div
@@ -193,24 +227,6 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
               <div class={styles.empty}>暂无属性</div>
             )}
           </div>
-        </div>
-      </Show>
-
-      {/* Prev / Next floating buttons */}
-      <Show when={nav().prev || nav().next}>
-        <div class={styles.navFloat}>
-          <Show when={nav().prev}>
-            <button class={styles.navFloatBtn} onClick={() => navigateTo(nav().prev!.key)}>
-              <span class={styles.navFloatLabel}>Prev</span>
-              <Icon name="arrow-up" size={16} />
-            </button>
-          </Show>
-          <Show when={nav().next}>
-            <button class={styles.navFloatBtn} onClick={() => navigateTo(nav().next!.key)}>
-              <Icon name="arrow-down" size={16} />
-              <span class={styles.navFloatLabel}>Next</span>
-            </button>
-          </Show>
         </div>
       </Show>
 

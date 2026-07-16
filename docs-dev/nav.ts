@@ -24,6 +24,7 @@ export const GROUPS: MenuGroup[] = [
       { name: 'Swiper 轮播', key: 'swiper' }, { name: 'Ellipsis 文字省略', key: 'ellipsis' },
       { name: 'Tooltip 气泡提示', key: 'tooltip' },
       { name: 'FloatingBall 悬浮球', key: 'floatingball' },
+      { name: 'BackTop 回到顶部', key: 'backtop' },
       { name: 'PullRefresh 下拉刷新', key: 'pullrefresh' },
     ],
   },

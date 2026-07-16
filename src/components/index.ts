@@ -135,3 +135,6 @@ export type { TooltipProps, TooltipPlacement, TooltipTrigger, TooltipDelay } fro
 
 export { FloatingBall } from './FloatingBall';
 export type { FloatingBallProps, FloatingBallInset } from './FloatingBall';
+
+export { BackTop } from './BackTop';
+export type { BackTopProps } from './BackTop';

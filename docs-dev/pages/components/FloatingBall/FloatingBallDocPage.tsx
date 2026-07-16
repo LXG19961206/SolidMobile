@@ -41,7 +41,6 @@ export const FloatingBallDocPage = () => {
 
         <h2 class={styles.h2}>{t('section.floatingballBasic')}</h2>
         <DemoBlock
-          hideTitle
           title={t('demo.floatingballBasic')}
           desc={t('demoDesc.floatingball_basic')}
           code={`<FloatingBall>\n  <Icon name="arrow-up" size={22} />\n</FloatingBall>`}

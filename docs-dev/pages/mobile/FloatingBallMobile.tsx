@@ -18,7 +18,7 @@ const propsData = [
 
 const demoBox = {
   position: 'relative' as const,
-  height: '120px',
+  height: '100px',
   background: 'var(--sc-doc-card-placeholder, #f5f5f5)',
   'border-radius': '10px',
   'margin-bottom': '12px',
@@ -32,28 +32,18 @@ export const FloatingBallMobile: Component<FloatingBallMobileProps> = (props) =>
         {t('demoDesc.floatingball_intro')}
       </div>
 
-      {/* zIndex elevated above prev/next nav */}
       <div style={demoBox}>
-        <FloatingBall inset={{ right: 16, bottom: 50 }} zIndex={1100}>
+        <FloatingBall inset={{ right: 16, bottom: 30 }}>
           <Icon name="arrow-up" size={22} />
         </FloatingBall>
       </div>
 
-      {/* Left side */}
       <div style={demoBox}>
         <FloatingBall inset={{ left: 16, bottom: 30 }}>
           <span style="font-size:0.65rem;font-weight:600">TOP</span>
         </FloatingBall>
       </div>
 
-      {/* Center-ish */}
-      <div style={demoBox}>
-        <FloatingBall inset={{ right: 120, bottom: 50 }}>
-          <Icon name="send" size={20} />
-        </FloatingBall>
-      </div>
-
-      {/* Fancy gradient */}
       <div style={demoBox}>
         <FloatingBall
           inset={{ right: 16, bottom: 30 }}
@@ -68,9 +58,8 @@ export const FloatingBallMobile: Component<FloatingBallMobileProps> = (props) =>
         </FloatingBall>
       </div>
 
-      {/* Not draggable, top-right */}
       <div style={demoBox}>
-        <FloatingBall draggable={false} inset={{ right: 16, top: 60 }}>
+        <FloatingBall draggable={false} inset={{ left: 16, bottom: 30 }}>
           <Icon name="arrow-up" size={22} />
         </FloatingBall>
       </div>

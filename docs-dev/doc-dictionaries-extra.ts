@@ -207,8 +207,11 @@ export const extraDocMessages: LocaleMessages = {
       tabsScrollable: '横向滚动',
       floatingballBasic: '基础用法',
       floatingballSnap: '边缘吸附',
+      backtopBasic: '基础用法',
     },
     demoDesc: {
+      backtop_basic: '滚动超过阈值自动出现，点击平滑回到顶部。默认阈值 200px。',
+      backtop_custom: '自定义内容和样式，通过 children 和 style 属性。',
       floatingball_basic: '固定定位在右下角，可拖动，松手吸附到最近边缘。',
       floatingball_snap: '拖到屏幕左侧松手，球自动吸附到左边缘。',
       floatingball_intro: '固定定位的悬浮球，可拖动、松手自动吸附到最近边缘。常用于回到顶部、快捷操作、页面导航等移动端场景。',
@@ -231,8 +234,15 @@ export const extraDocMessages: LocaleMessages = {
       EllipsisIntro: '文字省略组件，处理文字超出隐藏。支持单行/多行省略、展开/收起。内置 ResizeObserver 自动响应容器尺寸变化，按钮使用原生 button 元素支持键盘无障碍操作。',
       TooltipIntro: '气泡提示组件，hover/click/focus 时在触发元素旁弹出气泡。内置自动翻转定位、CSS 三角箭头、延迟控制，通过 Portal 渲染避免层级遮挡。',
       FloatingBallIntro: '固定定位的悬浮球组件。支持拖动、松手自动吸附到最近边缘。常用于回到顶部、页面导航、快捷操作等场景。',
+      BackTopIntro: '基于 FloatingBall 的回到顶部组件。滚动超过阈值自动出现，点击平滑回到顶部。',
     },
     componentProps: {
+      backtop: {
+        threshold: '滚动超过此距离（px）才显示，默认 200。',
+        target: '监听滚动的元素。不传时自动向上查找最近的可滚动祖先，找不到 fallback 到 window。',
+        class: '自定义 CSS class。',
+        style: '内联样式。',
+      },
       floatingball: {
         inset: '初始位置，距视口边缘的距离。支持 left/top/right/bottom，默认 { right: 16, bottom: 24 }。',
         draggable: '是否可拖动，默认 true。',
@@ -291,6 +301,7 @@ export const extraDocMessages: LocaleMessages = {
       ellipsis: 'Ellipsis 文字省略',
       tooltip: 'Tooltip 气泡提示',
       floatingball: 'FloatingBall 悬浮球',
+      backtop: 'BackTop 回到顶部',
     },
     cssVars: {
       FloatingBall: {
@@ -520,8 +531,11 @@ export const extraDocMessages: LocaleMessages = {
       tabsScrollable: 'Scrollable Tabs',
       floatingballBasic: 'Basic Usage',
       floatingballSnap: 'Snap to Edge',
+      backtopBasic: 'Basic Usage',
     },
     demoDesc: {
+      backtop_basic: 'Auto-appears when scrolling past threshold. Click to smoothly scroll back to top. Default: 200px.',
+      backtop_custom: 'Custom children and style via children and style props.',
       floatingball_basic: 'Fixed at the bottom-right corner. Drag to move, auto-snaps to the nearest edge on release.',
       floatingball_snap: 'Drag to the left side and release — the ball auto-snaps to the left edge.',
       floatingball_intro: 'Fixed-position floating ball — draggable, auto-snaps to the nearest edge. Common for back-to-top, quick actions, or page navigation on mobile.',
@@ -544,8 +558,15 @@ export const extraDocMessages: LocaleMessages = {
       EllipsisIntro: 'Text truncation component with single/multi-line ellipsis and expand/collapse. Built-in ResizeObserver adapts to container size changes. Toggle buttons use native button elements for keyboard accessibility.',
       TooltipIntro: 'Floating tooltip bubble that appears on hover/click/focus. Features auto-flip positioning, CSS triangle arrow, delay control, and Portal rendering to avoid z-index conflicts.',
       FloatingBallIntro: 'Fixed-position floating ball. Draggable with auto snap-to-edge. Common for back-to-top buttons, quick actions, or page navigation.',
+      BackTopIntro: 'Back-to-top button built on FloatingBall. Auto-appears when scrolling past threshold. Smooth scroll to top on click.',
     },
     componentProps: {
+      backtop: {
+        threshold: 'Show when scroll exceeds this distance (px). Default: 200.',
+        target: 'Scroll target element. Auto-detects nearest scrollable ancestor when omitted; falls back to window.',
+        class: 'Custom CSS class.',
+        style: 'Inline style.',
+      },
       floatingball: {
         inset: 'Initial position from viewport edges. Supports left/top/right/bottom. Default: { right: 16, bottom: 24 }.',
         draggable: 'Whether the ball is draggable. Default: true.',
@@ -630,6 +651,7 @@ export const extraDocMessages: LocaleMessages = {
       ellipsis: 'Ellipsis',
       tooltip: 'Tooltip',
       floatingball: 'FloatingBall',
+      backtop: 'BackTop',
     },
   },
 };

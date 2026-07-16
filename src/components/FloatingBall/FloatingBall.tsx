@@ -111,6 +111,13 @@ export const FloatingBall: Component<FloatingBallProps> = (rawProps) => {
     setTimeout(() => setSnapping(false), 320);
   };
 
+  // ── iOS 左滑返回：必须在 touchstart 阶段 preventDefault ──
+  const onTouchStart = (e: TouchEvent) => {
+    if (local.draggable && ballEl.contains(e.target as Node)) {
+      e.preventDefault();
+    }
+  };
+
   // ── 指针事件 ──
   const onPointerDown = (e: PointerEvent) => {
     if (!local.draggable) return;
@@ -174,6 +181,7 @@ export const FloatingBall: Component<FloatingBallProps> = (rawProps) => {
         local.class,
       )}
       style={ballStyle()}
+      onTouchStart={onTouchStart}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
