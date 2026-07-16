@@ -4,7 +4,7 @@ export default {
         cascaderAsyncDesc: 'Async load.',
         cascaderDisabled: '禁用',
         cascaderDisabledDesc: 'Disabled options.',
-        cascaderRegion: 'Region',
+        cascaderRegion: '地区',
         cascaderRegionDesc: 'Region select.',
         cascaderRegionMobileDesc: 'Three-level cascade: province → district → street. Click top tabs to go back.',
         cascaderDisabledMobileDesc: 'Options with disabled: true cannot be clicked.',

@@ -6,7 +6,7 @@ export default {
         tagCloudDesc: 'Tag cloud.',
         tagDict: 'Dict',
         tagDictDesc: 'Key-value.',
-        tagFilter: 'Filter',
+        tagFilter: '筛选',
         tagFilterDesc: 'Tag filter.',
         tagOutlineRound: '线框',
         tagOutlineRoundDesc: 'Outline & round.',

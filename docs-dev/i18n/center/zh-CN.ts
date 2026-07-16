@@ -6,7 +6,7 @@ export default {
         centerFlexXDesc: 'Flex X.',
         centerFlexY: 'Flex Y',
         centerFlexYDesc: 'Flex Y.',
-        centerInline: 'Inline',
+        centerInline: '行内',
         centerInlineDesc: '嵌入模式。',
         centerPosition: '位置',
         centerPositionDesc: '位置。',

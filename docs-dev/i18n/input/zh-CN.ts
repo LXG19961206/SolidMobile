@@ -6,7 +6,7 @@ export default {
         inputCountdownDesc: 'Countdown.',
         inputForm: '表单',
         inputFormDesc: 'Input form.',
-        inputSearch: 'Search',
+        inputSearch: '搜索',
         inputSearchDesc: 'Search.',
         inputShowCount: 'Count',
         inputShowCountDesc: 'Show count.',

@@ -3,7 +3,7 @@ export default {
         overlayCenter: 'Overlay absolute center',
         overlayActionSheet: '动作面板',
         overlayActionSheetDesc: 'ActionSheet.',
-        overlayClose: 'Close',
+        overlayClose: '关闭',
         overlayCloseDesc: 'Click to close.',
         overlayMode: '遮罩',
         overlayModeDesc: 'Overlay.',

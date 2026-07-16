@@ -4,7 +4,7 @@ export default {
         dialogAlertDesc: 'Alert.',
         dialogConfirm: '确认',
         dialogConfirmDesc: 'Confirm.',
-        dialogCustomText: 'Custom Text',
+        dialogCustomText: '自定义文案',
         dialogCustomTextDesc: 'Custom text.',
         dialogDismiss: 'Dismiss',
         dialogDismissDesc: 'Dismiss.',
