@@ -1293,9 +1293,9 @@ export const docMessages: LocaleMessages = {
         __sc_textarea_placeholder_color: '占位符颜色。',
         __sc_textarea_text_color: '文字颜色。',
       },
-  },
+    },
 
-  demoDesc: {
+    demoDesc: {
       actionsheet_items: '传入 items 数组。',
       actionsheet_description: 'description 显示在标题下方。',
       avatar_icon_fallback: '不传 src 时显示 icon 图标。',
@@ -1441,8 +1441,8 @@ export const docMessages: LocaleMessages = {
       notify_warning: '警告通知。',
       notify_danger: '危险通知。',
       notify_manual: 'duration: 0 手动关闭。',
-  },
-  componentProps: {
+    },
+    componentProps: {
       picker: {
         columns: '数据源。支持 tree 级联和 flat 多列两种模式。',
         value: '当前选中值（每列一个，按列顺序排列）。',
@@ -3269,18 +3269,18 @@ export const docMessages: LocaleMessages = {
       '选择器': 'Pickers',
     },
     common: {
-      and: '和',
+      and: 'and',
       cssVars: 'CSS Variables',
-      events: '事件 / Events',
-      cellProps: 'Cell 属性',
-      cellGroupProps: 'CellGroup 属性',
-      colProps: 'Col 属性',
-      rowProps: 'Row 属性',
-      examples: '示例',
-      props: '属性 / Props',
-      copyCode: '复制代码',
-      copied: '已复制!',
-      viewCode: '查看代码',
+      events: 'Events',
+      cellProps: 'Cell Props',
+      cellGroupProps: 'CellGroup Props',
+      colProps: 'Col Props',
+      rowProps: 'Row Props',
+      examples: 'examples',
+      props: 'Props',
+      copyCode: 'copy code',
+      copied: 'copied',
+      viewCode: 'view code',
       propsTable: { name: 'Name', type: 'Type', default: 'Default', desc: 'Description' },
     },
     cssVars: {
@@ -3367,9 +3367,9 @@ export const docMessages: LocaleMessages = {
         __sc_textarea_placeholder_color: 'Textarea placeholder text color.',
         __sc_textarea_text_color: 'Textarea text color.',
       },
-  },
+    },
 
-  demoDesc: {
+    demoDesc: {
       actionsheet_items: 'Pass the items array.',
       actionsheet_description: 'Description displayed below the title.',
       avatar_icon_fallback: 'Shows icon when src is not provided.',
@@ -3515,8 +3515,8 @@ export const docMessages: LocaleMessages = {
       notify_warning: 'Warning notification.',
       notify_danger: 'Danger notification.',
       notify_manual: 'Manual close with duration: 0.',
-  },
-  componentProps: {
+    },
+    componentProps: {
       picker: {
         columns: 'Data source. Supports tree cascade and flat multi-column modes.',
         value: 'Currently selected values (one per column).',
