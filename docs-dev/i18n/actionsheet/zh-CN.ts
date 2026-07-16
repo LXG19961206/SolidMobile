@@ -19,7 +19,7 @@ export default {
         actionSheetTakePhotoDesc: 'Action Sheet Take Photo Description',
         actionSheetTwoLineDesc: 'Action Sheet Two Line Description',
         actionSheetUploadMethod: 'Action Sheet Upload Method',
-        actionSheetWithDisabled: "操作 面板 配合 禁用"
+        actionSheetWithDisabled: 'Action Sheet With Disabled'
     },
     componentIntro: {
         ActionSheetIntro: '从底部弹出的选项菜单。'

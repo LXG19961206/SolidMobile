@@ -2,7 +2,7 @@ export default {
     demo: {
         dividerDefault: '默认',
         dividerText: '文字',
-        dividerTextDesc: "配合 text."
+        dividerTextDesc: 'With text.'
     },
     componentIntro: {
         DividerIntro: '将内容分组的视觉分隔线，支持水平/垂直方向、文字和虚线样式。'

@@ -8,7 +8,7 @@ export default {
         cascaderRegionDesc: 'Region select.',
         cascaderRegionMobileDesc: 'Three-level cascade: province → district → street. Click top tabs to go back.',
         cascaderDisabledMobileDesc: 'Options with disabled: true cannot be clicked.',
-        cascaderAsyncMobileDesc: "选项 start empty, each level loaded on demand via on 加载 Children."
+        cascaderAsyncMobileDesc: 'Options start empty, each level loaded on demand via onLoadChildren.'
     },
     componentIntro: {
         CascaderIntro: '多层级联选择，通过树形数据源逐级展开，支持无限层级。顶部 Tab 显示选中路径，可点击回退。'

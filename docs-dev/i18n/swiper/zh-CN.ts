@@ -3,7 +3,7 @@ export default {
         swipeRight: '右侧',
         swipeRightDesc: 'Right swipe.',
         swiperCustomContent: 'Swiper Custom Content',
-        swiperCustomContentDesc: "轮播 自定义 内容 描述"
+        swiperCustomContentDesc: 'Swiper Custom Content Description'
     },
     componentIntro: {
         SwiperIntro: '轮播组件，支持手势滑动、自动播放、循环、纵向滚动、自定义指示器。可通过 imgUrls 快速渲染图片轮播。'

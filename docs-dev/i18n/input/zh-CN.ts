@@ -42,7 +42,7 @@ export default {
         inputSizeMobileDesc: 'Input Size Mobile Desc',
         inputSizeSmall: 'Input Size Small',
         inputSizeMedium: 'Input Size Medium',
-        inputSizeLarge: "输入 尺寸 大"
+        inputSizeLarge: 'Input Size Large'
     },
     componentIntro: {
         InputIntro: '文本输入组件。支持多种类型、清除按钮、前后缀、字数统计，可通过 FormItem 接入表单。'

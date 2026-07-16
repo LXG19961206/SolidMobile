@@ -4,7 +4,7 @@ export default {
         tabbarBasicDesc: 'Basic tab bar.',
         tabbarAnimatedIcon: 'Tabbar Animated Icon',
         tabbarAnimatedIconDesc: 'Tabbar Animated Icon Description',
-        tabbarAnimatedIconNote: "Tabbar 动画 图标 备注"
+        tabbarAnimatedIconNote: 'Tabbar Animated Icon Note'
     },
     componentIntro: {
         TabBarIntro: '移动端底部标签导航栏，支持图标+文字、徽标红点、自定义颜色。一般配合页面容器使用。'

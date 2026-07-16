@@ -9,7 +9,7 @@ export default {
         swipeCellMulti: 'Swipe Cell Multi',
         swipeCellMultiDesc: 'Swipe Cell Multi Desc',
         swipeCellDisabled: 'Swipe Cell Disabled',
-        swipeCellDisabledDesc: "滑动 单元格 禁用 描述"
+        swipeCellDisabledDesc: 'Swipe Cell Disabled Desc'
     },
     componentProps: {
         swipecell: {

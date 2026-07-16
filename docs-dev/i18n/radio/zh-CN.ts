@@ -7,7 +7,7 @@ export default {
         radioHorizontalColor: 'Radio Horizontal Color',
         radioHorizontalColorDesc: 'Radio Horizontal Color Description',
         radioStandaloneForm: 'Radio Standalone Form',
-        radioStandaloneFormDesc: "Radio 独立 Form 描述"
+        radioStandaloneFormDesc: 'Radio Standalone Form Description'
     },
     componentIntro: {
         RadioIntro: '单选组件，配合 RadioGroup 使用。支持多种形状、自定义图标和颜色。'

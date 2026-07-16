@@ -7,7 +7,7 @@ export default {
         switchColorText: 'Switch Color Text',
         switchColorTextDesc: 'Switch Color Text Desc',
         switchSizeDisabled: 'Switch Size Disabled',
-        switchSizeDisabledDesc: "开关 尺寸 禁用 描述"
+        switchSizeDisabledDesc: 'Switch Size Disabled Desc'
     },
     componentIntro: {
         SwitchIntro: '在两种状态间切换的交互控件。支持受控 / 非受控模式，自定义尺寸、颜色及禁用状态。'

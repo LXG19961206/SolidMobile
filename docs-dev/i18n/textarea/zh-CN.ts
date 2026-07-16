@@ -18,7 +18,7 @@ export default {
         textareaPlaceholderMore: 'Textarea Placeholder More',
         textareaPlaceholderMulti: 'Textarea Placeholder Multi',
         textareaReadonly: 'Textarea Readonly',
-        textareaReadonlyContent: "多行输入 只读 内容"
+        textareaReadonlyContent: 'Textarea Readonly Content'
     },
     componentIntro: {
         TextareaIntro: '多行文本输入组件。支持自动撑高、字数统计、清除按钮，可通过 FormItem 接入表单。'

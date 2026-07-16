@@ -9,7 +9,7 @@ export default {
         checkboxShapeColor: 'Checkbox Shape Color',
         checkboxShapeColorDesc: 'Checkbox Shape Color Description',
         checkboxStandaloneForm: 'Checkbox Standalone Form',
-        checkboxStandaloneFormDesc: "复选框 独立 Form 描述"
+        checkboxStandaloneFormDesc: 'Checkbox Standalone Form Description'
     },
     componentIntro: {
         CheckboxIntro: '多选组件，配合 CheckboxGroup 使用。支持多种形状、半选状态和自定义图标。'

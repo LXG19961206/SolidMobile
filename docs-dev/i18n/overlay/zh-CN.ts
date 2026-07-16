@@ -12,7 +12,7 @@ export default {
         overlayBasic: 'Basic Overlay',
         overlayBasicDesc: 'Semi-transparent overlay, click backdrop to close',
         overlayWithContent: 'Overlay + Content',
-        overlayWithContentDesc: "Place a 加载 card on the overlay, common for async operations"
+        overlayWithContentDesc: 'Place a Loading card on the overlay, common for async operations'
     },
     section: {
         overlay: '遮罩'

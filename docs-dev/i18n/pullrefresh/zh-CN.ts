@@ -5,7 +5,7 @@ export default {
         pullRefreshLoosingText: 'Pull Refresh Loosing Text',
         pullRefreshPull: 'Pull Refresh Pull',
         pullRefreshPullingText: 'Pull Refresh Pulling Text',
-        pullRefreshSuccessText: "下拉 刷新 成功 文字"
+        pullRefreshSuccessText: 'Pull Refresh Success Text'
     },
     componentIntro: {
         PullRefreshIntro: '包裹内容区域，支持下拉手势触发刷新，带阻尼反馈、加载状态和成功提示。'

@@ -3,7 +3,7 @@ export default {
         rateCount: 'Count',
         rateCountDesc: 'Custom count.',
         rateBasic: 'Basic Rating',
-        rateBasicDesc: "默认 5 stars, tap to rate"
+        rateBasicDesc: 'Default 5 stars, tap to rate'
     },
     componentIntro: {
         RateIntro: '评分组件，支持半选、清除、自定义图标和颜色。'

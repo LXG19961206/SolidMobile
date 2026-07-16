@@ -15,7 +15,7 @@ export default {
         avatarSizeMobileDesc: 'Avatar Size  (Mobile) Description',
         avatarSizeTitle: 'Avatar Size Title',
         avatarTextIcon: 'Avatar Text Icon',
-        avatarTextIconDesc: "Avatar 文字 图标 描述"
+        avatarTextIconDesc: 'Avatar Text Icon Description'
     },
     demoDesc: {
         avatar_icon_fallback: '不传 src 时显示 icon 图标。',

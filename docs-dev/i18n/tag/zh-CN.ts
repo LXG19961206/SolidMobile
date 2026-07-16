@@ -31,7 +31,7 @@ export default {
         tagSuccess: 'Tag Success',
         tagTypesMobileDesc: 'Tag Types  (Mobile) Description',
         tagVariantMobileDesc: 'Tag Variant  (Mobile) Description',
-        tagWarning: "标签 警告"
+        tagWarning: 'Tag Warning'
     },
     componentIntro: {
         TagIntro: '用于标记和分类的小型标签，支持多种语义色和填充方式。'
