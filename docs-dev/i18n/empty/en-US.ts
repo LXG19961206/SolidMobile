@@ -16,7 +16,7 @@ export default {
         empty: 'Empty'
     },
     demoDesc: {
-        empty_presets: 'image 支持 \'default\'（通用）、\'network\'（网络异常）、\'search\'（无搜索结果）三种预设。',
+        empty_presets: "image preset: 'default' (generic), 'network' (network error), 'search' (no results).",
         empty_custom_image: 'image accepts arbitrary JSX beyond built-in icons.',
         empty_children: 'Pass children for custom action buttons.'
     },

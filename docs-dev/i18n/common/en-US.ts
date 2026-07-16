@@ -540,7 +540,7 @@ export default {
     common: {
         and: 'and',
         cssVars: 'CSS Variables',
-        events: '事件 / Events',
+        events: 'Events',
         colProps: 'Col Props',
         rowProps: 'Row Props',
         examples: 'Examples',

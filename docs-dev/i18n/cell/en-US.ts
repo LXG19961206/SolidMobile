@@ -16,8 +16,8 @@ export default {
         cell: 'Cell'
     },
     common: {
-        cellProps: 'Cell 属性',
-        cellGroupProps: 'CellGroup 属性'
+        cellProps: 'Cell Props',
+        cellGroupProps: 'CellGroup Props'
     },
     demoDesc: {
         cell_basic: 'Cell has three parts: title (left), value (right), description (bottom).',

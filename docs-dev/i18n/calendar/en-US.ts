@@ -72,7 +72,7 @@ export default {
             maxRange: 'Max span in days for range.',
             showConfirm: 'Show confirm button for range mode.',
             readonly: 'Readonly.',
-            lunar: '中国玩家的浪漫。',
+            lunar: 'Chinese calendar with lunar dates.',
             teleport: 'Mount target.'
         }
     },
