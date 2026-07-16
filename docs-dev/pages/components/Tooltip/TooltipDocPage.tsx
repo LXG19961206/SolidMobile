@@ -4,11 +4,9 @@ import { Icon } from '../../../../src/components/Icon';
 import { createSignal } from 'solid-js';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('tooltip');
 import styles from './TooltipDocPage.module.css';
-import zhCN from '../../../i18n/tooltip/zh-CN';
-import enUS from '../../../i18n/tooltip/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const propsData: PropRow[] = [
   { name: 'content', type: 'JSX.Element', default: '—', required: true, desc: 'componentProps.tooltip.content' },

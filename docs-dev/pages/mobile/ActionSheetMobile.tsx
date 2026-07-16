@@ -5,10 +5,8 @@ export interface ActionSheetMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/actionsheet/zh-CN';
-import enUS from '../../i18n/actionsheet/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('actionsheet');
 import { ActionSheet } from '../../../src/components/ActionSheet';
 import type { ActionSheetItem } from '../../../src/components/ActionSheet';
 import { Cell, CellGroup } from '../../../src/components/Cell';

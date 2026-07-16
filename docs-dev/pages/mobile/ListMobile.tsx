@@ -8,10 +8,8 @@ export interface ListMobileProps {
 import { List } from '../../../src/components/List';
 import { Cell } from '../../../src/components/Cell';
 import { Avatar } from '../../../src/components/Avatar';
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/list/zh-CN';
-import enUS from '../../i18n/list/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('list');
 
 const propsData = [
   { name: 'data', type: 'I[]', desc: 'componentProps.list.data' },

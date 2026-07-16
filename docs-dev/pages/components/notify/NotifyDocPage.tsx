@@ -4,10 +4,8 @@ import { Cell } from '../../../../src/components/Cell';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
 import type { NotifyOptions } from '../../../../src/components/notify/types';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/notify/zh-CN';
-import enUS from '../../../i18n/notify/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('notify');
 
 const propsData: PropRow[] = [
   { name: 'type', type: "'primary' | 'success' | 'warning' | 'danger'", default: "'danger'", required: false, desc: 'componentProps.notify.type' },

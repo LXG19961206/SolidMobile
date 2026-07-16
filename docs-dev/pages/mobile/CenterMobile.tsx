@@ -5,10 +5,8 @@ export interface CenterMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/center/zh-CN';
-import enUS from '../../i18n/center/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('center');
 import { Center } from '../../../src/components/Center';
 
 const propsData = [

@@ -7,10 +7,8 @@ import { Center } from '../../../../src/components/Center';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './LazyloadDocPage.module.css';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/lazyload/zh-CN';
-import enUS from '../../../i18n/lazyload/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('lazyload');
 
 const propsData: PropRow[] = [
   { name: 'active', type: 'boolean', default: '—', required: false, desc: 'componentProps.lazyload.active' },
@@ -162,7 +160,7 @@ export const LazyloadDocPage: Component = () => {
         <h2 id="props" class={css.h2}>{t('common.props')}</h2>
         <PropsTable rows={propsData} />
 
-        {/* ── 基础用法 ── */}
+        {/* -- Basic Usage -- */}
         <h2 id="basic" class={css.h2}>{t('section.listLazy')}</h2>
         <DemoBlock
           title={t('demo.listLazy')}
@@ -170,7 +168,7 @@ export const LazyloadDocPage: Component = () => {
           code={codeBasic}
         >
           <div style={{ height: '400px', overflow: 'auto', 'border-radius': '8px', border: '1px solid #f3f4f6' }}>
-            {/* 固定撑高区域 — 把懒加载列表推出首屏 */}
+            {/* Spacer -- pushes lazy list below fold */}
             <div style={{
               height: '320px', display: 'flex', 'flex-direction': 'column',
               'align-items': 'center', 'justify-content': 'center',
@@ -179,7 +177,7 @@ export const LazyloadDocPage: Component = () => {
               <div style={{ 'font-size': '0.9rem', 'margin-bottom': '8px' }}>⬇ Scroll down to see more</div>
               <div style={{ 'font-size': '0.75rem' }}>Content below loads automatically on entering viewport</div>
             </div>
-            {/* 懒加载列表 */}
+            {/* Lazy Load List */}
             <For each={Array.from({ length: 12 })}>
               {(_, i) => (
                 <Lazyload height={64} rootMargin="0px" placeholder={<SkeletonCard />}>
@@ -192,7 +190,7 @@ export const LazyloadDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        {/* ── 受控模式 ── */}
+        {/* -- Controlled Mode -- */}
         <h2 id="controlled" class={css.h2}>{t('demo.controlled')}</h2>
         <DemoBlock
           title={t('demo.activeControl')}
@@ -202,7 +200,7 @@ export const LazyloadDocPage: Component = () => {
           <ControlledDemo />
         </DemoBlock>
 
-        {/* ── 滚动画廊 ── */}
+        {/* -- Scroll Gallery -- */}
         <h2 id="scroll" class={css.h2}>{t('section.scrollGallery')}</h2>
         <DemoBlock
           title={t('demo.imageGallery')}
@@ -210,7 +208,7 @@ export const LazyloadDocPage: Component = () => {
           code={codeScroll}
         >
           <div style={{ height: '400px', overflow: 'auto', 'border-radius': '8px' }}>
-            {/* 固定撑高区域 */}
+            {/* Spacer */}
             <div style={{
               height: '280px', display: 'flex', 'flex-direction': 'column',
               'align-items': 'center', 'justify-content': 'center',
@@ -219,7 +217,7 @@ export const LazyloadDocPage: Component = () => {
               <div style={{ 'font-size': '0.9rem', 'margin-bottom': '8px' }}>⬇ Scroll down to see more</div>
               <div style={{ 'font-size': '0.75rem' }}>Image cards will load when entering viewport</div>
             </div>
-            {/* 懒加载网格 */}
+            {/* Lazy Load Grid */}
             <div style={{ display: 'grid', 'grid-template-columns': '1fr 1fr', gap: '8px', padding: '4px' }}>
               <For each={Array.from({ length: 20 })}>
                 {(_, idx) => (

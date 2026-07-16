@@ -8,10 +8,8 @@ export interface PickerMobileProps {
 import { Picker } from '../../../src/components/Picker';
 import { Cell, CellGroup } from '../../../src/components/Cell';
 import type { PickerOption } from '../../../src/components/Picker';
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/picker/zh-CN';
-import enUS from '../../i18n/picker/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('picker');
 
 const propsData = [
   { name: 'columns', type: 'PickerOption[] | PickerOption[][]', desc: 'componentProps.picker.columns' },

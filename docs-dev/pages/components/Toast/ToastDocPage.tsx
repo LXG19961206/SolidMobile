@@ -3,10 +3,8 @@ import { Toast } from '../../../../src/components/Toast/ToastManager';
 import { Cell } from '../../../../src/components/Cell';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/toast/zh-CN';
-import enUS from '../../../i18n/toast/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('toast');
 import styles from './ToastDocPage.module.css';
 
 const propsData: PropRow[] = [
@@ -60,7 +58,7 @@ const ToastDocInner: Component = () => {
         <Cell title={t('demo.toastInfo')} clickable onClick={() => Toast.info('This is a message', { portalMount: m() })} />
       </DemoBlock>
       <DemoBlock title={t('demo.toastLoading')} code={`const h = Toast.loading('Loading...');\n// 完成后\nh.dismiss();`} groupCode="提示">
-        <Cell title="Loading（2s 后关闭）" clickable onClick={() => {
+        <Cell title="Loading (auto-close 2s)" clickable onClick={() => {
           const h = Toast.loading('Loading...', { portalMount: m(), overlay: false });
           setTimeout(() => h.dismiss(), 2000);
         }} />

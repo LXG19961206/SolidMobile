@@ -7,7 +7,6 @@ const PAGES = path.join(DOCS, 'pages');
 const MOBILE = path.join(PAGES, 'mobile');
 const COMPONENTS = path.join(PAGES, 'components');
 
-// Map component dir names to i18n keys
 const dirToKey = {
   actionsheet: 'actionsheet', avatar: 'avatar', badge: 'badge', button: 'button',
   BackTop: 'backtop', calendar: 'calendar', cascader: 'cascader', cell: 'cell',
@@ -37,29 +36,39 @@ function hasI18n(key) {
   return fs.existsSync(path.join(I18N, key));
 }
 
-function injectFile(filePath, key) {
+function injectPage(filePath, key, depth) {
   if (!fs.existsSync(filePath)) return;
   let content = fs.readFileSync(filePath, 'utf8');
-  if (content.includes('registerLocale')) return; // already done
 
-  // Determine import depth
-  const depth = filePath.includes('/mobile/') ? '../../' : '../../../';
-  const importPath = `${depth}i18n/${key}/`;
+  // Remove any old static i18n imports (zhCN/enUS + registerLocale calls)
+  content = content.replace(/\nimport zhCN from '[^']*i18n\/[^']*zh-CN';\n/g, '\n');
+  content = content.replace(/\nimport enUS from '[^']*i18n\/[^']*en-US';\n/g, '\n');
+  content = content.replace(/\nregisterLocale\(\{[^}]+\}\);\n/g, '\n');
+  content = content.replace(/, registerLocale/g, '');
+  content = content.replace(/registerLocale, /g, '');
 
-  // Insert after the useT import
-  const importLine = `import { useT${content.includes('registerLocale') ? '' : ', registerLocale'} } from '${depth}doc-i18n';`;
+  // Replace useT import to add loadLocale
+  const useTLine = `import { useT } from '${depth}doc-i18n';`;
+  const useTLoadLine = `import { useT, loadLocale } from '${depth}doc-i18n';`;
 
-  if (content.includes('import { useT } from')) {
-    content = content.replace(
-      `import { useT } from '${depth}doc-i18n';`,
-      `import { useT, registerLocale } from '${depth}doc-i18n';\nimport zhCN from '${importPath}zh-CN';\nimport enUS from '${importPath}en-US';\nregisterLocale({ 'zh-CN': zhCN, 'en-US': enUS });`
-    );
-  } else if (content.includes('import { useT, registerLocale }')) {
-    // Already has registerLocale but with different keys
-    return;
+  if (content.includes(useTLine) && !content.includes('loadLocale')) {
+    content = content.replace(useTLine, useTLoadLine);
+  } else if (content.includes("import { useT } from") && !content.includes('loadLocale')) {
+    // Handle minor variations
+    const match = content.match(/import \{ useT \} from '[^']*doc-i18n';/);
+    if (match) {
+      content = content.replace(match[0], match[0].replace('useT', 'useT, loadLocale'));
+    }
   } else {
-    console.log(`  SKIP (no useT import): ${path.relative(DOCS, filePath)}`);
+    console.log(`  SKIP: ${path.relative(DOCS, filePath)}`);
     return;
+  }
+
+  // Add loadLocale call right after the useT import line
+  const loadCall = `\nloadLocale('${key}');`;
+  const importLine = `import { useT, loadLocale } from '${depth}doc-i18n';`;
+  if (!content.includes(importLine + loadCall)) {
+    content = content.replace(importLine, importLine + loadCall);
   }
 
   fs.writeFileSync(filePath, content, 'utf8');
@@ -67,27 +76,22 @@ function injectFile(filePath, key) {
 }
 
 // Process desktop pages
-const compDirs = fs.readdirSync(COMPONENTS);
-for (const dir of compDirs) {
+for (const dir of fs.readdirSync(COMPONENTS)) {
   const compDir = path.join(COMPONENTS, dir);
   if (!fs.statSync(compDir).isDirectory()) continue;
   const key = getKey(dir);
   if (!key || !hasI18n(key)) continue;
-
-  // Find the doc page file
-  const files = fs.readdirSync(compDir).filter(f => f.endsWith('DocPage.tsx'));
-  for (const f of files) {
-    injectFile(path.join(compDir, f), key);
+  for (const f of fs.readdirSync(compDir).filter(f => f.endsWith('DocPage.tsx'))) {
+    injectPage(path.join(compDir, f), key, '../../../');
   }
 }
 
 // Process mobile pages
-const mobileFiles = fs.readdirSync(MOBILE).filter(f => f.endsWith('Mobile.tsx'));
-for (const f of mobileFiles) {
+for (const f of fs.readdirSync(MOBILE).filter(f => f.endsWith('Mobile.tsx'))) {
   const name = f.replace('Mobile.tsx', '');
   const key = getKey(name);
   if (!key || !hasI18n(key)) continue;
-  injectFile(path.join(MOBILE, f), key);
+  injectPage(path.join(MOBILE, f), key, '../../');
 }
 
 console.log('\nDone!');

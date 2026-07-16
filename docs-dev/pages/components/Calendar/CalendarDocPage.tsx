@@ -3,10 +3,8 @@ import { Calendar } from '../../../../src/components/Calendar';
 import { Cell } from '../../../../src/components/Cell';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/calendar/zh-CN';
-import enUS from '../../../i18n/calendar/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('calendar');
 import css from './CalendarDocPage.module.css';
 
 const propsData: PropRow[] = [
@@ -156,7 +154,7 @@ export const CalendarDocPage = () => {
       <PropsTable rows={propsData} />
 
       <h2 id="cssvars" class={css.h2}>{t('common.cssVars')}</h2>
-      <p class={css.intro} style="margin-bottom:1rem">通过 <code>:root</code> 或组件 <code>style</code> 覆盖以下变量。</p>
+      <p class={css.intro} style="margin-bottom:1rem">Via <code>:root</code> or component <code>style</code> 覆盖以下变量。</p>
       <PropsTable rows={cssVarRows} />
 
       <h2 id="demo" class={css.h2}>{t('demo.examples')}</h2>
@@ -176,7 +174,7 @@ export const CalendarDocPage = () => {
       <DemoBlock
         title={t('demo.calendarHoliday')}
         desc={t('demoDesc.calendar_holidays')}
-        code={`// 构建特殊日期映射\nconst special = { '2026-6-1': { label: 'Holiday', color: '#ef4444' } };\n\n<Calendar\n  dayRender={(d) => {\n    const spec = special[\`$\{d.year}-$\{d.month}-$\{d.day}\`];\n    return (\n      <span>\n        <span>{d.day}</span>\n        {spec && <small style={{color:spec.color}}>{spec.label}</small>}\n      </span>\n    );\n  }}\n  show={show()}\n  onUpdateShow={setShow}\n  title="Select Date"\n/>`}
+        code={`// Build special date map\nconst special = { '2026-6-1': { label: 'Holiday', color: '#ef4444' } };\n\n<Calendar\n  dayRender={(d) => {\n    const spec = special[\`$\{d.year}-$\{d.month}-$\{d.day}\`];\n    return (\n      <span>\n        <span>{d.day}</span>\n        {spec && <small style={{color:spec.color}}>{spec.label}</small>}\n      </span>\n    );\n  }}\n  show={show()}\n  onUpdateShow={setShow}\n  title="Select Date"\n/>`}
       >
         <PopupHoliday />
       </DemoBlock>

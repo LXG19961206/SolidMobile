@@ -6,10 +6,8 @@ import { Button } from '../../../../src/components/Button';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/input/zh-CN';
-import enUS from '../../../i18n/input/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('input');
 
 const propsData: PropRow[] = [
   { name: 'type', type: "'text' | 'number' | 'password' | 'tel' | 'email' | 'url'", default: "'text'", required: false, desc: 'componentProps.input.type' },
@@ -167,11 +165,11 @@ export const InputDocPage: Component = () => {
 
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.states')}</h2>
-      <DemoBlock title={t('demo.inputStates')} desc={t('demoDesc.input_states')} code={`<CellGroup>\n  <Cell title="禁用" value={<Input disabled value="不可编辑" />} />\n  <Cell title={t('demo.readonly')} value={<Input readonly value="可聚焦复制" />} />\n  <Cell title="错误" value={<Input error value="格式不正确" />} />\n</CellGroup>`}>
+      <DemoBlock title={t('demo.inputStates')} desc={t('demoDesc.input_states')} code={`<CellGroup>\n  <Cell title="Disabled" value={<Input disabled value="Not editable" />} />\n  <Cell title={t('demo.readonly')} value={<Input readonly value="可聚焦复制" />} />\n  <Cell title="Error" value={<Input error value="Invalid format" />} />\n</CellGroup>`}>
         <CellGroup>
-          <Cell title="禁用" value={<Input disabled value="不可编辑" />} />
+          <Cell title="Disabled" value={<Input disabled value="Not editable" />} />
           <Cell title={t('demo.readonly')} value={<Input readonly value="可聚焦复制" />} />
-          <Cell title="错误" value={<Input error value="格式不正确" />} />
+          <Cell title="Error" value={<Input error value="Invalid format" />} />
         </CellGroup>
       </DemoBlock>
 
@@ -189,8 +187,8 @@ export const InputDocPage: Component = () => {
           }]}>
             <Input placeholder="Enter username" clearable />
           </FormItem>
-          <FormItem name="email" label="邮箱">
-            <Input type="email" placeholder="请输入邮箱" clearable />
+          <FormItem name="email" label="Email">
+            <Input type="email" placeholder="Enter email" clearable />
           </FormItem>
           <div style={{ padding: '12px 1rem' }}>
             <Button type="primary" block nativeType="submit" text="Submit" />

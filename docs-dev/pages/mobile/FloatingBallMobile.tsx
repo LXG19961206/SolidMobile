@@ -2,10 +2,8 @@ import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 import { FloatingBall } from '../../../src/components/FloatingBall';
 import { Icon } from '../../../src/components/Icon';
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/floatingball/zh-CN';
-import enUS from '../../i18n/floatingball/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('floatingball');
 
 export interface FloatingBallMobileProps {
   components?: ComponentEntry[];

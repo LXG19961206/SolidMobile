@@ -1,9 +1,7 @@
 import { createSignal, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/tag/zh-CN';
-import enUS from '../../i18n/tag/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('tag');
 
 export interface TagMobileProps {
   components?: ComponentEntry[];

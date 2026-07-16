@@ -6,10 +6,8 @@ import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../d
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/citypicker/zh-CN';
-import enUS from '../../../i18n/citypicker/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('citypicker');
 import type { PickerOption } from '../../../../src/components/Picker';
 import type { PropRow } from '../../../doc-utils';
 
@@ -360,9 +358,9 @@ export const CityPickerDocPage: Component = () => {
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.deepCascade')}</h2>
       <p style={{ color: '#6b7280', margin: '0 0 12px', 'line-height': 1.6 }}>
-        如果需要更多层级（如省市区街村组），CityPicker 默认只做三级，
+        For deeper nesting (province/city/district/street/village/group), CityPicker defaults to 3 levels.
         For deeper levels, use the <code>{'<Picker>'}</code> component with tree data instead.
-        Picker 的 tree 模式支持任意深度级联，不限层级数。
+        Picker tree mode supports arbitrary depth cascading.
       </p>
 
       <DemoBlock title={t('demo.cityDeep6')} desc={t('demoDesc.citypicker_deep')} code={codeDeep}>

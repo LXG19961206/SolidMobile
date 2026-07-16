@@ -9,10 +9,8 @@ import { Cascader } from '../../../src/components/Cascader';
 import { Cell, CellGroup } from '../../../src/components/Cell';
 import { Icon } from '../../../src/components/Icon';
 import { Loading } from '../../../src/components/Loading';
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/cascader/zh-CN';
-import enUS from '../../i18n/cascader/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('cascader');
 import type { CascaderOption } from '../../../src/components/Cascader';
 
 const propsData = [

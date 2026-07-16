@@ -31,6 +31,19 @@ import zhCN from './i18n/common/zh-CN';
 import enUS from './i18n/common/en-US';
 registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
+/** Lazy-load a component's i18n chunk (dynamic import → Vite code-split) */
+const _loaded = new Set<string>();
+export function loadLocale(key: string) {
+  if (_loaded.has(key)) return;
+  _loaded.add(key);
+  Promise.all([
+    import(`./i18n/${key}/zh-CN.ts`),
+    import(`./i18n/${key}/en-US.ts`),
+  ]).then(([zh, en]) => {
+    registerLocale({ 'zh-CN': zh.default, 'en-US': en.default });
+  });
+}
+
 // Re-export everything from the library's i18n module
 export { useLocale, useT, setGlobalLocale, LocaleProvider } from '../src/i18n';
 

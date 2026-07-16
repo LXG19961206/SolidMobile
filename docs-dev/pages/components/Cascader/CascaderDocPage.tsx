@@ -6,10 +6,8 @@ import { Loading } from '../../../../src/components/Loading';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import type { CascaderOption } from '../../../../src/components/Cascader/types';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/cascader/zh-CN';
-import enUS from '../../../i18n/cascader/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('cascader');
 import css from './CascaderDocPage.module.css';
 
 const regionOptions: CascaderOption[] = [
@@ -219,7 +217,7 @@ export const CascaderDocPage = () => {
   return (
     <DocLayout>
     <div class={css.page}>
-      <h1 class={css.h1}>Cascader器</h1>
+      <h1 class={css.h1}>Cascader</h1>
       <p class={css.intro}>
         {t('componentIntro.CascaderIntro')}
       </p>
@@ -241,7 +239,7 @@ export const CascaderDocPage = () => {
       </DemoBlock>
 
       <DemoBlock
-        title="禁用选项"
+        title="Disabled Options"
         desc={t('demoDesc.cascader_disabled')}
         code={`const options = [\n  { text: 'Beijing', value: 'beijing' },\n  { text: 'Shanghai', value: 'shanghai', disabled: true },\n  { text: 'Guangdong', value: 'guangdong' },\n];`}
       >

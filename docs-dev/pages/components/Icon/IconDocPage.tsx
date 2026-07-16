@@ -2,10 +2,8 @@ import { createSignal, For, type Component } from 'solid-js';
 import { Icon } from '../../../../src/components/Icon';
 import { Button } from '../../../../src/components/Button';
 import type { IconName, IconVariant } from '../../../../src/components/Icon/types';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/icon/zh-CN';
-import enUS from '../../../i18n/icon/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('icon');
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import styles from './IconDocPage.module.css';
@@ -261,14 +259,14 @@ export const IconDocPage: Component = () => {
               classList={{ [styles.variantBtnActive!]: variant() === 'line' }}
               onClick={() => setVariant('line')}
             >
-              线性 Line
+              Line Style
             </button>
             <button
               class={styles.variantBtn}
               classList={{ [styles.variantBtnActive!]: variant() === 'fill' }}
               onClick={() => setVariant('fill')}
             >
-              填充 Fill
+              Fill Style
             </button>
           </div>
 

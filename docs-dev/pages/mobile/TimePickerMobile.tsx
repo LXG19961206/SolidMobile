@@ -1,9 +1,7 @@
 import { createSignal, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/timepicker/zh-CN';
-import enUS from '../../i18n/timepicker/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('timepicker');
 import { TimePicker } from '../../../src/components/TimePicker';
 import { Form, FormItem } from '../../../src/components/Form';
 import { Button } from '../../../src/components/Button';

@@ -9,10 +9,8 @@ import { Badge } from '../../../src/components/Badge';
 import { Avatar } from '../../../src/components/Avatar';
 import { Button } from '../../../src/components/Button';
 import { Tabs, Tab } from '../../../src/components/Tabs';
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/badge/zh-CN';
-import enUS from '../../i18n/badge/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('badge');
 import { Cell, CellGroup } from '../../../src/components/Cell';
 
 const propsData = [

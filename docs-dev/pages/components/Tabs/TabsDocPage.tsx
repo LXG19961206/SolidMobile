@@ -2,10 +2,8 @@ import { createSignal } from 'solid-js';
 import { Tabs, Tab } from '../../../../src/components/Tabs';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/tabs/zh-CN';
-import enUS from '../../../i18n/tabs/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('tabs');
 import css from './TabsDocPage.module.css';
 
 const tabsProps: PropRow[] = [
@@ -95,22 +93,22 @@ export const TabsDocPage = () => {
           </Tabs>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.customColor')} desc={t('demo.customColorDesc')} code={`<Tabs color="#22c55e" titleActiveColor="#22c55e">\n  <Tab title="绿色主题" name="a"><div>绿色</div></Tab>\n  <Tab title="标签" name="b"><div>标签</div></Tab>\n</Tabs>`}>
+        <DemoBlock title={t('demo.customColor')} desc={t('demo.customColorDesc')} code={`<Tabs color="#22c55e" titleActiveColor="#22c55e">\n  <Tab title="Green Theme" name="a"><div>Green</div></Tab>\n  <Tab title="Tabs" name="b"><div>Tab</div></Tab>\n</Tabs>`}>
           <Tabs color="#22c55e" titleActiveColor="#22c55e">
-            <Tab title="绿色主题" name="a"><div class={css.demoPanel}>绿色</div></Tab>
-            <Tab title="标签" name="b"><div class={css.demoPanel}>标签</div></Tab>
+            <Tab title="Green Theme" name="a"><div class={css.demoPanel}>Green</div></Tab>
+            <Tab title="Tabs" name="b"><div class={css.demoPanel}>Tab</div></Tab>
           </Tabs>
         </DemoBlock>
 
         <h2 id="controlled" class={css.h2}>{t('demo.controlled')}</h2>
-        <DemoBlock title={t('demo.activeOnChange')} desc={t('demoDesc.tabs_controlled')} code={`const [active, setActive] = createSignal('tab1');\n\n<Tabs active={active()} onChange={setActive}>\n  <Tab title="Tab1" name="tab1"><div>Content 1</div></Tab>\n  <Tab title="Tab2" name="tab2"><div>Content 2</div></Tab>\n  <Tab title="Tab3（禁用）" name="tab3" disabled><div>Content 3</div></Tab>\n</Tabs>\n\n<div>当前激活: {active()}</div>`}>
+        <DemoBlock title={t('demo.activeOnChange')} desc={t('demoDesc.tabs_controlled')} code={`const [active, setActive] = createSignal('tab1');\n\n<Tabs active={active()} onChange={setActive}>\n  <Tab title="Tab1" name="tab1"><div>Content 1</div></Tab>\n  <Tab title="Tab2" name="tab2"><div>Content 2</div></Tab>\n  <Tab title="Tab3 (Disabled)" name="tab3" disabled><div>Content 3</div></Tab>\n</Tabs>\n\n<div>Active: {active()}</div>`}>
           <Tabs active={active()} onChange={setActive}>
             <Tab title="Tab1" name="tab1"><div class={css.demoPanel}>Content 1</div></Tab>
             <Tab title="Tab2" name="tab2"><div class={css.demoPanel}>Content 2</div></Tab>
-            <Tab title="Tab3（禁用）" name="tab3" disabled><div class={css.demoPanel}>Content 3</div></Tab>
+            <Tab title="Tab3 (Disabled)" name="tab3" disabled><div class={css.demoPanel}>Content 3</div></Tab>
           </Tabs>
           <div style="margin-top:0.75rem;font-size:0.85rem;color:#6b7280">
-            当前激活: <code>{active()}</code>
+            Active: <code>{active()}</code>
           </div>
         </DemoBlock>
       </div>

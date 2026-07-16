@@ -2,10 +2,8 @@ import { type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 import { BackTop } from '../../../src/components/BackTop';
 import { Cell, CellGroup } from '../../../src/components/Cell';
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/backtop/zh-CN';
-import enUS from '../../i18n/backtop/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('backtop');
 
 export interface BackTopMobileProps {
   components?: ComponentEntry[];

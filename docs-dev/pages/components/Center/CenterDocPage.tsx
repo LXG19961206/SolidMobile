@@ -1,10 +1,8 @@
 import { Center } from '../../../../src/components/Center';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/center/zh-CN';
-import enUS from '../../../i18n/center/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('center');
 import styles from './CenterDocPage.module.css';
 
 const propsData: PropRow[] = [
@@ -78,10 +76,10 @@ export const CenterDocPage = () => {
       <DemoBlock
         title={t('demo.centerInline')}
         desc={t('demoDesc.center_inline')}
-        code={`<Center flexX inline>\n  <span>行内</span>\n</Center>`}
+        code={`<Center flexX inline>\n  <span>inline</span>\n</Center>`}
       >
         <span>
-          前面文字 <Center flexX inline><span style="background:var(--sc-color-primary, #1677ff);color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem">行内居中</span></Center> 后面文字
+          Before <Center flexX inline><span style="background:var(--sc-color-primary, #1677ff);color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem">Inline Center</span></Center> After
         </span>
       </DemoBlock>
 
@@ -90,7 +88,7 @@ export const CenterDocPage = () => {
       <DemoBlock
         title={t('demo.centerText')}
         desc={t('demoDesc.center_text')}
-        code={`<Center text>\n  <span>这段文字会居中</span>\n</Center>`}
+        code={`<Center text>\n  <span>This will be centered</span>\n</Center>`}
       >
         <div class={styles.demoContainer}>
           <Center text><Box>text-align: center</Box></Center>
@@ -100,10 +98,10 @@ export const CenterDocPage = () => {
       <DemoBlock
         title={t('demo.centerVertical')}
         desc={t('demoDesc.center_vertical_align')}
-        code={`<div style="line-height: 3">\n  大文字 <Center vertical inline>\n    <span>对齐我</span>\n  </Center>\n</div>`}
+        code={`<div style="line-height: 3">\n  Large text <Center vertical inline>\n    <span>Align me</span>\n  </Center>\n</div>`}
       >
         <div style="line-height: 3">
-          大文字 <Center vertical inline><Box>对齐我</Box></Center>
+          Large text <Center vertical inline><Box>Align me</Box></Center>
         </div>
       </DemoBlock>
 
@@ -112,10 +110,10 @@ export const CenterDocPage = () => {
       <DemoBlock
         title={t('demo.centerPosition')}
         desc={'absolute + transform centering. Center acts as a positioning container; the parent only needs a height.'}
-        code={`<div style={{ height: 160 }}>\n  <Center position>\n    <div>绝对居中</div>\n  </Center>\n</div>`}
+        code={`<div style={{ height: 160 }}>\n  <Center position>\n    <div>Absolute Center</div>\n  </Center>\n</div>`}
       >
         <div class={styles.demoContainer}>
-          <Center position><Box>绝对居中</Box></Center>
+          <Center position><Box>Absolute Center</Box></Center>
         </div>
       </DemoBlock>
     </div>

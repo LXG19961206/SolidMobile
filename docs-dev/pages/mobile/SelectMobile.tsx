@@ -6,10 +6,8 @@ export interface SelectMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { Select } from '../../../src/components/Select';
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/select/zh-CN';
-import enUS from '../../i18n/select/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('select');
 
 const propsData = [
   { name: 'options', type: '{ text: string; value: string | number; render?: JSX.Element }[]', desc: 'componentProps.select.options' },

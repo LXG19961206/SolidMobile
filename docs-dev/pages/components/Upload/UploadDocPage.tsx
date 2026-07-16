@@ -1,10 +1,8 @@
 import { createSignal, type Component, type JSX } from 'solid-js';
 import { Upload } from '../../../../src/components/Upload';
 import type { UploadFile } from '../../../../src/components/Upload';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/upload/zh-CN';
-import enUS from '../../../i18n/upload/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('upload');
 import { Toast } from '../../../../src/components/Toast';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
@@ -105,7 +103,7 @@ export const UploadDocPage: Component = () => {
         <p style={{ color: '#6b7280', 'line-height': 1.8, 'margin-bottom': '12px' }}>
           Upload does one thing: <strong>manage the file lifecycle</strong> (select → validate → display → delete). "How to upload" is a <strong>strategy</strong>, injected by you through the api prop — you write a function that returns a Promise, and Upload calls it. This is Inversion of Control: the component defines an <strong>interface</strong> (a function returning a Promise), and you provide the <strong>implementation</strong>. Tokens, interceptors, and HTTP libraries are all under your control.
         </p>
-        <CodeBlock code={`// 你的 IoC 容器 — 封装好的请求实例
+        <CodeBlock code={`// Your IoC container — wrapped request instance
 import { request } from '@/services/http';
 
 // 注入给 Upload。api 必须返回文件 URL 字符串，组件用于反显和预览
@@ -159,7 +157,7 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
 
   // 如果你用 XHR，可在 upload.onprogress 里调 onProgress
   const res = await fetch('/upload', { method: 'POST', body: form });
-  return res.json().url; // <-- 必须返回 URL 字符串
+  return res.json().url; // <-- must return URL string
 };
 
 <Upload api={uploadFile} maxCount={9} />`}>
@@ -212,13 +210,13 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
 
         <DemoBlock title={t('demo.callbacks')} desc={t('demoDesc.upload_callbacks')} code={`<Upload
   api={uploadFile}
-  onSuccess={(file, url) => Toast.success(\`\${file.name} 上传成功\`)}
-  onError={(file, msg) => Toast.error(\`\${file.name} 失败: \${msg}\`)}
+  onSuccess={(file, url) => Toast.success(\`\${file.name} upload success\`)}
+  onError={(file, msg) => Toast.error(\`\${file.name} failed: \${msg}\`)}
 />`}>
           <Upload
             api={mockApi}
-            onSuccess={(file) => Toast.success(`${file.name} 上传成功`)}
-            onError={(file, msg) => Toast.error(`${file.name} 失败: ${msg}`)}
+            onSuccess={(file) => Toast.success(`${file.name} upload success`)}
+            onError={(file, msg) => Toast.error(`${file.name} failed: ${msg}`)}
           />
         </DemoBlock>
 

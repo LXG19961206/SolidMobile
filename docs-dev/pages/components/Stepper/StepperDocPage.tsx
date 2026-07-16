@@ -7,10 +7,8 @@ import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
 import type { PropRow } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/stepper/zh-CN';
-import enUS from '../../../i18n/stepper/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('stepper');
 
 const stepperProps: PropRow[] = [
   { name: 'value', type: 'number', default: '—', required: false, desc: 'componentProps.stepper.value' },
@@ -77,11 +75,11 @@ export const StepperDocPage: Component = () => {
         </DemoBlock>
 
         <DemoBlock title={t('demo.step')} code={codeStep} groupCode="Stepper">
-          <Cell title="步长 2" value={<Stepper defaultValue={0} step={2} />} />
+          <Cell title="Step 2" value={<Stepper defaultValue={0} step={2} />} />
         </DemoBlock>
 
         <DemoBlock title={t('demo.decimal')} code={codeDecimal} groupCode="Stepper">
-          <Cell title="保留1位小数" value={<Stepper defaultValue={0} step={0.1} decimalLength={1} />} />
+          <Cell title="1 Decimal" value={<Stepper defaultValue={0} step={0.1} decimalLength={1} />} />
         </DemoBlock>
 
         <DemoBlock title={t('demo.customSize')} code={codeSize} groupCode="Stepper">
@@ -89,11 +87,11 @@ export const StepperDocPage: Component = () => {
         </DemoBlock>
 
         <DemoBlock title={t('demo.customIcon')} code={codeCustomIcon} groupCode="Stepper">
-          <Cell title="👍 赞 / 👎 踩" value={<Stepper defaultValue={3} minusIcon={<span style={{ transform: 'rotate(180deg)', display: 'inline-flex' }}><Icon name="heart" variant="fill" color="#333" /></span>} plusIcon={<Icon name="heart" variant="fill" color="#ff4d4f" />} />} />
+          <Cell title="Up / Down" value={<Stepper defaultValue={3} minusIcon={<span style={{ transform: 'rotate(180deg)', display: 'inline-flex' }}><Icon name="heart" variant="fill" color="#333" /></span>} plusIcon={<Icon name="heart" variant="fill" color="#ff4d4f" />} />} />
         </DemoBlock>
 
         <DemoBlock title={t('demo.disabled')} code={codeDisabled} groupCode="Stepper">
-          <Cell title="禁用" value={<Stepper value={3} disabled />} />
+          <Cell title="Disabled" value={<Stepper value={3} disabled />} />
         </DemoBlock>
 
         <DemoBlock title={t('demo.form')} desc={t('demo.formDesc')} code={codeForm}>

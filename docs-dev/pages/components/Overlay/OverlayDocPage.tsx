@@ -5,10 +5,8 @@ import { Cell } from '../../../../src/components/Cell';
 import { Button } from '../../../../src/components/Button';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/overlay/zh-CN';
-import enUS from '../../../i18n/overlay/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('overlay');
 import styles from './OverlayDocPage.module.css';
 
 const propsData: PropRow[] = [
@@ -40,25 +38,25 @@ const OverlayDocInner = () => {
         <Cell title={t('demo.overlayClose')} clickable onClick={() => s1s(true)} />
         <Overlay open={s1()} onClose={() => s1s(false)} mount={pm()}>
           <div class={styles.overlayContent}>
-            <div class={styles.overlayTitle}>提示</div>
-            <div class={styles.overlayBody}>点击遮罩背景或按 Escape 键关闭</div>
-            <Button type="primary" text="知道了" onClick={() => s1s(false)} />
+            <div class={styles.overlayTitle}>Notice</div>
+            <div class={styles.overlayBody}>Click backdrop or press Escape to close</div>
+            <Button type="primary" text="Got it" onClick={() => s1s(false)} />
           </div>
         </Overlay>
       </DemoBlock>
 
       <DemoBlock title={t('demo.overlayActionSheet')} desc={t('demoDesc.overlay_actionsheet')} code={`<ActionSheet open={open} onClose={...} items={...} />`} groupCode="overlayDemo">
         <Cell title="ActionSheet" clickable onClick={() => s2s(true)} />
-        <ActionSheet mount={pm()} open={s2()} onClose={() => s2s(false)} title="选择操作" closeable items={[{ name: 'Option 1' }, { name: 'Option 2' }, { name: 'Option 3' }]} cancelText="Cancel" />
+        <ActionSheet mount={pm()} open={s2()} onClose={() => s2s(false)} title="Choose Action" closeable items={[{ name: 'Option 1' }, { name: 'Option 2' }, { name: 'Option 3' }]} cancelText="Cancel" />
       </DemoBlock>
 
       <DemoBlock title={t('demo.noScrollLock')} desc={t('demo.noScrollLockDesc')} code={`<Overlay open={open} onClose={...} lockScroll={false}>...</Overlay>`} groupCode="overlayDemo">
         <Cell title={t('demo.noScrollLock')} clickable onClick={() => s3s(true)} />
         <Overlay open={s3()} onClose={() => s3s(false)} lockScroll={false} mount={pm()}>
           <div class={styles.overlayContent}>
-            <div class={styles.overlayTitle}>可滚动</div>
-            <div class={styles.overlayBody}>此时可以滚动页面</div>
-            <Button type="primary" text="关闭" onClick={() => s3s(false)} />
+            <div class={styles.overlayTitle}>Scrollable</div>
+            <div class={styles.overlayBody}>Page scroll is enabled</div>
+            <Button type="primary" text="Close" onClick={() => s3s(false)} />
           </div>
         </Overlay>
       </DemoBlock>

@@ -2,10 +2,8 @@ import { createSignal, type Component } from 'solid-js';
 import { Button } from '../../../../src/components/Button';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/button/zh-CN';
-import enUS from '../../../i18n/button/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('button');
 import styles from './ButtonDocPage.module.css';
 
 /* ---------------------------------------------------------------------- */
@@ -101,7 +99,7 @@ export const ButtonDocPage: Component = () => {
         </table>
       </div>
 
-      {/* ---- 基础用法 ---- */}
+      {/* -- Basic Usage -- */}
       <h2 id="basic" class={styles.h2}>{t('demo.basic')}</h2>
       <DemoBlock title={t('demo.semanticType')} desc={t('demoDesc.button_types')}
         code={`<Button type="primary" text="Primary" />\n<Button type="secondary" text="Secondary" />\n<Button type="success" text="Success" />\n<Button type="warning" text="Warning" />\n<Button type="danger" text="Danger" />\n<Button type="info" text="Info" />`}
@@ -147,10 +145,10 @@ export const ButtonDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      {/* ---- 图标 ---- */}
+      {/* -- Icon -- */}
       <h2 id="icons" class={styles.h2}>{t('section.iconButton')}</h2>
       <DemoBlock title={t('demo.iconText')} desc={t('demoDesc.button_icon_text')}
-        code={`<Button icon="star" text="Favorite" />\n<Button icon="arrow-right" text="Next" iconPosition="right" type="primary" />\n<Button icon="edit" text="Edit" variant="outline" />\n{/* 也支持传入 JSX */}\n<Button icon={<MyCustomIcon />} text="自定义" />`}
+        code={`<Button icon="star" text="Favorite" />\n<Button icon="arrow-right" text="Next" iconPosition="right" type="primary" />\n<Button icon="edit" text="Edit" variant="outline" />\n{/* JSX also supported */}\n<Button icon={<MyCustomIcon />} text="Custom" />`}
       >
         <div class={styles.row}>
           <Button icon="star" text="Favorite" />
@@ -169,7 +167,7 @@ export const ButtonDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      {/* ---- 状态 ---- */}
+      {/* -- States -- */}
       <h2 id="states" class={styles.h2}>{t('section.states')}</h2>
       <DemoBlock title={t('demo.loading')}
         code={`<Button loading={loading} loadingText="Submitting..." onClick={submit}>{loading ? 'Submitting...' : 'Submit'}</Button>`}
@@ -191,19 +189,19 @@ export const ButtonDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      {/* ---- 链接模式 ---- */}
+      {/* -- Link Mode -- */}
       <h2 id="link" class={styles.h2}>{t('section.linkMode')}</h2>
       <DemoBlock title={t('demo.hrefLink')} desc={t('demoDesc.button_link')}
-        code={`<Button href="https://github.com" target="_blank">打开链接</Button>\n<Button href="/page">跳转页面</Button>`}
+        code={`<Button href="https://github.com" target="_blank">Open Link</Button>\n<Button href="/page">Go to Page</Button>`}
       >
         <div class={styles.row}>
-          <Button href="https://github.com" target="_blank" type="primary" text="打开链接" />
+          <Button href="https://github.com" target="_blank" type="primary" text="Open Link" />
           <Button href="#" variant="outline" text="Go to Page" />
           <Button href="#" variant="ghost" text="Learn more →" />
         </div>
       </DemoBlock>
 
-      {/* ---- 自定义颜色 ---- */}
+      {/* -- Custom Color -- */}
       <h2 id="custom-color" class={styles.h2}>{t('demo.customColor')}</h2>
       <DemoBlock title={t('demo.colorText')} desc={t('demoDesc.button_color')}
         code={`<Button color="#6366f1" text="Indigo" />\n<Button color="#ec4899" text="Pink" />\n<Button color="#f59e0b" text="Amber" />\n<Button color="#10b981" text="Emerald" />`}
@@ -216,7 +214,7 @@ export const ButtonDocPage: Component = () => {
         </div>
       </DemoBlock>
 
-      {/* ---- 典型场景 ---- */}
+      {/* -- Common Scenarios -- */}
       <h2 id="examples" class={styles.h2}>{t('section.typicalScenes')}</h2>
       <DemoBlock title={t('demo.formActions')} desc={t('demoDesc.button_form_actions')}
         code={`<div style={{ display:'flex', gap:12, justifyContent:'flex-end' }}>\n  <Button variant="outline">Cancel</Button>\n  <Button type="primary">Save</Button>\n</div>`}

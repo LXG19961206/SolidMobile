@@ -17,10 +17,8 @@ import { Upload } from '../../../../src/components/Upload';
 import type { UploadFile } from '../../../../src/components/Upload';
 import { TimePicker } from '../../../../src/components/TimePicker';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/form/zh-CN';
-import enUS from '../../../i18n/form/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('form');
 import { Toast } from '../../../../src/components/Toast';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PickerOption } from '../../../../src/components/Picker';
@@ -105,9 +103,9 @@ const FullDemoCode = `<Form onSubmit={(v) => Toast.success(JSON.stringify(v))}
   </FormItem>
   <FormItem name="lang" label="Language" labelAlign="top" required rules={[{ validator: v => !!v, message: 'Please select language' }]}>
     <RadioGroup direction="horizontal">
-      <Radio value="zh" label="中文" />
+      <Radio value="zh" label="Chinese" />
       <Radio value="en" label="English" />
-      <Radio value="ja" label="日本語" />
+      <Radio value="ja" label="Japanese" />
     </RadioGroup>
   </FormItem>
   <FormItem name="hobbies" label="Hobbies" labelAlign="top">
@@ -213,9 +211,9 @@ const FullFormDemo: Component = () => {
           message: 'Please select language',
         }]}>
           <RadioGroup direction="horizontal">
-            <Radio value="zh" label="中文" />
+            <Radio value="zh" label="Chinese" />
             <Radio value="en" label="English" />
-            <Radio value="ja" label="日本語" />
+            <Radio value="ja" label="Japanese" />
             <Radio value="ko" label="한국어" />
           </RadioGroup>
         </FormItem>

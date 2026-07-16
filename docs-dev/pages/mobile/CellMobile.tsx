@@ -7,10 +7,8 @@ export interface CellMobileProps {
 }
 import { Cell, CellGroup } from '../../../src/components/Cell';
 import { Icon } from '../../../src/components/Icon';
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/cell/zh-CN';
-import enUS from '../../i18n/cell/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('cell');
 import { Switch as Toggle } from '../../../src/components/Switch';
 
 const propsData = [

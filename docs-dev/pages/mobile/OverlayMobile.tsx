@@ -8,10 +8,8 @@ export interface OverlayMobileProps {
 import { Overlay } from '../../../src/components/Overlay';
 import { Button } from '../../../src/components/Button';
 import { Loading } from '../../../src/components/Loading';
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/overlay/zh-CN';
-import enUS from '../../i18n/overlay/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('overlay');
 
 const propsData = [
   { name: 'open', type: 'boolean', desc: 'componentProps.overlay.open' },

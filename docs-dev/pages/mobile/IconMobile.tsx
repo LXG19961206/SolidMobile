@@ -1,9 +1,7 @@
 import { createSignal, For, type Component } from 'solid-js';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/icon/zh-CN';
-import enUS from '../../i18n/icon/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('icon');
 
 export interface IconMobileProps {
   components?: ComponentEntry[];

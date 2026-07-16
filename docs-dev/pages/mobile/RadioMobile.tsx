@@ -9,10 +9,8 @@ import { Radio, RadioGroup } from '../../../src/components/Radio';
 import { Form, FormItem } from '../../../src/components/Form';
 import { Button } from '../../../src/components/Button';
 import { Toast } from '../../../src/components/Toast';
-import { useT, registerLocale } from '../../doc-i18n';
-import zhCN from '../../i18n/radio/zh-CN';
-import enUS from '../../i18n/radio/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../doc-i18n';
+loadLocale('radio');
 
 const propsData = [
   { name: 'Radio.value', type: 'unknown', desc: 'componentProps.radio.Radio.value' },

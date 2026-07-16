@@ -2,10 +2,8 @@ import { createSignal } from 'solid-js';
 import { Switch as Toggle } from '../../../../src/components/Switch';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/switch/zh-CN';
-import enUS from '../../../i18n/switch/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('switch');
 import styles from './SwitchDocPage.module.css';
 
 const propsData: PropRow[] = [
@@ -115,13 +113,13 @@ export const SwitchDocPage = () => {
         <DemoBlock
           title="activeText / inactiveText"
           desc={t('demoDesc.switch_text_label')}
-          code={`<Toggle activeText="ON" inactiveText="OFF" defaultChecked />\n<Toggle activeText="开" inactiveText="关" activeColor="#22c55e" />\n{/* 左 label 布局 */}\n<label style={{ display:'flex', alignItems:'center', gap:'0.5rem' }}>\n  <span>开启通知</span>\n  <Toggle />\n</label>`}
+          code={`<Toggle activeText="ON" inactiveText="OFF" defaultChecked />\n<Toggle activeText="On" inactiveText="Off" activeColor="#22c55e" />\n{/* 左 label 布局 */}\n<label style={{ display:'flex', alignItems:'center', gap:'0.5rem' }}>\n  <span>Notifications</span>\n  <Toggle />\n</label>`}
         >
           <div class={styles.demoArea}>
             <Toggle activeText="ON" inactiveText="OFF" defaultChecked />
-            <Toggle activeText="开" inactiveText="关" activeColor="#22c55e" />
+            <Toggle activeText="On" inactiveText="Off" activeColor="#22c55e" />
             <label style={{ display: 'flex', 'align-items': 'center', gap: '0.5rem', 'font-size': '0.875rem', cursor: 'pointer' }}>
-              <span>开启通知</span>
+              <span>Notifications</span>
               <Toggle />
             </label>
           </div>

@@ -1,10 +1,8 @@
 import { createSignal, useContext, type Component } from 'solid-js';
 import { DatePicker } from '../../../../src/components/DatePicker';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/datepicker/zh-CN';
-import enUS from '../../../i18n/datepicker/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('datepicker');
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
@@ -52,7 +50,7 @@ const codeDisabled = `<DatePicker
 const codeDateTime = `<DatePicker type="datetime" placeholder="Select date & time" />`;
 
 const codeForm = `<Form onSubmit={(v) => { ... }}>
-  <FormItem name="birthday" label="生日">
+  <FormItem name="birthday" label="Birthday">
     <DatePicker placeholder="Select birth date"  />
   </FormItem>
   <Button type="primary" block nativeType="submit" text="Submit" />
@@ -79,7 +77,7 @@ const RangeDemo: Component = () => {
       onChange={setVal}
       startDate="2024-06-01"
       endDate="2024-09-30"
-      placeholder="仅 2024-06-01 ~ 2024-09-30"
+      placeholder="From 2024-06-01 to 2024-09-30"
       teleport={phone?.()}
     />
   );
@@ -141,7 +139,7 @@ const FormDemo: Component = () => {
   return (
     <>
       <Form onSubmit={(v) => { setFormVal(v); Toast.success('Submit: ' + JSON.stringify(v)); }}>
-        <FormItem name="birthday" label="生日">
+        <FormItem name="birthday" label="Birthday">
           <DatePicker placeholder="Select birth date" teleport={phone?.()} />
         </FormItem>
         <div style={{ padding: '12px 1rem' }}>

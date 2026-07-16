@@ -2,10 +2,8 @@ import { type Component } from 'solid-js';
 import { SafeArea } from '../../../../src/components/SafeArea';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/safearea/zh-CN';
-import enUS from '../../../i18n/safearea/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('safearea');
 
 const safeAreaProps: PropRow[] = [
   { name: 'position', type: "'top' | 'bottom'", default: "'bottom'", required: false, desc: 'componentProps.safearea.position' },
@@ -17,10 +15,10 @@ const codeTop = `<SafeArea position="top" />
 const codeBottom = `<!-- Bottom content, avoid Home Indicator -->
 <SafeArea position="bottom" />`;
 
-const codeCSS = `/* CSS 变量优先级 */
---sc-safe-area-top: 44px;         /* 1. 自定义覆盖（最高） */
-env(safe-area-inset-top);         /* 2. 设备原生安全区域 */
-/* 3. 兜底 0px */`;
+const codeCSS = `/* CSS Variable Priority */
+--sc-safe-area-top: 44px;         /* 1. Custom override (highest) */
+env(safe-area-inset-top);         /* 2. Device native safe area */
+/* 3. Fallback 0px */`;
 
 const codeLayout = `<div style={{ display: 'flex', 'flex-direction': 'column', height: '100vh' }}>
   <SafeArea position="top" />
@@ -45,7 +43,7 @@ export const SafeAreaDocPage: Component = () => {
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.implementation')}</h2>
       <p style={{ 'line-height': 1.8, color: '#374151' }}>
-        SafeArea is a pure style spacer component. Its height reads from CSS variable <code>--sc-safe-area-top</code> 或 <code>--sc-safe-area-bottom</code>，
+        SafeArea is a pure style spacer component. Its height reads from CSS variable <code>--sc-safe-area-top</code> or <code>--sc-safe-area-bottom</code>，
         , falling back to <code>env(safe-area-inset-top)</code> / <code>env(safe-area-inset-bottom)</code>, and finally to <code>0px</code>。
       </p>
 
@@ -88,20 +86,20 @@ export const SafeAreaDocPage: Component = () => {
 
       <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.withNavBar')}</h2>
       <p style={{ 'line-height': 1.8, color: '#374151' }}>
-        SafeArea 最常见的用法是配合 <code>NavBar</code> 和 <code>Tabbar</code> 使用。
+        Most common use: pair SafeArea with <code>NavBar</code> and <code>Tabbar</code>.。
       </p>
 
       <DemoBlock title={t('demo.safeLayout')} code={codeLayout} hideTitle>
         <div style={{ padding: '12px', 'font-size': '0.85rem', color: '#6b7280', 'text-align': 'center' }}>
-          NavBar + SafeArea + Tabbar 布局
+          NavBar + SafeArea + Tabbar layout
         </div>
       </DemoBlock>
 
       <div style={{ background: '#fff7ed', border: '1px solid #fed7aa', 'border-radius': '8px', padding: '12px', 'margin-top': '16px' }}>
         <strong style={{ color: '#c2410c' }}>⚠️ Note</strong>
         <ul style={{ margin: '8px 0 0', 'padding-left': '20px', 'line-height': 1.8 }}>
-          <li><code>env(safe-area-inset-*)</code> 仅在 iOS Safari 和部分 Android WebView 中生效。桌面浏览器返回 <code>0px</code>。</li>
-          <li>如需在所有环境下生效，请通过 <code>--sc-safe-area-top</code> CSS 变量手动设置。</li>
+          <li><code>env(safe-area-inset-*)</code> Only on iOS Safari and some Android WebView . Returns <code>0px</code>。</li>
+          <li>To apply in all environments, use <code>--sc-safe-area-top</code> CSS variable manually。</li>
           <li>The PhoneSimulator already presets <code>--sc-safe-area-top: 32px</code> to simulate a notch.</li>
         </ul>
       </div>

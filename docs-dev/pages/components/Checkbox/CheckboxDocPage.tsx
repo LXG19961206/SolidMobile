@@ -4,10 +4,8 @@ import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/checkbox/zh-CN';
-import enUS from '../../../i18n/checkbox/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('checkbox');
 import type { PropRow } from '../../../doc-utils';
 
 const checkboxProps: PropRow[] = [
@@ -110,7 +108,7 @@ const codeHorizontal = `<CheckboxGroup direction="horizontal" defaultValue={['a'
 </CheckboxGroup>`;
 
 const codeIndeterminate = `<Checkbox indeterminate={indet()} onChange={setIndet}>
-  全选
+  Select All
 </Checkbox>
 <CheckboxGroup value={items()} onChange={setItems}>
   ...

@@ -2,10 +2,8 @@ import { createSignal, type Component } from 'solid-js';
 import { TabBar, TabBarItem } from '../../../../src/components/TabBar';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/tabbar/zh-CN';
-import enUS from '../../../i18n/tabbar/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('tabbar');
 
 const tabBarProps: PropRow[] = [
   { name: 'value', type: 'number | string', default: '—', required: false, desc: 'componentProps.tabbar.value' },
@@ -111,7 +109,7 @@ export const TabBarDocPage: Component = () => {
             </TabBar>
           </div>
           <p style={{ 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'line-height': 1.6, margin: '8px 0 0' }}>
-            选中态下 icon 有放大 + 填充动画。icon 属性直接接受 JSX.Element，不限动画方案，Lottie、Rive、CSS animation 均可自由使用。
+            Active icon has scale+fill animation. Accepts any JSX.Element -- Lottie, Rive, CSS animation 均可自由使用。
           </p>
         </DemoBlock>
 
@@ -125,9 +123,9 @@ export const TabBarDocPage: Component = () => {
 
         <h2 style={{ 'font-size': '1.2rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('section.withRouter')}</h2>
         <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
-          组件库不内置路由相关属性，以避免与具体路由方案（solid-router、solid-app-router 等）耦合。
-          切换标签时通过 <code>onChange</code> 回调拿到当前 <code>name</code>，自行调用路由跳转。
-          可在 <code>beforeChange</code> 中返回 <code>false</code> 拦截切换，适用于表单未保存时阻止离开等场景。
+          Library does not bundle routing support to avoid coupling with specific routers.
+          On tab switch, use <code>onChange</code> to get the current <code>name</code>, then call your router.由跳转。
+          Return <code>false</code> in <code>beforeChange</code> to block tab switches, useful for表单未保存时阻止离开等场景。
         </p>
       </div>
     </DocLayout>

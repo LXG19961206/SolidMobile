@@ -2,18 +2,16 @@ import { BackTop } from '../../../../src/components/BackTop';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('backtop');
 import styles from './BackTopDocPage.module.css';
-import zhCN from '../../../i18n/backtop/zh-CN';
-import enUS from '../../../i18n/backtop/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const propsData: PropRow[] = [
   { name: 'threshold', type: 'number', default: '200', required: false, desc: 'componentProps.backtop.threshold' },
   { name: 'target', type: 'HTMLElement', default: 'auto', required: false, desc: 'componentProps.backtop.target' },
   { name: 'class', type: 'string', default: '—', required: false, desc: 'componentProps.backtop.class' },
   { name: 'style', type: 'CSSProperties | string', default: '—', required: false, desc: 'componentProps.backtop.style' },
-  { name: 'children', type: 'JSX.Element', default: '<Icon name="arrow-up" />', required: false, desc: '自定义内容。' },
+  { name: 'children', type: 'JSX.Element', default: '<Icon name="arrow-up" />', required: false, desc: 'Custom content. Default: arrow-up icon.' },
 ];
 
 export const BackTopDocPage = () => {

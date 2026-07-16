@@ -4,10 +4,8 @@ import { List } from "../../../../src/components/List";
 import { Cell } from "../../../../src/components/Cell";
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/pullrefresh/zh-CN';
-import enUS from '../../../i18n/pullrefresh/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('pullrefresh');
 
 /* ── Helper: simulate async refresh ── */
 
@@ -36,7 +34,7 @@ export const PullRefreshDocPage: Component = () => {
 
   async function handleListRefresh() {
     await new Promise(r => setTimeout(r, 1200));
-    setItems(Array.from({length: 20}, (_, i) => `Item ${i + 1} (刷新于 ${Date.now()})`));
+    setItems(Array.from({length: 20}, (_, i) => `Item ${i + 1} (Refreshed at ${Date.now()})`));
   }
 
   return (
@@ -61,17 +59,17 @@ export const PullRefreshDocPage: Component = () => {
           </div>
         </DemoBlock>
 
-        <DemoBlock title={t('demo.pullCustomText')} desc={t('demoDesc.pullrefresh_custom_text')} code={`<PullRefresh\n  pullingText="再用力一点"\n  loosingText="Release to refresh"\n  loadingText="Loading..."\n  successText="加载完成"\n/>`}>
+        <DemoBlock title={t('demo.pullCustomText')} desc={t('demoDesc.pullrefresh_custom_text')} code={`<PullRefresh\n  pullingText="Pull harder"\n  loosingText="Release to refresh"\n  loadingText="Loading..."\n  successText="Done"\n/>`}>
           <div style={{ background: '#fff', 'border-radius': '8px', padding: '12px', 'text-align': 'center', color: '#969799', 'font-size': '0.8rem' }}>
             <PullRefresh
               onRefresh={mockRefresh}
-              pullingText="再用力一点"
+              pullingText="Pull harder"
               loosingText="Release to refresh"
               loadingText="Loading..."
-              successText="加载完成"
+              successText="Done"
             >
               <div style={{ padding: '40px 0', color: '#323233' }}>
-                自定义文案Pull to Refresh
+                Custom Text
               </div>
             </PullRefresh>
           </div>

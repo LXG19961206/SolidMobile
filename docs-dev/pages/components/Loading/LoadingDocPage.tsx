@@ -4,10 +4,8 @@ import { Icon } from '../../../../src/components/Icon';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import styles from './LoadingDocPage.module.css';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/loading/zh-CN';
-import enUS from '../../../i18n/loading/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('loading');
 
 const propsData: PropRow[] = [
   { name: 'text', type: 'string', default: '—', required: false, desc: 'componentProps.loading.text' },
@@ -82,11 +80,11 @@ const LoadingDocInner = () => {
         <DemoBlock
           title={t('demo.loadingSizeColor')}
           desc={t('demoDesc.loading_size_color')}
-          code={`<Loading size={32} color="#1677ff" />\n<Loading size="2rem" color="#22c55e" text="加载中" />\n<Loading size={16} color="#f59e0b" />`}
+          code={`<Loading size={32} color="#1677ff" />\n<Loading size="2rem" color="#22c55e" text="Loading..." />\n<Loading size={16} color="#f59e0b" />`}
         >
           <div class={styles.demoArea}>
             <Loading size={32} color="var(--sc-color-primary, #1677ff)" />
-            <Loading size="2rem" color="#22c55e" text="加载中" />
+            <Loading size="2rem" color="#22c55e" text="Loading..." />
             <Loading size={16} color="#f59e0b" />
           </div>
         </DemoBlock>
@@ -135,7 +133,7 @@ const LoadingDocInner = () => {
               setOverlayOpen(true);
               setTimeout(() => setOverlayOpen(false), 2000);
             }}>
-              演示遮罩加载（2s 后自动关闭）
+              Demo: overlay loading, auto-closes after 2s
             </button>
             {overlayOpen() && <Loading overlay mount={phoneMount()} text="Processing..." />}
           </div>

@@ -3,10 +3,8 @@ import { TimePicker } from '../../../../src/components/TimePicker';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/timepicker/zh-CN';
-import enUS from '../../../i18n/timepicker/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('timepicker');
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
 
@@ -35,7 +33,7 @@ const BasicDemo: Component = () => {
     <>
       <CellGroup>
         <Cell
-          title="选择时间"
+          title="Select Time"
           value={val() || 'Please Select'}
           clickable
           onClick={() => {
@@ -59,7 +57,7 @@ const ControlledDemo: Component = () => {
     <>
       <CellGroup>
         <Cell
-          title="预设值"
+          title="Preset Value"
           value={val() || 'Please Select'}
           clickable
         />
@@ -79,11 +77,11 @@ const FormDemo: Component = () => {
   return (
     <>
       <Form onSubmit={(v) => { setFormVal(v); }} labelWidth="4em">
-        <FormItem name="startTime" label="开始时间" required>
-          <TimePicker placeholder="选择开始时间" teleport={phone?.()} />
+        <FormItem name="startTime" label="Start Time" required>
+          <TimePicker placeholder="Select start time" teleport={phone?.()} />
         </FormItem>
-        <FormItem name="endTime" label="结束时间">
-          <TimePicker placeholder="选择结束时间" teleport={phone?.()} />
+        <FormItem name="endTime" label="End Time">
+          <TimePicker placeholder="Select end time" teleport={phone?.()} />
         </FormItem>
         <div style={{ padding: '12px 1rem' }}>
           <Button type="primary" block nativeType="submit" text="Submit" />
@@ -97,10 +95,10 @@ const FormDemo: Component = () => {
 };
 
 const codeForm = `<Form onSubmit={(v) => console.log(v)}>
-  <FormItem name="startTime" label="开始时间">
+  <FormItem name="startTime" label="Start Time">
     <TimePicker />
   </FormItem>
-  <FormItem name="endTime" label="结束时间">
+  <FormItem name="endTime" label="End Time">
     <TimePicker />
   </FormItem>
   <Button type="primary" block nativeType="submit" text="Submit" />

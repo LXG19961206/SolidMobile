@@ -1,9 +1,7 @@
 import { Empty } from '../../../../src/components/Empty';
 import { Button } from '../../../../src/components/Button';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/empty/zh-CN';
-import enUS from '../../../i18n/empty/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('empty');
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './EmptyDocPage.module.css';

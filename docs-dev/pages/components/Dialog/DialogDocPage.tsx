@@ -2,10 +2,8 @@ import { createSignal, Show, useContext, type Component } from 'solid-js';
 import { DialogAPI as Dialog } from '../../../../src/components/Dialog/DialogManager';
 import { DialogComponent } from '../../../../src/components/Dialog';
 import { Cell } from '../../../../src/components/Cell';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/dialog/zh-CN';
-import enUS from '../../../i18n/dialog/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('dialog');
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import type { DialogOptions } from '../../../../src/components/Dialog/types';
@@ -81,13 +79,13 @@ const DialogDocInner: Component = () => {
         <h2 id="demo" class={css.h2}>{t('demo.examples')}</h2>
 
         <DemoBlock title={t('demo.dialogAlert')} desc={t('demoDesc.dialog_alert')} code={`Dialog.alert({\n  title: 'Notice',\n  message: 'Success!',\n});`} groupCode="基础弹窗">
-          <Cell title="弹出提示" clickable onClick={() => show({ title: 'Notice', message: 'Success!' })} />
+          <Cell title="Show Alert" clickable onClick={() => show({ title: 'Notice', message: 'Success!' })} />
         </DemoBlock>
         <DemoBlock title={t('demo.dialogConfirm')} desc={t('demoDesc.dialog_confirm')} code={`Dialog.confirm({\n  title: 'Confirm Delete',\n  message: 'This cannot be undone. Are you sure?',\n});`} groupCode="基础弹窗">
-          <Cell title="删除确认" clickable onClick={() => show({ title: 'Confirm Delete', message: 'This cannot be undone. Are you sure?', showCancelButton: true })} />
+          <Cell title="Confirm" clickable onClick={() => show({ title: 'Confirm Delete', message: 'This cannot be undone. Are you sure?', showCancelButton: true })} />
         </DemoBlock>
         <DemoBlock title={t('demo.dialogNoTitle')} desc={t('demoDesc.dialog_no_title')} code={`Dialog.show({\n  message: 'This is a plain text message without a title.',\n});`} groupCode="基础弹窗">
-          <Cell title="纯消息" clickable onClick={() => show({ message: 'This is a plain text message without a title.' })} />
+          <Cell title="Plain Text" clickable onClick={() => show({ message: 'This is a plain text message without a title.' })} />
         </DemoBlock>
         <DemoBlock title={t('demo.dialogMultiline')} desc={t('demoDesc.message_中的___n_自动换行_')} code={`Dialog.alert({\n  message: '第一行\\n第二行\\n第三行',\n});`} groupCode="基础弹窗">
           <Cell title={t('demo.dialogMultiline')} clickable onClick={() => show({ message: 'Line 1\nLine 2\nLine 3' })} />
@@ -96,10 +94,10 @@ const DialogDocInner: Component = () => {
           <Cell title={t('demo.customTrigger')} clickable onClick={() => show({ title: 'Save Draft', message: '是否保存当前编辑内容？', showCancelButton: true, confirmText: 'Save', cancelText: 'Discard' })} />
         </DemoBlock>
         <DemoBlock title={t('demo.dialogJSX')} desc={t('demoDesc.dialog_jsx')} code={`Dialog.alert({\n  title: 'Release Notes',\n  message: <div>...</div>,\n});`} groupCode="高级弹窗">
-          <Cell title="更新日志" clickable onClick={() => show({ title: 'Release Notes', message: (<div><p>v2.0 版本已发布</p></div>) })} />
+          <Cell title="Release Notes" clickable onClick={() => show({ title: 'Release Notes', message: (<div><p>v2.0 版本已发布</p></div>) })} />
         </DemoBlock>
         <DemoBlock title={t('demo.asyncLoading')} desc={t('demoDesc.dialog_async')} code={`Dialog.confirm({\n  title: 'Confirm Submission',\n  onConfirm: async () => { await fetch(...); },\n});`} groupCode="高级弹窗">
-          <Cell title="异步提交" clickable onClick={() => show({ title: 'Confirm Submission', message: 'Are you sure? This cannot be undone.', showCancelButton: true, confirmText: 'Submit', onConfirm: () => new Promise(r => setTimeout(r, 1500)) })} />
+          <Cell title="Async Submit" clickable onClick={() => show({ title: 'Confirm Submission', message: 'Are you sure? This cannot be undone.', showCancelButton: true, confirmText: 'Submit', onConfirm: () => new Promise(r => setTimeout(r, 1500)) })} />
         </DemoBlock>
 
         <GroupCodePhone />
@@ -107,16 +105,16 @@ const DialogDocInner: Component = () => {
         <DemoBlock
           title={t('demo.componentUsage')}
           desc={t('demoDesc.dialog_component')}
-          groupCode="组件方式调用"
-          code={`import { createSignal } from 'solid-js';\nimport { DialogComponent } from 'solid-mobile';\n\nfunction Demo() {\n  const [show, setShow] = createSignal(false);\n\n  return (\n    <>\n      <Button onClick={() => setShow(true)}>打开弹窗</Button>\n      <DialogComponent\n        show={show()}\n        onUpdateShow={setShow}\n        title="组件弹窗"\n        message="这是通过 JSX 组件方式调用的弹窗。"\n        showCancelButton\n        onConfirm={() => { /* ... */ }}\n        onCancel={() => setShow(false)}\n      />\n    </>\n  );\n}`}
+          groupCode="Component Usage"
+          code={`import { createSignal } from 'solid-js';\nimport { DialogComponent } from 'solid-mobile';\n\nfunction Demo() {\n  const [show, setShow] = createSignal(false);\n\n  return (\n    <>\n      <Button onClick={() => setShow(true)}>打开弹窗</Button>\n      <DialogComponent\n        show={show()}\n        onUpdateShow={setShow}\n        title="Component Dialog"\n        message="Dialog Component Usage的弹窗。"\n        showCancelButton\n        onConfirm={() => { /* ... */ }}\n        onCancel={() => setShow(false)}\n      />\n    </>\n  );\n}`}
         >
           <Cell title={t('demo.componentUsage')} clickable onClick={() => setDeclarativeShow(true)} />
           <DialogComponent
             show={declarativeShow()}
             onUpdateShow={setDeclarativeShow}
             teleport={mount()}
-            title="组件弹窗"
-            message="这是通过 JSX 组件方式调用的弹窗。适合需要将 Dialog 嵌入模板、受控显示的场景。"
+            title="Component Dialog"
+            message="Dialog Component Usage dialog. Useful for embedding Dialog into templates with controlled visibility."
             showCancelButton
             onConfirm={() => { setDeclarativeShow(false); }}
             onCancel={() => { setDeclarativeShow(false); }}

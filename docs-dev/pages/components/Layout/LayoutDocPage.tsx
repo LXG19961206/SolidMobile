@@ -1,8 +1,6 @@
 import { Row, Col } from '../../../../src/components/Layout';
-import { useT, registerLocale } from '../../../doc-i18n';
-import zhCN from '../../../i18n/layout/zh-CN';
-import enUS from '../../../i18n/layout/en-US';
-registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT, loadLocale } from '../../../doc-i18n';
+loadLocale('layout');
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './LayoutDocPage.module.css';
@@ -62,9 +60,9 @@ export const LayoutDocPage = () => {
       <h2 id="gap" class={css.h2}>{t('section.gapAlign')}</h2>
       <DemoBlock title={t('demo.layoutGapAlign')} desc={t('demoDesc.layout_gap_align')} code={'<Row gap={16} align="center">\n  <Col span={6}><div>A</div></Col>\n  <Col span={6}><div style={{padding:24}}>B</div></Col>\n  <Col span={6}><div>C</div></Col>\n</Row>'}>
         <Row gap={16} align="center">
-          <Col span={6}><Bar>短</Bar></Col>
+          <Col span={6}><Bar>S</Bar></Col>
           <Col span={6}><div style={{ background: 'var(--sc-color-primary-hover, #4995ff)', color: '#fff', 'text-align': 'center', padding: '24px 8px', 'border-radius': '4px', 'font-size': '0.8rem' }}>Tall</div></Col>
-          <Col span={6}><Bar>短</Bar></Col>
+          <Col span={6}><Bar>S</Bar></Col>
         </Row>
       </DemoBlock>
     </div>
