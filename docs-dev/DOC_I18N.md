@@ -24,11 +24,23 @@
 
 | 文件 | 用途 | 操作 |
 |---|---|---|
-| `doc-dictionaries-extra.ts` | **文档专用词条**，`App.tsx` 启动时 deep-merge 到运行时 | **在此新增词条** |
-| `doc-dictionaries.ts` | 旧词条 + 运行时词条（demo/componentIntro/cssVars 等） | **不要再往里加东西** |
+| `docs-dev/i18n/<component>/zh-CN.ts` + `en-US.ts` | 每个组件独立的 i18n 词条，~30 行 | **在此新增词条** |
+| `docs-dev/i18n/common/zh-CN.ts` + `en-US.ts` | 全局通用词条（common.*，分组标题等） | 跨组件词条放这里 |
+| `docs-dev/doc-dictionaries.ts` + `doc-dictionaries-extra.ts` | 旧词条，已通过 migrate-i18n.cjs 拆到 `i18n/` 目录 | **不要再往里加东西，逐步废弃** |
 | `src/i18n/dictionaries.ts` | 组件运行时词条（按钮文案、占位符等） | 仅组件内部使用的文案 |
 
-两个 doc-dictionaries 文件通过 `deepMerge` 合并，**同名 key 后者覆盖前者**（extra 文件会覆盖主文件）。
+### 按需加载机制
+
+每个 doc 页 import 自己的词条文件并调用 `registerLocale()`：
+
+```tsx
+import { useT, registerLocale } from '../../../doc-i18n';
+import zhCN from '../../../i18n/button/zh-CN';
+import enUS from '../../../i18n/button/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+```
+
+`registerLocale` 将词条 deep-merge 到运行时 dict。**不 import 不加载**，零浪费。Common 词条在 `doc-i18n.ts` 中自动注册。
 
 ## 词条命名规范
 

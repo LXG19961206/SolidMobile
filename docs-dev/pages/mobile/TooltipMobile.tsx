@@ -3,7 +3,10 @@ import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/Mobil
 import { Tooltip } from '../../../src/components/Tooltip';
 import { Button } from '../../../src/components/Button';
 import { Icon } from '../../../src/components/Icon';
-import { useT } from '../../doc-i18n';
+import { useT, registerLocale } from '../../doc-i18n';
+import zhCN from '../../i18n/tooltip/zh-CN';
+import enUS from '../../i18n/tooltip/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 export interface TooltipMobileProps {
   components?: ComponentEntry[];

@@ -2,8 +2,11 @@ import { BackTop } from '../../../../src/components/BackTop';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
 import styles from './BackTopDocPage.module.css';
+import zhCN from '../../../i18n/backtop/zh-CN';
+import enUS from '../../../i18n/backtop/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const propsData: PropRow[] = [
   { name: 'threshold', type: 'number', default: '200', required: false, desc: 'componentProps.backtop.threshold' },

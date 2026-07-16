@@ -2,8 +2,11 @@ import { FloatingBall } from '../../../../src/components/FloatingBall';
 import { Icon } from '../../../../src/components/Icon';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
 import styles from './FloatingBallDocPage.module.css';
+import zhCN from '../../../i18n/floatingball/zh-CN';
+import enUS from '../../../i18n/floatingball/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const propsData: PropRow[] = [
   { name: 'inset', type: '{ left?, top?, right?, bottom? }', default: "{ right: 16, bottom: 24 }", required: false, desc: 'componentProps.floatingball.inset' },

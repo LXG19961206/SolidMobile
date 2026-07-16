@@ -1,0 +1,64 @@
+export default {
+    demo: {
+        dialogAlert: 'Alert',
+        dialogAlertDesc: 'Alert.',
+        dialogConfirm: 'Confirm',
+        dialogConfirmDesc: 'Confirm.',
+        dialogCustomText: 'Custom Text',
+        dialogCustomTextDesc: 'Custom text.',
+        dialogDismiss: 'Dismiss',
+        dialogDismissDesc: 'Dismiss.',
+        dialogJSX: 'JSX',
+        dialogJSXDesc: 'JSX content.',
+        dialogMultiline: 'Multiline',
+        dialogMultilineDesc: 'Multiline.',
+        dialogNoTitle: 'No Title',
+        dialogNoTitleDesc: 'No title.',
+        dialogRenderer: 'Renderer',
+        dialogRendererDesc: 'Renderer.',
+        dialogBasic: 'Basic Dialogs',
+        dialogBasicDesc: 'alert (confirm only) / confirm (with cancel) / message without title',
+        dialogAdvanced: 'Advanced Dialogs',
+        dialogAdvancedDesc: 'Custom button text / JSX content / async confirm / prevent close',
+        dialogComponentDismiss: 'Component & Manual Dismiss',
+        dialogComponentDismissDesc: 'Declarative JSX component / handle.dismiss() for manual close'
+    },
+    nav: {
+        dialog: 'Dialog 弹窗'
+    },
+    demoDesc: {
+        dialog_alert: '基础提示，仅确认按钮。',
+        dialog_confirm: '带取消按钮，常用于删除确认。',
+        dialog_no_title: '不传 title 时只展示内容。',
+        dialog_custom_text: '通过 confirmText / cancelText 自定义按钮文字。',
+        dialog_jsx: 'message 支持传入 JSX。',
+        dialog_async: 'onConfirm 异步时自动展示 Loading。',
+        dialog_component: '通过 show 属性受控显示，适合需要将弹窗嵌入模板的场景。'
+    },
+    componentProps: {
+        dialog: {
+            show: '是否显示弹窗（受控模式，必填）。',
+            title: '标题，支持 string 或 JSX。',
+            message: '内容，支持换行和 JSX。',
+            width: '弹窗宽度。',
+            messageAlign: '内容水平对齐：left / center / right。',
+            showConfirmButton: '是否展示确认按钮，默认 true。',
+            showCancelButton: '是否展示取消按钮，默认 false。',
+            confirmText: '确认按钮文案。',
+            cancelText: '取消按钮文案。',
+            confirmDisabled: '是否禁用确认按钮。',
+            cancelDisabled: '是否禁用取消按钮。',
+            zIndex: 'z-index 层级，默认 2000。',
+            overlay: '是否展示遮罩层，默认 true。',
+            closeOnClickOverlay: '点击遮罩是否关闭，默认 false。',
+            lockScroll: '是否锁定背景滚动，默认 true。',
+            beforeClose: '关闭前回调，返回 false 阻止关闭。',
+            onConfirm: '确认回调。',
+            onCancel: '取消回调。',
+            onClose: '关闭回调。',
+            teleport: '挂载目标节点。',
+            destroyOnClose: '关闭时销毁内容。',
+            lazyRender: '懒渲染，默认 true。'
+        }
+    }
+};

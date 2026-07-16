@@ -3,8 +3,11 @@ import { Ellipsis } from '../../../../src/components/Ellipsis';
 import { Icon } from '../../../../src/components/Icon';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
-import { useT } from '../../../doc-i18n';
+import { useT, registerLocale } from '../../../doc-i18n';
 import styles from './EllipsisDocPage.module.css';
+import zhCN from '../../../i18n/ellipsis/zh-CN';
+import enUS from '../../../i18n/ellipsis/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const propsData: PropRow[] = [
   { name: 'lines', type: 'number', default: '1', required: false, desc: 'componentProps.ellipsis.lines' },

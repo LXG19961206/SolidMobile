@@ -1,0 +1,96 @@
+export default {
+    demo: {
+        imageCarousel: 'Carousel',
+        imageCarouselDesc: 'Image carousel.',
+        imageChildrenButton: 'Children',
+        imageChildrenButtonDesc: 'Children button.',
+        imageCustomJSXDesc: 'Custom JSX.',
+        imageFit: 'Fit',
+        imageFitDesc: 'Fit modes.',
+        imageFixedSize: 'Fixed',
+        imageFixedSizeDesc: 'Fixed size.',
+        imageGallery: 'Gallery',
+        imageGalleryDesc: 'Gallery.',
+        imageLogo: 'Logo',
+        imageLogoDesc: 'Logo.',
+        imagePreview: 'Preview',
+        imagePreviewDesc: 'Preview.',
+        imageRadius: 'Radius',
+        imageRadiusDesc: 'Radius/round.',
+        imageUpload: 'Image Upload',
+        imageUploadDesc: 'Image upload.',
+        imageGalleryLoadDesc: 'Image Gallery Load Desc',
+        imageGalleryLoadHint: 'Image Gallery Load Hint',
+        imageFitMobileDesc: 'cover / contain / fill / none comparison (container 100x50, 2:1 ratio)',
+        imageRadiusMobileDesc: 'radius controls corner rounding / round for full circle',
+        imageBlockMobile: 'Block & Aspect Ratio',
+        imageBlockMobileDesc: 'Custom aspect ratio + block full-width mode',
+        imageCustomSize: '100x60 custom size',
+        imageBlockFull: 'block full width',
+        imagePreviewMobileDesc: 'preview prop enables full-screen preview, tap images below',
+        imageFallbackMobile: 'Fallback on Error',
+        imageFallbackMobileDesc: 'Shows fallback placeholder when src is invalid'
+    },
+    nav: {
+        image: 'Image'
+    },
+    demoDesc: {
+        image_logo: 'The official solid-mobile logo.',
+        image_fit: 'Control object-fit via fit. Container is square, source is 4:3.',
+        image_placeholder: 'Show placeholder while loading; customizable.',
+        image_fallback: 'Show fallback content on load error.'
+    },
+    componentProps: {
+        image: {
+            src: 'Image URL.',
+            alt: 'Alt text.',
+            width: 'Width.',
+            height: 'Height.',
+            fit: 'Object fit: cover / contain / fill / none / scale-down.',
+            position: 'object-position value.',
+            radius: 'Border radius.',
+            round: 'Fully round (circle).',
+            block: 'Block-level element, full width.',
+            lazy: 'Enable lazy loading.',
+            placeholder: 'Loading placeholder.',
+            fallback: 'Error fallback.',
+            iconSize: 'Icon size on load error.',
+            onLoad: 'Load success callback.',
+            onError: 'Load error callback.',
+            preview: 'Click to preview full image.'
+        }
+    },
+    component: {
+        image: {
+            title: 'Image',
+            intro: 'Enhanced image component with lazy loading, placeholder, fallback, fit modes, and shapes.',
+            fit: 'Fit Mode',
+            shape: 'Radius & Round',
+            'shape-desc': 'Set radius for rounded corners or round for a circle.',
+            preview: 'Preview on Click',
+            'preview-desc': 'Click the image to open a full-screen overlay preview. Click the overlay to close.',
+            state: 'Loading & Error',
+            placeholder: 'Loading Placeholder',
+            fallback: 'Error Fallback',
+            'fallback-desc': 'Shows fallback content when image fails to load.',
+            props: {
+                src: 'Image URL.',
+                alt: 'Alternative text.',
+                width: 'Width.',
+                height: 'Height.',
+                fit: 'object-fit mode. One of \'cover\' | \'contain\' | \'fill\' | \'none\' | \'scale-down\'.',
+                position: 'object-position.',
+                radius: 'Border radius.',
+                round: 'Circle shape (for avatars, etc.).',
+                block: 'Block-level element, width 100%.',
+                lazy: 'Enable lazy loading via IntersectionObserver.',
+                placeholder: 'Loading placeholder content.',
+                fallback: 'Fallback content on error.',
+                iconSize: 'Placeholder icon size.',
+                onLoad: 'Callback when image loads.',
+                onError: 'Callback on load error.',
+                preview: 'Enable click-to-preview fullscreen overlay.'
+            }
+        }
+    }
+};
