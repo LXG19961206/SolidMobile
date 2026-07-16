@@ -1,8 +1,12 @@
 import { createSignal, type Component } from 'solid-js';
+
+import zhCN from '../../i18n/pullrefresh/zh-CN';
+import enUS from '../../i18n/pullrefresh/en-US';
+import { registerLocale } from '../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../doc-i18n';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 import { PullRefresh } from '../../../src/components/PullRefresh';
-import { useT, loadLocale } from '../../doc-i18n';
-loadLocale('pullrefresh');
 
 export interface PullRefreshMobileProps {
   components?: ComponentEntry[];

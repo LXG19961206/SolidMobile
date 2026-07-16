@@ -1,9 +1,13 @@
 import { type Component } from 'solid-js';
+
+import zhCN from '../../../i18n/swiper/zh-CN';
+import enUS from '../../../i18n/swiper/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { Swiper } from '../../../../src/components/Swiper';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('swiper');
 
 const propsData: PropRow[] = [
   { name: 'autoplay', type: 'number | string', default: '—', required: false, desc: 'componentProps.swiper.autoplay' },

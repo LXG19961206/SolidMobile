@@ -1,4 +1,10 @@
 import { createSignal, Show, type Component } from 'solid-js';
+
+import zhCN from '../../i18n/cascader/zh-CN';
+import enUS from '../../i18n/cascader/en-US';
+import { registerLocale } from '../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../doc-i18n';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 
 export interface CascaderMobileProps {
@@ -9,8 +15,6 @@ import { Cascader } from '../../../src/components/Cascader';
 import { Cell, CellGroup } from '../../../src/components/Cell';
 import { Icon } from '../../../src/components/Icon';
 import { Loading } from '../../../src/components/Loading';
-import { useT, loadLocale } from '../../doc-i18n';
-loadLocale('cascader');
 import type { CascaderOption } from '../../../src/components/Cascader';
 
 const propsData = [

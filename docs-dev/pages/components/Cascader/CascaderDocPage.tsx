@@ -1,4 +1,10 @@
 import { createSignal, Show, useContext } from 'solid-js';
+
+import zhCN from '../../../i18n/cascader/zh-CN';
+import enUS from '../../../i18n/cascader/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { Cascader } from '../../../../src/components/Cascader';
 import { Cell } from '../../../../src/components/Cell';
 import { Icon } from '../../../../src/components/Icon';
@@ -6,8 +12,6 @@ import { Loading } from '../../../../src/components/Loading';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import type { CascaderOption } from '../../../../src/components/Cascader/types';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('cascader');
 import css from './CascaderDocPage.module.css';
 
 const regionOptions: CascaderOption[] = [

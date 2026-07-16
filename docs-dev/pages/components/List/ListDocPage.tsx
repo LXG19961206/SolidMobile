@@ -1,4 +1,10 @@
 import { createSignal, useContext, type Component } from 'solid-js';
+
+import zhCN from '../../../i18n/list/zh-CN';
+import enUS from '../../../i18n/list/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { List } from '../../../../src/components/List';
 import { Cell } from '../../../../src/components/Cell';
 import { SwipeCell } from '../../../../src/components/SwipeCell';
@@ -9,8 +15,6 @@ import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../d
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import type { SwipeAction } from '../../../../src/components/SwipeCell';
 import css from './ListDocPage.module.css';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('list');
 
 const listProps: PropRow[] = [
   { name: 'data', type: 'I[]', default: '—', required: false, desc: 'componentProps.list.data' },

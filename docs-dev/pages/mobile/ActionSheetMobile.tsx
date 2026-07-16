@@ -1,12 +1,16 @@
 import { createSignal, type Component } from 'solid-js';
+
+import zhCN from '../../i18n/actionsheet/zh-CN';
+import enUS from '../../i18n/actionsheet/en-US';
+import { registerLocale } from '../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../doc-i18n';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 
 export interface ActionSheetMobileProps {
   components?: ComponentEntry[];
   onNavigate?: (key: string) => void;
 }
-import { useT, loadLocale } from '../../doc-i18n';
-loadLocale('actionsheet');
 import { ActionSheet } from '../../../src/components/ActionSheet';
 import type { ActionSheetItem } from '../../../src/components/ActionSheet';
 import { Cell, CellGroup } from '../../../src/components/Cell';

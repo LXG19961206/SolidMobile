@@ -1,6 +1,9 @@
+import zhCN from '../../../i18n/layout/zh-CN';
+import enUS from '../../../i18n/layout/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { Row, Col } from '../../../../src/components/Layout';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('layout');
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './LayoutDocPage.module.css';

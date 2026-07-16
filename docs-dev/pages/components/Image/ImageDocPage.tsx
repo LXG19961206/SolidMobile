@@ -1,5 +1,8 @@
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('image');
+import zhCN from '../../../i18n/image/zh-CN';
+import enUS from '../../../i18n/image/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { Image } from '../../../../src/components/Image';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';

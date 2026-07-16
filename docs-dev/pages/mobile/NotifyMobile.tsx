@@ -1,4 +1,10 @@
 import { type Component } from 'solid-js';
+
+import zhCN from '../../i18n/notify/zh-CN';
+import enUS from '../../i18n/notify/en-US';
+import { registerLocale } from '../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../doc-i18n';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 
 export interface NotifyMobileProps {
@@ -7,8 +13,6 @@ export interface NotifyMobileProps {
 }
 import { Notify } from '../../../src/components/notify';
 import { Button } from '../../../src/components/Button';
-import { useT, loadLocale } from '../../doc-i18n';
-loadLocale('notify');
 
 const propsData = [
   { name: 'Notify.primary(msg)', type: 'NotifyHandle', desc: 'componentProps.notify.Notify.primary(msg)' },

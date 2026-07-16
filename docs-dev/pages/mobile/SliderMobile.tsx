@@ -1,4 +1,10 @@
 import { createSignal, type Component } from 'solid-js';
+
+import zhCN from '../../i18n/slider/zh-CN';
+import enUS from '../../i18n/slider/en-US';
+import { registerLocale } from '../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../doc-i18n';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 
 export interface SliderMobileProps {
@@ -6,8 +12,6 @@ export interface SliderMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { Slider } from '../../../src/components/Slider';
-import { useT, loadLocale } from '../../doc-i18n';
-loadLocale('slider');
 
 const propsData = [
   { name: 'value', type: 'number | number[]', desc: 'componentProps.slider.value' },

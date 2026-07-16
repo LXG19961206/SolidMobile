@@ -1,10 +1,14 @@
 import { createSignal, Show, useContext } from 'solid-js';
+
+import zhCN from '../../../i18n/calendar/zh-CN';
+import enUS from '../../../i18n/calendar/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { Calendar } from '../../../../src/components/Calendar';
 import { Cell } from '../../../../src/components/Cell';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('calendar');
 import css from './CalendarDocPage.module.css';
 
 const propsData: PropRow[] = [

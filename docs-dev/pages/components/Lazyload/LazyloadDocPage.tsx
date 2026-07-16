@@ -1,4 +1,10 @@
 import { createSignal, onMount, For, Show, type Component } from 'solid-js';
+
+import zhCN from '../../../i18n/lazyload/zh-CN';
+import enUS from '../../../i18n/lazyload/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { Lazyload } from '../../../../src/components/Lazyload';
 import { Avatar } from '../../../../src/components/Avatar';
 import { Button } from '../../../../src/components/Button';
@@ -7,8 +13,6 @@ import { Center } from '../../../../src/components/Center';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './LazyloadDocPage.module.css';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('lazyload');
 
 const propsData: PropRow[] = [
   { name: 'active', type: 'boolean', default: '—', required: false, desc: 'componentProps.lazyload.active' },

@@ -1,9 +1,12 @@
+import zhCN from '../../../i18n/floatingball/zh-CN';
+import enUS from '../../../i18n/floatingball/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { FloatingBall } from '../../../../src/components/FloatingBall';
 import { Icon } from '../../../../src/components/Icon';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('floatingball');
 import styles from './FloatingBallDocPage.module.css';
 
 const propsData: PropRow[] = [

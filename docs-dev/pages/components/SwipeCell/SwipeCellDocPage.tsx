@@ -1,12 +1,16 @@
 import { type Component, useContext } from 'solid-js';
+
+import zhCN from '../../../i18n/swipecell/zh-CN';
+import enUS from '../../../i18n/swipecell/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { SwipeCell } from '../../../../src/components/SwipeCell';
 import { Cell } from '../../../../src/components/Cell';
 import { Toast } from '../../../../src/components/Toast';
 import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import type { SwipeAction } from '../../../../src/components/SwipeCell/types';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('swipecell');
 
 const propsData: PropRow[] = [
   { name: 'rightActions', type: 'SwipeAction[]', default: '—', required: false, desc: 'componentProps.swipecell.rightActions' },

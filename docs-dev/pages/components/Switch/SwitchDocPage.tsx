@@ -1,9 +1,13 @@
 import { createSignal } from 'solid-js';
+
+import zhCN from '../../../i18n/switch/zh-CN';
+import enUS from '../../../i18n/switch/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { Switch as Toggle } from '../../../../src/components/Switch';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('switch');
 import styles from './SwitchDocPage.module.css';
 
 const propsData: PropRow[] = [

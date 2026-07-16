@@ -1,11 +1,15 @@
 import { createSignal, useContext, type Component } from 'solid-js';
+
+import zhCN from '../../../i18n/picker/zh-CN';
+import enUS from '../../../i18n/picker/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { Picker } from '../../../../src/components/Picker';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
 import type { PickerOption } from '../../../../src/components/Picker/types';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('picker');
 
 /* ── Data ── */
 

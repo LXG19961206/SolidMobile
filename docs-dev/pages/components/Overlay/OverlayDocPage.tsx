@@ -1,12 +1,16 @@
 import { createSignal, useContext } from 'solid-js';
+
+import zhCN from '../../../i18n/overlay/zh-CN';
+import enUS from '../../../i18n/overlay/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { Overlay } from '../../../../src/components/Overlay';
 import { ActionSheet } from '../../../../src/components/ActionSheet';
 import { Cell } from '../../../../src/components/Cell';
 import { Button } from '../../../../src/components/Button';
 import { DemoBlock, GroupCodePhone, PropsTable, DocLayout, PhoneTargetContext } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('overlay');
 import styles from './OverlayDocPage.module.css';
 
 const propsData: PropRow[] = [

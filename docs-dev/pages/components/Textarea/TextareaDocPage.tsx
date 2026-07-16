@@ -1,11 +1,15 @@
 import { type Component } from 'solid-js';
+
+import zhCN from '../../../i18n/textarea/zh-CN';
+import enUS from '../../../i18n/textarea/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { Textarea } from '../../../../src/components/Textarea';
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('textarea');
 
 const propsData: PropRow[] = [
   { name: 'value', type: 'string', default: '—', required: false, desc: 'componentProps.textarea.value' },

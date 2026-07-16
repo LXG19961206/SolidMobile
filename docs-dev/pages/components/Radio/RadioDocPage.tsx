@@ -1,4 +1,10 @@
 import { createSignal, type Component } from 'solid-js';
+
+import zhCN from '../../../i18n/radio/zh-CN';
+import enUS from '../../../i18n/radio/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { Radio, RadioGroup } from '../../../../src/components/Radio';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import { Form, FormItem } from '../../../../src/components/Form';
@@ -6,8 +12,6 @@ import { Input } from '../../../../src/components/Input';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
 import type { PropRow } from '../../../doc-utils';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('radio');
 
 const radioProps: PropRow[] = [
   { name: 'value', type: 'unknown', default: '—', required: true, desc: 'componentProps.radio.value' },

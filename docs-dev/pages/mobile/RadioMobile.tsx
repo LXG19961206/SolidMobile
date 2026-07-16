@@ -1,4 +1,10 @@
 import { createSignal, type Component } from 'solid-js';
+
+import zhCN from '../../i18n/radio/zh-CN';
+import enUS from '../../i18n/radio/en-US';
+import { registerLocale } from '../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../doc-i18n';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 
 export interface RadioMobileProps {
@@ -9,8 +15,6 @@ import { Radio, RadioGroup } from '../../../src/components/Radio';
 import { Form, FormItem } from '../../../src/components/Form';
 import { Button } from '../../../src/components/Button';
 import { Toast } from '../../../src/components/Toast';
-import { useT, loadLocale } from '../../doc-i18n';
-loadLocale('radio');
 
 const propsData = [
   { name: 'Radio.value', type: 'unknown', desc: 'componentProps.radio.Radio.value' },

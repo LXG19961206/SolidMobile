@@ -1,4 +1,10 @@
 import { createSignal, type Component } from 'solid-js';
+
+import zhCN from '../../../i18n/stepper/zh-CN';
+import enUS from '../../../i18n/stepper/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { Stepper } from '../../../../src/components/Stepper';
 import { Cell } from '../../../../src/components/Cell';
 import { Icon } from '../../../../src/components/Icon';
@@ -7,8 +13,6 @@ import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
 import type { PropRow } from '../../../doc-utils';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('stepper');
 
 const stepperProps: PropRow[] = [
   { name: 'value', type: 'number', default: '—', required: false, desc: 'componentProps.stepper.value' },

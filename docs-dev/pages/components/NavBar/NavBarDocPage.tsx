@@ -1,11 +1,14 @@
+import zhCN from '../../../i18n/navbar/zh-CN';
+import enUS from '../../../i18n/navbar/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { NavBar } from '../../../../src/components/NavBar';
 import { Button } from '../../../../src/components/Button';
 import { Icon } from '../../../../src/components/Icon';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
 import css from './NavBarDocPage.module.css';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('navbar');
 
 const propsData: PropRow[] = [
   { name: 'title', type: 'string | JSX.Element', default: '—', required: false, desc: 'componentProps.navbar.title' },

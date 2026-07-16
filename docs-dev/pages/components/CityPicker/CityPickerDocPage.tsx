@@ -1,4 +1,10 @@
 import { createSignal, useContext, type Component } from 'solid-js';
+
+import zhCN from '../../../i18n/citypicker/zh-CN';
+import enUS from '../../../i18n/citypicker/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { CityPicker } from '../../../../src/components/CityPicker';
 import { Picker } from '../../../../src/components/Picker';
 import { Cell, CellGroup } from '../../../../src/components/Cell';
@@ -6,8 +12,6 @@ import { DemoBlock, PropsTable, DocLayout, PhoneTargetContext } from '../../../d
 import { Form, FormItem } from '../../../../src/components/Form';
 import { Button } from '../../../../src/components/Button';
 import { Toast } from '../../../../src/components/Toast';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('citypicker');
 import type { PickerOption } from '../../../../src/components/Picker';
 import type { PropRow } from '../../../doc-utils';
 

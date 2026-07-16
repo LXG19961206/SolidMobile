@@ -1,4 +1,10 @@
 import { type Component } from 'solid-js';
+
+import zhCN from '../../i18n/navbar/zh-CN';
+import enUS from '../../i18n/navbar/en-US';
+import { registerLocale } from '../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../doc-i18n';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 
 export interface NavBarMobileProps {
@@ -7,8 +13,6 @@ export interface NavBarMobileProps {
 }
 import { NavBar } from '../../../src/components/NavBar';
 import { Icon } from '../../../src/components/Icon';
-import { useT, loadLocale } from '../../doc-i18n';
-loadLocale('navbar');
 
 const propsData = [
   { name: 'title', type: 'string | JSX.Element', desc: 'componentProps.navbar.title' },

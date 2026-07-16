@@ -1,9 +1,13 @@
 import { type Component } from 'solid-js';
+
+import zhCN from '../../../i18n/safearea/zh-CN';
+import enUS from '../../../i18n/safearea/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { SafeArea } from '../../../../src/components/SafeArea';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow } from '../../../doc-utils';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('safearea');
 
 const safeAreaProps: PropRow[] = [
   { name: 'position', type: "'top' | 'bottom'", default: "'bottom'", required: false, desc: 'componentProps.safearea.position' },

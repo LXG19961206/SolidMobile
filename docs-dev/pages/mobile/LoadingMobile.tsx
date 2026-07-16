@@ -1,4 +1,10 @@
 import { createSignal, Show, type Component } from 'solid-js';
+
+import zhCN from '../../i18n/loading/zh-CN';
+import enUS from '../../i18n/loading/en-US';
+import { registerLocale } from '../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../doc-i18n';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 
 export interface LoadingMobileProps {
@@ -7,8 +13,6 @@ export interface LoadingMobileProps {
 }
 import { Loading } from '../../../src/components/Loading';
 import { Button } from '../../../src/components/Button';
-import { useT, loadLocale } from '../../doc-i18n';
-loadLocale('loading');
 
 const propsData = [
   { name: 'type', type: "'spinner' | 'circular' | 'dots'", desc: 'componentProps.loading.type' },

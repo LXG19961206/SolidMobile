@@ -1,4 +1,10 @@
 import { createSignal, type Component } from 'solid-js';
+
+import zhCN from '../../i18n/overlay/zh-CN';
+import enUS from '../../i18n/overlay/en-US';
+import { registerLocale } from '../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../doc-i18n';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 
 export interface OverlayMobileProps {
@@ -8,8 +14,6 @@ export interface OverlayMobileProps {
 import { Overlay } from '../../../src/components/Overlay';
 import { Button } from '../../../src/components/Button';
 import { Loading } from '../../../src/components/Loading';
-import { useT, loadLocale } from '../../doc-i18n';
-loadLocale('overlay');
 
 const propsData = [
   { name: 'open', type: 'boolean', desc: 'componentProps.overlay.open' },

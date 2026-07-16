@@ -1,4 +1,10 @@
 import { type Component } from 'solid-js';
+
+import zhCN from '../../i18n/safearea/zh-CN';
+import enUS from '../../i18n/safearea/en-US';
+import { registerLocale } from '../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../doc-i18n';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 
 export interface SafeAreaMobileProps {
@@ -6,8 +12,6 @@ export interface SafeAreaMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { SafeArea } from '../../../src/components/SafeArea';
-import { useT, loadLocale } from '../../doc-i18n';
-loadLocale('safearea');
 
 const propsData = [
   { name: 'position', type: "'top' | 'bottom'", desc: 'componentProps.safearea.position' },

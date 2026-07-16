@@ -1,9 +1,13 @@
 import { createSignal, type Component } from 'solid-js';
+
+import zhCN from '../../../i18n/button/zh-CN';
+import enUS from '../../../i18n/button/en-US';
+import { registerLocale } from '../../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../../doc-i18n';
 import { Button } from '../../../../src/components/Button';
 import { DemoBlock, PropsTable, DocLayout } from '../../../doc-utils';
 import type { PropRow, TOCItem } from '../../../doc-utils';
-import { useT, loadLocale } from '../../../doc-i18n';
-loadLocale('button');
 import styles from './ButtonDocPage.module.css';
 
 /* ---------------------------------------------------------------------- */

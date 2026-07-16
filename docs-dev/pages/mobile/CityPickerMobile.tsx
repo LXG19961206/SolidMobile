@@ -1,4 +1,10 @@
 import { createSignal, type Component } from 'solid-js';
+
+import zhCN from '../../i18n/citypicker/zh-CN';
+import enUS from '../../i18n/citypicker/en-US';
+import { registerLocale } from '../../doc-i18n';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+import { useT } from '../../doc-i18n';
 import { MobilePreview, type ComponentEntry } from '../../doc-utils/mobile/MobilePreview';
 
 export interface CityPickerMobileProps {
@@ -6,8 +12,6 @@ export interface CityPickerMobileProps {
   onNavigate?: (key: string) => void;
 }
 import { CityPicker } from '../../../src/components/CityPicker';
-import { useT, loadLocale } from '../../doc-i18n';
-loadLocale('citypicker');
 import type { PickerOption } from '../../../src/components/Picker';
 
 const propsData = [
