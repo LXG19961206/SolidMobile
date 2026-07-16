@@ -38,7 +38,7 @@ interface LangConfig {
 const LANG_CONFIGS: LangConfig[] = [
   {
     key: 'ja',
-    label: '日本語',
+    label: 'Japanese',
     locale: 'ja-JP',
     dict: {
       'ja-JP': {
@@ -232,7 +232,7 @@ export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?:
         <div style={CARD.note}>
           {isEn()
             ? <>The component library ships with built-in <strong>zh-CN</strong> and <strong>en-US</strong> dictionaries covering button labels, placeholders, and status text for all components. To add another language (Japanese, Korean, French, ...) or override built-in strings, pass the <code>localeMessages</code> prop.</>
-            : <>组件库内置 <strong>zh-CN</strong> 和 <strong>en-US</strong> 两套字典，覆盖所有组件的按钮文案、占位提示、状态标签等。当你需要其他语言（日文、韩文、法文……）或者想覆盖内置词条时，通过 <code>localeMessages</code> prop 传入自定义字典即可。</>
+            : <>组件库内置 <strong>zh-CN</strong> 和 <strong>en-US</strong> 两套字典，覆盖所有组件的按钮文案、占位Notice、状态标签等。当你需要其他语言（日文、韩文、法文……）或者想覆盖内置词条时，Via  <code>localeMessages</code> prop 传入自定义字典即可。</>
           }
         </div>
       </div>
@@ -321,7 +321,7 @@ export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?:
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{isEn() ? 'Programmatic Injection' : '程序化注入'}</div>
         <div style={CARD.desc}>
-          {isEn() ? <>Besides the <code>ProviderConfig</code> prop, you can call <code>setUserMessages()</code> at the app entry:</> : <>除了通过 <code>ProviderConfig</code> 的 prop 传入，你也可以在应用入口直接调用 <code>setUserMessages()</code>：</>}
+          {isEn() ? <>Besides the <code>ProviderConfig</code> prop, you can call <code>setUserMessages()</code> at the app entry:</> : <>除了Via  <code>ProviderConfig</code> 的 prop 传入，你也可以在应用入口直接调用 <code>setUserMessages()</code>：</>}
         </div>
         <div style={CARD.body}><CodeBlock lang="jsx" code={codeProgrammatic} /></div>
       </div>
@@ -336,7 +336,7 @@ export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?:
               <strong>4.</strong> Preserve the JSON structure; you can omit fields (missing keys fall back to English)</>
             : <><strong>1.</strong> 桌面端文档提供 <strong>英文词条模板下载</strong>（JSON 格式）<br />
               <strong>2.</strong> 将 value 替换为目标语言<br />
-              <strong>3.</strong> 通过 <code>localeMessages</code> 传入 <code>ProviderConfig</code><br />
+              <strong>3.</strong> Via  <code>localeMessages</code> 传入 <code>ProviderConfig</code><br />
               <strong>4.</strong> JSON 层级必须保持一致，可删减不需要的字段（缺失自动回退英文）</>
           }
         </div>

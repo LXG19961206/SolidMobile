@@ -51,19 +51,19 @@ const ToastDocInner: Component = () => {
       <DemoBlock title={t('demo.toastError')} code={`Toast.error('Failed, please retry');`} groupCode="结果反馈">
         <Cell title={t('demo.toastError')} clickable onClick={() => Toast.error('Failed, please retry', { portalMount: m(), overlay: false })} />
       </DemoBlock>
-      <DemoBlock title={t('demo.toastWarning')} code={`Toast.warning('Warning: check your input');`} groupCode="提示">
+      <DemoBlock title={t('demo.toastWarning')} code={`Toast.warning('Warning: check your input');`} groupCode="Notice">
         <Cell title={t('demo.toastWarning')} clickable onClick={() => Toast.warning('Warning: check your input', { portalMount: m() })} />
       </DemoBlock>
-      <DemoBlock title={t('demo.toastInfo')} code={`Toast.info('This is a message');`} groupCode="提示">
+      <DemoBlock title={t('demo.toastInfo')} code={`Toast.info('This is a message');`} groupCode="Notice">
         <Cell title={t('demo.toastInfo')} clickable onClick={() => Toast.info('This is a message', { portalMount: m() })} />
       </DemoBlock>
-      <DemoBlock title={t('demo.toastLoading')} code={`const h = Toast.loading('Loading...');\n// 完成后\nh.dismiss();`} groupCode="提示">
+      <DemoBlock title={t('demo.toastLoading')} code={`const h = Toast.loading('Loading...');\n// 完成后\nh.dismiss();`} groupCode="Notice">
         <Cell title="Loading (auto-close 2s)" clickable onClick={() => {
           const h = Toast.loading('Loading...', { portalMount: m(), overlay: false });
           setTimeout(() => h.dismiss(), 2000);
         }} />
       </DemoBlock>
-      <DemoBlock title={t('demo.customPosition')} code={`Toast.success('Top notification', { position: 'top' });`} groupCode="提示">
+      <DemoBlock title={t('demo.customPosition')} code={`Toast.success('Top notification', { position: 'top' });`} groupCode="Notice">
         <Cell title="Top Position" clickable onClick={() => Toast.success('Top notification', { position: 'top', portalMount: m() })} />
       </DemoBlock>
 

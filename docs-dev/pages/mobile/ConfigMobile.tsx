@@ -26,9 +26,9 @@ const TABLE_ROW = { display: 'flex', 'font-size': '0.72rem', padding: '4px 0', '
 const SEMANTIC_COLORS = ['primary', 'secondary', 'danger', 'success', 'warning'] as const;
 
 const configFields = [
-  ['prefix', "CSS 变量前缀，默认 'sc'"],
-  ['darkMode', "class' | 'media'，默认 'class'"],
-  ['locale', '语言，默认 zh-CN，内置中英文字典'],
+  ['prefix', "CSS 变量前缀，Default  'sc'"],
+  ['darkMode', "class' | 'media'，Default  'class'"],
+  ['locale', '语言，Default  zh-CN，内置中英文字典'],
   ['colors', 'light / dark 双色板，含语义色五级变体'],
   ['typography', '字体族、字号、字重、行高'],
   ['borderRadius', '圆角尺寸 sm / md / lg / full'],
@@ -110,7 +110,7 @@ export const ConfigMobile: Component<{ components?: ComponentEntry[]; onNavigate
         <div style={CARD.note}>
           {isEn()
             ? <>Global config provider. Place at the app root. Deep-merges with default config, injects CSS variables (<code>--sc-*</code>), and provides theme, typography, border-radius, and locale settings to child components via Solid Context. Components run on <code>defaultConfig</code> when omitted.</>
-            : <>全局配置提供者。放在应用根节点，深层合并默认配置，注入 CSS 变量（<code>--sc-*</code>），并通过 Solid Context 向子组件提供主题、排版、圆角、语言等全局设置。不使用时组件按 <code>defaultConfig</code> 运行，无需额外配置。</>
+            : <>全局配置提供者。放在应用根节点，深层合并Default 配置，注入 CSS 变量（<code>--sc-*</code>），并Via  Solid Context 向子组件提供主题、排版、圆角、语言等全局设置。不使用时组件按 <code>defaultConfig</code> 运行，无需额外配置。</>
           }
         </div>
       </div>
@@ -120,7 +120,7 @@ export const ConfigMobile: Component<{ components?: ComponentEntry[]; onNavigate
         <div style={CARD.desc}>
           {isEn()
             ? <>The most common scenario — change the brand color. Just pass <code>primary</code>, and hover, active, disabled, pale, focus, even secondary are all auto-derived via <code>deriveColorSet()</code>. You can also override any state color individually.</>
-            : <>最简单也最常用的场景——换一个品牌色。你只需要传 <code>primary</code>，hover、active、disabled、pale、focus 甚至 secondary 都会通过 <code>deriveColorSet()</code> 自动从主色计算。当然你也可以逐项覆盖任意状态色。</>
+            : <>最简单也最常用的场景——换一个品牌色。你只需要传 <code>primary</code>，hover、active、disabled、pale、focus 甚至 secondary 都会Via  <code>deriveColorSet()</code> 自动从主色计算。当然你也可以逐项覆盖Arbitrary 状态色。</>
           }
         </div>
         <div style={CARD.body}><CodeBlock lang="jsx" code={codeQuickStart} /></div>
@@ -147,7 +147,7 @@ export const ConfigMobile: Component<{ components?: ComponentEntry[]; onNavigate
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{isEn() ? 'useConfig Hook' : 'useConfig Hook'}</div>
         <div style={CARD.desc}>
-          {isEn() ? 'Access the current config in any child component (read theme values on the JS side).' : '任意子组件内获取当前配置（JS 端读取主题值、做条件逻辑）。'}
+          {isEn() ? 'Access the current config in any child component (read theme values on the JS side).' : 'Arbitrary 子组件内获取当前配置（JS 端读取主题值、做条件逻辑）。'}
         </div>
         <div style={CARD.body}><CodeBlock lang="jsx" code={codeUseConfig} /></div>
       </div>

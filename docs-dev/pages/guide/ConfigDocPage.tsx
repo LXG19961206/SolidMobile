@@ -62,17 +62,17 @@ const ConfigDocPage: Component = () => {
     <div class="guide-card">
       <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 0.5rem' }}>ConfigProvider</h1>
       <p style={{ color: '#6b7280', margin: '0 0 2rem' }}>
-        全局配置提供者。放在应用根节点，深层合并默认配置，注入 CSS 变量，
-        并通过 Solid Context 向子组件提供主题、排版、圆角、语言等全局设置。
+        全局配置提供者。放在应用根节点，深层合并Default 配置，注入 CSS 变量，
+        并Via  Solid Context 向子组件提供主题、排版、圆角、语言等全局设置。
         不使用时组件按 defaultConfig 运行，无需额外配置。
       </p>
 
       <h2 style={SECTION_H2}>{isEn() ? 'Quick Start: Change Primary Color' : '快速开始：换个主色'}</h2>
       <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
         最简单也最常用的场景——换一个品牌色。<strong>你只需要传 <code>primary</code></strong>，
-        hover、active、disabled、pale、focus 甚至 secondary 都会通过 <code>deriveColorSet()</code> 自动从主色计算
+        hover、active、disabled、pale、focus 甚至 secondary 都会Via  <code>deriveColorSet()</code> 自动从主色计算
         （HSL 色彩空间，hover 提亮 10、active 压暗 10）。
-        当然你也可以逐项覆盖任意状态色。
+        当然你也可以逐项覆盖Arbitrary 状态色。
       </p>
       <CodeBlock lang="jsx" code={`import { ProviderConfig } from 'solid-mobile';
 
@@ -98,7 +98,7 @@ function App() {
 
       <h2 style={SECTION_H2}>{isEn() ? 'Full Configuration Example' : '全量配置示例'}</h2>
       <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
-        以下展示所有可配置项。所有字段均有默认值，<strong>只需传入需要覆盖的部分</strong>，
+        以下展示所有可配置项。所有字段均有Default 值，<strong>只需传入需要覆盖的部分</strong>，
         未传字段自动使用 defaultConfig（含上述自动推导逻辑）。
       </p>
       <CodeBlock lang="jsx" code={`import { ProviderConfig } from 'solid-mobile';
@@ -110,7 +110,7 @@ const appConfig = {
   // ══════════════════════════════════════
   prefix: 'sc',              // CSS 变量前缀 → 生成 --sc-color-primary 等
   darkMode: 'class',         // 暗色模式策略: 'class' = .dark 类名, 'media' = 系统偏好
-  locale: 'zh-CN',           // 内置文本语言: 任意 locale 字符串，内置字典仅含 'zh-CN' | 'en-US'
+  locale: 'zh-CN',           // 内置文本语言: Arbitrary  locale 字符串，内置字典仅含 'zh-CN' | 'en-US'
 
   // ══════════════════════════════════════
   // 色彩系统 — light / dark 双色板
@@ -234,7 +234,7 @@ function App() {
             <tr>
               <th>属性</th>
               <th>类型</th>
-              <th>默认值</th>
+              <th>Default 值</th>
               <th>说明</th>
             </tr>
           </thead>
@@ -243,13 +243,13 @@ function App() {
               <td style={{ 'font-weight': 600 }}>config</td>
               <td style={{ color: '#6b7280', 'font-size': '0.8rem' }}>PartialSolidComponentConfig</td>
               <td style={{ color: '#9ca3af', 'font-size': '0.8rem' }}>—</td>
-              <td>部分配置覆盖，深度合并到 defaultConfig。只传需要改的字段。</td>
+              <td>部分配置覆盖，Depth 合并到 defaultConfig。只传需要改的字段。</td>
             </tr>
             <tr>
               <td style={{ 'font-weight': 600 }}>localeMessages</td>
               <td style={{ color: '#6b7280', 'font-size': '0.8rem' }}>{`Record<string, TranslationDict>`}</td>
               <td style={{ color: '#9ca3af', 'font-size': '0.8rem' }}>—</td>
-              <td>自定义语言字典，深度合并到内置字典。传任意 locale 字符串作为 key，值与内置字典同结构。用户词条优先。</td>
+              <td>自定义语言字典，Depth 合并到内置字典。传Arbitrary  locale 字符串作为 key，值与内置字典同结构。用户词条优先。</td>
             </tr>
           </tbody>
         </table>
@@ -264,7 +264,7 @@ function App() {
             <tr style={{ 'border-bottom': '2px solid #e5e7eb', 'text-align': 'left' }}>
               <th style={{ padding: '8px 12px' }}>字段</th>
               <th style={{ padding: '8px 12px' }}>类型</th>
-              <th style={{ padding: '8px 12px' }}>默认值</th>
+              <th style={{ padding: '8px 12px' }}>Default 值</th>
               <th style={{ padding: '8px 12px' }}>说明</th>
             </tr>
           </thead>
@@ -272,7 +272,7 @@ function App() {
             {[
               ['prefix', 'string', "'sc'", 'CSS 变量前缀。如 primary 生成 --sc-color-primary'],
               ['darkMode', "'class' | 'media'", "'class'", "暗色模式策略。class → 给 html 加 .dark；media → @media (prefers-color-scheme: dark)"],
-              ['locale', 'string', "'zh-CN'", '内置文本语言。支持任意 locale 字符串，内置字典仅含 zh-CN / en-US'],
+              ['locale', 'string', "'zh-CN'", '内置文本语言。Supports Arbitrary  locale 字符串，内置字典仅含 zh-CN / en-US'],
               ['colors', 'ThemeColors', '见下方', '完整色彩系统，含 light / dark 两套色板'],
               ['typography', 'TypographyConfig', '见下方', '字体族、字号、字重、行高'],
               ['borderRadius', 'BorderRadiusConfig', '见下方', '圆角尺寸 (sm/md/lg/full)'],
@@ -389,7 +389,7 @@ function App() {
 
       <h2 style={SECTION_H2}>{isEn() ? 'useConfig Hook' : 'useConfig Hook'}</h2>
       <p style={{ color: '#6b7280', 'margin': '0 0 0.75rem' }}>
-        任意子组件内获取当前配置（JS 端读取主题值、做条件逻辑）。
+        Arbitrary 子组件内获取当前配置（JS 端读取主题值、做条件逻辑）。
       </p>
       <CodeBlock lang="jsx" code={`import { useConfig } from 'solid-mobile';
 

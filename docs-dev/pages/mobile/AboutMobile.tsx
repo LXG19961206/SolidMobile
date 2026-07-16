@@ -78,7 +78,7 @@ export const AboutMobile: Component<AboutMobileProps> = (props) => {
               {isEn() ? (
                 "The rapid advancement of AI tooling in recent years provided both the catalyst and the means to resurrect this long-deferred undertaking. The first version served as a blueprint; years of accumulated engineering experience supplied the architectural judgment. The entire library has been rebuilt from the ground up with a unified design token system, first-class TypeScript support, and a commitment to configurability — every visual property that reasonably should be a variable, is."
               ) : (
-                "近两年 AI 技术的快速演進为这个搁置已久的项目提供了重启的契机与工具。以初版为蓝本，结合多年来积累的工程化理解，对整套组件库进行了从底层的重构。统一的 Design Token 体系、完整的 TypeScript 类型支持、以可配置性为核心的设计原则——所有应当可被定制的视觉属性，均通过 CSS 变量暴露。"
+                "近两年 AI 技术的快速演進为这个搁置已久的项目提供了重启的契机与工具。以初版为蓝本，结合多年来积累的工程化理解，对整套组件库进行了从底层的重构。统一的 Design Token 体系、完整的 TypeScript 类型Supports 、以可配置性为核心的设计原则——所有应当可被定制的视觉属性，均Via  CSS 变量暴露。"
               )}
             </p>
           </div>
@@ -92,7 +92,7 @@ export const AboutMobile: Component<AboutMobileProps> = (props) => {
               {isEn() ? (
                 <>The library currently ships <strong>{completed.length} components</strong> across all major categories — basic, display, navigation, form, feedback, and selector. Features include Tree Shaking, dark mode, ConfigProvider-based global theming with automatic color derivation, a complete documentation site with mobile simulator previews, and i18n support (zh-CN / en-US).</>
               ) : (
-                <>当前已交付 <strong>{completed.length} 个组件</strong>，覆盖基础、展示、导航、表单、反馈、选择器六大类别。支持 Tree Shaking、暗色模式、基于 ConfigProvider 的全局主题配置与自动色彩派生、完整的文档站与移动端模拟器预览、以及中英文国际化。</>
+                <>当前已交付 <strong>{completed.length} 个组件</strong>，覆盖基础、展示、导航、表单、反馈、选择器六大类别。Supports  Tree Shaking、暗色模式、基于 ConfigProvider 的全局主题配置与自动色彩派生、完整的文档站与移动端模拟器预览、以及中英文国际化。</>
               )}
             </p>
             {/* Component grid grouped by category */}
@@ -137,7 +137,7 @@ export const AboutMobile: Component<AboutMobileProps> = (props) => {
               {isEn() ? (
                 "Near-term priorities include completing the remaining specialized components, expanding i18n coverage, and preparing the initial npm release. Medium-term goals involve business-scenario components and a richer documentation experience."
               ) : (
-                "短期重心：完善国际化覆盖、准备初版 npm 发布。中长期方向：业务场景组件、更丰富的文档交互体验。"
+                "Short期重心：完善国际化覆盖、准备初版 npm 发布。中长期方向：业务场景组件、更丰富的文档交互体验。"
               )}
             </p>
             <div style={{ display: 'flex', 'flex-wrap': 'wrap', gap: '6px' }}>

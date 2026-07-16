@@ -256,7 +256,7 @@ setEventBusHandler((event) => {
       <p style={{ color: 'var(--sc-color-text-secondary, #6b7280)', margin: '0 0 0.75rem', 'line-height': 1.6 }}>
         {isEn()
           ? <><code>emitEvent</code> is exported as a public API. Your own components can push structured events to the same global bus by following the <code>EventBusEvent</code> signature. The <code>component</code> field accepts any string — built-in component names still get IDE autocompletion, and arbitrary strings pass through without <code>as any</code> casts.</>
-          : <><code>emitEvent</code> 已作为公开 API 导出。你自己的组件也能按 <code>EventBusEvent</code> 签名把结构化事件推送到同一个全局总线。<code>component</code> 字段接受任意字符串——内置组件名仍保留 IDE 补全提示，自定义字符串直接通过，无需 <code>as any</code> 转型。</>
+          : <><code>emitEvent</code> 已作为公开 API 导出。你自己的组件也能按 <code>EventBusEvent</code> 签名把结构化事件推送到同一个全局总线。<code>component</code> 字段接受Arbitrary 字符串——内置组件名仍保留 IDE 补全Notice，自定义字符串直接Via ，无需 <code>as any</code> 转型。</>
         }
       </p>
       <CodeBlock lang="tsx" code={`import { emitEvent } from 'solid-mobile';
@@ -266,7 +266,7 @@ import type { EventBusEvent } from 'solid-mobile';
 function MyChart(props: { data: Bar[]; id?: string }) {
   const handleBarClick = (bar: Bar) => {
     emitEvent({
-      component: 'MyChart',   // ← 自定义组件名，任意 string 直接通过
+      component: 'MyChart',   // ← 自定义组件名，Arbitrary  string 直接Via 
       type: 'click',
       payload: { bar, value: bar.value },
       props,                   // 可传入组件 props，用于遥测分析上下文

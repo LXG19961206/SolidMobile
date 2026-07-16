@@ -49,7 +49,7 @@ const cityTree: PickerOption[] = [
   },
 ];
 
-/* ── 深度级联示例（省 / 市 / 区 / 街道 / 村 / 组） ── */
+/* ── Depth cascade示例（省 / 市 / 区 / 街道 / 村 / 组） ── */
 
 const deepTree: PickerOption[] = [
   {
@@ -209,7 +209,7 @@ import { Cell } from 'your-package/Cell';
 import { PhoneTargetContext } from 'your-package/doc-utils';
 import type { PickerOption } from 'your-package/Picker';
 
-// 6 层深度树形数据：省 / 市 / 区 / 街道 / 村 / 组
+// 6 层Depth 树形数据：省 / 市 / 区 / 街道 / 村 / 组
 const deepTree: PickerOption[] = [
   {
     text: 'Guangdong', value: 'gd',

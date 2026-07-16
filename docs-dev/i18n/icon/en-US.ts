@@ -37,7 +37,7 @@ export default {
     },
     demoDesc: {
         icon_treeshake: 'Import from solid-component/icons. Bundler tree-shakes unused icons.',
-        icon_with_button: "variant='line' (default) for outline style, variant='fill' for solid style.",
+        icon_with_button: 'variant=\'line\' (default) for outline style, variant=\'fill\' for solid style.',
         icon_sizes: 'size supports numbers (px) or any CSS unit string.',
         icon_color: 'color sets icon color; inherits parent text color when not set.',
         icon_clickable: 'Set aria-label and cursor style for clickable, accessible icons.'

@@ -155,7 +155,7 @@ const uploadFile = async (file: File, onProgress?: (pct: number) => void) => {
   const form = new FormData();
   form.append('file', file);
 
-  // 如果你用 XHR，可在 upload.onprogress 里调 onProgress
+  // If 你用 XHR，可在 upload.onprogress 里调 onProgress
   const res = await fetch('/upload', { method: 'POST', body: form });
   return res.json().url; // <-- must return URL string
 };

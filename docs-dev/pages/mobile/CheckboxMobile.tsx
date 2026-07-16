@@ -55,7 +55,7 @@ export const CheckboxMobile: Component<CheckboxMobileProps> = (props) => {
   const [standaloneChecked, setStandaloneChecked] = createSignal(true);
   const [formVal, setFormVal] = createSignal({});
 
-  /* ── 全选/半选 ── */
+  /* ── Select All/半选 ── */
   const all = ['a', 'b', 'c'];
   const [checkedList, setCheckedList] = createSignal<unknown[]>(['a']);
   const allChecked = () => checkedList().length === all.length;
@@ -96,7 +96,7 @@ export const CheckboxMobile: Component<CheckboxMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 全选/半选 */}
+      {/* Select All/半选 */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.checkboxIndeterminate')}</div>
         <div style={CARD.desc}>{t('demo.checkboxIndeterminateDesc')}</div>

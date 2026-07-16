@@ -20,7 +20,7 @@ interface LangConfig {
 
 const PHONE_LANG_CONFIGS: LangConfig[] = [
   {
-    key: 'ja', label: '日本語', locale: 'ja-JP',
+    key: 'ja', label: 'Japanese', locale: 'ja-JP',
     dict: { 'ja-JP': { component: { picker: { cancel: 'キャンセル', confirm: '確認', select: '選択してください' }, select: { placeholder: '選択してください' } } } },
     pickerTitle: '都市選択', placeholder: '選択してください',
     columns: [[{ text: '東京', value: 'tokyo' }, { text: '大阪', value: 'osaka' }, { text: '京都', value: 'kyoto' }, { text: '札幌', value: 'sapporo' }, { text: '福岡', value: 'fukuoka' }, { text: '名古屋', value: 'nagoya' }]],
@@ -322,7 +322,7 @@ const I18nDocPage: Component = () => {
   const SECTION_H2 = { 'font-size': '1.15rem', 'font-weight': 600, margin: '2.5rem 0 0.75rem' };
 
   // 进入页面时记住当前全局语言，离开时还原。
-  // 页面内的 i18n 演示会通过嵌套 ProviderConfig 临时切换 locale，
+  // 页面内的 i18n 演示会Via 嵌套 ProviderConfig 临时切换 locale，
   // 离开后全局 locale 不受影响。
   const savedLocale = useLocale();
   onCleanup(() => {
@@ -358,7 +358,7 @@ const I18nDocPage: Component = () => {
         <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
           {isEn()
             ? <>Click the button below to download the component runtime dictionary template (JSON). <strong>Contains only strings actually used by components</strong> (Picker, Dialog, Calendar — button labels, placeholders, status hints), excluding documentation-site internal strings.</>
-            : <>点击下方按钮下载组件运行时词条模板（JSON）。<strong>仅包含组件实际使用的文案</strong>（Picker、Dialog、Calendar 等的按钮、占位符、状态提示），不含文档站内部词条。</>
+            : <>点击下方按钮下载组件运行时词条模板（JSON）。<strong>仅包含组件实际使用的文案</strong>（Picker、Dialog、Calendar 等的按钮、占位符、状态Notice），不含文档站内部词条。</>
           }
         </p>
         <div style={{
@@ -369,7 +369,7 @@ const I18nDocPage: Component = () => {
             <strong>{isEn() ? 'Steps:' : '使用步骤：'}</strong><br />
             {isEn()
               ? <>1. Download template → 2. Replace English values with your target language → 3. Pass via <code>localeMessages</code></>
-              : <>1. 下载模板 → 2. 将英文 value 替换为目标语言 → 3. 通过 <code>localeMessages</code> 传入</>
+              : <>1. 下载模板 → 2. 将英文 value 替换为目标语言 → 3. Via  <code>localeMessages</code> 传入</>
             }
           </div>
           <div style={{ 'font-size': '0.8rem', color: '#9ca3af', 'line-height': 1.6, 'margin-bottom': '12px' }}>
@@ -445,7 +445,7 @@ const I18nDocPage: Component = () => {
         <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
           {isEn()
             ? 'Here is the top-level structure of the built-in dictionary. You can override any level as needed:'
-            : '以下是内置字典的顶层结构，你可以按需覆盖任意层级的 key：'
+            : '以下是内置字典的顶层结构，你可以按需覆盖Arbitrary 层级的 key：'
           }
         </p>
         <CodeBlock lang="ts" code={docCodeDictStructure} />
@@ -454,7 +454,7 @@ const I18nDocPage: Component = () => {
         <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
           {isEn()
             ? <>Besides the <code>ProviderConfig</code> prop, you can call <code>setUserMessages()</code> at the app entry:</>
-            : <>除了通过 <code>ProviderConfig</code> 的 prop 传入，你也可以在应用入口直接调用 <code>setUserMessages()</code>：</>
+            : <>除了Via  <code>ProviderConfig</code> 的 prop 传入，你也可以在应用入口直接调用 <code>setUserMessages()</code>：</>
           }
         </p>
         <CodeBlock lang="jsx" code={docCodeProgrammatic} />

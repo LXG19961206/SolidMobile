@@ -259,7 +259,7 @@ export const PickerDocPage: Component = () => {
       <PropsTable rows={propsData} />
 
       {/* Each DemoBlock has groupCode="picker" → merged into one CellGroup in phone */}
-      <DemoBlock title={t('demo.cascade')} desc={t('demo.cascadeDesc')} code={codeTree} groupCode="多级联动">
+      <DemoBlock title={t('demo.cascade')} desc={t('demo.cascadeDesc')} code={codeTree} groupCode="多cascade动">
         <CityPicker />
       </DemoBlock>
       <DemoBlock title={t('demo.flat')} desc={t('demo.flatDesc')} code={codeFlat} groupCode="多级但不联动">
@@ -274,7 +274,7 @@ export const PickerDocPage: Component = () => {
       <DemoBlock title={t('demo.placeholder')} desc={t('demo.placeholderDesc')} code={codePlaceholder} groupCode="占位符">
         <PlaceholderPicker />
       </DemoBlock>
-      <DemoBlock title={t('demo.deepCascade')} desc={t('demo.deepCascadeDesc')} code={codeDeep} groupCode="理论支持无限层级">
+      <DemoBlock title={t('demo.deepCascade')} desc={t('demo.deepCascadeDesc')} code={codeDeep} groupCode="理论Supports Infinite 层级">
         <DeepPicker />
       </DemoBlock>
       <DemoBlock title={t('demo.controlled')} desc={t('demo.controlledDesc')} code={codeControlled} groupCode="受控值">

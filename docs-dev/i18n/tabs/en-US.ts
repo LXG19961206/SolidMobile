@@ -16,9 +16,9 @@ export default {
         tabs: 'Tabs'
     },
     demoDesc: {
-        tabs_line: 'type=\'line\'，底部指示条跟随切换。',
+        tabs_line: 'type=\'line\'，with bottom indicator that tracks the active tab。',
         tabs_jsx: 'title supports arbitrary JSX.',
-        tabs_card: 'type=\'card\'，卡片式标签栏。',
+        tabs_card: 'type=\'card\'，card-style tab headers。',
         tabs_controlled: 'External active state management; can disable options.'
     },
     componentProps: {

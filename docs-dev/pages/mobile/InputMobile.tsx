@@ -56,7 +56,7 @@ export const InputMobile: Component<InputMobileProps> = (props) => {
         </div>
       </div>
 
-      {/* 清除 & 密码切换 */}
+      {/* 清除 & Password切换 */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.inputClearableMobile')}</div>
         <div style={CARD.desc}>{t('demo.inputClearableMobileDesc')}</div>

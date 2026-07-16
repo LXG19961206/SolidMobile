@@ -54,7 +54,7 @@ export const PullRefreshMobile: Component<PullRefreshMobileProps> = (_props) => 
         </div>
       </div>
 
-      {/* 自定义文案 */}
+      {/* Custom Text */}
       <div style={CARD.wrapper}>
         <div style={CARD.title}>{t('demo.pullCustomText')}</div>
         <div style={CARD.desc}>{t('demo.pullCustomTextDesc')}</div>

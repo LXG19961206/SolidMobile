@@ -93,7 +93,7 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
             {isEn() ? (
               <>Traditional component libraries send upload requests on behalf of the developer. This appears convenient but hard-codes the request logic at the props level, making it difficult to leverage the project's global HTTP configuration (interceptors, token refresh, unified error handling). Even if you painstakingly replicate the same configuration through props, you end up with duplication — and the moment either side drifts out of sync, you have a hidden bug. <strong>HTTP requests belong to the business layer, not the component layer.</strong></>
             ) : (
-              <>传统组件库替开发者代发上传请求，看似方便，实则将请求逻辑固化在 props 层面，难以充分利用项目已有的全局 HTTP 配置（拦截器、Token 刷新、统一错误处理等）。就算勉强通过 Props 拼凑出相同的配置，也必然和现有工程产生冗余——后续变更一旦漏改其中一方，就会埋下隐患。<strong>请求应归属业务层，而非组件层。</strong></>
+              <>传统组件库替开发者代发上传请求，看似方便，实则将请求逻辑固化在 props 层面，难以充分利用项目已有的全局 HTTP 配置（拦截器、Token 刷新、统一错误处理等）。就算勉强Via  Props 拼凑出相同的配置，也必然和现有工程产生冗余——后续变更一旦漏改其中一方，就会埋下隐患。<strong>请求应归属业务层，而非组件层。</strong></>
             )}
           </p>
           <p style={{ margin: '0 0 8px' }}>
@@ -109,7 +109,7 @@ export const UploadMobile: Component<UploadMobileProps> = (props) => {
             {isEn() ? (
               <>Upload does one thing: <strong>manage the file lifecycle</strong> (select → validate → display → delete). "How to upload" is a <strong>strategy</strong>, injected via the api prop — you write a function that returns a Promise, and Upload calls it. This is Inversion of Control: the component defines an <strong>interface</strong> (a function returning a Promise), and you provide the <strong>implementation</strong>. Tokens, interceptors, and HTTP libraries are all under your control.</>
             ) : (
-              <>Upload 只做一件事：<strong>管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你通过 api 属性注入——你写一个返回 Promise 的函数，Upload 调用它。这就是控制反转：组件定义<strong>接口</strong>（一个返回 Promise 的函数），你提供<strong>实现</strong>。token、拦截器、请求库都在你自己掌控之中。</>
+              <>Upload 只做一件事：<strong>管理文件的生命周期</strong>（选文件 → 校验 → 展示 → 删除）。「怎么上传」是一个<strong>策略</strong>，由你Via  api 属性注入——你写一个返回 Promise 的函数，Upload 调用它。这就是控制反转：组件定义<strong>接口</strong>（一个返回 Promise 的函数），你提供<strong>实现</strong>。token、拦截器、请求库都在你自己掌控之中。</>
             )}
           </p>
           <CodeBlock lang="tsx" code={`// 你的 IoC 容器 — 封装好的请求实例
@@ -123,7 +123,7 @@ import { request } from '@/services/http';
   }
 />`} />
           <p style={{ margin: '0 0 8px' }}>
-            {isEn() ? 'Without api, Upload degrades to a "file picker + list manager".' : '如果不传 api，Upload 退化为「文件选择器 + 列表管理器」。'}
+            {isEn() ? 'Without api, Upload degrades to a "file picker + list manager".' : 'If 不传 api，Upload 退化为「文件选择器 + 列表管理器」。'}
           </p>
           <p style={{ margin: '0 0 10px' }}>
             {isEn() ? (

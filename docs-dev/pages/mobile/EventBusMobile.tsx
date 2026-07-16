@@ -267,7 +267,7 @@ setEventBusHandler((event) => {
         <div style={CARD.desc}>
           {isEn()
             ? <><code>emitEvent</code> is exported as a public API. Your own components can push structured events to the same global bus — just follow the <code>EventBusEvent</code> signature. The <code>component</code> field accepts any string, and built-in component names still get IDE autocompletion.</>
-            : <><code>emitEvent</code> 已作为公开 API 导出。你自己的组件也能按 <code>EventBusEvent</code> 签名把结构化事件推送到同一个全局总线。<code>component</code> 字段接受任意字符串，内置组件名仍保留 IDE 补全提示。</>
+            : <><code>emitEvent</code> 已作为公开 API 导出。你自己的组件也能按 <code>EventBusEvent</code> 签名把结构化事件推送到同一个全局总线。<code>component</code> 字段接受Arbitrary 字符串，内置组件名仍保留 IDE 补全Notice。</>
           }
         </div>
         <div style={CARD.body}>
@@ -277,7 +277,7 @@ import type { EventBusEvent } from 'solid-mobile';
 function MyChart(props: { data: Bar[]; id?: string }) {
   const handleBarClick = (bar: Bar) => {
     emitEvent({
-      component: 'MyChart',   // 自定义组件名 — 任意 string
+      component: 'MyChart',   // 自定义组件名 — Arbitrary  string
       type: 'click',
       payload: { bar, value: bar.value },
       props,

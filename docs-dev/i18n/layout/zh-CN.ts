@@ -25,5 +25,8 @@ export default {
         layout_grid: 'Col 的 span 取值 1-24，总和超出自动换行。',
         layout_offset: 'offset 设置左偏移，同样基于 24 栅格。',
         layout_gap_align: 'Row 的 gap 控制列间距，align 控制垂直对齐。'
+    },
+    section: {
+        layoutGapAlign: '间距和对齐',
     }
 };

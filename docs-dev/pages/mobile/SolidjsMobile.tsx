@@ -117,7 +117,7 @@ export const SolidjsMobile: Component<SolidjsMobileProps> = (props) => {
                 <a href="https://www.solidjs.com/tutorial" target="_blank" rel="noopener" style={LINK}>official tutorial</a>
                 {" "}— ten minutes, and you'll discover a world that's cleaner and lighter than React.</>
             ) : (
-              <>我们相信这套组件库本身，就是帮它补齐生态短板的一步。如果你读完这篇文章，对 Solid 产生了哪怕一点点兴趣，都可以去它的{" "}
+              <>我们相信这套组件库本身，就是帮它补齐生态Short板的一步。If 你读完这篇文章，对 Solid 产生了哪怕一点点兴趣，都可以去它的{" "}
                 <a href="https://www.solidjs.com/tutorial" target="_blank" rel="noopener" style={LINK}>官方教程</a>
                 {" "}看看——十分钟，你会发现一个比 React 更干净、更轻量的世界。</>
             )}
