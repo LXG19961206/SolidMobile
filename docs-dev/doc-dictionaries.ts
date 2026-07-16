@@ -3429,7 +3429,7 @@ export const docMessages: LocaleMessages = {
       empty_children: 'Pass children for custom action buttons.',
       icon_treeshake: 'Import from solid-component/icons. Bundler tree-shakes unused icons.',
       使用__lt_icon_name__quot_____quo: 'Use <Icon name="..." /> for dynamic icons from variables, config, or database.',
-      icon_with_button: `variant='line'（默认）为线性空心风格，variant='fill' 为填充实心风格。`,
+      icon_with_button: `variant='line' (default) for outline style, variant='fill' for solid style.`,
       icon_sizes: 'size supports numbers (px) or any CSS unit string.',
       icon_color: 'color sets icon color; inherits parent text color when not set.',
       icon_clickable: 'Set aria-label and cursor style for clickable, accessible icons.',

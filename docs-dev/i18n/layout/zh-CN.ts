@@ -1,19 +1,19 @@
 export default {
     demo: {
-        layoutBasic: 'Grid',
-        layoutBasicDesc: 'Grid.',
-        layoutGapAlign: 'Gap',
-        layoutGapAlignDesc: 'Gap & align.',
-        layoutGrid: 'Grid',
-        layoutGridDesc: 'Grid layout.',
-        layoutOffset: 'Offset',
-        layoutOffsetDesc: 'Offset.',
-        layoutGridMobile: 'Basic Grid Col.span',
-        layoutGridMobileDesc: '24-column grid system; span occupies 1-24',
-        layoutOffsetMobile: 'Offset',
-        layoutOffsetMobileDesc: 'Col.offset shifts right by grid columns',
-        layoutAlignMobile: 'Alignment',
-        layoutAlignMobileDesc: 'justify horizontal distribution / align vertical alignment'
+        layoutBasic: '基础栅格',
+        layoutBasicDesc: '基础栅格。',
+        layoutGapAlign: '间距对齐',
+        layoutGapAlignDesc: '间距和对齐。',
+        layoutGrid: '栅格',
+        layoutGridDesc: '栅格布局。',
+        layoutOffset: '偏移',
+        layoutOffsetDesc: '偏移。',
+        layoutGridMobile: '基础栅格',
+        layoutGridMobileDesc: '24 栏栅格系统，span 占 1-24 栏。',
+        layoutOffsetMobile: '偏移',
+        layoutOffsetMobileDesc: 'Col.offset 按栅格列向右偏移。',
+        layoutAlignMobile: '对齐',
+        layoutAlignMobileDesc: 'justify 水平分布 / align 垂直对齐。'
     },
     componentIntro: {
         LayoutIntro: '基于 flex 的 24 栏栅格系统。Row 为 flex 容器，Col 为 flex 子项，通过 span 控制占宽、offset 控制偏移。'
