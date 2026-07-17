@@ -55,9 +55,13 @@
   min-height: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 8px 16px 16px;
+  padding: 8px 0 16px;
   overflow-wrap: break-word;
+  /* 隐藏滚动条但保留滚动 */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+.body::-webkit-scrollbar { display: none; }
 
 /* ── Shared overlay ── */
 
