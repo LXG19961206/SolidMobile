@@ -2,6 +2,7 @@ import { Show, createSignal, createMemo } from 'solid-js';
 import { useT, registerLocale } from '../../doc-i18n';
 import { Card } from '../../../src/components/Card';
 import { Button } from '../../../src/components/Button';
+import { ActionSheet } from '../../../src/components/ActionSheet';
 import { PropsAttrs } from '../../doc-utils/PropsAttrs';
 import type { TableSection } from '../../doc-utils';
 import { MobilePreview } from '../../doc-utils/mobile/MobilePreview';
@@ -97,44 +98,30 @@ export const ButtonMobile = () => {
       </div>
 
       {/* 底部弹出 — Props / CSS Vars */}
-      <Show when={showSheet()}>
-        <div onClick={() => setShowSheet(false)} style={{
-          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', 'z-index': 1000,
-        }} />
-        <div style={{
-          position: 'fixed', bottom: 0, left: 0, right: 0, 'z-index': 1001,
-          background: '#fff', 'border-radius': '16px 16px 0 0', display: 'flex', 'flex-direction': 'column',
-          'max-height': '70vh',
-          'box-shadow': '0 -4px 24px rgba(0,0,0,0.12)',
-        }}>
-          {/* Header with tabs — 固定不滚动 */}
-          <div style={{ display: 'flex', 'align-items': 'center', padding: '12px 16px', 'border-bottom': '1px solid #e5e7eb', 'flex-shrink': 0 }}>
+      <ActionSheet open={showSheet()} onClose={() => setShowSheet(false)}>
+        <div style={{ padding: '4px 16px 16px' }}>
+          <div style={{ display: 'flex', gap: '8px', 'margin-bottom': '12px' }}>
             <span onClick={() => setSheetTab('props')} style={{
               padding: '6px 16px', 'font-size': '0.85rem', cursor: 'pointer', 'border-radius': '6px',
-              background: sheetTab() === 'props' ? '#1677ff' : 'transparent',
+              background: sheetTab() === 'props' ? '#1677ff' : '#f3f4f6',
               color: sheetTab() === 'props' ? '#fff' : '#6b7280',
               'font-weight': sheetTab() === 'props' ? 600 : 400, transition: '0.15s',
             }}>{t('common.props')}</span>
             <span onClick={() => setSheetTab('cssvars')} style={{
               padding: '6px 16px', 'font-size': '0.85rem', cursor: 'pointer', 'border-radius': '6px',
-              background: sheetTab() === 'cssvars' ? '#1677ff' : 'transparent',
+              background: sheetTab() === 'cssvars' ? '#1677ff' : '#f3f4f6',
               color: sheetTab() === 'cssvars' ? '#fff' : '#6b7280',
               'font-weight': sheetTab() === 'cssvars' ? 600 : 400, transition: '0.15s',
             }}>{t('common.cssVars')}</span>
-            <span style={{ flex: 1 }} />
-            <span onClick={() => setShowSheet(false)} style={{ 'font-size': '1.2rem', cursor: 'pointer', color: '#9ca3af', 'line-height': 1 }}>✕</span>
           </div>
-          {/* Tab content — 可滚动 + 底部安全区域 */}
-          <div style={{ padding: '12px 16px', 'overflow-y': 'auto', flex: 1, 'padding-bottom': 'calc(12px + env(safe-area-inset-bottom, 16px))' }}>
-            <Show when={sheetTab() === 'props'}>
-              <PropsAttrs compact hideTitle propsTables={propsTables} />
-            </Show>
-            <Show when={sheetTab() === 'cssvars'}>
-              <PropsAttrs compact hideTitle cssVarsTables={cssVarsTables} />
-            </Show>
-          </div>
+          <Show when={sheetTab() === 'props'}>
+            <PropsAttrs compact hideTitle propsTables={propsTables} />
+          </Show>
+          <Show when={sheetTab() === 'cssvars'}>
+            <PropsAttrs compact hideTitle cssVarsTables={cssVarsTables} />
+          </Show>
         </div>
-      </Show>
+      </ActionSheet>
     </MobilePreview>
   );
 };
