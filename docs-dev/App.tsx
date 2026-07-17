@@ -230,7 +230,7 @@ export function App() {
     const Demo = PAGES_MOBILE[mobileParam];
     const notch = 36; // PhoneSimulator notch + safe area height
     return (
-      <ProviderConfig config={{ locale: localeParam || 'zh-CN', colors: { light: { primary: themeColor }, dark: { primary: colors.hover } } }}>
+      <ProviderConfig config={{ locale: useLocale(), colors: { light: { primary: themeColor }, dark: { primary: colors.hover } } }}>
         <div style={{ '--sc-safe-area-top': `${notch}px`, '--sc-safe-area-bottom': '0px' } as JSX.CSSProperties}>
           <SafeArea position="top" />
           {Demo ? <Demo /> : <div style="padding:16px">Demo not found: {mobileParam}</div>}
