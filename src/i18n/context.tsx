@@ -9,6 +9,11 @@ export type { TranslationDict, UserLocaleMessages } from './types';
 const LOCALE_KEY = 'sc-docs-locale';
 
 function getInitial(): string {
+  // URL 参数优先（iframe 场景）
+  if (typeof window !== 'undefined') {
+    const urlParam = new URLSearchParams(window.location.search).get('locale');
+    if (urlParam) return urlParam;
+  }
   if (typeof localStorage !== 'undefined') {
     const stored = localStorage.getItem(LOCALE_KEY);
     if (stored) return stored;
