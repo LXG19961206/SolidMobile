@@ -11,7 +11,7 @@ import { docThemeColor, persistThemeColor } from './doc-utils/doc-theme';
 
 // Component DocPages
 const ButtonDocPage = lazy(() => import('./components/Button/ButtonDocPage').then(m => ({default: m.ButtonDocPage})));
-const IconDocPage = lazy(() => import('./pages/components/Icon/IconDocPage').then(m => ({default: m.IconDocPage})));
+const IconDocPage = lazy(() => import('./components/Icon/IconDocPage').then(m => ({default: m.IconDocPage})));
 const CenterDocPage = lazy(() => import('./pages/components/Center/CenterDocPage').then(m => ({default: m.CenterDocPage})));
 const DividerDocPage = lazy(() => import('./pages/components/Divider/DividerDocPage').then(m => ({default: m.DividerDocPage})));
 const LayoutDocPage = lazy(() => import('./pages/components/Layout/LayoutDocPage').then(m => ({default: m.LayoutDocPage})));
@@ -59,7 +59,7 @@ const BackTopDocPage = lazy(() => import('./pages/components/BackTop/BackTopDocP
 const SelectDocPage = lazy(() => import('./pages/components/Select/SelectDocPage').then(m => ({default: m.SelectDocPage})));
 const PickerMobile = lazy(() => import('./pages/mobile/PickerMobile').then(m => ({default: m.PickerMobile})));
 const ButtonMobile = lazy(() => import('./components/Button/ButtonMobile').then(m => ({default: m.ButtonMobile})));
-const IconMobile = lazy(() => import('./pages/mobile/IconMobile').then(m => ({default: m.IconMobile})));
+const IconMobile = lazy(() => import('./components/Icon/IconMobile').then(m => ({default: m.IconMobile})));
 const CenterMobile = lazy(() => import('./pages/mobile/CenterMobile').then(m => ({default: m.CenterMobile})));
 const DividerMobile = lazy(() => import('./pages/mobile/DividerMobile').then(m => ({default: m.DividerMobile})));
 const LayoutMobile = lazy(() => import('./pages/mobile/LayoutMobile').then(m => ({default: m.LayoutMobile})));
