@@ -1,4 +1,6 @@
 import { createSignal } from 'solid-js';
+import { useLocale } from '../doc-i18n';
+
 import { useT } from '../doc-i18n';
 import { ActionSheet } from '../../src/components/ActionSheet';
 import { Tabs, Tab } from '../../src/components/Tabs';
