@@ -275,8 +275,9 @@ export function App() {
   const refreshIframe = () => {
     const el = document.querySelector('iframe[title="Mobile Preview"]') as HTMLIFrameElement;
     if (!el) return;
+    const loc = typeof localStorage !== 'undefined' ? (localStorage.getItem('sc-docs-locale') || 'zh-CN') : 'zh-CN';
     const key = window.location.hash.replace('#/', '').replace(/^components\//, '').split('?')[0];
-    el.src = '/?mobile=' + key + '&locale=' + useLocale();
+    el.src = '/?mobile=' + key + '&locale=' + loc;
   };
 
   const toggleDark = () => {
