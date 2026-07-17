@@ -274,7 +274,9 @@ export function App() {
   /** 刷新右侧手机模拟器 iframe */
   const refreshIframe = () => {
     const el = document.querySelector('iframe[title="Mobile Preview"]') as HTMLIFrameElement;
-    if (el) el.contentWindow?.location.reload();
+    if (!el) return;
+    const key = window.location.hash.replace('#/', '').replace(/^components\//, '').split('?')[0];
+    el.src = '/?mobile=' + key + '&locale=' + useLocale();
   };
 
   const toggleDark = () => {
