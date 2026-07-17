@@ -34,6 +34,9 @@ export default {
       '--sc-border-radius-full': 'Round button radius.',
     },
     demo: {
+      icon: 'Icon',
+      loading: 'Loading & Disabled',
+      block: 'Block & Round',
       types: 'Types',
       sizes: 'Sizes',
       variant: 'Variants',

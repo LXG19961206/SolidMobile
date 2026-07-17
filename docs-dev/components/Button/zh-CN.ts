@@ -34,6 +34,9 @@ export default {
       '--sc-border-radius-full': '胶囊圆角（round 模式）。',
     },
     demo: {
+      icon: '图标按钮',
+      loading: '加载和禁用',
+      block: '通栏和圆角',
       types: '按钮类型',
       sizes: '按钮尺寸',
       variant: '按钮变体',

@@ -50,30 +50,29 @@ export const ButtonDocPage = () => {
 
   const demos: DemoCode[] = [
     {
-      title: 'Types',
+      title: t('button.demo.types'),
       code: `<Button type="primary">Primary</Button>\n<Button type="success">Success</Button>\n<Button type="danger">Danger</Button>`,
       desc: t('button.demoDesc.button_types'),
     },
     {
-      title: 'Sizes',
+      title: t('button.demo.sizes'),
       code: `<Button size="xs">XS</Button>\n<Button size="sm">SM</Button>\n<Button size="md">MD</Button>\n<Button size="lg">LG</Button>`,
       desc: t('button.demoDesc.button_sizes'),
     },
     {
-      title: 'Variants',
+      title: t('button.demo.variant'),
       code: `<Button variant="outline">Outline</Button>\n<Button variant="ghost">Ghost</Button>`,
-      desc: 'solid / outline / ghost',
     },
     {
-      title: 'Icon',
+      title: t('button.demo.icon'),
       code: `<Button icon="star">Favorite</Button>\n<Button icon="arrow-right" iconPosition="right">Next</Button>`,
     },
     {
-      title: 'Loading & Disabled',
+      title: t('button.demo.loading'),
       code: `<Button type="primary" loading>Submitting...</Button>\n<Button disabled>Disabled</Button>`,
     },
     {
-      title: 'Block & Round',
+      title: t('button.demo.block'),
       code: `<Button block round type="primary">Block Round</Button>`,
     },
   ];
