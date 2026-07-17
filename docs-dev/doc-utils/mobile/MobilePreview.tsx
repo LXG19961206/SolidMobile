@@ -91,7 +91,7 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
   const toggleDark = () => {
     const next = !isDark();
     document.documentElement.classList.toggle('dark', next);
-    try { localStorage.setItem(DARK_KEY, next ? '1' : '0'); } catch {}
+    try { localStorage.setItem(DARK_KEY, next ? '1' : '0'); } catch { }
     setIsDark(next);
   };
 
@@ -135,28 +135,25 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
           fixed
           border
           placeholder
-        left={
-          openDrawer ? (
-            <span class={styles.navBtn} onClick={openDrawer}>
-              <Icon name="dashboard" size={20} />
-            </span>
-          ) : undefined
-        }
-        right={
-          <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '2px' }}>
-            <span class={styles.navBtn} onClick={() => { showI18nNotice(); setGlobalLocale(useLocale() === 'zh-CN' ? 'en-US' : 'zh-CN'); }} title="Switch locale">
-              <span style={{ 'font-size': '0.75rem', 'font-weight': 600 }}>{useLocale() === 'zh-CN' ? 'EN' : '中'}</span>
-            </span>
-            <span class={styles.navBtn} onClick={toggleDark} title="Toggle dark mode">
-              <Icon name={isDark() ? 'sun' : 'moon'} size={18} />
-            </span>
-            <span class={styles.navBtn} onClick={() => setShowProps(!showProps())}>
-              <Icon name="information" size={18} />
-            </span>
-            <ThemeColorPicker color={docThemeColor()} onChange={(c) => persistThemeColor(c)} />
-          </div>
-        }
-      />
+          left={
+            openDrawer ? (
+              <span class={styles.navBtn} onClick={openDrawer}>
+                <Icon name="dashboard" size={20} />
+              </span>
+            ) : undefined
+          }
+          right={
+            <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '2px' }}>
+              <span class={styles.navBtn} onClick={() => { showI18nNotice(); setGlobalLocale(useLocale() === 'zh-CN' ? 'en-US' : 'zh-CN'); }} title="Switch locale">
+                <span style={{ 'font-size': '0.75rem', 'font-weight': 600 }}>{useLocale() === 'zh-CN' ? 'EN' : '中'}</span>
+              </span>
+              <span class={styles.navBtn} onClick={toggleDark} title="Toggle dark mode">
+                <Icon name={isDark() ? 'sun' : 'moon'} size={18} />
+              </span>
+              <ThemeColorPicker color={docThemeColor()} onChange={(c) => persistThemeColor(c)} />
+            </div>
+          }
+        />
       </Show>
 
       {/* iframe 中用占位 div 保持同样的顶部间距 */}
