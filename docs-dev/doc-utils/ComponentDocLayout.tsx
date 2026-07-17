@@ -133,10 +133,10 @@ function SimpleTable(props: { title?: string; rows: TableRow[] }) {
           <For each={props.rows}>
             {(row) => (
               <tr>
-                <td><code>{row.name}</code></td>
+                <td class={styles.propNameCell}><code>{row.name}</code></td>
                 <Show when={hasTypes()}><td class={styles.typeCell}>{row.type ?? '—'}</td></Show>
                 <Show when={hasDefaults()}><td class={styles.defaultCell}>{row.def ?? '—'}</td></Show>
-                <td>{t(row.desc)}</td>
+                <td class={styles.descCell}>{t(row.desc)}</td>
               </tr>
             )}
           </For>

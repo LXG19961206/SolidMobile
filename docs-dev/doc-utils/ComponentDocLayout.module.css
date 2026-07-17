@@ -1,4 +1,4 @@
-.page { padding: 1.5rem 2rem; max-width: 700px; min-width: 0; }
+.page { padding: 1.5rem 2rem; max-width: 960px; min-width: 0; margin: 0 auto; }
 .h1 { font-size: 1.75rem; font-weight: 700; margin: 0 0 0.25rem; }
 .intro { font-size: 0.9rem; color: var(--sc-color-text-secondary, #6b7280); margin: 0 0 1.5rem; }
 .h2 { font-size: 1.1rem; font-weight: 600; margin: 2rem 0 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--sc-color-border, #e5e7eb); }
@@ -7,12 +7,40 @@
 /* ── Table ── */
 .tableWrap { overflow-x: auto; margin-bottom: 1rem; }
 .tableTitle { font-size: 0.85rem; font-weight: 600; margin: 0.5rem 0 0.25rem; color: var(--sc-color-text-secondary, #6b7280); }
-.table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-.table th { text-align: left; padding: 0.5rem 0.75rem; font-weight: 600; border-bottom: 2px solid var(--sc-color-border, #e5e7eb); color: var(--sc-color-text-secondary, #6b7280); white-space: nowrap; }
-.table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--sc-color-border, #e5e7eb); }
-.table code { background: var(--sc-color-background-secondary, #f5f5f5); padding: 1px 5px; border-radius: 3px; font-size: 0.8rem; }
-.typeCell { font-size: 0.8rem; color: var(--sc-color-text-secondary, #6b7280); }
-.defaultCell { font-size: 0.8rem; color: var(--sc-color-text-tertiary, #9ca3af); }
+.table {
+  width: 100%; border-collapse: collapse; font-size: 0.8125rem;
+  background: var(--sc-color-background, #fff);
+  border: 1px solid var(--sc-color-border, #e5e7eb);
+  border-radius: 8px; overflow: hidden;
+}
+.table th {
+  text-align: left; padding: 0.5rem 0.75rem;
+  background: transparent;
+  border-bottom: 2px solid var(--sc-color-border, #e5e7eb);
+  font-weight: 600; color: var(--sc-color-text-secondary, #6b7280); white-space: nowrap;
+}
+.table td {
+  padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--sc-color-border, #f3f4f6);
+  vertical-align: top; background: transparent;
+}
+.propNameCell code {
+  font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.8125rem;
+  color: #6366f1; font-weight: 500;
+}
+.typeCell {
+  font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.75rem;
+  color: #0891b2; white-space: nowrap;
+}
+.defaultCell { font-size: 0.75rem; color: var(--sc-color-text-tertiary, #9ca3af); }
+.descCell { font-size: 0.8125rem; color: var(--sc-color-text, #374151); }
+
+/* ── Dark Table ── */
+:global(html.dark) .table { background: #1e293b; border-color: #334155; }
+:global(html.dark) .table th { color: #94a3b8; border-bottom-color: #334155; }
+:global(html.dark) .table td { border-bottom-color: #1e293b; color: #cbd5e1; }
+:global(html.dark) .propNameCell code { color: #a5b4fc; }
+:global(html.dark) .typeCell { color: #67e8f9; }
+:global(html.dark) .descCell { color: #cbd5e1; }
 
 /* ── Demo Code (亮色=prism.css浅底/暗色=自定义深底) ── */
 .demoBlock { margin-bottom: 1.5rem; }
