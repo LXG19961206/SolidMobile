@@ -1,4 +1,4 @@
-import { For, Show, type JSX } from 'solid-js';
+import { For, Show, createSignal, type JSX } from 'solid-js';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/themes/prism-okaidia.css';
@@ -11,7 +11,6 @@ export interface TableRow {
   name: string;
   type?: string;
   def?: string;
-  /** i18n key 或纯文本 */
   desc: string;
 }
 
@@ -48,7 +47,6 @@ export function ComponentDocLayout(props: ComponentDocLayoutProps) {
         <p class={styles.intro}>{props.intro}</p>
       </Show>
 
-      {/* Props */}
       <Show when={props.propsTables && props.propsTables!.length > 0}>
         <h2 class={styles.h2}>{t('common.props')}</h2>
         <For each={props.propsTables}>
@@ -56,7 +54,6 @@ export function ComponentDocLayout(props: ComponentDocLayoutProps) {
         </For>
       </Show>
 
-      {/* Events */}
       <Show when={props.eventsTables && props.eventsTables!.length > 0}>
         <h2 class={styles.h2}>{t('common.events')}</h2>
         <For each={props.eventsTables}>
@@ -64,7 +61,6 @@ export function ComponentDocLayout(props: ComponentDocLayoutProps) {
         </For>
       </Show>
 
-      {/* CSS Vars */}
       <Show when={props.cssVarsTables && props.cssVarsTables!.length > 0}>
         <h2 class={styles.h2}>{t('common.cssVars')}</h2>
         <For each={props.cssVarsTables}>
@@ -72,26 +68,42 @@ export function ComponentDocLayout(props: ComponentDocLayoutProps) {
         </For>
       </Show>
 
-      {/* Design */}
       <Show when={props.design}>
         <h2 class={styles.h2}>Design</h2>
         <div class={styles.design}>{props.design}</div>
       </Show>
 
-      {/* Demo Code Blocks */}
       <Show when={props.demos && props.demos!.length > 0}>
         <For each={props.demos}>
-          {(demo) => (
-            <div class={styles.demoBlock}>
-              <h3 class={styles.demoTitle}>{demo.title}</h3>
-              <Show when={demo.desc}>
-                <p class={styles.demoDesc}>{demo.desc}</p>
-              </Show>
-              <pre class={styles.codeBlock}><code innerHTML={Prism.highlight(demo.code, Prism.languages.jsx, 'jsx')} /></pre>
-            </div>
-          )}
+          {(demo) => <DemoCodeBlock demo={demo} />}
         </For>
       </Show>
+    </div>
+  );
+}
+
+/* ── Demo Code Block ── */
+
+function DemoCodeBlock(props: { demo: DemoCode }) {
+  const [copied, setCopied] = createSignal(false);
+  const copy = () => {
+    navigator.clipboard.writeText(props.demo.code).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    });
+  };
+  return (
+    <div class={styles.demoBlock}>
+      <h3 class={styles.demoTitle}>{props.demo.title}</h3>
+      <Show when={props.demo.desc}>
+        <p class={styles.demoDesc}>{props.demo.desc}</p>
+      </Show>
+      <div class={styles.codeWrap}>
+        <div class={styles.codeHeader}>
+          <button class={styles.copyBtn} onClick={copy}>{copied() ? 'Copied!' : 'Copy Code'}</button>
+        </div>
+        <pre class={styles.codePre}><code innerHTML={Prism.highlight(props.demo.code, Prism.languages.jsx, 'jsx')} /></pre>
+      </div>
     </div>
   );
 }
