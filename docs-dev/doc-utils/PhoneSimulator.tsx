@@ -22,7 +22,8 @@ export function PhoneSimulator(props: PhoneSimulatorProps) {
   const src = () => {
     const key = getKey();
     if (!key) return 'about:blank';
-    return `/?mobile=${key}`;
+    const loc = typeof window !== "undefined" ? (localStorage.getItem("sc-docs-locale") || "zh-CN") : "zh-CN";
+    return `/?mobile=${key}&locale=${loc}`;
   };
 
   return (
