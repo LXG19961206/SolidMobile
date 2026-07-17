@@ -215,6 +215,24 @@ import { ThemeColorPicker } from './doc-utils/ThemeColorPicker';
 export function App() {
   useDisableZoom();
   const initial = parseHash();
+
+  // Detect ?mobile=<key> for iframe mobile preview
+  // Detect ?mobile=<key> for iframe mobile preview
+  const mobileParam = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('mobile') : null;
+  const localeParam = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('locale') : null;
+  if (mobileParam) {
+    // 如果 URL 带了 locale 参数，同步到 i18n
+    if (localeParam && localeParam !== useLocale()) {
+      setGlobalLocale(localeParam);
+    }
+    const Demo = PAGES_MOBILE[mobileParam];
+    return (
+      <ProviderConfig config={{ locale: useLocale() }}>
+        {Demo ? <Demo /> : <div style="padding:16px">Demo not found: {mobileParam}</div>}
+      </ProviderConfig>
+    );
+  }
+
   const t = useT();
   const [section, setSection] = createSignal<Section>(initial.section);
   const [activeKey, setActiveKey] = createSignal(initial.pageKey || 'button');
@@ -245,6 +263,12 @@ export function App() {
   onMount(() => {
     applyDark(dark());
   });
+
+  /** 刷新右侧手机模拟器 iframe */
+  const refreshIframe = () => {
+    const el = document.querySelector('iframe[title="Mobile Preview"]') as HTMLIFrameElement;
+    if (el) el.contentWindow?.location.reload();
+  };
 
   const toggleDark = () => {
     setDark(prev => { const next = !prev; applyDark(next); return next; });
@@ -395,11 +419,11 @@ export function App() {
               </For>
             </nav>
             <div class="top-nav-actions">
-              <ThemeColorPicker color={docThemeColor()} onChange={(c) => persistThemeColor(c)} />
-              <button class="tb-btn" onClick={() => { showI18nNotice(); setGlobalLocale(useLocale() === 'zh-CN' ? 'en-US' : 'zh-CN'); }}>
+              <ThemeColorPicker color={docThemeColor()} onChange={(c) => { persistThemeColor(c); refreshIframe(); }} />
+              <button class="tb-btn" onClick={() => { showI18nNotice(); setGlobalLocale(useLocale() === 'zh-CN' ? 'en-US' : 'zh-CN'); refreshIframe(); }}>
                 {useLocale() === 'zh-CN' ? 'EN' : '中'}
               </button>
-              <button class="tb-btn" onClick={toggleDark}>
+              <button class="tb-btn" onClick={() => { toggleDark(); refreshIframe(); }}>
                 {dark() ? '☀' : '☾'}
               </button>
             </div>
