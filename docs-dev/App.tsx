@@ -222,6 +222,7 @@ export function App() {
   const mobileParam = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('mobile') : null;
   const localeParam = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('locale') : null;
   if (mobileParam) {
+    void useLocale();
     if (localeParam && localeParam !== useLocale()) setGlobalLocale(localeParam);
     applyDark(getDark());
     // 读取 localStorage 中的主题色
