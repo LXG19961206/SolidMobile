@@ -2,6 +2,7 @@ import { For, Show, createSignal, type JSX } from 'solid-js';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/themes/prism.css';
+import { Card } from '../../src/components/Card';
 import { useT } from '../doc-i18n';
 import styles from './ComponentDocLayout.module.css';
 
@@ -23,6 +24,8 @@ export interface DemoCode {
   title: string;
   code: string;
   desc?: string;
+  /** 交互式 demo 内容（可选） */
+  children?: JSX.Element;
 }
 
 export interface ComponentDocLayoutProps {
@@ -82,7 +85,7 @@ export function ComponentDocLayout(props: ComponentDocLayoutProps) {
   );
 }
 
-/* ── Demo Code Block ── */
+/* ── Demo Card + Code Block ── */
 
 function DemoCodeBlock(props: { demo: DemoCode }) {
   const [copied, setCopied] = createSignal(false);
@@ -94,16 +97,17 @@ function DemoCodeBlock(props: { demo: DemoCode }) {
   };
   return (
     <div class={styles.demoBlock}>
-      <h3 class={styles.demoTitle}>{props.demo.title}</h3>
-      <Show when={props.demo.desc}>
-        <p class={styles.demoDesc}>{props.demo.desc}</p>
-      </Show>
-      <div class={styles.codeWrap}>
-        <div class={styles.codeHeader}>
-          <button class={styles.copyBtn} onClick={copy}>{copied() ? 'Copied!' : 'Copy Code'}</button>
+      <Card title={props.demo.title} subtitle={props.demo.desc}>
+        <Show when={props.demo.children}>
+          <div class={styles.demoPreview}>{props.demo.children}</div>
+        </Show>
+        <div class={styles.codeWrap}>
+          <div class={styles.codeHeader}>
+            <button class={styles.copyBtn} onClick={copy}>{copied() ? 'Copied!' : 'Copy Code'}</button>
+          </div>
+          <pre class={styles.codePre}><code innerHTML={Prism.highlight(props.demo.code, Prism.languages.jsx, 'jsx')} /></pre>
         </div>
-        <pre class={styles.codePre}><code innerHTML={Prism.highlight(props.demo.code, Prism.languages.jsx, 'jsx')} /></pre>
-      </div>
+      </Card>
     </div>
   );
 }

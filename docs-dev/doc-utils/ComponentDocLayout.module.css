@@ -45,6 +45,7 @@
 .demoBlock { margin-bottom: 1.5rem; }
 .demoTitle { font-size: 0.95rem; font-weight: 600; margin: 1rem 0 0.25rem; }
 .demoDesc { font-size: 0.8rem; color: var(--sc-color-text-secondary, #6b7280); margin: 0 0 0.5rem; }
+.demoPreview { margin: 8px 0 16px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .codeWrap { border-radius: 8px; overflow: hidden; border: 1px solid var(--sc-color-border, #e5e7eb); }
 .codeHeader {
   display: flex; justify-content: flex-end; align-items: center;

@@ -1,8 +1,9 @@
-import { createSignal, createMemo, onMount, For, Show, type Component, lazy } from 'solid-js';
+import { createSignal, createMemo, onMount, For, Show, type Component, type JSX, lazy } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
 // 启动时注册 common 通用词条（nav 等），后续各 doc 页懒加载自己的词条
 import './doc-i18n';
 
+import { SafeArea } from '../src/components/SafeArea';
 import { setGlobalLocale, useLocale, useT } from '../src/i18n';
 import { ProviderConfig } from '../src/config';
 import { deriveColorSet } from '../src/utils/color';
@@ -227,9 +228,14 @@ export function App() {
     const themeColor = (() => { try { return localStorage.getItem('sc-docs-theme-color') || '#1677ff'; } catch { return '#1677ff'; } })();
     const colors = deriveColorSet(themeColor);
     const Demo = PAGES_MOBILE[mobileParam];
+    const notch = 44; // PhoneSimulator notch + safe area height
     return (
       <ProviderConfig config={{ colors: { light: { primary: themeColor }, dark: { primary: colors.hover } } }}>
-        {Demo ? <Demo /> : <div style="padding:16px">Demo not found: {mobileParam}</div>}
+        <div style={{ '--sc-safe-area-top': `${notch}px`, '--sc-safe-area-bottom': '0px' } as JSX.CSSProperties}>
+          <SafeArea position="top" />
+          {Demo ? <Demo /> : <div style="padding:16px">Demo not found: {mobileParam}</div>}
+          <SafeArea position="bottom" />
+        </div>
       </ProviderConfig>
     );
   }
