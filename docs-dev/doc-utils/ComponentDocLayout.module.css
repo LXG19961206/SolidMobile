@@ -15,9 +15,9 @@
 }
 .table th {
   text-align: left; padding: 0.5rem 0.75rem;
-  background: var(--sc-color-background-secondary, #f9fafb);
+  background: #fafafa;
   border-bottom: 2px solid var(--sc-color-border, #e5e7eb);
-  font-weight: 600; color: var(--sc-color-text, #374151); white-space: nowrap; font-size: 0.78rem;
+  font-weight: 600; color: var(--sc-color-text-secondary, #6b7280); white-space: nowrap; font-size: 0.78rem;
 }
 .table td {
   padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--sc-color-border, #f3f4f6);
@@ -36,7 +36,7 @@
 
 /* ── Dark Table ── */
 :global(html.dark) .table { background: #1e293b; border-color: #334155; }
-:global(html.dark) .table th { background: #1a1d21; color: #e2e8f0; border-bottom-color: #334155; }
+:global(html.dark) .table th { background: #1e293b; color: #94a3b8; border-bottom-color: #334155; }
 :global(html.dark) .table td { border-bottom-color: #1e293b; color: #cbd5e1; }
 :global(html.dark) .propNameCell code { color: #a5b4fc; }
 :global(html.dark) .typeCell { color: #67e8f9; }
