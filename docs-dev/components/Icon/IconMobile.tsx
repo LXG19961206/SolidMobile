@@ -1,12 +1,16 @@
+import { Show } from 'solid-js';
 import { useT, registerLocale } from '../../doc-i18n';
 import { Card } from '../../../src/components/Card';
 import { Icon } from '../../../src/components/Icon';
 import { MobilePropsSheet } from '../../doc-utils/MobilePropsSheet';
 import { MobilePreview } from '../../doc-utils/mobile/MobilePreview';
+import { IconLibrary } from './IconLibrary';
 import zhCN from './zh-CN';
 import enUS from './en-US';
 import { useIconTableData } from './tableData';
 registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
+const inIframe = typeof window !== 'undefined' && window.top !== window.self;
 
 export const IconMobile = () => {
   const t = useT();
@@ -57,6 +61,11 @@ export const IconMobile = () => {
           </Row>
         </Card>
       </div>
+      <Show when={!inIframe}>
+        <Card title={t('icon.library.title')}>
+          <IconLibrary />
+        </Card>
+      </Show>
     </MobilePreview>
   );
 };
