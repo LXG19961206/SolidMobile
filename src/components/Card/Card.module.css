@@ -1,0 +1,44 @@
+.card {
+  background: var(--sc-card-bg, #fff);
+  border-radius: var(--sc-card-radius, 10px);
+  padding: var(--sc-card-padding, 16px);
+}
+
+.border {
+  border: 1px solid var(--sc-card-border, #ebedf0);
+}
+
+.shadow {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.header {
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--sc-card-title, #1f2937);
+  line-height: 1.4;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: var(--sc-card-subtitle, #6b7280);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.body {
+  /* 纯内容区域 */
+}
+
+/* ── 暗色模式 ── */
+:global(html.dark) .card {
+  --sc-card-bg: #1e293b;
+  --sc-card-border: #334155;
+  --sc-card-title: #e2e8f0;
+  --sc-card-subtitle: #94a3b8;
+  box-shadow: none;
+}

@@ -43,6 +43,9 @@ export type { ImageProps, ImageFit } from './Image';
 export { Avatar } from './Avatar';
 export type { AvatarProps, AvatarSize } from './Avatar';
 
+export { Card } from './Card';
+export type { CardProps } from './Card';
+
 export { Tabs, Tab } from './Tabs';
 export type { TabsProps, TabProps } from './Tabs';
 
