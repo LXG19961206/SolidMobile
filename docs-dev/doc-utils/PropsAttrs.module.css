@@ -1,0 +1,40 @@
+.table {
+  width: 100%; border-collapse: collapse; font-size: 0.78rem;
+}
+.th, .td {
+  padding: 6px 8px; text-align: left; border-bottom: 1px solid #f3f4f6;
+}
+.th {
+  border-bottom: 2px solid #e5e7eb;
+  font-weight: 600; font-size: 0.75rem; color: #6b7280;
+  background: #fafafa; white-space: nowrap;
+}
+.propName {
+  font-size: 0.78rem; color: #6366f1; font-weight: 500;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+}
+.typeCell {
+  font-size: 0.72rem; color: #0891b2;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+}
+.defCell { font-size: 0.72rem; color: #9ca3af; }
+.descCell { font-size: 0.78rem; color: #374151; }
+
+/* 移动端表格容器 — 最大高度 + 滚动 */
+.scrollWrap {
+  max-height: 320px; overflow-y: auto;
+  border: 1px solid #e5e7eb; border-radius: 6px;
+  scrollbar-width: thin;
+}
+.scrollWrap::-webkit-scrollbar { width: 4px; }
+.scrollWrap::-webkit-scrollbar-thumb { background: hsla(0,0%,60%,0.2); border-radius: 4px; }
+
+/* ── 暗色 ── */
+:global(html.dark) .table { border-color: #334155; }
+:global(html.dark) .th { background: #1a1d21; color: #94a3b8; border-bottom-color: #334155; }
+:global(html.dark) .td { border-bottom-color: #1e293b; color: #cbd5e1; }
+:global(html.dark) .propName { color: #a5b4fc; }
+:global(html.dark) .typeCell { color: #67e8f9; }
+:global(html.dark) .descCell { color: #cbd5e1; }
+:global(html.dark) .scrollWrap { border-color: #334155; }
+:global(html.dark) .scrollWrap::-webkit-scrollbar-thumb { background: hsla(0,0%,40%,0.2); }
