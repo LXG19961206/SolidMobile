@@ -421,9 +421,19 @@ export function App() {
             </nav>
             <div class="top-nav-actions">
               <ThemeColorPicker color={docThemeColor()} onChange={(c) => { persistThemeColor(c); refreshIframe(); }} />
-              <button class="tb-btn" onClick={() => { showI18nNotice(); setGlobalLocale(useLocale() === 'zh-CN' ? 'en-US' : 'zh-CN'); refreshIframe(); }}>
-                {useLocale() === 'zh-CN' ? 'EN' : '中'}
-              </button>
+              <div style="display:inline-flex;border:1px solid var(--sc-color-border,#e5e7eb);border-radius:6px;overflow:hidden;line-height:1">
+                <span onClick={() => { if (useLocale() !== 'zh-CN') { showI18nNotice(); setGlobalLocale('zh-CN'); refreshIframe(); } }}
+                  style={{ padding:'3px 8px', cursor:'pointer', 'font-size':'12px', 'font-weight': useLocale()==='zh-CN'?600:400,
+                    background: useLocale()==='zh-CN' ? 'var(--sc-color-primary,#1677ff)' : 'transparent',
+                    color: useLocale()==='zh-CN' ? '#fff' : 'var(--sc-color-text-secondary,#6b7280)',
+                    transition:'all 0.15s' }}>CN</span>
+                <span style="width:1px;background:var(--sc-color-border,#e5e7eb)" />
+                <span onClick={() => { if (useLocale() !== 'en-US') { showI18nNotice(); setGlobalLocale('en-US'); refreshIframe(); } }}
+                  style={{ padding:'3px 8px', cursor:'pointer', 'font-size':'12px', 'font-weight': useLocale()==='en-US'?600:400,
+                    background: useLocale()==='en-US' ? 'var(--sc-color-primary,#1677ff)' : 'transparent',
+                    color: useLocale()==='en-US' ? '#fff' : 'var(--sc-color-text-secondary,#6b7280)',
+                    transition:'all 0.15s' }}>EN</span>
+              </div>
               <button class="tb-btn" onClick={() => { toggleDark(); refreshIframe(); }}>
                 {dark() ? '☀' : '☾'}
               </button>
