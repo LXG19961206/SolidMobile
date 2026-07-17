@@ -1,8 +1,9 @@
-import { Show, createSignal, createMemo } from 'solid-js';
+import { Show, createSignal } from 'solid-js';
 import { useT, registerLocale } from '../../doc-i18n';
 import { Card } from '../../../src/components/Card';
 import { Button } from '../../../src/components/Button';
 import { ActionSheet } from '../../../src/components/ActionSheet';
+import { Tabs, Tab } from '../../../src/components/Tabs';
 import { PropsAttrs } from '../../doc-utils/PropsAttrs';
 import type { TableSection } from '../../doc-utils';
 import { MobilePreview } from '../../doc-utils/mobile/MobilePreview';
@@ -100,26 +101,14 @@ export const ButtonMobile = () => {
       {/* 底部弹出 — Props / CSS Vars */}
       <ActionSheet open={showSheet()} onClose={() => setShowSheet(false)}>
         <div style={{ padding: '4px 16px 16px' }}>
-          <div style={{ display: 'flex', gap: '8px', 'margin-bottom': '12px' }}>
-            <span onClick={() => setSheetTab('props')} style={{
-              padding: '6px 16px', 'font-size': '0.85rem', cursor: 'pointer', 'border-radius': '6px',
-              background: sheetTab() === 'props' ? '#1677ff' : '#f3f4f6',
-              color: sheetTab() === 'props' ? '#fff' : '#6b7280',
-              'font-weight': sheetTab() === 'props' ? 600 : 400, transition: '0.15s',
-            }}>{t('common.props')}</span>
-            <span onClick={() => setSheetTab('cssvars')} style={{
-              padding: '6px 16px', 'font-size': '0.85rem', cursor: 'pointer', 'border-radius': '6px',
-              background: sheetTab() === 'cssvars' ? '#1677ff' : '#f3f4f6',
-              color: sheetTab() === 'cssvars' ? '#fff' : '#6b7280',
-              'font-weight': sheetTab() === 'cssvars' ? 600 : 400, transition: '0.15s',
-            }}>{t('common.cssVars')}</span>
-          </div>
-          <Show when={sheetTab() === 'props'}>
-            <PropsAttrs compact hideTitle propsTables={propsTables} />
-          </Show>
-          <Show when={sheetTab() === 'cssvars'}>
-            <PropsAttrs compact hideTitle cssVarsTables={cssVarsTables} />
-          </Show>
+          <Tabs active={sheetTab()} onChange={(v) => setSheetTab(v as 'props' | 'cssvars')}>
+            <Tab title={t('common.props')} name="props">
+              <PropsAttrs compact hideTitle propsTables={propsTables} />
+            </Tab>
+            <Tab title={t('common.cssVars')} name="cssvars">
+              <PropsAttrs compact hideTitle cssVarsTables={cssVarsTables} />
+            </Tab>
+          </Tabs>
         </div>
       </ActionSheet>
     </MobilePreview>
