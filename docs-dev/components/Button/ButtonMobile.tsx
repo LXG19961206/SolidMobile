@@ -103,12 +103,12 @@ export const ButtonMobile = () => {
         }} />
         <div style={{
           position: 'fixed', bottom: 0, left: 0, right: 0, 'z-index': 1001,
-          background: '#fff', 'border-radius': '16px 16px 0 0',
-          'max-height': '70vh', 'overflow-y': 'auto',
+          background: '#fff', 'border-radius': '16px 16px 0 0', display: 'flex', 'flex-direction': 'column',
+          'max-height': '70vh',
           'box-shadow': '0 -4px 24px rgba(0,0,0,0.12)',
         }}>
-          {/* Header with tabs */}
-          <div style={{ display: 'flex', 'align-items': 'center', padding: '12px 16px', 'border-bottom': '1px solid #e5e7eb' }}>
+          {/* Header with tabs — 固定不滚动 */}
+          <div style={{ display: 'flex', 'align-items': 'center', padding: '12px 16px', 'border-bottom': '1px solid #e5e7eb', 'flex-shrink': 0 }}>
             <span onClick={() => setSheetTab('props')} style={{
               padding: '6px 16px', 'font-size': '0.85rem', cursor: 'pointer', 'border-radius': '6px',
               background: sheetTab() === 'props' ? '#1677ff' : 'transparent',
@@ -124,8 +124,8 @@ export const ButtonMobile = () => {
             <span style={{ flex: 1 }} />
             <span onClick={() => setShowSheet(false)} style={{ 'font-size': '1.2rem', cursor: 'pointer', color: '#9ca3af', 'line-height': 1 }}>✕</span>
           </div>
-          {/* Tab content with padding */}
-          <div style={{ padding: '12px 16px' }}>
+          {/* Tab content — 可滚动 + 底部安全区域 */}
+          <div style={{ padding: '12px 16px', 'overflow-y': 'auto', flex: 1, 'padding-bottom': 'calc(12px + env(safe-area-inset-bottom, 16px))' }}>
             <Show when={sheetTab() === 'props'}>
               <PropsAttrs compact hideTitle propsTables={propsTables} />
             </Show>
