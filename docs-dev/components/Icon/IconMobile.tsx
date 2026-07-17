@@ -62,9 +62,11 @@ export const IconMobile = () => {
         </Card>
       </div>
       <Show when={!inIframe}>
+        <div style={{ padding: '0 12px' }}>
         <Card title={t('icon.library.title')}>
           <IconLibrary />
         </Card>
+        </div>
       </Show>
     </MobilePreview>
   );
