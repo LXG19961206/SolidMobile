@@ -27,9 +27,9 @@ export function PropsAttrs(props: PropsAttrsProps) {
           <thead>
             <tr>
               <th class={styles.th}>Name</th>
-              <Show when={hasTypes(sec.rows)}><th class={styles.th}>Type</th></Show>
-              <Show when={hasDefaults(sec.rows)}><th class={styles.th}>Default</th></Show>
-              <Show when={!props.compact}><th class={styles.th}>Description</th></Show>
+              <Show when={!props.compact && hasTypes(sec.rows)}><th class={styles.th}>Type</th></Show>
+              <Show when={!props.compact && hasDefaults(sec.rows)}><th class={styles.th}>Default</th></Show>
+              <th class={styles.th}>Description</th>
             </tr>
           </thead>
           <tbody>
@@ -37,9 +37,9 @@ export function PropsAttrs(props: PropsAttrsProps) {
               {(row) => (
                 <tr>
                   <td class={styles.td}><span class={styles.propName}>{row.name}</span></td>
-                  <Show when={hasTypes(sec.rows)}><td class={`${styles.td} ${styles.typeCell}`}>{row.type ?? '—'}</td></Show>
-                  <Show when={hasDefaults(sec.rows)}><td class={`${styles.td} ${styles.defCell}`}>{row.def ?? '—'}</td></Show>
-                  <Show when={!props.compact}><td class={`${styles.td} ${styles.descCell}`}>{t(row.desc)}</td></Show>
+                  <Show when={!props.compact && hasTypes(sec.rows)}><td class={`${styles.td} ${styles.typeCell}`}>{row.type ?? '—'}</td></Show>
+                  <Show when={!props.compact && hasDefaults(sec.rows)}><td class={`${styles.td} ${styles.defCell}`}>{row.def ?? '—'}</td></Show>
+                  <td class={`${styles.td} ${styles.descCell}`}>{t(row.desc)}</td>
                 </tr>
               )}
             </For>
