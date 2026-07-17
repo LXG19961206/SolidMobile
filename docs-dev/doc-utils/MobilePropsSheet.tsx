@@ -37,13 +37,13 @@ export function MobilePropsSheet(props: MobilePropsSheetProps) {
       </div>
 
       <ActionSheet open={open()} onClose={() => setOpen(false)}>
-        <div style={{ padding: '12px 16px 20px' }}>
+        <div style={{ padding: 0 }}>
           <Tabs active={tab()} onChange={(v) => setTab(v as 'props' | 'cssvars')}>
             <Tab title={t('common.props')} name="props">
-              <PropsAttrs compact hideTitle propsTables={props.propsTables} />
+              <div style={{ padding: "12px 16px" }}><PropsAttrs compact hideTitle propsTables={props.propsTables} /></div>
             </Tab>
             <Tab title={t('common.cssVars')} name="cssvars">
-              <PropsAttrs compact hideTitle cssVarsTables={props.cssVarsTables} />
+              <div style={{ padding: "12px 16px" }}><PropsAttrs compact hideTitle cssVarsTables={props.cssVarsTables} /></div>
             </Tab>
           </Tabs>
         </div>
