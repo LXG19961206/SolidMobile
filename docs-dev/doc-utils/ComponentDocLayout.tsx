@@ -1,4 +1,7 @@
 import { For, Show, type JSX } from 'solid-js';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-jsx';
+import 'prismjs/themes/prism-okaidia.css';
 import { useT } from '../doc-i18n';
 import styles from './ComponentDocLayout.module.css';
 
@@ -84,7 +87,7 @@ export function ComponentDocLayout(props: ComponentDocLayoutProps) {
               <Show when={demo.desc}>
                 <p class={styles.demoDesc}>{demo.desc}</p>
               </Show>
-              <pre class={styles.codeBlock}><code>{demo.code}</code></pre>
+              <pre class={styles.codeBlock}><code innerHTML={Prism.highlight(demo.code, Prism.languages.jsx, 'jsx')} /></pre>
             </div>
           )}
         </For>
