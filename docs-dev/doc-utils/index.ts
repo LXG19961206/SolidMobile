@@ -1,3 +1,5 @@
+export { ComponentDocLayout } from './ComponentDocLayout';
+export type { ComponentDocLayoutProps, TableSection, DemoCode } from './ComponentDocLayout';
 export { CodeBlock } from './CodeBlock';
 export { DemoBlock, GroupCodePhone } from './DemoBlock';
 export type { DemoBlockProps } from './DemoBlock';
