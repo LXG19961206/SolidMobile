@@ -1,4 +1,5 @@
 import { createSignal, For, Show } from 'solid-js';
+import { useT } from '../../doc-i18n';
 import { Icon } from '../../../src/components/Icon';
 import type { IconName, IconVariant } from '../../../src/components/Icon/types';
 
@@ -22,6 +23,7 @@ const CATEGORIES: Category[] = [
 const ALL_ICONS = CATEGORIES.flatMap(c => c.icons);
 
 export function IconLibrary() {
+  const t = useT();
   const [search, setSearch] = createSignal('');
   const [variant, setVariant] = createSignal<IconVariant>('line');
   const [size, setSize] = createSignal(24);
@@ -47,7 +49,7 @@ export function IconLibrary() {
       {/* Controls */}
       <div style={{ display: 'flex', gap: '12px', 'flex-wrap': 'wrap', 'align-items': 'center', 'margin-bottom': '16px', padding: '12px', background: 'var(--sc-color-background-secondary, #f5f5f5)', 'border-radius': '8px' }}>
         <input
-          type="text" placeholder="Search icons..." value={search()}
+          type="text" placeholder={t("icon.library.search")} value={search()}
           onInput={e => setSearch(e.currentTarget.value)}
           style={{ flex: 1, 'min-width': '120px', padding: '6px 10px', border: '1px solid #e5e7eb', 'border-radius': '6px', 'font-size': '0.85rem', outline: 'none', background: '#fff' }}
         />
@@ -55,14 +57,14 @@ export function IconLibrary() {
           <button onClick={() => setVariant('line')} style={{
             padding: '4px 12px', border: 'none', 'border-radius': '4px', cursor: 'pointer', 'font-size': '0.8rem',
             background: variant() === 'line' ? '#1677ff' : 'transparent', color: variant() === 'line' ? '#fff' : '#6b7280',
-          }}>Line</button>
+          }}>{t("icon.library.line")}</button>
           <button onClick={() => setVariant('fill')} style={{
             padding: '4px 12px', border: 'none', 'border-radius': '4px', cursor: 'pointer', 'font-size': '0.8rem',
             background: variant() === 'fill' ? '#1677ff' : 'transparent', color: variant() === 'fill' ? '#fff' : '#6b7280',
-          }}>Fill</button>
+          }}>{t("icon.library.fill")}</button>
         </div>
         <div style={{ display: 'flex', gap: '8px', 'align-items': 'center', 'font-size': '0.8rem', color: '#6b7280' }}>
-          <span>Size</span>
+          <span>{t("icon.library.size")}</span>
           <input type="range" min="16" max="48" value={size()} onInput={e => setSize(Number(e.currentTarget.value))} style={{ width: '80px' }} />
           <span>{size()}px</span>
         </div>
@@ -107,7 +109,7 @@ export function IconLibrary() {
           padding: '8px 16px', background: '#1f2937', color: '#fff', 'border-radius': '8px',
           'font-size': '0.85rem', 'z-index': 1000,
         }}>
-          Copied: &lt;Icon name="{copiedName()}" /&gt;
+          {t("icon.library.copied")}: &lt;Icon name="{copiedName()}" /&gt;
         </div>
       </Show>
     </div>

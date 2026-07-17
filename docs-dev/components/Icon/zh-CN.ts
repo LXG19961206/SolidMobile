@@ -22,6 +22,15 @@ export default {
       clickable: '设置 aria-label 和 cursor 样式变为可交互按钮。',
       line: "variant='line' 线性空心，variant='fill' 填充实心。",
     },
-    intro: '131 个精选 Remix 图标，支持线性/填充双风格。',
+    library: {
+      title: '图标库',
+      desc: '共 129 个图标。点击复制 JSX 代码。',
+      search: '搜索图标...',
+      line: '线性',
+      fill: '填充',
+      size: '尺寸',
+      copied: '已复制',
+    },
+    intro: '129 个精选 Remix 图标，支持线性/填充双风格。',
   },
 };

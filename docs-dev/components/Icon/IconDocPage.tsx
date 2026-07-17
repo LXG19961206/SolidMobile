@@ -52,10 +52,8 @@ export const IconDocPage = () => {
         <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '24px 0 12px' }}>Demos</h2>
         <For each={demos}>{(demo) => <DemoCodeBlock demo={demo} />}</For>
 
-        <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '32px 0 12px' }}>Icon Library</h2>
-        <p style={{ 'font-size': '0.85rem', color: '#6b7280', margin: '0 0 16px' }}>
-          129 icons total. Click to copy JSX code.
-        </p>
+        <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '32px 0 12px' }}>{t('icon.library.title')}</h2>
+        <p style={{ 'font-size': '0.85rem', color: '#6b7280', margin: '0 0 16px' }}>{t('icon.library.desc')}</p>
         <IconLibrary />
       </div>
     </DocLayout>

@@ -22,6 +22,15 @@ export default {
       clickable: 'Set aria-label and cursor style for clickable, accessible icons.',
       line: "variant='line' for outline, variant='fill' for solid.",
     },
-    intro: '131 curated Remix Icons in line and fill variants.',
+    library: {
+      title: 'Icon Library',
+      desc: '129 icons total. Click to copy JSX code.',
+      search: 'Search icons...',
+      line: 'Line',
+      fill: 'Fill',
+      size: 'Size',
+      copied: 'Copied',
+    },
+    intro: '129 curated Remix Icons in line and fill variants.',
   },
 };
