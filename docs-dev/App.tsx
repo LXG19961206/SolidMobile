@@ -228,7 +228,7 @@ export function App() {
     const themeColor = (() => { try { return localStorage.getItem('sc-docs-theme-color') || '#1677ff'; } catch { return '#1677ff'; } })();
     const colors = deriveColorSet(themeColor);
     const Demo = PAGES_MOBILE[mobileParam];
-    const notch = 44; // PhoneSimulator notch + safe area height
+    const notch = 36; // PhoneSimulator notch + safe area height
     return (
       <ProviderConfig config={{ colors: { light: { primary: themeColor }, dark: { primary: colors.hover } } }}>
         <div style={{ '--sc-safe-area-top': `${notch}px`, '--sc-safe-area-bottom': '0px' } as JSX.CSSProperties}>
