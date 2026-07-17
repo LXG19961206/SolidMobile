@@ -10,7 +10,7 @@ export const ButtonMobile = () => {
   const t = useT();
   return (
     <MobilePreview title="Button">
-      <div style={{ padding: '8px 0', display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
+      <div style={{ padding: '12px 12px 8px', display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
         <Card title={t('button.demo.types')} subtitle="primary / secondary / success">
           <Row><Button type="primary">Primary</Button><Button type="danger">Danger</Button><Button type="success">Success</Button></Row>
         </Card>
