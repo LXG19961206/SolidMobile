@@ -6,6 +6,8 @@ export default {
       size: 'Size. Numbers auto-suffixed with px.',
       color: 'Icon color.',
       'aria-label': 'Accessibility label. Required for functional icons.',
+      class: 'Custom CSS class.',
+      style: 'Inline styles.',
       onClick: 'Click event.',
     },
     demo: {

@@ -11,6 +11,8 @@ export function useIconTableData() {
       { name: 'size', type: 'string | number', def: "'1em'", desc: t('icon.props.size') },
       { name: 'color', type: 'string', def: '—', desc: t('icon.props.color') },
       { name: 'aria-label', type: 'string', def: '—', desc: t('icon.props.aria-label') },
+      { name: 'class', type: 'string', def: '—', desc: t('icon.props.class') },
+      { name: 'style', type: 'CSSProperties | string', def: '—', desc: t('icon.props.style') },
       { name: 'onClick', type: '(e: MouseEvent) => void', def: '—', desc: t('icon.props.onClick') },
     ],
   }];

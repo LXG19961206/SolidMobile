@@ -6,6 +6,8 @@ export default {
       size: '尺寸，数字自动补 px。',
       color: '图标颜色。',
       'aria-label': '无障碍标签，功能性图标需设置。',
+      class: '自定义 CSS class。',
+      style: '内联样式。',
       onClick: '点击事件。',
     },
     demo: {
