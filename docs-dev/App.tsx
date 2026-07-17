@@ -234,7 +234,7 @@ export function App() {
       <ProviderConfig config={{ locale: useLocale(), colors: { light: { primary: themeColor }, dark: { primary: colors.hover } } }}>
         <div style={{ '--sc-safe-area-top': `${notch}px`, '--sc-safe-area-bottom': '0px' } as JSX.CSSProperties}>
           <SafeArea position="top" />
-          {Demo ? <Demo /> : <div style="padding:16px">Demo not found: {mobileParam}</div>}
+          {/**/}<span style="display:none">{useLocale()}</span>{Demo ? <Demo /> : <div style="padding:16px">Demo not found: {mobileParam}</div>}
           <SafeArea position="bottom" />
         </div>
       </ProviderConfig>
