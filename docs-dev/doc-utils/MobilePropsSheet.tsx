@@ -38,7 +38,7 @@ export function MobilePropsSheet(props: MobilePropsSheetProps) {
         </div>
       </div>
 
-      <ActionSheet open={open()} onClose={() => setOpen(false)}>
+      <ActionSheet open={open()} onClose={() => setOpen(false)} data-locale={useLocale()}>
         <div style={{ padding: '8px' }}>
           <Tabs active={tab()} onChange={(v) => setTab(v as 'props' | 'cssvars')} style={{ '--sc-color-background': 'transparent' }}>
             <Tab title={t('common.props')} name="props">
