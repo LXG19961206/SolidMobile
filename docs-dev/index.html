@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Solid Component — 组件库文档</title>
     <style>
-      html { scrollbar-color: transparent transparent; }
-      ::-webkit-scrollbar { width: 4px; }
-      ::-webkit-scrollbar-track { background: #fafafa; }
-      html.dark ::-webkit-scrollbar-track { background: #1a1d21; }
-      ::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; }
+      /* 隐藏滚动条但保留滚动 */
+      html { -ms-overflow-style: none; scrollbar-width: none; }
+      html::-webkit-scrollbar { display: none; }
     </style>
   </head>
   <body>
