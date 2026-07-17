@@ -9,7 +9,6 @@
 .tableTitle { font-size: 0.85rem; font-weight: 600; margin: 0.5rem 0 0.25rem; color: var(--sc-color-text-secondary, #6b7280); }
 .table {
   width: 100%; border-collapse: collapse; font-size: 0.8125rem;
-  background: var(--sc-color-background, #fff);
   border: 1px solid var(--sc-color-border, #e5e7eb);
   border-radius: 8px; overflow: hidden;
 }
@@ -35,7 +34,7 @@
 .descCell { font-size: 0.8125rem; color: var(--sc-color-text, #374151); }
 
 /* ── Dark Table ── */
-:global(html.dark) .table { background: #1e293b; border-color: #334155; }
+:global(html.dark) .table { border-color: #2d3139; }
 :global(html.dark) .table th { background: #1e293b; color: #94a3b8; border-bottom-color: #334155; }
 :global(html.dark) .table td { border-bottom-color: #1e293b; color: #cbd5e1; }
 :global(html.dark) .propNameCell code { color: #a5b4fc; }
