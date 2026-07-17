@@ -100,7 +100,7 @@ export const ButtonMobile = () => {
 
       {/* 底部弹出 — Props / CSS Vars */}
       <ActionSheet open={showSheet()} onClose={() => setShowSheet(false)}>
-        <div style={{ padding: '4px 16px 16px' }}>
+        <div style={{ padding: '4px 16px 20px' }}>
           <Tabs active={sheetTab()} onChange={(v) => setSheetTab(v as 'props' | 'cssvars')}>
             <Tab title={t('common.props')} name="props">
               <PropsAttrs compact hideTitle propsTables={propsTables} />
