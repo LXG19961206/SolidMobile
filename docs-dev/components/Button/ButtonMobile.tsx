@@ -1,4 +1,4 @@
-import { Show } from 'solid-js';
+import { Show, createSignal } from 'solid-js';
 import { useT, registerLocale } from '../../doc-i18n';
 import { Card } from '../../../src/components/Card';
 import { Button } from '../../../src/components/Button';
@@ -13,6 +13,7 @@ const inIframe = () => typeof window !== 'undefined' && window.top !== window.se
 
 export const ButtonMobile = () => {
   const t = useT();
+  const [showSheet, setShowSheet] = createSignal(false);
 
   const propsTables: TableSection[] = [{
     rows: [
@@ -56,13 +57,22 @@ export const ButtonMobile = () => {
 
   return (
     <MobilePreview title="Button">
-      {/* Tables (standalone only) */}
+      {/* 查看属性按钮 — 仅独立模式 */}
       <Show when={!inIframe()}>
-        <PropsAttrs compact propsTables={propsTables} cssVarsTables={cssVarsTables} />
+        <div style={{ padding: '12px 12px 0' }}>
+          <div onClick={() => setShowSheet(true)} style={{
+            padding: '10px 14px', background: '#f5f5f5', 'border-radius': '8px',
+            'font-size': '0.85rem', color: '#1677ff', cursor: 'pointer',
+            display: 'flex', 'align-items': 'center', 'justify-content': 'space-between',
+          }}>
+            <span>Props & CSS Variables</span>
+            <span style={{ 'font-size': '0.75rem', color: '#9ca3af' }}>View</span>
+          </div>
+        </div>
       </Show>
 
       {/* Demos */}
-      <div style={{ padding: '12px 12px 8px', display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
+      <div style={{ padding: '12px', display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
         <Card title={t('button.demo.types')} subtitle="primary / secondary / success">
           <Row><Button type="primary">Primary</Button><Button type="danger">Danger</Button><Button type="success">Success</Button></Row>
         </Card>
@@ -83,6 +93,25 @@ export const ButtonMobile = () => {
           <Button block round type="primary">Block Round</Button>
         </Card>
       </div>
+
+      {/* Props — ActionSheet 风格底部弹出 */}
+      <Show when={showSheet()}>
+        <div onClick={() => setShowSheet(false)} style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', 'z-index': 1000,
+        }} />
+        <div style={{
+          position: 'fixed', bottom: 0, left: 0, right: 0, 'z-index': 1001,
+          background: '#fff', 'border-radius': '16px 16px 0 0',
+          'max-height': '70vh', 'overflow-y': 'auto',
+          padding: '16px 0', 'box-shadow': '0 -4px 24px rgba(0,0,0,0.12)',
+        }}>
+          <div style={{ display: 'flex', 'justify-content': 'space-between', 'align-items': 'center', padding: '0 16px 12px', 'border-bottom': '1px solid #e5e7eb', 'margin-bottom': '8px' }}>
+            <span style={{ 'font-weight': 600, 'font-size': '0.9rem' }}>{t('common.props')} & {t('common.cssVars')}</span>
+            <span onClick={() => setShowSheet(false)} style={{ 'font-size': '1.2rem', cursor: 'pointer', color: '#9ca3af' }}>✕</span>
+          </div>
+          <PropsAttrs compact propsTables={propsTables} cssVarsTables={cssVarsTables} />
+        </div>
+      </Show>
     </MobilePreview>
   );
 };
