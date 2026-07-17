@@ -6,11 +6,14 @@
     <title>Solid Component — 组件库文档</title>
     <style>
       html { scrollbar-width: thin; scrollbar-color: transparent transparent; }
-      html::-webkit-scrollbar { width: 4px; }
+      html::-webkit-scrollbar { width: 4px; background: transparent; }
       html::-webkit-scrollbar-track { background: transparent; }
       html::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; }
       html:hover::-webkit-scrollbar-thumb { background: hsla(0,0%,50%,0.15); }
-      html.dark:hover::-webkit-scrollbar-thumb { background: hsla(0,0%,70%,0.1); }
+      html.dark { scrollbar-color: transparent transparent; }
+      html.dark::-webkit-scrollbar { background: transparent; }
+      html.dark::-webkit-scrollbar-track { background: transparent; }
+      html.dark:hover::-webkit-scrollbar-thumb { background: hsla(0,0%,60%,0.08); }
     </style>
   </head>
   <body>
