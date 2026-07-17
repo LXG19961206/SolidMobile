@@ -1,4 +1,4 @@
-import { Show, createSignal } from 'solid-js';
+import { Show, createSignal, createMemo } from 'solid-js';
 import { useT, registerLocale } from '../../doc-i18n';
 import { Card } from '../../../src/components/Card';
 import { Button } from '../../../src/components/Button';
@@ -55,6 +55,8 @@ export const ButtonMobile = () => {
     ],
   }];
 
+  const [sheetTab, setSheetTab] = createSignal<'props' | 'cssvars'>('props');
+
   return (
     <MobilePreview title="Button">
       {/* 查看属性按钮 — 仅独立模式 */}
@@ -94,7 +96,7 @@ export const ButtonMobile = () => {
         </Card>
       </div>
 
-      {/* Props — ActionSheet 风格底部弹出 */}
+      {/* 底部弹出 — Props / CSS Vars */}
       <Show when={showSheet()}>
         <div onClick={() => setShowSheet(false)} style={{
           position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', 'z-index': 1000,
@@ -103,13 +105,34 @@ export const ButtonMobile = () => {
           position: 'fixed', bottom: 0, left: 0, right: 0, 'z-index': 1001,
           background: '#fff', 'border-radius': '16px 16px 0 0',
           'max-height': '70vh', 'overflow-y': 'auto',
-          padding: '16px 0', 'box-shadow': '0 -4px 24px rgba(0,0,0,0.12)',
+          'box-shadow': '0 -4px 24px rgba(0,0,0,0.12)',
         }}>
-          <div style={{ display: 'flex', 'justify-content': 'space-between', 'align-items': 'center', padding: '0 16px 12px', 'border-bottom': '1px solid #e5e7eb', 'margin-bottom': '8px' }}>
-            <span style={{ 'font-weight': 600, 'font-size': '0.9rem' }}>{t('common.props')} & {t('common.cssVars')}</span>
-            <span onClick={() => setShowSheet(false)} style={{ 'font-size': '1.2rem', cursor: 'pointer', color: '#9ca3af' }}>✕</span>
+          {/* Header with tabs */}
+          <div style={{ display: 'flex', 'align-items': 'center', padding: '12px 16px', 'border-bottom': '1px solid #e5e7eb' }}>
+            <span onClick={() => setSheetTab('props')} style={{
+              padding: '6px 16px', 'font-size': '0.85rem', cursor: 'pointer', 'border-radius': '6px',
+              background: sheetTab() === 'props' ? '#1677ff' : 'transparent',
+              color: sheetTab() === 'props' ? '#fff' : '#6b7280',
+              'font-weight': sheetTab() === 'props' ? 600 : 400, transition: '0.15s',
+            }}>{t('common.props')}</span>
+            <span onClick={() => setSheetTab('cssvars')} style={{
+              padding: '6px 16px', 'font-size': '0.85rem', cursor: 'pointer', 'border-radius': '6px',
+              background: sheetTab() === 'cssvars' ? '#1677ff' : 'transparent',
+              color: sheetTab() === 'cssvars' ? '#fff' : '#6b7280',
+              'font-weight': sheetTab() === 'cssvars' ? 600 : 400, transition: '0.15s',
+            }}>{t('common.cssVars')}</span>
+            <span style={{ flex: 1 }} />
+            <span onClick={() => setShowSheet(false)} style={{ 'font-size': '1.2rem', cursor: 'pointer', color: '#9ca3af', 'line-height': 1 }}>✕</span>
           </div>
-          <PropsAttrs compact propsTables={propsTables} cssVarsTables={cssVarsTables} />
+          {/* Tab content with padding */}
+          <div style={{ padding: '12px 16px' }}>
+            <Show when={sheetTab() === 'props'}>
+              <PropsAttrs compact propsTables={propsTables} cssVarsTables={[]} />
+            </Show>
+            <Show when={sheetTab() === 'cssvars'}>
+              <PropsAttrs compact propsTables={[]} cssVarsTables={cssVarsTables} />
+            </Show>
+          </div>
         </div>
       </Show>
     </MobilePreview>
