@@ -221,13 +221,14 @@ export function App() {
   const mobileParam = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('mobile') : null;
   const localeParam = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('locale') : null;
   if (mobileParam) {
-    // 如果 URL 带了 locale 参数，同步到 i18n
-    if (localeParam && localeParam !== useLocale()) {
-      setGlobalLocale(localeParam);
-    }
+    if (localeParam && localeParam !== useLocale()) setGlobalLocale(localeParam);
+    applyDark(getDark());
+    // 读取 localStorage 中的主题色
+    const themeColor = (() => { try { return localStorage.getItem('sc-docs-theme-color') || '#1677ff'; } catch { return '#1677ff'; } })();
+    const colors = deriveColorSet(themeColor);
     const Demo = PAGES_MOBILE[mobileParam];
     return (
-      <ProviderConfig config={{ locale: useLocale() }}>
+      <ProviderConfig config={{ colors: { light: { primary: themeColor }, dark: { primary: colors.hover } } }}>
         {Demo ? <Demo /> : <div style="padding:16px">Demo not found: {mobileParam}</div>}
       </ProviderConfig>
     );
