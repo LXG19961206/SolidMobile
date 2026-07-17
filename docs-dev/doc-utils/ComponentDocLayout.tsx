@@ -24,8 +24,6 @@ export interface DemoCode {
   title: string;
   code: string;
   desc?: string;
-  /** 交互式 demo 内容（可选） */
-  children?: JSX.Element;
 }
 
 export interface ComponentDocLayoutProps {
@@ -98,9 +96,6 @@ function DemoCodeBlock(props: { demo: DemoCode }) {
   return (
     <div class={styles.demoBlock}>
       <Card title={props.demo.title} subtitle={props.demo.desc}>
-        <Show when={props.demo.children}>
-          <div class={styles.demoPreview}>{props.demo.children}</div>
-        </Show>
         <div class={styles.codeWrap}>
           <div class={styles.codeHeader}>
             <button class={styles.copyBtn} onClick={copy}>{copied() ? 'Copied!' : 'Copy Code'}</button>

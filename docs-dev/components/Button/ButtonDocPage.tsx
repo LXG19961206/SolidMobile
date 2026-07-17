@@ -1,4 +1,3 @@
-import { Button } from '../../../src/components/Button';
 import { useT, registerLocale } from '../../doc-i18n';
 import { ComponentDocLayout, DocLayout } from '../../doc-utils';
 import type { TableSection, DemoCode } from '../../doc-utils';
@@ -54,18 +53,15 @@ export const ButtonDocPage = () => {
       title: t('button.demo.types'),
       code: `<Button type="primary">Primary</Button>\n<Button type="danger">Danger</Button>\n<Button type="success">Success</Button>`,
       desc: t('button.demoDesc.button_types'),
-      children: <><Button type="primary">Primary</Button><Button type="danger">Danger</Button><Button type="success">Success</Button></>,
     },
     {
       title: t('button.demo.sizes'),
       code: `<Button size="xs">XS</Button>\n<Button size="sm">SM</Button>\n<Button size="md">MD</Button>\n<Button size="lg">LG</Button>`,
       desc: t('button.demoDesc.button_sizes'),
-      children: <><Button size="xs">XS</Button><Button size="sm">SM</Button><Button size="md">MD</Button><Button size="lg">LG</Button></>,
     },
     {
       title: t('button.demo.variant'),
       code: `<Button variant="outline">Outline</Button>\n<Button variant="ghost">Ghost</Button>`,
-      children: <><Button variant="outline">Outline</Button><Button variant="ghost">Ghost</Button></>,
     },
   ];
 
