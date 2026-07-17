@@ -16,27 +16,27 @@ export const IconDocPage = () => {
   const demos: DemoCode[] = [
     {
       title: t('icon.demo.basic'),
-      code: `<Icon name="arrow-up" />\n<Icon name="star" variant="fill" />`,
+      code: `<Icon name="star" variant="fill" color="#1677ff" />\n<Icon name="heart" variant="fill" color="#fc000a" />\n<Icon name="sun" variant="fill" color="#f59e0b" />`,
       desc: t('icon.demoDesc.basic'),
     },
     {
       title: t('icon.demo.size'),
-      code: `<Icon name="star" size={16} />\n<Icon name="star" size={24} />\n<Icon name="star" size="2rem" />`,
+      code: `<Icon name="star" variant="fill" color="#1677ff" size={16} />\n<Icon name="star" variant="fill" color="#1677ff" size={24} />\n<Icon name="star" variant="fill" color="#1677ff" size={36} />`,
       desc: t('icon.demoDesc.size'),
     },
     {
       title: t('icon.demo.color'),
-      code: `<Icon name="heart" color="#fc000a" />\n<Icon name="heart" color="#22c55e" />`,
+      code: `<Icon name="heart" variant="fill" size={24} color="#fc000a" />\n<Icon name="heart" variant="fill" size={24} color="#22c55e" />\n<Icon name="heart" variant="fill" size={24} color="#1677ff" />`,
       desc: t('icon.demoDesc.color'),
     },
     {
       title: t('icon.demo.line'),
-      code: `<Icon name="star" variant="line" />\n<Icon name="star" variant="fill" />`,
+      code: `<Icon name="star" size={24} color="#f59e0b" variant="line" />\n<Icon name="star" size={24} color="#f59e0b" variant="fill" />`,
       desc: t('icon.demoDesc.line'),
     },
     {
       title: t('icon.demo.clickable'),
-      code: `<Icon name="search" aria-label="Search" style={{ cursor: 'pointer' }} onClick={() => {}} />`,
+      code: `<Icon name="close" aria-label="Close" size={24} style={{ cursor: 'pointer', color: '#6b7280' }} />\n<Icon name="settings" aria-label="Settings" size={24} style={{ cursor: 'pointer', color: '#1677ff' }} />`,
       desc: t('icon.demoDesc.clickable'),
     },
   ];
