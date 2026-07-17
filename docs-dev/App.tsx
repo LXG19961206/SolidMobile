@@ -58,6 +58,8 @@ const FloatingBallDocPage = lazy(() => import('./pages/components/FloatingBall/F
 const BackTopDocPage = lazy(() => import('./pages/components/BackTop/BackTopDocPage').then(m => ({default: m.BackTopDocPage})));
 const SelectDocPage = lazy(() => import('./pages/components/Select/SelectDocPage').then(m => ({default: m.SelectDocPage})));
 const PickerMobile = lazy(() => import('./pages/mobile/PickerMobile').then(m => ({default: m.PickerMobile})));
+import { ButtonMobile as ButtonMobileDirect } from './components/Button/ButtonMobile';
+import { IconMobile as IconMobileDirect } from './components/Icon/IconMobile';
 const ButtonMobile = lazy(() => import('./components/Button/ButtonMobile').then(m => ({default: m.ButtonMobile})));
 const IconMobile = lazy(() => import('./components/Icon/IconMobile').then(m => ({default: m.IconMobile})));
 const CenterMobile = lazy(() => import('./pages/mobile/CenterMobile').then(m => ({default: m.CenterMobile})));
@@ -228,7 +230,8 @@ export function App() {
     // 读取 localStorage 中的主题色
     const themeColor = (() => { try { return localStorage.getItem('sc-docs-theme-color') || '#1677ff'; } catch { return '#1677ff'; } })();
     const colors = deriveColorSet(themeColor);
-    const Demo = PAGES_MOBILE[mobileParam];
+    const mobileDirect: Record<string, any> = { button: ButtonMobileDirect, icon: IconMobileDirect };
+    const Demo = mobileDirect[mobileParam] || PAGES_MOBILE[mobileParam];
     const notch = 36; // PhoneSimulator notch + safe area height
     return (
       <ProviderConfig config={{ locale: useLocale(), colors: { light: { primary: themeColor }, dark: { primary: colors.hover } } }}>
