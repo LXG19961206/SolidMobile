@@ -29,9 +29,6 @@ export interface DemoCode {
 export interface ComponentDocLayoutProps {
   title: string;
   intro?: string;
-  propsTables?: TableSection[];
-  eventsTables?: TableSection[];
-  cssVarsTables?: TableSection[];
   design?: JSX.Element;
   demos?: DemoCode[];
 }
@@ -46,27 +43,6 @@ export function ComponentDocLayout(props: ComponentDocLayoutProps) {
       <h1 class={styles.h1}>{props.title}</h1>
       <Show when={props.intro}>
         <p class={styles.intro}>{props.intro}</p>
-      </Show>
-
-      <Show when={props.propsTables && props.propsTables!.length > 0}>
-        <h2 class={styles.h2}>{t('common.props')}</h2>
-        <For each={props.propsTables}>
-          {(section) => <SimpleTable title={section.title} rows={section.rows} />}
-        </For>
-      </Show>
-
-      <Show when={props.eventsTables && props.eventsTables!.length > 0}>
-        <h2 class={styles.h2}>{t('common.events')}</h2>
-        <For each={props.eventsTables}>
-          {(section) => <SimpleTable title={section.title} rows={section.rows} />}
-        </For>
-      </Show>
-
-      <Show when={props.cssVarsTables && props.cssVarsTables!.length > 0}>
-        <h2 class={styles.h2}>{t('common.cssVars')}</h2>
-        <For each={props.cssVarsTables}>
-          {(section) => <SimpleTable title={section.title} rows={section.rows} />}
-        </For>
       </Show>
 
       <Show when={props.design}>
@@ -85,7 +61,7 @@ export function ComponentDocLayout(props: ComponentDocLayoutProps) {
 
 /* ── Demo Card + Code Block ── */
 
-function DemoCodeBlock(props: { demo: DemoCode }) {
+export function DemoCodeBlock(props: { demo: DemoCode }) {
   const [copied, setCopied] = createSignal(false);
   const copy = () => {
     navigator.clipboard.writeText(props.demo.code).then(() => {
@@ -107,40 +83,3 @@ function DemoCodeBlock(props: { demo: DemoCode }) {
   );
 }
 
-/* ── Simple Table ── */
-
-function SimpleTable(props: { title?: string; rows: TableRow[] }) {
-  const t = useT();
-  const hasTypes = () => props.rows.some(r => r.type != null);
-  const hasDefaults = () => props.rows.some(r => r.def != null);
-
-  return (
-    <div class={styles.tableWrap}>
-      <Show when={props.title}>
-        <h4 class={styles.tableTitle}>{props.title}</h4>
-      </Show>
-      <table class={styles.table}>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <Show when={hasTypes()}><th>Type</th></Show>
-            <Show when={hasDefaults()}><th>Default</th></Show>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <For each={props.rows}>
-            {(row) => (
-              <tr>
-                <td class={styles.propNameCell}><code>{row.name}</code></td>
-                <Show when={hasTypes()}><td class={styles.typeCell}>{row.type ?? '—'}</td></Show>
-                <Show when={hasDefaults()}><td class={styles.defaultCell}>{row.def ?? '—'}</td></Show>
-                <td class={styles.descCell}>{t(row.desc)}</td>
-              </tr>
-            )}
-          </For>
-        </tbody>
-      </table>
-    </div>
-  );
-}
