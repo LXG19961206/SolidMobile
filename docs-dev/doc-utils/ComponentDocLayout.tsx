@@ -1,7 +1,7 @@
 import { For, Show, createSignal, type JSX } from 'solid-js';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
-import 'prismjs/themes/prism-okaidia.css';
+import 'prismjs/themes/prism.css';
 import { useT } from '../doc-i18n';
 import styles from './ComponentDocLayout.module.css';
 

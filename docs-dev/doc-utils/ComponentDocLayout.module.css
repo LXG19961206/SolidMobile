@@ -14,29 +14,59 @@
 .typeCell { font-size: 0.8rem; color: var(--sc-color-text-secondary, #6b7280); }
 .defaultCell { font-size: 0.8rem; color: var(--sc-color-text-tertiary, #9ca3af); }
 
-/* ── Demo Code ── */
+/* ── Demo Code (亮色=prism.css浅底/暗色=自定义深底) ── */
 .demoBlock { margin-bottom: 1.5rem; }
 .demoTitle { font-size: 0.95rem; font-weight: 600; margin: 1rem 0 0.25rem; }
 .demoDesc { font-size: 0.8rem; color: var(--sc-color-text-secondary, #6b7280); margin: 0 0 0.5rem; }
-.codeWrap {
-  background: #1e293b; border-radius: 8px; overflow: hidden;
-}
+.codeWrap { border-radius: 8px; overflow: hidden; border: 1px solid var(--sc-color-border, #e5e7eb); }
 .codeHeader {
   display: flex; justify-content: flex-end; align-items: center;
-  padding: 0.5rem 0.75rem;
+  padding: 0.35rem 0.75rem;
+  background: var(--sc-color-background-secondary, #f5f5f5);
+  border-bottom: 1px solid var(--sc-color-border, #e5e7eb);
 }
 .copyBtn {
-  font-size: 0.75rem; font-family: inherit; color: #94a3b8;
-  background: transparent; border: 1px solid #334155; border-radius: 4px;
+  font-size: 0.75rem; font-family: inherit; color: var(--sc-color-text-secondary, #6b7280);
+  background: transparent; border: 1px solid var(--sc-color-border, #d1d5db); border-radius: 4px;
   padding: 0.2rem 0.6rem; cursor: pointer; transition: all 0.15s;
 }
-.copyBtn:hover { color: #e2e8f0; background: #334155; }
-.codePre {
-  margin: 0; padding: 0.5rem 1rem 1rem; overflow-x: auto;
-}
+.copyBtn:hover { color: var(--sc-color-text, #111827); background: var(--sc-color-background, #fff); }
+.codePre { margin: 0; padding: 0.5rem 1rem 1rem; overflow-x: auto; }
 .codePre code {
   font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, monospace;
   font-size: 0.78rem; white-space: pre; line-height: 1.7;
+}
+
+/* ── 暗色 Prism token 覆写 ── */
+:global(html.dark) .codePre code :global(.token.keyword),
+:global(html.dark) .codePre code :global(.token.selector) { color: #c792ea; }
+:global(html.dark) .codePre code :global(.token.string),
+:global(html.dark) .codePre code :global(.token.attr-value) { color: #c3e88d; }
+:global(html.dark) .codePre code :global(.token.function),
+:global(html.dark) .codePre code :global(.token.class-name) { color: #82aaff; }
+:global(html.dark) .codePre code :global(.token.operator) { color: #89ddff; }
+:global(html.dark) .codePre code :global(.token.punctuation) { color: #89ddff; }
+:global(html.dark) .codePre code :global(.token.tag) { color: #f07178; }
+:global(html.dark) .codePre code :global(.token.attr-name) { color: #ffcb6b; }
+:global(html.dark) .codePre code :global(.token.comment),
+:global(html.dark) .codePre code :global(.token.block-comment) { color: #546e7a; }
+:global(html.dark) .codePre code :global(.token.number),
+:global(html.dark) .codePre code :global(.token.boolean) { color: #ff5370; }
+:global(html.dark) .codePre code :global(.token.builtin) { color: #ffcb6b; }
+:global(html.dark) .codePre code :global(.token.property) { color: #f07178; }
+
+/* 暗色模式覆写 */
+:global(html.dark) .codeWrap {
+  background: #1e293b; border-color: #334155;
+}
+:global(html.dark) .codeHeader {
+  background: #1a1d21; border-color: #334155;
+}
+:global(html.dark) .copyBtn {
+  color: #94a3b8; border-color: #334155;
+}
+:global(html.dark) .copyBtn:hover {
+  color: #e2e8f0; background: #334155;
 }
 
 /* ── Dark ── */
