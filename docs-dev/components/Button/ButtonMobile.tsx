@@ -65,11 +65,11 @@ export const ButtonMobile = () => {
       <Show when={!inIframe()}>
         <div style={{ padding: '12px 12px 0' }}>
           <div onClick={() => setShowSheet(true)} style={{
-            padding: '10px 14px', background: '#f5f5f5', 'border-radius': '8px',
+            padding: '10px 14px', background: 'var(--sc-color-background-secondary, #f5f5f5)', 'border-radius': '8px',
             'font-size': '0.85rem', color: '#1677ff', cursor: 'pointer',
             display: 'flex', 'align-items': 'center', 'justify-content': 'space-between',
           }}>
-            <span>Props & CSS Variables</span>
+            <span>{t("common.props")} & {t("common.cssVars")}</span>
             <span style={{ 'font-size': '0.75rem', color: '#9ca3af' }}>View</span>
           </div>
         </div>
