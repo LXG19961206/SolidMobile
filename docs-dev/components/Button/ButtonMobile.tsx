@@ -127,10 +127,10 @@ export const ButtonMobile = () => {
           {/* Tab content with padding */}
           <div style={{ padding: '12px 16px' }}>
             <Show when={sheetTab() === 'props'}>
-              <PropsAttrs compact propsTables={propsTables} cssVarsTables={[]} />
+              <PropsAttrs compact hideTitle propsTables={propsTables} />
             </Show>
             <Show when={sheetTab() === 'cssvars'}>
-              <PropsAttrs compact propsTables={[]} cssVarsTables={cssVarsTables} />
+              <PropsAttrs compact hideTitle cssVarsTables={cssVarsTables} />
             </Show>
           </div>
         </div>

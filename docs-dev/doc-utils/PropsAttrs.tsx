@@ -10,6 +10,8 @@ interface PropsAttrsProps {
   propsTables?: TableSection[];
   cssVarsTables?: TableSection[];
   compact?: boolean;
+  /** 隐藏 section 标题（Props / CSS Variables），由外部 Tab 控制时使用 */
+  hideTitle?: boolean;
 }
 
 export function PropsAttrs(props: PropsAttrsProps) {
@@ -50,12 +52,16 @@ export function PropsAttrs(props: PropsAttrsProps) {
   return (
     <div>
       <Show when={props.propsTables && props.propsTables!.length > 0}>
-        <h2 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '0 0 8px' }}>{t('common.props')}</h2>
+        <Show when={!props.hideTitle}>
+          <h2 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '0 0 8px' }}>{t('common.props')}</h2>
+        </Show>
         <For each={props.propsTables}>{(sec) => section(sec)}</For>
       </Show>
 
       <Show when={props.cssVarsTables && props.cssVarsTables!.length > 0}>
-        <h2 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '20px 0 8px' }}>{t('common.cssVars')}</h2>
+        <Show when={!props.hideTitle}>
+          <h2 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '20px 0 8px' }}>{t('common.cssVars')}</h2>
+        </Show>
         <For each={props.cssVarsTables}>{(sec) => section(sec)}</For>
       </Show>
     </div>
