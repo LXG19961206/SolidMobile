@@ -19,7 +19,7 @@ export const IconMobile = () => {
   return (
     <MobilePreview title="Icon">
       <MobilePropsSheet propsTables={propsTables} />
-      <div style={{ padding: '12px 0', display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
+      <div style={{ padding: '12px', display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
         <Card title={t('icon.demo.basic')} subtitle="fill + color">
           <Row>
             <Icon name="star" variant="fill" color="#1677ff" size={26} />
