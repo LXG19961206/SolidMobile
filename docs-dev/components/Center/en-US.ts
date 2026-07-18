@@ -1,0 +1,35 @@
+export default {
+  center: {
+    props: {
+      flexX: 'Flexbox horizontal center (justify-content: center).',
+      flexY: 'Flexbox vertical center (align-items: center). Parent needs height.',
+      text: 'text-align: center. For inline/inline-block content.',
+      vertical: 'vertical-align: middle. For inline element alignment.',
+      position: 'absolute + transform center. Parent needs position: relative.',
+      inline: 'Inline mode, flex → inline-flex.',
+      as: 'Rendered HTML tag, defaults to div.',
+      class: 'Custom CSS class.',
+      style: 'Inline styles.',
+    },
+    cssVars: {},
+    demo: {
+      default: 'Default Both Axes',
+      flexX: 'Horizontal Only',
+      flexY: 'Vertical Only',
+      inline: 'Inline Flex',
+      text: 'Text Center',
+      vertical: 'Vertical Align',
+      position: 'Absolute Center',
+    },
+    demoDesc: {
+      default: 'No props — flex both axes by default. flexY requires parent height.',
+      flexX: 'flexX centers horizontally only; parent height not required.',
+      flexY: 'flexY centers vertically only; parent must have explicit height.',
+      inline: 'inline changes flex to inline-flex, no line break.',
+      text: 'text applies text-align: center for inline/inline-block content.',
+      vertical: 'vertical uses vertical-align: middle for inline elements in a line.',
+      position: 'position uses absolute + transform for overlays, watermarks, badges.',
+    },
+    intro: 'Simple centering utility. Flex both-axis by default; five centering strategies.',
+  },
+};

@@ -538,6 +538,7 @@ export default {
     common: {
         and: 'and',
         cssVars: 'CSS Variables',
+        noCssVars: 'This component has no CSS custom properties.',
         events: 'Events',
         cellProps: 'Cell Props',
         cellGroupProps: 'CellGroup Props',

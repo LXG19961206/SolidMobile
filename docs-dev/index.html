@@ -4,6 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Solid Component — 组件库文档</title>
+    <script>
+      // 在渲染前读取暗色模式标志，防止闪白
+      (function() {
+        var isDark = localStorage.getItem('sc-docs-dark-mode') === '1';
+        if (!isDark) {
+          isDark = new URLSearchParams(location.search).get('dark') === '1';
+        }
+        if (!isDark) {
+          try { isDark = matchMedia('(prefers-color-scheme:dark)').matches; } catch(e) {}
+        }
+        if (isDark) document.documentElement.classList.add('dark');
+      })();
+    </script>
     <style>
       /* 隐藏滚动条但保留滚动 */
       html { -ms-overflow-style: none; scrollbar-width: none; }

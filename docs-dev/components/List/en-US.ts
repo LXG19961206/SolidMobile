@@ -1,0 +1,40 @@
+export default {
+  list: {
+    props: {
+      data: 'Controlled mode: externally managed data source.',
+      onLoad: 'Uncontrolled mode: called on scroll-end, return value appends.',
+      finished: 'Whether all data loaded.',
+      children: 'Render function (item, index) => JSX.',
+      empty: 'Empty state placeholder. String or custom JSX.',
+      loadMoreText: 'Bottom loading prompt.',
+      finishedText: 'Bottom finished prompt.',
+      errorText: 'Error state bottom content.',
+      offset: 'Distance from bottom (px) to trigger onLoad, default 100.',
+      virtual: 'Enable virtual list.',
+      itemHeight: 'Fixed item height (px) for virtual list. Required when virtual enabled.',
+      pullRefresh: 'Enable pull-to-refresh, use with onRefresh.',
+      onRefresh: 'Pull-to-refresh callback. Returns Promise to auto-wait.',
+      class: 'Custom CSS class.',
+      style: 'Inline styles.',
+    },
+    demo: {
+      static: 'Static Data',
+      autoload: 'Auto Load',
+      virtual: 'Virtual List',
+      empty: 'Empty State',
+      refresh: 'Pull-to-Refresh',
+    },
+    demoDesc: {
+      static: 'Pass data prop for pre-loaded data, suitable when all data is ready.',
+      autoload: 'Pass onLoad, auto-loads more on scroll to bottom.',
+      virtual: 'Virtual mode renders only visible items, ideal for large datasets (1000+).',
+      empty: 'Shows empty state when data is an empty array.',
+      refresh: 'List has built-in pullRefresh prop. Note: set a fixed height on List (or constrain via flex) so it becomes the scroll container — otherwise pull-to-refresh cannot detect scroll position correctly.',
+    },
+    misc: {
+      loading: 'Loading...',
+      noMore: 'No more',
+    },
+    intro: 'Scroll-loading list component. Supports controlled/uncontrolled, virtual list, pull-to-refresh.',
+  },
+};

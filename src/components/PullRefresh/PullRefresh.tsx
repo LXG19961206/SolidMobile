@@ -59,11 +59,8 @@ export const PullRefresh: Component<PullRefreshProps> = (rawProps) => {
 
   function getScrollTop(): number {
     if (local.scrollContainer) return local.scrollContainer.scrollTop;
-    if (wrapperEl) {
-      const p = wrapperEl.parentElement;
-      if (p && p.scrollTop) return p.scrollTop;
-    }
-    return 0;
+    const p = wrapperEl?.parentElement;
+    return p ? p.scrollTop : window.scrollY || document.documentElement.scrollTop || 0;
   }
 
   /* ── Damping ── */
@@ -146,22 +143,21 @@ export const PullRefresh: Component<PullRefreshProps> = (rawProps) => {
 
   function onTouchStart(e: TouchEvent) {
     if (local.disabled) return;
-    // Only trigger at top of scroll
-    const st = getScrollTop();
-    if (st > 5) return;
     if (state() === 'loading' || state() === 'success') return;
-
+    const st = getScrollTop();
+    if (st > 5) return; // 不在顶部不处理
     const t = e.touches[0];
     startY = t.clientY;
     startPull = pull();
     wrapperEl.style.touchAction = 'none';
+    addMove(); // 动态挂载 move/end 监听
   }
 
   function onTouchMove(e: TouchEvent) {
     if (local.disabled || state() === 'loading' || state() === 'success') return;
     const t = e.touches[0];
     const dy = t.clientY - startY;
-    if (dy < 0) return; // not pulling down
+    if (dy <= 0) return; // not pulling down
 
     e.preventDefault();
     applyPull(dy);
@@ -171,6 +167,7 @@ export const PullRefresh: Component<PullRefreshProps> = (rawProps) => {
   }
 
   function onTouchEnd() {
+    removeMove();
     if (local.disabled) return;
     wrapperEl.style.touchAction = '';
     lastTouchTime = Date.now();
@@ -258,20 +255,25 @@ export const PullRefresh: Component<PullRefreshProps> = (rawProps) => {
   };
   const arrowDir = () => effectiveState() === 'loosing' ? styles.arrowUp : styles.arrowDown;
 
-  /* ── Attach touch listeners non-passively ── */
-  // Modern browsers (Chrome 56+) make touchstart/touchmove passive by
-  // default, so e.preventDefault() inside JSX event handlers is a no-op.
-  // We attach them manually with { passive: false } so we can actually
-  // cancel the native scroll / overscroll during a pull gesture.
-  onMount(() => {
-    wrapperEl.addEventListener('touchstart', onTouchStart, { passive: false });
+  /* ── 动态 touch 监听 ── */
+  // touchstart 始终挂载（passive:false 才能 cancel 原生滚动）。
+  // touchmove / touchend 仅在准备下拉（pullReady）时动态挂载，
+  // 避免在非顶部滚动时干扰浏览器原生滚动。
+  const addMove = () => {
     wrapperEl.addEventListener('touchmove', onTouchMove, { passive: false });
     wrapperEl.addEventListener('touchend', onTouchEnd, { passive: false });
+  };
+  const removeMove = () => {
+    wrapperEl.removeEventListener('touchmove', onTouchMove);
+    wrapperEl.removeEventListener('touchend', onTouchEnd);
+  };
+
+  onMount(() => {
+    wrapperEl.addEventListener('touchstart', onTouchStart, { passive: false });
   });
   onCleanup(() => {
     wrapperEl.removeEventListener('touchstart', onTouchStart);
-    wrapperEl.removeEventListener('touchmove', onTouchMove);
-    wrapperEl.removeEventListener('touchend', onTouchEnd);
+    removeMove();
   });
 
   /* ── Render ── */

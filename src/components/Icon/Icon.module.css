@@ -1,13 +1,22 @@
 /* ===== Icon Base ===== */
 .icon {
+  /* --- CSS Custom Properties (themeable) --- */
+  --sc-icon-size: 1em;
+  --sc-icon-color: inherit;
+
+  /* --- Layout --- */
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   vertical-align: -0.125em;
   user-select: none;
-  /* Allow color inheritance */
-  color: inherit;
+
+  /* --- Size & Color from variables --- */
+  width: var(--sc-icon-size);
+  height: var(--sc-icon-size);
+  color: var(--sc-icon-color);
+
   /* Ensure crisp rendering */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

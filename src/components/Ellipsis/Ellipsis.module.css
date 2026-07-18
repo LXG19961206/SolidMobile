@@ -5,6 +5,7 @@
 
 /* ── 非展开态截断 ── */
 .singleLine {
+  display: block;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

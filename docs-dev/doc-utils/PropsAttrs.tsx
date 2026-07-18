@@ -22,7 +22,7 @@ export function PropsAttrs(props: PropsAttrsProps) {
       <Show when={sec.title}>
         <div style={{ 'font-size': '0.8rem', 'font-weight': 600, color: '#6b7280', 'margin-bottom': '4px', padding: '0 4px' }}>{sec.title}</div>
       </Show>
-      <div class={styles.scrollWrap}>
+      <div class={`${styles.scrollWrap}${props.compact ? ` ${styles.compact}` : ''}`}>
         <table class={styles.table}>
           <thead>
             <tr>

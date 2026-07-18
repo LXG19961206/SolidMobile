@@ -13,21 +13,22 @@ describe('Icon', () => {
   it('renders with default size 1em', () => {
     const { container } = render(() => <Icon name="star" />);
     const svg = container.querySelector('svg')!;
-    expect(svg.getAttribute('width')).toBe('1em');
-    expect(svg.getAttribute('height')).toBe('1em');
+    const style = svg.getAttribute('style') || '';
+    expect(style).toMatch(/--sc-icon-size:\s*1em/);
   });
 
   it('renders with numeric size as px', () => {
     const { container } = render(() => <Icon name="heart" size={24} />);
     const svg = container.querySelector('svg')!;
-    expect(svg.getAttribute('width')).toBe('24px');
-    expect(svg.getAttribute('height')).toBe('24px');
+    const style = svg.getAttribute('style') || '';
+    expect(style).toMatch(/--sc-icon-size:\s*24px/);
   });
 
   it('renders with string size', () => {
     const { container } = render(() => <Icon name="search" size="2rem" />);
     const svg = container.querySelector('svg')!;
-    expect(svg.getAttribute('width')).toBe('2rem');
+    const style = svg.getAttribute('style') || '';
+    expect(style).toMatch(/--sc-icon-size:\s*2rem/);
   });
 
   it('renders default line variant', () => {
@@ -54,7 +55,7 @@ describe('Icon', () => {
     const { container } = render(() => <Icon name="check" color="#ff0000" />);
     const svg = container.querySelector('svg')!;
     const styleAttr = svg.getAttribute('style') || '';
-    expect(styleAttr).toContain('color');
+    expect(styleAttr).toMatch(/--sc-icon-color:\s*#ff0000/);
   });
 
   it('applies custom class', () => {

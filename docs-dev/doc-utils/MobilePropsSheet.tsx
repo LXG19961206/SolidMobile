@@ -1,7 +1,5 @@
-import { createSignal } from 'solid-js';
-import { useLocale } from '../doc-i18n';
-
-import { useT } from '../doc-i18n';
+import { createSignal, Show } from 'solid-js';
+import { useLocale, useT } from '../doc-i18n';
 import { ActionSheet } from '../../src/components/ActionSheet';
 import { Tabs, Tab } from '../../src/components/Tabs';
 import { PropsAttrs } from './PropsAttrs';
@@ -15,12 +13,15 @@ interface MobilePropsSheetProps {
 /**
  * 移动端属性/变量查看按钮 + ActionSheet 弹出。
  * 仅 inIframe 时隐藏，独立模式下展示入口按钮。
+ * cssVarsTables 为空时展示 Empty 占位。
  */
 export function MobilePropsSheet(props: MobilePropsSheetProps) {
   const t = useT();
   const [open, setOpen] = createSignal(false);
   const [tab, setTab] = createSignal<'props' | 'cssvars'>('props');
   const inIframe = typeof window !== 'undefined' && window.top !== window.self;
+
+  const hasCssVars = () => props.cssVarsTables && props.cssVarsTables!.length > 0;
 
   if (inIframe) return null;
 
@@ -45,7 +46,13 @@ export function MobilePropsSheet(props: MobilePropsSheetProps) {
               <div style={{ padding: "12px 16px" }}><PropsAttrs compact hideTitle propsTables={props.propsTables} /></div>
             </Tab>
             <Tab title={t('common.cssVars')} name="cssvars">
-              <div style={{ padding: "12px 16px" }}><PropsAttrs compact hideTitle cssVarsTables={props.cssVarsTables} /></div>
+              <Show when={hasCssVars()} fallback={
+                <div style={{ padding: '32px 16px', 'text-align': 'center', 'font-size': '0.85rem', color: 'var(--sc-color-text-secondary, #9ca3af)' }}>
+                  {t('common.noCssVars')}
+                </div>
+              }>
+                <div style={{ padding: "12px 16px" }}><PropsAttrs compact hideTitle cssVarsTables={props.cssVarsTables} /></div>
+              </Show>
             </Tab>
           </Tabs>
         </div>

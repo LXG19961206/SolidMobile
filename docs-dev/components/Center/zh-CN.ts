@@ -1,0 +1,35 @@
+export default {
+  center: {
+    props: {
+      flexX: 'Flexbox 水平居中（justify-content: center）。',
+      flexY: 'Flexbox 垂直居中（align-items: center），父级需有高度。',
+      text: 'text-align: center，适合行内/行内块内容。',
+      vertical: 'vertical-align: middle，适合行内元素垂直对齐。',
+      position: 'absolute + transform 居中，父级需 position: relative。',
+      inline: '行内模式，flex → inline-flex。',
+      as: '渲染的 HTML 标签，默认 div。',
+      class: '自定义 CSS class。',
+      style: '内联样式。',
+    },
+    cssVars: {},
+    demo: {
+      default: '默认两轴居中',
+      flexX: '水平居中',
+      flexY: '垂直居中',
+      inline: '行内居中',
+      text: '文字居中',
+      vertical: '垂直对齐',
+      position: '绝对定位居中',
+    },
+    demoDesc: {
+      default: '不传任何参数时，默认 flex 水平 + 垂直居中。flexY 需要父级有高度。',
+      flexX: 'flexX 仅水平居中，父级无需固定高度。',
+      flexY: 'flexY 仅垂直居中，父级需有明确高度。',
+      inline: 'inline 将 flex 变为 inline-flex，不换行。',
+      text: 'text 使用 text-align: center，适合文字或行内块内容。',
+      vertical: 'vertical 使用 vertical-align: middle，适合行内元素与文字对齐。',
+      position: 'position 使用 absolute + transform，适合浮层、水印、徽标等场景。',
+    },
+    intro: '解决前端最常见的居中难题。默认 flex 两轴居中，也可自由组合五种居中策略。',
+  },
+};

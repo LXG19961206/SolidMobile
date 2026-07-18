@@ -33,6 +33,10 @@ export default {
       size: 'Size',
       copied: 'Copied',
     },
+    cssVars: {
+      '--sc-icon-size': 'Icon size. Equivalent to size prop; lower priority than the size prop.',
+      '--sc-icon-color': 'Icon color. Equivalent to color prop; lower priority than the color prop.',
+    },
     intro: '129 curated Remix Icons in line and fill variants.',
   },
 };

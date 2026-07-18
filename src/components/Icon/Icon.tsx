@@ -73,7 +73,12 @@ export const Icon: Component<IconProps> = (rawProps) => {
     const s: JSX.CSSProperties = {};
     if (typeof local.style === 'string') return s;
     if (local.style && typeof local.style === 'object') Object.assign(s, local.style as JSX.CSSProperties);
-    if (local.color) s['color'] = local.color;
+
+    // Set CSS custom properties from props so users can override via CSS variable theming.
+    // These take priority over user's style for the explicit prop API contract.
+    s['--sc-icon-size'] = computedSize();
+    if (local.color) s['--sc-icon-color'] = local.color;
+
     return s;
   };
 
@@ -85,8 +90,6 @@ export const Icon: Component<IconProps> = (rawProps) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      width={computedSize()}
-      height={computedSize()}
       fill="currentColor"
       role={isDecorative() ? 'img' : undefined}
       aria-hidden={isDecorative() ? 'true' : undefined}

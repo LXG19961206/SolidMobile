@@ -396,6 +396,7 @@ export const Tooltip: Component<TooltipProps> = (rawProps) => {
             style={{
               ...bubbleStyle(),
               ...arrowSizeStyle(),
+              ...(local.closeable ? { 'padding-right': '26px' } : {}),
               ...(local.maxWidth != null ? { 'max-width': typeof local.maxWidth === 'number' ? `${local.maxWidth}px` : local.maxWidth } : {}),
               ...(typeof local.style === 'object' ? local.style : {}),
             }}

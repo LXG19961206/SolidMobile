@@ -17,5 +17,13 @@ export function useIconTableData() {
     ],
   }];
 
-  return { propsTables };
+  const cssVarsTables: TableSection[] = [{
+    title: 'Icon',
+    rows: [
+      { name: '--sc-icon-size', type: 'length', def: "'1em'", desc: 'icon.cssVars.--sc-icon-size' },
+      { name: '--sc-icon-color', type: 'color', def: 'inherit', desc: 'icon.cssVars.--sc-icon-color' },
+    ],
+  }];
+
+  return { propsTables, cssVarsTables };
 }

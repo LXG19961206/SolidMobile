@@ -11,7 +11,7 @@ registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 export const IconDocPage = () => {
   const t = useT();
-  const { propsTables } = useIconTableData();
+  const { propsTables, cssVarsTables } = useIconTableData();
 
   const demos: DemoCode[] = [
     {
@@ -47,7 +47,7 @@ export const IconDocPage = () => {
         <h1 style={{ 'font-size': '1.75rem', 'font-weight': 700, margin: '0 0 4px' }}>Icon</h1>
         <p style={{ 'font-size': '0.9rem', color: '#6b7280', margin: '0 0 24px' }}>{t('icon.intro')}</p>
 
-        <PropsAttrs propsTables={propsTables} />
+        <PropsAttrs propsTables={propsTables} cssVarsTables={cssVarsTables} />
 
         <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '24px 0 12px' }}>Demos</h2>
         <For each={demos}>{(demo) => <DemoCodeBlock demo={demo} />}</For>

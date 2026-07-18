@@ -33,6 +33,10 @@ export default {
       size: '尺寸',
       copied: '已复制',
     },
+    cssVars: {
+      '--sc-icon-size': '图标尺寸。与 size 属性等价，CSS 覆盖时优先级低于 size 属性。',
+      '--sc-icon-color': '图标颜色。与 color 属性等价，CSS 覆盖时优先级低于 color 属性。',
+    },
     intro: '129 个精选 Remix 图标，支持线性/填充双风格。',
   },
 };

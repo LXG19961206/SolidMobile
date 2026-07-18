@@ -11,6 +11,9 @@ docs-dev/components/Xxx/
 ├── zh-CN.ts          ← 简体中文词条
 ├── en-US.ts          ← 英文词条
 └── tableData.ts      ← Props + CSS Vars 数据（可选）
+... xxx.tsx           ← 一般是一些杂文性质的，比如设计理念，最佳实践等，范式不固定  
+
+
 ```
 
 不再拆分到 `i18n/`、`pages/components/`、`pages/mobile/` 三个地方。
@@ -46,7 +49,7 @@ export default {
 
 ### tableData.ts
 
-桌面和移动端共用一份表格数据，消除重复维护风险：
+桌面和移动端共用一份Props，CssVar表格数据，消除重复维护风险：
 
 ```ts
 import { useT } from '../../doc-i18n';
@@ -170,8 +173,17 @@ const XxxMobile = lazy(() => import('./components/Xxx/XxxMobile').then(m => ({de
 
 | 项 | 规则 |
 |---|---|
-| Props 表 desc | 用 `t('xxx.props.*')` i18n 键值 |
-| CSS 变量表 desc | 用 `t('xxx.cssVars.*')` i18n 键值 |
+| Props 表 desc | 用 `xxx.props.*` i18n 键值 |
+| CSS 变量表 desc | 用 `xxx.cssVars.*` i18n 键值 |
 | Demo 卡片 title | 用 `t('xxx.demo.*')` i18n 键值 |
 | Demo 按钮文字 | 简单英文，不翻译 |
 | Card subtitle | 简单英文，不翻译 |
+
+
+### 关于迁移
+> 我们实际上已经写过一版文档，但是存在工程化设计不合理、国际化覆盖不全、pc mobile 不统一等问题
+> 极重难返，难以维护
+> 所以考虑重新开重构
+> 但是这绝非从0开始写项目
+> 之前那版的 路径是 /docs-dev/pages/commponents/组件名， 写新文档的 demo 时候可以参考它，此外肯定还需参考组件自身的实现 /src/commponents/组件名, props 和 cssVar 不能缺斤短两。
+> 重构后的路径是 /docs-dev/components/ 你可以先阅读button为参照

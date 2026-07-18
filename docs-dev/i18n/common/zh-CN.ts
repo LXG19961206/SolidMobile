@@ -548,6 +548,7 @@ export default {
     common: {
         and: '和',
         cssVars: 'CSS 变量',
+        noCssVars: '该组件没有 CSS 自定义属性。',
         events: '事件 / Events',
         cellProps: 'Cell 属性',
         cellGroupProps: 'CellGroup Props',

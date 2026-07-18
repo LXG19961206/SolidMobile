@@ -20,14 +20,16 @@
 .defCell { font-size: 0.72rem; color: #9ca3af; }
 .descCell { font-size: 0.78rem; color: #374151; }
 
-/* 移动端表格容器 — 最大高度 + 滚动 */
+/* 表格容器 */
 .scrollWrap {
-  max-height: 320px; overflow-y: auto;
   border: 1px solid #e5e7eb; border-radius: 6px;
+}
+.scrollWrap.compact {
+  max-height: 320px; overflow-y: auto;
   scrollbar-width: thin;
 }
-.scrollWrap::-webkit-scrollbar { width: 4px; }
-.scrollWrap::-webkit-scrollbar-thumb { background: hsla(0,0%,60%,0.2); border-radius: 4px; }
+.scrollWrap.compact::-webkit-scrollbar { width: 4px; }
+.scrollWrap.compact::-webkit-scrollbar-thumb { background: hsla(0,0%,60%,0.2); border-radius: 4px; }
 
 /* ── 暗色 ── */
 :global(html.dark) .table { border-color: #334155; }
@@ -37,4 +39,4 @@
 :global(html.dark) .typeCell { color: #67e8f9; }
 :global(html.dark) .descCell { color: #cbd5e1; }
 :global(html.dark) .scrollWrap { border-color: #334155; }
-:global(html.dark) .scrollWrap::-webkit-scrollbar-thumb { background: hsla(0,0%,40%,0.2); }
+:global(html.dark) .scrollWrap.compact::-webkit-scrollbar-thumb { background: hsla(0,0%,40%,0.2); }

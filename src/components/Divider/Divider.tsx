@@ -17,8 +17,8 @@ export const Divider: Component<DividerProps> = (rawProps) => {
 
   const lineStyle = () => {
     const s: Record<string, string> = {};
-    if (local.color) s['color'] = local.color;
-    if (local.size) s[isVertical() ? 'width' : 'border-top-width'] =
+    if (local.color) s['--sc-divider-color'] = local.color;
+    if (local.size) s['--sc-divider-size'] =
       typeof local.size === 'number' ? `${local.size}px` : local.size;
     return s;
   };

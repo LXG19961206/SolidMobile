@@ -38,7 +38,7 @@ export const Empty: Component<EmptyProps> = (rawProps) => {
 
   const renderImage = () => {
     if (typeof local.image === 'string') {
-      const iconName = PRESETS[local.image] || 'inbox';
+      const iconName = PRESETS[local.image] || 'image';
       return (
         <div class={styles.image}>
           <Icon name={iconName as any} size={36} />

@@ -1,14 +1,19 @@
 .divider {
+  /* --- CSS Custom Properties (themeable) --- */
+  --sc-divider-color: var(--sc-color-border, #dcdee0);
+  --sc-divider-size: 1px;
+  --sc-divider-text-color: var(--sc-color-text-secondary, #969799);
+
   display: flex;
   align-items: center;
   border: none;
   margin: 1rem 0;
-  color: var(--sc-color-border, #dcdee0);
+  color: var(--sc-divider-color);
 }
 
 .horizontal {
   width: 100%;
-  border-top: 1px solid currentColor;
+  border-top: var(--sc-divider-size) solid currentColor;
 }
 
 .horizontal.dashed {
@@ -23,7 +28,7 @@
 .withText::after {
   content: '';
   flex: 1;
-  border-top: 1px solid currentColor;
+  border-top: var(--sc-divider-size) solid currentColor;
 }
 
 .withText.dashed::before,
@@ -34,15 +39,15 @@
 .text {
   padding: 0 1rem;
   font-size: 0.875rem;
-  color: var(--sc-color-text-secondary, #969799);
+  color: var(--sc-divider-text-color);
   white-space: nowrap;
 }
 
 .vertical {
   display: inline-flex;
-  width: 1px;
+  width: var(--sc-divider-size);
   height: 1em;
-  border-left: 1px solid currentColor;
+  border-left: var(--sc-divider-size) solid currentColor;
   margin: 0 0.5rem;
   vertical-align: middle;
 }

@@ -14,11 +14,11 @@ const inIframe = typeof window !== 'undefined' && window.top !== window.self;
 
 export const IconMobile = () => {
   const t = useT();
-  const { propsTables } = useIconTableData();
+  const { propsTables, cssVarsTables } = useIconTableData();
 
   return (
     <MobilePreview title="Icon">
-      <MobilePropsSheet propsTables={propsTables} />
+      <MobilePropsSheet propsTables={propsTables} cssVarsTables={cssVarsTables} />
       <div style={{ padding: '12px', display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
         <Card title={t('icon.demo.basic')} subtitle="fill + color">
           <Row>

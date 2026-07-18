@@ -63,6 +63,7 @@ export const SafeArea: Component<SafeAreaProps> = (rawProps) => {
       class={cn(props.class)}
       style={{
         width: '100%',
+        'flex-shrink': 0,
         'padding-top': position === 'top' ? cssVar : undefined,
         'padding-bottom': position === 'bottom' ? cssVar : undefined,
         'box-sizing': 'border-box',

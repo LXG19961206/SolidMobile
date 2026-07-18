@@ -3,12 +3,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3rem 1rem;
+  padding: 1rem;
   color: var(--sc-color-text-tertiary, #afaba9);
 }
 
 .image {
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
   opacity: 0.35;
 }
 

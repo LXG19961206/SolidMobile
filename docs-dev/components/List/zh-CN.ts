@@ -1,0 +1,40 @@
+export default {
+  list: {
+    props: {
+      data: '受控模式：外部管理的数据源。',
+      onLoad: '非受控模式：触底时调用，返回值追加到列表末尾。',
+      finished: '是否已加载完成。',
+      children: '渲染每一项的模板函数 (item, index) => JSX。',
+      empty: '空数据占位，字符串或自定义 JSX。',
+      loadMoreText: '加载中底部提示文字。',
+      finishedText: '全部加载完成底部提示文字。',
+      errorText: '加载失败时底部内容。',
+      offset: '距底部多少 px 时触发 onLoad，默认 100。',
+      virtual: '开启虚拟列表。',
+      itemHeight: '虚拟列表每项固定高度 (px)，virtual 开启时必传。',
+      pullRefresh: '开启下拉刷新，配合 onRefresh。',
+      onRefresh: '下拉刷新回调，返回 Promise 时自动等待。',
+      class: '自定义 CSS class。',
+      style: '内联样式。',
+    },
+    demo: {
+      static: '静态数据',
+      autoload: '触底加载',
+      virtual: '虚拟列表',
+      empty: '空数据',
+      refresh: '下拉刷新',
+    },
+    demoDesc: {
+      static: '传入 data 静态数据，适合数据已全部就绪的场景。',
+      autoload: '传入 onLoad，滚动触底时自动加载更多。',
+      virtual: '开启 virtual，只渲染可视区域内的项，适合大量数据（1000+）。',
+      empty: 'data 为空数组时展示空状态占位。',
+      refresh: 'List 内置 pullRefresh 属性，开启后自动支持下拉刷新。注意：需要给 List 设置固定高度（或通过 flex 约束高度），让 List 自身成为滚动容器，否则下拉刷新无法正确检测滚动位置。',
+    },
+    misc: {
+      loading: '加载中...',
+      noMore: '没有更多了',
+    },
+    intro: '可滚动加载的列表组件。支持受控/非受控、虚拟列表、下拉刷新。',
+  },
+};
