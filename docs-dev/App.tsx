@@ -22,6 +22,13 @@ import { TooltipMobile as TooltipMobileDirect } from './components/Tooltip/Toolt
 import { FloatingBallMobile as FloatingBallMobileDirect } from './components/FloatingBall/FloatingBallMobile';
 import { BackTopMobile as BackTopMobileDirect } from './components/BackTop/BackTopMobile';
 import { PullRefreshMobile as PullRefreshMobileDirect } from './components/PullRefresh/PullRefreshMobile';
+import { TabsMobile as TabsMobileDirect } from './components/Tabs/TabsMobile';
+import { TabBarMobile as TabBarMobileDirect } from './components/TabBar/TabBarMobile';
+import { NavBarMobile as NavBarMobileDirect } from './components/NavBar/NavBarMobile';
+import { CellMobile as CellMobileDirect } from './components/Cell/CellMobile';
+import { ToastMobile as ToastMobileDirect } from './components/Toast/ToastMobile';
+import { NotifyMobile as NotifyMobileDirect } from './components/Notify/NotifyMobile';
+import { DialogMobile as DialogMobileDirect } from './components/Dialog/DialogMobile';
 import { SafeArea } from '../src/components/SafeArea';
 import { setGlobalLocale, useLocale, useT } from '../src/i18n';
 import { ProviderConfig } from '../src/config';
@@ -62,16 +69,16 @@ const ImageDocPage = lazy(() => import('./components/Image/ImageDocPage').then(m
 const EmptyDocPage = lazy(() => import('./components/Empty/EmptyDocPage').then(m => ({ default: m.EmptyDocPage })));
 const LazyloadDocPage = lazy(() => import('./components/Lazyload/LazyloadDocPage').then(m => ({ default: m.LazyloadDocPage })));
 const ListDocPage = lazy(() => import('./components/List/ListDocPage').then(m => ({ default: m.ListDocPage })));
-const NavBarDocPage = lazy(() => import('./pages/components/NavBar/NavBarDocPage').then(m => ({ default: m.NavBarDocPage })));
-const TabsDocPage = lazy(() => import('./pages/components/Tabs/TabsDocPage').then(m => ({ default: m.TabsDocPage })));
-const TabBarDocPage = lazy(() => import('./pages/components/TabBar/TabBarDocPage').then(m => ({ default: m.TabBarDocPage })));
-const CellDocPage = lazy(() => import('./pages/components/Cell/CellDocPage').then(m => ({ default: m.CellDocPage })));
+const NavBarDocPage = lazy(() => import('./components/NavBar/NavBarDocPage').then(m => ({ default: m.NavBarDocPage })));
+const TabsDocPage = lazy(() => import('./components/Tabs/TabsDocPage').then(m => ({ default: m.TabsDocPage })));
+const TabBarDocPage = lazy(() => import('./components/TabBar/TabBarDocPage').then(m => ({ default: m.TabBarDocPage })));
+const CellDocPage = lazy(() => import('./components/Cell/CellDocPage').then(m => ({ default: m.CellDocPage })));
 const CascaderDocPage = lazy(() => import('./pages/components/Cascader/CascaderDocPage').then(m => ({ default: m.CascaderDocPage })));
 const CalendarDocPage = lazy(() => import('./pages/components/Calendar/CalendarDocPage').then(m => ({ default: m.CalendarDocPage })));
 const PickerDocPage = lazy(() => import('./pages/components/Picker/PickerDocPage').then(m => ({ default: m.PickerDocPage })));
-const ToastDocPage = lazy(() => import('./pages/components/Toast/ToastDocPage').then(m => ({ default: m.ToastDocPage })));
-const DialogDocPage = lazy(() => import('./pages/components/Dialog/DialogDocPage').then(m => ({ default: m.DialogDocPage })));
-const NotifyDocPage = lazy(() => import('./pages/components/notify/NotifyDocPage').then(m => ({ default: m.NotifyDocPage })));
+const ToastDocPage = lazy(() => import('./components/Toast/ToastDocPage').then(m => ({ default: m.ToastDocPage })));
+const DialogDocPage = lazy(() => import('./components/Dialog/DialogDocPage').then(m => ({ default: m.DialogDocPage })));
+const NotifyDocPage = lazy(() => import('./components/Notify/NotifyDocPage').then(m => ({ default: m.NotifyDocPage })));
 const OverlayDocPage = lazy(() => import('./pages/components/Overlay/OverlayDocPage').then(m => ({ default: m.OverlayDocPage })));
 const ActionSheetDocPage = lazy(() => import('./pages/components/ActionSheet/ActionSheetDocPage').then(m => ({ default: m.ActionSheetDocPage })));
 const LoadingDocPage = lazy(() => import('./pages/components/Loading/LoadingDocPage').then(m => ({ default: m.LoadingDocPage })));
@@ -114,18 +121,18 @@ const LazyloadMobile = lazy(() => import('./components/Lazyload/LazyloadMobile')
 const ListMobile = lazy(() => import('./components/List/ListMobile').then(m => ({ default: m.ListMobile })));
 const SwipeCellMobile = lazy(() => import('./components/SwipeCell/SwipeCellMobile').then(m => ({ default: m.SwipeCellMobile })));
 const SwiperMobile = lazy(() => import('./components/Swiper/SwiperMobile').then(m => ({ default: m.SwiperMobile })));
-const TabsMobile = lazy(() => import('./pages/mobile/TabsMobile').then(m => ({ default: m.TabsMobile })));
-const TabBarMobile = lazy(() => import('./pages/mobile/TabBarMobile').then(m => ({ default: m.TabBarMobile })));
-const NavBarMobile = lazy(() => import('./pages/mobile/NavBarMobile').then(m => ({ default: m.NavBarMobile })));
-const CellMobile = lazy(() => import('./pages/mobile/CellMobile').then(m => ({ default: m.CellMobile })));
+const TabsMobile = lazy(() => import('./components/Tabs/TabsMobile').then(m => ({ default: m.TabsMobile })));
+const TabBarMobile = lazy(() => import('./components/TabBar/TabBarMobile').then(m => ({ default: m.TabBarMobile })));
+const NavBarMobile = lazy(() => import('./components/NavBar/NavBarMobile').then(m => ({ default: m.NavBarMobile })));
+const CellMobile = lazy(() => import('./components/Cell/CellMobile').then(m => ({ default: m.CellMobile })));
 const CalendarMobile = lazy(() => import('./pages/mobile/CalendarMobile').then(m => ({ default: m.CalendarMobile })));
 const CascaderMobile = lazy(() => import('./pages/mobile/CascaderMobile').then(m => ({ default: m.CascaderMobile })));
 const DatePickerMobile = lazy(() => import('./pages/mobile/DatePickerMobile').then(m => ({ default: m.DatePickerMobile })));
 const CityPickerMobile = lazy(() => import('./pages/mobile/CityPickerMobile').then(m => ({ default: m.CityPickerMobile })));
 const TimePickerMobile = lazy(() => import('./pages/mobile/TimePickerMobile').then(m => ({ default: m.TimePickerMobile })));
-const ToastMobile = lazy(() => import('./pages/mobile/ToastMobile').then(m => ({ default: m.ToastMobile })));
-const NotifyMobile = lazy(() => import('./pages/mobile/NotifyMobile').then(m => ({ default: m.NotifyMobile })));
-const DialogMobile = lazy(() => import('./pages/mobile/DialogMobile').then(m => ({ default: m.DialogMobile })));
+const ToastMobile = lazy(() => import('./components/Toast/ToastMobile').then(m => ({ default: m.ToastMobile })));
+const NotifyMobile = lazy(() => import('./components/Notify/NotifyMobile').then(m => ({ default: m.NotifyMobile })));
+const DialogMobile = lazy(() => import('./components/Dialog/DialogMobile').then(m => ({ default: m.DialogMobile })));
 const OverlayMobile = lazy(() => import('./pages/mobile/OverlayMobile').then(m => ({ default: m.OverlayMobile })));
 const ActionSheetMobile = lazy(() => import('./pages/mobile/ActionSheetMobile').then(m => ({ default: m.ActionSheetMobile })));
 const LoadingMobile = lazy(() => import('./pages/mobile/LoadingMobile').then(m => ({ default: m.LoadingMobile })));
@@ -248,9 +255,11 @@ export function App() {
     // 读取 localStorage 中的主题色
     const themeColor = (() => { try { return localStorage.getItem('sc-docs-theme-color') || '#1677ff'; } catch { return '#1677ff'; } })();
     const colors = deriveColorSet(themeColor);
-    const mobileDirect: Record<string, any> = { button: ButtonMobileDirect, icon: IconMobileDirect, center: CenterMobileDirect, divider: DividerMobileDirect, layout: LayoutMobileDirect, safearea: SafeAreaMobileDirect, avatar: AvatarMobileDirect, badge: BadgeMobileDirect, tag: TagMobileDirect, image: ImageMobileDirect, empty: EmptyMobileDirect, lazyload: LazyloadMobileDirect, list: ListMobileDirect, swipecell: SwipeCellMobileDirect, swiper: SwiperMobileDirect, ellipsis: EllipsisMobileDirect, tooltip: TooltipMobileDirect, floatingball: FloatingBallMobileDirect, backtop: BackTopMobileDirect, pullrefresh: PullRefreshMobileDirect };
+    const mobileDirect: Record<string, any> = { button: ButtonMobileDirect, icon: IconMobileDirect, center: CenterMobileDirect, divider: DividerMobileDirect, layout: LayoutMobileDirect, safearea: SafeAreaMobileDirect, avatar: AvatarMobileDirect, badge: BadgeMobileDirect, tag: TagMobileDirect, image: ImageMobileDirect, empty: EmptyMobileDirect, lazyload: LazyloadMobileDirect, list: ListMobileDirect, swipecell: SwipeCellMobileDirect, swiper: SwiperMobileDirect, ellipsis: EllipsisMobileDirect, tooltip: TooltipMobileDirect, floatingball: FloatingBallMobileDirect, backtop: BackTopMobileDirect, pullrefresh: PullRefreshMobileDirect, tabs: TabsMobileDirect, tabbar: TabBarMobileDirect, navbar: NavBarMobileDirect, cell: CellMobileDirect, toast: ToastMobileDirect, notify: NotifyMobileDirect, dialog: DialogMobileDirect };
     const Demo = mobileDirect[mobileParam] || PAGES_MOBILE[mobileParam];
     const notch = 36; // PhoneSimulator notch + safe area height
+    // 同时写到 body 上，让 Portal 渲染的 Notify/Toast 也能继承
+    try { document.body.style.setProperty('--sc-safe-area-top', `${notch}px`); document.body.style.setProperty('--sc-safe-area-bottom', '0px'); } catch {}
     return (
       <ProviderConfig config={{ locale: useLocale(), colors: { light: { primary: themeColor }, dark: { primary: colors.hover } } }}>
         <div style={{ '--sc-safe-area-top': `${notch}px`, '--sc-safe-area-bottom': '0px' } as JSX.CSSProperties}>

@@ -12,6 +12,14 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
+.inset {
+  border-radius: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
 .header {
   margin-bottom: 12px;
 }

@@ -79,6 +79,8 @@ export interface MobilePreviewProps {
   onNavigate?: (key: string) => void;
   /** 打开抽屉回调（由 App 层注入） */
   onOpenDrawer?: () => void;
+  /** 隐藏底部 prev/next 导航 */
+  hideNav?: boolean;
   children: any;
 }
 
@@ -167,7 +169,7 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
       </div>
 
       {/* Prev / Next — fixed footer below scroll area, hidden in iframe */}
-      <Show when={(nav().prev || nav().next) && !inIframe()}>
+      <Show when={!props.hideNav && (nav().prev || nav().next) && !inIframe()}>
         <div style={{
           display: 'flex', 'justify-content': 'space-between',
           padding: '10px 16px', 'flex-shrink': 0,

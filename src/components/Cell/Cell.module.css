@@ -46,9 +46,10 @@
   display: flex;
   align-items: center;
   padding: 0 1rem;
-  min-height: 48px;
+  min-height: var(--sc-cell-min-height, 48px);
   box-sizing: border-box;
-	background: var(--sc-color-cell-bg, #fff);
+  --sc-cell-min-height: 48px;
+  background: var(--sc-color-cell-bg, #fff);
   color: var(--sc-color-text, #323233);
   font-size: 0.9375rem;
   line-height: 1.5;

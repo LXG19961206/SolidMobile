@@ -79,7 +79,7 @@ export const Tabs: Component<TabsProps> = (rawProps) => {
   const [local, rest] = splitProps(props, [
     'active', 'defaultActive', 'onChange', 'type', 'color', 'background',
     'duration', 'animated', 'border', 'sticky', 'offsetTop',
-    'lazyRender', 'titleActiveColor', 'titleInactiveColor', 'beforeChange',
+    'lazyRender', 'titleActiveColor', 'titleInactiveColor', 'beforeChange', 'centered',
     'children', 'class', 'style',
   ]);
 
@@ -123,18 +123,42 @@ export const Tabs: Component<TabsProps> = (rawProps) => {
   let navRef!: HTMLDivElement;
   const [indicatorStyle, setIndicatorStyle] = createSignal<JSX.CSSProperties>({});
 
+  // ── Scroll active tab into view (centered if prop enabled) ──
+  const scrollToActive = () => {
+    if (!navRef) return;
+    const idx = tabs().findIndex((t) => t.name === activeName());
+    const titles = navRef.querySelectorAll('[data-tab-title]');
+    const el = titles[idx] as HTMLElement | undefined;
+    if (!el) return;
+    const containerW = navRef.clientWidth;
+    const tabLeft = el.offsetLeft;
+    const tabW = el.offsetWidth;
+    if (local.centered) {
+      navRef.scrollTo({ left: Math.max(0, tabLeft + tabW / 2 - containerW / 2), behavior: 'smooth' });
+    } else if (tabLeft < navRef.scrollLeft || tabLeft + tabW > navRef.scrollLeft + containerW) {
+      navRef.scrollTo({ left: tabLeft + tabW - containerW, behavior: 'smooth' });
+    }
+  };
+
   const updateIndicator = () => {
     if (local.type !== 'line' || !headerRef) return;
     const idx = tabs().findIndex((t) => t.name === activeName());
     const titles = headerRef.querySelectorAll('[data-tab-title]');
     const el = titles[idx] as HTMLElement | undefined;
-    if (el) {
-      const scrollOffset = navRef ? navRef.scrollLeft : 0;
-      setIndicatorStyle({ left: `${el.offsetLeft - scrollOffset}px`, width: `${el.offsetWidth}px` });
+    if (!el || !navRef) { setIndicatorStyle({}); return; }
+    const scrollL = navRef.scrollLeft;
+    const containerW = navRef.clientWidth;
+    const tabLeft = el.offsetLeft;
+    const tabRight = tabLeft + el.offsetWidth;
+    // 选中项不在视口中时隐藏指示条
+    if (tabRight <= scrollL || tabLeft >= scrollL + containerW) {
+      setIndicatorStyle({});
+      return;
     }
+    setIndicatorStyle({ left: `${tabLeft - scrollL}px`, width: `${el.offsetWidth}px` });
   };
 
-  createEffect(on(activeName, updateIndicator));
+  createEffect(on(activeName, () => { updateIndicator(); scrollToActive(); }));
   createEffect(() => { tabs(); updateIndicator(); });
   if (typeof window !== 'undefined') {
     window.addEventListener('resize', updateIndicator);

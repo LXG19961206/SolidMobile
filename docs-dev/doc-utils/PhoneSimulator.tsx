@@ -21,6 +21,7 @@ export function PhoneSimulator(props: PhoneSimulatorProps) {
 
   onMount(() => {
     setHash(window.location.hash);
+    setLoading(true);
     const handler = () => {
       setHash(window.location.hash);
       setLoading(true);

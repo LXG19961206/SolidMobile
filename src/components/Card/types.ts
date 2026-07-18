@@ -9,7 +9,9 @@ export interface CardProps {
   shadow?: boolean;
   /** 是否显示边框，默认 true */
   border?: boolean;
-  /** 内边距，默认 16px */
+  /** 沉浸模式：去掉内边距、圆角、边框、阴影，占满容器，默认 false */
+  inset?: boolean;
+  /** 内边距，默认 16px。inset 模式下忽略 */
   padding?: string | number;
   /** 自定义 CSS class */
   class?: string;

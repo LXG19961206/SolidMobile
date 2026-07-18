@@ -26,12 +26,13 @@ const defaultProps: Partial<CardProps> = {
 export const Card: Component<CardProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
   const [local, rest] = splitProps(props, [
-    'title', 'subtitle', 'shadow', 'border', 'padding',
+    'title', 'subtitle', 'shadow', 'border', 'inset', 'padding',
     'class', 'style', 'children',
   ]);
 
   const inlineStyle = (): JSX.CSSProperties => {
     const userStyle = typeof local.style === 'object' ? (local.style as JSX.CSSProperties) : {};
+    if (local.inset) return userStyle;
     return {
       padding: typeof local.padding === 'number' ? `${local.padding}px` : local.padding,
       ...userStyle,
@@ -42,8 +43,9 @@ export const Card: Component<CardProps> = (rawProps) => {
     <div
       class={cn(
         styles.card,
-        local.border && styles.border,
-        local.shadow && styles.shadow,
+        local.inset && styles.inset,
+        !local.inset && local.border && styles.border,
+        !local.inset && local.shadow && styles.shadow,
         local.class,
       )}
       style={inlineStyle()}

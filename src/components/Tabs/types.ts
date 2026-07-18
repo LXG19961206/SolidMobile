@@ -33,6 +33,8 @@ export interface TabsProps {
   titleInactiveColor?: string;
   /** 切换前回调，返回 false 阻止切换 */
   beforeChange?: (name: number | string) => boolean | Promise<boolean>;
+  /** 切换时自动滚动标签使选中项居中（仅横向滚动生效），默认 false */
+  centered?: boolean;
   /** Tab 子元素 */
   children?: JSX.Element;
   class?: string;
