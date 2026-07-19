@@ -27,7 +27,7 @@
 
 /* ===== Content wrapper ===== */
 .content {
-  /* Content is rendered as-is; this wrapper prevents
-     backdrop click from firing on content children. */
-  display: contents;
+  /* Content renders normally. Backdrop click is prevented
+     from firing on content children via stopPropagation. */
+  pointer-events: auto;
 }

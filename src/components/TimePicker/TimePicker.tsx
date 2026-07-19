@@ -26,25 +26,6 @@ function formatTime(h: number, m: number, s: number): string {
   return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
 }
 
-/* ── Fixed columns (memos to avoid recreation each render) ── */
-
-const HOURS: PickerOption[] = Array.from({ length: 24 }, (_, i) => ({
-  text: String(i).padStart(2, '0'),
-  value: i,
-}));
-
-const MINUTES: PickerOption[] = Array.from({ length: 60 }, (_, i) => ({
-  text: String(i).padStart(2, '0'),
-  value: i,
-}));
-
-const SECONDS: PickerOption[] = Array.from({ length: 60 }, (_, i) => ({
-  text: String(i).padStart(2, '0'),
-  value: i,
-}));
-
-const TIME_COLUMNS: PickerOption[][] = [HOURS, MINUTES, SECONDS];
-
 /* ══════════════════════════════════════════════════════════════════
    TimePicker
    ══════════════════════════════════════════════════════════════════ */
@@ -56,6 +37,7 @@ export const TimePicker: Component<TimePickerProps> = (rawProps) => {
     'placeholder',
     'show', 'onUpdateShow',
     'title', 'cancelText', 'confirmText',
+    'showUnit', 'units',
     'visibleItemCount', 'optionHeight', 'teleport', 'zIndex',
     'class', 'style',
   ]);
@@ -112,6 +94,31 @@ export const TimePicker: Component<TimePickerProps> = (rawProps) => {
     setHour(0); setMinute(0); setSecond(0);
   });
 
+  /* ── Columns (dynamic: showUnit / units support) ── */
+  const unitLabels = createMemo(() => {
+    const u = local.units;
+    return {
+      hour: u?.hour ?? t('component.timePicker.units.hour'),
+      minute: u?.minute ?? t('component.timePicker.units.minute'),
+      second: u?.second ?? t('component.timePicker.units.second'),
+    };
+  });
+
+  const timeColumns = createMemo(() => {
+    const pad = (n: number) => String(n).padStart(2, '0');
+    if (!local.showUnit) return [
+      Array.from({ length: 24 }, (_, i) => ({ text: pad(i), value: i })),
+      Array.from({ length: 60 }, (_, i) => ({ text: pad(i), value: i })),
+      Array.from({ length: 60 }, (_, i) => ({ text: pad(i), value: i })),
+    ];
+    const u = unitLabels();
+    return [
+      Array.from({ length: 24 }, (_, i) => ({ text: `${pad(i)}${u.hour}`, value: i })),
+      Array.from({ length: 60 }, (_, i) => ({ text: `${pad(i)}${u.minute}`, value: i })),
+      Array.from({ length: 60 }, (_, i) => ({ text: `${pad(i)}${u.second}`, value: i })),
+    ];
+  });
+
   /* ── Picker value ── */
   const pickerValue = createMemo(() => [hour(), minute(), second()]);
 
@@ -166,7 +173,7 @@ export const TimePicker: Component<TimePickerProps> = (rawProps) => {
 
       <Picker
         value={pickerValue()}
-        columns={TIME_COLUMNS}
+        columns={timeColumns()}
         onChange={(_items: PickerOption[], vals: (string | number)[]) => emitChange(vals)}
         onConfirm={(_items: PickerOption[], vals: (string | number)[]) => handleConfirm(vals)}
         onCancel={handleCancel}

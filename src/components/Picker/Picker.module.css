@@ -12,6 +12,7 @@
   --sc-picker-radius: 12px;
   --sc-picker-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
   --sc-picker-item-font-size: 1rem;
+  --sc-picker-visible-height: 350px;
   --sc-picker-max-height: 450px;
   --sc-picker-min-height: 350px;
 }
@@ -43,7 +44,7 @@
   -webkit-user-select: none;
   touch-action: none;
   /* 高度由 JSX 中的 CSS 变量 --sc-picker-visible-items 动态计算 */
-  height: calc(var(--sc-picker-header-height) + var(--sc-picker-visible-height));
+  height: calc(var(--sc-picker-header-height) + var(--sc-picker-visible-height, 350px));
 }
 
 .sheetEnter {
@@ -102,7 +103,7 @@
   position: relative;
   display: flex;
   overflow: hidden;
-  height: var(--sc-picker-visible-height);
+  height: var(--sc-picker-visible-height, 350px);
   flex-shrink: 0;
 }
 

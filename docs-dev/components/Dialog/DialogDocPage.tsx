@@ -14,14 +14,44 @@ export const DialogDocPage = () => {
 
   const demos: DemoCode[] = [
     {
-      title: t('dialog.demo.basic'),
-      code: 'Dialog.alert({ title: "Notice", message: "Success!" })\nDialog.confirm({ title: "Confirm", message: "Are you sure?" })',
-      desc: t('dialog.demoDesc.basic'),
+      title: t('dialog.demoAlert'),
+      code: 'Dialog.alert({\n  title: "Notice",\n  message: "Operation successful!",\n})',
+      desc: t('dialog.descAlert'),
     },
     {
-      title: t('dialog.demo.advanced'),
-      code: 'Dialog.confirm({\n  title: "Save Draft",\n  message: "Save current edits?",\n  confirmText: "Save",\n  cancelText: "Discard",\n  onConfirm: async () => { await fetch("/api/save"); },\n})',
-      desc: t('dialog.demoDesc.advanced'),
+      title: t('dialog.demoConfirm'),
+      code: 'Dialog.confirm({\n  title: "Confirm Delete",\n  message: "This cannot be undone. Are you sure?",\n})',
+      desc: t('dialog.descConfirm'),
+    },
+    {
+      title: t('dialog.demoNoTitle'),
+      code: 'Dialog.show({ message: "Plain text without a title." })',
+      desc: t('dialog.descNoTitle'),
+    },
+    {
+      title: t('dialog.demoMultiline'),
+      code: 'Dialog.alert({ message: "Line 1\\nLine 2\\nLine 3" })',
+      desc: t('dialog.descMultiline'),
+    },
+    {
+      title: t('dialog.demoCustomBtns'),
+      code: 'Dialog.confirm({\n  title: "Save Draft",\n  message: "Save current edits?",\n  confirmText: "Save",\n  cancelText: "Discard",\n})',
+      desc: t('dialog.descCustomBtns'),
+    },
+    {
+      title: t('dialog.demoJsx'),
+      code: 'Dialog.alert({\n  title: "Order Summary",\n  message: (\n    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>\n      <div style={{ display: "flex", justifyContent: "space-between" }}>\n        <span>Item</span>\n        <span style={{ fontWeight: 600 }}>Solid Pro</span>\n      </div>\n      <div style={{ display: "flex", justifyContent: "space-between" }}>\n        <span>License</span>\n        <span style={{ color: "#22c55e", fontWeight: 700 }}>MIT — Free</span>\n      </div>\n    </div>\n  ),\n})',
+      desc: t('dialog.descJsx'),
+    },
+    {
+      title: t('dialog.demoAsync'),
+      code: 'Dialog.confirm({\n  title: "Submit",\n  message: "Are you sure?",\n  confirmText: "Submit",\n  showCancelButton: true,\n  onConfirm: async () => {\n    await fetch("/api/submit");\n  },\n})',
+      desc: t('dialog.descAsync'),
+    },
+    {
+      title: t('dialog.demoPrevent'),
+      code: 'Dialog.confirm({\n  title: "Confirm",\n  message: \'Only "Confirm" can close.\',\n  beforeClose: (action) => {\n    return action === "confirm" ? true : false;\n  },\n})',
+      desc: t('dialog.descPrevent'),
     },
   ];
 

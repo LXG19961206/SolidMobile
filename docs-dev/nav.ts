@@ -12,6 +12,7 @@ export const GROUPS: MenuGroup[] = [
     items: [
       { name: 'Button 按钮', key: 'button' }, { name: 'Icon 图标', key: 'icon' }, { name: 'Center 居中', key: 'center' },
       { name: 'Divider 分割线', key: 'divider' }, { name: 'Layout 布局', key: 'layout' }, { name: 'SafeArea 安全区', key: 'safearea' },
+      { name: 'Card 卡片', key: 'card' },
     ],
   },
   {

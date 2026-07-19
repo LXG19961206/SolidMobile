@@ -149,6 +149,10 @@ export const Overlay: Component<OverlayProps> = (rawProps) => {
       '--sc-overlay-z-index': local.zIndex!,
       '--sc-overlay-duration': `${local.duration}ms`,
     };
+    // lockScroll=false: 不阻断背景事件，允许穿透滚动
+    if (!local.lockScroll) {
+      base['pointer-events'] = 'none';
+    }
     if (typeof local.style === 'object' && local.style !== null) {
       Object.assign(base, local.style);
     }

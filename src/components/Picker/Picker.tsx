@@ -8,6 +8,7 @@ import { Portal } from 'solid-js/web';
 import { cn, scopedStyle } from '../../utils';
 import { useLocale, useT } from '../../i18n';
 import { Overlay } from '../Overlay';
+import { Cell } from '../Cell';
 import { emitEvent } from '../../event-bus';
 import type { PickerOption, PickerProps } from './types';
 import rawStyles from './Picker.module.css';
@@ -224,6 +225,7 @@ export const Picker: Component<PickerProps> = (rawProps) => {
   );
 
   /* ── Sheet Animation State ── */
+  const autoMode = () => local.show === undefined;
   const [internalShow, setInternalShow] = createSignal(local.show ?? false);
   const [animated, setAnimated] = createSignal(false);
   let animTimer: ReturnType<typeof setTimeout> | null = null;
@@ -236,13 +238,35 @@ export const Picker: Component<PickerProps> = (rawProps) => {
   function closeSheet() {
     setAnimated(false);
     if (animTimer) clearTimeout(animTimer);
-    animTimer = setTimeout(() => setInternalShow(false), 300);
+    animTimer = setTimeout(() => {
+      setInternalShow(false);
+    }, 300);
   }
 
   // Sync with controlled `show` prop
   createEffect(on(() => local.show, (s) => {
+    if (autoMode()) return;
     if (s) openSheet(); else closeSheet();
   }, { defer: false }));
+
+  /* ── Display text for auto-mode Cell ── */
+  const displayText = createMemo(() => {
+    const idxs = allIdxs();
+    const cols = allColumns();
+    if (!cols.length || !idxs.length) return '';
+    return idxs.map((idx, i) => {
+      const item = cols[i]?.[idx];
+      return item ? String(item.render ? item.text : item.text) : '';
+    }).filter(Boolean).join(' / ') || '';
+  });
+
+  const placeholderText = () => {
+    if (local.placeholders) {
+      const ph = typeof local.placeholders === 'string' ? local.placeholders : local.placeholders.join(' / ');
+      return ph;
+    }
+    return t('component.picker.select');
+  };
 
   onCleanup(() => {
     if (animTimer) clearTimeout(animTimer);
@@ -255,6 +279,7 @@ export const Picker: Component<PickerProps> = (rawProps) => {
   let lastClientY = 0;
   let scrollGateTimer: ReturnType<typeof setTimeout> | null = null;
   let scrollGateMoved = false; // distance-based gate: >3px = scrolling, not a tap
+  let pointerDown = false; // guard: only process moves when pointer is pressed
   /** 每列独立的 rAF id，避免滑动某一列时取消另一列的动画 */
   const animRafIds: (number | null)[] = [];
 
@@ -474,6 +499,7 @@ export const Picker: Component<PickerProps> = (rawProps) => {
     }
 
     setTargetCol(col);
+    pointerDown = true;
 
     // 去抖动：避免轻点确认 / 取消按钮时误触发滚动。
     // 50ms 后或手指移动超过 3px 即可认为用户在滑动。
@@ -489,6 +515,8 @@ export const Picker: Component<PickerProps> = (rawProps) => {
   }
 
   function onPointerMove(evt: PointerEvent) {
+    if (!pointerDown) return;
+
     // Distance gate: if the user has moved >3px, it's definitely a scroll
     if (!scrollGateMoved && Math.abs(evt.clientY - lastClientY) > 3) {
       scrollGateMoved = true;
@@ -530,11 +558,13 @@ export const Picker: Component<PickerProps> = (rawProps) => {
   }
 
   function onPointerUp(_evt: PointerEvent) {
+    pointerDown = false;
     finishScroll();
   }
 
   /** 指针快速离开组件时也触发一次修正，防止列停在中间位置对不齐 */
   function onPointerLeave(_evt: PointerEvent) {
+    pointerDown = false;
     finishScroll();
   }
 
@@ -607,7 +637,8 @@ export const Picker: Component<PickerProps> = (rawProps) => {
   function cancel() {
     local.onCancel?.();
     emitEvent({ component: 'Picker', type: 'cancel', payload: undefined, props: props, timestamp: Date.now() });
-    local.onUpdateShow?.(false);
+    if (autoMode()) closeSheet();
+    else local.onUpdateShow?.(false);
   }
 
   function confirm() {
@@ -615,7 +646,8 @@ export const Picker: Component<PickerProps> = (rawProps) => {
     const vals = allIdxs().map((idx, i) => allColumns()[i][idx]?.value ?? '');
     local.onConfirm?.call(void 0, items, vals);
     emitEvent({ component: 'Picker', type: 'confirm', payload: { items, vals }, props: props, timestamp: Date.now() });
-    local.onUpdateShow?.(false);
+    if (autoMode()) closeSheet();
+    else local.onUpdateShow?.(false);
   }
 
   /* ═══════════════════════════════════════════════════════════
@@ -639,8 +671,20 @@ export const Picker: Component<PickerProps> = (rawProps) => {
      ═══════════════════════════════════════════════════════════ */
 
   return (
-    <Show when={internalShow()}>
-      <Portal mount={local.teleport as Node ?? (typeof document !== 'undefined' ? document.body : undefined)}>
+    <>
+      {/* Auto mode: render a Cell trigger */}
+      <Show when={autoMode()}>
+        <Cell
+          title={displayText() || placeholderText()}
+          clickable flush
+          onClick={() => openSheet()}
+          class={local.class}
+          style={typeof local.style === 'string' ? local.style : undefined}
+        />
+      </Show>
+
+      <Show when={internalShow()}>
+        <Portal mount={local.teleport as Node ?? (typeof document !== 'undefined' ? document.body : undefined)}>
         {/* 遮罩：mount 指向 teleport 同目标，避免溢出到模拟器外 */}
         <Overlay
           open={internalShow()}
@@ -731,6 +775,7 @@ export const Picker: Component<PickerProps> = (rawProps) => {
           </div>
         </div>
       </Portal>
-    </Show>
+      </Show>
+    </>
   );
 };

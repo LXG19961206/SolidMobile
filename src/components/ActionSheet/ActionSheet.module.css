@@ -4,14 +4,20 @@
 
 /* ── Sheet ── */
 .sheet {
+  --sc-actionsheet-bg: #fff;
+  --sc-actionsheet-item-height: 50px;
+  --sc-actionsheet-cancel-btn-height: 50px;
+  --sc-actionsheet-header-height: 48px;
+  --sc-actionsheet-max-height: 70vh;
+
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  max-height: 70vh;
+  max-height: var(--sc-actionsheet-max-height);
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: var(--sc-actionsheet-bg);
   transform: translateY(100%);
   transition: transform 0.28s ease;
   z-index: 1;
@@ -43,8 +49,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 48px;
-  min-height: 48px;
+  height: var(--sc-actionsheet-header-height);
+  min-height: var(--sc-actionsheet-header-height);
   position: relative;
   border-bottom: 1px solid var(--sc-color-border, #dcdee0);
   flex-shrink: 0;
@@ -128,8 +134,8 @@
 
 /* Single-line item */
 .itemSingle {
-  height: 50px;
-  min-height: 50px;
+  height: var(--sc-actionsheet-item-height);
+  min-height: var(--sc-actionsheet-item-height);
 }
 
 /* Two-line item (name + subname) */
@@ -195,8 +201,8 @@
 
 .cancelBtn {
   width: 100%;
-  height: 50px;
-  min-height: 50px;
+  height: var(--sc-actionsheet-cancel-btn-height);
+  min-height: var(--sc-actionsheet-cancel-btn-height);
   border: none;
   background: #fff;
   font-size: var(--sc-font-size-md, 1rem);
@@ -223,7 +229,8 @@
 :global(html.dark) .sheet,
 :global(html.dark) .cancelBtn,
 :global(html.dark) .safeArea {
-  background: #1a1d21;
+  --sc-actionsheet-bg: #1a1d21;
+  background: var(--sc-actionsheet-bg);
 }
 :global(html.dark) .header,
 :global(html.dark) .description {

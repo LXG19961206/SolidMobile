@@ -24,6 +24,11 @@ export interface TimePickerProps {
   /** 确认按钮文字 */
   confirmText?: string;
 
+  /** 是否在各列显示单位后缀（时/分/秒），默认 false */
+  showUnit?: boolean;
+  /** 自定义单位文字，不传则跟随 i18n。如 { hour: '时', minute: '分', second: '秒' } */
+  units?: { hour?: string; minute?: string; second?: string };
+
   /** 可见行数（奇数），默认 7 */
   visibleItemCount?: number;
   /** 每行高度(px)，默认从 CSS 变量读取 */
