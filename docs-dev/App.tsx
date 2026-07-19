@@ -39,6 +39,8 @@ import { DatePickerMobile as DatePickerMobileDirect } from './components/DatePic
 import { CityPickerMobile as CityPickerMobileDirect } from './components/CityPicker/CityPickerMobile';
 import { TimePickerMobile as TimePickerMobileDirect } from './components/TimePicker/TimePickerMobile';
 import { CardMobile as CardMobileDirect } from './components/Card/CardMobile';
+import { FormMobile as FormMobileDirect } from './components/Form/FormMobile';
+import { InputMobile as InputMobileDirect } from './components/Input/InputMobile';
 import { SafeArea } from '../src/components/SafeArea';
 import { setGlobalLocale, useLocale, useT } from '../src/i18n';
 import { ProviderConfig } from '../src/config';
@@ -95,8 +97,8 @@ const LoadingDocPage = lazy(() => import('./components/Loading/LoadingDocPage').
 const SwitchDocPage = lazy(() => import('./pages/components/Switch/SwitchDocPage').then(m => ({ default: m.SwitchDocPage })));
 const SwipeCellDocPage = lazy(() => import('./components/SwipeCell/SwipeCellDocPage').then(m => ({ default: m.SwipeCellDocPage })));
 const SwiperDocPage = lazy(() => import('./components/Swiper/SwiperDocPage').then(m => ({ default: m.SwiperDocPage })));
-const FormDocPage = lazy(() => import('./pages/components/Form/FormDocPage').then(m => ({ default: m.FormDocPage })));
-const InputDocPage = lazy(() => import('./pages/components/Input/InputDocPage').then(m => ({ default: m.InputDocPage })));
+const FormDocPage = lazy(() => import('./components/Form/FormDocPage').then(m => ({ default: m.FormDocPage })));
+const InputDocPage = lazy(() => import('./components/Input/InputDocPage').then(m => ({ default: m.InputDocPage })));
 const TextareaDocPage = lazy(() => import('./pages/components/Textarea/TextareaDocPage').then(m => ({ default: m.TextareaDocPage })));
 const RadioDocPage = lazy(() => import('./pages/components/Radio/RadioDocPage').then(m => ({ default: m.RadioDocPage })));
 const CheckboxDocPage = lazy(() => import('./pages/components/Checkbox/CheckboxDocPage').then(m => ({ default: m.CheckboxDocPage })));
@@ -148,8 +150,8 @@ const DialogMobile = lazy(() => import('./components/Dialog/DialogMobile').then(
 const OverlayMobile = lazy(() => import('./components/Overlay/OverlayMobile').then(m => ({ default: m.OverlayMobile })));
 const ActionSheetMobile = lazy(() => import('./components/ActionSheet/ActionSheetMobile').then(m => ({ default: m.ActionSheetMobile })));
 const LoadingMobile = lazy(() => import('./components/Loading/LoadingMobile').then(m => ({ default: m.LoadingMobile })));
-const FormMobile = lazy(() => import('./pages/mobile/FormMobile').then(m => ({ default: m.FormMobile })));
-const InputMobile = lazy(() => import('./pages/mobile/InputMobile').then(m => ({ default: m.InputMobile })));
+const FormMobile = lazy(() => import('./components/Form/FormMobile').then(m => ({ default: m.FormMobile })));
+const InputMobile = lazy(() => import('./components/Input/InputMobile').then(m => ({ default: m.InputMobile })));
 const TextareaMobile = lazy(() => import('./pages/mobile/TextareaMobile').then(m => ({ default: m.TextareaMobile })));
 const RadioMobile = lazy(() => import('./pages/mobile/RadioMobile').then(m => ({ default: m.RadioMobile })));
 const CheckboxMobile = lazy(() => import('./pages/mobile/CheckboxMobile').then(m => ({ default: m.CheckboxMobile })));
@@ -268,7 +270,7 @@ export function App() {
     // 读取 localStorage 中的主题色
     const themeColor = (() => { try { return localStorage.getItem('sc-docs-theme-color') || '#1677ff'; } catch { return '#1677ff'; } })();
     const colors = deriveColorSet(themeColor);
-    const mobileDirect: Record<string, any> = { button: ButtonMobileDirect, icon: IconMobileDirect, center: CenterMobileDirect, divider: DividerMobileDirect, layout: LayoutMobileDirect, safearea: SafeAreaMobileDirect, avatar: AvatarMobileDirect, badge: BadgeMobileDirect, tag: TagMobileDirect, image: ImageMobileDirect, empty: EmptyMobileDirect, lazyload: LazyloadMobileDirect, list: ListMobileDirect, swipecell: SwipeCellMobileDirect, swiper: SwiperMobileDirect, ellipsis: EllipsisMobileDirect, tooltip: TooltipMobileDirect, floatingball: FloatingBallMobileDirect, backtop: BackTopMobileDirect, pullrefresh: PullRefreshMobileDirect, tabs: TabsMobileDirect, tabbar: TabBarMobileDirect, navbar: NavBarMobileDirect, cell: CellMobileDirect, toast: ToastMobileDirect, notify: NotifyMobileDirect, dialog: DialogMobileDirect, overlay: OverlayMobileDirect, actionsheet: ActionSheetMobileDirect, loading: LoadingMobileDirect, picker: PickerMobileDirect, calendar: CalendarMobileDirect, cascader: CascaderMobileDirect, datepicker: DatePickerMobileDirect, citypicker: CityPickerMobileDirect, timepicker: TimePickerMobileDirect, card: CardMobileDirect };
+    const mobileDirect: Record<string, any> = { button: ButtonMobileDirect, icon: IconMobileDirect, center: CenterMobileDirect, divider: DividerMobileDirect, layout: LayoutMobileDirect, safearea: SafeAreaMobileDirect, avatar: AvatarMobileDirect, badge: BadgeMobileDirect, tag: TagMobileDirect, image: ImageMobileDirect, empty: EmptyMobileDirect, lazyload: LazyloadMobileDirect, list: ListMobileDirect, swipecell: SwipeCellMobileDirect, swiper: SwiperMobileDirect, ellipsis: EllipsisMobileDirect, tooltip: TooltipMobileDirect, floatingball: FloatingBallMobileDirect, backtop: BackTopMobileDirect, pullrefresh: PullRefreshMobileDirect, tabs: TabsMobileDirect, tabbar: TabBarMobileDirect, navbar: NavBarMobileDirect, cell: CellMobileDirect, toast: ToastMobileDirect, notify: NotifyMobileDirect, dialog: DialogMobileDirect, overlay: OverlayMobileDirect, actionsheet: ActionSheetMobileDirect, loading: LoadingMobileDirect, picker: PickerMobileDirect, calendar: CalendarMobileDirect, cascader: CascaderMobileDirect, datepicker: DatePickerMobileDirect, citypicker: CityPickerMobileDirect, timepicker: TimePickerMobileDirect, card: CardMobileDirect, form: FormMobileDirect, input: InputMobileDirect };
     const Demo = mobileDirect[mobileParam] || PAGES_MOBILE[mobileParam];
     const notch = 36; // PhoneSimulator notch + safe area height
     // 同时写到 body 上，让 Portal 渲染的 Notify/Toast 也能继承

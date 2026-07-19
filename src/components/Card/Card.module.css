@@ -13,11 +13,11 @@
 }
 
 .inset {
-  border-radius: 0;
-  padding: 0;
+  --sc-card-bg: transparent;
+  --sc-card-radius: 0;
+  --sc-card-padding: 0;
   border: none;
   box-shadow: none;
-  background: transparent;
 }
 
 .header {

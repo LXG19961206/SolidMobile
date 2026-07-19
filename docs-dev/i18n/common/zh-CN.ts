@@ -467,6 +467,7 @@ export default {
         badge: 'Badge 徽标',
         button: 'Button 按钮',
         calendar: 'Calendar 日历',
+        card: 'Card 卡片',
         cascader: 'Cascader 级联选择',
         cell: 'Cell 单元格',
         center: 'Center 居中',

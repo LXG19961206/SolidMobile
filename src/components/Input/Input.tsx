@@ -163,7 +163,7 @@ export const Input: Component<InputProps> = (rawProps) => {
       {/* password toggle */}
       <Show when={local.type === 'password' && local.showPasswordToggle}>
         <span class={styles.toggle} onClick={() => setPwdVisible(!pwdVisible())}>
-          <Icon name={pwdVisible() ? 'eye' : 'eye-off'} size={16} />
+          <Icon name={pwdVisible() ? 'eye-off' : 'eye'} size={20} />
         </span>
       </Show>
 

@@ -1,5 +1,6 @@
 import { mergeProps, splitProps, Show, type Component, type JSX } from 'solid-js';
 import { cn, scopedStyle } from '../../utils';
+import { Divider } from '../Divider';
 import type { CardProps } from './types';
 import rawStyles from './Card.module.css';
 
@@ -26,7 +27,7 @@ const defaultProps: Partial<CardProps> = {
 export const Card: Component<CardProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
   const [local, rest] = splitProps(props, [
-    'title', 'subtitle', 'shadow', 'border', 'inset', 'padding',
+    'title', 'subtitle', 'shadow', 'border', 'inset', 'divider', 'padding',
     'class', 'style', 'children',
   ]);
 
@@ -56,6 +57,7 @@ export const Card: Component<CardProps> = (rawProps) => {
           <Show when={local.title}><div class={styles.title}>{local.title}</div></Show>
           <Show when={local.subtitle}><div class={styles.subtitle}>{local.subtitle}</div></Show>
         </div>
+        <Show when={local.divider}><Divider /></Show>
       </Show>
       <div class={styles.body}>{local.children}</div>
     </div>

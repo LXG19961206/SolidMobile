@@ -457,6 +457,7 @@ export default {
         badge: 'Badge',
         button: 'Button',
         calendar: 'Calendar',
+        card: 'Card',
         cascader: 'Cascader',
         cell: 'Cell',
         center: 'Center',

@@ -11,6 +11,8 @@ export interface CardProps {
   border?: boolean;
   /** 沉浸模式：去掉内边距、圆角、边框、阴影，占满容器，默认 false */
   inset?: boolean;
+  /** 是否在标题区下方显示分割线，默认 false */
+  divider?: boolean;
   /** 内边距，默认 16px。inset 模式下忽略 */
   padding?: string | number;
   /** 自定义 CSS class */
