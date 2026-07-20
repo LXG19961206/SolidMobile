@@ -1,4 +1,4 @@
-import { mergeProps, splitProps, type Component, type JSX } from 'solid-js';
+import { createUniqueId, mergeProps, splitProps, type Component, type JSX } from 'solid-js';
 import { cn, scopedStyle } from '../../utils';
 import type { ScrollBarProps } from './types';
 import rawStyles from './ScrollBar.module.css';
@@ -35,7 +35,7 @@ export const ScrollBar: Component<ScrollBarProps> = (rawProps) => {
   };
 
   const s = cssVars();
-  const id = `sc-sb-${Math.random().toString(36).slice(2, 8)}`;
+  const id = createUniqueId();
   const prefix = local.native ? `#${id} > *` : `#${id}`;
   const w = s['--sc-scrollbar-width'] || '6px';
   const c = s['--sc-scrollbar-color'] || '#d1d5db';
