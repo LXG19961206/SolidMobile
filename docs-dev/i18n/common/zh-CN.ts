@@ -711,7 +711,7 @@ export default {
             title: '选择日期'
         },
         calendar: {
-            weekdays: ["日","一","二","三","四","五","六"],
+            weekdays: ["日", "一", "二", "三", "四", "五", "六"],
             titleFormatter: null,
             startLabel: '开始',
             endLabel: '结束',
@@ -734,7 +734,7 @@ export default {
     i18nPage: {
         title: '国际化 / i18n',
         downloadTemplate: '下载翻译模板',
-        downloadTemplateDesc: '点击下方按钮下载组件运行时词条模板（JSON）。仅包含组件实际使用的文案（Picker、Dialog、Calendar 等的按钮、占位符、状态提示），不含文档站内部词条。',
+        downloadTemplateDesc: '点击下方按钮下载组件运行时词条模板（JSON）。仅包含组件实际使用的文案（Picker、Dialog、Calendar 等的按钮、占位符、状态提示）。',
         usageStepsTitle: '使用步骤：',
         noteTitle: '注意：',
         downloadBtn: '下载英文词条模板 (JSON)',
