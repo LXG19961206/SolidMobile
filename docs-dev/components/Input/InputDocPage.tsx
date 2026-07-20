@@ -60,7 +60,7 @@ export const InputDocPage = () => {
     },
     {
       title: t('input.demo.form'),
-      code: '<Form onSubmit={(v) => console.log(v)}>\n  <FormItem name="username" label="Username" rules={[{\n    validator: (v) => (v as string)?.length >= 2,\n    message: "At least 2 characters",\n  }]}>\n    <Input placeholder="Enter username" clearable />\n  </FormItem>\n  <FormItem name="email" label="Email">\n    <Input type="email" placeholder="Enter email" clearable />\n  </FormItem>\n  <div style={{ padding: "12px 1rem" }}>\n    <Button type="primary" block nativeType="submit" text="Submit" />\n  </div>\n</Form>',
+      code: '<Form controlAlign="right" onSubmit={(v) => console.log(v)}>\n  <FormItem name="username" label="Username" rules={[{\n    validator: (v) => (v as string)?.length >= 2,\n    message: "At least 2 characters",\n  }]}>\n    <Input placeholder="Enter username" clearable />\n  </FormItem>\n  <FormItem name="email" label="Email">\n    <Input type="email" placeholder="Enter email" clearable />\n  </FormItem>\n  <div style={{ padding: "12px 1rem" }}>\n    <Button type="primary" block nativeType="submit" text="Submit" />\n  </div>\n</Form>',
       desc: t('input.demoDesc.form'),
     },
   ];

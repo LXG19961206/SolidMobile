@@ -100,7 +100,7 @@ export const InputMobile = () => {
           <div style={{ background: 'var(--sc-doc-card-bg, #fff)', 'border-radius': '10px', overflow: 'hidden', 'box-shadow': '0 1px 4px rgba(0,0,0,0.06)' }}>
             <div style={{ padding: '16px 16px 4px', 'font-size': '0.9rem', 'font-weight': 600 }}>{t('input.demo.form')}</div>
             <div style={{ padding: '0 16px', 'font-size': '0.8rem', color: '#9ca3af' }}>{t('input.demoDesc.form')}</div>
-            <Form onSubmit={(v) => console.log(v)}>
+            <Form controlAlign="right" onSubmit={(v) => console.log(v)}>
               <FormItem name="username" label="Username" required rules={[{ validator: (v: unknown) => (v as string)?.length >= 2, message: 'At least 2 characters' }]}>
                 <Input placeholder="Enter username" clearable />
               </FormItem>

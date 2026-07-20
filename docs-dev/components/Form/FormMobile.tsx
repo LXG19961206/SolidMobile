@@ -17,6 +17,7 @@ import { Upload } from '../../../src/components/Upload';
 import type { UploadFile } from '../../../src/components/Upload';
 import { Button } from '../../../src/components/Button';
 import { Toast } from '../../../src/components/Toast';
+import { Card } from '../../../src/components/Card';
 import { MobilePropsSheet } from '../../doc-utils/MobilePropsSheet';
 import { MobilePreview } from '../../doc-utils/mobile/MobilePreview';
 import zhCN from './zh-CN';
@@ -58,6 +59,21 @@ export const FormMobile = () => {
   return (
     <MobilePreview title="Form">
       <MobilePropsSheet propsTables={propsTables} cssVarsTables={cssVarsTables} />
+
+      <div style={{ padding: '12px', display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
+        <Card title={t('form.layout.title')}>
+          <div style={{ 'font-size': '0.85rem', 'line-height': 1.8, color: '#6b7280' }}>
+            <p style={{ margin: '0 0 8px' }}>{t('form.layout.desc')}</p>
+            <ul style={{ margin: 0, 'padding-left': '1.2rem' }}>
+              <li style={{ 'margin-bottom': '6px' }}>{t('form.layout.item1')}</li>
+              <li style={{ 'margin-bottom': '6px' }}>{t('form.layout.item2')}</li>
+              <li style={{ 'margin-bottom': '6px' }}>{t('form.layout.item3')}</li>
+              <li style={{ 'margin-bottom': '6px' }}>{t('form.layout.item4')}</li>
+              <li>{t('form.layout.item5')}</li>
+            </ul>
+          </div>
+        </Card>
+      </div>
 
       <div style={{ padding: '0 0 12px' }}>
         {/* ── Uncontrolled ── */}

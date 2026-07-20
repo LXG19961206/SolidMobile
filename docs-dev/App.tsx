@@ -41,6 +41,15 @@ import { TimePickerMobile as TimePickerMobileDirect } from './components/TimePic
 import { CardMobile as CardMobileDirect } from './components/Card/CardMobile';
 import { FormMobile as FormMobileDirect } from './components/Form/FormMobile';
 import { InputMobile as InputMobileDirect } from './components/Input/InputMobile';
+import { RadioMobile as RadioMobileDirect } from './components/Radio/RadioMobile';
+import { CheckboxMobile as CheckboxMobileDirect } from './components/Checkbox/CheckboxMobile';
+import { SwitchMobile as SwitchMobileDirect } from './components/Switch/SwitchMobile';
+import { RateMobile as RateMobileDirect } from './components/Rate/RateMobile';
+import { StepperMobile as StepperMobileDirect } from './components/Stepper/StepperMobile';
+import { SliderMobile as SliderMobileDirect } from './components/Slider/SliderMobile';
+import { SelectMobile as SelectMobileDirect } from './components/Select/SelectMobile';
+import { UploadMobile as UploadMobileDirect } from './components/Upload/UploadMobile';
+import { TextareaMobile as TextareaMobileDirect } from './components/Textarea/TextareaMobile';
 import { SafeArea } from '../src/components/SafeArea';
 import { setGlobalLocale, useLocale, useT } from '../src/i18n';
 import { ProviderConfig } from '../src/config';
@@ -94,29 +103,29 @@ const NotifyDocPage = lazy(() => import('./components/Notify/NotifyDocPage').the
 const OverlayDocPage = lazy(() => import('./components/Overlay/OverlayDocPage').then(m => ({ default: m.OverlayDocPage })));
 const ActionSheetDocPage = lazy(() => import('./components/ActionSheet/ActionSheetDocPage').then(m => ({ default: m.ActionSheetDocPage })));
 const LoadingDocPage = lazy(() => import('./components/Loading/LoadingDocPage').then(m => ({ default: m.LoadingDocPage })));
-const SwitchDocPage = lazy(() => import('./pages/components/Switch/SwitchDocPage').then(m => ({ default: m.SwitchDocPage })));
+const SwitchDocPage = lazy(() => import('./components/Switch/SwitchDocPage').then(m => ({ default: m.SwitchDocPage })));
 const SwipeCellDocPage = lazy(() => import('./components/SwipeCell/SwipeCellDocPage').then(m => ({ default: m.SwipeCellDocPage })));
 const SwiperDocPage = lazy(() => import('./components/Swiper/SwiperDocPage').then(m => ({ default: m.SwiperDocPage })));
 const FormDocPage = lazy(() => import('./components/Form/FormDocPage').then(m => ({ default: m.FormDocPage })));
 const InputDocPage = lazy(() => import('./components/Input/InputDocPage').then(m => ({ default: m.InputDocPage })));
-const TextareaDocPage = lazy(() => import('./pages/components/Textarea/TextareaDocPage').then(m => ({ default: m.TextareaDocPage })));
-const RadioDocPage = lazy(() => import('./pages/components/Radio/RadioDocPage').then(m => ({ default: m.RadioDocPage })));
-const CheckboxDocPage = lazy(() => import('./pages/components/Checkbox/CheckboxDocPage').then(m => ({ default: m.CheckboxDocPage })));
+const TextareaDocPage = lazy(() => import('./components/Textarea/TextareaDocPage').then(m => ({ default: m.TextareaDocPage })));
+const RadioDocPage = lazy(() => import('./components/Radio/RadioDocPage').then(m => ({ default: m.RadioDocPage })));
+const CheckboxDocPage = lazy(() => import('./components/Checkbox/CheckboxDocPage').then(m => ({ default: m.CheckboxDocPage })));
 const DatePickerDocPage = lazy(() => import('./components/DatePicker/DatePickerDocPage').then(m => ({ default: m.DatePickerDocPage })));
 const CityPickerDocPage = lazy(() => import('./components/CityPicker/CityPickerDocPage').then(m => ({ default: m.CityPickerDocPage })));
 const TimePickerDocPage = lazy(() => import('./components/TimePicker/TimePickerDocPage').then(m => ({ default: m.TimePickerDocPage })));
 const CardDocPage = lazy(() => import('./components/Card/CardDocPage').then(m => ({ default: m.CardDocPage })));
-const RateDocPage = lazy(() => import('./pages/components/Rate/RateDocPage').then(m => ({ default: m.RateDocPage })));
-const StepperDocPage = lazy(() => import('./pages/components/Stepper/StepperDocPage').then(m => ({ default: m.StepperDocPage })));
+const RateDocPage = lazy(() => import('./components/Rate/RateDocPage').then(m => ({ default: m.RateDocPage })));
+const StepperDocPage = lazy(() => import('./components/Stepper/StepperDocPage').then(m => ({ default: m.StepperDocPage })));
 const SafeAreaDocPage = lazy(() => import('./components/SafeArea/SafeAreaDocPage').then(m => ({ default: m.SafeAreaDocPage })));
-const SliderDocPage = lazy(() => import('./pages/components/Slider/SliderDocPage').then(m => ({ default: m.SliderDocPage })));
-const UploadDocPage = lazy(() => import('./pages/components/Upload/UploadDocPage').then(m => ({ default: m.UploadDocPage })));
+const SliderDocPage = lazy(() => import('./components/Slider/SliderDocPage').then(m => ({ default: m.SliderDocPage })));
+const UploadDocPage = lazy(() => import('./components/Upload/UploadDocPage').then(m => ({ default: m.UploadDocPage })));
 const PullRefreshDocPage = lazy(() => import('./components/PullRefresh/PullRefreshDocPage').then(m => ({ default: m.PullRefreshDocPage })));
 const EllipsisDocPage = lazy(() => import('./components/Ellipsis/EllipsisDocPage').then(m => ({ default: m.EllipsisDocPage })));
 const TooltipDocPage = lazy(() => import('./components/Tooltip/TooltipDocPage').then(m => ({ default: m.TooltipDocPage })));
 const FloatingBallDocPage = lazy(() => import('./components/FloatingBall/FloatingBallDocPage').then(m => ({ default: m.FloatingBallDocPage })));
 const BackTopDocPage = lazy(() => import('./components/BackTop/BackTopDocPage').then(m => ({ default: m.BackTopDocPage })));
-const SelectDocPage = lazy(() => import('./pages/components/Select/SelectDocPage').then(m => ({ default: m.SelectDocPage })));
+const SelectDocPage = lazy(() => import('./components/Select/SelectDocPage').then(m => ({ default: m.SelectDocPage })));
 const PickerMobile = lazy(() => import('./components/Picker/PickerMobile').then(m => ({ default: m.PickerMobile })));
 
 const ButtonMobile = lazy(() => import('./components/Button/ButtonMobile').then(m => ({ default: m.ButtonMobile })));
@@ -152,15 +161,15 @@ const ActionSheetMobile = lazy(() => import('./components/ActionSheet/ActionShee
 const LoadingMobile = lazy(() => import('./components/Loading/LoadingMobile').then(m => ({ default: m.LoadingMobile })));
 const FormMobile = lazy(() => import('./components/Form/FormMobile').then(m => ({ default: m.FormMobile })));
 const InputMobile = lazy(() => import('./components/Input/InputMobile').then(m => ({ default: m.InputMobile })));
-const TextareaMobile = lazy(() => import('./pages/mobile/TextareaMobile').then(m => ({ default: m.TextareaMobile })));
-const RadioMobile = lazy(() => import('./pages/mobile/RadioMobile').then(m => ({ default: m.RadioMobile })));
-const CheckboxMobile = lazy(() => import('./pages/mobile/CheckboxMobile').then(m => ({ default: m.CheckboxMobile })));
-const SwitchMobile = lazy(() => import('./pages/mobile/SwitchMobile').then(m => ({ default: m.SwitchMobile })));
-const RateMobile = lazy(() => import('./pages/mobile/RateMobile').then(m => ({ default: m.RateMobile })));
-const StepperMobile = lazy(() => import('./pages/mobile/StepperMobile').then(m => ({ default: m.StepperMobile })));
-const SliderMobile = lazy(() => import('./pages/mobile/SliderMobile').then(m => ({ default: m.SliderMobile })));
-const SelectMobile = lazy(() => import('./pages/mobile/SelectMobile').then(m => ({ default: m.SelectMobile })));
-const UploadMobile = lazy(() => import('./pages/mobile/UploadMobile').then(m => ({ default: m.UploadMobile })));
+const TextareaMobile = lazy(() => import('./components/Textarea/TextareaMobile').then(m => ({ default: m.TextareaMobile })));
+const RadioMobile = lazy(() => import('./components/Radio/RadioMobile').then(m => ({ default: m.RadioMobile })));
+const CheckboxMobile = lazy(() => import('./components/Checkbox/CheckboxMobile').then(m => ({ default: m.CheckboxMobile })));
+const SwitchMobile = lazy(() => import('./components/Switch/SwitchMobile').then(m => ({ default: m.SwitchMobile })));
+const RateMobile = lazy(() => import('./components/Rate/RateMobile').then(m => ({ default: m.RateMobile })));
+const StepperMobile = lazy(() => import('./components/Stepper/StepperMobile').then(m => ({ default: m.StepperMobile })));
+const SliderMobile = lazy(() => import('./components/Slider/SliderMobile').then(m => ({ default: m.SliderMobile })));
+const SelectMobile = lazy(() => import('./components/Select/SelectMobile').then(m => ({ default: m.SelectMobile })));
+const UploadMobile = lazy(() => import('./components/Upload/UploadMobile').then(m => ({ default: m.UploadMobile })));
 const PullRefreshMobile = lazy(() => import('./components/PullRefresh/PullRefreshMobile').then(m => ({ default: m.PullRefreshMobile })));
 const EllipsisMobile = lazy(() => import('./components/Ellipsis/EllipsisMobile').then(m => ({ default: m.EllipsisMobile })));
 const TooltipMobile = lazy(() => import('./components/Tooltip/TooltipMobile').then(m => ({ default: m.TooltipMobile })));
@@ -270,11 +279,11 @@ export function App() {
     // 读取 localStorage 中的主题色
     const themeColor = (() => { try { return localStorage.getItem('sc-docs-theme-color') || '#1677ff'; } catch { return '#1677ff'; } })();
     const colors = deriveColorSet(themeColor);
-    const mobileDirect: Record<string, any> = { button: ButtonMobileDirect, icon: IconMobileDirect, center: CenterMobileDirect, divider: DividerMobileDirect, layout: LayoutMobileDirect, safearea: SafeAreaMobileDirect, avatar: AvatarMobileDirect, badge: BadgeMobileDirect, tag: TagMobileDirect, image: ImageMobileDirect, empty: EmptyMobileDirect, lazyload: LazyloadMobileDirect, list: ListMobileDirect, swipecell: SwipeCellMobileDirect, swiper: SwiperMobileDirect, ellipsis: EllipsisMobileDirect, tooltip: TooltipMobileDirect, floatingball: FloatingBallMobileDirect, backtop: BackTopMobileDirect, pullrefresh: PullRefreshMobileDirect, tabs: TabsMobileDirect, tabbar: TabBarMobileDirect, navbar: NavBarMobileDirect, cell: CellMobileDirect, toast: ToastMobileDirect, notify: NotifyMobileDirect, dialog: DialogMobileDirect, overlay: OverlayMobileDirect, actionsheet: ActionSheetMobileDirect, loading: LoadingMobileDirect, picker: PickerMobileDirect, calendar: CalendarMobileDirect, cascader: CascaderMobileDirect, datepicker: DatePickerMobileDirect, citypicker: CityPickerMobileDirect, timepicker: TimePickerMobileDirect, card: CardMobileDirect, form: FormMobileDirect, input: InputMobileDirect };
+    const mobileDirect: Record<string, any> = { button: ButtonMobileDirect, icon: IconMobileDirect, center: CenterMobileDirect, divider: DividerMobileDirect, layout: LayoutMobileDirect, safearea: SafeAreaMobileDirect, avatar: AvatarMobileDirect, badge: BadgeMobileDirect, tag: TagMobileDirect, image: ImageMobileDirect, empty: EmptyMobileDirect, lazyload: LazyloadMobileDirect, list: ListMobileDirect, swipecell: SwipeCellMobileDirect, swiper: SwiperMobileDirect, ellipsis: EllipsisMobileDirect, tooltip: TooltipMobileDirect, floatingball: FloatingBallMobileDirect, backtop: BackTopMobileDirect, pullrefresh: PullRefreshMobileDirect, tabs: TabsMobileDirect, tabbar: TabBarMobileDirect, navbar: NavBarMobileDirect, cell: CellMobileDirect, toast: ToastMobileDirect, notify: NotifyMobileDirect, dialog: DialogMobileDirect, overlay: OverlayMobileDirect, actionsheet: ActionSheetMobileDirect, loading: LoadingMobileDirect, picker: PickerMobileDirect, calendar: CalendarMobileDirect, cascader: CascaderMobileDirect, datepicker: DatePickerMobileDirect, citypicker: CityPickerMobileDirect, timepicker: TimePickerMobileDirect, card: CardMobileDirect, form: FormMobileDirect, input: InputMobileDirect, radio: RadioMobileDirect, checkbox: CheckboxMobileDirect, switch: SwitchMobileDirect, rate: RateMobileDirect, stepper: StepperMobileDirect, slider: SliderMobileDirect, select: SelectMobileDirect, upload: UploadMobileDirect, textarea: TextareaMobileDirect };
     const Demo = mobileDirect[mobileParam] || PAGES_MOBILE[mobileParam];
     const notch = 36; // PhoneSimulator notch + safe area height
     // 同时写到 body 上，让 Portal 渲染的 Notify/Toast 也能继承
-    try { document.body.style.setProperty('--sc-safe-area-top', `${notch}px`); document.body.style.setProperty('--sc-safe-area-bottom', '0px'); } catch {}
+    try { document.body.style.setProperty('--sc-safe-area-top', `${notch}px`); document.body.style.setProperty('--sc-safe-area-bottom', '0px'); } catch { }
     return (
       <ProviderConfig config={{ locale: useLocale(), colors: { light: { primary: themeColor }, dark: { primary: colors.hover } } }}>
         <div style={{ '--sc-safe-area-top': `${notch}px`, '--sc-safe-area-bottom': '0px' } as JSX.CSSProperties}>
@@ -381,7 +390,7 @@ export function App() {
   const closeMobileDrawer = () => setMobileDrawerOpen(false);
 
   const mobileGroups = createMemo(() => [
-    { title: '', items: [{ name: t('nav.mobileHome') || 'Home 首页', key: 'home' }] },
+    { title: '', items: [{ name: t('nav.mobileHome') || 'Home 首页', key: 'mobileHome' }] },
     {
       title: t('nav.drawerGuideGroup') || 'Guide 指南', items: [
         { name: t('nav.config') || 'ConfigProvider 全局配置', key: 'config' },
