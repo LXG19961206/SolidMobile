@@ -4,9 +4,14 @@
   scrollbar-color: var(--sc-color-border, #d1d5db) transparent;
   scrollbar-width: thin;
 }
+.list::-webkit-scrollbar { width: 4px; }
+.list::-webkit-scrollbar-thumb { background: var(--sc-color-border, #d1d5db); border-radius: 2px; }
+.list::-webkit-scrollbar-track { background: transparent; }
+.list::-webkit-scrollbar-button { display: none; }
 :global(html.dark) .list {
   scrollbar-color: #475569 transparent;
 }
+:global(html.dark) .list::-webkit-scrollbar-thumb { background: #475569; }
 
 /* ── Footer status ── */
 .footer {
