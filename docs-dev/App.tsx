@@ -50,6 +50,7 @@ import { SliderMobile as SliderMobileDirect } from './components/Slider/SliderMo
 import { SelectMobile as SelectMobileDirect } from './components/Select/SelectMobile';
 import { UploadMobile as UploadMobileDirect } from './components/Upload/UploadMobile';
 import { TextareaMobile as TextareaMobileDirect } from './components/Textarea/TextareaMobile';
+import { ScrollBarMobile as ScrollBarMobileDirect } from './components/ScrollBar/ScrollBarMobile';
 import { SafeArea } from '../src/components/SafeArea';
 import { setGlobalLocale, useLocale, useT } from '../src/i18n';
 import { SearchBar } from './doc-utils/SearchBar';
@@ -121,6 +122,7 @@ const StepperDocPage = lazy(() => import('./components/Stepper/StepperDocPage').
 const SafeAreaDocPage = lazy(() => import('./components/SafeArea/SafeAreaDocPage').then(m => ({ default: m.SafeAreaDocPage })));
 const SliderDocPage = lazy(() => import('./components/Slider/SliderDocPage').then(m => ({ default: m.SliderDocPage })));
 const UploadDocPage = lazy(() => import('./components/Upload/UploadDocPage').then(m => ({ default: m.UploadDocPage })));
+const ScrollBarDocPage = lazy(() => import('./components/ScrollBar/ScrollBarDocPage').then(m => ({ default: m.ScrollBarDocPage })));
 const PullRefreshDocPage = lazy(() => import('./components/PullRefresh/PullRefreshDocPage').then(m => ({ default: m.PullRefreshDocPage })));
 const EllipsisDocPage = lazy(() => import('./components/Ellipsis/EllipsisDocPage').then(m => ({ default: m.EllipsisDocPage })));
 const TooltipDocPage = lazy(() => import('./components/Tooltip/TooltipDocPage').then(m => ({ default: m.TooltipDocPage })));
@@ -171,6 +173,7 @@ const StepperMobile = lazy(() => import('./components/Stepper/StepperMobile').th
 const SliderMobile = lazy(() => import('./components/Slider/SliderMobile').then(m => ({ default: m.SliderMobile })));
 const SelectMobile = lazy(() => import('./components/Select/SelectMobile').then(m => ({ default: m.SelectMobile })));
 const UploadMobile = lazy(() => import('./components/Upload/UploadMobile').then(m => ({ default: m.UploadMobile })));
+const ScrollBarMobile = lazy(() => import('./components/ScrollBar/ScrollBarMobile').then(m => ({ default: m.ScrollBarMobile })));
 const PullRefreshMobile = lazy(() => import('./components/PullRefresh/PullRefreshMobile').then(m => ({ default: m.PullRefreshMobile })));
 const EllipsisMobile = lazy(() => import('./components/Ellipsis/EllipsisMobile').then(m => ({ default: m.EllipsisMobile })));
 const TooltipMobile = lazy(() => import('./components/Tooltip/TooltipMobile').then(m => ({ default: m.TooltipMobile })));
@@ -224,7 +227,7 @@ const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key:
   loading: LoadingMobile,
   form: FormMobile,
   input: InputMobile,
-  textarea: TextareaMobile,
+  textarea: TextareaMobile, scrollbar: ScrollBarMobile,
   radio: RadioMobile,
   checkbox: CheckboxMobile,
   switch: SwitchMobile,
@@ -247,7 +250,8 @@ const PAGES: Record<string, Component> = {
   cell: CellDocPage, picker: PickerDocPage, cascader: CascaderDocPage, calendar: CalendarDocPage,
   toast: ToastDocPage, dialog: DialogDocPage, notify: NotifyDocPage, overlay: OverlayDocPage,
   actionsheet: ActionSheetDocPage, loading: LoadingDocPage, switch: SwitchDocPage, swipecell: SwipeCellDocPage,
-  swiper: SwiperDocPage, form: FormDocPage, input: InputDocPage, textarea: TextareaDocPage, radio: RadioDocPage,
+  swiper: SwiperDocPage, form: FormDocPage, input: InputDocPage, textarea: TextareaDocPage,
+  scrollbar: ScrollBarDocPage, radio: RadioDocPage,
   checkbox: CheckboxDocPage, datepicker: DatePickerDocPage, citypicker: CityPickerDocPage, timepicker: TimePickerDocPage,
   rate: RateDocPage, stepper: StepperDocPage, safearea: SafeAreaDocPage, slider: SliderDocPage, select: SelectDocPage,
   upload: UploadDocPage, pullrefresh: PullRefreshDocPage, ellipsis: EllipsisDocPage, tooltip: TooltipDocPage, floatingball: FloatingBallDocPage, backtop: BackTopDocPage,
@@ -280,7 +284,7 @@ export function App() {
     // 读取 localStorage 中的主题色
     const themeColor = (() => { try { return localStorage.getItem('sc-docs-theme-color') || '#1677ff'; } catch { return '#1677ff'; } })();
     const colors = deriveColorSet(themeColor);
-    const mobileDirect: Record<string, any> = { button: ButtonMobileDirect, icon: IconMobileDirect, center: CenterMobileDirect, divider: DividerMobileDirect, layout: LayoutMobileDirect, safearea: SafeAreaMobileDirect, avatar: AvatarMobileDirect, badge: BadgeMobileDirect, tag: TagMobileDirect, image: ImageMobileDirect, empty: EmptyMobileDirect, lazyload: LazyloadMobileDirect, list: ListMobileDirect, swipecell: SwipeCellMobileDirect, swiper: SwiperMobileDirect, ellipsis: EllipsisMobileDirect, tooltip: TooltipMobileDirect, floatingball: FloatingBallMobileDirect, backtop: BackTopMobileDirect, pullrefresh: PullRefreshMobileDirect, tabs: TabsMobileDirect, tabbar: TabBarMobileDirect, navbar: NavBarMobileDirect, cell: CellMobileDirect, toast: ToastMobileDirect, notify: NotifyMobileDirect, dialog: DialogMobileDirect, overlay: OverlayMobileDirect, actionsheet: ActionSheetMobileDirect, loading: LoadingMobileDirect, picker: PickerMobileDirect, calendar: CalendarMobileDirect, cascader: CascaderMobileDirect, datepicker: DatePickerMobileDirect, citypicker: CityPickerMobileDirect, timepicker: TimePickerMobileDirect, card: CardMobileDirect, form: FormMobileDirect, input: InputMobileDirect, radio: RadioMobileDirect, checkbox: CheckboxMobileDirect, switch: SwitchMobileDirect, rate: RateMobileDirect, stepper: StepperMobileDirect, slider: SliderMobileDirect, select: SelectMobileDirect, upload: UploadMobileDirect, textarea: TextareaMobileDirect };
+    const mobileDirect: Record<string, any> = { button: ButtonMobileDirect, icon: IconMobileDirect, center: CenterMobileDirect, divider: DividerMobileDirect, layout: LayoutMobileDirect, safearea: SafeAreaMobileDirect, avatar: AvatarMobileDirect, badge: BadgeMobileDirect, tag: TagMobileDirect, image: ImageMobileDirect, empty: EmptyMobileDirect, lazyload: LazyloadMobileDirect, list: ListMobileDirect, swipecell: SwipeCellMobileDirect, swiper: SwiperMobileDirect, ellipsis: EllipsisMobileDirect, tooltip: TooltipMobileDirect, floatingball: FloatingBallMobileDirect, backtop: BackTopMobileDirect, pullrefresh: PullRefreshMobileDirect, tabs: TabsMobileDirect, tabbar: TabBarMobileDirect, navbar: NavBarMobileDirect, cell: CellMobileDirect, toast: ToastMobileDirect, notify: NotifyMobileDirect, dialog: DialogMobileDirect, overlay: OverlayMobileDirect, actionsheet: ActionSheetMobileDirect, loading: LoadingMobileDirect, picker: PickerMobileDirect, calendar: CalendarMobileDirect, cascader: CascaderMobileDirect, datepicker: DatePickerMobileDirect, citypicker: CityPickerMobileDirect, timepicker: TimePickerMobileDirect, card: CardMobileDirect, form: FormMobileDirect, input: InputMobileDirect, radio: RadioMobileDirect, checkbox: CheckboxMobileDirect, switch: SwitchMobileDirect, rate: RateMobileDirect, stepper: StepperMobileDirect, slider: SliderMobileDirect, select: SelectMobileDirect, upload: UploadMobileDirect, textarea: TextareaMobileDirect, scrollbar: ScrollBarMobileDirect };
     const Demo = mobileDirect[mobileParam] || PAGES_MOBILE[mobileParam];
     const notch = 36; // PhoneSimulator notch + safe area height
     // 同时写到 body 上，让 Portal 渲染的 Notify/Toast 也能继承
