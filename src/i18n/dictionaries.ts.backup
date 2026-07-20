@@ -51,6 +51,7 @@ export const messages: LocaleMessages = {
       },
       timePicker: {
         placeholder: '请选择时间',
+        units: { hour: '时', minute: '分', second: '秒' },
       },
       cascader: {
         placeholder: '请选择',
@@ -135,6 +136,7 @@ export const messages: LocaleMessages = {
       },
       timePicker: {
         placeholder: 'Please select a time',
+        units: { hour: 'h', minute: 'm', second: 's' },
       },
       cascader: {
         placeholder: 'Please select',

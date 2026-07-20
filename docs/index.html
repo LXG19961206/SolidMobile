@@ -4,8 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Solid Component — 组件库文档</title>
-    <script type="module" crossorigin src="./assets/index-qVjVPjSx.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BVTyf5oB.css">
+    <script>
+      // 在渲染前读取暗色模式标志，防止闪白
+      (function() {
+        var isDark = localStorage.getItem('sc-docs-dark-mode') === '1';
+        if (!isDark) {
+          isDark = new URLSearchParams(location.search).get('dark') === '1';
+        }
+        if (!isDark) {
+          try { isDark = matchMedia('(prefers-color-scheme:dark)').matches; } catch(e) {}
+        }
+        if (isDark) document.documentElement.classList.add('dark');
+      })();
+    </script>
+    <style>
+      /* 隐藏滚动条但保留滚动 */
+      html { -ms-overflow-style: none; scrollbar-width: none; }
+      html::-webkit-scrollbar { display: none; }
+    </style>
+    <script type="module" crossorigin src="./assets/index-DbmUbd2J.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BDBl0812.css">
   </head>
   <body>
     <div id="root"></div>
