@@ -125,7 +125,8 @@ export const EventBusMobile: Component<EventBusMobileProps> = (props) => {
   const isEn = () => useLocale() === 'en-US';
   return (
     <MobilePreview title="EventBus" components={props.components} onNavigate={props.onNavigate}>
-      <div style={CARD.wrapper}>
+      <div style={{ padding: "12px" }}>
+<div style={CARD.wrapper}>
         <div style={CARD.title}>{isEn() ? 'Design Philosophy' : '设计定位'}</div>
         <div style={CARD.desc}>
           {isEn()
@@ -321,6 +322,7 @@ function MyChart(props: { data: Bar[]; id?: string }) {
           </div>
         </div>
       </div>
+  </div>
     </MobilePreview>
   );
 };

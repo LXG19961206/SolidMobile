@@ -1,0 +1,21 @@
+export default {
+  config: {
+    title: 'ConfigProvider 全局配置',
+    intro: '全局配置提供者。放在应用根节点，深层合并默认配置，注入 CSS 变量，并通过 Solid Context 向子组件提供主题、排版、圆角、语言等全局设置。不使用时组件按 defaultConfig 运行，无需额外配置。',
+    quickTitle: '快速开始：换个主色',
+    quickDesc: '最简单也最常用的场景——换一个品牌色。你只需要传 primary，hover、active、disabled、pale、focus 甚至 secondary 都会通过 deriveColorSet() 自动从主色计算（HSL 色彩空间，hover 提亮 10、active 压暗 10）。',
+    fullTitle: '全量配置示例',
+    fullDesc: '以下展示所有可配置项。所有字段均有默认值，只需传入需要覆盖的部分。',
+    propsTitle: 'ProviderConfig Props',
+    structTitle: '配置结构 — SolidComponentConfig',
+    topTitle: '顶层字段',
+    colorTitle: 'ColorTokens — 色彩系统',
+    colorDesc: '每个语义色包含 5 级变体：base / hover / active / disabled / pale。colors.light 为浅色主题，colors.dark 为暗色主题。',
+    typoTitle: 'TypographyConfig — 排版',
+    radiusTitle: 'BorderRadiusConfig — 圆角',
+    cssTitle: 'CSS 变量输出',
+    cssDesc: 'ProviderConfig 挂载时调用 generateCSSVars()，注入 style 标签到 head。darkMode="class" 时生成 :root + .dark 两段。',
+    hookTitle: 'useConfig Hook',
+    hookDesc: '任意子组件内获取当前配置（JS 端读取主题值、做条件逻辑）。',
+  },
+};

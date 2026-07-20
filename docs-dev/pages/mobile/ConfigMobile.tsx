@@ -105,7 +105,8 @@ export const ConfigMobile: Component<{ components?: ComponentEntry[]; onNavigate
 
   return (
     <MobilePreview title={t('nav.config') || 'ConfigProvider'} components={props.components} onNavigate={props.onNavigate}>
-      <div style={CARD.wrapper}>
+      <div style={{ padding: "12px" }}>
+<div style={CARD.wrapper}>
         <div style={CARD.title}>ConfigProvider</div>
         <div style={CARD.note}>
           {isEn()
@@ -171,6 +172,7 @@ export const ConfigMobile: Component<{ components?: ComponentEntry[]; onNavigate
           }
         </div>
       </div>
+  </div>
     </MobilePreview>
   );
 };

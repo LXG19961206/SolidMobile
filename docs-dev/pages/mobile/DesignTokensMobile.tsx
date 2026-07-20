@@ -68,7 +68,8 @@ export const DesignTokensMobile: Component<{ components?: ComponentEntry[]; onNa
 
   return (
     <MobilePreview title={isEn() ? 'Design Tokens' : '视觉规范'} components={props.components} onNavigate={props.onNavigate}>
-      {/* 语义色 */}
+      <div style={{ padding: "12px" }}>
+{/* 语义色 */}
       {semanticGroups.map((group) => (
         <div style={CARD.wrapper}>
           <div style={CARD.title}>{group.title}</div>
@@ -167,6 +168,7 @@ export const DesignTokensMobile: Component<{ components?: ComponentEntry[]; onNa
           ))}
         </div>
       </div>
+  </div>
     </MobilePreview>
   );
 };

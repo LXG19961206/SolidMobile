@@ -227,7 +227,8 @@ export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?:
 
   return (
     <MobilePreview title={t('nav.i18n') || 'i18n'} components={props.components} onNavigate={props.onNavigate}>
-      <div style={CARD.wrapper}>
+      <div style={{ padding: "12px" }}>
+<div style={CARD.wrapper}>
         <div style={CARD.title}>{isEn() ? 'Internationalization / i18n' : '国际化 / i18n'}</div>
         <div style={CARD.note}>
           {isEn()
@@ -382,6 +383,7 @@ export const I18nMobile: Component<{ components?: ComponentEntry[]; onNavigate?:
           cascader — placeholder
         </div>
       </div>
+  </div>
     </MobilePreview>
   );
 };

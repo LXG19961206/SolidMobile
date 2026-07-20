@@ -1,0 +1,21 @@
+export default {
+  config: {
+    title: 'ConfigProvider Global Config',
+    intro: 'Place at the app root — deep-merges with default config, injects CSS variables, and provides theme/typography/radius/locale settings via Solid Context.',
+    quickTitle: 'Quick Start: Change Primary Color',
+    quickDesc: 'Pass only primary — hover, active, disabled, pale, focus, and secondary are auto-derived via deriveColorSet() (HSL, hover +10, active -10).',
+    fullTitle: 'Full Configuration Example',
+    fullDesc: 'All configurable fields shown below. Only pass what you need — defaults apply automatically.',
+    propsTitle: 'ProviderConfig Props',
+    structTitle: 'Config Structure — SolidComponentConfig',
+    topTitle: 'Top-Level Fields',
+    colorTitle: 'ColorTokens — Color System',
+    colorDesc: 'Each semantic color has 5 levels: base / hover / active / disabled / pale. colors.light for light, colors.dark for dark.',
+    typoTitle: 'TypographyConfig',
+    radiusTitle: 'BorderRadiusConfig',
+    cssTitle: 'CSS Variable Output',
+    cssDesc: 'generateCSSVars() injects style tag on mount. darkMode="class" → :root + .dark blocks.',
+    hookTitle: 'useConfig Hook',
+    hookDesc: 'Access current config from any child component for JS-side theme reads.',
+  },
+};

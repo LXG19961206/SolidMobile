@@ -1,6 +1,9 @@
 import { type Component } from 'solid-js';
 import { CodeBlock } from '../../doc-utils';
-import { useLocale } from '../../doc-i18n';
+import { useT, registerLocale } from '../../doc-i18n';
+import zhCN from './Config/zh-CN';
+import enUS from './Config/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const SECTION_H2 = { 'font-size': '1.15rem', 'font-weight': 600, margin: '2.5rem 0 0.75rem' };
 const CODE = {
@@ -57,23 +60,14 @@ const radiusRows = [
 ];
 
 const ConfigDocPage: Component = () => {
-  const isEn = () => useLocale() === 'en-US';
+  const t = useT();
   return (
     <div class="guide-card">
       <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 0.5rem' }}>ConfigProvider</h1>
-      <p style={{ color: '#6b7280', margin: '0 0 2rem' }}>
-        全局配置提供者。放在应用根节点，深层合并Default 配置，注入 CSS 变量，
-        并Via  Solid Context 向子组件提供主题、排版、圆角、语言等全局设置。
-        不使用时组件按 defaultConfig 运行，无需额外配置。
-      </p>
+      <p style={{ color: '#6b7280', margin: '0 0 2rem' }}>{t('config.intro')}</p>
 
-      <h2 style={SECTION_H2}>{isEn() ? 'Quick Start: Change Primary Color' : '快速开始：换个主色'}</h2>
-      <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
-        最简单也最常用的场景——换一个品牌色。<strong>你只需要传 <code>primary</code></strong>，
-        hover、active、disabled、pale、focus 甚至 secondary 都会Via  <code>deriveColorSet()</code> 自动从主色计算
-        （HSL 色彩空间，hover 提亮 10、active 压暗 10）。
-        当然你也可以逐项覆盖Arbitrary 状态色。
-      </p>
+      <h2 style={SECTION_H2}>{t('config.quickTitle')}</h2>
+      <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>{t('config.quickDesc')}</p>
       <CodeBlock lang="jsx" code={`import { ProviderConfig } from 'solid-mobile';
 
 // 把主题配置提到组件外面，只传 primary，其余状态色自动推导
@@ -96,11 +90,8 @@ function App() {
 //   secondary      → 以 primaryHover 为基色再派生全套
 //   focus          → 基色 + 40% alpha`} />
 
-      <h2 style={SECTION_H2}>{isEn() ? 'Full Configuration Example' : '全量配置示例'}</h2>
-      <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
-        以下展示所有可配置项。所有字段均有Default 值，<strong>只需传入需要覆盖的部分</strong>，
-        未传字段自动使用 defaultConfig（含上述自动推导逻辑）。
-      </p>
+      <h2 style={SECTION_H2}>{t('config.fullTitle')}</h2>
+      <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>{t('config.fullDesc')}</p>
       <CodeBlock lang="jsx" code={`import { ProviderConfig } from 'solid-mobile';
 
 // 把配置提到组件外面，清晰且高亮正确
@@ -227,7 +218,7 @@ function App() {
   );
 }`} />
 
-      <h2 style={SECTION_H2}>{isEn() ? 'ProviderConfig Props' : 'ProviderConfig Props'}</h2>
+      <h2 style={SECTION_H2}>{t('config.propsTitle')}</h2>
       <div class="guide-table-wrap">
         <table>
           <thead>
@@ -255,9 +246,9 @@ function App() {
         </table>
       </div>
 
-      <h2 style={SECTION_H2}>{isEn() ? 'Config Structure — SolidComponentConfig' : '配置结构 SolidComponentConfig'}</h2>
+      <h2 style={SECTION_H2}>{t('config.structTitle')}</h2>
 
-      <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>顶层字段</h3>
+      <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>{t('config.topTitle')}</h3>
       <div class="guide-table-wrap">
         <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.85rem' }}>
           <thead>
@@ -288,11 +279,8 @@ function App() {
         </table>
       </div>
 
-      <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>ColorTokens — 色彩系统</h3>
-      <p style={{ color: '#6b7280', 'font-size': '0.85rem', margin: '0 0 0.75rem' }}>
-        每个语义色包含 5 级变体：base / hover / active / disabled / pale。
-        colors.light 为浅色主题，colors.dark 为暗色主题。
-      </p>
+      <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>{t('config.colorTitle')}</h3>
+      <p style={{ color: '#6b7280', 'font-size': '0.85rem', margin: '0 0 0.75rem' }}>{t('config.colorDesc')}</p>
       <div class="guide-table-wrap">
         <table>
           <thead>
@@ -324,7 +312,7 @@ function App() {
         </table>
       </div>
 
-      <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>TypographyConfig — 排版</h3>
+      <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>{t('config.typoTitle')}</h3>
       <div class="guide-table-wrap">
         <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.85rem' }}>
           <thead>
@@ -344,7 +332,7 @@ function App() {
         </table>
       </div>
 
-      <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>BorderRadiusConfig — 圆角</h3>
+      <h3 style={{ 'font-size': '1rem', 'font-weight': 600, margin: '1.5rem 0 0.5rem' }}>{t('config.radiusTitle')}</h3>
       <div class="guide-table-wrap">
         <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.85rem' }}>
           <thead>
@@ -366,11 +354,8 @@ function App() {
         </table>
       </div>
 
-      <h2 style={SECTION_H2}>{isEn() ? 'CSS Variables' : 'CSS 变量输出'}</h2>
-      <p style={{ color: '#6b7280', 'margin': '0 0 0.75rem' }}>
-        ProviderConfig 挂载时调用 generateCSSVars()，注入 &lt;style id="solid-component-theme"&gt; 到 &lt;head&gt;。
-        darkMode='class' 时生成 :root + .dark 两段；darkMode='media' 时生成 :root + @media 查询。
-      </p>
+      <h2 style={SECTION_H2}>{t('config.cssTitle')}</h2>
+      <p style={{ color: '#6b7280', 'margin': '0 0 0.75rem' }}>{t('config.cssDesc')}</p>
       <CodeBlock lang="css" code={`:root {
   color-scheme: light dark;
   --sc-color-primary: #1677ff;
@@ -387,10 +372,8 @@ function App() {
   /* ... 暗色覆盖 ... */
 }`} />
 
-      <h2 style={SECTION_H2}>{isEn() ? 'useConfig Hook' : 'useConfig Hook'}</h2>
-      <p style={{ color: '#6b7280', 'margin': '0 0 0.75rem' }}>
-        Arbitrary 子组件内获取当前配置（JS 端读取主题值、做条件逻辑）。
-      </p>
+      <h2 style={SECTION_H2}>{t('config.hookTitle')}</h2>
+      <p style={{ color: '#6b7280', 'margin': '0 0 0.75rem' }}>{t('config.hookDesc')}</p>
       <CodeBlock lang="jsx" code={`import { useConfig } from 'solid-mobile';
 
 function MyComp() {

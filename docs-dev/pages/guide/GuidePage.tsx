@@ -1,48 +1,19 @@
 import { type Component } from 'solid-js';
 import { CodeBlock } from '../../doc-utils';
-import { useLocale } from '../../doc-i18n';
+import { useT, registerLocale } from '../../doc-i18n';
+import zhCN from './Guide/zh-CN';
+import enUS from './Guide/en-US';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
-const H2 = { 'font-size': '1.15rem', 'font-weight': 600, margin: '2rem 0 0.75rem' };
-
-const GuidePage: Component = () => {
-  const isEn = () => useLocale() === 'en-US';
-
-  return (
-    <div class="guide-card">
-      <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 1rem' }}>
-        {isEn() ? 'Quick Start' : '快速开始'}
-      </h1>
-      <p style={{ color: '#6b7280', margin: '0 0 2rem' }}>
-        {isEn()
-          ? 'solid-mobile is a SolidJS-based mobile UI component library, providing a rich set of easy-to-use UI components.'
-          : 'solid-mobile 是一个基于 SolidJS 的移动端组件库，提供丰富、易用的 UI 组件。'
-        }
-      </p>
-
-      <h2 style={H2}>{isEn() ? 'Installation' : '安装'}</h2>
-      <CodeBlock lang="bash" code="npm install solid-mobile" />
-
-      <h2 style={H2}>{isEn() ? 'Import Styles' : '引入样式'}</h2>
-      <CodeBlock lang="tsx" code={`// 在入口文件引入全局样式
-import 'solid-mobile/styles.css';`} />
-
-      <h2 style={H2}>{isEn() ? 'Basic Usage' : '基础用法'}</h2>
-      <CodeBlock lang="tsx" code={`import { Button, Toast } from 'solid-mobile';
+const GUIDE_CODE = `import { Button, Toast } from 'solid-mobile';
 
 function App() {
   return (
     <Button type="primary" text="Hello" onClick={() => Toast.success('你好')} />
   );
-}`} />
+}`;
 
-      <h2 style={H2}>ConfigProvider{isEn() ? ' Global Config' : ' 全局配置'}</h2>
-      <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>
-        {isEn()
-          ? 'Use ConfigProvider at the app root to configure theme colors, dark mode, i18n, and other global settings.'
-          : '使用 ConfigProvider 在应用根节点配置主题色、暗色模式、国际化等全局设置。'
-        }
-      </p>
-      <CodeBlock lang="tsx" code={`import { ProviderConfig } from 'solid-mobile';
+const CONFIG_CODE = `import { ProviderConfig } from 'solid-mobile';
 
 function App() {
   return (
@@ -50,7 +21,28 @@ function App() {
       {/* 你的应用 */}
     </ProviderConfig>
   );
-}`} />
+}`;
+
+const GuidePage: Component = () => {
+  const t = useT();
+
+  return (
+    <div class="guide-card">
+      <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 1rem' }}>{t('guide.title')}</h1>
+      <p style={{ color: '#6b7280', margin: '0 0 2rem' }}>{t('guide.intro')}</p>
+
+      <h2 style={{ 'font-size': '1.15rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>{t('guide.install')}</h2>
+      <CodeBlock lang="bash" code={t('guide.installCode')} />
+
+      <h2 style={{ 'font-size': '1.15rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>{t('guide.styleTitle')}</h2>
+      <CodeBlock lang="tsx" code={`// ${t('guide.styleDesc')}\nimport 'solid-mobile/styles.css';`} />
+
+      <h2 style={{ 'font-size': '1.15rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>{t('guide.basicTitle')}</h2>
+      <CodeBlock lang="tsx" code={GUIDE_CODE} />
+
+      <h2 style={{ 'font-size': '1.15rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>{t('guide.configTitle')}</h2>
+      <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>{t('guide.configDesc')}</p>
+      <CodeBlock lang="tsx" code={CONFIG_CODE} />
     </div>
   );
 };
