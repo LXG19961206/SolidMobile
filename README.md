@@ -15,8 +15,6 @@
   <a href="https://lxg19961206.github.io/SolidMobile/"><img src="https://img.shields.io/badge/docs-online-22c55e" alt="docs"></a>
 </p>
 
-> 📱 **New:** [Ellipsis](./src/components/Ellipsis/) text truncation · [Tooltip](./src/components/Tooltip/) floating bubble
-
 ---
 
 ## Installation
@@ -63,11 +61,11 @@ render(() => <App />, document.getElementById('root')!);
 
 | Category | Components |
 |---|---|
-| **Basic** | Button, Icon, Center, Divider, Layout (Row, Col), SafeArea, Ellipsis |
-| **Display** | Avatar, Badge, Tag, Image, Empty, Lazyload, List, SwipeCell, Swiper, PullRefresh |
-| **Navigation** | Tabs, TabBar, NavBar, Cell, Tooltip |
+| **Basic** | Button, Icon, Center, Divider, Card, Layout (Row, Col), SafeArea |
+| **Display** | Avatar, Badge, Tag, Image, Empty, Lazyload, List, SwipeCell, Swiper, Ellipsis, Tooltip, FloatingBall, BackTop, PullRefresh |
+| **Navigation** | Tabs, TabBar, NavBar, Cell |
 | **Picker** | Picker, Calendar, Cascader, DatePicker, CityPicker, TimePicker, Select |
-| **Feedback** | Toast, Notify, Dialog, Overlay, ActionSheet, Loading, Popup |
+| **Feedback** | Toast, Notify, Dialog, Overlay, ActionSheet, Loading |
 | **Form** | Form, Input, Textarea, Radio, Checkbox, Switch, Rate, Stepper, Slider, Upload |
 
 ## Examples
