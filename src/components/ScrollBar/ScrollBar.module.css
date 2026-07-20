@@ -22,6 +22,10 @@
   height: var(--sc-scrollbar-width);
 }
 
+.native > *::-webkit-scrollbar-button {
+  display: none;
+}
+
 .native > *::-webkit-scrollbar-track {
   background: var(--sc-scrollbar-track);
 }
@@ -38,6 +42,10 @@
 .container::-webkit-scrollbar {
   width: var(--sc-scrollbar-width);
   height: var(--sc-scrollbar-width);
+}
+
+.container::-webkit-scrollbar-button {
+  display: none;
 }
 
 .container::-webkit-scrollbar-track {
