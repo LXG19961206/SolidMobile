@@ -52,6 +52,7 @@ import { UploadMobile as UploadMobileDirect } from './components/Upload/UploadMo
 import { TextareaMobile as TextareaMobileDirect } from './components/Textarea/TextareaMobile';
 import { SafeArea } from '../src/components/SafeArea';
 import { setGlobalLocale, useLocale, useT } from '../src/i18n';
+import { SearchBar } from './doc-utils/SearchBar';
 import { ProviderConfig } from '../src/config';
 import { deriveColorSet } from '../src/utils/color';
 import { docThemeColor, persistThemeColor } from './doc-utils/doc-theme';
@@ -296,10 +297,10 @@ export function App() {
   }
 
   const t = useT();
+
   const [section, setSection] = createSignal<Section>(initial.section);
   const [activeKey, setActiveKey] = createSignal(initial.pageKey || 'button');
   const [menuOpen, setMenuOpen] = createSignal(false);
-  const [search, setSearch] = createSignal('');
   const [dark, setDark] = createSignal(getDark());
   const dynamicConfig = createMemo(() => {
     const c = docThemeColor();
@@ -347,17 +348,7 @@ export function App() {
     setMenuOpen(false);
   });
 
-  const compFilteredGroups = createMemo(() => {
-    const q = search().toLowerCase().replace(/\s+/g, '');
-    if (!q) return GROUPS;
-    return GROUPS.map(g => ({
-      ...g,
-      items: g.items.filter(i =>
-        i.name.toLowerCase().replace(/\s+/g, '').includes(q) ||
-        g.title.toLowerCase().replace(/\s+/g, '').includes(q),
-      ),
-    })).filter(g => g.items.length > 0);
-  });
+  const compFilteredGroups = createMemo(() => GROUPS);
 
   const guideGroups = createMemo(() => GUIDE_GROUPS);
 
@@ -374,7 +365,11 @@ export function App() {
 
   const navigateTo = (key: string) => {
     setActiveKey(key);
-    window.location.hash = buildHash(section(), key);
+    // Determine section: guide or components
+    const isGuide = GUIDE_GROUPS.some(g => g.items.some(i => i.key === key));
+    const sec: Section = isGuide ? 'guide' : 'components';
+    setSection(sec);
+    window.location.hash = buildHash(sec, key);
   };
 
   // ── 组件列表 → 可用于 mobile 端组件切换 ──
@@ -485,6 +480,7 @@ export function App() {
               </For>
             </nav>
             <div class="top-nav-actions">
+              <SearchBar onNavigate={navigateTo} />
 
               <div style="display:inline-flex;border:1px solid var(--sc-color-border,#e5e7eb);border-radius:6px;overflow:hidden;height:30px;align-items:center">
                 <span onClick={() => { if (useLocale() !== 'zh-CN') { showI18nNotice(); setGlobalLocale("zh-CN"); setTimeout(refreshIframe, 50); } }}
@@ -520,15 +516,6 @@ export function App() {
                     {section() === 'guide' ? (t('nav.tabGuide') || 'Guide 指南') : (t('nav.tabComponents') || 'Components 组件')}
                   </span>
                 </div>
-                <Show when={section() === 'components'}>
-                  <input
-                    class="sidebar-search"
-                    type="text"
-                    placeholder={t('nav.searchComponents') || '搜索组件...'}
-                    value={search()}
-                    onInput={(e) => setSearch(e.currentTarget.value)}
-                  />
-                </Show>
                 <nav class="sidebar-nav">
                   <Show
                     when={section() === 'guide'}
@@ -582,14 +569,6 @@ export function App() {
               <Show when={showSidebar()}>
                 <div class="topbar">
                   <button class="menu-btn" onClick={() => setMenuOpen(!menuOpen())}>☰</button>
-                  <span class="topbar-title">
-                    {(() => {
-                      const key = activeKey();
-                      return t('nav.' + key) || (section() === 'guide'
-                        ? guideGroups().flatMap(g => g.items).find(i => i.key === key)?.name
-                        : compFilteredGroups().flatMap(g => g.items).find(i => i.key === key)?.name) || '';
-                    })()}
-                  </span>
                 </div>
               </Show>
               <div class="content" classList={{ 'content-full': !showSidebar() }}>
