@@ -34,13 +34,35 @@ export const ScrollBar: Component<ScrollBarProps> = (rawProps) => {
     return v;
   };
 
+  const s = cssVars();
+  const id = `sc-sb-${Math.random().toString(36).slice(2, 8)}`;
+  const prefix = local.native ? `#${id} > *` : `#${id}`;
+  const w = s['--sc-scrollbar-width'] || '6px';
+  const c = s['--sc-scrollbar-color'] || '#d1d5db';
+  const t = s['--sc-scrollbar-track'] || 'transparent';
+
   return (
-    <div
-      class={cn(styles.container, local.native && styles.native, local.class)}
-      style={{ ...cssVars(), ...(typeof local.style === 'object' ? local.style : {}) }}
-      {...rest}
-    >
-      {local.children}
-    </div>
+    <>
+      <style>{`
+        ${prefix}{scrollbar-width:thin;scrollbar-color:${c} ${t}}
+        ${prefix}::-webkit-scrollbar{width:${w};height:${w}}
+        ${prefix}::-webkit-scrollbar-track{background:${t}}
+        ${prefix}::-webkit-scrollbar-thumb{background:${c};border-radius:calc(${w}/2)}
+        ${prefix}::-webkit-scrollbar-button{display:none}
+        html.dark ${prefix}{scrollbar-color:#475569 transparent}
+        html.dark ${prefix}::-webkit-scrollbar-thumb{background:#475569}
+      `}</style>
+      <div
+        id={id}
+        class={cn(local.native ? undefined : styles.container, local.class)}
+        style={{
+          ...(local.native ? {} : { overflow: 'auto' }),
+          ...(typeof local.style === 'object' ? local.style : {}),
+        }}
+        {...rest}
+      >
+        {local.children}
+      </div>
+    </>
   );
 };
