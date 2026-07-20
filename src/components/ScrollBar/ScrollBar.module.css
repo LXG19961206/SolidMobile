@@ -8,6 +8,33 @@
   scrollbar-color: var(--sc-scrollbar-color) var(--sc-scrollbar-track);
 }
 
+.native {
+  overflow: visible;
+}
+
+.native > * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sc-scrollbar-color) var(--sc-scrollbar-track);
+}
+
+.native > *::-webkit-scrollbar {
+  width: var(--sc-scrollbar-width);
+  height: var(--sc-scrollbar-width);
+}
+
+.native > *::-webkit-scrollbar-track {
+  background: var(--sc-scrollbar-track);
+}
+
+.native > *::-webkit-scrollbar-thumb {
+  background: var(--sc-scrollbar-color);
+  border-radius: calc(var(--sc-scrollbar-width) / 2);
+}
+
+.native > *::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--sc-scrollbar-color) 80%, #000);
+}
+
 .container::-webkit-scrollbar {
   width: var(--sc-scrollbar-width);
   height: var(--sc-scrollbar-width);

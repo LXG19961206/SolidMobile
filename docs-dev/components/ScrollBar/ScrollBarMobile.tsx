@@ -18,7 +18,7 @@ const genItems = (start: number, count: number) =>
   });
 
 const ListContent = () => (
-  <List virtual itemHeight={56} data={genItems(0, 1000)} finished>
+  <List virtual itemHeight={56} data={genItems(0, 1000)} finished style={{ height: '100%' }}>
     {(item: any) => <Cell title={`${item.id}. ${item.name}`} description={item.desc} icon={<Avatar size="sm" color={item.color} text={item.name[0]} />} />}
   </List>
 );
@@ -56,7 +56,7 @@ export const ScrollBarMobile = () => {
         </Card>
 
         <Card title={t('scrollbar.demo.list')} subtitle={t('scrollbar.demoDesc.list')}>
-          <ScrollBar style={{ height: '380px', border: '1px solid var(--sc-color-border, #e5e7eb)', 'border-radius': '8px' }}>
+          <ScrollBar native style={{ height: '380px', border: '1px solid var(--sc-color-border, #e5e7eb)', 'border-radius': '8px' }}>
             <ListContent />
           </ScrollBar>
         </Card>

@@ -24,7 +24,7 @@ const defaultProps: Partial<ScrollBarProps> = {
  */
 export const ScrollBar: Component<ScrollBarProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
-  const [local, rest] = splitProps(props, ['width', 'color', 'trackColor', 'class', 'style', 'children']);
+  const [local, rest] = splitProps(props, ['width', 'color', 'trackColor', 'native', 'class', 'style', 'children']);
 
   const cssVars = () => {
     const v: Record<string, string> = {};
@@ -36,7 +36,7 @@ export const ScrollBar: Component<ScrollBarProps> = (rawProps) => {
 
   return (
     <div
-      class={cn(styles.container, local.class)}
+      class={cn(styles.container, local.native && styles.native, local.class)}
       style={{ ...cssVars(), ...(typeof local.style === 'object' ? local.style : {}) }}
       {...rest}
     >
