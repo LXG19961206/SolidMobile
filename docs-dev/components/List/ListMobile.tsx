@@ -77,13 +77,12 @@ export const ListMobile = () => {
 
         {/* Virtual List */}
         <Card title={t('list.demo.virtual')}>
-          <div class="list-scroll" style={{ height: '380px', overflow: 'auto', 'border-radius': '8px', border: '1px solid var(--sc-color-border, #e5e7eb)' }}>
-            <List virtual itemHeight={56} data={genItems(0, 1000)} finished>
-              {(item) => (
-                <Cell title={`${item.id}. ${item.name}`} description={item.desc} icon={<Avatar size="sm" color={item.color} text={item.name[0]} />} />
-              )}
-            </List>
-          </div>
+          <List virtual itemHeight={56} data={genItems(0, 1000)} finished
+            style={{ height: '380px', 'border-radius': '8px', border: '1px solid var(--sc-color-border, #e5e7eb)' }}>
+            {(item) => (
+              <Cell title={`${item.id}. ${item.name}`} description={item.desc} icon={<Avatar size="sm" color={item.color} text={item.name[0]} />} />
+            )}
+          </List>
         </Card>
 
         {/* Empty */}

@@ -1,6 +1,11 @@
 .list {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  scrollbar-color: var(--sc-color-border, #d1d5db) transparent;
+  scrollbar-width: thin;
+}
+:global(html.dark) .list {
+  scrollbar-color: #475569 transparent;
 }
 
 /* ── Footer status ── */
