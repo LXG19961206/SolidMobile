@@ -334,7 +334,7 @@ export function App() {
     const loc = typeof localStorage !== 'undefined' ? (localStorage.getItem('sc-docs-locale') || 'zh-CN') : 'zh-CN';
     const dark = typeof localStorage !== 'undefined' && localStorage.getItem('sc-docs-dark-mode') === '1' ? '&dark=1' : '';
     const key = window.location.hash.replace('#/', '').replace(/^components\//, '').split('?')[0];
-    el.src = '/?mobile=' + key + '&locale=' + loc + dark + '&t=' + Date.now();
+    el.src = './?mobile=' + key + '&locale=' + loc + dark + '&t=' + Date.now();
   };
 
   const toggleDark = () => {

@@ -37,7 +37,7 @@ export function PhoneSimulator(props: PhoneSimulatorProps) {
     if (!key) return 'about:blank';
     const loc = localStorage.getItem('sc-docs-locale') || 'zh-CN';
     const dark = localStorage.getItem('sc-docs-dark-mode') === '1' ? '&dark=1' : '';
-    return `/?mobile=${key}&locale=${loc}${dark}`;
+    return `./?mobile=${key}&locale=${loc}${dark}`;
   };
 
   return (
