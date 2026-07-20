@@ -146,13 +146,17 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
           }
           right={
             <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '2px' }}>
-              <span class={styles.navBtn} onClick={() => { showI18nNotice(); setGlobalLocale(useLocale() === 'zh-CN' ? 'en-US' : 'zh-CN'); }} title="Switch locale">
-                <span style={{ 'font-size': '0.75rem', 'font-weight': 600 }}>{useLocale() === 'zh-CN' ? 'EN' : '中'}</span>
-              </span>
               <span class={styles.navBtn} onClick={toggleDark} title="Toggle dark mode">
                 <Icon name={isDark() ? 'sun' : 'moon'} size={18} />
               </span>
               <ThemeColorPicker color={docThemeColor()} onChange={(c) => persistThemeColor(c)} />
+              <span style={{ display: 'inline-flex', border: '1px solid var(--sc-color-border, #e5e7eb)', 'border-radius': '6px', overflow: 'hidden', height: '28px', 'align-items': 'center' }}>
+                <span onClick={() => { if (useLocale() !== 'zh-CN') { showI18nNotice(); setGlobalLocale('zh-CN'); } }}
+                  style={{ padding: '0 8px', cursor: 'pointer', 'font-size': '0.7rem', 'font-weight': useLocale() === 'zh-CN' ? 600 : 400, height: '100%', display: 'inline-flex', 'align-items': 'center', background: useLocale() === 'zh-CN' ? 'var(--sc-color-primary, #1677ff)' : 'transparent', color: useLocale() === 'zh-CN' ? '#fff' : 'var(--sc-color-text-secondary, #6b7280)', transition: 'all 0.15s' }}>CN</span>
+                <span style={{ width: '1px', height: '16px', background: 'var(--sc-color-border, #e5e7eb)', 'flex-shrink': 0 }} />
+                <span onClick={() => { if (useLocale() !== 'en-US') { showI18nNotice(); setGlobalLocale('en-US'); } }}
+                  style={{ padding: '0 8px', cursor: 'pointer', 'font-size': '0.7rem', 'font-weight': useLocale() === 'en-US' ? 600 : 400, height: '100%', display: 'inline-flex', 'align-items': 'center', background: useLocale() === 'en-US' ? 'var(--sc-color-primary, #1677ff)' : 'transparent', color: useLocale() === 'en-US' ? '#fff' : 'var(--sc-color-text-secondary, #6b7280)', transition: 'all 0.15s' }}>EN</span>
+              </span>
             </div>
           }
         />

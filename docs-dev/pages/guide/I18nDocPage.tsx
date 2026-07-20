@@ -1,5 +1,5 @@
 import { onCleanup, type Component } from 'solid-js';
-import { CodeBlock, DocLayout } from '../../doc-utils';
+import { CodeBlock } from '../../doc-utils';
 import { registerLocale, useLocale, useT, setGlobalLocale } from '../../doc-i18n';
 import { messages as libMessages } from '../../../src/i18n/dictionaries';
 import zhCN from './I18n/zh-CN';
@@ -25,8 +25,8 @@ const I18nDocPage: Component = () => {
   };
 
   return (
-    <DocLayout>
-      <div class="guide-card" style={{ border: 'none', margin: '0' }}>
+
+      <div class="guide-card">
         <h1 style={{ 'font-size': '1.6rem', 'font-weight': 700, margin: '0 0 0.5rem' }}>{t('i18n.title')}</h1>
         <p style={{ color: '#6b7280', margin: '0 0 2rem' }}>{t('i18n.intro')}</p>
 
@@ -83,7 +83,7 @@ function App() {
         <CodeBlock lang="jsx" code={`import { setUserMessages } from 'solid-mobile';
 setUserMessages({ 'ja-JP': { component: { picker: { cancel: 'キャンセル', confirm: '確認' } } } });`} />
       </div>
-    </DocLayout>
+
   );
 };
 

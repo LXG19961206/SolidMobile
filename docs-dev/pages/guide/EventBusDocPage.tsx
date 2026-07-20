@@ -1,5 +1,5 @@
 import { createSignal, For, onCleanup, onMount, type Component } from 'solid-js';
-import { CodeBlock, DocLayout } from '../../doc-utils';
+import { CodeBlock } from '../../doc-utils';
 import { registerLocale, useT } from '../../doc-i18n';
 import { Button, Input } from '../../../src/components';
 import { setEventBusHandler, getEventBusHandler } from '../../../src/event-bus';
@@ -70,8 +70,8 @@ const EventBusDocPage: Component = () => {
   });
 
   return (
-    <DocLayout>
-      <div class="guide-card" style={{ border: 'none', margin: '0' }}>
+
+      <div class="guide-card">
         <h1 style={{ 'font-size': '1.5rem', 'font-weight': 700, margin: '0 0 0.5rem' }}>EventBus</h1>
         <p style={{ color: '#6b7280', margin: '0 0 1.5rem', 'line-height': 1.6 }}>{t('eventbus.intro')}</p>
         <blockquote style="margin:0 0 1.5rem;padding:0.75rem 1rem;border-left:3px solid var(--sc-color-primary, #1677ff);background:color-mix(in srgb, var(--sc-color-primary, #1677ff) 4%, transparent);border-radius:0 6px 6px 0;color:var(--sc-color-text-secondary,#6b7280);font-size:0.9rem;line-height:1.7">
@@ -82,10 +82,10 @@ const EventBusDocPage: Component = () => {
         <h2 style={H2}>{t('eventbus.demoTitle')}</h2>
         <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>{t('eventbus.demoDesc')}</p>
         <div style={{ display: 'flex', gap: '6px', 'flex-wrap': 'wrap', 'margin-bottom': '8px' }}>
-          <Button size="sm" onClick={() => {}}>Click</Button>
-          <Button type="success" size="sm" onClick={() => {}}>OK</Button>
-          <Button type="warning" size="sm" onClick={() => {}}>Warn</Button>
-          <Button type="danger" size="sm" onClick={() => {}}>Del</Button>
+          <Button size="sm" onClick={() => { }}>Click</Button>
+          <Button type="success" size="sm" onClick={() => { }}>OK</Button>
+          <Button type="warning" size="sm" onClick={() => { }}>Warn</Button>
+          <Button type="danger" size="sm" onClick={() => { }}>Del</Button>
         </div>
         <Input placeholder="Type to watch change events…" clearable style={{ 'margin-bottom': '8px', 'font-size': '0.85rem' }} />
         <div style={{ background: 'var(--sc-doc-code-bg, #f5f5f5)', color: '#374151', 'border-radius': '6px', padding: '8px 10px', 'min-height': '40px', 'font-family': 'monospace', 'font-size': '0.75rem', 'line-height': 1.8, border: '1px solid #e5e7eb' }}>
@@ -150,7 +150,7 @@ function MyChart(props: { data: Bar[] }) {
           <li>{t('eventbus.notes4')}</li>
         </ul>
       </div>
-    </DocLayout>
+
   );
 };
 
