@@ -1,6 +1,7 @@
-import { createSignal, Show, For } from 'solid-js';
+import { createSignal, Show, createMemo } from 'solid-js';
 import { useT } from '../doc-i18n';
 import { ActionSheet } from '../../src/components/ActionSheet';
+import { Sidebar } from '../../src/components/Sidebar';
 import { PropsAttrs } from './PropsAttrs';
 import type { TableSection } from './ComponentDocLayout';
 
@@ -63,30 +64,14 @@ export function MobilePropsSheet(props: MobilePropsSheetProps) {
             </div>
           }>
             <div style={{ display: 'flex', flex: 1, 'min-height': 0 }}>
-              <div style={{
-                width: '90px', 'flex-shrink': 0, 'overflow-y': 'auto',
-                'border-right': '1px solid var(--sc-color-border, #e5e7eb)',
-                background: 'var(--sc-color-background-secondary, #f9fafb)',
-              }}>
-                <Show when={tab() === 'cssvars' && !hasCssVars()}>
-                  <div style={{ padding: '24px 8px', 'font-size': '0.75rem', color: '#9ca3af', 'text-align': 'center' }}>{t('common.noCssVars')}</div>
-                </Show>
-                <For each={currentGroups()}>
-                  {(g, i) => (
-                    <div onClick={() => setGroupIdx(i())} style={{
-                      padding: '8px 8px', 'font-size': '0.72rem', cursor: 'pointer',
-                      color: groupIdx() === i() ? 'var(--sc-color-primary, #1677ff)' : '#6b7280',
-                      background: groupIdx() === i() ? 'var(--sc-card-bg, #fff)' : 'transparent',
-                      'font-weight': groupIdx() === i() ? 600 : 400,
-                      'border-right': groupIdx() === i() ? '2px solid var(--sc-color-primary, #1677ff)' : '2px solid transparent',
-                      'border-bottom': '1px solid var(--sc-color-border, #f3f4f6)',
-                      overflow: 'hidden', 'text-overflow': 'ellipsis', 'white-space': 'nowrap',
-                    }}>
-                      {g.title || `${tab() === 'props' ? 'Props' : 'CSS'} ${i() + 1}`}
-                    </div>
-                  )}
-                </For>
-              </div>
+              <Sidebar
+                items={createMemo(() => currentGroups().map((g, i) => ({
+                  key: String(i),
+                  title: g.title || `${tab() === 'props' ? 'Props' : 'CSS'} ${i + 1}`,
+                })))()}
+                activeKey={String(groupIdx())}
+                onChange={(k) => setGroupIdx(Number(k))}
+              />
               <div style={{ flex: 1, 'overflow-y': 'auto', padding: '8px' }}>
                 <Show when={currentGroups()[groupIdx()]}>
                   <PropsAttrs compact hideTitle

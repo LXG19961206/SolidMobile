@@ -1,0 +1,31 @@
+.root {
+  overflow-y: auto;
+  flex-shrink: 0;
+  border-right: 1px solid var(--sc-color-border, #e5e7eb);
+  background: var(--sc-color-background-secondary, #f9fafb);
+}
+
+.item {
+  padding: 8px 8px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  color: var(--sc-color-text-secondary, #6b7280);
+  font-weight: 400;
+  border-right: 2px solid transparent;
+  border-bottom: 1px solid var(--sc-color-border, #f3f4f6);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.item:hover {
+  background: var(--sc-card-bg, #fff);
+}
+
+.active {
+  color: var(--sc-color-primary, #1677ff);
+  background: var(--sc-card-bg, #fff);
+  font-weight: 600;
+  border-right-color: var(--sc-color-primary, #1677ff);
+}
