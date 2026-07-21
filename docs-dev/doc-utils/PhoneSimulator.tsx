@@ -31,8 +31,8 @@ export function PhoneSimulator(props: PhoneSimulatorProps) {
   });
 
   const src = () => {
-    const h = hash();
-    if (!h) return 'about:blank';
+    let h = hash();
+    if (!h) h = '#/components/button';
     const key = h.replace('#/', '').split('?')[0].replace(/^components\//, '');
     if (!key) return 'about:blank';
     const loc = localStorage.getItem('sc-docs-locale') || 'zh-CN';
