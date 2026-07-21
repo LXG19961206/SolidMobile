@@ -38,7 +38,7 @@ export const NotifyMobile = () => {
         </Card>
 
         {/* Custom Style + JSX */}
-        <Card title="JSX 自定义内容">
+        <Card title={t('notify.demo.jsx')}>
           <div style={row}>
             <Button size="sm" color="#667eea" onClick={() => Notify.show({
               message: <span style={{ display: 'flex', 'align-items': 'center', gap: '8px' }}>
@@ -52,7 +52,7 @@ export const NotifyMobile = () => {
           </div>
         </Card>
 
-        <Card title="Marquee 跑马灯" subtitle="closeable + marquee + duration=0，手动关闭">
+        <Card title={t('notify.demo.marquee')} subtitle={t('notify.demoDesc.marquee')}>
           <div style={row}>
             <Button size="sm" type="primary" onClick={() => Notify.show({
               type: 'primary',
