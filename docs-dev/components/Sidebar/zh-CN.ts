@@ -18,9 +18,13 @@ export default {
     },
     demo: {
       basic: '基础用法',
+      jsx: 'JSX 自定义',
+      compact: '紧凑模式',
     },
     demoDesc: {
       basic: '垂直分组导航，常用于弹出面板中切换多个分组内容。',
+      jsx: 'title 支持 JSX，icon 支持自定义图标，可自由组合。',
+      compact: 'compact 模式仅显示图标，宽度自适应，适合空间有限场景。',
     },
     intro: '垂直分组导航组件，用于弹出面板或侧边栏中切换多个分组/表格。支持暗色模式。',
   },

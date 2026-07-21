@@ -32,6 +32,38 @@ export const SidebarMobile = () => {
             </div>
           </div>
         </Card>
+
+        <Card title={t('sidebar.demo.jsx')} subtitle={t('sidebar.demoDesc.jsx')}>
+          <div style={{ display: 'flex', height: '220px', 'border-radius': '8px', overflow: 'hidden', border: '1px solid var(--sc-color-border, #e5e7eb)' }}>
+            <Sidebar
+              items={[
+                { key: 'form', title: <><span style={{ color: '#1677ff' }}>📋</span> Form</>, icon: <span>📋</span> },
+                { key: 'item', title: <><span style={{ color: '#22c55e' }}>📝</span> FormItem</>, icon: <span>📝</span> },
+                { key: 'rule', title: <><span style={{ color: '#f59e0b' }}>✅</span> Rules</>, icon: <span>✅</span> },
+              ]}
+              activeKey={active()} onChange={setActive}
+            />
+            <div style={{ flex: 1, padding: '16px', display: 'flex', 'align-items': 'center', 'justify-content': 'center', 'font-size': '0.9rem', color: '#6b7280' }}>
+              Selected: <strong style={{ 'margin-left': '6px', color: 'var(--sc-color-primary, #1677ff)' }}>{active()}</strong>
+            </div>
+          </div>
+        </Card>
+
+        <Card title={t('sidebar.demo.compact')} subtitle={t('sidebar.demoDesc.compact')}>
+          <div style={{ display: 'flex', height: '220px', 'border-radius': '8px', overflow: 'hidden', border: '1px solid var(--sc-color-border, #e5e7eb)' }}>
+            <Sidebar compact
+              items={[
+                { key: 'form', title: 'Form', icon: <span style={{ 'font-size': '1.1rem' }}>📋</span> },
+                { key: 'item', title: 'Item', icon: <span style={{ 'font-size': '1.1rem' }}>📝</span> },
+                { key: 'rule', title: 'Rules', icon: <span style={{ 'font-size': '1.1rem' }}>✅</span> },
+              ]}
+              activeKey={active()} onChange={setActive}
+            />
+            <div style={{ flex: 1, padding: '16px', display: 'flex', 'align-items': 'center', 'justify-content': 'center', 'font-size': '0.9rem', color: '#6b7280' }}>
+              Selected: <strong style={{ 'margin-left': '6px', color: 'var(--sc-color-primary, #1677ff)' }}>{active()}</strong>
+            </div>
+          </div>
+        </Card>
       </div>
     </MobilePreview>
   );

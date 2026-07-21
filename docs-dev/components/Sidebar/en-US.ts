@@ -18,9 +18,13 @@ export default {
     },
     demo: {
       basic: 'Basic',
+      jsx: 'Custom JSX',
+      compact: 'Compact',
     },
     demoDesc: {
-      basic: 'Vertical group nav, typically used inside popups for switching between grouped content.',
+      basic: 'Vertical group nav for switching between grouped content.',
+      jsx: 'title supports JSX, icon supports custom elements — freely combine.',
+      compact: 'compact mode shows icons only, auto-width for tight spaces.',
     },
     intro: 'Vertical group navigation component for switching between groups/tables in popup panels. Dark mode supported.',
   },
