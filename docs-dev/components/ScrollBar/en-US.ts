@@ -5,7 +5,8 @@ export default {
       color: 'Thumb color, default #d1d5db. Auto-switches to #475569 in dark mode.',
       trackColor: 'Track color, default transparent.',
       direction: 'Scroll direction: vertical (default) / horizontal / both. Auto-sets overflow on child.',
-      children: "Content node. Child auto-receives overflow + scrollbar class — no manual overflow needed.",
+      height: 'Container height. Passed directly to child element.',
+      children: 'Content node. Child auto-receives height + overflow + scrollbar class.',
     },
     cssVars: {
       '--sc-scrollbar-width': 'Scrollbar width, default 6px.',

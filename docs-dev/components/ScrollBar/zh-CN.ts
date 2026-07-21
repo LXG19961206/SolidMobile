@@ -5,7 +5,8 @@ export default {
       color: '滑块颜色，默认浅灰 #d1d5db，暗色模式自动切换为 #475569。',
       trackColor: '轨道颜色，默认透明。',
       direction: '滚动方向：vertical（默认）/ horizontal / both。会自动给子元素设置对应的 overflow。',
-      children: '内容节点。子元素会被自动注入 overflow 样式和滚动条 class，无需手动设置 overflow。',
+      height: '容器高度。直接传给子元素，无需手动设置 style。',
+      children: '内容节点。子元素会被自动注入 height + overflow + 滚动条 class。',
     },
     cssVars: {
       '--sc-scrollbar-width': '滚动条宽度，默认 6px。',
