@@ -100,10 +100,10 @@ export function MobilePropsSheet(props: MobilePropsSheetProps) {
   );
 }
 
-const tabStyle = (active: boolean) => ({
-  flex: 1, 'text-align': 'center', padding: '10px 0', cursor: 'pointer',
-  'font-size': '0.85rem', 'font-weight': active ? 600 : 400,
+const tabStyle = (active: boolean): Record<string, string | number> => ({
+  flex: 1, textAlign: 'center', padding: '10px 0', cursor: 'pointer',
+  fontSize: '0.85rem', fontWeight: active ? 600 : 400,
   color: active ? 'var(--sc-color-primary, #1677ff)' : 'var(--sc-color-text-secondary, #6b7280)',
-  'border-bottom': active ? '2px solid var(--sc-color-primary, #1677ff)' : '2px solid transparent',
+  borderBottom: active ? '2px solid var(--sc-color-primary, #1677ff)' : '2px solid transparent',
   transition: 'all 0.15s',
 });
