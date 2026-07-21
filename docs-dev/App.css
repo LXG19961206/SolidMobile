@@ -428,9 +428,11 @@ html.dark .doc-code-block {
   .doc-code-block {
     margin: 0.5rem 0;
   }
+
   .doc-code-block>pre {
     padding: 0.6rem 0.75rem;
   }
+
   .doc-code-block>pre>code {
     font-size: 0.7rem;
     line-height: 1.55;
@@ -442,6 +444,7 @@ html.dark .doc-code-block {
   --sc-doc-code-bg: #f5f5f5;
   --sc-doc-code-text: #374151;
 }
+
 html.dark {
   --sc-doc-code-bg: #1a1d21;
   --sc-doc-code-text: #e2e8f0;
@@ -571,19 +574,42 @@ html.dark .guide-table-wrap td {
 }
 
 .guide-table-wrap tr:last-child td {
-/* ── Global scrollbar ── */
-html, body, * {
-  scrollbar-width: thin;
-  scrollbar-color: hsl(0 0% 60% / 0.4) transparent;
-}
-*::-webkit-scrollbar { width: 5px; height: 5px; }
-*::-webkit-scrollbar-thumb { background: hsl(0 0% 60% / 0.25); border-radius: 4px; }
-*::-webkit-scrollbar-thumb:hover { background: hsl(0 0% 60% / 0.45); }
-html.dark, html.dark body, html.dark * {
-  scrollbar-color: hsl(0 0% 40% / 0.35) transparent;
-}
-html.dark *::-webkit-scrollbar-thumb { background: hsl(0 0% 40% / 0.25); }
-html.dark *::-webkit-scrollbar-thumb:hover { background: hsl(0 0% 40% / 0.45); }
+
+  /* ── Global scrollbar ── */
+  html,
+  body,
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(0 0% 60% / 0.4) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 60% / 0.25);
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: hsl(0 0% 60% / 0.45);
+  }
+
+  html.dark,
+  html.dark body,
+  html.dark * {
+    scrollbar-color: hsl(0 0% 40% / 0.35) transparent;
+  }
+
+  html.dark *::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 40% / 0.25);
+  }
+
+  html.dark *::-webkit-scrollbar-thumb:hover {
+    background: hsl(0 0% 40% / 0.45);
+  }
 
   border-bottom: none;
 }
@@ -636,6 +662,13 @@ html.dark .content {
 
 /* ── Logo pulse animation ── */
 @keyframes sc-logo-pulse {
-  0%, 100% { opacity: 0.10; }
-  50%      { opacity: 0.22; }
+
+  0%,
+  100% {
+    opacity: 0.10;
+  }
+
+  50% {
+    opacity: 0.22;
+  }
 }

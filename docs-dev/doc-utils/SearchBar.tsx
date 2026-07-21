@@ -98,7 +98,7 @@ export const SearchBar: Component<{ onNavigate: (key: string) => void }> = (prop
         prefix={<Icon name="search" size={18} color="var(--sc-color-text-tertiary, #9ca3af)" />}
         size="md"
         height="38px"
-        style={{ 'border-radius': '8px' }}
+        style={{ 'border-radius': '8px', "border-bottom": focused() ? '1px solid var(--sc-color-primary)' : '1px solid var(--sc-color-border, #d1d5db)', transition: 'border 0.2s' }}
         onFocus={() => setFocused(true)}
         onBlur={() => setTimeout(() => setFocused(false), 200)}
       />
