@@ -1,6 +1,7 @@
 import { For, type Component } from 'solid-js';
 import { useConfig } from '../config';
 import { useT } from '../i18n';
+import { Card } from '../components/Card';
 import type { ColorTokens } from '../config/types';
 import rawStyles from './DesignTokenShowcase.module.css';
 import { scopedStyle } from '../utils';
@@ -123,10 +124,10 @@ function ColorGroups() {
   };
 
   return (
-    <div>
+    <Card title={t('designTokens.colors.title')}>
       {renderGroups('light')}
       {renderGroups('dark')}
-    </div>
+    </Card>
   );
 }
 
@@ -156,7 +157,7 @@ function TypographyScale() {
   };
 
   return (
-    <div>
+    <Card title={t('designTokens.typography.title')}>
       <h2 class={styles.h2}>{t('designTokens.typography.fontFamily')}</h2>
       <div class={styles.group}>
         <div class={styles.typoRow}>
@@ -217,7 +218,7 @@ function TypographyScale() {
           )}
         </For>
       </div>
-    </div>
+    </Card>
   );
 }
 
@@ -232,8 +233,7 @@ function RadiusScale() {
   const sizes = ['sm', 'md', 'lg', 'full'] as const;
 
   return (
-    <div>
-      <h2 class={styles.h2}>{t('designTokens.radius.title')}</h2>
+    <Card title={t('designTokens.radius.title')}>
       <div class={styles.group}>
         <For each={sizes}>
           {(size) => (
@@ -245,7 +245,7 @@ function RadiusScale() {
           )}
         </For>
       </div>
-    </div>
+    </Card>
   );
 }
 
@@ -264,13 +264,11 @@ export const AllTokens: Component = () => {
   const t = useT();
 
   return (
-    <div class={styles.root}>
+    <div class={styles.root} style={{ display: 'flex', 'flex-direction': 'column', gap: '16px' }}>
       <h1 class={styles.h1}>{t('designTokens.title')}</h1>
       <p class={styles.intro}>{t('designTokens.intro')}</p>
       <ColorGroups />
-      <hr class={styles.hr} />
       <TypographyScale />
-      <hr class={styles.hr} />
       <RadiusScale />
     </div>
   );
