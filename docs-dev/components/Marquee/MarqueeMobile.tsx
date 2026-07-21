@@ -32,11 +32,12 @@ export const MarqueeMobile = () => {
         <Card title={t('marquee.demo.notify')} subtitle={t('marquee.demoDesc.notify')}>
           <span onClick={() => Notify.show({
             type: 'primary',
+            closeable: true,
             message: <Marquee><span style={{ 'white-space': 'nowrap' }}>🔥 Breaking — Stock hits all-time high! Earnings season kicks off with record profits. &nbsp;&nbsp;&nbsp;</span></Marquee>,
             duration: 0,
           })}
             style={{ cursor: 'pointer', color: 'var(--sc-color-primary, #1677ff)', 'font-size': '0.85rem' }}>
-            📢 Tap to open Notify with Marquee (click to dismiss) →
+            📢 Open Notify with Marquee (close button) →
           </span>
         </Card>
       </div>

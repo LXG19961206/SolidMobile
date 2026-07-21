@@ -7,6 +7,7 @@ export default {
       duration: '显示时长 (ms)，0 不自动关闭，默认 3000。',
       color: '文字颜色。',
       background: '背景色。',
+      closeable: "显示关闭按钮。",
       lockScroll: '锁定背景滚动。',
       onClick: '点击回调。',
       onClose: '关闭回调。',

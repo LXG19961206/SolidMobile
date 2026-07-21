@@ -1,4 +1,4 @@
-import { onMount, onCleanup, createSignal, type Component } from 'solid-js';
+import { onMount, onCleanup, createSignal, Show, type Component } from 'solid-js';
 import { Portal } from 'solid-js/web';
 import { cn, scopedStyle } from '../../utils';
 import type { NotifyOptions } from './types';
@@ -73,6 +73,9 @@ export const NotifyItem: Component<NotifyItemProps> = (props) => {
         aria-live="polite"
         onClick={(e) => props.onClick?.(e)}
       >
+        <Show when={props.closeable}>
+          <span class={styles.closeBtn} onClick={(e) => { e.stopPropagation(); dismiss(); }}>✕</span>
+        </Show>
         {props.message}
       </div>
     </Portal>

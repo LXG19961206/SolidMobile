@@ -7,6 +7,7 @@ export default {
       duration: 'Display duration (ms). 0 = no dismiss, default 3000.',
       color: 'Text color.',
       background: 'Background color.',
+      closeable: "Show close button.",
       lockScroll: 'Lock background scroll.',
       onClick: 'Click callback.',
       onClose: 'Close callback.',

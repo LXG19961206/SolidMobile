@@ -49,3 +49,19 @@
   cursor: pointer;
 }
 
+/* ── Close button ── */
+.closeBtn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.7;
+  padding: 4px;
+}
+.closeBtn:hover {
+  opacity: 1;
+}
+

@@ -14,6 +14,7 @@ export function useNotifyTableData() {
         { name: 'duration', type: 'number', def: '3000', desc: 'notify.props.duration' },
         { name: 'color', type: 'string', def: "'white'", desc: 'notify.props.color' },
         { name: 'background', type: 'string', def: '—', desc: 'notify.props.background' },
+      { name: 'closeable', type: 'boolean', def: 'false', desc: 'notify.props.closeable' },
         { name: 'lockScroll', type: 'boolean', def: 'false', desc: 'notify.props.lockScroll' },
         { name: 'onClick', type: '() => void', def: '—', desc: 'notify.props.onClick' },
         { name: 'onClose', type: '() => void', def: '—', desc: 'notify.props.onClose' },

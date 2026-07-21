@@ -27,6 +27,8 @@ export interface NotifyOptions {
    * 文档演示用（notify 出现在手机模拟器内），业务中无需关心。
    */
   teleport?: Node;
+  /** 是否显示关闭按钮，默认 false */
+  closeable?: boolean;
   /** 点击时的回调函数 */
   onClick?: (event: MouseEvent) => void;
   /** 完全展示后的回调函数 */
