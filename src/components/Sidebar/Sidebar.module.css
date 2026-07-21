@@ -49,3 +49,23 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+:global(html.dark) .root {
+  background: #1a1d21;
+  border-right-color: #334155;
+}
+
+:global(html.dark) .item {
+  color: #94a3b8;
+  border-bottom-color: #334155;
+}
+
+:global(html.dark) .item:hover {
+  background: #24282d;
+}
+
+:global(html.dark) .active {
+  color: var(--sc-color-primary, #5195ff);
+  background: #24282d;
+  border-right-color: var(--sc-color-primary, #5195ff);
+}
