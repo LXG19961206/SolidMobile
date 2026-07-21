@@ -5,6 +5,7 @@ export default {
       activeKey: 'Currently selected key.',
       onChange: 'Change callback: (key: string) => void.',
       width: 'Sidebar width, default 90px.',
+      compact: 'Compact mode: icon-only, auto width.',
       class: 'Custom CSS class.',
       style: 'Inline styles.',
     },

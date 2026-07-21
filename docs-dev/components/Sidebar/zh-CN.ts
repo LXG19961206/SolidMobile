@@ -5,6 +5,7 @@ export default {
       activeKey: '当前选中的 key。',
       onChange: '选中变化回调 (key: string) => void。',
       width: '侧边栏宽度，默认 90px。',
+      compact: '紧凑模式：仅显示图标，宽度自适应。',
       class: '自定义 CSS class。',
       style: '内联样式。',
     },

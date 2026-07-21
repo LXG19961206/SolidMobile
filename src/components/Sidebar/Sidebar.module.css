@@ -29,3 +29,23 @@
   font-weight: 600;
   border-right-color: var(--sc-color-primary, #1677ff);
 }
+
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.compact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 4px;
+  font-size: 0.7rem;
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

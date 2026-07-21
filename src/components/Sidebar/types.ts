@@ -5,6 +5,10 @@ export interface SidebarItem {
   key: string;
   /** 显示标题，支持 JSX */
   title: string | JSX.Element;
+  /** 图标，显示在标题上方 */
+  icon?: JSX.Element;
+  /** 是否禁用 */
+  disabled?: boolean;
 }
 
 export interface SidebarProps {
@@ -16,6 +20,8 @@ export interface SidebarProps {
   onChange: (key: string) => void;
   /** 侧边栏宽度，默认 90px */
   width?: string | number;
+  /** 紧凑模式：仅显示图标，不显示文字，宽度自动收缩 */
+  compact?: boolean;
   /** 自定义类名 */
   class?: string;
   /** 内联样式 */
