@@ -60,7 +60,12 @@ export function MobilePropsSheet(props: MobilePropsSheetProps) {
               'border-right': '1px solid var(--sc-color-border, #e5e7eb)',
               background: 'var(--sc-color-background-secondary, #f9fafb)',
             }}>
-              <Show when={tab() === 'cssvars' && !hasCssVars()} fallback={
+              <Show when={tab() === 'cssvars' && !hasCssVars()}>
+                <div style={{ padding: '24px 12px', 'font-size': '0.8rem', color: '#9ca3af', 'text-align': 'center' }}>
+                  {t('common.noCssVars')}
+                </div>
+              </Show>
+              <Show when={!(tab() === 'cssvars' && !hasCssVars())}>
                 <For each={currentGroups()}>
                   {(g, i) => (
                     <div onClick={() => setGroupIdx(i())} style={{
@@ -76,10 +81,6 @@ export function MobilePropsSheet(props: MobilePropsSheetProps) {
                     </div>
                   )}
                 </For>
-              )}>
-                <div style={{ padding: '24px 12px', 'font-size': '0.8rem', color: '#9ca3af', 'text-align': 'center' }}>
-                  {t('common.noCssVars')}
-                </div>
               </Show>
             </div>
 
