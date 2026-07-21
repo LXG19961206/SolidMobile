@@ -145,7 +145,7 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
             ) : undefined
           }
           right={
-            <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '2px' }}>
+            <div style={{ display: 'flex' as const, 'align-items': 'center' as const, gap: '8px' }}>
               <span class={styles.navBtn} onClick={toggleDark} title="Toggle dark mode">
                 <Icon name={isDark() ? 'sun' : 'moon'} size={18} />
               </span>
