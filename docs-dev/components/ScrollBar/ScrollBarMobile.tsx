@@ -56,9 +56,9 @@ export const ScrollBarMobile = () => {
         </Card>
 
         <Card title={t('scrollbar.demo.list')} subtitle={t('scrollbar.demoDesc.list')}>
-          <ScrollBar native style={{ height: '380px', border: '1px solid var(--sc-color-border, #e5e7eb)', 'border-radius': '8px' }}>
+          <div class="list-scroll" style={{ height: '380px', overflow: 'auto', border: '1px solid var(--sc-color-border, #e5e7eb)', 'border-radius': '8px' }}>
             <ListContent />
-          </ScrollBar>
+          </div>
         </Card>
       </div>
     </MobilePreview>
