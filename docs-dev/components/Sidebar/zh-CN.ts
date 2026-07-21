@@ -1,7 +1,7 @@
 export default {
   sidebar: {
     props: {
-      items: '选项列表：{ key: string; title: string }[]。',
+      items: '选项列表：{ key: string; title: string | JSX.Element }[]。title 支持 JSX。',
       activeKey: '当前选中的 key。',
       onChange: '选中变化回调 (key: string) => void。',
       width: '侧边栏宽度，默认 90px。',

@@ -1,7 +1,7 @@
 export default {
   sidebar: {
     props: {
-      items: 'Item list: { key: string; title: string }[].',
+      items: 'Item list: { key: string; title: string | JSX.Element }[]. title supports JSX.',
       activeKey: 'Currently selected key.',
       onChange: 'Change callback: (key: string) => void.',
       width: 'Sidebar width, default 90px.',

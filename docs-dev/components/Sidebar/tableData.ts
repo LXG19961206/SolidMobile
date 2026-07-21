@@ -4,7 +4,7 @@ import type { TableSection } from '../../doc-utils';
 export function useSidebarTableData() {
   const t = useT();
   const p: TableSection[] = [{ rows: [
-    { name: 'items', type: 'SidebarItem[]', def: '—', desc: 'sidebar.props.items' },
+    { name: 'items', type: '{ key: string, title: string | JSX.Element }[]', def: '—', desc: 'sidebar.props.items' },
     { name: 'activeKey', type: 'string', def: '—', desc: 'sidebar.props.activeKey' },
     { name: 'onChange', type: '(key: string) => void', def: '—', desc: 'sidebar.props.onChange' },
     { name: 'width', type: 'string | number', def: '90', desc: 'sidebar.props.width' },

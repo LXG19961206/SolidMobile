@@ -1,8 +1,10 @@
+import type { JSX } from 'solid-js';
+
 export interface SidebarItem {
   /** 唯一标识 */
   key: string;
-  /** 显示标题 */
-  title: string;
+  /** 显示标题，支持 JSX */
+  title: string | JSX.Element;
 }
 
 export interface SidebarProps {
