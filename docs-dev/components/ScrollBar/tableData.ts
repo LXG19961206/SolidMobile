@@ -8,8 +8,7 @@ export function useScrollBarTableData() {
       { name: 'width', type: 'string | number', def: '6', desc: 'scrollbar.props.width' },
       { name: 'color', type: 'string', def: "'#d1d5db'", desc: 'scrollbar.props.color' },
       { name: 'trackColor', type: 'string', def: 'transparent', desc: 'scrollbar.props.trackColor' },
-      { name: 'class', type: 'string', def: '—', desc: 'scrollbar.props.class' },
-      { name: 'style', type: 'CSSProperties | string', def: '—', desc: 'scrollbar.props.style' },
+      { name: 'direction', type: "'vertical' | 'horizontal' | 'both'", def: "'vertical'", desc: 'scrollbar.props.direction' },
       { name: 'children', type: 'JSX.Element', def: '—', desc: 'scrollbar.props.children' },
     ],
   }];

@@ -13,10 +13,10 @@ export const ScrollBarDocPage = () => {
   const { propsTables, cssVarsTables } = useScrollBarTableData();
 
   const demos: DemoCode[] = [
-    { title: t('scrollbar.demo.basic'), code: '<ScrollBar style={{ height: \'200px\' }}>\n  <div>Long content that overflows...</div>\n</ScrollBar>', desc: t('scrollbar.demoDesc.basic') },
-    { title: t('scrollbar.demo.color'), code: '<ScrollBar color="#1677ff" width={8} style={{ height: \'200px\' }}>\n  <div>Blue scrollbar on light mode</div>\n</ScrollBar>', desc: t('scrollbar.demoDesc.color') },
-    { title: t('scrollbar.demo.width'), code: '<ScrollBar width={4} style={{ height: \'200px\' }}>\n  <div>Thinner 4px scrollbar</div>\n</ScrollBar>', desc: t('scrollbar.demoDesc.width') },
-    { title: t('scrollbar.demo.list'), code: '<ScrollBar style={{ height: \'380px\' }}>\n  <List virtual itemHeight={56} data={genItems(0, 1000)} finished>\n    {(item) => <Cell title={item.name} />}\n  </List>\n</ScrollBar>', desc: t('scrollbar.demoDesc.list') },
+    { title: t('scrollbar.demo.basic'), code: '<ScrollBar>\n  <div style={{ height: \'200px\' }}>Long content...</div>\n</ScrollBar>', desc: t('scrollbar.demoDesc.basic') },
+    { title: t('scrollbar.demo.color'), code: '<ScrollBar color="#1677ff" width={8}>\n  <div style={{ height: \'200px\' }}>Blue scrollbar</div>\n</ScrollBar>', desc: t('scrollbar.demoDesc.color') },
+    { title: t('scrollbar.demo.width'), code: '<ScrollBar width={4}>\n  <div style={{ height: \'200px\' }}>Thinner scrollbar</div>\n</ScrollBar>', desc: t('scrollbar.demoDesc.width') },
+    { title: t('scrollbar.demo.list'), code: '<ScrollBar>\n  <div style={{ height: \'380px\' }}>\n    <List virtual itemHeight={56} data={genItems(0, 1000)} finished>\n      {(item) => <Cell title={item.name} />}\n    </List>\n  </div>\n</ScrollBar>', desc: t('scrollbar.demoDesc.list') },
   ];
 
   return (

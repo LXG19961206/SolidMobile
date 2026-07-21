@@ -3,6 +3,7 @@ import type { ScrollBarProps } from './types';
 
 const defaultProps: Partial<ScrollBarProps> = {
   width: 6,
+  direction: 'vertical',
 };
 
 let instanceId = 0;
@@ -21,7 +22,7 @@ let instanceId = 0;
  */
 export const ScrollBar: Component<ScrollBarProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
-  const [local] = splitProps(props, ['width', 'color', 'trackColor', 'class', 'style', 'children']);
+  const [local] = splitProps(props, ['width', 'color', 'trackColor', 'direction', 'children']);
 
   const cls = `sc-sb-${++instanceId}`;
   const w = createMemo(() => typeof local.width === 'number' ? `${local.width}px` : String(local.width));
@@ -30,9 +31,21 @@ export const ScrollBar: Component<ScrollBarProps> = (rawProps) => {
 
   let wrapperRef!: HTMLSpanElement;
 
+  const overflow = createMemo(() => {
+    const d = local.direction;
+    if (d === 'both') return 'auto';
+    return d === 'horizontal' ? 'auto hidden' : 'hidden auto';
+  });
+
   onMount(() => {
     const child = wrapperRef?.firstElementChild as HTMLElement | null;
-    if (child) child.classList.add(cls);
+    if (child) {
+      child.classList.add(cls);
+      const s = child.style;
+      if (!s.overflow || s.overflow === 'visible') s.overflow = overflow();
+      if (!s.overflowX || s.overflowX === 'visible') s.overflowX = local.direction === 'horizontal' || local.direction === 'both' ? 'auto' : 'hidden';
+      if (!s.overflowY || s.overflowY === 'visible') s.overflowY = local.direction === 'vertical' || local.direction === 'both' ? 'auto' : 'hidden';
+    }
   });
 
   return (

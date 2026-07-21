@@ -4,9 +4,8 @@ export default {
       width: '滚动条宽度，默认 6px。',
       color: '滑块颜色，默认浅灰 #d1d5db，暗色模式自动切换为 #475569。',
       trackColor: '轨道颜色，默认透明。',
-      class: '自定义 CSS class。',
-      style: '内联样式。注意：容器需要显式高度，否则 ScrollBar 不会显示滚动条。',
-      children: '内容节点。',
+      direction: '滚动方向：vertical（默认）/ horizontal / both。会自动给子元素设置对应的 overflow。',
+      children: '内容节点。子元素会被自动注入 overflow 样式和滚动条 class，无需手动设置 overflow。',
     },
     cssVars: {
       '--sc-scrollbar-width': '滚动条宽度，默认 6px。',

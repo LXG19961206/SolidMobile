@@ -4,9 +4,8 @@ export default {
       width: 'Scrollbar width, default 6px.',
       color: 'Thumb color, default #d1d5db. Auto-switches to #475569 in dark mode.',
       trackColor: 'Track color, default transparent.',
-      class: 'Custom CSS class.',
-      style: "Inline styles. Note: container needs explicit height, otherwise won't show scrollbar.",
-      children: 'Content node.',
+      direction: 'Scroll direction: vertical (default) / horizontal / both. Auto-sets overflow on child.',
+      children: "Content node. Child auto-receives overflow + scrollbar class — no manual overflow needed.",
     },
     cssVars: {
       '--sc-scrollbar-width': 'Scrollbar width, default 6px.',
