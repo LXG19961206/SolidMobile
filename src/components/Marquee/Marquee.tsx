@@ -17,7 +17,7 @@ const defaultProps: Partial<MarqueeProps> = {
  */
 export const Marquee: Component<MarqueeProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
-  const [local] = splitProps(props, ['duration', 'direction', 'pauseOnHover', 'gap', 'class', 'style', 'children']);
+  const [local, rest] = splitProps(props, ['duration', 'direction', 'pauseOnHover', 'gap', 'class', 'style', 'children']);
 
   const cssVars = () => {
     const v: Record<string, string> = {
@@ -32,6 +32,7 @@ export const Marquee: Component<MarqueeProps> = (rawProps) => {
     <div
       class={cn(styles.container, local.pauseOnHover && styles.pauseOnHover, local.class)}
       style={{ ...cssVars(), ...(typeof local.style === 'object' ? local.style : {}) }}
+      {...rest}
     >
       <div class={styles.track}>
         <div class={styles.content}>{local.children}</div>
