@@ -514,6 +514,7 @@ export default {
         tabGuide: 'Guide',
         tabComponents: 'Components',
         mobileHome: 'Home',
+        scrollbar: 'ScrollBar',
         drawerTitle: 'Components',
         drawerGuideGroup: 'Guide',
         drawerAboutGroup: 'About',
@@ -700,7 +701,7 @@ export default {
             title: 'Select Date'
         },
         calendar: {
-            weekdays: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+            weekdays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
             titleFormatter: null,
             startLabel: 'Start',
             endLabel: 'End',

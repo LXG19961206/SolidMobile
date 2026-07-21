@@ -524,6 +524,7 @@ export default {
         tabGuide: 'Guide 指南',
         tabComponents: 'Components 组件',
         mobileHome: 'Home 首页',
+        scrollbar: 'ScrollBar 滚动条',
         drawerTitle: '组件 / Components',
         drawerGuideGroup: 'Guide 指南',
         drawerAboutGroup: 'About 关于',

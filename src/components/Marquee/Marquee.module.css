@@ -1,0 +1,31 @@
+.container {
+  --mq-duration: 10s;
+  --mq-direction: normal;
+  --mq-gap: 0;
+
+  overflow: hidden;
+  width: 100%;
+}
+
+.track {
+  display: flex;
+  gap: var(--mq-gap);
+  width: max-content;
+  animation: mq-scroll var(--mq-duration) linear infinite;
+  animation-direction: var(--mq-direction);
+}
+
+.content {
+  flex-shrink: 0;
+  display: inherit;
+  gap: inherit;
+}
+
+.pauseOnHover:hover .track {
+  animation-play-state: paused;
+}
+
+@keyframes mq-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
