@@ -11,15 +11,16 @@ const defaultProps: Partial<SidebarProps> = {
 
 export const Sidebar: Component<SidebarProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
-  const [local] = splitProps(props, ['items', 'activeKey', 'onChange', 'width', 'compact', 'class', 'style']);
+  const [local, rest] = splitProps(props, ['items', 'activeKey', 'onChange', 'width', 'compact', 'class', 'style']);
 
   return (
     <div
       class={cn(styles.root, local.class)}
       style={{
         width: local.compact ? 'auto' : typeof local.width === 'number' ? `${local.width}px` : local.width,
-        ...local.style,
+        ...(typeof local.style === 'object' ? local.style : {}),
       }}
+      {...rest}
     >
       <For each={local.items}>
         {(item) => (
