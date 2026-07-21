@@ -395,6 +395,63 @@ html.dark .topbar-title {
   /* full-width without sidebar */
 }
 
+/* ── Content skeleton (Suspense fallback) ── */
+.content-skeleton {
+  flex: 1;
+  overflow: hidden;
+  background: #efefef;
+  position: relative;
+}
+
+.content-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.04) 40%,
+    rgba(0, 0, 0, 0.04) 60%,
+    transparent 100%
+  );
+  animation: sc-content-shimmer 1.6s ease-in-out infinite;
+}
+
+html.dark .content-skeleton {
+  background: #15171a;
+}
+
+html.dark .content-skeleton::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 40%,
+    rgba(255, 255, 255, 0.03) 60%,
+    transparent 100%
+  );
+}
+
+@keyframes sc-content-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── Content fade-in ── */
+.content {
+  animation: sc-content-fadein 0.2s ease-out;
+}
+
+@keyframes sc-content-fadein {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ── Code Block (matches DemoBlock style) ── */
 .doc-code-block {
   border: 1px solid #e5e7eb;

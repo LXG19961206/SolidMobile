@@ -1,4 +1,4 @@
-import { createSignal, createMemo, onMount, For, Show, type JSX } from 'solid-js';
+import { createSignal, createMemo, onMount, For, Show, Suspense, type JSX } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
 // 启动时注册 common 通用词条（nav 等），后续各 doc 页懒加载自己的词条
 import './doc-i18n';
@@ -299,25 +299,21 @@ export function App() {
                   <button class="menu-btn" onClick={() => setMenuOpen(!menuOpen())}>☰</button>
                 </div>
               </Show>
-              <div class="content" classList={{ 'content-full': !showSidebar() }}>
-                {section() === 'guide' ? (
-                  <>
-                    {(() => {
-                      const P = GUIDE_PAGES[activeKey()];
-                      return P ? <P /> : <div style="padding:2rem">{t('nav.pageNotFound') || '未找到页面'}: {activeKey()}</div>;
-                    })()}
-                  </>
-                ) : (
-                  <>
-                    {(() => {
-                      // 显式依赖 locale，确保语言切换时子组件重新渲染
-                      void useLocale();
-                      const C = PAGES[activeKey()];
-                      return C ? <C /> : <div style="padding:2rem">{t('nav.componentNotFound') || '未找到组件'}: {activeKey()}</div>;
-                    })()}
-                  </>
-                )}
-              </div>
+              <Suspense fallback={<div class="content-skeleton" />}>
+                <div class="content" classList={{ 'content-full': !showSidebar() }}>
+                  {(() => {
+                    // 显式依赖 locale / key，确保切换时重新进入 Suspense
+                    void useLocale();
+                    const key = activeKey();
+                    if (section() === 'guide') {
+                      const P = GUIDE_PAGES[key];
+                      return P ? <P /> : <div style="padding:2rem">{t('nav.pageNotFound') || '未找到页面'}: {key}</div>;
+                    }
+                    const C = PAGES[key];
+                    return C ? <C /> : <div style="padding:2rem">{t('nav.componentNotFound') || '未找到组件'}: {key}</div>;
+                  })()}
+                </div>
+              </Suspense>
             </div>
           </div>
         </div>
