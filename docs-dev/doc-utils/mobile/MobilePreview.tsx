@@ -28,9 +28,13 @@ const MOBILE_PAGE_KEYS: string[] = [
   'rate', 'stepper', 'slider', 'select', 'upload',
 ];
 
-/** Extract the current page key from the URL hash (e.g. #/components/button → button). */
-function getCurrentKeyFromHash(): string | null {
+/** Extract the current page key from URL (hash or ?mobile= query). */
+function getCurrentKey(): string | null {
   try {
+    // iframe mode: ?mobile=button
+    const q = new URLSearchParams(window.location.search).get('mobile');
+    if (q) return q;
+    // standalone mode: #/components/button → button
     const raw = window.location.hash.replace('#', '') || '';
     if (raw.startsWith('/')) {
       const parts = raw.split('/').filter(Boolean);
@@ -103,7 +107,7 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
      Uses the stable MOBILE_PAGE_KEYS order (mirrors drawer) and matches
      by URL hash key — immune to locale switches and group boundaries. */
   const nav = createMemo(() => {
-    const currentKey = getCurrentKeyFromHash();
+    const currentKey = getCurrentKey();
     if (currentKey) {
       const idx = MOBILE_PAGE_KEYS.indexOf(currentKey);
       if (idx >= 0) {
