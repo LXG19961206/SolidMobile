@@ -516,6 +516,7 @@ export default {
         mobileHome: 'Home',
         marquee: 'Marquee',
         scrollbar: 'ScrollBar',
+        sidebar: 'Sidebar',
         drawerTitle: 'Components',
         drawerGuideGroup: 'Guide',
         drawerAboutGroup: 'About',
