@@ -1,4 +1,3 @@
-import { createSignal } from 'solid-js';
 import { useT, registerLocale } from '../../doc-i18n';
 import { Marquee } from '../../../src/components/Marquee';
 import { Card } from '../../../src/components/Card';
@@ -13,9 +12,6 @@ registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 export const MarqueeMobile = () => {
   const t = useT();
   const { propsTables, cssVarsTables } = useMarqueeTableData();
-  const [show, setShow] = createSignal(false);
-  let nKey = 0;
-
   return (
     <MobilePreview title="Marquee">
       <MobilePropsSheet propsTables={propsTables} cssVarsTables={cssVarsTables} />
@@ -33,15 +29,13 @@ export const MarqueeMobile = () => {
           <Marquee duration={5} pauseOnHover={false}><span style={{ 'white-space': 'nowrap' }}>⚠ No pause on hover — keeps going &nbsp;&nbsp;&nbsp;</span></Marquee>
         </Card>
         <Card title={t('marquee.demo.notify')} subtitle={t('marquee.demoDesc.notify')}>
-          <div style={{ display: 'flex', gap: '8px', 'flex-wrap': 'wrap' }}>
-            <span onClick={() => setShow(true)} style={{ cursor: 'pointer', color: 'var(--sc-color-primary, #1677ff)', 'font-size': '0.85rem' }}>
-              📢 Open Notify with Marquee →
-            </span>
-          </div>
-          <Notify show={show()} onUpdateShow={setShow} duration={0} message={
-            <Marquee><span style={{ 'white-space': 'nowrap' }}>🔥 Breaking — Stock market hits all-time high! Earnings season kicks off with record profits. &nbsp;&nbsp;&nbsp;</span></Marquee>
-          }>
-          </Notify>
+          <span onClick={() => Notify.show({
+            message: <Marquee><span style={{ 'white-space': 'nowrap' }}>🔥 Breaking — Stock market hits all-time high! Earnings season kicks off with record profits. &nbsp;&nbsp;&nbsp;</span></Marquee>,
+            duration: 0,
+          })}
+            style={{ cursor: 'pointer', color: 'var(--sc-color-primary, #1677ff)', 'font-size': '0.85rem' }}>
+            📢 Open Notify with Marquee (swipe or tap to dismiss) →
+          </span>
         </Card>
       </div>
     </MobilePreview>
