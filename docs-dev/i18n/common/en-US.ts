@@ -514,6 +514,7 @@ export default {
         tabGuide: 'Guide',
         tabComponents: 'Components',
         mobileHome: 'Home',
+        marquee: 'Marquee',
         scrollbar: 'ScrollBar',
         drawerTitle: 'Components',
         drawerGuideGroup: 'Guide',
