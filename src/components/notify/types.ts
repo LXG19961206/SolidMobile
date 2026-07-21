@@ -29,6 +29,8 @@ export interface NotifyOptions {
   teleport?: Node;
   /** 是否显示关闭按钮，默认 false */
   closeable?: boolean;
+  /** 跑马灯模式：自动将 message 包裹在 Marquee 组件中，默认 false */
+  marquee?: boolean;
   /** 点击时的回调函数 */
   onClick?: (event: MouseEvent) => void;
   /** 完全展示后的回调函数 */

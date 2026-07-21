@@ -33,11 +33,12 @@ export const MarqueeMobile = () => {
           <span onClick={() => Notify.show({
             type: 'primary',
             closeable: true,
-            message: <Marquee><span style={{ 'white-space': 'nowrap' }}>🔥 Breaking — Stock hits all-time high! Earnings season kicks off with record profits. &nbsp;&nbsp;&nbsp;</span></Marquee>,
+            marquee: true,
+            message: '🔥 Breaking — Stock hits all-time high! Earnings season kicks off with record profits.',
             duration: 0,
           })}
             style={{ cursor: 'pointer', color: 'var(--sc-color-primary, #1677ff)', 'font-size': '0.85rem' }}>
-            📢 Open Notify with Marquee (close button) →
+            📢 Notify.show({`{ closeable: true, marquee: true, duration: 0 }`}) →
           </span>
         </Card>
       </div>

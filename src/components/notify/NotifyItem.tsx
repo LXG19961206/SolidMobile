@@ -1,6 +1,7 @@
 import { onMount, onCleanup, createSignal, Show, type Component } from 'solid-js';
 import { Portal } from 'solid-js/web';
 import { cn, scopedStyle } from '../../utils';
+import { Marquee } from '../Marquee';
 import type { NotifyOptions } from './types';
 import rawStyles from './Notify.module.css';
 const styles = scopedStyle(rawStyles, 'sc-notify');
@@ -77,7 +78,7 @@ export const NotifyItem: Component<NotifyItemProps> = (props) => {
         <Show when={props.closeable}>
           <span class={styles.closeBtn} onClick={(e) => { e.stopPropagation(); dismiss(); }}>✕</span>
         </Show>
-        {props.message}
+        {props.marquee ? <Marquee><span style={{ 'white-space': 'nowrap' }}>{props.message}&nbsp;&nbsp;&nbsp;</span></Marquee> : props.message}
       </div>
     </Portal>
   );
