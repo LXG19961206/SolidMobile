@@ -1,7 +1,7 @@
 import { useT, registerLocale } from '../../doc-i18n';
 import { Marquee } from '../../../src/components/Marquee';
 import { Card } from '../../../src/components/Card';
-import { Notify } from '../../../src/components/Notify';
+import { Notify } from '../../../src/components/notify';
 import { MobilePropsSheet } from '../../doc-utils/MobilePropsSheet';
 import { MobilePreview } from '../../doc-utils/mobile/MobilePreview';
 import zhCN from './zh-CN';
