@@ -4167,7 +4167,7 @@ export const messages: LocaleMessages = /* doc-keys-merged */ (function __mergeD
   },
 };
   for (var locale in doc) {
-    if (!base[locale]) base[locale] = {};
+    if (!(base as any)[locale]) (base as any)[locale] = {};
     (function deepMerge(t, s) {
       for (var k in s) {
         if (s[k] && typeof s[k] === 'object' && !Array.isArray(s[k])) {
@@ -4175,7 +4175,7 @@ export const messages: LocaleMessages = /* doc-keys-merged */ (function __mergeD
           deepMerge(t[k], s[k]);
         } else { t[k] = s[k]; }
       }
-    })(base[locale], doc[locale]);
+    })((base as any)[locale], (doc as any)[locale]);
   }
   return base;
 })({
