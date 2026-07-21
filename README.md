@@ -61,8 +61,8 @@ render(() => <App />, document.getElementById('root')!);
 
 | Category | Components |
 |---|---|
-| **Basic** | Button, Icon, Center, Divider, Card, Layout (Row, Col), SafeArea |
-| **Display** | Avatar, Badge, Tag, Image, Empty, Lazyload, List, SwipeCell, Swiper, Ellipsis, Tooltip, FloatingBall, BackTop, PullRefresh |
+| **Basic** | Button, Icon, Center, Divider, Card, Layout (Row, Col), SafeArea, ScrollBar, Sidebar |
+| **Display** | Avatar, Badge, Tag, Image, Empty, Lazyload, List, SwipeCell, Swiper, Ellipsis, Tooltip, FloatingBall, BackTop, Marquee, PullRefresh |
 | **Navigation** | Tabs, TabBar, NavBar, Cell |
 | **Picker** | Picker, Calendar, Cascader, DatePicker, CityPicker, TimePicker, Select |
 | **Feedback** | Toast, Notify, Dialog, Overlay, ActionSheet, Loading |

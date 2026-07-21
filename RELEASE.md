@@ -1,5 +1,37 @@
 # Release Notes
 
+## 0.1.1 (2026-07-22)
+
+### New Components
+
+- **Marquee** — Seamless horizontal scrolling marquee, with speed/direction/pause control
+- **Sidebar** — Vertical group navigation, with JSX title, icon, compact mode, dark mode
+
+### Enhancements
+
+- **Notify**: `closeable` prop (✕ button), `marquee` prop (auto-wraps message in Marquee)
+- **MobilePropsSheet**: redesigned with left Sidebar + right table layout, higher ActionSheet (70vh)
+- **ScrollBar**: refactored as abstract component (no DOM, injects class into child), renamed class prefix to `sc-scrollbar-*`
+- **PhoneSimulator**: default to button page when no hash
+- **Mobile prev/next nav**: fixed iframe navigation, updated key list, translated names
+- **DesignTokens**: PC/mobile unified using AllTokens component, compact swatch grid
+- **SearchBar**: extracted to standalone component
+- **Guide pages**: I18n, EventBus, DesignTokens all i18n-ified
+
+### Bug Fixes
+
+- List virtual scroll height fix + dark mode scrollbar
+- Card inset DOM attribute leak resolved
+- Marquee/Sidebar: splitProps rest spread + unit tests
+- Mobile CN/EN toggle: segmented switch design
+
+### Docs
+
+- Marquee, Sidebar, ScrollBar docs with i18n + dark mode
+- README + About page component list updated
+
+---
+
 ## 0.1.0 (2026-07-21)
 
 ### New Components

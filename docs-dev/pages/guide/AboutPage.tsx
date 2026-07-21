@@ -7,7 +7,7 @@ registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 const AboutPage: Component = () => {
   const t = useT();
   const completed = ['Button', 'Icon', 'Center', 'Divider', 'Layout', 'SafeArea',
-    'Card', 'Avatar', 'Badge', 'Tag', 'Image', 'Empty', 'Lazyload', 'List', 'SwipeCell', 'Swiper', 'Ellipsis', 'Tooltip', 'FloatingBall', 'BackTop', 'PullRefresh',
+    'Card', 'ScrollBar', 'Sidebar', 'Avatar', 'Badge', 'Tag', 'Image', 'Empty', 'Lazyload', 'List', 'SwipeCell', 'Swiper', 'Ellipsis', 'Tooltip', 'FloatingBall', 'BackTop', 'Marquee', 'PullRefresh',
     'Tabs', 'TabBar', 'NavBar', 'Cell',
     'Picker', 'Calendar', 'Cascader', 'DatePicker', 'TimePicker', 'CityPicker',
     'Toast', 'Notify', 'Dialog', 'Overlay', 'ActionSheet', 'Loading',
@@ -39,8 +39,8 @@ const AboutPage: Component = () => {
 
       <div style={{ 'margin-top': '1rem', display: 'grid', 'grid-template-columns': 'repeat(auto-fill, minmax(240px, 1fr))', gap: '1rem' }}>
         {([
-          { titleKey: 'catBasic' as const, items: ['Button', 'Icon', 'Center', 'Divider', 'Layout', 'SafeArea', 'Card'] },
-          { titleKey: 'catDisplay' as const, items: ['Avatar', 'Badge', 'Tag', 'Image', 'Empty', 'Lazyload', 'List', 'SwipeCell', 'Swiper', 'Ellipsis', 'Tooltip', 'FloatingBall', 'BackTop', 'PullRefresh'] },
+          { titleKey: 'catBasic' as const, items: ['Button', 'Icon', 'Center', 'Divider', 'Layout', 'SafeArea', 'Card', 'ScrollBar', 'Sidebar'] },
+          { titleKey: 'catDisplay' as const, items: ['Avatar', 'Badge', 'Tag', 'Image', 'Empty', 'Lazyload', 'List', 'SwipeCell', 'Swiper', 'Ellipsis', 'Tooltip', 'FloatingBall', 'BackTop', 'Marquee', 'PullRefresh'] },
           { titleKey: 'catNav' as const, items: ['Tabs', 'TabBar', 'NavBar', 'Cell'] },
           { titleKey: 'catForm' as const, items: ['Form', 'Input', 'Textarea', 'Radio', 'Checkbox', 'Switch', 'Rate', 'Stepper', 'Slider', 'Select', 'Upload'] },
           { titleKey: 'catFeedback' as const, items: ['Toast', 'Notify', 'Dialog', 'Overlay', 'ActionSheet', 'Loading'] },
