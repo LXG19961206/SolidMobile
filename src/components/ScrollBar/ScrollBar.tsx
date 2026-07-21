@@ -24,7 +24,7 @@ export const ScrollBar: Component<ScrollBarProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
   const [local] = splitProps(props, ['width', 'color', 'trackColor', 'direction', 'height', 'children']);
 
-  const cls = `sc-sb-${++instanceId}`;
+  const cls = `sc-scrollbar-${++instanceId}`;
   const w = createMemo(() => typeof local.width === 'number' ? `${local.width}px` : String(local.width));
   const c = createMemo(() => local.color || 'var(--sc-color-border, #d1d5db)');
   const t = createMemo(() => local.trackColor || 'transparent');
