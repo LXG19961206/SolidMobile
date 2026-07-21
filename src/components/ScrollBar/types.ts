@@ -7,13 +7,10 @@ export interface ScrollBarProps {
   color?: string;
   /** 轨道颜色，默认透明 */
   trackColor?: string;
-  /** 原生模式：只注入滚动条 CSS 变量和样式，不设置 overflow:auto。
-   * 用于子元素自己管理滚动的场景（如 List 虚拟列表）。 */
-  native?: boolean;
-  /** 自定义类名 */
+  /** 自定义类名（已废弃，ScrollBar 不产生 DOM） */
   class?: string;
-  /** 内联样式 */
+  /** 内联样式（已废弃，应写在子元素上） */
   style?: JSX.CSSProperties | string;
-  /** 内容 */
+  /** 内容（第一个子元素会被注入滚动条 class） */
   children?: JSX.Element;
 }
