@@ -26,7 +26,7 @@ export const GROUPS: MenuGroup[] = [
       { name: 'Tooltip 气泡提示', key: 'tooltip' },
       { name: 'FloatingBall 悬浮球', key: 'floatingball' },
       { name: 'BackTop 回到顶部', key: 'backtop' },
-      { name: 'Marquee 跑马灯', key: 'marquee' },
+      { name: 'Marquee 跑马灯', key: 'marquee' }, { name: 'Sidebar 侧边导航', key: 'sidebar' },
       { name: 'PullRefresh 下拉刷新', key: 'pullrefresh' },
     ],
   },

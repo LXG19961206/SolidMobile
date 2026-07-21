@@ -52,6 +52,7 @@ import { UploadMobile as UploadMobileDirect } from './components/Upload/UploadMo
 import { TextareaMobile as TextareaMobileDirect } from './components/Textarea/TextareaMobile';
 import { ScrollBarMobile as ScrollBarMobileDirect } from './components/ScrollBar/ScrollBarMobile';
 import { MarqueeMobile as MarqueeMobileDirect } from './components/Marquee/MarqueeMobile';
+import { SidebarMobile as SidebarMobileDirect } from './components/Sidebar/SidebarMobile';
 import { SafeArea } from '../src/components/SafeArea';
 import { setGlobalLocale, useLocale, useT } from '../src/i18n';
 import { SearchBar } from './doc-utils/SearchBar';
@@ -125,6 +126,7 @@ const SliderDocPage = lazy(() => import('./components/Slider/SliderDocPage').the
 const UploadDocPage = lazy(() => import('./components/Upload/UploadDocPage').then(m => ({ default: m.UploadDocPage })));
 const ScrollBarDocPage = lazy(() => import('./components/ScrollBar/ScrollBarDocPage').then(m => ({ default: m.ScrollBarDocPage })));
 const MarqueeDocPage = lazy(() => import('./components/Marquee/MarqueeDocPage').then(m => ({ default: m.MarqueeDocPage })));
+const SidebarDocPage = lazy(() => import('./components/Sidebar/SidebarDocPage').then(m => ({ default: m.SidebarDocPage })));
 const PullRefreshDocPage = lazy(() => import('./components/PullRefresh/PullRefreshDocPage').then(m => ({ default: m.PullRefreshDocPage })));
 const EllipsisDocPage = lazy(() => import('./components/Ellipsis/EllipsisDocPage').then(m => ({ default: m.EllipsisDocPage })));
 const TooltipDocPage = lazy(() => import('./components/Tooltip/TooltipDocPage').then(m => ({ default: m.TooltipDocPage })));
@@ -177,6 +179,7 @@ const SelectMobile = lazy(() => import('./components/Select/SelectMobile').then(
 const UploadMobile = lazy(() => import('./components/Upload/UploadMobile').then(m => ({ default: m.UploadMobile })));
 const ScrollBarMobile = lazy(() => import('./components/ScrollBar/ScrollBarMobile').then(m => ({ default: m.ScrollBarMobile })));
 const MarqueeMobile = lazy(() => import('./components/Marquee/MarqueeMobile').then(m => ({ default: m.MarqueeMobile })));
+const SidebarMobile = lazy(() => import('./components/Sidebar/SidebarMobile').then(m => ({ default: m.SidebarMobile })));
 const PullRefreshMobile = lazy(() => import('./components/PullRefresh/PullRefreshMobile').then(m => ({ default: m.PullRefreshMobile })));
 const EllipsisMobile = lazy(() => import('./components/Ellipsis/EllipsisMobile').then(m => ({ default: m.EllipsisMobile })));
 const TooltipMobile = lazy(() => import('./components/Tooltip/TooltipMobile').then(m => ({ default: m.TooltipMobile })));
@@ -230,7 +233,7 @@ const PAGES_MOBILE: Record<string, Component<{ components?: { name: string; key:
   loading: LoadingMobile,
   form: FormMobile,
   input: InputMobile,
-  textarea: TextareaMobile, scrollbar: ScrollBarMobile, marquee: MarqueeMobile,
+  textarea: TextareaMobile, scrollbar: ScrollBarMobile, marquee: MarqueeMobile, sidebar: SidebarMobile,
   radio: RadioMobile,
   checkbox: CheckboxMobile,
   switch: SwitchMobile,
@@ -254,7 +257,7 @@ const PAGES: Record<string, Component> = {
   toast: ToastDocPage, dialog: DialogDocPage, notify: NotifyDocPage, overlay: OverlayDocPage,
   actionsheet: ActionSheetDocPage, loading: LoadingDocPage, switch: SwitchDocPage, swipecell: SwipeCellDocPage,
   swiper: SwiperDocPage, form: FormDocPage, input: InputDocPage, textarea: TextareaDocPage,
-  scrollbar: ScrollBarDocPage, marquee: MarqueeDocPage, radio: RadioDocPage,
+  scrollbar: ScrollBarDocPage, marquee: MarqueeDocPage, sidebar: SidebarDocPage, radio: RadioDocPage,
   checkbox: CheckboxDocPage, datepicker: DatePickerDocPage, citypicker: CityPickerDocPage, timepicker: TimePickerDocPage,
   rate: RateDocPage, stepper: StepperDocPage, safearea: SafeAreaDocPage, slider: SliderDocPage, select: SelectDocPage,
   upload: UploadDocPage, pullrefresh: PullRefreshDocPage, ellipsis: EllipsisDocPage, tooltip: TooltipDocPage, floatingball: FloatingBallDocPage, backtop: BackTopDocPage,

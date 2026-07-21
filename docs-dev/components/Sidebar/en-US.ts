@@ -1,0 +1,26 @@
+export default {
+  sidebar: {
+    props: {
+      items: 'Item list: { key: string; title: string }[].',
+      activeKey: 'Currently selected key.',
+      onChange: 'Change callback: (key: string) => void.',
+      width: 'Sidebar width, default 90px.',
+      class: 'Custom CSS class.',
+      style: 'Inline styles.',
+    },
+    cssVars: {
+      '--sc-color-border': 'Divider color.',
+      '--sc-color-background-secondary': 'Background color.',
+      '--sc-card-bg': 'Active/hover background.',
+      '--sc-color-primary': 'Active text + left indicator color.',
+      '--sc-color-text-secondary': 'Inactive text color.',
+    },
+    demo: {
+      basic: 'Basic',
+    },
+    demoDesc: {
+      basic: 'Vertical group nav, typically used inside popups for switching between grouped content.',
+    },
+    intro: 'Vertical group navigation component for switching between groups/tables in popup panels. Dark mode supported.',
+  },
+};

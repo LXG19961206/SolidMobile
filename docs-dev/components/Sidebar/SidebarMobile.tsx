@@ -1,0 +1,38 @@
+import { createSignal } from 'solid-js';
+import { useT, registerLocale } from '../../doc-i18n';
+import { Sidebar } from '../../../src/components/Sidebar';
+import { Card } from '../../../src/components/Card';
+import { MobilePropsSheet } from '../../doc-utils/MobilePropsSheet';
+import { MobilePreview } from '../../doc-utils/mobile/MobilePreview';
+import zhCN from './zh-CN';
+import enUS from './en-US';
+import { useSidebarTableData } from './tableData';
+registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
+
+export const SidebarMobile = () => {
+  const t = useT();
+  const { propsTables, cssVarsTables } = useSidebarTableData();
+  const [active, setActive] = createSignal('form');
+
+  const items = [
+    { key: 'form', title: 'Form' },
+    { key: 'item', title: 'FormItem' },
+    { key: 'rule', title: 'FormRule' },
+  ];
+
+  return (
+    <MobilePreview title="Sidebar">
+      <MobilePropsSheet propsTables={propsTables} cssVarsTables={cssVarsTables} />
+      <div style={{ padding: '12px', display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
+        <Card title={t('sidebar.demo.basic')} subtitle={t('sidebar.demoDesc.basic')}>
+          <div style={{ display: 'flex', height: '220px', 'border-radius': '8px', overflow: 'hidden', border: '1px solid var(--sc-color-border, #e5e7eb)' }}>
+            <Sidebar items={items} activeKey={active()} onChange={setActive} />
+            <div style={{ flex: 1, padding: '16px', display: 'flex', 'align-items': 'center', 'justify-content': 'center', 'font-size': '0.9rem', color: '#6b7280' }}>
+              Selected: <strong style={{ 'margin-left': '6px', color: 'var(--sc-color-primary, #1677ff)' }}>{active()}</strong>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </MobilePreview>
+  );
+};
