@@ -30,6 +30,7 @@ export const MarqueeMobile = () => {
         </Card>
         <Card title={t('marquee.demo.notify')} subtitle={t('marquee.demoDesc.notify')}>
           <span onClick={() => Notify.show({
+            type: 'primary',
             message: <Marquee><span style={{ 'white-space': 'nowrap' }}>🔥 Breaking — Stock market hits all-time high! Earnings season kicks off with record profits. &nbsp;&nbsp;&nbsp;</span></Marquee>,
             duration: 0,
           })}
