@@ -260,16 +260,10 @@ export const Radius: Component = () => <RadiusScale />;
 /**
  * Full design token showcase — all sections in one view.
  */
-export const AllTokens: Component = () => {
-  const t = useT();
-
-  return (
-    <div class={styles.root} style={{ display: 'flex', 'flex-direction': 'column', gap: '16px' }}>
-      <h1 class={styles.h1}>{t('designTokens.title')}</h1>
-      <p class={styles.intro}>{t('designTokens.intro')}</p>
-      <ColorGroups />
-      <TypographyScale />
-      <RadiusScale />
-    </div>
-  );
-};
+export const AllTokens: Component = () => (
+  <div class={styles.root} style={{ display: 'flex', 'flex-direction': 'column', gap: '16px' }}>
+    <ColorGroups />
+    <TypographyScale />
+    <RadiusScale />
+  </div>
+);
