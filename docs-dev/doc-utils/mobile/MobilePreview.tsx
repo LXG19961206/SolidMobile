@@ -128,11 +128,12 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
   });
 
   const navigateTo = (key: string) => {
-    if (inIframe() && window.top) {
-      const sec = ['home','config','design-tokens','i18n','eventbus','solidjs','about'].includes(key) ? 'guide' : 'components';
+    const sec = ['home','config','design-tokens','i18n','eventbus','solidjs','about'].includes(key) ? 'guide' : 'components';
+    // Always use hash-based navigation — works in both iframe and standalone
+    if (window.top && window.top !== window.self) {
       window.top.location.hash = `#/${sec}/${key}`;
     } else {
-      props.onNavigate?.(key);
+      window.location.hash = `#/${sec}/${key}`;
     }
   };
 
