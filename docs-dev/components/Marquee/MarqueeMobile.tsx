@@ -12,6 +12,7 @@ registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 export const MarqueeMobile = () => {
   const t = useT();
   const { propsTables, cssVarsTables } = useMarqueeTableData();
+
   return (
     <MobilePreview title="Marquee">
       <MobilePropsSheet propsTables={propsTables} cssVarsTables={cssVarsTables} />
@@ -31,11 +32,11 @@ export const MarqueeMobile = () => {
         <Card title={t('marquee.demo.notify')} subtitle={t('marquee.demoDesc.notify')}>
           <span onClick={() => Notify.show({
             type: 'primary',
-            message: <Marquee><span style={{ 'white-space': 'nowrap' }}>🔥 Breaking — Stock market hits all-time high! Earnings season kicks off with record profits. &nbsp;&nbsp;&nbsp;</span></Marquee>,
+            message: <Marquee><span style={{ 'white-space': 'nowrap' }}>🔥 Breaking — Stock hits all-time high! Earnings season kicks off with record profits. &nbsp;&nbsp;&nbsp;</span></Marquee>,
             duration: 0,
           })}
             style={{ cursor: 'pointer', color: 'var(--sc-color-primary, #1677ff)', 'font-size': '0.85rem' }}>
-            📢 Open Notify with Marquee (swipe or tap to dismiss) →
+            📢 Tap to open Notify with Marquee (click to dismiss) →
           </span>
         </Card>
       </div>
