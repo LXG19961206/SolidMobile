@@ -45,7 +45,7 @@ export function PhoneSimulator(props: PhoneSimulatorProps) {
       <div class={styles.screen}>
         <Show when={loading()}>
           <div class={styles.placeholder}>
-            <Loading size={32} color="var(--sc-color-primary, #1677ff)" text="Now Loading..." vertical />
+            <Loading type="dots" size={32} color="var(--sc-color-primary, #1677ff)" />
           </div>
         </Show>
         <iframe

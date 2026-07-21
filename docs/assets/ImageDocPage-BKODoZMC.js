@@ -1,0 +1,10 @@
+import{u as c,af as h,c as t,i as o,P as n,F as l,t as p,r as f,ag as w,ah as u}from"./index-BZJjIwxN.js";import{D as v}from"./ComponentDocLayout-DHBBsU7j.js";import{D as I}from"./DocLayout-BD6WG0fn.js";var D=p('<div style="padding:24px 32px;max-width:960px;margin:0 auto"><h1 style="font-size:1.75rem;font-weight:700;margin:0 0 4px">Image</h1><p style="font-size:0.9rem;color:#6b7280;margin:0 0 24px"></p><h2 style="font-size:1.1rem;font-weight:600;margin:24px 0 12px">Demos');f({"zh-CN":u,"en-US":w});const k=()=>{const e=c(),{propsTables:g}=h(),s=[{title:e("image.demo.basic"),code:`<Image src="./logo.jpg" width={100} height={100} fit="cover" radius={16} />
+<Image src="./photo.jpg" width={300} height={200} />`,desc:e("image.demoDesc.basic")},{title:e("image.demo.fit"),code:`<Image src="./demo-photo.jpg" width={100} height={100} fit="cover" />
+<Image src="./demo-photo.jpg" width={100} height={100} fit="contain" />
+<Image src="./demo-photo.jpg" width={100} height={100} fit="fill" />`,desc:e("image.demoDesc.fit")},{title:e("image.demo.shape"),code:`<Image src="./react-logo.png" width={60} height={60} radius={4} />
+<Image src="./react-logo.png" width={60} height={60} radius={12} />
+<Image src="./react-logo.png" width={60} height={60} round />`,desc:e("image.demoDesc.shape")},{title:e("image.demo.block"),code:'<Image src="./vue-logo.png" block fit="cover" radius={8} />',desc:e("image.demoDesc.block")},{title:e("image.demo.state"),code:`<Image src="./photo.jpg" width={200} height={150}
+  placeholder={<div>Loading...</div>} />
+<Image src="invalid.jpg" width={200} height={150}
+  fallback={<div>Load failed</div>} />`,desc:e("image.demoDesc.state")},{title:e("image.demo.preview"),code:`<Image src="./solid-logo.png" width={80} height={80} round preview />
+<Image src="./vue-logo.png" width={80} height={80} round preview />`,desc:e("image.demoDesc.preview")}];return t(I,{get children(){var i=D(),d=i.firstChild,a=d.nextSibling,r=a.nextSibling;return o(a,()=>e("image.intro")),o(i,t(n,{propsTables:g}),r),o(i,t(l,{each:s,children:m=>t(v,{demo:m})}),null),i}})};export{k as ImageDocPage};
