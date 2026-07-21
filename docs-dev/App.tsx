@@ -299,7 +299,22 @@ export function App() {
                   <button class="menu-btn" onClick={() => setMenuOpen(!menuOpen())}>☰</button>
                 </div>
               </Show>
-              <Suspense fallback={<div class="content-skeleton" />}>
+              <Suspense fallback={
+                <div class="content" classList={{ 'content-full': !showSidebar() }}>
+                  <div class="doc-loading">
+                    <div class="doc-loading-bar" style="width:35%" />
+                    <div class="doc-loading-bar" style="width:60%; height:1.5rem" />
+                    <div class="doc-loading-text" />
+                    <div class="doc-loading-text" />
+                    <div class="doc-loading-text" style="width:85%" />
+                    <div class="doc-loading-block" />
+                    <div class="doc-loading-text" />
+                    <div class="doc-loading-text" style="width:70%" />
+                    <div class="doc-loading-text" />
+                    <div class="doc-loading-block" style="height:8rem" />
+                  </div>
+                </div>
+              }>
                 <div class="content" classList={{ 'content-full': !showSidebar() }}>
                   {(() => {
                     // 显式依赖 locale / key，确保切换时重新进入 Suspense

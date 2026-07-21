@@ -395,43 +395,76 @@ html.dark .topbar-title {
   /* full-width without sidebar */
 }
 
-/* ── Content skeleton (Suspense fallback) ── */
-.content-skeleton {
-  flex: 1;
-  overflow: hidden;
-  background: #efefef;
-  position: relative;
+/* ── Doc loading skeleton ── */
+.doc-loading {
+  max-width: 900px;
+  margin: 1rem 1.5rem;
+  padding: 2rem;
 }
 
-.content-skeleton::after {
+.doc-loading-bar {
+  height: 1.1rem;
+  background: #e5e7eb;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.doc-loading-text {
+  height: 0.85rem;
+  background: #e5e7eb;
+  border-radius: 4px;
+  margin-bottom: 0.8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.doc-loading-block {
+  height: 5rem;
+  background: #e5e7eb;
+  border-radius: 8px;
+  margin: 1.2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* shimmer */
+.doc-loading-bar::after,
+.doc-loading-text::after,
+.doc-loading-block::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(0, 0, 0, 0.04) 40%,
-    rgba(0, 0, 0, 0.04) 60%,
+    rgba(255, 255, 255, 0.5) 40%,
+    rgba(255, 255, 255, 0.5) 60%,
     transparent 100%
   );
-  animation: sc-content-shimmer 1.6s ease-in-out infinite;
+  animation: sc-doc-shimmer 1.8s ease-in-out infinite;
 }
 
-html.dark .content-skeleton {
-  background: #15171a;
+html.dark .doc-loading-bar,
+html.dark .doc-loading-text,
+html.dark .doc-loading-block {
+  background: #2a2d33;
 }
 
-html.dark .content-skeleton::after {
+html.dark .doc-loading-bar::after,
+html.dark .doc-loading-text::after,
+html.dark .doc-loading-block::after {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.03) 40%,
-    rgba(255, 255, 255, 0.03) 60%,
+    rgba(255, 255, 255, 0.06) 40%,
+    rgba(255, 255, 255, 0.06) 60%,
     transparent 100%
   );
 }
 
-@keyframes sc-content-shimmer {
+@keyframes sc-doc-shimmer {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
