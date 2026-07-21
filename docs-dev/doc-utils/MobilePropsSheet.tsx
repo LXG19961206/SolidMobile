@@ -40,7 +40,7 @@ export function MobilePropsSheet(props: MobilePropsSheetProps) {
       </div>
 
       <ActionSheet open={open()} onClose={() => setOpen(false)}>
-        <div style={{ display: 'flex', 'flex-direction': 'column', height: '55vh' }}>
+        <div style={{ display: 'flex', 'flex-direction': 'column', height: '70vh' }}>
           {/* Top tabs */}
           <div style={{ display: 'flex', 'flex-shrink': 0, 'border-bottom': '1px solid var(--sc-color-border, #e5e7eb)' }}>
             <div onClick={() => { setTab('props'); setGroupIdx(0); }}
