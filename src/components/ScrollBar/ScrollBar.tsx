@@ -37,7 +37,10 @@ export const ScrollBar: Component<ScrollBarProps> = (rawProps) => {
         ${prefix()}::-webkit-scrollbar{width:${w()};height:${w()}}
         ${prefix()}::-webkit-scrollbar-track{background:${t()}}
         ${prefix()}::-webkit-scrollbar-thumb{background:${c()};border-radius:calc(${w()}/2)}
-        ${prefix()}::-webkit-scrollbar-button{display:none}
+        ${prefix()}::-webkit-scrollbar-button{display:none;width:0;height:0}
+        ${prefix()}::-webkit-scrollbar-button:start:decrement,
+        ${prefix()}::-webkit-scrollbar-button:end:increment{display:none}
+        ${prefix()}::-webkit-scrollbar-corner{background:transparent}
         html.dark ${prefix()}{scrollbar-color:#475569 transparent}
         html.dark ${prefix()}::-webkit-scrollbar-thumb{background:#475569}
       `}</style>
