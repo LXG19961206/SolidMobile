@@ -49,6 +49,11 @@
   cursor: pointer;
 }
 
+/* ── Closeable ── */
+.closeable {
+  padding-right: 2.5rem;
+}
+
 /* ── Close button ── */
 .closeBtn {
   position: absolute;
@@ -60,6 +65,8 @@
   cursor: pointer;
   opacity: 0.7;
   padding: 4px;
+  z-index: 1;
+  flex-shrink: 0;
 }
 .closeBtn:hover {
   opacity: 1;

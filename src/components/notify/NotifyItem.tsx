@@ -55,6 +55,7 @@ export const NotifyItem: Component<NotifyItemProps> = (props) => {
           props.position === 'bottom' && styles.bottom,
           !props.position && styles.top,
           props.onClick && styles.clickable,
+          props.closeable && styles.closeable,
           props.className,
         )}
         style={{
