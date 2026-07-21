@@ -12,7 +12,9 @@ registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 export const SidebarMobile = () => {
   const t = useT();
   const { propsTables, cssVarsTables } = useSidebarTableData();
-  const [active, setActive] = createSignal('form');
+  const [active1, setActive1] = createSignal('form');
+  const [active2, setActive2] = createSignal('form');
+  const [active3, setActive3] = createSignal('form');
 
   const items = [
     { key: 'form', title: 'Form' },
@@ -26,9 +28,9 @@ export const SidebarMobile = () => {
       <div style={{ padding: '12px', display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
         <Card title={t('sidebar.demo.basic')} subtitle={t('sidebar.demoDesc.basic')}>
           <div style={{ display: 'flex', height: '220px', 'border-radius': '8px', overflow: 'hidden', border: '1px solid var(--sc-color-border, #e5e7eb)' }}>
-            <Sidebar items={items} activeKey={active()} onChange={setActive} />
+            <Sidebar items={items} activeKey={active1()} onChange={setActive1} />
             <div style={{ flex: 1, padding: '16px', display: 'flex', 'align-items': 'center', 'justify-content': 'center', 'font-size': '0.9rem', color: '#6b7280' }}>
-              Selected: <strong style={{ 'margin-left': '6px', color: 'var(--sc-color-primary, #1677ff)' }}>{active()}</strong>
+              Selected: <strong style={{ 'margin-left': '6px', color: 'var(--sc-color-primary, #1677ff)' }}>{active1()}</strong>
             </div>
           </div>
         </Card>
@@ -37,14 +39,14 @@ export const SidebarMobile = () => {
           <div style={{ display: 'flex', height: '220px', 'border-radius': '8px', overflow: 'hidden', border: '1px solid var(--sc-color-border, #e5e7eb)' }}>
             <Sidebar
               items={[
-                { key: 'form', title: <><span style={{ color: '#1677ff' }}>📋</span> Form</>, icon: <span>📋</span> },
-                { key: 'item', title: <><span style={{ color: '#22c55e' }}>📝</span> FormItem</>, icon: <span>📝</span> },
-                { key: 'rule', title: <><span style={{ color: '#f59e0b' }}>✅</span> Rules</>, icon: <span>✅</span> },
+                { key: 'form', title: <><span style={{ color: '#1677ff', 'margin-right': '4px' }}>📋</span> Form</> },
+                { key: 'item', title: <><span style={{ color: '#22c55e', 'margin-right': '4px' }}>📝</span> FormItem</> },
+                { key: 'rule', title: <><span style={{ color: '#f59e0b', 'margin-right': '4px' }}>✅</span> Rules</> },
               ]}
-              activeKey={active()} onChange={setActive}
+              activeKey={active2()} onChange={setActive2}
             />
             <div style={{ flex: 1, padding: '16px', display: 'flex', 'align-items': 'center', 'justify-content': 'center', 'font-size': '0.9rem', color: '#6b7280' }}>
-              Selected: <strong style={{ 'margin-left': '6px', color: 'var(--sc-color-primary, #1677ff)' }}>{active()}</strong>
+              Selected: <strong style={{ 'margin-left': '6px', color: 'var(--sc-color-primary, #1677ff)' }}>{active2()}</strong>
             </div>
           </div>
         </Card>
@@ -57,10 +59,10 @@ export const SidebarMobile = () => {
                 { key: 'item', title: 'Item', icon: <span style={{ 'font-size': '1.1rem' }}>📝</span> },
                 { key: 'rule', title: 'Rules', icon: <span style={{ 'font-size': '1.1rem' }}>✅</span> },
               ]}
-              activeKey={active()} onChange={setActive}
+              activeKey={active3()} onChange={setActive3}
             />
             <div style={{ flex: 1, padding: '16px', display: 'flex', 'align-items': 'center', 'justify-content': 'center', 'font-size': '0.9rem', color: '#6b7280' }}>
-              Selected: <strong style={{ 'margin-left': '6px', color: 'var(--sc-color-primary, #1677ff)' }}>{active()}</strong>
+              Selected: <strong style={{ 'margin-left': '6px', color: 'var(--sc-color-primary, #1677ff)' }}>{active3()}</strong>
             </div>
           </div>
         </Card>
