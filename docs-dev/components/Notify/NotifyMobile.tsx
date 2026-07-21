@@ -51,6 +51,18 @@ export const NotifyMobile = () => {
             })}>JSX + Gradient</Button>
           </div>
         </Card>
+
+        <Card title="Marquee 跑马灯" subtitle="closeable + marquee + duration=0，手动关闭">
+          <div style={row}>
+            <Button size="sm" type="primary" onClick={() => Notify.show({
+              type: 'primary',
+              closeable: true,
+              marquee: true,
+              message: '🔥 Breaking — Stock hits all-time high! Earnings season kicks off with record profits.',
+              duration: 0,
+            })}>Marquee Notify</Button>
+          </div>
+        </Card>
       </div>
     </MobilePreview>
   );
