@@ -23,29 +23,6 @@ const swatch: Record<string, string> = {
   border: '1px solid rgba(0,0,0,0.08)',
 };
 
-const semanticGroups = [
-  {
-    title: '主色 Primary',
-    keys: ['primary', 'primaryHover', 'primaryActive', 'primaryDisabled', 'primaryPale'] as const,
-  },
-  {
-    title: '次色 Secondary',
-    keys: ['secondary', 'secondaryHover', 'secondaryActive', 'secondaryDisabled', 'secondaryPale'] as const,
-  },
-  {
-    title: '危险 Danger',
-    keys: ['danger', 'dangerHover', 'dangerActive', 'dangerDisabled', 'dangerPale'] as const,
-  },
-  {
-    title: '成功 Success',
-    keys: ['success', 'successHover', 'successDisabled', 'successPale'] as const,
-  },
-  {
-    title: '警告 Warning',
-    keys: ['warning', 'warningHover', 'warningDisabled', 'warningPale'] as const,
-  },
-];
-
 const surfaceKeys = [
   'background', 'backgroundSecondary',
   'text', 'textSecondary', 'textTertiary', 'textInverse',
@@ -55,6 +32,14 @@ const surfaceKeys = [
 
 export const DesignTokensMobile: Component<{ components?: ComponentEntry[]; onNavigate?: (key: string) => void }> = (props) => {
   const t = useT();
+
+  const semanticGroups = [
+    { title: t('dtokens.primary'), keys: ['primary', 'primaryHover', 'primaryActive', 'primaryDisabled', 'primaryPale'] as const },
+    { title: t('dtokens.secondary'), keys: ['secondary', 'secondaryHover', 'secondaryActive', 'secondaryDisabled', 'secondaryPale'] as const },
+    { title: t('dtokens.danger'), keys: ['danger', 'dangerHover', 'dangerActive', 'dangerDisabled', 'dangerPale'] as const },
+    { title: t('dtokens.success'), keys: ['success', 'successHover', 'successDisabled', 'successPale'] as const },
+    { title: t('dtokens.warning'), keys: ['warning', 'warningHover', 'warningDisabled', 'warningPale'] as const },
+  ];
   const config = useConfig();
   const light = () => config.colors.light;
   const dark = () => config.colors.dark;
@@ -95,7 +80,7 @@ export const DesignTokensMobile: Component<{ components?: ComponentEntry[]; onNa
 
       {/* 表面色 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>表面 & 文字色 Surface & Text</div>
+        <div style={CARD.title}>{t('dtokens.surface')}</div>
         <div style={CARD.body}>
           {surfaceKeys.map((k) =>
             renderColorRow(
@@ -109,7 +94,7 @@ export const DesignTokensMobile: Component<{ components?: ComponentEntry[]; onNa
 
       {/* 排版 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>排版 Typography</div>
+        <div style={CARD.title}>{t('dtokens.typographyTitle')}</div>
         <div style={CARD.body}>
           <div style={{ 'font-size': '0.85rem', color: 'var(--sc-doc-card-text, #374151)', 'margin-bottom': '8px' }}>
             <strong>字号 Font Size</strong>
@@ -138,7 +123,7 @@ export const DesignTokensMobile: Component<{ components?: ComponentEntry[]; onNa
 
       {/* 圆角 */}
       <div style={CARD.wrapper}>
-        <div style={CARD.title}>圆角 Border Radius</div>
+        <div style={CARD.title}>{t('dtokens.radiusTitle')}</div>
         <div style={CARD.body}>
           {(['sm', 'md', 'lg', 'full'] as const).map((r) => (
             <div style={{ display: 'flex', 'align-items': 'center', gap: '12px', padding: '8px 0' }}>
