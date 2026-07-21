@@ -13,6 +13,8 @@ export const SidebarDocPage = () => {
   const { propsTables, cssVarsTables } = useSidebarTableData();
   const demos: DemoCode[] = [
     { title: t('sidebar.demo.basic'), code: 'const items = [\n  { key: \'form\', title: \'Form\' },\n  { key: \'item\', title: \'FormItem\' },\n  { key: \'rule\', title: \'FormRule\' },\n];\nconst [active, setActive] = createSignal(\'form\');\n\n<Sidebar items={items} activeKey={active()} onChange={setActive} />', desc: t('sidebar.demoDesc.basic') },
+    { title: t('sidebar.demo.jsx'), code: '<Sidebar\n  items={[\n    { key: \'form\', title: <><span style={{color:"#1677ff"}}>📋</span> Form</> },\n    { key: \'item\', title: <><span style={{color:"#22c55e"}}>📝</span> FormItem</> },\n    { key: \'rule\', title: <><span style={{color:"#f59e0b"}}>✅</span> Rules</> },\n  ]}\n  activeKey={active()} onChange={setActive}\n/>', desc: t('sidebar.demoDesc.jsx') },
+    { title: t('sidebar.demo.compact'), code: '<Sidebar compact\n  items={[\n    { key: \'form\', title: \'Form\', icon: <span>📋</span> },\n    { key: \'item\', title: \'Item\', icon: <span>📝</span> },\n    { key: \'rule\', title: \'Rules\', icon: <span>✅</span> },\n  ]}\n  activeKey={active()} onChange={setActive}\n/>', desc: t('sidebar.demoDesc.compact') },
   ];
   return (<DocLayout><div style={{ padding: '24px 32px', 'max-width': '960px', margin: '0 auto' }}>
     <h1 style={{ 'font-size': '1.75rem', 'font-weight': 700 }}>Sidebar</h1>
