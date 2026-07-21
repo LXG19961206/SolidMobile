@@ -14,11 +14,13 @@ const styles = scopedStyle(rawStyles, 'sc-doc-mobile-preview');
    Mirrors the mobile drawer order exactly so prev/next always
    follows the sidebar directory, independent of locale or filtering. */
 const MOBILE_PAGE_KEYS: string[] = [
-  'home', 'eventbus', 'solidjs', 'about',
-  'design-tokens',
-  'button', 'icon', 'center', 'divider', 'layout', 'safearea',
+  'home',
+  'config', 'design-tokens', 'i18n', 'eventbus',
+  'solidjs', 'about',
+  'button', 'icon', 'center', 'divider', 'card', 'layout', 'safearea',
   'avatar', 'badge', 'tag', 'image', 'empty', 'lazyload', 'list',
-  'swipecell', 'swiper', 'pullrefresh',
+  'swipecell', 'swiper', 'ellipsis', 'tooltip', 'floatingball', 'backtop',
+  'pullrefresh', 'scrollbar',
   'tabs', 'tabbar', 'navbar', 'cell',
   'picker', 'calendar', 'cascader', 'datepicker', 'citypicker', 'timepicker',
   'toast', 'notify', 'dialog', 'overlay', 'actionsheet', 'loading',
@@ -108,8 +110,8 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
         const prevKey = idx > 0 ? MOBILE_PAGE_KEYS[idx - 1] : null;
         const nextKey = idx < MOBILE_PAGE_KEYS.length - 1 ? MOBILE_PAGE_KEYS[idx + 1] : null;
         return {
-          prev: prevKey ? { key: prevKey, name: prevKey } : null,
-          next: nextKey ? { key: nextKey, name: nextKey } : null,
+          prev: prevKey ? { key: prevKey, name: t('nav.' + prevKey) || prevKey } : null,
+          next: nextKey ? { key: nextKey, name: t('nav.' + nextKey) || nextKey } : null,
         };
       }
     }
@@ -122,8 +124,12 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
   });
 
   const navigateTo = (key: string) => {
-    // 优先用 props.onNavigate（页面传递的），否则用抽屉导航
-    props.onNavigate?.(key);
+    if (inIframe() && window.top) {
+      const sec = ['home','config','design-tokens','i18n','eventbus','solidjs','about'].includes(key) ? 'guide' : 'components';
+      window.top.location.hash = `#/${sec}/${key}`;
+    } else {
+      props.onNavigate?.(key);
+    }
   };
 
   const inIframe = () => typeof window !== 'undefined' && window.top !== window.self;
@@ -188,7 +194,7 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
               }}
             >
               <Icon name="arrow-left" size={14} />
-              {t('nav.' + nav().prev!.key) || nav().prev!.key}
+              {nav().prev!.name}
             </span>
           </Show>
           <Show when={nav().next}>
@@ -199,7 +205,7 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
                 cursor: 'pointer', display: 'inline-flex', 'align-items': 'center', gap: '4px',
               }}
             >
-              {t('nav.' + nav().next!.key) || nav().next!.key}
+              {nav().next!.name}
               <Icon name="arrow-right" size={14} />
             </span>
           </Show>
