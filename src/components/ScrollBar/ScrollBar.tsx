@@ -22,7 +22,7 @@ let instanceId = 0;
  */
 export const ScrollBar: Component<ScrollBarProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
-  const [local] = splitProps(props, ['width', 'color', 'trackColor', 'direction', 'children']);
+  const [local] = splitProps(props, ['width', 'color', 'trackColor', 'direction', 'height', 'children']);
 
   const cls = `sc-sb-${++instanceId}`;
   const w = createMemo(() => typeof local.width === 'number' ? `${local.width}px` : String(local.width));
@@ -45,6 +45,7 @@ export const ScrollBar: Component<ScrollBarProps> = (rawProps) => {
       if (!s.overflow || s.overflow === 'visible') s.overflow = overflow();
       if (!s.overflowX || s.overflowX === 'visible') s.overflowX = local.direction === 'horizontal' || local.direction === 'both' ? 'auto' : 'hidden';
       if (!s.overflowY || s.overflowY === 'visible') s.overflowY = local.direction === 'vertical' || local.direction === 'both' ? 'auto' : 'hidden';
+      if (local.height && !s.height) s.height = typeof local.height === 'number' ? `${local.height}px` : local.height;
     }
   });
 

@@ -11,6 +11,8 @@ export interface ScrollBarProps {
   trackColor?: string;
   /** 滚动方向，默认 vertical */
   direction?: ScrollDirection;
-  /** 内容（第一个子元素会被注入滚动条 class + overflow 样式） */
+  /** 容器高度，直接传给子元素 */
+  height?: string | number;
+  /** 内容（第一个子元素会被注入滚动条 class + overflow + height 样式） */
   children?: JSX.Element;
 }
