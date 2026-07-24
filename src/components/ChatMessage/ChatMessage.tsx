@@ -168,6 +168,17 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
   const dismissMenu = () => setMenuOpen(false);
   onCleanup(() => { if (longPressTimer) clearTimeout(longPressTimer); });
 
+  // Click outside → dismiss
+  const handleOutsideClick = (e: MouseEvent) => {
+    if (!menuOpen()) return;
+    const el = e.target as HTMLElement;
+    if (!el.closest(`.${styles.menu}`) && !el.closest(`.${styles.wrapper}`)) dismissMenu();
+  };
+  if (typeof document !== 'undefined') {
+    document.addEventListener('click', handleOutsideClick);
+    onCleanup(() => document.removeEventListener('click', handleOutsideClick));
+  }
+
   // Build menu content for Tooltip
   const menuContent = () => {
     if (!hasMenu()) return null;
