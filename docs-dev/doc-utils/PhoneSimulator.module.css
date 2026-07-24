@@ -18,10 +18,10 @@
   top: -1px;
   left: 50%;
   transform: translateX(-50%);
-  width: 150px;
-  height: 30px;
+  width: 160px;
+  height: 34px;
   background: #1a1a1a;
-  border-radius: 0 0 16px 16px;
+  border-radius: 0 0 18px 18px;
   z-index: 10;
 }
 
