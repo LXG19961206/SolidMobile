@@ -112,7 +112,7 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
         return (
           <div class={styles.videoBubble} onClick={local.onContentClick}>
             <Show when={local.src}>
-              <video src={local.src} />
+              <video src={local.src} controls playsinline />
             </Show>
             <div class={styles.videoOverlay}>
               <svg viewBox="0 0 36 36" fill="white"><polygon points="14,10 14,26 27,18" /></svg>
