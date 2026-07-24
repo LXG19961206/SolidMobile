@@ -227,25 +227,15 @@
   color: #ef4444;
 }
 
-/* ── Long press menu ── */
-.menuBackdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 998;
-}
+/* ── Long press menu items (positioning handled by Tooltip) ── */
 .menu {
-  position: absolute;
-  z-index: 999;
-  bottom: -4px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0,0,0,.12);
   padding: 4px 0;
-  min-width: 120px;
-  animation: sc-cm-menu-in .15s ease;
+  min-width: 110px;
+  overflow: hidden;
 }
-.menuLeft  { left: 0; }
-.menuRight { right: 0; }
 .menuItem {
   padding: 10px 18px;
   font-size: 0.82rem;
@@ -262,8 +252,3 @@ html.dark .menu {
 }
 html.dark .menuItem { color: #e2e8f0; }
 html.dark .menuItem:hover { background: #2a2d33; }
-
-@keyframes sc-cm-menu-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}

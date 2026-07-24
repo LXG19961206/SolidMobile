@@ -2,6 +2,7 @@ import { mergeProps, splitProps, Show, createSignal, onCleanup, type Component, 
 import type { ChatMessageProps } from './types';
 import { cn, scopedStyle } from '../../utils';
 import { Image } from '../Image';
+import { Tooltip } from '../Tooltip';
 import rawStyles from './ChatMessage.module.css';
 const styles = scopedStyle(rawStyles, 'sc-chat-message');
 
@@ -167,6 +168,21 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
   const dismissMenu = () => setMenuOpen(false);
   onCleanup(() => { if (longPressTimer) clearTimeout(longPressTimer); });
 
+  // Build menu content for Tooltip
+  const menuContent = () => {
+    if (!hasMenu()) return null;
+    if (Array.isArray(local.longPressMenu)) {
+      return (
+        <div class={styles.menu}>
+          {(local.longPressMenu as { title: string; action: () => void }[]).map(item => (
+            <div class={styles.menuItem} onClick={() => { item.action(); dismissMenu(); }}>{item.title}</div>
+          ))}
+        </div>
+      );
+    }
+    return local.longPressMenu as JSX.Element;
+  };
+
   return (
     <div
       class={cn(styles.wrapper, styles[local.position], local.class)}
@@ -213,7 +229,13 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
           </div>
         </Show>
 
-        {renderBubble()}
+        {hasMenu() ? (
+          <Tooltip trigger="manual" open={menuOpen()} placement="top" content={menuContent()}>
+            {renderBubble()}
+          </Tooltip>
+        ) : (
+          renderBubble()
+        )}
 
         <Show when={local.time || (isSelf() && local.status)}>
           <div class={styles.meta} classList={{ [styles.left!]: !isSelf(), [styles.right!]: isSelf() }}>
@@ -223,19 +245,6 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
         </Show>
       </div>
 
-      {/* ── Long press menu ── */}
-      <Show when={menuOpen() && hasMenu()}>
-        <div class={styles.menu} classList={{ [styles.menuLeft!]: !isSelf(), [styles.menuRight!]: isSelf() }}>
-          {Array.isArray(local.longPressMenu)
-            ? (local.longPressMenu as { title: string; action: () => void }[]).map(item => (
-                <div class={styles.menuItem} onClick={() => { item.action(); dismissMenu(); }}>
-                  {item.title}
-                </div>
-              ))
-            : (local.longPressMenu as JSX.Element)}
-        </div>
-        <div class={styles.menuBackdrop} onClick={dismissMenu} />
-      </Show>
     </div>
   );
 };
