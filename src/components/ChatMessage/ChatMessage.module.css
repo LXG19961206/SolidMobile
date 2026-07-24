@@ -22,8 +22,6 @@
   --sc-chat-avatar-font-size: var(--sc-font-size-xs, 0.75rem);
   --sc-chat-img-max-size: 220px;
   --sc-chat-video-max-width: 240px;
-  --sc-chat-video-overlay-bg: rgba(0,0,0,0.25);
-  --sc-chat-video-play-size: 36px;
   --sc-chat-file-gap: 10px;
   --sc-chat-file-icon-size: 36px;
   --sc-chat-file-icon-radius: var(--sc-border-radius-md, 8px);
@@ -182,22 +180,6 @@ html.dark {
   width: 100%;
   border-radius: inherit;
 }
-.videoOverlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--sc-chat-video-overlay-bg, rgba(0,0,0,0.25));
-  color: #fff;
-  cursor: pointer;
-}
-.videoOverlay svg {
-  width: var(--sc-chat-video-play-size, 36px);
-  height: var(--sc-chat-video-play-size, 36px);
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,.3));
-}
-
 /* ── File bubble ── */
 .fileBubble {
   position: relative;
