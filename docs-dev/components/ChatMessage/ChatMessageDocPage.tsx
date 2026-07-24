@@ -33,6 +33,11 @@ export const ChatMessageDocPage = () => {
       code: '// sending → sent → read progression\n<ChatMessage position="right" messageType="plainText"\n  content="Sending..." time="11:25" status="sending" />\n<ChatMessage position="right" messageType="plainText"\n  content="Sent ✓" time="11:26" status="sent" />\n<ChatMessage position="right" messageType="plainText"\n  content="Read ✓✓" time="11:30" status="read" />\n\n// failed with retry\n<ChatMessage position="right" messageType="plainText"\n  content="This message failed" time="11:32"\n  status="failed" onRetry={() => retry()} />',
       desc: t('chatMessage.demoDesc.statusesAndMeta'),
     },
+    {
+      title: 'Long Press Menu',
+      code: '<ChatMessage position="right" messageType="plainText"\n  content="Hold me for 500ms"\n  longPressMenu={[\n    { title: \'Copy\', action: () => copyText() },\n    { title: \'Recall\', action: () => recall() },\n    { title: \'Delete\', action: () => del() },\n  ]}\n  time="11:33" status="read" />\n\n{/* or custom JSX */}\n<ChatMessage position="left" messageType="plainText"\n  content="Custom menu example"\n  avatar="alice.jpg" name="Alice"\n  longPressMenu={\n    <div style="background:#fff;border-radius:10px;padding:8px;box-shadow:0 4px 12px rgba(0,0,0,.1)">\n      <button onClick={() => reply()}>💬 Reply</button>\n      <button onClick={() => emoji()}>😄 React</button>\n    </div>\n  }\n/>',
+      desc: 'Long press (500ms hold) pops up a menu. Use array mode for built-in styling, or pass JSX for full custom control.',
+    },
   ];
 
   return (

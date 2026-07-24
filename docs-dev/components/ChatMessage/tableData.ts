@@ -31,7 +31,7 @@ export function useChatMessageTableData() {
       { name: 'status', type: "'sending' | 'sent' | 'read' | 'failed'", def: '—', desc: 'chatMessage.props.status' },
       { name: 'onRetry', type: '() => void', def: '—', desc: 'chatMessage.props.onRetry' },
       { name: 'onAvatarClick', type: '() => void', def: '—', desc: 'chatMessage.props.onAvatarClick' },
-      { name: 'onLongPress', type: '() => void', def: '—', desc: 'chatMessage.props.onLongPress' },
+      { name: 'longPressMenu', type: "{ title: string; action: () => void }[] | JSX.Element", def: '—', desc: 'chatMessage.props.longPressMenu' },
       { name: 'onContentClick', type: '() => void', def: '—', desc: 'chatMessage.props.onContentClick' },
       { name: 'class', type: 'string', def: '—', desc: 'chatMessage.props.class' },
       { name: 'style', type: 'CSSProperties | string', def: '—', desc: 'chatMessage.props.style' },
