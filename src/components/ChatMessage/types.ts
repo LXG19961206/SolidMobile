@@ -47,10 +47,14 @@ export interface ChatMessageProps {
   borderRadius?: string;
 
   // ── 元信息 ──
-  /** 发送者名称（群聊） */
+  /** 发送者名称（群聊），headerSlot 会覆盖此字段 */
   name?: string;
-  /** 时间戳 */
+  /** 时间戳，footerSlot 会覆盖此字段 */
   time?: string;
+  /** 气泡上方自定义插槽，传了则替代 name */
+  headerSlot?: JSX.Element;
+  /** 气泡下方自定义插槽，传了则替代 time + status */
+  footerSlot?: JSX.Element;
   /** 发送状态 */
   status?: 'sending' | 'sent' | 'read' | 'failed';
   /** 状态图标位置：'meta' 在时间旁（默认），'bubble' 气泡内右下，'side' 气泡右侧 */
