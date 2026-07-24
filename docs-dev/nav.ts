@@ -28,6 +28,7 @@ export const GROUPS: MenuGroup[] = [
       { name: 'BackTop 回到顶部', key: 'backtop' },
       { name: 'Marquee 跑马灯', key: 'marquee' }, { name: 'Sidebar 侧边导航', key: 'sidebar' },
       { name: 'PullRefresh 下拉刷新', key: 'pullrefresh' },
+      { name: 'ChatMessage 聊天', key: 'chatmessage' },
     ],
   },
   {
