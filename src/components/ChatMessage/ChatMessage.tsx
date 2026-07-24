@@ -273,6 +273,7 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
         </Show>
 
         <div style={{ display: 'flex', 'align-items': 'flex-end', gap: '4px' }}>
+          <Show when={local.statusPosition === 'side' && isSelf()}>{statusIcon()}</Show>
           {hasMenu() && menuOpen() ? (
             <Tooltip trigger="manual" open={true} placement="top" content={menuContent()}>
               {renderBubble()}
@@ -280,13 +281,13 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
           ) : (
             renderBubble()
           )}
-          <Show when={local.statusPosition === 'side' && isSelf()}>{statusIcon()}</Show>
+          <Show when={local.statusPosition === 'side' && !isSelf()}>{statusIcon()}</Show>
         </div>
 
-        <Show when={local.time || (isSelf() && local.status && !isBubbleStatus())}>
+        <Show when={local.time || (isSelf() && local.status && local.statusPosition !== 'bubble' && local.statusPosition !== 'side')}>
           <div class={styles.meta} classList={{ [styles.left!]: !isSelf(), [styles.right!]: isSelf() }}>
             <span>{local.time}</span>
-            {!isBubbleStatus() && statusIcon()}
+            {local.statusPosition !== 'bubble' && local.statusPosition !== 'side' && statusIcon()}
           </div>
         </Show>
       </div>
