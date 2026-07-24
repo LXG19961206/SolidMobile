@@ -7,7 +7,7 @@ export function useChatMessageTableData() {
   const propsTables: TableSection[] = [{
     rows: [
       { name: 'position', type: "'left' | 'right'", def: '—', desc: 'chatMessage.props.position' },
-      { name: 'messageType', type: "'plainText' | 'richText' | 'image' | 'video' | 'file' | 'custom'", def: "'plainText'", desc: 'chatMessage.props.messageType' },
+      { name: 'messageType', type: "'plainText' | 'image' | 'video' | 'file' | 'custom'", def: "'plainText'", desc: 'chatMessage.props.messageType' },
       { name: 'content', type: 'string', def: '—', desc: 'chatMessage.props.content' },
       { name: 'src', type: 'string', def: '—', desc: 'chatMessage.props.src' },
       { name: 'fileName', type: 'string', def: '—', desc: 'chatMessage.props.fileName' },

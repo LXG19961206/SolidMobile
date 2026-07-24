@@ -13,30 +13,48 @@ export const ChatMessageDocPage = () => {
   const { propsTables } = useChatMessageTableData();
 
   const demos: DemoCode[] = [
+    // ── Content Types ──
     {
       title: t('chatMessage.demo.basic'),
-      code: '<ChatMessage position="left" messageType="plainText"\n  content="Hey! How are you doing?"\n  bgColor="#dbeafe"\n  avatar="alice.jpg" name="Alice" time="10:32" />\n\n<ChatMessage position="right" messageType="plainText"\n  content="I\'m good! Just finished the new chat UI component 🎉"\n  time="10:33" status="read" />',
+      code: '<ChatMessage position="left" messageType="plainText"\n  content="Hey! How are you doing? 👋"\n  bgColor="#dbeafe"\n  avatar="alice.jpg" name="Alice" time="10:30" />\n\n<ChatMessage position="right" messageType="plainText"\n  content="I\'m good! Just shipped a new component 🎉"\n  bgColor="#95ec69"\n  time="10:31" status="read" />',
       desc: t('chatMessage.demoDesc.basic'),
     },
     {
       title: t('chatMessage.demo.imageVideo'),
-      code: '<ChatMessage position="left" messageType="image"\n  src="photo.jpg" name="Bob" time="11:05"\n  avatar="bob.jpg" />\n\n<ChatMessage position="right" messageType="video"\n  src="clip.mp4" time="11:07" status="read" />',
+      code: '<ChatMessage position="left" messageType="image"\n  src="photo.jpg" name="Alice" avatar="alice.jpg"\n  time="10:32" />\n\n<ChatMessage position="right" messageType="video"\n  src="clip.mp4" time="10:32" status="read" />',
       desc: t('chatMessage.demoDesc.imageVideo'),
     },
     {
       title: t('chatMessage.demo.fileAndCustom'),
-      code: '<ChatMessage position="left" messageType="file"\n  fileName="design-spec.pdf" fileSize="2.4 MB"\n  iconMap={{ pdf: \'📄\', doc: \'📝\', \'*\': \'📎\' }}\n  name="Alice" time="11:20" avatar="alice.jpg" />\n\n<ChatMessage position="right" messageType="custom" time="11:22">\n  <div style="background:#f0fdf4;border:1px solid #22c55e;\n    border-radius:12px;padding:12px 16px">\n    ✅ Order confirmed! Tracking #SC-2024\n    <br/><small>Estimated delivery: Friday</small>\n  </div>\n</ChatMessage>',
+      code: '<ChatMessage position="left" messageType="file"\n  fileName="design-spec.pdf" fileSize="2.4 MB"\n  iconMap={{ pdf: \'📄\', \'*\': \'📎\' }}\n  name="Alice" time="10:33" avatar="alice.jpg" />\n\n<ChatMessage position="right" messageType="file"\n  fileName="report.xlsx" fileSize="1.8 MB"\n  progress={65} src="https://..."\n  time="10:34" status="sending" />\n\n<ChatMessage position="right" messageType="custom" time="10:35">\n  <div style="background:#f0fdf4;border:1px solid #22c55e;\n    border-radius:12px;padding:12px 16px">\n    ✅ Order confirmed!\n  </div>\n</ChatMessage>',
       desc: t('chatMessage.demoDesc.fileAndCustom'),
     },
+    // ── Status ──
     {
       title: t('chatMessage.demo.statusesAndMeta'),
-      code: '// sending → sent → read progression\n<ChatMessage position="right" messageType="plainText"\n  content="Sending..." time="11:25" status="sending" />\n<ChatMessage position="right" messageType="plainText"\n  content="Sent ✓" time="11:26" status="sent" />\n<ChatMessage position="right" messageType="plainText"\n  content="Read ✓" time="11:30" status="read" />\n\n// failed with retry\n<ChatMessage position="right" messageType="plainText"\n  content="This message failed" time="11:32"\n  status="failed" onRetry={() => retry()} />',
+      code: '<ChatMessage position="right" messageType="plainText"\n  content="Sent ✓" time="10:36" status="sent" />\n\n<ChatMessage position="right" messageType="plainText"\n  content="Read ✓" time="10:37" status="read" />\n\n<ChatMessage position="right" messageType="plainText"\n  content="Sending..." time="10:38" status="sending" />\n\n<ChatMessage position="right" messageType="plainText"\n  content="This message failed" time="10:39"\n  status="failed" onRetry={() => retry()} />',
       desc: t('chatMessage.demoDesc.statusesAndMeta'),
     },
     {
-      title: 'Long Press Menu',
-      code: '<ChatMessage position="right" messageType="plainText"\n  content="Hold me for 500ms"\n  longPressMenu={[\n    { title: \'Copy\', action: () => copyText() },\n    { title: \'Recall\', action: () => recall() },\n    { title: \'Delete\', action: () => del() },\n  ]}\n  time="11:33" status="read" />\n\n{/* or custom JSX */}\n<ChatMessage position="left" messageType="plainText"\n  content="Custom menu example"\n  avatar="alice.jpg" name="Alice"\n  longPressMenu={\n    <div style="background:#fff;border-radius:10px;padding:8px;box-shadow:0 4px 12px rgba(0,0,0,.1)">\n      <button onClick={() => reply()}>💬 Reply</button>\n      <button onClick={() => emoji()}>😄 React</button>\n    </div>\n  }\n/>',
-      desc: 'Long press (500ms hold) pops up a menu. Use array mode for built-in styling, or pass JSX for full custom control.',
+      title: 'Status Position',
+      code: '// meta (default): after time\n<ChatMessage position="right" content="status after time"\n  time="10:40" status="read" />\n\n// bubble: inside the bubble\n<ChatMessage position="right" content="status inside"\n  time="10:41" status="sending" statusPosition="bubble" />\n\n// side: between avatar and bubble\n<ChatMessage position="right" content="status next to bubble"\n  time="10:42" status="read" statusPosition="side" />',
+      desc: "Three positions for the status icon. 'meta' follows time (WhatsApp), 'bubble' floats inside (iMessage), 'side' sits between avatar & bubble (WeChat).",
+    },
+    // ── Long Press ──
+    {
+      title: 'Long Press: Array Menu',
+      code: '<ChatMessage position="left" messageType="plainText"\n  content="Long-press me (array menu)"\n  avatar="alice.jpg" name="Alice" time="10:43"\n  longPressMenu={[\n    { title: \'Copy\', action: () => copyText() },\n    { title: \'Recall\', action: () => recall() },\n    { title: \'Delete\', action: () => del() },\n  ]}\n/>',
+      desc: 'Array mode: each item gets built-in styling. 500ms hold triggers the popup menu.',
+    },
+    {
+      title: 'Long Press: Custom JSX',
+      code: '<ChatMessage position="right" messageType="plainText"\n  content="Custom JSX menu" time="10:45"\n  longPressMenu={\n    <div style="background:#fff;border-radius:10px;\n      padding:8px 12px;display:flex;gap:8px">\n      <span onClick={() => react("❤️")}>❤️</span>\n      <span onClick={() => react("👍")}>👍</span>\n      <span onClick={() => react("😂")}>😂</span>\n    </div>\n  }\n/>',
+      desc: 'Custom JSX mode: full control over menu layout. Still uses Tooltip for positioning.',
+    },
+    {
+      title: 'Long Press: Text Selection',
+      code: '<ChatMessage position="left" messageType="plainText"\n  content="Hold to select this text — no menu."\n  avatar="alice.jpg" name="Alice" time="10:46"\n  selectOnLongPress\n/>',
+      desc: "selectOnLongPress selects all bubble text on hold. Mutually exclusive with longPressMenu.",
     },
   ];
 

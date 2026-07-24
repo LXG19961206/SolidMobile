@@ -4,7 +4,7 @@ export interface ChatMessageProps {
   /** 气泡位置：left（对方） | right（自己） */
   position: 'left' | 'right';
   /** 消息类型 */
-  messageType: 'plainText' | 'richText' | 'image' | 'video' | 'file' | 'custom';
+  messageType: 'plainText' | 'image' | 'video' | 'file' | 'custom';
   /** 文本 / markdown 内容 */
   content?: string;
   /** 图片 / 视频 / 文件下载 URL */

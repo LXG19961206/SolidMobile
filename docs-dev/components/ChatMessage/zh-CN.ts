@@ -2,7 +2,7 @@ export default {
   chatMessage: {
     props: {
       position: "气泡位置：'left'（对方）| 'right'（自己）。",
-      messageType: '消息类型：plainText | richText | image | video | file | custom。',
+      messageType: '消息类型：plainText | image | video | file | custom。',
       content: '文本 / markdown 内容。',
       src: '图片、视频或文件 URL。',
       fileName: '文件显示名称，自动提取后缀匹配 iconMap。',

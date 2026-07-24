@@ -24,11 +24,6 @@ describe('ChatMessage', () => {
     expect(document.body.textContent).toContain('Hello world');
   });
 
-  it('renders richText content', () => {
-    render(() => <ChatMessage position="left" messageType="richText" content="<b>bold</b>" />);
-    expect(document.body.textContent).toContain('<b>bold</b>');
-  });
-
   it('renders image message', () => {
     const { container } = render(() => (
       <ChatMessage position="left" messageType="image" src="test.jpg" />

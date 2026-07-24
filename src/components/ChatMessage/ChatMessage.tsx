@@ -147,7 +147,6 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
       case 'custom':
         return local.children ?? <div class={styles.bubble}> </div>;
 
-      case 'richText':
       case 'plainText':
       default:
         return (
@@ -169,7 +168,7 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
   const hasMenu = () => local.longPressMenu != null;
   // selectOnLongPress only works WITHOUT longPressMenu (mutually exclusive)
   const canSelect = () => !hasMenu() && local.selectOnLongPress &&
-    (local.messageType === 'plainText' || local.messageType === 'richText');
+    local.messageType === 'plainText';
 
   const startLongPress = () => {
     if (menuOpen()) return;

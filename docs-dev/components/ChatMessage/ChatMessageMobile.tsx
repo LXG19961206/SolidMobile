@@ -20,37 +20,48 @@ export const ChatMessageMobile = () => {
     <MobilePreview title="ChatMessage">
       <MobilePropsSheet propsTables={propsTables} />
       <div style={{ padding: '10px 12px', display: 'flex', 'flex-direction': 'column', 'min-height': '100%' }}>
-        <ChatMessage position="left" messageType="plainText" bgColor="#dbeafe" content="Hey! Check out the new chat component 👋" avatar={A} name="Alice" time="10:32"
-          longPressMenu={[{ title: 'Copy', action: () => Toast.success('Copied!') }, { title: 'Reply', action: () => Toast.info('Reply') }]} />
-        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="Looks great! The tail pointer is a nice touch ✨" time="10:33" status="read"
-          longPressMenu={[{ title: 'Copy', action: () => Toast.success('Copied!') }, { title: 'Recall', action: () => Toast.info('Recalled') }, { title: 'Delete', action: () => Toast.success('Deleted') }]} />
-        <ChatMessage position="left" messageType="image" bgColor="#dbeafe" src={IMG} name="Alice" time="10:34" avatar={A} />
-        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="Can you send that design file?" time="10:35" status="read" />
-        <ChatMessage position="left" messageType="file" bgColor="#dbeafe" fileName="design-spec.pdf" fileSize="2.4 MB" src="./logo.jpg" name="Alice" time="10:36" avatar={A} />
-        <ChatMessage position="right" messageType="file" bgColor="#95ec69" fileName="report.xlsx" fileSize="1.8 MB" progress={65} src="https://example.com/report.xlsx" time="10:37" status="sending" onDownload={() => Toast.info('Custom download handler fired')} />
-        <ChatMessage position="right" messageType="custom" time="10:37" status="read">
+
+        {/* ── Content Types ── */}
+        <ChatMessage position="left" messageType="plainText" bgColor="#dbeafe" content="Hey! How are you doing? 👋" avatar={A} name="Alice" time="10:30" />
+        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="I'm good! Just shipped a new component 🎉" time="10:31" status="read" />
+        <ChatMessage position="left" messageType="image" bgColor="#dbeafe" src={IMG} name="Alice" time="10:32" avatar={A} />
+        <ChatMessage position="left" messageType="file" bgColor="#dbeafe" fileName="design-spec.pdf" fileSize="2.4 MB" src="./logo.jpg" name="Alice" time="10:33" avatar={A} />
+        <ChatMessage position="right" messageType="file" bgColor="#95ec69" fileName="report.xlsx" fileSize="1.8 MB" progress={65} src="https://example.com/report.xlsx" time="10:34" status="sending" onDownload={() => Toast.info('Custom download handler fired')} />
+        <ChatMessage position="right" messageType="custom" bgColor="#95ec69" time="10:35" status="read">
           <div style={{ background: '#f0fdf4', border: '1px solid #22c55e', 'border-radius': '12px', padding: '12px 16px', 'font-size': '0.85rem' }}>
             ✅ Order #SC-2024 confirmed<br /><small style="color:#6b7280">Delivery by Friday</small>
           </div>
         </ChatMessage>
-        <ChatMessage position="left" messageType="plainText" bgColor="#dbeafe" content="Perfect, thanks! 🙏" avatar={A} name="Alice" time="10:38" />
-        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="Sent ✓" time="10:39" status="sent" />
-        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="This one failed..." time="10:40" status="failed" onRetry={() => Toast.info('Retrying...')} />
-        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="Long-press me 👆" time="10:41" status="read"
-          longPressMenu={[{ title: 'Copy', action: () => { navigator.clipboard.writeText('Long-press me 👆').catch(() => {}); Toast.success('Copied'); } }, { title: 'Recall', action: () => Toast.info('Recalled') }, { title: 'Delete', action: () => Toast.success('Deleted') }]} />
-        <ChatMessage position="left" messageType="plainText" bgColor="#dbeafe"
-          content="Hold to select this text — no menu, just selection." avatar={A} name="Alice" time="10:42"
-          selectOnLongPress />
-        {/* Status positions */}
-        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="meta: status after time" time="10:43" status="read" />
-        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="bubble: status inside" time="10:44" status="sending" statusPosition="bubble" />
-        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="side: status next to bubble" time="10:45" status="read" statusPosition="side" />
-        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="Custom JSX menu" time="10:46"
+
+        {/* ── Status ── */}
+        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="Sent ✓" time="10:36" status="sent" />
+        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="Read ✓" time="10:37" status="read" />
+        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="Sending..." time="10:38" status="sending" />
+        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="This one failed..." time="10:39" status="failed" onRetry={() => Toast.info('Retrying...')} />
+
+        {/* ── Status Positions ── */}
+        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="status after time (default)" time="10:40" status="read" />
+        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="status inside bubble" time="10:41" status="sending" statusPosition="bubble" />
+        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="status next to bubble" time="10:42" status="read" statusPosition="side" />
+
+        {/* ── Long Press: Array Menu ── */}
+        <ChatMessage position="left" messageType="plainText" bgColor="#dbeafe" content="Long-press me (array menu)" avatar={A} name="Alice" time="10:43"
+          longPressMenu={[{ title: 'Copy', action: () => Toast.success('Copied!') }, { title: 'Reply', action: () => Toast.info('Reply') }]} />
+        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="Long-press me too 👆" time="10:44" status="read"
+          longPressMenu={[{ title: 'Copy', action: () => { navigator.clipboard.writeText('Long-press me too 👆').catch(() => {}); Toast.success('Copied'); } }, { title: 'Recall', action: () => Toast.info('Recalled') }, { title: 'Delete', action: () => Toast.success('Deleted') }]} />
+
+        {/* ── Long Press: Custom JSX ── */}
+        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="Custom JSX menu" time="10:45"
           longPressMenu={<div style="background:#fff;border-radius:10px;padding:8px 12px;box-shadow:0 4px 12px rgba(0,0,0,.12);display:flex;gap:8px">
             <span onClick={() => Toast.success('❤️')} style="cursor:pointer;font-size:1.2rem">❤️</span>
             <span onClick={() => Toast.success('👍')} style="cursor:pointer;font-size:1.2rem">👍</span>
             <span onClick={() => Toast.success('😂')} style="cursor:pointer;font-size:1.2rem">😂</span>
           </div>} />
+
+        {/* ── Long Press: Text Selection ── */}
+        <ChatMessage position="left" messageType="plainText" bgColor="#dbeafe"
+          content="Hold to select this text — no menu, just selection." avatar={A} name="Alice" time="10:46"
+          selectOnLongPress />
       </div>
       <ToastRenderer />
     </MobilePreview>

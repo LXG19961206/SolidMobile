@@ -2,7 +2,7 @@ export default {
   chatMessage: {
     props: {
       position: "Bubble position: 'left' (other) | 'right' (self).",
-      messageType: "Message type: plainText | richText | image | video | file | custom.",
+      messageType: "Message type: plainText | image | video | file | custom.",
       content: 'Text / markdown content.',
       src: "Image, video, or file URL.",
       fileName: 'File display name — extension auto-matched against iconMap.',
