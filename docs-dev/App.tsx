@@ -302,16 +302,22 @@ export function App() {
               <Suspense fallback={
                 <div class="content" classList={{ 'content-full': !showSidebar() }}>
                   <div class="doc-loading">
-                    <div class="doc-loading-bar" style="width:35%" />
-                    <div class="doc-loading-bar" style="width:60%; height:1.5rem" />
-                    <div class="doc-loading-text" />
-                    <div class="doc-loading-text" />
-                    <div class="doc-loading-text" style="width:85%" />
+                    {/* 标题 */}
+                    <div class="doc-loading-bar" style="width:40%" />
+                    {/* 副标题/描述 */}
+                    <div class="doc-loading-bar" style="width:65%; height:1.1rem" />
+                    {/* Props 表格区域 */}
+                    <div class="doc-loading-block" style="height:10rem" />
+                    {/* Demo 标题 */}
+                    <div class="doc-loading-text" style="width:30%" />
+                    {/* 代码块 */}
                     <div class="doc-loading-block" />
+                    <div class="doc-loading-text" style="width:28%" />
+                    <div class="doc-loading-block" />
+                    {/* 底部描述文本 */}
                     <div class="doc-loading-text" />
-                    <div class="doc-loading-text" style="width:70%" />
                     <div class="doc-loading-text" />
-                    <div class="doc-loading-block" style="height:8rem" />
+                    <div class="doc-loading-text" style="width:75%" />
                   </div>
                 </div>
               }>

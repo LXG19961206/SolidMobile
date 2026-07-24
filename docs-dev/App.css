@@ -398,33 +398,33 @@ html.dark .topbar-title {
 /* ── Doc loading skeleton ── */
 .doc-loading {
   max-width: 900px;
-  margin: 1rem 1.5rem;
-  padding: 2rem;
+  margin: 1.5rem 2rem;
+  padding: 2rem 2.5rem;
 }
 
 .doc-loading-bar {
-  height: 1.1rem;
+  height: 1.4rem;
   background: #e5e7eb;
-  border-radius: 6px;
-  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
   position: relative;
   overflow: hidden;
 }
 
 .doc-loading-text {
-  height: 0.85rem;
+  height: 1rem;
   background: #e5e7eb;
-  border-radius: 4px;
-  margin-bottom: 0.8rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
   position: relative;
   overflow: hidden;
 }
 
 .doc-loading-block {
-  height: 5rem;
+  height: 7rem;
   background: #e5e7eb;
-  border-radius: 8px;
-  margin: 1.2rem 0;
+  border-radius: 10px;
+  margin: 1.5rem 0 2rem;
   position: relative;
   overflow: hidden;
 }
