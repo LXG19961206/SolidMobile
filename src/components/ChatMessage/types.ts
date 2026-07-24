@@ -61,6 +61,8 @@ export interface ChatMessageProps {
   onAvatarClick?: () => void;
   /** 长按菜单：传数组用内置菜单，传 JSX 完全自定义。不传则不响应长按 */
   longPressMenu?: { title: string; action: () => void }[] | JSX.Element;
+  /** 长按时自动全选气泡内文本（仅 plainText / richText 生效） */
+  selectOnLongPress?: boolean;
   /** 点击图片 / 文件 */
   onContentClick?: () => void;
 

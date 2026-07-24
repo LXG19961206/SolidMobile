@@ -27,7 +27,7 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
     'avatar', 'avatarSize', 'avatarShape', 'showAvatar', 'avatarSlot',
     'tail', 'maxWidth', 'bgColor', 'borderRadius',
     'name', 'time', 'status',
-    'onRetry', 'onAvatarClick', 'longPressMenu', 'onContentClick',
+    'onRetry', 'onAvatarClick', 'longPressMenu', 'selectOnLongPress', 'onContentClick',
     'class', 'style',
   ]);
 
@@ -173,6 +173,17 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
 
   // Override Tooltip's dark bg when menu opens
   const openMenu = () => {
+    // Select all text on long press (plainText / richText only)
+    if (local.selectOnLongPress && (local.messageType === 'plainText' || local.messageType === 'richText')) {
+      const bubble = document.querySelector(`.${styles.bubble}`) as HTMLElement;
+      if (bubble) {
+        const range = document.createRange();
+        range.selectNodeContents(bubble);
+        const sel = window.getSelection();
+        sel?.removeAllRanges();
+        sel?.addRange(range);
+      }
+    }
     setMenuOpen(true);
     if (typeof document !== 'undefined') document.documentElement.style.setProperty('--sc-tooltip-bg', 'transparent');
   };

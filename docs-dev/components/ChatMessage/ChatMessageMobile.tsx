@@ -37,7 +37,8 @@ export const ChatMessageMobile = () => {
         <ChatMessage position="right" messageType="plainText" content="Sent ✓" time="10:39" status="sent" />
         <ChatMessage position="right" messageType="plainText" content="This one failed..." time="10:40" status="failed" onRetry={() => Toast.info('Retrying...')} />
         <ChatMessage position="right" messageType="plainText" content="Long-press me 👆" time="10:41" status="read"
-          longPressMenu={[{ title: 'Copy', action: () => Toast.success('Copied') }, { title: 'Recall', action: () => Toast.info('Recalled') }, { title: 'Delete', action: () => Toast.success('Deleted') }]} />
+          selectOnLongPress
+          longPressMenu={[{ title: 'Copy', action: () => { navigator.clipboard.writeText('Long-press me 👆').catch(() => {}); Toast.success('Copied'); } }, { title: 'Recall', action: () => Toast.info('Recalled') }, { title: 'Delete', action: () => Toast.success('Deleted') }]} />
       </div>
       <ToastRenderer />
     </MobilePreview>
