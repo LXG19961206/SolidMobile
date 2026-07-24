@@ -81,6 +81,12 @@
   background: var(--cm-bg, var(--sc-color-primary, #1677ff));
   color: #fff;
 }
+.bubble.right > :last-child {
+  /* status icon in bubble mode */
+  position: absolute;
+  right: 8px;
+  bottom: 4px;
+}
 
 /* ── Tail (CSS triangle) ── */
 .tail {

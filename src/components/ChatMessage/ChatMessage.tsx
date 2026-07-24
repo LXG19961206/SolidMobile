@@ -28,7 +28,7 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
     'avatar', 'avatarSize', 'avatarShape', 'showAvatar', 'avatarSlot',
     'tail', 'maxWidth', 'bgColor', 'borderRadius',
     'name', 'time', 'status',
-    'onRetry', 'onAvatarClick', 'longPressMenu', 'selectOnLongPress', 'statusIcon', 'onContentClick',
+    'onRetry', 'onAvatarClick', 'longPressMenu', 'selectOnLongPress', 'statusPosition', 'statusIcon', 'onContentClick',
     'class', 'style',
   ]);
 
@@ -68,13 +68,13 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
     return s;
   };
 
+  const isBubbleStatus = () => local.statusPosition === 'bubble';
+
   const statusIcon = () => {
     const st = local.status;
     if (!st || !isSelf()) return null;
-    // custom icon override
     const custom = local.statusIcon?.[st];
     if (custom) return custom;
-    // built-in defaults
     if (st === 'sending') return <Loading type="spinner" size={14} />;
     if (st === 'sent') return <span class={styles.statusSent}>✓</span>;
     if (st === 'read') return <span class={styles.statusRead} style="color:#22c55e">✓</span>;
@@ -153,6 +153,7 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
               <span class={styles.tail} classList={{ [styles.left!]: !isSelf(), [styles.right!]: isSelf() }} />
             </Show>
             {local.content ?? ''}
+            <Show when={isBubbleStatus() && isSelf()}>{statusIcon()}</Show>
           </div>
         );
     }
@@ -279,10 +280,10 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
           renderBubble()
         )}
 
-        <Show when={local.time || (isSelf() && local.status)}>
+        <Show when={local.time || (isSelf() && local.status && !isBubbleStatus())}>
           <div class={styles.meta} classList={{ [styles.left!]: !isSelf(), [styles.right!]: isSelf() }}>
             <span>{local.time}</span>
-            {statusIcon()}
+            {!isBubbleStatus() && statusIcon()}
           </div>
         </Show>
       </div>
