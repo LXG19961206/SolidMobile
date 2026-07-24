@@ -50,25 +50,17 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
   const displaySize = () => local.fileSize ?? (local.file ? formatSize(local.file.size) : undefined);
 
   const resolveFileIcon = (): JSX.Element => {
-    const map = local.iconMap;
     const f = local.file;
-    // no file object → show generic icon
     const name = displayName() || '';
-    const type = f?.type ?? '';
-    if (!map) {
-      const ext = fileExt(name);
-      return <span class={styles.fileIconLabel}>{ext.toUpperCase() || 'FILE'}</span>;
-    }
     const ext = fileExt(name);
-    const cat = mimeCategory(type);
-    const key = map[ext] ?? (cat ? map[cat] : undefined) ?? map['*'];
-    if (key == null) return <span class={styles.fileIconLabel}>{ext.toUpperCase() || 'FILE'}</span>;
-    if (typeof key === 'string') {
-      // icon name or emoji string
-      return <span class={styles.fileIconLabel}>{key}</span>;
+    const cat = mimeCategory(f?.type ?? '');
+    const map = local.iconMap || {};
+    const key = (ext ? map[ext] : undefined) ?? (cat ? map[cat] : undefined) ?? map['*'];
+    if (key != null) {
+      if (typeof key === 'string') return <span class={styles.fileIconLabel}>{key}</span>;
+      return key;
     }
-    // JSX element
-    return key;
+    return <span class={styles.fileIconLabel}>{ext || 'FILE'}</span>;
   };
 
   const avatarRadius = () =>
