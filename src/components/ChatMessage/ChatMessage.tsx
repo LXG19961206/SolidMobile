@@ -27,7 +27,7 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
     'avatar', 'avatarSize', 'avatarShape', 'showAvatar', 'avatarSlot',
     'tail', 'maxWidth', 'bgColor', 'borderRadius',
     'name', 'time', 'status',
-    'onRetry', 'onAvatarClick', 'longPressMenu', 'selectOnLongPress', 'onContentClick',
+    'onRetry', 'onAvatarClick', 'longPressMenu', 'selectOnLongPress', 'statusIcon', 'onContentClick',
     'class', 'style',
   ]);
 
@@ -70,6 +70,10 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
   const statusIcon = () => {
     const st = local.status;
     if (!st || !isSelf()) return null;
+    // custom icon override
+    const custom = local.statusIcon?.[st];
+    if (custom) return custom;
+    // built-in defaults
     if (st === 'sending') return <span class={styles.statusSending}>⏳</span>;
     if (st === 'sent') return <span class={styles.statusSent}>✓</span>;
     if (st === 'read') return <span class={styles.statusRead}>✓✓</span>;
