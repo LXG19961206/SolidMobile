@@ -21,7 +21,7 @@ export const ChatMessageDocPage = () => {
     },
     {
       title: t('chatMessage.demo.imageVideo'),
-      code: '<ChatMessage position="left" messageType="image"\n  src="photo.jpg" name="Alice" avatar="alice.jpg"\n  time="10:32" />\n\n<ChatMessage position="right" messageType="video"\n  src="clip.mp4" time="10:32" status="read" />',
+      code: '<ChatMessage position="left" messageType="image"\n  src="photo.jpg" name="Alice" avatar="alice.jpg"\n  time="10:32" />\n\n<ChatMessage position="right" messageType="video"\n  src="./demo-video.mp4" time="10:32" status="read" />',
       desc: t('chatMessage.demoDesc.imageVideo'),
     },
     {

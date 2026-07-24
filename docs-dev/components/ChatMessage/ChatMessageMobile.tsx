@@ -25,7 +25,7 @@ export const ChatMessageMobile = () => {
         <ChatMessage position="left" messageType="plainText" bgColor="#dbeafe" content="Hey! How are you doing? 👋" avatar={A} name="Alice" time="10:30" />
         <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="I'm good! Just shipped a new component 🎉" time="10:31" status="read" />
         <ChatMessage position="left" messageType="image" bgColor="#dbeafe" src={IMG} name="Alice" time="10:32" avatar={A} />
-        <ChatMessage position="right" messageType="video" bgColor="#95ec69" src="video.mp4" time="10:33" status="read" />
+        <ChatMessage position="right" messageType="video" bgColor="#95ec69" src="./demo-video.mp4" time="10:33" status="read" />
         <ChatMessage position="left" messageType="file" bgColor="#dbeafe" fileName="design-spec.pdf" fileSize="2.4 MB" name="Alice" time="10:34" avatar={A} />
         <ChatMessage position="right" messageType="file" bgColor="#95ec69" fileName="report.xlsx" fileSize="1.8 MB" progress={65} src="https://example.com/report.xlsx" time="10:34" status="sending" onDownload={() => Toast.info('Custom download handler fired')} />
         <ChatMessage position="right" messageType="custom" bgColor="#95ec69" time="10:35" status="read">
