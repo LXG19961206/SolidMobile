@@ -119,7 +119,7 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
             }}
           >
             <Show when={local.src}>
-              <video src={local.src} playsinline />
+              <video src={local.src} controls playsinline />
             </Show>
           </div>
         );
