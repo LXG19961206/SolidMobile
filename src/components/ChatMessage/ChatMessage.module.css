@@ -1,16 +1,12 @@
 /* ── Wrapper ── */
 .wrapper {
   display: flex;
-  gap: 8px;
-  padding: 6px 12px;
+  gap: var(--cm-gap, 8px);
+  padding: var(--cm-wrapper-padding, 6px 12px);
   align-items: flex-start;
 }
-.wrapper.left {
-  flex-direction: row;
-}
-.wrapper.right {
-  flex-direction: row-reverse;
-}
+.wrapper.left  { flex-direction: row; }
+.wrapper.right { flex-direction: row-reverse; }
 
 /* ── Avatar ── */
 .avatar {
@@ -29,9 +25,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #e5e7eb;
-  color: #9ca3af;
-  font-size: 0.75rem;
+  background: var(--cm-avatar-placeholder-bg, #e5e7eb);
+  color: var(--cm-muted-color, #9ca3af);
+  font-size: var(--cm-avatar-font-size, 0.75rem);
   font-weight: 600;
 }
 
@@ -45,25 +41,25 @@
 
 /* ── Name ── */
 .name {
-  font-size: 0.72rem;
-  color: #9ca3af;
+  font-size: var(--cm-name-size, 0.72rem);
+  color: var(--cm-muted-color, #9ca3af);
   margin-bottom: 3px;
   padding: 0 4px;
 }
-.name.left { text-align: left; }
+.name.left  { text-align: left; }
 .name.right { text-align: right; }
 
 /* ── Bubble ── */
 .bubble {
   position: relative;
-  padding: 10px 14px;
-  font-size: 0.9rem;
-  line-height: 1.55;
+  padding: var(--cm-bubble-padding, 10px 14px);
+  font-size: var(--cm-font-size, 0.9rem);
+  line-height: var(--cm-line-height, 1.55);
   word-break: break-word;
   overflow-wrap: break-word;
   border-radius: var(--cm-radius, 12px);
-  background: var(--cm-bg, #f3f4f6);
-  color: #1f2937;
+  background: var(--cm-bubble-bg, var(--cm-bg, #f3f4f6));
+  color: var(--cm-text-color, #1f2937);
   cursor: default;
   user-select: text;
 }
@@ -73,12 +69,12 @@
 }
 .bubble.left {
   border-bottom-left-radius: var(--cm-tail-radius, 2px);
-  background: var(--cm-bg, #e5e7eb);
+  background: var(--cm-bubble-bg-left, var(--cm-bubble-bg, var(--cm-bg, #e5e7eb)));
 }
 .bubble.right {
   border-bottom-right-radius: var(--cm-tail-radius, 2px);
-  background: var(--cm-bg, var(--sc-color-primary, #1677ff));
-  color: #fff;
+  background: var(--cm-bubble-bg-self, var(--cm-bg, var(--sc-color-primary, #1677ff)));
+  color: var(--cm-text-color-self, #fff);
 }
 .bubbleStatus {
   position: absolute;
@@ -90,28 +86,28 @@
   line-height: 0;
 }
 
-/* ── Tail (CSS triangle pointing toward avatar) ── */
+/* ── Tail ── */
 .tail {
   position: absolute;
-  top: 14px;
-  width: 6px;
-  height: 10px;
+  top: var(--cm-tail-offset, 14px);
+  width: var(--cm-tail-width, 6px);
+  height: var(--cm-tail-height, 10px);
   background: inherit;
 }
-.tail.left {
-  left: -5px;
+.tail.left  {
+  left: calc(-1 * var(--cm-tail-width, 6px) + 1px);
   clip-path: polygon(100% 0, 0 50%, 100% 100%);
 }
 .tail.right {
-  right: -5px;
+  right: calc(-1 * var(--cm-tail-width, 6px) + 1px);
   clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
 
 /* ── Image bubble ── */
 .imgBubble {
   display: block;
-  max-width: 220px;
-  max-height: 220px;
+  max-width: var(--cm-img-max-size, 220px);
+  max-height: var(--cm-img-max-size, 220px);
   border-radius: var(--cm-radius, 12px);
   cursor: pointer;
   overflow: hidden;
@@ -120,7 +116,7 @@
 /* ── Video bubble ── */
 .videoBubble {
   position: relative;
-  max-width: 240px;
+  max-width: var(--cm-video-max-width, 240px);
   border-radius: var(--cm-radius, 12px);
   cursor: pointer;
   overflow: hidden;
@@ -136,12 +132,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0,0,0,0.25);
+  background: var(--cm-video-overlay-bg, rgba(0,0,0,0.25));
   color: #fff;
 }
 .videoOverlay svg {
-  width: 36px;
-  height: 36px;
+  width: var(--cm-video-play-size, 36px);
+  height: var(--cm-video-play-size, 36px);
   filter: drop-shadow(0 1px 3px rgba(0,0,0,.3));
 }
 
@@ -150,39 +146,39 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
+  gap: var(--cm-file-gap, 10px);
+  padding: var(--cm-bubble-padding, 10px 14px);
   border-radius: var(--cm-radius, 12px);
-  background: var(--cm-bg, #f3f4f6);
-  color: #1f2937;
+  background: var(--cm-bubble-bg-left, var(--cm-bg, #e5e7eb));
+  color: var(--cm-text-color, #1f2937);
 }
 .fileIcon {
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
+  width: var(--cm-file-icon-size, 36px);
+  height: var(--cm-file-icon-size, 36px);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  background: #e5e7eb;
+  border-radius: var(--cm-file-icon-radius, 8px);
+  background: var(--cm-file-icon-bg, #e5e7eb);
   overflow: hidden;
 }
 .fileIconLabel {
-  font-size: 0.7rem;
+  font-size: var(--cm-file-icon-font-size, 0.7rem);
   font-weight: 700;
-  color: #6b7280;
+  color: var(--cm-file-icon-color, #6b7280);
   text-transform: uppercase;
   line-height: 1;
 }
 .fileName {
-  font-size: 0.82rem;
+  font-size: var(--cm-file-name-size, 0.82rem);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .fileSize {
-  font-size: 0.68rem;
-  color: #9ca3af;
+  font-size: var(--cm-file-size-size, 0.68rem);
+  color: var(--cm-muted-color, #9ca3af);
   margin-top: 2px;
 }
 .fileBubbleClickable {
@@ -195,8 +191,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: 3px;
-  background: rgba(0,0,0,0.08);
+  height: var(--cm-progress-height, 3px);
+  background: var(--cm-progress-track-bg, rgba(0,0,0,0.08));
   border-radius: 0 0 var(--cm-radius, 12px) var(--cm-radius, 12px);
   overflow: hidden;
 }
@@ -214,10 +210,10 @@
   gap: 6px;
   margin-top: 3px;
   padding: 0 4px;
-  font-size: 0.68rem;
-  color: #9ca3af;
+  font-size: var(--cm-meta-size, 0.68rem);
+  color: var(--cm-muted-color, #9ca3af);
 }
-.meta.left { justify-content: flex-start; }
+.meta.left  { justify-content: flex-start; }
 .meta.right { justify-content: flex-end; }
 
 /* ── Status ── */
@@ -226,46 +222,68 @@
   align-items: center;
   gap: 2px;
 }
-.statusFailed  { color: #ef4444; cursor: pointer; }
+.statusFailed  { color: var(--cm-status-failed-color, #ef4444); cursor: pointer; }
 .statusRead     { /* color set inline */ }
 .statusSent     { opacity: 0.7; }
 
-/* ── Error icon ── */
+/* ── Retry icon ── */
 .retryIcon {
   width: 14px;
   height: 14px;
   cursor: pointer;
-  color: #ef4444;
+  color: var(--cm-status-failed-color, #ef4444);
 }
 
-/* ── Long press menu items (positioning handled by Tooltip) ── */
+/* ── Long press menu ── */
 .menu {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0,0,0,.12);
+  background: var(--cm-menu-bg, #fff);
+  border-radius: var(--cm-menu-radius, 10px);
+  box-shadow: var(--cm-menu-shadow, 0 4px 16px rgba(0,0,0,.12));
   padding: 4px 0;
   min-width: 110px;
   overflow: hidden;
   pointer-events: auto;
 }
 .menuItem {
-  padding: 10px 18px;
-  font-size: 0.82rem;
+  padding: var(--cm-menu-item-padding, 10px 18px);
+  font-size: var(--cm-menu-item-size, 0.82rem);
   cursor: pointer;
   white-space: nowrap;
-  color: #1f2937;
+  color: var(--cm-text-color, #1f2937);
   transition: background .12s;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   outline: none;
 }
-.menuItem:hover { background: #f3f4f6; }
-.menuItem:active { background: #d1d5db; }
+.menuItem:hover  { background: var(--cm-menu-item-hover-bg, #f3f4f6); }
+.menuItem:active { background: var(--cm-menu-item-active-bg, #d1d5db); }
 
 html.dark .menu {
-  background: #24282d;
-  box-shadow: 0 4px 16px rgba(0,0,0,.35);
+  background: var(--cm-menu-bg-dark, #24282d);
+  box-shadow: var(--cm-menu-shadow-dark, 0 4px 16px rgba(0,0,0,.35));
 }
-html.dark .menuItem { color: #e2e8f0; }
-html.dark .menuItem:hover { background: #374151; }
-html.dark .menuItem:active { background: #4b5563; }
+html.dark .menuItem { color: var(--cm-text-color-dark, #e2e8f0); }
+html.dark .menuItem:hover  { background: var(--cm-menu-item-hover-bg-dark, #374151); }
+html.dark .menuItem:active { background: var(--cm-menu-item-active-bg-dark, #4b5563); }
+html.dark .avatarPlaceholder {
+  background: var(--cm-avatar-placeholder-bg-dark, #374151);
+  color: var(--cm-muted-color-dark, #9ca3af);
+}
+html.dark .bubble {
+  color: var(--cm-text-color-dark, #e2e8f0);
+}
+html.dark .fileBubble {
+  color: var(--cm-text-color-dark, #e2e8f0);
+}
+html.dark .fileName {
+  color: var(--cm-text-color-dark, #e2e8f0);
+}
+html.dark .name {
+  color: var(--cm-muted-color-dark, #9ca3af);
+}
+html.dark .meta {
+  color: var(--cm-muted-color-dark, #9ca3af);
+}
+html.dark .fileSize {
+  color: var(--cm-muted-color-dark, #9ca3af);
+}
