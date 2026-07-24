@@ -3,7 +3,7 @@
   display: flex;
   gap: 8px;
   padding: 6px 12px;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 .wrapper.left {
   flex-direction: row;
