@@ -1,18 +1,29 @@
 <p align="center">
-  <img src="./public/logo.jpg" alt="Solid Mobile" width="80" height="80" style="border-radius:12px" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./docs-dev/public/logo.jpg">
+    <img src="./docs-dev/public/logo.jpg" alt="Solid Mobile" width="80" height="80" style="border-radius: 12px" />
+  </picture>
 </p>
 
 <h1 align="center">Solid Mobile</h1>
 
 <p align="center">
-  A 50+ component mobile UI library for <a href="https://www.solidjs.com/">Solid.js</a> — theme system, i18n, dark mode, TypeScript.
+  A <b>53-component</b> mobile UI library for <a href="https://www.solidjs.com/">Solid.js</a><br/>
+  Theme system · i18n · Dark mode · Tree-shakable · Fully typed
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/solid-mobile"><img src="https://img.shields.io/npm/v/solid-mobile?color=1677ff" alt="npm version"></a>
-  <a href="https://www.npmjs.com/package/solid-mobile"><img src="https://img.shields.io/npm/dm/solid-mobile" alt="npm downloads"></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/npm/l/solid-mobile" alt="license"></a>
-  <a href="https://lxg19961206.github.io/SolidMobile/"><img src="https://img.shields.io/badge/docs-online-22c55e" alt="docs"></a>
+  <a href="https://www.npmjs.com/package/solid-mobile"><img src="https://img.shields.io/npm/v/solid-mobile?color=1677ff" alt="npm" /></a>
+  <a href="https://www.npmjs.com/package/solid-mobile"><img src="https://img.shields.io/npm/dm/solid-mobile" alt="downloads" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/npm/l/solid-mobile" alt="license" /></a>
+  <a href="https://www.npmjs.com/package/solid-mobile"><img src="https://img.shields.io/badge/TypeScript-5.0%2B-3178c6" alt="TypeScript" /></a>
+  <a href="https://www.npmjs.com/package/solid-mobile"><img src="https://img.shields.io/badge/Solid.js-1.x-4fa6d3" alt="SolidJS" /></a>
+</p>
+
+<p align="center">
+  🖥️ <a href="https://lxg19961206.github.io/SolidMobile/"><b>Live Docs →</b></a>
+  &nbsp;|&nbsp;
+  📱 <em>Docs site includes a phone simulator — preview every component on a virtual device</em>
 </p>
 
 ---
@@ -20,11 +31,7 @@
 ## Installation
 
 ```bash
-npm install solid-mobile
-# or
-pnpm add solid-mobile
-# or
-yarn add solid-mobile
+npm install solid-mobile   # or pnpm / yarn
 ```
 
 ## Quick Start
@@ -46,71 +53,58 @@ function App() {
 render(() => <App />, document.getElementById('root')!);
 ```
 
-## Why Solid Mobile?
-
-| | |
-|---|---|
-| 🧩 **50+ Components** | Everything you need: forms, nav, pickers, feedback, display |
-| 🎨 **Theme System** | CSS variables + ProviderConfig — light/dark, custom colors, auto-derived states |
-| 🌍 **i18n Built-in** | zh-CN & en-US out of the box. Add any language via `localeMessages` |
-| 📦 **Tree Shakable** | `import { Button, Input } from 'solid-mobile'` — only what you use gets bundled |
-| ⌨️ **TypeScript** | Full type definitions. Every prop, every callback |
-| ⚡ **Solid.js Reactive** | Zero virtual DOM overhead. Components are compiled to real DOM nodes |
-
 ## Components
 
 | Category | Components |
 |---|---|
-| **Basic** | Button, Icon, Center, Divider, Card, Layout (Row, Col), SafeArea, ScrollBar, Sidebar |
-| **Display** | Avatar, Badge, Tag, Image, Empty, Lazyload, List, SwipeCell, Swiper, Ellipsis, Tooltip, FloatingBall, BackTop, Marquee, PullRefresh |
-| **Navigation** | Tabs, TabBar, NavBar, Cell |
-| **Picker** | Picker, Calendar, Cascader, DatePicker, CityPicker, TimePicker, Select |
-| **Feedback** | Toast, Notify, Dialog, Overlay, ActionSheet, Loading |
-| **Form** | Form, Input, Textarea, Radio, Checkbox, Switch, Rate, Stepper, Slider, Upload |
+| **Basic** | `Button` `Icon` `Center` `Divider` `Card` `Layout` `SafeArea` `ScrollBar` |
+| **Display** | `Avatar` `Badge` `Tag` `Image` `Empty` `Lazyload` `List` `SwipeCell` `Swiper` `Ellipsis` `Tooltip` `FloatingBall` `BackTop` `Marquee` `PullRefresh` |
+| **Navigation** | `Tabs` `TabBar` `NavBar` `Cell` |
+| **Picker** | `Picker` `Calendar` `Cascader` `DatePicker` `CityPicker` `TimePicker` `Select` |
+| **Feedback** | `Toast` `Notify` `Dialog` `Overlay` `ActionSheet` `Loading` |
+| **Form** | `Form` `Input` `Textarea` `Radio` `Checkbox` `Switch` `Rate` `Stepper` `Slider` `Upload` |
 
-## Examples
+> Full API reference, interactive demos, and a **phone simulator** are available on the [documentation site →](https://lxg19961206.github.io/SolidMobile/).
+
+## Why Solid Mobile?
+
+| | |
+|---|---|
+| 📱 **Mobile-first** | Every component is designed for touch — tap-friendly sizes, safe area support, slide gestures |
+| 🎨 **Theme System** | CSS variables + `ProviderConfig`. Light/dark mode, custom brand colors, auto-derived hover/active states |
+| 🌍 **i18n Built-in** | zh-CN & en-US out of the box. Extensible via `localeMessages` |
+| 📦 **Tree-shakable** | `import { Button } from 'solid-mobile'` — only what you use lands in your bundle |
+| ⌨️ **Fully Typed** | Every prop, callback, and config option has TypeScript definitions |
+| ⚡ **Zero VDOM** | Built on Solid.js — components compile to real DOM, no diff overhead |
+
+## Usage Examples
 
 ### Theme & Dark Mode
 
 ```tsx
 import { ProviderConfig } from 'solid-mobile';
 
-// Custom brand color
-const theme = {
-  colors: { light: { primary: '#6366f1' } },
-};
+const theme = { colors: { light: { primary: '#6366f1' } } };
 
 <ProviderConfig config={theme}>
   <App />
 </ProviderConfig>
 
-// Dark mode via CSS class
+// Dark mode: toggle 'dark' class on <html>
 document.documentElement.classList.toggle('dark');
-
-// Or follow system preference
-<ProviderConfig config={{ darkMode: 'media' }}>
-  <App />
-</ProviderConfig>
 ```
 
 ### i18n
 
 ```tsx
-import { ProviderConfig, setGlobalLocale } from 'solid-mobile';
+import { setGlobalLocale } from 'solid-mobile';
 
-// Built-in: zh-CN, en-US
-setGlobalLocale('en-US');
+setGlobalLocale('en-US'); // 'zh-CN' | 'en-US' built-in
 
-// Add a custom language
-const messages = {
-  'ja-JP': {
-    component: {
-      picker: { cancel: 'キャンセル', confirm: '確認' },
-    },
-  },
-};
-
-<ProviderConfig config={{ locale: 'ja-JP' }} localeMessages={messages}>
+// Custom locale
+<ProviderConfig config={{ locale: 'ja-JP' }} localeMessages={{
+  'ja-JP': { component: { picker: { cancel: 'キャンセル', confirm: '確認' } } }
+}}>
   <App />
 </ProviderConfig>
 ```
@@ -120,7 +114,7 @@ const messages = {
 ```tsx
 import { setEventBusHandler } from 'solid-mobile';
 
-// Intercept all component events (telemetry, logging, analytics)
+// Intercept component events for analytics / logging
 setEventBusHandler(({ component, type, payload }) => {
   console.log(`[${component}] ${type}`, payload);
 });
@@ -132,12 +126,11 @@ setEventBusHandler(({ component, type, payload }) => {
 
 ```bash
 git clone https://github.com/LXG19961206/SolidMobile.git
-cd SolidMobile
-npm install
+cd SolidMobile && npm install
 
-npm run dev:docs    # Docs site at localhost:5173
-npm run build       # Build library → dist/
-npm run test        # Run 480+ tests
+npm run dev:docs    # Docs site at localhost:3000
+npm run build       # Library → dist/
+npm test            # 480+ tests
 ```
 
 ## License
