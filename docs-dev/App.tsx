@@ -19,48 +19,6 @@ import './App.css';
 
 import { MobilePreviewApp } from './MobilePreviewApp';
 
-/* ── Pixel-art "solid-mobile" wordmark (5×5 font, 4px blocks) ── */
-const P = 4; // px per block
-const G = 3; // px gap between letters
-const ROWS = 5;
-
-// Each glyph: 5 cols × 5 rows (m uses 6 cols). 1=filled.
-const FONT: Record<string, number[]> = {
-  s: [0,1,1,1,0, 1,1,0,0,0, 0,1,1,1,0, 0,0,0,1,1, 0,1,1,1,0],
-  o: [0,1,1,1,0, 1,0,0,0,1, 1,0,0,0,1, 1,0,0,0,1, 0,1,1,1,0],
-  l: [1,1,0,0,0, 1,1,0,0,0, 1,1,0,0,0, 1,1,0,0,0, 0,1,1,1,0],
-  i: [0,1,1,1,0, 0,0,1,0,0, 0,0,1,0,0, 0,0,1,0,0, 0,1,1,1,0],
-  d: [0,0,0,1,1, 0,1,1,1,1, 1,0,0,0,1, 1,0,0,0,1, 0,1,1,1,0],
-  '-':[0,0,0,0,0, 0,0,0,0,0, 1,1,1,1,1, 0,0,0,0,0, 0,0,0,0,0],
-  m: [1,1,0,1,1, 1,1,1,1,1, 1,0,1,0,1, 1,0,0,0,1, 1,0,0,0,1],
-  b: [1,1,0,0,0, 1,1,1,1,0, 1,0,0,0,1, 1,0,0,0,1, 0,1,1,1,0],
-  e: [0,1,1,1,0, 1,0,0,0,1, 1,1,1,1,0, 1,0,0,0,0, 0,1,1,1,0],
-};
-
-const WORD = 'solid-mobile';
-
-function PixelWord() {
-  const rects: any[] = [];
-  let ox = 0;
-  for (const ch of WORD) {
-    const glyph = FONT[ch];
-    if (!glyph) continue;
-    const cols = glyph.length / ROWS;
-    for (let r = 0; r < ROWS; r++)
-      for (let c = 0; c < cols; c++)
-        if (glyph[r * cols + c])
-          rects.push(<rect x={ox + c * P} y={r * P} width={P} height={P} rx={0.6} />);
-    ox += cols * P + G;
-  }
-  const w = ox - G;
-  const h = ROWS * P;
-  return (
-    <svg class="pixel-wordmark" viewBox={`0 0 ${w} ${h}`} fill="currentColor">
-      {rects}
-    </svg>
-  );
-}
-
 /* ── App ── */
 
 export function App() {
@@ -237,7 +195,7 @@ export function App() {
               <span class="top-nav-logo">
                 <img src="./logo.jpg" alt="solid-mobile" />
               </span>
-              <PixelWord />
+              <span class="top-nav-title">solid-mobile</span>
             </div>
             <nav class="top-nav-tabs">
               <For each={topTabs()}>

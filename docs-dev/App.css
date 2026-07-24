@@ -75,11 +75,15 @@ html.dark .top-nav {
   object-fit: cover;
 }
 
-.pixel-wordmark {
-  height: 17px;
-  width: auto;
-  flex-shrink: 0;
-  color: var(--sc-color-primary, #1677ff);
+.top-nav-title {
+  font-size: 0.88rem;
+  font-weight: 650;
+  color: #1f2937;
+  letter-spacing: -0.2px;
+}
+
+html.dark .top-nav-title {
+  color: #e2e8f0;
 }
 
 .top-nav-tabs {
