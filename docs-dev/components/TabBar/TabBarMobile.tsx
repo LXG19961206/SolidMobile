@@ -90,7 +90,7 @@ function seg(len: number, drawKey: string, active: boolean): Record<string, any>
   }
   return {
     'stroke-dasharray': len,
-    animation: `${drawKey} .6s ease forwards, tb-fill-in .25s ease .4s forwards`,
+    animation: `${drawKey} .8s cubic-bezier(.4,0,.2,1) forwards, tb-fill-in .35s ease .55s forwards`,
     fill: 'currentColor',
   };
 }
