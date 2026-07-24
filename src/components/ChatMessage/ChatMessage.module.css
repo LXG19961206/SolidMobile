@@ -1,3 +1,59 @@
+/* ── CSS Custom Properties ── */
+:root {
+  --sc-chat-gap: 8px;
+  --sc-chat-wrapper-padding: 6px 12px;
+  --sc-chat-max-width: 72%;
+  --sc-chat-bubble-padding: 10px 14px;
+  --sc-chat-font-size: 0.9rem;
+  --sc-chat-line-height: 1.55;
+  --sc-chat-radius: 12px;
+  --sc-chat-tail-radius: 2px;
+  --sc-chat-tail-width: 6px;
+  --sc-chat-tail-height: 10px;
+  --sc-chat-tail-offset: 14px;
+  --sc-chat-bubble-bg: #f3f4f6;
+  --sc-chat-bubble-bg-left: #e5e7eb;
+  --sc-chat-text-color: #1f2937;
+  --sc-chat-text-color-self: #fff;
+  --sc-chat-muted-color: #9ca3af;
+  --sc-chat-name-size: 0.72rem;
+  --sc-chat-meta-size: 0.68rem;
+  --sc-chat-avatar-placeholder-bg: #e5e7eb;
+  --sc-chat-avatar-font-size: 0.75rem;
+  --sc-chat-img-max-size: 220px;
+  --sc-chat-video-max-width: 240px;
+  --sc-chat-video-overlay-bg: rgba(0,0,0,0.25);
+  --sc-chat-video-play-size: 36px;
+  --sc-chat-file-gap: 10px;
+  --sc-chat-file-icon-size: 36px;
+  --sc-chat-file-icon-radius: 8px;
+  --sc-chat-file-icon-bg: #e5e7eb;
+  --sc-chat-file-icon-font-size: 0.7rem;
+  --sc-chat-file-icon-color: #6b7280;
+  --sc-chat-file-name-size: 0.82rem;
+  --sc-chat-file-size-size: 0.68rem;
+  --sc-chat-progress-height: 3px;
+  --sc-chat-progress-track-bg: rgba(0,0,0,0.08);
+  --sc-chat-status-failed-color: #ef4444;
+  --sc-chat-menu-bg: #fff;
+  --sc-chat-menu-radius: 10px;
+  --sc-chat-menu-shadow: 0 4px 16px rgba(0,0,0,.12);
+  --sc-chat-menu-item-padding: 10px 18px;
+  --sc-chat-menu-item-size: 0.82rem;
+  --sc-chat-menu-item-hover-bg: #f3f4f6;
+  --sc-chat-menu-item-active-bg: #d1d5db;
+}
+/* dark overrides */
+html.dark {
+  --sc-chat-menu-bg: #24282d;
+  --sc-chat-menu-shadow: 0 4px 16px rgba(0,0,0,.35);
+  --sc-chat-text-color: #e2e8f0;
+  --sc-chat-menu-item-hover-bg: #374151;
+  --sc-chat-menu-item-active-bg: #4b5563;
+  --sc-chat-avatar-placeholder-bg: #374151;
+  --sc-chat-muted-color: #9ca3af;
+}
+
 /* ── Wrapper ── */
 .wrapper {
   display: flex;
@@ -258,32 +314,3 @@
 .menuItem:hover  { background: var(--sc-chat-menu-item-hover-bg, #f3f4f6); }
 .menuItem:active { background: var(--sc-chat-menu-item-active-bg, #d1d5db); }
 
-html.dark .menu {
-  background: var(--sc-chat-menu-bg-dark, #24282d);
-  box-shadow: var(--sc-chat-menu-shadow-dark, 0 4px 16px rgba(0,0,0,.35));
-}
-html.dark .menuItem { color: var(--sc-chat-text-color-dark, #e2e8f0); }
-html.dark .menuItem:hover  { background: var(--sc-chat-menu-item-hover-bg-dark, #374151); }
-html.dark .menuItem:active { background: var(--sc-chat-menu-item-active-bg-dark, #4b5563); }
-html.dark .avatarPlaceholder {
-  background: var(--sc-chat-avatar-placeholder-bg-dark, #374151);
-  color: var(--sc-chat-muted-color-dark, #9ca3af);
-}
-html.dark .bubble {
-  color: var(--sc-chat-text-color-dark, #e2e8f0);
-}
-html.dark .fileBubble {
-  color: var(--sc-chat-text-color-dark, #e2e8f0);
-}
-html.dark .fileName {
-  color: var(--sc-chat-text-color-dark, #e2e8f0);
-}
-html.dark .name {
-  color: var(--sc-chat-muted-color-dark, #9ca3af);
-}
-html.dark .meta {
-  color: var(--sc-chat-muted-color-dark, #9ca3af);
-}
-html.dark .fileSize {
-  color: var(--sc-chat-muted-color-dark, #9ca3af);
-}
