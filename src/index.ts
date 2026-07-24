@@ -68,6 +68,9 @@ export type { NavBarProps } from './components/NavBar';
 export { Cell, CellGroup } from './components/Cell';
 export type { CellProps, CellGroupProps, CellSize } from './components/Cell';
 
+export { ChatMessage } from './components/ChatMessage';
+export type { ChatMessageProps } from './components/ChatMessage';
+
 export { Picker } from './components/Picker';
 export type { PickerProps, PickerOption } from './components/Picker';
 

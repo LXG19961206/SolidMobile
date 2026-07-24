@@ -1,0 +1,202 @@
+/* ── Wrapper ── */
+.wrapper {
+  display: flex;
+  gap: 8px;
+  padding: 6px 12px;
+  align-items: flex-end;
+}
+.wrapper.left {
+  flex-direction: row;
+}
+.wrapper.right {
+  flex-direction: row-reverse;
+}
+
+/* ── Avatar ── */
+.avatar {
+  flex-shrink: 0;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+}
+.avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.avatarPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e5e7eb;
+  color: #9ca3af;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* ── Body ── */
+.body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: var(--cm-max-width, 72%);
+}
+
+/* ── Name ── */
+.name {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  margin-bottom: 3px;
+  padding: 0 4px;
+}
+.name.left { text-align: left; }
+.name.right { text-align: right; }
+
+/* ── Bubble ── */
+.bubble {
+  position: relative;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  border-radius: var(--cm-radius, 12px);
+  background: var(--cm-bg, #f3f4f6);
+  color: #1f2937;
+  overflow: hidden;
+}
+.bubble.left {
+  border-bottom-left-radius: var(--cm-tail-radius, 2px);
+}
+.bubble.right {
+  border-bottom-right-radius: var(--cm-tail-radius, 2px);
+  background: var(--cm-bg, var(--sc-color-primary, #1677ff));
+  color: #fff;
+}
+
+/* ── Tail (CSS triangle) ── */
+.tail {
+  position: absolute;
+  bottom: 0;
+  width: 8px;
+  height: 8px;
+}
+.tail.left {
+  left: -4px;
+  /* clip-path triangle pointing left-down */
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  background: inherit;
+}
+.tail.right {
+  right: -4px;
+  clip-path: polygon(0 0, 0 100%, 100% 100%);
+  background: inherit;
+}
+
+/* ── Image bubble ── */
+.imgBubble {
+  display: block;
+  max-width: 220px;
+  max-height: 220px;
+  border-radius: var(--cm-radius, 12px);
+  cursor: pointer;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+/* ── Video bubble ── */
+.videoBubble {
+  position: relative;
+  max-width: 240px;
+  border-radius: var(--cm-radius, 12px);
+  cursor: pointer;
+  overflow: hidden;
+}
+.videoBubble video {
+  display: block;
+  width: 100%;
+  border-radius: inherit;
+}
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.25);
+  color: #fff;
+}
+.videoOverlay svg {
+  width: 36px;
+  height: 36px;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.3));
+}
+
+/* ── File bubble ── */
+.fileBubble {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--cm-radius, 12px);
+  background: var(--cm-bg, #f3f4f6);
+  color: #1f2937;
+  cursor: pointer;
+}
+.fileIcon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #e5e7eb;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #6b7280;
+}
+.fileName {
+  font-size: 0.82rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.fileSize {
+  font-size: 0.68rem;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+
+/* ── Meta ── */
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 3px;
+  padding: 0 4px;
+  font-size: 0.68rem;
+  color: #9ca3af;
+}
+.meta.left { justify-content: flex-start; }
+.meta.right { justify-content: flex-end; }
+
+/* ── Status ── */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.statusSending { opacity: 0.6; }
+.statusFailed  { color: #ef4444; cursor: pointer; }
+.statusRead     { color: var(--sc-color-primary, #1677ff); }
+.statusSent     { opacity: 0.7; }
+
+/* ── Error icon ── */
+.retryIcon {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  color: #ef4444;
+}
