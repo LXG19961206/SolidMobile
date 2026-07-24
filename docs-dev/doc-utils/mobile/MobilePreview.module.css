@@ -61,6 +61,10 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+/* 各组件 demo 区域自带 padding:12px，统一抹掉顶部 */
+.body > * {
+  padding-top: 0 !important;
+}
 .body::-webkit-scrollbar { display: none; }
 
 /* ── Shared overlay ── */
