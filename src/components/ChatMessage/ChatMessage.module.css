@@ -190,6 +190,7 @@ html.dark {
   justify-content: center;
   background: var(--sc-chat-video-overlay-bg, rgba(0,0,0,0.25));
   color: #fff;
+  pointer-events: none;
 }
 .videoOverlay svg {
   width: var(--sc-chat-video-play-size, 36px);
