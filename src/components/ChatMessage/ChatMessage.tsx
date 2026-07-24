@@ -75,6 +75,7 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
           <Show when={local.src} fallback={<div class={styles.bubble}>🖼️</div>}>
             <Image
               src={local.src!}
+              preview
               class={styles.imgBubble}
               onClick={local.onContentClick}
               style={local.borderRadius ? { 'border-radius': local.borderRadius } : undefined}
