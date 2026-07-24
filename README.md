@@ -13,6 +13,7 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/LXG19961206/SolidMobile/actions/workflows/ci.yml"><img src="https://github.com/LXG19961206/SolidMobile/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="https://www.npmjs.com/package/solid-mobile"><img src="https://img.shields.io/npm/v/solid-mobile?color=1677ff" alt="npm" /></a>
   <a href="https://www.npmjs.com/package/solid-mobile"><img src="https://img.shields.io/npm/dm/solid-mobile" alt="downloads" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/npm/l/solid-mobile" alt="license" /></a>
