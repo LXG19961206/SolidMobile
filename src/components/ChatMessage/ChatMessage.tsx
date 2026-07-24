@@ -80,8 +80,8 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
     if (st === 'read') return <span class={styles.statusRead} style="color:#22c55e">✓</span>;
     if (st === 'failed')
       return (
-        <span class={styles.statusFailed} onClick={local.onRetry} title="Retry">
-          <svg class={styles.retryIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span class={styles.statusFailed} onClick={local.onRetry} title="Tap to retry">
+          <svg class={styles.retryIcon} viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
         </span>
       );
     return null;
