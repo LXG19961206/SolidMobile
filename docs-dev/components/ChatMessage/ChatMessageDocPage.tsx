@@ -19,7 +19,7 @@ export const ChatMessageDocPage = () => {
   const demos: DemoCode[] = [
     {
       title: t('chatMessage.demo.basic'),
-      code: '<ChatMessage position="left" messageType="plainText"\n  content="Hey! How are you doing?"\n  avatar="alice.jpg" name="Alice" time="10:32" />\n\n<ChatMessage position="right" messageType="plainText"\n  content="I\'m good! Just finished the new chat UI component 🎉"\n  time="10:33" status="read" />',
+      code: '<ChatMessage position="left" messageType="plainText"\n  content="Hey! How are you doing?"\n  bgColor="#dbeafe"\n  avatar="alice.jpg" name="Alice" time="10:32" />\n\n<ChatMessage position="right" messageType="plainText"\n  content="I\'m good! Just finished the new chat UI component 🎉"\n  time="10:33" status="read" />',
       desc: t('chatMessage.demoDesc.basic'),
     },
     {
@@ -54,15 +54,15 @@ export const ChatMessageDocPage = () => {
         {/* ── Live Chat Demo ── */}
         <div style={{ background: '#f8f9fb', border: '1px solid #e5e7eb', 'border-radius': '12px', padding: '12px 0', 'margin-bottom': '24px', 'max-width': '520px' }}>
           {/* Basic text */}
-          <ChatMessage position="left" messageType="plainText" content={t('chatMessage.demoDesc.basic')?.toString() || 'Hey! How are you doing?'} avatar={AVATAR_ALICE} name="Alice" time="10:32" />
+          <ChatMessage position="left" messageType="plainText" bgColor="#dbeafe" content={t('chatMessage.demoDesc.basic')?.toString() || 'Hey! How are you doing?'} avatar={AVATAR_ALICE} name="Alice" time="10:32" />
           <ChatMessage position="right" messageType="plainText" content="I'm good! Just finished the new chat UI component 🎉" time="10:33" status="read" />
 
           {/* Image + Video */}
-          <ChatMessage position="left" messageType="image" src={IMG} name="Bob" time="11:05" avatar={AVATAR_ALICE} />
+          <ChatMessage position="left" messageType="image" bgColor="#dbeafe" src={IMG} name="Bob" time="11:05" avatar={AVATAR_ALICE} />
           <ChatMessage position="right" messageType="plainText" content="Nice photo! 📷" time="11:06" status="read" />
 
           {/* File + Custom */}
-          <ChatMessage position="left" messageType="file" fileName="design-spec.pdf" fileSize="2.4 MB" name="Alice" time="11:20" avatar={AVATAR_ALICE} />
+          <ChatMessage position="left" messageType="file" bgColor="#dbeafe" fileName="design-spec.pdf" fileSize="2.4 MB" name="Alice" time="11:20" avatar={AVATAR_ALICE} />
           <ChatMessage position="right" messageType="custom" time="11:22" status="read">
             <div style={{ background: '#f0fdf4', border: '1px solid #22c55e', 'border-radius': '12px', padding: '12px 16px', 'font-size': '0.85rem' }}>
               ✅ Order confirmed!<br /><small style="color:#6b7280">Tracking #SC-2024 · Friday delivery</small>
