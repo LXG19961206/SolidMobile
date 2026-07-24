@@ -193,7 +193,7 @@ export function App() {
           <header class="top-nav">
             <div class="top-nav-brand">
               <span class="top-nav-logo" aria-label="solid-mobile">
-                <svg viewBox="0 0 32 32" fill="none">
+                <svg viewBox="0 0 32 32" fill="none" style="background:transparent">
                   <defs>
                     <linearGradient id="lo-grad" x1="0" y1="0" x2="1" y2="1">
                       <stop offset="0%" stop-color="var(--sc-color-primary, #1677ff)" />
