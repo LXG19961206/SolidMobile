@@ -25,16 +25,14 @@ export interface ChatMessageProps {
   renderSlot?: JSX.Element;
 
   // ── 头像 ──
-  /** 头像图片 URL */
-  avatar?: string;
+  /** 头像：传 string 显示图片，传 JSX 直接渲染 */
+  avatar?: string | JSX.Element;
   /** 头像大小，默认 36 */
   avatarSize?: number;
   /** 头像形状，默认 circle */
   avatarShape?: 'circle' | 'rounded' | 'square';
   /** 是否显示头像，默认 true */
   showAvatar?: boolean;
-  /** 自定义头像插槽，会覆盖 avatar 图片 */
-  avatarSlot?: JSX.Element;
 
   // ── 样式 ──
   /** 气泡尖角，默认 true */

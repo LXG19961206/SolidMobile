@@ -25,7 +25,7 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
   const [local] = splitProps(props, [
     'position', 'messageType', 'content', 'src', 'fileName', 'fileSize',
     'iconMap', 'progress', 'onDownload', 'children', 'renderSlot',
-    'avatar', 'avatarSize', 'avatarShape', 'showAvatar', 'avatarSlot',
+    'avatar', 'avatarSize', 'avatarShape', 'showAvatar',
     'tail', 'maxWidth', 'bgColor', 'borderRadius',
     'name', 'time', 'status',
     'onRetry', 'onAvatarClick', 'longPressMenu', 'selectOnLongPress', 'statusPosition', 'statusIcon',
@@ -238,23 +238,15 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
           style={{ width: `${local.avatarSize}px`, height: `${local.avatarSize}px`, 'border-radius': avatarRadius() }}
           onClick={local.onAvatarClick}
         >
-          <Show
-            when={local.avatarSlot}
-            fallback={
-              <Show
-                when={local.avatar}
-                fallback={
-                  <div class={styles.avatarPlaceholder} style={{ width: '100%', height: '100%' }}>
-                    {isSelf() ? 'Me' : '?'}
-                  </div>
-                }
-              >
-                <img src={local.avatar} alt="avatar" />
-              </Show>
-            }
-          >
-            {local.avatarSlot}
-          </Show>
+          {typeof local.avatar === 'string' ? (
+            <img src={local.avatar} alt="avatar" />
+          ) : local.avatar ? (
+            local.avatar
+          ) : (
+            <div class={styles.avatarPlaceholder} style={{ width: '100%', height: '100%' }}>
+              {isSelf() ? 'Me' : '?'}
+            </div>
+          )}
         </div>
       </Show>
 
