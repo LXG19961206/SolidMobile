@@ -10,6 +10,7 @@ export function useChatMessageTableData() {
       { name: 'messageType', type: "'plainText' | 'richText' | 'image' | 'video' | 'file' | 'custom'", def: "'plainText'", desc: 'chatMessage.props.messageType' },
       { name: 'content', type: 'string', def: '—', desc: 'chatMessage.props.content' },
       { name: 'src', type: 'string', def: '—', desc: 'chatMessage.props.src' },
+      { name: 'file', type: 'File', def: '—', desc: 'chatMessage.props.file' },
       { name: 'fileName', type: 'string', def: '—', desc: 'chatMessage.props.fileName' },
       { name: 'fileSize', type: 'string', def: '—', desc: 'chatMessage.props.fileSize' },
       { name: 'children', type: 'JSX.Element', def: '—', desc: 'chatMessage.props.children' },

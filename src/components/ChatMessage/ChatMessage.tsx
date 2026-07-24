@@ -4,6 +4,12 @@ import { cn, scopedStyle } from '../../utils';
 import rawStyles from './ChatMessage.module.css';
 const styles = scopedStyle(rawStyles, 'sc-chat-message');
 
+function formatSize(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
 const defaultProps: Partial<ChatMessageProps> = {
   showAvatar: true,
   avatarSize: 36,
@@ -15,7 +21,7 @@ const defaultProps: Partial<ChatMessageProps> = {
 export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
   const [local] = splitProps(props, [
-    'position', 'messageType', 'content', 'src', 'fileName', 'fileSize',
+    'position', 'messageType', 'content', 'src', 'file', 'fileName', 'fileSize',
     'children', 'renderSlot',
     'avatar', 'avatarSize', 'avatarShape', 'showAvatar', 'avatarSlot',
     'tail', 'maxWidth', 'bgColor', 'borderRadius',
@@ -25,6 +31,9 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
   ]);
 
   const isSelf = () => local.position === 'right';
+
+  const displayName = () => local.fileName ?? local.file?.name;
+  const displaySize = () => local.fileSize ?? (local.file ? formatSize(local.file.size) : undefined);
 
   const avatarRadius = () =>
     local.avatarShape === 'circle' ? '50%' : local.avatarShape === 'rounded' ? '8px' : '4px';
@@ -90,8 +99,8 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
           <div class={styles.fileBubble} onClick={local.onContentClick}>
             <div class={styles.fileIcon}>FILE</div>
             <div style={{ 'min-width': 0, flex: 1 }}>
-              <div class={styles.fileName}>{local.fileName || 'Unknown file'}</div>
-              <Show when={local.fileSize}><div class={styles.fileSize}>{local.fileSize}</div></Show>
+              <div class={styles.fileName}>{displayName() || 'Unknown file'}</div>
+              <Show when={displaySize()}><div class={styles.fileSize}>{displaySize()}</div></Show>
             </div>
           </div>
         );

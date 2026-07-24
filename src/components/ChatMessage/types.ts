@@ -9,9 +9,11 @@ export interface ChatMessageProps {
   content?: string;
   /** 图片 / 视频 / 文件 URL */
   src?: string;
-  /** 文件名（file 类型） */
+  /** File 对象，自动提取 name / size，messageType=file 时优先 */
+  file?: File;
+  /** 文件名（可覆盖 file.name） */
   fileName?: string;
-  /** 文件大小（file 类型） */
+  /** 文件大小（可覆盖 file.size） */
   fileSize?: string;
   /** custom 类型插槽 */
   children?: JSX.Element;

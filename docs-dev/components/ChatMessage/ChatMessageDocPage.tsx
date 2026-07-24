@@ -29,7 +29,7 @@ export const ChatMessageDocPage = () => {
     },
     {
       title: t('chatMessage.demo.fileAndCustom'),
-      code: '<ChatMessage position="left" messageType="file"\n  fileName="design-spec.pdf" fileSize="2.4 MB"\n  name="Alice" time="11:20" avatar="alice.jpg" />\n\n<ChatMessage position="right" messageType="custom" time="11:22">\n  <div style="background:#f0fdf4;border:1px solid #22c55e;\n    border-radius:12px;padding:12px 16px">\n    ✅ Order confirmed! Tracking #SC-2024\n    <br/><small>Estimated delivery: Friday</small>\n  </div>\n</ChatMessage>',
+      code: '// file prop auto-extracts name + size\nconst pdf = new File([...], "design-spec.pdf",\n  { type: "application/pdf" });\n\n<ChatMessage position="left" messageType="file"\n  file={pdf}\n  name="Alice" time="11:20" avatar="alice.jpg" />\n\n<ChatMessage position="right" messageType="custom" time="11:22">\n  <div style="background:#f0fdf4;border:1px solid #22c55e;\n    border-radius:12px;padding:12px 16px">\n    ✅ Order confirmed! Tracking #SC-2024\n    <br/><small>Estimated delivery: Friday</small>\n  </div>\n</ChatMessage>',
       desc: t('chatMessage.demoDesc.fileAndCustom'),
     },
     {
@@ -62,7 +62,7 @@ export const ChatMessageDocPage = () => {
           <ChatMessage position="right" messageType="plainText" content="Nice photo! 📷" time="11:06" status="read" />
 
           {/* File + Custom */}
-          <ChatMessage position="left" messageType="file" bgColor="#dbeafe" fileName="design-spec.pdf" fileSize="2.4 MB" name="Alice" time="11:20" avatar={AVATAR_ALICE} />
+          <ChatMessage position="left" messageType="file" bgColor="#dbeafe" file={new File(['x'.repeat(2500000)], 'design-spec.pdf', { type: 'application/pdf' })} name="Alice" time="11:20" avatar={AVATAR_ALICE} />
           <ChatMessage position="right" messageType="custom" time="11:22" status="read">
             <div style={{ background: '#f0fdf4', border: '1px solid #22c55e', 'border-radius': '12px', padding: '12px 16px', 'font-size': '0.85rem' }}>
               ✅ Order confirmed!<br /><small style="color:#6b7280">Tracking #SC-2024 · Friday delivery</small>
