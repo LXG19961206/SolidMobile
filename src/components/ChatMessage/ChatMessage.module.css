@@ -180,6 +180,15 @@ html.dark {
   width: 100%;
   border-radius: inherit;
 }
+/* ── Video: hide controls until hover ── */
+.videoBubble video::-webkit-media-controls-panel {
+  opacity: 0;
+  transition: opacity .2s;
+}
+.videoBubble:hover video::-webkit-media-controls-panel {
+  opacity: 1;
+}
+
 /* ── File bubble ── */
 .fileBubble {
   position: relative;
