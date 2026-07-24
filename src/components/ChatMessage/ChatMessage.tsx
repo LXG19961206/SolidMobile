@@ -114,7 +114,11 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
             <Show when={local.src}>
               <video src={local.src} controls playsinline />
             </Show>
-            <div class={styles.videoOverlay}>
+            <div class={styles.videoOverlay} onClick={e => {
+              e.stopPropagation();
+              const vid = (e.currentTarget as HTMLElement).previousElementSibling as HTMLVideoElement;
+              vid?.play();
+            }}>
               <svg viewBox="0 0 36 36" fill="white"><polygon points="14,10 14,26 27,18" /></svg>
             </div>
           </div>
