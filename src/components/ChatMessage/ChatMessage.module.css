@@ -85,7 +85,8 @@
   /* status icon in bubble mode */
   position: absolute;
   right: 8px;
-  bottom: 4px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* ── Tail (CSS triangle) ── */
