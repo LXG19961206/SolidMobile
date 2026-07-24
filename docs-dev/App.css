@@ -76,7 +76,7 @@ html.dark .top-nav {
 }
 
 .pixel-wordmark {
-  height: 26px;
+  height: 20px;
   width: auto;
   flex-shrink: 0;
   color: var(--sc-color-primary, #1677ff);
