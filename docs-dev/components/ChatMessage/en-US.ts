@@ -54,7 +54,7 @@ export default {
       longPressCustom: 'Custom JSX mode: full control over menu layout. Uses Tooltip for positioning.',
       longPressSelect: 'selectOnLongPress selects all bubble text on hold. Mutually exclusive with longPressMenu.',
     },
-    intro: 'Chat bubble component supporting text, image, video, file, and custom content. Left/right alignment, avatar, tail pointer, and delivery status built in.',
+    intro: 'Chat bubble component supporting text, image, video, file, and custom content. Left/right alignment, avatar, tail pointer, and delivery status built in. This is an opinionated starting point, not a universal chat UI. For highly customized needs, use the underlying components to compose your own.',
     cssVars: {
       gap: 'Gap between avatar and body.',
       wrapperPadding: 'Outer wrapper padding.',

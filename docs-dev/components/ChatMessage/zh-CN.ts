@@ -54,7 +54,7 @@ export default {
       longPressCustom: '自定义 JSX 模式：完全控制菜单布局，复用 Tooltip 定位。',
       longPressSelect: 'selectOnLongPress 长按全选气泡文字。与 longPressMenu 互斥。',
     },
-    intro: '聊天气泡组件，支持文本、图片、视频、文件和自定义内容。内置左右布局、头像、尖角指针和发送状态。',
+    intro: '聊天气泡组件，支持文本、图片、视频、文件和自定义内容。内置左右布局、头像、尖角指针和发送状态。这是一个观点明确的起点，而非通用聊天 UI 方案。如需深度定制，建议基于底层组件自行组装。',
     cssVars: {
       gap: '头像与气泡主体的间距。',
       wrapperPadding: '外层 wrapper 内边距。',
