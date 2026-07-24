@@ -194,10 +194,20 @@ export function App() {
             <div class="top-nav-brand">
               <span class="top-nav-logo" aria-label="solid-mobile">
                 <svg viewBox="0 0 32 32" fill="none">
-                  {/* 3 stacked component cards — building-block motif */}
-                  <rect x="2" y="2" width="18" height="18" rx="4" fill="var(--sc-color-primary, #1677ff)" opacity="0.35" />
-                  <rect x="7" y="7" width="18" height="18" rx="4" fill="var(--sc-color-primary, #1677ff)" opacity="0.65" />
-                  <rect x="12" y="12" width="18" height="18" rx="4" fill="var(--sc-color-primary, #1677ff)" />
+                  <defs>
+                    <linearGradient id="lo-grad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="var(--sc-color-primary, #1677ff)" />
+                      <stop offset="100%" stop-color="color-mix(in srgb, var(--sc-color-primary, #1677ff) 70%, #6366f1)" />
+                    </linearGradient>
+                  </defs>
+                  {/* 3 stacked component cards */}
+                  <rect x="1" y="1" width="17" height="17" rx="4" fill="var(--sc-color-primary, #1677ff)" opacity="0.25" />
+                  <rect x="7" y="7" width="18" height="18" rx="5" fill="var(--sc-color-primary, #1677ff)" opacity="0.55" />
+                  <rect x="12" y="12" width="19" height="19" rx="5" fill="url(#lo-grad)" />
+                  {/* accent: small spark above the stack */}
+                  <circle cx="27" cy="9" r="2" fill="var(--sc-color-primary, #1677ff)" opacity="0.7" />
+                  {/* subtle shine line on top tile */}
+                  <line x1="16" y1="15" x2="25" y2="24" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.3" />
                 </svg>
               </span>
               <span class="top-nav-title">solid-mobile</span>
