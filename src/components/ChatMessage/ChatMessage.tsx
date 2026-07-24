@@ -143,7 +143,7 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
       case 'plainText':
       default:
         return (
-          <div class={styles.bubble} style={bubbleStyle()}>
+          <div class={styles.bubble} classList={{ [styles.bubbleInteractive!]: hasMenu() }} style={bubbleStyle()}>
             <Show when={local.tail}>
               <span class={styles.tail} classList={{ [styles.left!]: !isSelf(), [styles.right!]: isSelf() }} />
             </Show>

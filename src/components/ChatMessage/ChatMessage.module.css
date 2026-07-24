@@ -65,6 +65,12 @@
   background: var(--cm-bg, #f3f4f6);
   color: #1f2937;
   overflow: hidden;
+  cursor: default;
+  user-select: text;
+}
+.bubbleInteractive {
+  cursor: pointer;
+  user-select: none;
 }
 .bubble.left {
   border-bottom-left-radius: var(--cm-tail-radius, 2px);
