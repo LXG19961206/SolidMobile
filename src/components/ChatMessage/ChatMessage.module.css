@@ -83,9 +83,12 @@
 }
 .bubbleStatus {
   position: absolute;
-  right: 8px;
+  right: 6px;
   top: 50%;
   transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  line-height: 0;
 }
 
 /* ── Tail (CSS triangle) ── */
