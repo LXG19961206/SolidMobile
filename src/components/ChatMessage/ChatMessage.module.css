@@ -68,6 +68,7 @@
 }
 .bubble.left {
   border-bottom-left-radius: var(--cm-tail-radius, 2px);
+  background: var(--cm-bg, #e5e7eb);
 }
 .bubble.right {
   border-bottom-right-radius: var(--cm-tail-radius, 2px);
