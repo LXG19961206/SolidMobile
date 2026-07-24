@@ -61,7 +61,12 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
   const bubbleStyle = (): Record<string, any> => {
     const s: Record<string, any> = {};
     if (local.maxWidth) s['--cm-max-width'] = local.maxWidth;
-    if (local.bgColor) s['--cm-bg'] = local.bgColor;
+    if (local.bgColor) {
+      s['--cm-bubble-bg'] = local.bgColor;
+      s['--cm-bubble-bg-left'] = local.bgColor;
+      s['--cm-bubble-bg-self'] = local.bgColor;
+      s['--cm-bg'] = local.bgColor; // legacy
+    }
     if (local.borderRadius) {
       s['--cm-radius'] = local.borderRadius;
       s['--cm-tail-radius'] = local.borderRadius;
@@ -213,9 +218,9 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
               <div
                 class={styles.menuItem}
                 onClick={() => { item.action(); dismissMenu(); }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#f3f4f6'; }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--cm-menu-item-hover-bg, #f3f4f6)'; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = ''; }}
-                onMouseDown={e => { (e.currentTarget as HTMLElement).style.background = '#d1d5db'; }}
+                onMouseDown={e => { (e.currentTarget as HTMLElement).style.background = 'var(--cm-menu-item-active-bg, #d1d5db)'; }}
               >{item.title}</div>
             )}
           </For>
