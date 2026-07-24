@@ -240,8 +240,8 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
           </div>
         </Show>
 
-        {hasMenu() ? (
-          <Tooltip trigger="manual" open={menuOpen()} placement="top" content={menuContent()}>
+        {hasMenu() && menuOpen() ? (
+          <Tooltip trigger="manual" open={true} placement="top" content={menuContent()}>
             {renderBubble()}
           </Tooltip>
         ) : (
