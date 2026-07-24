@@ -29,7 +29,7 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
     'tail', 'maxWidth', 'bgColor', 'borderRadius',
     'name', 'time', 'status',
     'onRetry', 'onAvatarClick', 'longPressMenu', 'selectOnLongPress', 'statusPosition', 'statusIcon',
-    'headerSlot', 'footerSlot', 'onContentClick',
+    'header', 'footer', 'onContentClick',
     'class', 'style',
   ]);
 
@@ -267,10 +267,10 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
         onMouseUp={cancelLongPress}
         onMouseLeave={cancelLongPress}
       >
-        <Show when={local.headerSlot}>
-          {local.headerSlot}
+        <Show when={local.header}>
+          {local.header}
         </Show>
-        <Show when={!local.headerSlot && local.name}>
+        <Show when={!local.header && local.name}>
           <div class={styles.name} classList={{ [styles.left!]: !isSelf(), [styles.right!]: isSelf() }}>
             {local.name}
           </div>
@@ -288,10 +288,10 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
           <Show when={local.statusPosition === 'side' && !isSelf()}>{statusIcon()}</Show>
         </div>
 
-        <Show when={local.footerSlot}>
-          {local.footerSlot}
+        <Show when={local.footer}>
+          {local.footer}
         </Show>
-        <Show when={!local.footerSlot && (local.time || (isSelf() && local.status && local.statusPosition !== 'bubble' && local.statusPosition !== 'side'))}>
+        <Show when={!local.footer && (local.time || (isSelf() && local.status && local.statusPosition !== 'bubble' && local.statusPosition !== 'side'))}>
           <div class={styles.meta} classList={{ [styles.left!]: !isSelf(), [styles.right!]: isSelf() }}>
             <span>{local.time}</span>
             {local.statusPosition !== 'bubble' && local.statusPosition !== 'side' && statusIcon()}
