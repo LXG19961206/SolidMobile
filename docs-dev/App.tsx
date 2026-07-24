@@ -19,6 +19,53 @@ import './App.css';
 
 import { MobilePreviewApp } from './MobilePreviewApp';
 
+/* ── Pixel-art "SM" logo ── */
+const PX = 4; // pixel size
+const S_ROWS = [
+  [0,1,1,1,0],
+  [1,1,0,0,1],
+  [1,1,0,0,0],
+  [0,1,1,1,0],
+  [0,0,0,1,1],
+  [1,1,0,0,1],
+  [0,1,1,1,0],
+];
+const M_ROWS = [
+  [1,1,0,0,1,1],
+  [1,1,1,1,1,1],
+  [1,1,0,1,1,1],
+  [1,1,0,0,1,1],
+  [1,1,0,0,1,1],
+  [1,1,0,0,1,1],
+  [1,1,0,0,1,1],
+];
+const S_COLS = S_ROWS[0].length;
+const M_COLS = M_ROWS[0].length;
+const GAP = PX;
+
+function PixelLogo() {
+  const rects: any[] = [];
+  // S
+  for (let r = 0; r < S_ROWS.length; r++)
+    for (let c = 0; c < S_COLS; c++)
+      if (S_ROWS[r][c])
+        rects.push(<rect x={c * PX} y={r * PX} width={PX} height={PX} rx={0.6} />);
+  // M
+  const mOx = S_COLS * PX + GAP;
+  for (let r = 0; r < M_ROWS.length; r++)
+    for (let c = 0; c < M_COLS; c++)
+      if (M_ROWS[r][c])
+        rects.push(<rect x={mOx + c * PX} y={r * PX} width={PX} height={PX} rx={0.6} />);
+
+  const w = mOx + M_COLS * PX;
+  const h = S_ROWS.length * PX;
+  return (
+    <svg viewBox={`0 0 ${w} ${h}`} width={w} height={h} fill="var(--sc-color-primary, #1677ff)">
+      {rects}
+    </svg>
+  );
+}
+
 /* ── App ── */
 
 export function App() {
@@ -193,7 +240,7 @@ export function App() {
           <header class="top-nav">
             <div class="top-nav-brand">
               <span class="top-nav-logo">
-                <img src="./logo.jpg" alt="solid-mobile" />
+                <PixelLogo />
               </span>
               <span class="top-nav-title">solid-mobile</span>
               <span class="top-nav-badge">Components</span>
