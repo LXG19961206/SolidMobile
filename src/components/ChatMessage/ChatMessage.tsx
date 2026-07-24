@@ -24,7 +24,7 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
   const [local] = splitProps(props, [
     'position', 'messageType', 'content', 'src', 'fileName', 'fileSize',
-    'iconMap', 'progress', 'onDownload', 'children',
+    'iconMap', 'progress', 'children',
     'avatar', 'avatarSize', 'avatarShape', 'showAvatar',
     'tail', 'maxWidth', 'bgColor', 'borderRadius',
     'name', 'time', 'status',
@@ -128,12 +128,8 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
         return (
           <div
             class={styles.fileBubble}
-            classList={{ [styles.fileBubbleClickable!]: !!(local.src || local.onDownload) }}
-            onClick={() => {
-              if (local.onDownload) { local.onDownload(); return; }
-              if (local.src) window.open(local.src, '_blank');
-              local.onContentClick?.();
-            }}
+            classList={{ [styles.fileBubbleClickable!]: !!local.src }}
+            onClick={local.onContentClick}
           >
             <div class={styles.fileIcon}>{resolveFileIcon()}</div>
             <div style={{ 'min-width': 0, flex: 1 }}>

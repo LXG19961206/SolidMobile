@@ -497,6 +497,7 @@ export default {
         overview: 'Overview 概览',
         picker: 'Picker 滚轮选择',
         pullrefresh: 'PullRefresh 下拉刷新',
+        chatmessage: 'ChatMessage 聊天',
         radio: 'Radio 单选框',
         rate: 'Rate 评分',
         safearea: 'SafeArea 安全区域',

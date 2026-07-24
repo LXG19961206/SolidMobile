@@ -14,20 +14,22 @@ const IMG = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w
 
 export const ChatMessageMobile = () => {
   const t = useT();
-  const { propsTables } = useChatMessageTableData();
+  const { propsTables, cssVarsTables } = useChatMessageTableData();
 
   return (
     <MobilePreview title="ChatMessage">
-      <MobilePropsSheet propsTables={propsTables} />
+      <MobilePropsSheet propsTables={propsTables} cssVarsTables={cssVarsTables} />
       <div style={{ padding: '10px 12px', display: 'flex', 'flex-direction': 'column', 'min-height': '100%' }}>
 
         {/* ── Content Types ── */}
-        <ChatMessage position="left" messageType="plainText" bgColor="#dbeafe" content="Hey! How are you doing? 👋" avatar={A} name="Alice" time="10:30" />
+        <ChatMessage position="left" messageType="plainText" content="Hey! How are you doing? 👋" avatar={A} name="Alice" time="10:30" />
         <ChatMessage position="right" messageType="plainText"  content="I'm good! Just shipped a new component 🎉" time="10:31" status="read" />
-        <ChatMessage position="left" messageType="image" bgColor="#dbeafe" src={IMG} name="Alice" time="10:32" avatar={A} />
+        <ChatMessage position="left" messageType="image" src={IMG} name="Alice" time="10:32" avatar={A} />
         <ChatMessage position="right" messageType="video"  src="/demo-video.mp4" time="10:33" status="read" />
-        <ChatMessage position="left" messageType="file" bgColor="#dbeafe" fileName="design-spec.pdf" fileSize="2.4 MB" name="Alice" time="10:34" avatar={A} />
-        <ChatMessage position="right" messageType="file"  fileName="report.xlsx" fileSize="1.8 MB" progress={65} src="https://example.com/report.xlsx" time="10:34" status="sending" onDownload={() => Toast.info('Custom download handler fired')} />
+        <ChatMessage position="left" messageType="file" fileName="design-spec.pdf" fileSize="2.4 MB" name="Alice" time="10:34" avatar={A} />
+        <ChatMessage position="right" messageType="file"  fileName="report.xlsx" fileSize="1.8 MB" progress={65} time="10:34" status="sending" />
+        <ChatMessage position="left" messageType="file" fileName="contract.pdf" fileSize="1.2 MB" name="Alice" time="10:35" avatar={A}
+          onContentClick={() => { Toast.info('Starting download...'); setTimeout(() => Toast.success('contract.pdf downloaded'), 1500); }} />
         <ChatMessage position="right" messageType="custom"  time="10:35" status="read">
           <div style={{ background: '#f0fdf4', border: '1px solid #22c55e', 'border-radius': '12px', padding: '12px 16px', 'font-size': '0.85rem' }}>
             ✅ Order #SC-2024 confirmed<br /><small style="color:#6b7280">Delivery by Friday</small>
@@ -46,7 +48,7 @@ export const ChatMessageMobile = () => {
         <ChatMessage position="right" messageType="plainText"  content="status next to bubble" time="10:42" status="read" statusPosition="side" />
 
         {/* ── Long Press: Array Menu ── */}
-        <ChatMessage position="left" messageType="plainText" bgColor="#dbeafe" content="Long-press me (array menu)" avatar={A} name="Alice" time="10:43"
+        <ChatMessage position="left" messageType="plainText" content="Long-press me (array menu)" avatar={A} name="Alice" time="10:43"
           longPressMenu={[{ title: 'Copy', action: () => Toast.success('Copied!') }, { title: 'Reply', action: () => Toast.info('Reply') }]} />
         <ChatMessage position="right" messageType="plainText"  content="Long-press me too 👆" time="10:44" status="read"
           longPressMenu={[{ title: 'Copy', action: () => { navigator.clipboard.writeText('Long-press me too 👆').catch(() => {}); Toast.success('Copied'); } }, { title: 'Recall', action: () => Toast.info('Recalled') }, { title: 'Delete', action: () => Toast.success('Deleted') }]} />
@@ -60,7 +62,7 @@ export const ChatMessageMobile = () => {
           </div>} />
 
         {/* ── Long Press: Text Selection ── */}
-        <ChatMessage position="left" messageType="plainText" bgColor="#dbeafe"
+        <ChatMessage position="left" messageType="plainText"
           content="Hold to select this text — no menu, just selection." avatar={A} name="Alice" time="10:46"
           selectOnLongPress />
       </div>

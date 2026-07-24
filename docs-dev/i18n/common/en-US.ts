@@ -487,6 +487,7 @@ export default {
         overview: 'Overview',
         picker: 'Picker',
         pullrefresh: 'PullRefresh',
+        chatmessage: 'ChatMessage',
         radio: 'Radio',
         rate: 'Rate',
         safearea: 'SafeArea',

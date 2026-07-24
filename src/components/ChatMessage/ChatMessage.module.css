@@ -11,8 +11,8 @@
   --sc-chat-tail-width: 6px;
   --sc-chat-tail-height: 10px;
   --sc-chat-tail-offset: 14px;
-  --sc-chat-bubble-bg: #f3f4f6;
-  --sc-chat-bubble-bg-left: #e5e7eb;
+  --sc-chat-bubble-bg: #fff;
+  --sc-chat-bubble-bg-left: #fff;
   --sc-chat-text-color: var(--sc-color-text, #1f2937);
   --sc-chat-text-color-self: var(--sc-color-text-inverse, #fff);
   --sc-chat-muted-color: #9ca3af;
@@ -42,7 +42,7 @@
   --sc-chat-menu-item-active-bg: #d1d5db;
 }
 /* dark overrides */
-html.dark {
+:global(html.dark) {
   --sc-chat-bubble-bg: #2a2d33;
   --sc-chat-bubble-bg-left: #2a2d33;
   --sc-chat-text-color: #e2e8f0;
@@ -125,7 +125,11 @@ html.dark {
 }
 .bubble.left {
   border-bottom-left-radius: var(--sc-chat-tail-radius, 2px);
-  background: var(--sc-chat-bubble-bg-left, var(--sc-chat-bubble-bg, var(--sc-chat-bg, #e5e7eb)));
+  background: var(--sc-chat-bubble-bg-left, var(--sc-chat-bubble-bg, var(--sc-chat-bg, #fff)));
+  border: 1px solid var(--sc-color-border, #e5e7eb);
+}
+:global(html.dark) .bubble.left {
+  border-color: transparent;
 }
 .bubble.right {
   border-bottom-right-radius: var(--sc-chat-tail-radius, 2px);

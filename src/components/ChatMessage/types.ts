@@ -17,8 +17,6 @@ export interface ChatMessageProps {
   iconMap?: Record<string, string | JSX.Element>;
   /** 下载/上传进度 0-100，有值时气泡底部显示进度条 */
   progress?: number;
-  /** 自定义下载回调，不传则 window.open(src) */
-  onDownload?: () => void;
   /** custom 类型插槽 */
   children?: JSX.Element;
 
