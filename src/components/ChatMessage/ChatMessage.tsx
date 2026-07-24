@@ -49,17 +49,23 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
   const displayName = () => local.fileName ?? local.file?.name;
   const displaySize = () => local.fileSize ?? (local.file ? formatSize(local.file.size) : undefined);
 
+const DEFAULT_ICON_MAP: Record<string, string> = {
+  pdf: '📄', doc: '📝', docx: '📝', xls: '📊', xlsx: '📊', ppt: '📽️', pptx: '📽️',
+  zip: '📦', rar: '📦', '7z': '📦', gz: '📦',
+  mp4: '🎬', mov: '🎬', avi: '🎬', mkv: '🎬',
+  mp3: '🎵', wav: '🎵', flac: '🎵', aac: '🎵',
+  jpg: '🖼️', jpeg: '🖼️', png: '🖼️', gif: '🖼️', svg: '🖼️', webp: '🖼️',
+  image: '🖼️', video: '🎬', audio: '🎵', '*': '📎',
+};
+
   const resolveFileIcon = (): JSX.Element => {
     const f = local.file;
     const name = displayName() || '';
     const ext = fileExt(name);
     const cat = mimeCategory(f?.type ?? '');
-    const map = local.iconMap || {};
+    const map = { ...DEFAULT_ICON_MAP, ...local.iconMap };
     const key = (ext ? map[ext] : undefined) ?? (cat ? map[cat] : undefined) ?? map['*'];
-    if (key != null) {
-      if (typeof key === 'string') return <span class={styles.fileIconLabel}>{key}</span>;
-      return key;
-    }
+    if (key != null) return <span class={styles.fileIconLabel}>{key}</span>;
     return <span class={styles.fileIconLabel}>{ext || 'FILE'}</span>;
   };
 
