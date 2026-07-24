@@ -24,6 +24,8 @@ export default {
       name: '发送者名称（群聊场景）。',
       time: '时间戳字符串。',
       status: "发送状态：'sending' | 'sent' | 'read' | 'failed'。",
+      statusPosition: "图标位置：'meta'（时间旁）、'bubble'（气泡内）、'side'（头像与气泡之间）。",
+      statusIcon: "自定义状态图标：{ sent: <MyCheck />, read: <BlueCheck /> }，未覆盖的用内置默认。",
       onRetry: '发送失败时的重试回调。',
       onAvatarClick: '头像点击回调。',
       longPressMenu: "长按菜单：传 [{ title, action }] 数组使用内置样式，传 JSX 完全自定义。长按 500ms 弹出。",

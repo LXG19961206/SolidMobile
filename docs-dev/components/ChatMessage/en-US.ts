@@ -24,6 +24,8 @@ export default {
       name: 'Sender name for group chats.',
       time: 'Timestamp string.',
       status: "Delivery state: 'sending' | 'sent' | 'read' | 'failed'.",
+      statusPosition: "Icon position: 'meta' (after time), 'bubble' (inside bubble), 'side' (between avatar & bubble).",
+      statusIcon: "Custom status icons: { sent: <MyCheck />, read: <BlueCheck /> }. Falls back to built-in defaults.",
       onRetry: 'Retry callback when status=failed.',
       onAvatarClick: 'Avatar click callback.',
       longPressMenu: "Long-press menu: [{ title, action }] array or custom JSX. 500ms hold to open.",

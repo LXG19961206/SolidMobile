@@ -29,6 +29,8 @@ export function useChatMessageTableData() {
       { name: 'name', type: 'string', def: '—', desc: 'chatMessage.props.name' },
       { name: 'time', type: 'string', def: '—', desc: 'chatMessage.props.time' },
       { name: 'status', type: "'sending' | 'sent' | 'read' | 'failed'", def: '—', desc: 'chatMessage.props.status' },
+      { name: 'statusPosition', type: "'meta' | 'bubble' | 'side'", def: "'meta'", desc: 'chatMessage.props.statusPosition' },
+      { name: 'statusIcon', type: "Partial<Record<...>>", def: '—', desc: 'chatMessage.props.statusIcon' },
       { name: 'onRetry', type: '() => void', def: '—', desc: 'chatMessage.props.onRetry' },
       { name: 'onAvatarClick', type: '() => void', def: '—', desc: 'chatMessage.props.onAvatarClick' },
       { name: 'longPressMenu', type: "{ title: string; action: () => void }[] | JSX.Element", def: '—', desc: 'chatMessage.props.longPressMenu' },
