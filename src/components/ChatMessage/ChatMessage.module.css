@@ -251,6 +251,8 @@
   color: #1f2937;
   transition: background .12s;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 .menuItem:hover { background: #f3f4f6; }
 .menuItem:active { background: #d1d5db; }
