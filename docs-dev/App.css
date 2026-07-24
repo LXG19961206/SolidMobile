@@ -75,30 +75,11 @@ html.dark .top-nav {
   object-fit: cover;
 }
 
-.top-nav-title {
-  font-family: 'Courier New', 'Consolas', 'SF Mono', monospace;
-  font-size: 0.82rem;
-  font-weight: 700;
+.pixel-wordmark {
+  height: 20px;
+  width: auto;
+  flex-shrink: 0;
   color: var(--sc-color-primary, #1677ff);
-  letter-spacing: 1px;
-  position: relative;
-  /* blocky pixel shadow */
-  text-shadow:
-    1px 0 0 color-mix(in srgb, var(--sc-color-primary, #1677ff) 30%, transparent),
-    2px 0 0 color-mix(in srgb, var(--sc-color-primary, #1677ff) 18%, transparent),
-    0 1px 0 color-mix(in srgb, var(--sc-color-primary, #1677ff) 30%, transparent),
-    0 2px 0 color-mix(in srgb, var(--sc-color-primary, #1677ff) 18%, transparent),
-    1px 1px 0 color-mix(in srgb, var(--sc-color-primary, #1677ff) 15%, transparent);
-}
-
-html.dark .top-nav-title {
-  color: var(--sc-color-primary, #5195ff);
-  text-shadow:
-    1px 0 0 color-mix(in srgb, var(--sc-color-primary, #5195ff) 25%, transparent),
-    2px 0 0 color-mix(in srgb, var(--sc-color-primary, #5195ff) 14%, transparent),
-    0 1px 0 color-mix(in srgb, var(--sc-color-primary, #5195ff) 25%, transparent),
-    0 2px 0 color-mix(in srgb, var(--sc-color-primary, #5195ff) 14%, transparent),
-    1px 1px 0 color-mix(in srgb, var(--sc-color-primary, #5195ff) 12%, transparent);
 }
 
 .top-nav-badge {

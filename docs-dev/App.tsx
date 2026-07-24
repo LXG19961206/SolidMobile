@@ -19,6 +19,75 @@ import './App.css';
 
 import { MobilePreviewApp } from './MobilePreviewApp';
 
+/* ── Pixel-art "solid mobile" wordmark ── */
+function PixelWord() {
+  return (
+    <svg class="pixel-wordmark" viewBox="0 0 339 48" fill="currentColor">
+      {/* solid */}
+      <rect x="0" y="0" width="4" height="4" />
+      <rect x="4" y="0" width="4" height="4" />
+      <rect x="0" y="4" width="4" height="4" />
+      <rect x="0" y="8" width="4" height="4" />
+      <rect x="4" y="8" width="4" height="4" />
+      <rect x="4" y="12" width="4" height="4" />
+      <rect x="10" y="0" width="4" height="12" />
+      <rect x="16" y="0" width="4" height="4" />
+      <rect x="16" y="4" width="4" height="4" />
+      <rect x="16" y="8" width="4" height="4" />
+      <rect x="20" y="8" width="4" height="4" />
+      <rect x="16" y="12" width="4" height="4" />
+      <rect x="26" y="0" width="4" height="4" />
+      <rect x="30" y="0" width="4" height="4" />
+      <rect x="26" y="4" width="4" height="4" />
+      <rect x="26" y="8" width="4" height="4" />
+      <rect x="26" y="12" width="4" height="4" />
+      <rect x="30" y="12" width="4" height="4" />
+      <rect x="36" y="0" width="4" height="4" />
+      <rect x="36" y="4" width="4" height="4" />
+      <rect x="36" y="8" width="4" height="4" />
+      <rect x="36" y="12" width="4" height="4" />
+      {/* - (hyphen) */}
+      <rect x="48" y="4" width="4" height="4" />
+      <rect x="52" y="4" width="4" height="4" />
+      <rect x="48" y="8" width="4" height="4" />
+      <rect x="52" y="8" width="4" height="4" />
+      {/* mobile */}
+      <rect x="62" y="0" width="4" height="4" />
+      <rect x="62" y="4" width="4" height="4" />
+      <rect x="62" y="8" width="4" height="4" />
+      <rect x="62" y="12" width="4" height="4" />
+      <rect x="66" y="4" width="4" height="4" />
+      <rect x="66" y="8" width="4" height="4" />
+      <rect x="70" y="0" width="4" height="4" />
+      <rect x="70" y="4" width="4" height="4" />
+      <rect x="70" y="8" width="4" height="4" />
+      <rect x="70" y="12" width="4" height="4" />
+      <rect x="78" y="0" width="4" height="12" />
+      <rect x="84" y="0" width="4" height="4" />
+      <rect x="84" y="4" width="4" height="4" />
+      <rect x="84" y="8" width="4" height="4" />
+      <rect x="84" y="12" width="4" height="4" />
+      <rect x="88" y="12" width="4" height="4" />
+      <rect x="94" y="0" width="4" height="4" />
+      <rect x="98" y="0" width="4" height="4" />
+      <rect x="94" y="4" width="4" height="4" />
+      <rect x="94" y="8" width="4" height="4" />
+      <rect x="94" y="12" width="4" height="4" />
+      <rect x="98" y="12" width="4" height="4" />
+      <rect x="106" y="0" width="4" height="4" />
+      <rect x="106" y="4" width="4" height="4" />
+      <rect x="106" y="8" width="4" height="4" />
+      <rect x="106" y="12" width="4" height="4" />
+      <rect x="112" y="0" width="4" height="4" />
+      <rect x="116" y="0" width="4" height="4" />
+      <rect x="112" y="4" width="4" height="4" />
+      <rect x="112" y="8" width="4" height="4" />
+      <rect x="112" y="12" width="4" height="4" />
+      <rect x="116" y="12" width="4" height="4" />
+    </svg>
+  );
+}
+
 /* ── App ── */
 
 export function App() {
@@ -195,7 +264,7 @@ export function App() {
               <span class="top-nav-logo">
                 <img src="./logo.jpg" alt="solid-mobile" />
               </span>
-              <span class="top-nav-title" data-text="solid-mobile">solid-mobile</span>
+              <PixelWord />
               <span class="top-nav-badge">Components</span>
             </div>
             <nav class="top-nav-tabs">
