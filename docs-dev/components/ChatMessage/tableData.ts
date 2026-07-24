@@ -16,7 +16,6 @@ export function useChatMessageTableData() {
       { name: 'progress', type: 'number', def: '—', desc: 'chatMessage.props.progress' },
       { name: 'onDownload', type: '() => void', def: '—', desc: 'chatMessage.props.onDownload' },
       { name: 'children', type: 'JSX.Element', def: '—', desc: 'chatMessage.props.children' },
-      { name: 'renderSlot', type: 'JSX.Element', def: '—', desc: 'chatMessage.props.renderSlot' },
       { name: 'avatar', type: 'string | JSX.Element', def: '—', desc: 'chatMessage.props.avatar' },
       { name: 'avatarSize', type: 'number', def: '36', desc: 'chatMessage.props.avatarSize' },
       { name: 'avatarShape', type: "'circle' | 'rounded' | 'square'", def: "'circle'", desc: 'chatMessage.props.avatarShape' },

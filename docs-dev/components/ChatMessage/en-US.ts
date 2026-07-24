@@ -11,7 +11,6 @@ export default {
       progress: 'Download/upload progress 0-100. When set, a progress bar appears at the bottom of the bubble.',
       onDownload: 'Custom download callback. If not set, clicking the bubble calls window.open(src).',
       children: 'Custom slot content (messageType=custom).',
-      renderSlot: 'Full custom render override for all types.',
       avatar: 'Avatar: string URL for image, or JSX for custom element.',
       avatarSize: 'Avatar size in px, default 36.',
       avatarShape: "Avatar shape: 'circle' | 'rounded' | 'square'.",

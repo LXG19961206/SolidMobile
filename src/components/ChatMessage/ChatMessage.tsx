@@ -24,7 +24,7 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
   const [local] = splitProps(props, [
     'position', 'messageType', 'content', 'src', 'fileName', 'fileSize',
-    'iconMap', 'progress', 'onDownload', 'children', 'renderSlot',
+    'iconMap', 'progress', 'onDownload', 'children',
     'avatar', 'avatarSize', 'avatarShape', 'showAvatar',
     'tail', 'maxWidth', 'bgColor', 'borderRadius',
     'name', 'time', 'status',
@@ -89,9 +89,6 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
   };
 
   const renderBubble = () => {
-    // custom slot — highest priority
-    if (local.renderSlot) return local.renderSlot;
-
     switch (local.messageType) {
       case 'image':
         return (

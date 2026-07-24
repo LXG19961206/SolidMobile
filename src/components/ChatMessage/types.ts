@@ -21,8 +21,6 @@ export interface ChatMessageProps {
   onDownload?: () => void;
   /** custom 类型插槽 */
   children?: JSX.Element;
-  /** 自定义渲染（所有类型均可替代默认渲染） */
-  renderSlot?: JSX.Element;
 
   // ── 头像 ──
   /** 头像：传 string 显示图片，传 JSX 直接渲染 */

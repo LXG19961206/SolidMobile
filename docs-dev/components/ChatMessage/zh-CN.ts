@@ -11,7 +11,6 @@ export default {
       progress: '下载/上传进度 0-100，有值时气泡底部显示进度条。',
       onDownload: '自定义下载回调，不传则点击气泡执行 window.open(src)。',
       children: '自定义插槽（messageType=custom）。',
-      renderSlot: '完全自定义渲染，所有类型均可替代默认。',
       avatar: '头像：传 string 显示图片，传 JSX 直接渲染。',
       avatarSize: '头像大小（px），默认 36。',
       avatarShape: "头像形状：'circle' | 'rounded' | 'square'。",
