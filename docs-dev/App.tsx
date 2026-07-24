@@ -19,71 +19,45 @@ import './App.css';
 
 import { MobilePreviewApp } from './MobilePreviewApp';
 
-/* ── Pixel-art "solid mobile" wordmark ── */
+/* ── Pixel-art "solid-mobile" wordmark (5×7 font, 3px blocks) ── */
+const P = 3; // px per block
+const G = 2; // px gap between letters
+
+// Each char: 5 cols × 7 rows. 1=filled, 0=empty.
+// a few wide chars use 6 cols (m, w).
+const FONT: Record<string, number[]> = {
+  s: [0,1,1,1,0, 1,1,0,0,1, 1,1,0,0,0, 0,1,1,1,0, 0,0,0,1,1, 1,1,0,0,1, 0,1,1,1,0],
+  o: [0,1,1,1,0, 1,1,0,0,1, 1,1,0,0,1, 1,1,0,0,1, 1,1,0,0,1, 1,1,0,0,1, 0,1,1,1,0],
+  l: [1,1,0,0,0, 1,1,0,0,0, 1,1,0,0,0, 1,1,0,0,0, 1,1,0,0,0, 1,1,0,0,0, 0,1,1,1,0],
+  i: [0,1,1,1,0, 0,0,1,0,0, 0,0,1,0,0, 0,0,1,0,0, 0,0,1,0,0, 0,0,1,0,0, 0,1,1,1,0],
+  d: [0,0,0,1,1, 0,0,0,1,1, 0,1,1,1,0, 1,1,0,0,1, 1,1,0,0,1, 1,1,0,0,1, 0,1,1,1,0],
+  '-':[0,0,0,0,0, 0,0,0,0,0, 0,1,1,1,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+  m: [1,1,0,0,1,1, 1,1,1,1,1,1, 1,1,0,1,1,1, 1,1,0,0,1,1, 1,1,0,0,1,1, 1,1,0,0,1,1, 1,1,0,0,1,1],
+  b: [1,1,0,0,0, 1,1,0,0,0, 1,1,1,1,0, 1,1,0,0,1, 1,1,0,0,1, 1,1,0,0,1, 0,1,1,1,0],
+  e: [0,1,1,1,0, 1,1,0,0,1, 1,1,1,1,0, 1,1,0,0,0, 1,1,0,0,1, 1,1,0,0,1, 0,1,1,1,0],
+};
+
+const WORD = 'solid-mobile';
+const ROWS = 7;
+
 function PixelWord() {
+  const rects: any[] = [];
+  let ox = 0;
+  for (const ch of WORD) {
+    const glyph = FONT[ch];
+    if (!glyph) continue;
+    const cols = glyph.length / ROWS;
+    for (let r = 0; r < ROWS; r++)
+      for (let c = 0; c < cols; c++)
+        if (glyph[r * cols + c])
+          rects.push(<rect x={ox + c * P} y={r * P} width={P} height={P} rx={0.5} />);
+    ox += cols * P + G;
+  }
+  const w = ox - G;
+  const h = ROWS * P;
   return (
-    <svg class="pixel-wordmark" viewBox="0 0 120 16" fill="currentColor">
-      {/* solid */}
-      <rect x="0" y="0" width="4" height="4" />
-      <rect x="4" y="0" width="4" height="4" />
-      <rect x="0" y="4" width="4" height="4" />
-      <rect x="0" y="8" width="4" height="4" />
-      <rect x="4" y="8" width="4" height="4" />
-      <rect x="4" y="12" width="4" height="4" />
-      <rect x="10" y="0" width="4" height="12" />
-      <rect x="16" y="0" width="4" height="4" />
-      <rect x="16" y="4" width="4" height="4" />
-      <rect x="16" y="8" width="4" height="4" />
-      <rect x="20" y="8" width="4" height="4" />
-      <rect x="16" y="12" width="4" height="4" />
-      <rect x="26" y="0" width="4" height="4" />
-      <rect x="30" y="0" width="4" height="4" />
-      <rect x="26" y="4" width="4" height="4" />
-      <rect x="26" y="8" width="4" height="4" />
-      <rect x="26" y="12" width="4" height="4" />
-      <rect x="30" y="12" width="4" height="4" />
-      <rect x="36" y="0" width="4" height="4" />
-      <rect x="36" y="4" width="4" height="4" />
-      <rect x="36" y="8" width="4" height="4" />
-      <rect x="36" y="12" width="4" height="4" />
-      {/* - (hyphen) */}
-      <rect x="48" y="4" width="4" height="4" />
-      <rect x="52" y="4" width="4" height="4" />
-      <rect x="48" y="8" width="4" height="4" />
-      <rect x="52" y="8" width="4" height="4" />
-      {/* mobile */}
-      <rect x="62" y="0" width="4" height="4" />
-      <rect x="62" y="4" width="4" height="4" />
-      <rect x="62" y="8" width="4" height="4" />
-      <rect x="62" y="12" width="4" height="4" />
-      <rect x="66" y="4" width="4" height="4" />
-      <rect x="66" y="8" width="4" height="4" />
-      <rect x="70" y="0" width="4" height="4" />
-      <rect x="70" y="4" width="4" height="4" />
-      <rect x="70" y="8" width="4" height="4" />
-      <rect x="70" y="12" width="4" height="4" />
-      <rect x="78" y="0" width="4" height="12" />
-      <rect x="84" y="0" width="4" height="4" />
-      <rect x="84" y="4" width="4" height="4" />
-      <rect x="84" y="8" width="4" height="4" />
-      <rect x="84" y="12" width="4" height="4" />
-      <rect x="88" y="12" width="4" height="4" />
-      <rect x="94" y="0" width="4" height="4" />
-      <rect x="98" y="0" width="4" height="4" />
-      <rect x="94" y="4" width="4" height="4" />
-      <rect x="94" y="8" width="4" height="4" />
-      <rect x="94" y="12" width="4" height="4" />
-      <rect x="98" y="12" width="4" height="4" />
-      <rect x="106" y="0" width="4" height="4" />
-      <rect x="106" y="4" width="4" height="4" />
-      <rect x="106" y="8" width="4" height="4" />
-      <rect x="106" y="12" width="4" height="4" />
-      <rect x="112" y="0" width="4" height="4" />
-      <rect x="116" y="0" width="4" height="4" />
-      <rect x="112" y="4" width="4" height="4" />
-      <rect x="112" y="8" width="4" height="4" />
-      <rect x="112" y="12" width="4" height="4" />
-      <rect x="116" y="12" width="4" height="4" />
+    <svg class="pixel-wordmark" viewBox={`0 0 ${w} ${h}`} fill="currentColor">
+      {rects}
     </svg>
   );
 }
