@@ -6,6 +6,7 @@ export default {
       content: 'Text / markdown content.',
       src: "Image, video, or file URL.",
       file: 'JS File object — auto-extracts name and size.',
+      iconMap: "File icon map: { pdf: '📄', doc: <Icon />, image: '🖼️', '*': '📎' }. Matches ext → MIME category → '*'. Falls back to uppercased extension label.",
       fileName: 'Display name override (defaults to file.name).',
       fileSize: 'Display size override (defaults to file.size, auto-formatted).',
       children: 'Custom slot content (messageType=custom).',

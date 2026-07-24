@@ -11,6 +11,7 @@ export function useChatMessageTableData() {
       { name: 'content', type: 'string', def: '—', desc: 'chatMessage.props.content' },
       { name: 'src', type: 'string', def: '—', desc: 'chatMessage.props.src' },
       { name: 'file', type: 'File', def: '—', desc: 'chatMessage.props.file' },
+      { name: 'iconMap', type: "Record<string, string | JSX.Element>", def: '—', desc: 'chatMessage.props.iconMap' },
       { name: 'fileName', type: 'string', def: '—', desc: 'chatMessage.props.fileName' },
       { name: 'fileSize', type: 'string', def: '—', desc: 'chatMessage.props.fileSize' },
       { name: 'children', type: 'JSX.Element', def: '—', desc: 'chatMessage.props.children' },

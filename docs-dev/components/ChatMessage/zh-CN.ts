@@ -6,6 +6,7 @@ export default {
       content: '文本 / markdown 内容。',
       src: '图片、视频或文件 URL。',
       file: 'JS File 对象，自动提取名称和大小。',
+      iconMap: "文件图标映射：{ pdf: '📄', doc: <Icon />, image: '🖼️', '*': '📎' }。匹配优先级：后缀 → MIME大类 → '*'。未匹配时显示大写后缀标签。",
       fileName: '文件显示名称（可覆盖 file.name）。',
       fileSize: '文件显示大小（可覆盖 file.size，自动格式化）。',
       children: '自定义插槽（messageType=custom）。',
