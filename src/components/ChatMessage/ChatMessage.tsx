@@ -160,13 +160,22 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
 
   const startLongPress = () => {
     if (!hasMenu() || menuOpen()) return;
-    longPressTimer = setTimeout(() => setMenuOpen(true), 500);
+    longPressTimer = setTimeout(() => openMenu(), 500);
   };
   const cancelLongPress = () => {
     if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null; }
   };
-  const dismissMenu = () => setMenuOpen(false);
+  const dismissMenu = () => {
+    setMenuOpen(false);
+    if (typeof document !== 'undefined') document.documentElement.style.removeProperty('--sc-tooltip-bg');
+  };
   onCleanup(() => { if (longPressTimer) clearTimeout(longPressTimer); });
+
+  // Override Tooltip's dark bg when menu opens
+  const openMenu = () => {
+    setMenuOpen(true);
+    if (typeof document !== 'undefined') document.documentElement.style.setProperty('--sc-tooltip-bg', 'transparent');
+  };
 
   // Click outside → dismiss
   const handleOutsideClick = (e: MouseEvent) => {
