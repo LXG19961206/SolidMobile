@@ -103,7 +103,6 @@
   border-radius: var(--cm-radius, 12px);
   cursor: pointer;
   overflow: hidden;
-  object-fit: cover;
 }
 
 /* ── Video bubble ── */

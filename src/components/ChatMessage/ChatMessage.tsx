@@ -1,6 +1,7 @@
 import { mergeProps, splitProps, Show, type Component } from 'solid-js';
 import type { ChatMessageProps } from './types';
 import { cn, scopedStyle } from '../../utils';
+import { Image } from '../Image';
 import rawStyles from './ChatMessage.module.css';
 const styles = scopedStyle(rawStyles, 'sc-chat-message');
 
@@ -72,10 +73,9 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
       case 'image':
         return (
           <Show when={local.src} fallback={<div class={styles.bubble}>🖼️</div>}>
-            <img
+            <Image
+              src={local.src!}
               class={styles.imgBubble}
-              src={local.src}
-              alt="chat image"
               onClick={local.onContentClick}
               style={local.borderRadius ? { 'border-radius': local.borderRadius } : undefined}
             />
