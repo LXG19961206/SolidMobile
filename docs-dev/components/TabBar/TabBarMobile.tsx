@@ -54,33 +54,31 @@ function measurePath(d: string): number {
   return Math.ceil(p.getTotalLength());
 }
 
-const PATH_HOME_ROOF    = 'M3 12L12 3l9 9';
-const PATH_HOME_BODY    = 'M5 10v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V10';
-const PATH_STAR         = 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z';
-const PATH_USER_BODY    = 'M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8';
+/* ── Custom SVG paths optimised for stroke-draw animation ──
+   Each icon uses a single continuous path with smooth bezier curves.
+   The draw effect traces from start to end in one flowing motion. */
 
-const LEN_HOME_ROOF  = measurePath(PATH_HOME_ROOF);
-const LEN_HOME_BODY  = measurePath(PATH_HOME_BODY);
-const LEN_STAR       = measurePath(PATH_STAR);
-const LEN_USER_BODY  = measurePath(PATH_USER_BODY);
-const LEN_USER_HEAD  = Math.ceil(2 * Math.PI * 4); // circle r=4
+// Heart: single path, smooth curves — great draw feel
+const PATH_HEART = 'M12 21.5C6.5 17 2.5 13.5 2.5 9.2C2.5 6 5 3.5 8.2 3.5c1.7 0 3.2.7 4.3 1.9l-.5.5l.5-.5c1.1-1.2 2.6-1.9 4.3-1.9c3.2 0 5.7 2.5 5.7 5.7c0 4.3-4 7.8-9.5 12.3z';
+// Chat bubble: single continuous outline (body + tail)
+const PATH_CHAT = 'M4.5 6.5h15c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2h-5.5l-3.8 3.8l-.2-.2v-3.6H4.5c-1.1 0-2-.9-2-2v-8c0-1.1.9-2 2-2z';
+// Bell: single continuous path
+const PATH_BELL = 'M12 3C9.8 3 8 4.8 8 7v3.5c0 .8-.3 1.5-.8 2L6 14h12l-1.2-1.5c-.5-.5-.8-1.2-.8-2V7c0-2.2-1.8-4-4-4zm-1.5 14.5h3s-.5 1.5-1.5 1.5s-1.5-1.5-1.5-1.5z';
 
-// Inject one-shot draw keyframes keyed by path length
+const LEN_HEART = measurePath(PATH_HEART);
+const LEN_CHAT  = measurePath(PATH_CHAT);
+const LEN_BELL  = measurePath(PATH_BELL);
+
 const drawKeyframes = `
-@keyframes tb-draw-a { from{stroke-dashoffset:${LEN_HOME_ROOF}} to{stroke-dashoffset:0} }
-@keyframes tb-draw-b { from{stroke-dashoffset:${LEN_HOME_BODY}} to{stroke-dashoffset:0} }
-@keyframes tb-draw-c { from{stroke-dashoffset:${LEN_STAR}}      to{stroke-dashoffset:0} }
-@keyframes tb-draw-d { from{stroke-dashoffset:${LEN_USER_HEAD}} to{stroke-dashoffset:0} }
-@keyframes tb-draw-e { from{stroke-dashoffset:${LEN_USER_BODY}} to{stroke-dashoffset:0} }
+@keyframes tb-draw-1 { from{stroke-dashoffset:${LEN_HEART}} to{stroke-dashoffset:0} }
+@keyframes tb-draw-2 { from{stroke-dashoffset:${LEN_CHAT}}  to{stroke-dashoffset:0} }
+@keyframes tb-draw-3 { from{stroke-dashoffset:${LEN_BELL}}  to{stroke-dashoffset:0} }
 @keyframes tb-fill-in { from{fill-opacity:0} to{fill-opacity:1} }
 `;
 if (typeof document !== 'undefined') {
   const s = document.createElement('style'); s.textContent = drawKeyframes; document.head.appendChild(s);
 }
 
-// Build style for a path segment
-// inactive → outline fully visible, no fill
-// active   → stroke draws in (0.5s), fill fades in after 0.35s delay
 function seg(len: number, drawKey: string, active: boolean): Record<string, any> {
   if (!active) {
     return {
@@ -92,28 +90,26 @@ function seg(len: number, drawKey: string, active: boolean): Record<string, any>
   }
   return {
     'stroke-dasharray': len,
-    animation: `${drawKey} .5s ease forwards, tb-fill-in .3s ease .35s forwards`,
+    animation: `${drawKey} .6s ease forwards, tb-fill-in .25s ease .4s forwards`,
     fill: 'currentColor',
   };
 }
 
-const PathHomeIcon = (p: { active: boolean }) => (
-  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d={PATH_HOME_ROOF} style={seg(LEN_HOME_ROOF, 'tb-draw-a', p.active)} />
-    <path d={PATH_HOME_BODY} style={seg(LEN_HOME_BODY, 'tb-draw-b', p.active)} />
+const PathHeartIcon = (p: { active: boolean }) => (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d={PATH_HEART} style={seg(LEN_HEART, 'tb-draw-1', p.active)} />
   </svg>
 );
 
-const PathStarIcon = (p: { active: boolean }) => (
-  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
-    <path d={PATH_STAR} style={seg(LEN_STAR, 'tb-draw-c', p.active)} />
+const PathChatIcon = (p: { active: boolean }) => (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d={PATH_CHAT} style={seg(LEN_CHAT, 'tb-draw-2', p.active)} />
   </svg>
 );
 
-const PathUserIcon = (p: { active: boolean }) => (
-  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="8" r="4" style={seg(LEN_USER_HEAD, 'tb-draw-d', p.active)} />
-    <path d={PATH_USER_BODY} style={seg(LEN_USER_BODY, 'tb-draw-e', p.active)} />
+const PathBellIcon = (p: { active: boolean }) => (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d={PATH_BELL} style={seg(LEN_BELL, 'tb-draw-3', p.active)} />
   </svg>
 );
 
@@ -205,9 +201,9 @@ export const TabBarMobile = () => {
         {/* Animated Icons (Path Draw) */}
         <Card title={t('tabbar.demo.pathDraw')}>
           <TabBar defaultValue="a" fixed={false}>
-            <TabBarItem name="a" label="Home" icon={PathHomeIcon} />
-            <TabBarItem name="b" label="Favorites" icon={PathStarIcon} />
-            <TabBarItem name="c" label="Profile" icon={PathUserIcon} />
+            <TabBarItem name="a" label="Likes" icon={PathHeartIcon} />
+            <TabBarItem name="b" label="Chat" icon={PathChatIcon} />
+            <TabBarItem name="c" label="Alerts" icon={PathBellIcon} />
           </TabBar>
           <div style={{ 'font-size': '0.65rem', color: 'var(--sc-color-text-secondary, #9ca3af)', padding: '8px 12px 12px', 'line-height': 1.5 }}>
             {t('tabbar.demoDesc.pathDraw')}
