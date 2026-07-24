@@ -192,8 +192,11 @@ export function App() {
           {/* ══ Top Nav Tabs ══ */}
           <header class="top-nav">
             <div class="top-nav-brand">
-              <img src="./logo.jpg" alt="solid-mobile" style="width:28px;height:28px;border-radius:6px;display:block" />
+              <span class="top-nav-logo">
+                <img src="./logo.jpg" alt="solid-mobile" />
+              </span>
               <span class="top-nav-title">solid-mobile</span>
+              <span class="top-nav-badge">Components</span>
             </div>
             <nav class="top-nav-tabs">
               <For each={topTabs()}>
