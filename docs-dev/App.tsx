@@ -238,7 +238,6 @@ export function App() {
                 <img src="./logo.jpg" alt="solid-mobile" />
               </span>
               <PixelWord />
-              <span class="top-nav-badge">Components</span>
             </div>
             <nav class="top-nav-tabs">
               <For each={topTabs()}>

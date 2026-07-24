@@ -82,16 +82,6 @@ html.dark .top-nav {
   color: var(--sc-color-primary, #1677ff);
 }
 
-.top-nav-badge {
-  font-size: 0.65rem;
-  font-weight: 500;
-  color: var(--sc-color-primary, #1677ff);
-  background: color-mix(in srgb, var(--sc-color-primary, #1677ff) 10%, transparent);
-  padding: 2px 8px;
-  border-radius: 10px;
-  letter-spacing: 0.02em;
-}
-
 .top-nav-tabs {
   display: flex;
   align-items: center;
