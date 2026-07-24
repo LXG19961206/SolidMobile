@@ -34,8 +34,9 @@ export const ChatMessageMobile = () => {
         </ChatMessage>
         <ChatMessage position="left" messageType="plainText" bgColor="#dbeafe" content="Perfect, thanks! 🙏" avatar={A} name="Alice" time="10:38" />
         <ChatMessage position="right" messageType="plainText" content="Sent ✓" time="10:39" status="sent" />
-        <ChatMessage position="right" messageType="plainText" content="This one failed..." time="10:40" status="failed" onRetry={() => alert('Retry!')}
-          longPressMenu={[{ title: 'Copy', action: () => alert('Copied') }, { title: 'Delete', action: () => alert('Deleted') }]} />
+        <ChatMessage position="right" messageType="plainText" content="This one failed..." time="10:40" status="failed" onRetry={() => alert('Retry!')} />
+        <ChatMessage position="right" messageType="plainText" content="Long-press me 👆" time="10:41" status="read"
+          longPressMenu={[{ title: 'Copy', action: () => alert('Copied') }, { title: 'Recall', action: () => alert('Recalled') }, { title: 'Delete', action: () => alert('Deleted') }]} />
       </div>
     </MobilePreview>
   );
