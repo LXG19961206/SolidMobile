@@ -22,7 +22,7 @@ import { MobilePreviewApp } from './MobilePreviewApp';
 /* ── Pixel-art "solid mobile" wordmark ── */
 function PixelWord() {
   return (
-    <svg class="pixel-wordmark" viewBox="0 0 339 48" fill="currentColor">
+    <svg class="pixel-wordmark" viewBox="0 0 120 16" fill="currentColor">
       {/* solid */}
       <rect x="0" y="0" width="4" height="4" />
       <rect x="4" y="0" width="4" height="4" />
