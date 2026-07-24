@@ -201,8 +201,8 @@ export function App() {
                     </linearGradient>
                   </defs>
                   {/* 3 stacked component cards */}
-                  <rect x="1" y="1" width="17" height="17" rx="4" fill="var(--sc-color-primary, #1677ff)" opacity="0.25" />
-                  <rect x="7" y="7" width="18" height="18" rx="5" fill="var(--sc-color-primary, #1677ff)" opacity="0.55" />
+                  <rect x="1" y="1" width="17" height="17" rx="4" fill="var(--sc-color-primary, #1677ff)" opacity="0.40" />
+                  <rect x="7" y="7" width="18" height="18" rx="5" fill="var(--sc-color-primary, #1677ff)" opacity="0.65" />
                   <rect x="12" y="12" width="19" height="19" rx="5" fill="url(#lo-grad)" />
                   {/* accent: small spark at top-right */}
                   <circle cx="27" cy="8" r="2" fill="var(--sc-color-primary, #1677ff)" opacity="0.8" />
