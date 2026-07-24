@@ -42,9 +42,9 @@ export const ChatMessageMobile = () => {
           content="Hold to select this text — no menu, just selection." avatar={A} name="Alice" time="10:42"
           selectOnLongPress />
         {/* Status positions */}
-        <ChatMessage position="right" messageType="plainText" content="meta: status after time" time="10:43" status="read" />
-        <ChatMessage position="right" messageType="plainText" content="bubble: status inside" time="10:44" status="sending" statusPosition="bubble" />
-        <ChatMessage position="right" messageType="plainText" content="side: status next to bubble" time="10:45" status="read" statusPosition="side" />
+        <ChatMessage position="right" messageType="plainText" bgColor="#1677ff" content="meta: status after time" time="10:43" status="read" />
+        <ChatMessage position="right" messageType="plainText" bgColor="#1677ff" content="bubble: status inside" time="10:44" status="sending" statusPosition="bubble" />
+        <ChatMessage position="right" messageType="plainText" bgColor="#1677ff" content="side: status next to bubble" time="10:45" status="read" statusPosition="side" />
       </div>
       <ToastRenderer />
     </MobilePreview>
