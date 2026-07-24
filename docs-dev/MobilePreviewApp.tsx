@@ -67,7 +67,7 @@ export function MobilePreviewApp(props: { mobileParam: string }) {
   const colors = deriveColorSet(themeColor);
   const Demo = mobileMap[props.mobileParam];
 
-  const notch = 44; // notch height + status bar safe area
+  const notch = 38; // notch 34px + 4px clearance
   try {
     document.body.style.setProperty('--sc-safe-area-top', `${notch}px`);
     document.body.style.setProperty('--sc-safe-area-bottom', '0px');
