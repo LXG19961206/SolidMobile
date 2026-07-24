@@ -68,19 +68,37 @@ html.dark .top-nav {
   flex-shrink: 0;
 }
 
-.top-nav-logo svg {
+.top-nav-logo img {
+  width: 100%;
+  height: 100%;
   display: block;
+  object-fit: cover;
 }
 
 .top-nav-title {
-  font-size: 0.9rem;
+  font-family: 'Courier New', 'Consolas', 'SF Mono', monospace;
+  font-size: 0.82rem;
   font-weight: 700;
-  color: #1f2937;
-  letter-spacing: -0.01em;
+  color: var(--sc-color-primary, #1677ff);
+  letter-spacing: 1px;
+  position: relative;
+  /* blocky pixel shadow */
+  text-shadow:
+    1px 0 0 color-mix(in srgb, var(--sc-color-primary, #1677ff) 30%, transparent),
+    2px 0 0 color-mix(in srgb, var(--sc-color-primary, #1677ff) 18%, transparent),
+    0 1px 0 color-mix(in srgb, var(--sc-color-primary, #1677ff) 30%, transparent),
+    0 2px 0 color-mix(in srgb, var(--sc-color-primary, #1677ff) 18%, transparent),
+    1px 1px 0 color-mix(in srgb, var(--sc-color-primary, #1677ff) 15%, transparent);
 }
 
 html.dark .top-nav-title {
-  color: #e2e8f0;
+  color: var(--sc-color-primary, #5195ff);
+  text-shadow:
+    1px 0 0 color-mix(in srgb, var(--sc-color-primary, #5195ff) 25%, transparent),
+    2px 0 0 color-mix(in srgb, var(--sc-color-primary, #5195ff) 14%, transparent),
+    0 1px 0 color-mix(in srgb, var(--sc-color-primary, #5195ff) 25%, transparent),
+    0 2px 0 color-mix(in srgb, var(--sc-color-primary, #5195ff) 14%, transparent),
+    1px 1px 0 color-mix(in srgb, var(--sc-color-primary, #5195ff) 12%, transparent);
 }
 
 .top-nav-badge {
