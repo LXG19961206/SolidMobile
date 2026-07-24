@@ -90,23 +90,21 @@
   line-height: 0;
 }
 
-/* ── Tail (CSS triangle) ── */
+/* ── Tail (CSS triangle pointing toward avatar) ── */
 .tail {
   position: absolute;
-  bottom: 0;
-  width: 8px;
-  height: 8px;
+  top: 14px;
+  width: 6px;
+  height: 10px;
+  background: inherit;
 }
 .tail.left {
-  left: -4px;
-  /* clip-path triangle pointing left-down */
-  clip-path: polygon(100% 0, 100% 100%, 0 100%);
-  background: inherit;
+  left: -5px;
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
 }
 .tail.right {
-  right: -4px;
-  clip-path: polygon(0 0, 0 100%, 100% 100%);
-  background: inherit;
+  right: -5px;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
 
 /* ── Image bubble ── */
