@@ -153,7 +153,7 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
               <span class={styles.tail} classList={{ [styles.left!]: !isSelf(), [styles.right!]: isSelf() }} />
             </Show>
             {local.content ?? ''}
-            <Show when={isBubbleStatus() && isSelf()}>{statusIcon()}</Show>
+            <Show when={isBubbleStatus() && isSelf()}><span class={styles.bubbleStatus}>{statusIcon()}</span></Show>
           </div>
         );
     }
