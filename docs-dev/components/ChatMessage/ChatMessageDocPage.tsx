@@ -30,7 +30,7 @@ export const ChatMessageDocPage = () => {
     },
     {
       title: t('chatMessage.demo.statusesAndMeta'),
-      code: '// sending → sent → read progression\n<ChatMessage position="right" messageType="plainText"\n  content="Sending..." time="11:25" status="sending" />\n<ChatMessage position="right" messageType="plainText"\n  content="Sent ✓" time="11:26" status="sent" />\n<ChatMessage position="right" messageType="plainText"\n  content="Read ✓✓" time="11:30" status="read" />\n\n// failed with retry\n<ChatMessage position="right" messageType="plainText"\n  content="This message failed" time="11:32"\n  status="failed" onRetry={() => retry()} />',
+      code: '// sending → sent → read progression\n<ChatMessage position="right" messageType="plainText"\n  content="Sending..." time="11:25" status="sending" />\n<ChatMessage position="right" messageType="plainText"\n  content="Sent ✓" time="11:26" status="sent" />\n<ChatMessage position="right" messageType="plainText"\n  content="Read ✓" time="11:30" status="read" />\n\n// failed with retry\n<ChatMessage position="right" messageType="plainText"\n  content="This message failed" time="11:32"\n  status="failed" onRetry={() => retry()} />',
       desc: t('chatMessage.demoDesc.statusesAndMeta'),
     },
     {

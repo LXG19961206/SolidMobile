@@ -222,7 +222,7 @@
 }
 .statusSending { opacity: 0.6; }
 .statusFailed  { color: #ef4444; cursor: pointer; }
-.statusRead     { color: var(--sc-color-primary, #1677ff); }
+.statusRead     { /* color set inline */ }
 .statusSent     { opacity: 0.7; }
 
 /* ── Error icon ── */

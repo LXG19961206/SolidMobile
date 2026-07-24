@@ -76,7 +76,7 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
     // built-in defaults
     if (st === 'sending') return <span class={styles.statusSending}>⏳</span>;
     if (st === 'sent') return <span class={styles.statusSent}>✓</span>;
-    if (st === 'read') return <span class={styles.statusRead}>✓✓</span>;
+    if (st === 'read') return <span class={styles.statusRead} style="color:#22c55e">✓</span>;
     if (st === 'failed')
       return (
         <span class={styles.statusFailed} onClick={local.onRetry} title="Retry">
