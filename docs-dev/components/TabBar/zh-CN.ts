@@ -31,14 +31,16 @@ export default {
       basic: '基础用法',
       badge: '徽标与红点',
       color: '自定义颜色',
-      animated: '动画图标',
+      animated: '动画图标（CSS）',
+      pathDraw: '路径描边图标',
       fixed: '固定底部',
     },
     demoDesc: {
       basic: '三个底部标签，点击切换。',
       badge: '通过 badge 和 dot 展示未读消息或状态提示。',
       color: '通过 activeColor 和 bgColor 自定义主题。',
-      animated: 'icon 支持 ({ active }) => JSX 函数，自动注入选中态，实现 CSS 动画图标。',
+      animated: 'icon 支持 ({ active }) => JSX 函数，切换时触发 CSS @keyframes 缩放 + 填充动画。',
+      pathDraw: '利用 SVG stroke-dasharray + stroke-dashoffset 实现路径描边动画。激活时描边从起点画到终点，再渐入填充。纯 CSS transition，无需 @keyframes。',
       fixed: 'fixed 固定在底部并占位，模拟原生 App 导航。',
     },
     design: {

@@ -11,7 +11,7 @@ import enUS from './en-US';
 import { useTabBarTableData } from './tableData';
 registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
-/* ── Animated SVG icon components ── */
+/* ── Animated SVG icon components (CSS keyframes) ── */
 const animKeyframes = `
 @keyframes tb-pop { 0%{transform:scale(1)} 40%{transform:scale(1.28)} 70%{transform:scale(.92)} 100%{transform:scale(1)} }
 @keyframes tb-fill { from{fill-opacity:.2} to{fill-opacity:1} }
@@ -38,6 +38,57 @@ const AnimatedUserIcon = (p: { active: boolean }) => (
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style={p.active ? pop : undefined}>
     <circle cx="12" cy="8" r="4" fill={p.active ? 'currentColor' : 'none'} fill-opacity={p.active ? 1 : 0} style={p.active ? fill : undefined} />
     <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
+  </svg>
+);
+
+/* ── Path-draw animated icons (stroke-dasharray, no CSS keyframes) ── */
+const PATH_LENGTHS: Record<string, number> = {};
+function getPathLen(path: string) {
+  if (PATH_LENGTHS[path]) return PATH_LENGTHS[path];
+  if (typeof document === 'undefined') return 100;
+  const ns = 'http://www.w3.org/2000/svg';
+  const tmp = document.createElementNS(ns, 'path') as SVGPathElement;
+  tmp.setAttribute('d', path);
+  PATH_LENGTHS[path] = tmp.getTotalLength();
+  return PATH_LENGTHS[path];
+}
+
+const pathDraw = (d: string, active: boolean, extraStyle?: Record<string, any>) => {
+  const len = getPathLen(d);
+  return {
+    d,
+    'stroke-dasharray': String(len),
+    'stroke-dashoffset': String(active ? 0 : len),
+    transition: 'stroke-dashoffset .6s ease, fill .3s ease .3s, fill-opacity .3s ease .3s',
+    fill: active ? 'currentColor' : 'none',
+    'fill-opacity': active ? 1 : 0,
+    ...extraStyle,
+  };
+};
+
+const PathHomeIcon = (p: { active: boolean }) => (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path {...pathDraw('M3 12L12 3l9 9', p.active)} />
+    <path {...pathDraw('M5 10v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V10', p.active, { 'stroke-linejoin': 'round' })} />
+  </svg>
+);
+
+const PathStarIcon = (p: { active: boolean }) => (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+    <path {...pathDraw('M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z', p.active, { 'stroke-linejoin': 'round' })} />
+  </svg>
+);
+
+const PathUserIcon = (p: { active: boolean }) => (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8" r="4"
+      stroke-dasharray={String(2 * Math.PI * 4)}
+      stroke-dashoffset={String(p.active ? 0 : 2 * Math.PI * 4)}
+      style={p.active ?
+        { transition: 'stroke-dashoffset .6s ease, fill .3s ease .3s, fill-opacity .3s ease .3s', fill: 'currentColor', 'fill-opacity': 1 } :
+        { fill: 'none', 'fill-opacity': 0 }
+      } />
+    <path {...pathDraw('M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8', p.active)} />
   </svg>
 );
 
@@ -114,7 +165,7 @@ export const TabBarMobile = () => {
           </TabBar>
         </Card>
 
-        {/* Animated Icons */}
+        {/* Animated Icons (CSS keyframes) */}
         <Card title={t('tabbar.demo.animated')}>
           <TabBar defaultValue="a" fixed={false}>
             <TabBarItem name="a" label="Home" icon={AnimatedHomeIcon} />
@@ -123,6 +174,18 @@ export const TabBarMobile = () => {
           </TabBar>
           <div style={{ 'font-size': '0.65rem', color: 'var(--sc-color-text-secondary, #9ca3af)', padding: '8px 12px 12px', 'line-height': 1.5 }}>
             {t('tabbar.demoDesc.animated')}
+          </div>
+        </Card>
+
+        {/* Animated Icons (Path Draw) */}
+        <Card title={t('tabbar.demo.pathDraw')}>
+          <TabBar defaultValue="a" fixed={false}>
+            <TabBarItem name="a" label="Home" icon={PathHomeIcon} />
+            <TabBarItem name="b" label="Favorites" icon={PathStarIcon} />
+            <TabBarItem name="c" label="Profile" icon={PathUserIcon} />
+          </TabBar>
+          <div style={{ 'font-size': '0.65rem', color: 'var(--sc-color-text-secondary, #9ca3af)', padding: '8px 12px 12px', 'line-height': 1.5 }}>
+            {t('tabbar.demoDesc.pathDraw')}
           </div>
         </Card>
 

@@ -31,14 +31,16 @@ export default {
       basic: 'Basic',
       badge: 'Badge & Dot',
       color: 'Custom Color',
-      animated: 'Animated Icon',
+      animated: 'Animated Icon (CSS)',
+      pathDraw: 'Path Draw Icon',
       fixed: 'Fixed Bottom',
     },
     demoDesc: {
       basic: 'Three bottom tabs with icon and label.',
       badge: 'Use badge and dot for unread counts or status.',
       color: 'Customize via activeColor and bgColor.',
-      animated: 'Icon supports ({ active }) => JSX. Active tab gets scale + fill CSS animation — works with Lottie, Rive, or any animation lib.',
+      animated: 'Icon supports ({ active }) => JSX. Active tab gets scale + fill CSS keyframe animation — works with Lottie, Rive, or any animation lib.',
+      pathDraw: 'Uses SVG stroke-dasharray + stroke-dashoffset transition. On activation the path strokes draw in from start to end, then fill fades in. Pure CSS transition, no @keyframes needed.',
       fixed: 'Fixed to bottom with placeholder for native app feel.',
     },
     design: {
