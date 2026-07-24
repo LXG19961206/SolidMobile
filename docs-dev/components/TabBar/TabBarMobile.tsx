@@ -54,25 +54,24 @@ function measurePath(d: string): number {
   return Math.ceil(p.getTotalLength());
 }
 
-/* ── Custom SVG paths optimised for stroke-draw animation ──
-   Each icon uses a single continuous path with smooth bezier curves.
-   The draw effect traces from start to end in one flowing motion. */
+/* ── Custom SVG paths for stroke-draw animation ──
+   Each icon is a single continuous path that traces nicely. */
 
-// Heart: single path, smooth curves — great draw feel
-const PATH_HEART = 'M12 21.5C6.5 17 2.5 13.5 2.5 9.2C2.5 6 5 3.5 8.2 3.5c1.7 0 3.2.7 4.3 1.9l-.5.5l.5-.5c1.1-1.2 2.6-1.9 4.3-1.9c3.2 0 5.7 2.5 5.7 5.7c0 4.3-4 7.8-9.5 12.3z';
-// Chat bubble: single continuous outline (body + tail)
-const PATH_CHAT = 'M4.5 6.5h15c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2h-5.5l-3.8 3.8l-.2-.2v-3.6H4.5c-1.1 0-2-.9-2-2v-8c0-1.1.9-2 2-2z';
-// Bell: single continuous path
-const PATH_BELL = 'M12 3C9.8 3 8 4.8 8 7v3.5c0 .8-.3 1.5-.8 2L6 14h12l-1.2-1.5c-.5-.5-.8-1.2-.8-2V7c0-2.2-1.8-4-4-4zm-1.5 14.5h3s-.5 1.5-1.5 1.5s-1.5-1.5-1.5-1.5z';
+// Map pin — teardrop shape, flows from bottom point around and back
+const PATH_PIN = 'M12 21c-1.7-2.8-7-8.2-7-12.6C5 4.7 8.1 2 12 2s7 2.7 7 6.4c0 4.4-5.3 9.8-7 12.6z';
+// Pencil — starts at tip, goes up the body & wraps around the top
+const PATH_PENCIL = 'M3 17.2L14.8 5.4l3.8 3.8L6.8 21H3v-3.8z';
+// Bookmark — folded ribbon, starts at bottom-left and traces the V shape
+const PATH_BOOKMARK = 'M5 3h14v18l-7-4.5L5 21V3z';
 
-const LEN_HEART = measurePath(PATH_HEART);
-const LEN_CHAT  = measurePath(PATH_CHAT);
-const LEN_BELL  = measurePath(PATH_BELL);
+const LEN_PIN      = measurePath(PATH_PIN);
+const LEN_PENCIL   = measurePath(PATH_PENCIL);
+const LEN_BOOKMARK = measurePath(PATH_BOOKMARK);
 
 const drawKeyframes = `
-@keyframes tb-draw-1 { from{stroke-dashoffset:${LEN_HEART}} to{stroke-dashoffset:0} }
-@keyframes tb-draw-2 { from{stroke-dashoffset:${LEN_CHAT}}  to{stroke-dashoffset:0} }
-@keyframes tb-draw-3 { from{stroke-dashoffset:${LEN_BELL}}  to{stroke-dashoffset:0} }
+@keyframes tb-draw-1 { from{stroke-dashoffset:${LEN_PIN}}      to{stroke-dashoffset:0} }
+@keyframes tb-draw-2 { from{stroke-dashoffset:${LEN_PENCIL}}   to{stroke-dashoffset:0} }
+@keyframes tb-draw-3 { from{stroke-dashoffset:${LEN_BOOKMARK}} to{stroke-dashoffset:0} }
 @keyframes tb-fill-in { from{fill-opacity:0} to{fill-opacity:1} }
 `;
 if (typeof document !== 'undefined') {
@@ -88,32 +87,30 @@ function seg(len: number, drawKey: string, active: boolean): Record<string, any>
       'fill-opacity': 0,
     };
   }
-  // inline values match the animation from-keyframe so there's
-  // no flash frame before the draw takes over
   return {
     'stroke-dasharray': len,
-    'stroke-dashoffset': len,     // hidden until animation starts
-    'fill-opacity': 0,             // transparent until fill-in kicks in
+    'stroke-dashoffset': len,
+    'fill-opacity': 0,
     animation: `${drawKey} .8s cubic-bezier(.4,0,.2,1) forwards, tb-fill-in .35s ease .55s forwards`,
     fill: 'currentColor',
   };
 }
 
-const PathHeartIcon = (p: { active: boolean }) => (
+const PathPinIcon = (p: { active: boolean }) => (
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d={PATH_HEART} style={seg(LEN_HEART, 'tb-draw-1', p.active)} />
+    <path d={PATH_PIN} style={seg(LEN_PIN, 'tb-draw-1', p.active)} />
   </svg>
 );
 
-const PathChatIcon = (p: { active: boolean }) => (
+const PathPencilIcon = (p: { active: boolean }) => (
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d={PATH_CHAT} style={seg(LEN_CHAT, 'tb-draw-2', p.active)} />
+    <path d={PATH_PENCIL} style={seg(LEN_PENCIL, 'tb-draw-2', p.active)} />
   </svg>
 );
 
-const PathBellIcon = (p: { active: boolean }) => (
+const PathBookmarkIcon = (p: { active: boolean }) => (
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d={PATH_BELL} style={seg(LEN_BELL, 'tb-draw-3', p.active)} />
+    <path d={PATH_BOOKMARK} style={seg(LEN_BOOKMARK, 'tb-draw-3', p.active)} />
   </svg>
 );
 
@@ -205,9 +202,9 @@ export const TabBarMobile = () => {
         {/* Animated Icons (Path Draw) */}
         <Card title={t('tabbar.demo.pathDraw')}>
           <TabBar defaultValue="a" fixed={false}>
-            <TabBarItem name="a" label="Likes" icon={PathHeartIcon} />
-            <TabBarItem name="b" label="Chat" icon={PathChatIcon} />
-            <TabBarItem name="c" label="Alerts" icon={PathBellIcon} />
+            <TabBarItem name="a" label="Nearby" icon={PathPinIcon} />
+            <TabBarItem name="b" label="Write" icon={PathPencilIcon} />
+            <TabBarItem name="c" label="Saved" icon={PathBookmarkIcon} />
           </TabBar>
           <div style={{ 'font-size': '0.65rem', color: 'var(--sc-color-text-secondary, #9ca3af)', padding: '8px 12px 12px', 'line-height': 1.5 }}>
             {t('tabbar.demoDesc.pathDraw')}
