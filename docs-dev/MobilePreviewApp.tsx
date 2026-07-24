@@ -70,6 +70,7 @@ export function MobilePreviewApp(props: { mobileParam: string }) {
   const notch = 38; // notch 34px + 4px clearance
   try {
     document.body.style.setProperty('--sc-safe-area-top', `${notch}px`);
+    document.body.style.setProperty('--sc-navbar-height', '44px');
     document.body.style.setProperty('--sc-safe-area-bottom', '0px');
   } catch {
     /* noop */
@@ -86,6 +87,7 @@ export function MobilePreviewApp(props: { mobileParam: string }) {
         style={
           {
             '--sc-safe-area-top': `${notch}px`,
+            '--sc-navbar-height': '44px',
             '--sc-safe-area-bottom': '0px',
           } as JSX.CSSProperties
         }
