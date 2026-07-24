@@ -45,6 +45,12 @@ export const ChatMessageMobile = () => {
         <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="meta: status after time" time="10:43" status="read" />
         <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="bubble: status inside" time="10:44" status="sending" statusPosition="bubble" />
         <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="side: status next to bubble" time="10:45" status="read" statusPosition="side" />
+        <ChatMessage position="right" messageType="plainText" bgColor="#95ec69" content="Custom JSX menu" time="10:46"
+          longPressMenu={<div style="background:#fff;border-radius:10px;padding:8px 12px;box-shadow:0 4px 12px rgba(0,0,0,.12);display:flex;gap:8px">
+            <span onClick={() => Toast.success('❤️')} style="cursor:pointer;font-size:1.2rem">❤️</span>
+            <span onClick={() => Toast.success('👍')} style="cursor:pointer;font-size:1.2rem">👍</span>
+            <span onClick={() => Toast.success('😂')} style="cursor:pointer;font-size:1.2rem">😂</span>
+          </div>} />
       </div>
       <ToastRenderer />
     </MobilePreview>

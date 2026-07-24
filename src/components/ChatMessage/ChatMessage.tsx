@@ -227,7 +227,7 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
         </div>
       );
     }
-    return local.longPressMenu as JSX.Element;
+    return <div class={styles.menu}>{local.longPressMenu as JSX.Element}</div>;
   };
 
   return (
