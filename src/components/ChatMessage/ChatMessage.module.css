@@ -43,9 +43,11 @@
 }
 /* dark overrides */
 html.dark {
+  --sc-chat-bubble-bg: #2a2d33;
+  --sc-chat-bubble-bg-left: #2a2d33;
+  --sc-chat-text-color: #e2e8f0;
   --sc-chat-menu-bg: #24282d;
   --sc-chat-menu-shadow: 0 4px 16px rgba(0,0,0,.35);
-  --sc-chat-text-color: #e2e8f0;
   --sc-chat-menu-item-hover-bg: #374151;
   --sc-chat-menu-item-active-bg: #4b5563;
   --sc-chat-avatar-placeholder-bg: #374151;
