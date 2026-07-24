@@ -207,12 +207,6 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
     <div
       class={cn(styles.wrapper, styles[local.position], local.class)}
       style={typeof local.style === 'object' ? { ...bubbleStyle(), ...local.style as Record<string, any> } : bubbleStyle()}
-      onTouchStart={startLongPress}
-      onTouchEnd={cancelLongPress}
-      onTouchMove={cancelLongPress}
-      onMouseDown={startLongPress}
-      onMouseUp={cancelLongPress}
-      onMouseLeave={cancelLongPress}
     >
       {/* Avatar */}
       <Show when={local.showAvatar}>
@@ -242,7 +236,14 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
       </Show>
 
       {/* Body */}
-      <div class={styles.body}>
+      <div class={styles.body}
+        onTouchStart={startLongPress}
+        onTouchEnd={cancelLongPress}
+        onTouchMove={cancelLongPress}
+        onMouseDown={startLongPress}
+        onMouseUp={cancelLongPress}
+        onMouseLeave={cancelLongPress}
+      >
         <Show when={local.name}>
           <div class={styles.name} classList={{ [styles.left!]: !isSelf(), [styles.right!]: isSelf() }}>
             {local.name}
