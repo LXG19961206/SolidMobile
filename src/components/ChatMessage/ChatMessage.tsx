@@ -22,7 +22,7 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
   const [local] = splitProps(props, [
     'position', 'messageType', 'content', 'src', 'fileName', 'fileSize',
-    'iconMap', 'children', 'renderSlot',
+    'iconMap', 'progress', 'onDownload', 'children', 'renderSlot',
     'avatar', 'avatarSize', 'avatarShape', 'showAvatar', 'avatarSlot',
     'tail', 'maxWidth', 'bgColor', 'borderRadius',
     'name', 'time', 'status',
@@ -113,12 +113,25 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
 
       case 'file':
         return (
-          <div class={styles.fileBubble} onClick={local.onContentClick}>
+          <div
+            class={styles.fileBubble}
+            classList={{ [styles.fileBubbleClickable!]: !!(local.src || local.onDownload) }}
+            onClick={() => {
+              if (local.onDownload) { local.onDownload(); return; }
+              if (local.src) window.open(local.src, '_blank');
+              local.onContentClick?.();
+            }}
+          >
             <div class={styles.fileIcon}>{resolveFileIcon()}</div>
             <div style={{ 'min-width': 0, flex: 1 }}>
               <div class={styles.fileName}>{displayName() || 'Unknown file'}</div>
               <Show when={displaySize()}><div class={styles.fileSize}>{displaySize()}</div></Show>
             </div>
+            <Show when={local.progress != null}>
+              <div class={styles.progressTrack}>
+                <div class={styles.progressBar} style={{ width: `${Math.min(100, Math.max(0, local.progress!))}%` }} />
+              </div>
+            </Show>
           </div>
         );
 

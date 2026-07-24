@@ -7,7 +7,7 @@ export interface ChatMessageProps {
   messageType: 'plainText' | 'richText' | 'image' | 'video' | 'file' | 'custom';
   /** 文本 / markdown 内容 */
   content?: string;
-  /** 图片 / 视频 / 文件 URL */
+  /** 图片 / 视频 / 文件下载 URL */
   src?: string;
   /** 文件名，自动提取后缀匹配 iconMap */
   fileName?: string;
@@ -15,6 +15,10 @@ export interface ChatMessageProps {
   fileSize?: string;
   /** 文件图标映射：{ pdf: 'file-pdf', doc: <MyIcon />, image: 'image', '*': 'file' }。key 为后缀（无点，小写）、MIME 大类或 '*' */
   iconMap?: Record<string, string | JSX.Element>;
+  /** 下载/上传进度 0-100，有值时气泡底部显示进度条 */
+  progress?: number;
+  /** 自定义下载回调，不传则 window.open(src) */
+  onDownload?: () => void;
   /** custom 类型插槽 */
   children?: JSX.Element;
   /** 自定义渲染（所有类型均可替代默认渲染） */

@@ -8,6 +8,8 @@ export default {
       fileName: '文件显示名称，自动提取后缀匹配 iconMap。',
       fileSize: '文件显示大小，如 "2.4 MB"。',
       iconMap: "文件图标映射：{ pdf: '📄', doc: <Icon />, '*': '📎' }。按后缀匹配，未命中回退到 '*' 或内置默认图标。",
+      progress: '下载/上传进度 0-100，有值时气泡底部显示进度条。',
+      onDownload: '自定义下载回调，不传则点击气泡执行 window.open(src)。',
       children: '自定义插槽（messageType=custom）。',
       renderSlot: '完全自定义渲染，所有类型均可替代默认。',
       avatar: '头像图片 URL。',

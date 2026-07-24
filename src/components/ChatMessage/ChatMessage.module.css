@@ -135,6 +135,7 @@
 
 /* ── File bubble ── */
 .fileBubble {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -142,7 +143,6 @@
   border-radius: var(--cm-radius, 12px);
   background: var(--cm-bg, #f3f4f6);
   color: #1f2937;
-  cursor: pointer;
 }
 .fileIcon {
   flex-shrink: 0;
@@ -172,6 +172,27 @@
   font-size: 0.68rem;
   color: #9ca3af;
   margin-top: 2px;
+}
+.fileBubbleClickable {
+  cursor: pointer;
+}
+
+/* ── Progress bar ── */
+.progressTrack {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba(0,0,0,0.08);
+  border-radius: 0 0 var(--cm-radius, 12px) var(--cm-radius, 12px);
+  overflow: hidden;
+}
+.progressBar {
+  height: 100%;
+  background: var(--sc-color-primary, #1677ff);
+  border-radius: inherit;
+  transition: width .3s ease;
 }
 
 /* ── Meta ── */

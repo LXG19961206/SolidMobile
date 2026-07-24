@@ -13,6 +13,8 @@ export function useChatMessageTableData() {
       { name: 'fileName', type: 'string', def: '—', desc: 'chatMessage.props.fileName' },
       { name: 'fileSize', type: 'string', def: '—', desc: 'chatMessage.props.fileSize' },
       { name: 'iconMap', type: "Record<string, string | JSX.Element>", def: '—', desc: 'chatMessage.props.iconMap' },
+      { name: 'progress', type: 'number', def: '—', desc: 'chatMessage.props.progress' },
+      { name: 'onDownload', type: '() => void', def: '—', desc: 'chatMessage.props.onDownload' },
       { name: 'children', type: 'JSX.Element', def: '—', desc: 'chatMessage.props.children' },
       { name: 'renderSlot', type: 'JSX.Element', def: '—', desc: 'chatMessage.props.renderSlot' },
       { name: 'avatar', type: 'string', def: '—', desc: 'chatMessage.props.avatar' },

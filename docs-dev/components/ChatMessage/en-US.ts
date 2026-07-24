@@ -8,6 +8,8 @@ export default {
       fileName: 'File display name — extension auto-matched against iconMap.',
       fileSize: 'File display size, e.g. "2.4 MB".',
       iconMap: "File icon map: { pdf: '📄', doc: <Icon />, '*': '📎' }. Matches by extension, falls back to '*' or built-in defaults.",
+      progress: 'Download/upload progress 0-100. When set, a progress bar appears at the bottom of the bubble.',
+      onDownload: 'Custom download callback. If not set, clicking the bubble calls window.open(src).',
       children: 'Custom slot content (messageType=custom).',
       renderSlot: 'Full custom render override for all types.',
       avatar: 'Avatar image URL.',
