@@ -23,7 +23,8 @@ export const ChatMessageMobile = () => {
         <ChatMessage position="right" messageType="plainText" content="Looks great! The tail pointer is a nice touch ✨" time="10:33" status="read" />
         <ChatMessage position="left" messageType="image" bgColor="#dbeafe" src={IMG} name="Alice" time="10:34" avatar={A} />
         <ChatMessage position="right" messageType="plainText" content="Can you send that design file?" time="10:35" status="read" />
-        <ChatMessage position="left" messageType="file" bgColor="#dbeafe" fileName="design-spec.pdf" fileSize="2.4 MB" name="Alice" time="10:36" avatar={A} />
+        <ChatMessage position="left" messageType="file" bgColor="#dbeafe" fileName="design-spec.pdf" fileSize="2.4 MB" src="./logo.jpg" name="Alice" time="10:36" avatar={A} />
+        <ChatMessage position="right" messageType="file" fileName="report.xlsx" fileSize="1.8 MB" progress={65} src="https://example.com/report.xlsx" time="10:37" status="sending" onDownload={() => alert('Custom download!')} />
         <ChatMessage position="right" messageType="custom" time="10:37" status="read">
           <div style={{ background: '#f0fdf4', border: '1px solid #22c55e', 'border-radius': '12px', padding: '12px 16px', 'font-size': '0.85rem' }}>
             ✅ Order #SC-2024 confirmed<br /><small style="color:#6b7280">Delivery by Friday</small>
