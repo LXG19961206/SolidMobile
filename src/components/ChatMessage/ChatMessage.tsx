@@ -143,7 +143,7 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
       case 'plainText':
       default:
         return (
-          <div class={styles.bubble} classList={{ [styles.bubbleInteractive!]: hasMenu() }} style={bubbleStyle()}>
+          <div class={styles.bubble} classList={{ [styles.bubbleInteractive!]: hasMenu() && !local.selectOnLongPress }} style={bubbleStyle()} ref={bubbleRef}>
             <Show when={local.tail}>
               <span class={styles.tail} classList={{ [styles.left!]: !isSelf(), [styles.right!]: isSelf() }} />
             </Show>
@@ -156,11 +156,27 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
   /* ── Long press ── */
   const [menuOpen, setMenuOpen] = createSignal(false);
   let longPressTimer: ReturnType<typeof setTimeout> | null = null;
+  let bubbleRef: HTMLDivElement | undefined;
   const hasMenu = () => local.longPressMenu != null;
+  // selectOnLongPress only works WITHOUT longPressMenu (mutually exclusive)
+  const canSelect = () => !hasMenu() && local.selectOnLongPress &&
+    (local.messageType === 'plainText' || local.messageType === 'richText');
 
   const startLongPress = () => {
-    if (!hasMenu() || menuOpen()) return;
-    longPressTimer = setTimeout(() => openMenu(), 500);
+    if (menuOpen()) return;
+    if (!hasMenu() && !canSelect()) return;
+    longPressTimer = setTimeout(() => {
+      if (canSelect() && bubbleRef) {
+        const range = document.createRange();
+        range.selectNodeContents(bubbleRef);
+        const sel = window.getSelection();
+        sel?.removeAllRanges();
+        sel?.addRange(range);
+      } else if (hasMenu()) {
+        setMenuOpen(true);
+        if (typeof document !== 'undefined') document.documentElement.style.setProperty('--sc-tooltip-bg', 'transparent');
+      }
+    }, 500);
   };
   const cancelLongPress = () => {
     if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null; }
@@ -170,23 +186,6 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
     if (typeof document !== 'undefined') document.documentElement.style.removeProperty('--sc-tooltip-bg');
   };
   onCleanup(() => { if (longPressTimer) clearTimeout(longPressTimer); });
-
-  // Override Tooltip's dark bg when menu opens
-  const openMenu = () => {
-    // Select all text on long press (plainText / richText only)
-    if (local.selectOnLongPress && (local.messageType === 'plainText' || local.messageType === 'richText')) {
-      const bubble = document.querySelector(`.${styles.bubble}`) as HTMLElement;
-      if (bubble) {
-        const range = document.createRange();
-        range.selectNodeContents(bubble);
-        const sel = window.getSelection();
-        sel?.removeAllRanges();
-        sel?.addRange(range);
-      }
-    }
-    setMenuOpen(true);
-    if (typeof document !== 'undefined') document.documentElement.style.setProperty('--sc-tooltip-bg', 'transparent');
-  };
 
   // Click outside → dismiss
   const handleOutsideClick = (e: MouseEvent) => {
