@@ -1,4 +1,4 @@
-import { mergeProps, splitProps, Show, type Component } from 'solid-js';
+import { mergeProps, splitProps, Show, type Component, type JSX } from 'solid-js';
 import type { ChatMessageProps } from './types';
 import { cn, scopedStyle } from '../../utils';
 import { Image } from '../Image';
@@ -9,6 +9,19 @@ function formatSize(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function fileExt(name: string): string {
+  const i = name.lastIndexOf('.');
+  return i > 0 ? name.slice(i + 1).toLowerCase() : '';
+}
+
+function mimeCategory(type: string): string {
+  if (!type) return '';
+  if (type.startsWith('image/')) return 'image';
+  if (type.startsWith('video/')) return 'video';
+  if (type.startsWith('audio/')) return 'audio';
+  return '';
 }
 
 const defaultProps: Partial<ChatMessageProps> = {
@@ -23,7 +36,7 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
   const [local] = splitProps(props, [
     'position', 'messageType', 'content', 'src', 'file', 'fileName', 'fileSize',
-    'children', 'renderSlot',
+    'iconMap', 'children', 'renderSlot',
     'avatar', 'avatarSize', 'avatarShape', 'showAvatar', 'avatarSlot',
     'tail', 'maxWidth', 'bgColor', 'borderRadius',
     'name', 'time', 'status',
@@ -35,6 +48,28 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
 
   const displayName = () => local.fileName ?? local.file?.name;
   const displaySize = () => local.fileSize ?? (local.file ? formatSize(local.file.size) : undefined);
+
+  const resolveFileIcon = (): JSX.Element => {
+    const map = local.iconMap;
+    const f = local.file;
+    // no file object → show generic icon
+    const name = displayName() || '';
+    const type = f?.type ?? '';
+    if (!map) {
+      const ext = fileExt(name);
+      return <span class={styles.fileIconLabel}>{ext.toUpperCase() || 'FILE'}</span>;
+    }
+    const ext = fileExt(name);
+    const cat = mimeCategory(type);
+    const key = map[ext] ?? (cat ? map[cat] : undefined) ?? map['*'];
+    if (key == null) return <span class={styles.fileIconLabel}>{ext.toUpperCase() || 'FILE'}</span>;
+    if (typeof key === 'string') {
+      // icon name or emoji string
+      return <span class={styles.fileIconLabel}>{key}</span>;
+    }
+    // JSX element
+    return key;
+  };
 
   const avatarRadius = () =>
     local.avatarShape === 'circle' ? '50%' : local.avatarShape === 'rounded' ? '8px' : '4px';
@@ -98,7 +133,7 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
       case 'file':
         return (
           <div class={styles.fileBubble} onClick={local.onContentClick}>
-            <div class={styles.fileIcon}>FILE</div>
+            <div class={styles.fileIcon}>{resolveFileIcon()}</div>
             <div style={{ 'min-width': 0, flex: 1 }}>
               <div class={styles.fileName}>{displayName() || 'Unknown file'}</div>
               <Show when={displaySize()}><div class={styles.fileSize}>{displaySize()}</div></Show>

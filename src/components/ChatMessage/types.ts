@@ -15,6 +15,8 @@ export interface ChatMessageProps {
   fileName?: string;
   /** 文件大小（可覆盖 file.size） */
   fileSize?: string;
+  /** 文件图标映射：{ pdf: 'file-pdf', doc: <MyIcon />, image: 'image', '*': 'file' }。key 为后缀（无点，小写）、MIME 大类或 '*' */
+  iconMap?: Record<string, string | JSX.Element>;
   /** custom 类型插槽 */
   children?: JSX.Element;
   /** 自定义渲染（所有类型均可替代默认渲染） */

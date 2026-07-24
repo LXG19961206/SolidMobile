@@ -153,9 +153,14 @@
   justify-content: center;
   border-radius: 8px;
   background: #e5e7eb;
-  font-size: 0.75rem;
+  overflow: hidden;
+}
+.fileIconLabel {
+  font-size: 0.7rem;
   font-weight: 700;
   color: #6b7280;
+  text-transform: uppercase;
+  line-height: 1;
 }
 .fileName {
   font-size: 0.82rem;
