@@ -26,7 +26,7 @@ export default {
       status: "Delivery state: 'sending' | 'sent' | 'read' | 'failed'.",
       onRetry: 'Retry callback when status=failed.',
       onAvatarClick: 'Avatar click callback.',
-      onLongPress: 'Long-press callback on the bubble.',
+      longPressMenu: "Long-press menu: [{ title, action }] array or custom JSX. 500ms hold to open.",
       onContentClick: 'Click callback on image/video/file content.',
       class: 'Custom CSS class.',
       style: 'Inline styles.',

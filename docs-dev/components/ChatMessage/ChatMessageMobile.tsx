@@ -19,8 +19,10 @@ export const ChatMessageMobile = () => {
     <MobilePreview title="ChatMessage">
       <MobilePropsSheet propsTables={propsTables} />
       <div style={{ padding: '10px 12px', display: 'flex', 'flex-direction': 'column', background: '#f8f9fb', 'min-height': '100%' }}>
-        <ChatMessage position="left" messageType="plainText" bgColor="#dbeafe" content="Hey! Check out the new chat component 👋" avatar={A} name="Alice" time="10:32" />
-        <ChatMessage position="right" messageType="plainText" content="Looks great! The tail pointer is a nice touch ✨" time="10:33" status="read" />
+        <ChatMessage position="left" messageType="plainText" bgColor="#dbeafe" content="Hey! Check out the new chat component 👋" avatar={A} name="Alice" time="10:32"
+          longPressMenu={[{ title: 'Copy', action: () => alert('Copied!') }, { title: 'Reply', action: () => alert('Reply') }]} />
+        <ChatMessage position="right" messageType="plainText" content="Looks great! The tail pointer is a nice touch ✨" time="10:33" status="read"
+          longPressMenu={[{ title: 'Copy', action: () => alert('Copied!') }, { title: 'Recall', action: () => alert('Recalled') }, { title: 'Delete', action: () => alert('Deleted') }]} />
         <ChatMessage position="left" messageType="image" bgColor="#dbeafe" src={IMG} name="Alice" time="10:34" avatar={A} />
         <ChatMessage position="right" messageType="plainText" content="Can you send that design file?" time="10:35" status="read" />
         <ChatMessage position="left" messageType="file" bgColor="#dbeafe" fileName="design-spec.pdf" fileSize="2.4 MB" src="./logo.jpg" name="Alice" time="10:36" avatar={A} />

@@ -26,7 +26,7 @@ export default {
       status: "发送状态：'sending' | 'sent' | 'read' | 'failed'。",
       onRetry: '发送失败时的重试回调。',
       onAvatarClick: '头像点击回调。',
-      onLongPress: '气泡长按回调。',
+      longPressMenu: "长按菜单：传 [{ title, action }] 数组使用内置样式，传 JSX 完全自定义。长按 500ms 弹出。",
       onContentClick: '图片/视频/文件点击回调。',
       class: '自定义 CSS class。',
       style: '内联样式。',

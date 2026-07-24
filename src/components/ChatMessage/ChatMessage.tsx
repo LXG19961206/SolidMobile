@@ -1,4 +1,4 @@
-import { mergeProps, splitProps, Show, type Component, type JSX } from 'solid-js';
+import { mergeProps, splitProps, Show, createSignal, onCleanup, type Component, type JSX } from 'solid-js';
 import type { ChatMessageProps } from './types';
 import { cn, scopedStyle } from '../../utils';
 import { Image } from '../Image';
@@ -26,7 +26,7 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
     'avatar', 'avatarSize', 'avatarShape', 'showAvatar', 'avatarSlot',
     'tail', 'maxWidth', 'bgColor', 'borderRadius',
     'name', 'time', 'status',
-    'onRetry', 'onAvatarClick', 'onLongPress', 'onContentClick',
+    'onRetry', 'onAvatarClick', 'longPressMenu', 'onContentClick',
     'class', 'style',
   ]);
 
@@ -152,11 +152,31 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
     }
   };
 
+  /* ── Long press ── */
+  const [menuOpen, setMenuOpen] = createSignal(false);
+  let longPressTimer: ReturnType<typeof setTimeout> | null = null;
+  const hasMenu = () => local.longPressMenu != null;
+
+  const startLongPress = () => {
+    if (!hasMenu() || menuOpen()) return;
+    longPressTimer = setTimeout(() => setMenuOpen(true), 500);
+  };
+  const cancelLongPress = () => {
+    if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null; }
+  };
+  const dismissMenu = () => setMenuOpen(false);
+  onCleanup(() => { if (longPressTimer) clearTimeout(longPressTimer); });
+
   return (
     <div
       class={cn(styles.wrapper, styles[local.position], local.class)}
       style={typeof local.style === 'object' ? { ...bubbleStyle(), ...local.style as Record<string, any> } : bubbleStyle()}
-      onTouchStart={() => {}} // placeholder for long-press detection
+      onTouchStart={startLongPress}
+      onTouchEnd={cancelLongPress}
+      onTouchMove={cancelLongPress}
+      onMouseDown={startLongPress}
+      onMouseUp={cancelLongPress}
+      onMouseLeave={cancelLongPress}
     >
       {/* Avatar */}
       <Show when={local.showAvatar}>
@@ -202,6 +222,20 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
           </div>
         </Show>
       </div>
+
+      {/* ── Long press menu ── */}
+      <Show when={menuOpen() && hasMenu()}>
+        <div class={styles.menu} classList={{ [styles.menuLeft!]: !isSelf(), [styles.menuRight!]: isSelf() }}>
+          {Array.isArray(local.longPressMenu)
+            ? (local.longPressMenu as { title: string; action: () => void }[]).map(item => (
+                <div class={styles.menuItem} onClick={() => { item.action(); dismissMenu(); }}>
+                  {item.title}
+                </div>
+              ))
+            : (local.longPressMenu as JSX.Element)}
+        </div>
+        <div class={styles.menuBackdrop} onClick={dismissMenu} />
+      </Show>
     </div>
   );
 };
