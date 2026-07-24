@@ -1,4 +1,4 @@
-import { mergeProps, splitProps, Show, createSignal, onCleanup, type Component, type JSX } from 'solid-js';
+import { mergeProps, splitProps, Show, For, createSignal, onCleanup, type Component, type JSX } from 'solid-js';
 import type { ChatMessageProps } from './types';
 import { cn, scopedStyle } from '../../utils';
 import { Image } from '../Image';
@@ -208,15 +208,17 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
     if (Array.isArray(local.longPressMenu)) {
       return (
         <div class={styles.menu}>
-          {(local.longPressMenu as { title: string; action: () => void }[]).map(item => (
-            <div
-              class={styles.menuItem}
-              onClick={() => { item.action(); dismissMenu(); }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#f3f4f6'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = ''; }}
-              onMouseDown={e => { (e.currentTarget as HTMLElement).style.background = '#d1d5db'; }}
-            >{item.title}</div>
-          ))}
+          <For each={local.longPressMenu as { title: string; action: () => void }[]}>
+            {item => (
+              <div
+                class={styles.menuItem}
+                onClick={() => { item.action(); dismissMenu(); }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#f3f4f6'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = ''; }}
+                onMouseDown={e => { (e.currentTarget as HTMLElement).style.background = '#d1d5db'; }}
+              >{item.title}</div>
+            )}
+          </For>
         </div>
       );
     }
