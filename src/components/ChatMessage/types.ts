@@ -9,11 +9,9 @@ export interface ChatMessageProps {
   content?: string;
   /** 图片 / 视频 / 文件 URL */
   src?: string;
-  /** File 对象，自动提取 name / size，messageType=file 时优先 */
-  file?: File;
-  /** 文件名（可覆盖 file.name） */
+  /** 文件名，自动提取后缀匹配 iconMap */
   fileName?: string;
-  /** 文件大小（可覆盖 file.size） */
+  /** 文件大小，如 '2.4 MB' */
   fileSize?: string;
   /** 文件图标映射：{ pdf: 'file-pdf', doc: <MyIcon />, image: 'image', '*': 'file' }。key 为后缀（无点，小写）、MIME 大类或 '*' */
   iconMap?: Record<string, string | JSX.Element>;

@@ -29,7 +29,7 @@ export const ChatMessageDocPage = () => {
     },
     {
       title: t('chatMessage.demo.fileAndCustom'),
-      code: '// file prop auto-extracts name + size\nconst pdf = new File([...], "design-spec.pdf",\n  { type: "application/pdf" });\n\nconst iconMap = {\n  pdf: \'📄\', doc: \'📝\', xls: \'📊\',\n  image: \'🖼️\', video: \'🎬\', \'*\': \'📎\'\n};\n\n<ChatMessage position="left" messageType="file"\n  file={pdf} iconMap={iconMap}\n  name="Alice" time="11:20" avatar="alice.jpg" />\n\n<ChatMessage position="right" messageType="custom" time="11:22">\n  <div style="background:#f0fdf4;border:1px solid #22c55e;\n    border-radius:12px;padding:12px 16px">\n    ✅ Order confirmed! Tracking #SC-2024\n    <br/><small>Estimated delivery: Friday</small>\n  </div>\n</ChatMessage>',
+      code: '<ChatMessage position="left" messageType="file"\n  fileName="design-spec.pdf" fileSize="2.4 MB"\n  iconMap={{ pdf: \'📄\', doc: \'📝\', \'*\': \'📎\' }}\n  name="Alice" time="11:20" avatar="alice.jpg" />\n\n<ChatMessage position="right" messageType="custom" time="11:22">\n  <div style="background:#f0fdf4;border:1px solid #22c55e;\n    border-radius:12px;padding:12px 16px">\n    ✅ Order confirmed! Tracking #SC-2024\n    <br/><small>Estimated delivery: Friday</small>\n  </div>\n</ChatMessage>',
       desc: t('chatMessage.demoDesc.fileAndCustom'),
     },
     {

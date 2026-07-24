@@ -5,23 +5,9 @@ import { Image } from '../Image';
 import rawStyles from './ChatMessage.module.css';
 const styles = scopedStyle(rawStyles, 'sc-chat-message');
 
-function formatSize(bytes: number): string {
-  if (bytes < 1024) return `${bytes} B`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-}
-
 function fileExt(name: string): string {
   const i = name.lastIndexOf('.');
   return i > 0 ? name.slice(i + 1).toLowerCase() : '';
-}
-
-function mimeCategory(type: string): string {
-  if (!type) return '';
-  if (type.startsWith('image/')) return 'image';
-  if (type.startsWith('video/')) return 'video';
-  if (type.startsWith('audio/')) return 'audio';
-  return '';
 }
 
 const defaultProps: Partial<ChatMessageProps> = {
@@ -35,7 +21,7 @@ const defaultProps: Partial<ChatMessageProps> = {
 export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
   const [local] = splitProps(props, [
-    'position', 'messageType', 'content', 'src', 'file', 'fileName', 'fileSize',
+    'position', 'messageType', 'content', 'src', 'fileName', 'fileSize',
     'iconMap', 'children', 'renderSlot',
     'avatar', 'avatarSize', 'avatarShape', 'showAvatar', 'avatarSlot',
     'tail', 'maxWidth', 'bgColor', 'borderRadius',
@@ -46,8 +32,8 @@ export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
 
   const isSelf = () => local.position === 'right';
 
-  const displayName = () => local.fileName ?? local.file?.name;
-  const displaySize = () => local.fileSize ?? (local.file ? formatSize(local.file.size) : undefined);
+  const displayName = () => local.fileName || '';
+  const displaySize = () => local.fileSize || '';
 
 const DEFAULT_ICON_MAP: Record<string, string> = {
   pdf: '📄', doc: '📝', docx: '📝', xls: '📊', xlsx: '📊', ppt: '📽️', pptx: '📽️',
@@ -59,12 +45,9 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
 };
 
   const resolveFileIcon = (): JSX.Element => {
-    const f = local.file;
-    const name = displayName() || '';
-    const ext = fileExt(name);
-    const cat = mimeCategory(f?.type ?? '');
+    const ext = fileExt(displayName());
     const map = { ...DEFAULT_ICON_MAP, ...local.iconMap };
-    const key = (ext ? map[ext] : undefined) ?? (cat ? map[cat] : undefined) ?? map['*'];
+    const key = (ext ? map[ext] : undefined) ?? map['*'];
     if (key != null) return <span class={styles.fileIconLabel}>{key}</span>;
     return <span class={styles.fileIconLabel}>{ext || 'FILE'}</span>;
   };
