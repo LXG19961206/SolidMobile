@@ -88,8 +88,12 @@ function seg(len: number, drawKey: string, active: boolean): Record<string, any>
       'fill-opacity': 0,
     };
   }
+  // inline values match the animation from-keyframe so there's
+  // no flash frame before the draw takes over
   return {
     'stroke-dasharray': len,
+    'stroke-dashoffset': len,     // hidden until animation starts
+    'fill-opacity': 0,             // transparent until fill-in kicks in
     animation: `${drawKey} .8s cubic-bezier(.4,0,.2,1) forwards, tb-fill-in .35s ease .55s forwards`,
     fill: 'currentColor',
   };
