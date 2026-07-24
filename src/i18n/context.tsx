@@ -18,7 +18,7 @@ function getInitial(): string {
     const stored = localStorage.getItem(LOCALE_KEY);
     if (stored) return stored;
   }
-  return 'zh-CN';
+  return 'en-US';
 }
 
 // ── Module-level reactive signals ──
