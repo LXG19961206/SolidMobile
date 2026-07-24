@@ -3,6 +3,7 @@ import type { ChatMessageProps } from './types';
 import { cn, scopedStyle } from '../../utils';
 import { Image } from '../Image';
 import { Tooltip } from '../Tooltip';
+import { Loading } from '../Loading';
 import rawStyles from './ChatMessage.module.css';
 const styles = scopedStyle(rawStyles, 'sc-chat-message');
 
@@ -74,7 +75,7 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
     const custom = local.statusIcon?.[st];
     if (custom) return custom;
     // built-in defaults
-    if (st === 'sending') return <span class={styles.statusSending}>⏳</span>;
+    if (st === 'sending') return <Loading type="spinner" size={14} />;
     if (st === 'sent') return <span class={styles.statusSent}>✓</span>;
     if (st === 'read') return <span class={styles.statusRead} style="color:#22c55e">✓</span>;
     if (st === 'failed')

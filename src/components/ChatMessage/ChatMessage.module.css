@@ -220,7 +220,6 @@
   align-items: center;
   gap: 2px;
 }
-.statusSending { opacity: 0.6; }
 .statusFailed  { color: #ef4444; cursor: pointer; }
 .statusRead     { /* color set inline */ }
 .statusSent     { opacity: 0.7; }
