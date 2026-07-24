@@ -148,7 +148,7 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
       case 'plainText':
       default:
         return (
-          <div class={styles.bubble} classList={{ [styles.bubbleInteractive!]: hasMenu() && !local.selectOnLongPress }} style={bubbleStyle()} ref={bubbleRef}>
+          <div class={styles.bubble} classList={{ [styles.bubbleInteractive!]: hasMenu() && !local.selectOnLongPress }} style={{ ...bubbleStyle(), ...(isBubbleStatus() ? { 'padding-right': '28px' } : {}) }} ref={bubbleRef}>
             <Show when={local.tail}>
               <span class={styles.tail} classList={{ [styles.left!]: !isSelf(), [styles.right!]: isSelf() }} />
             </Show>
@@ -272,7 +272,7 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
           </div>
         </Show>
 
-        <div style={{ display: 'flex', 'align-items': 'flex-end', gap: '4px' }}>
+        <div style={{ display: 'flex', 'align-items': 'center', gap: '4px' }}>
           <Show when={local.statusPosition === 'side' && isSelf()}>{statusIcon()}</Show>
           {hasMenu() && menuOpen() ? (
             <Tooltip trigger="manual" open={true} placement="top" content={menuContent()}>
