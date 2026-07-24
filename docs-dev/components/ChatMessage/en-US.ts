@@ -54,7 +54,8 @@ export default {
       longPressCustom: 'Custom JSX mode: full control over menu layout. Uses Tooltip for positioning.',
       longPressSelect: 'selectOnLongPress selects all bubble text on hold. Mutually exclusive with longPressMenu.',
     },
-    intro: 'Chat bubble component supporting text, image, video, file, and custom content. Left/right alignment, avatar, tail pointer, and delivery status built in. This is an opinionated starting point, not a universal chat UI. For highly customized needs, use the underlying components to compose your own.',
+    intro: 'Chat bubble component supporting text, image, video, file, and custom content. Left/right alignment, avatar, tail pointer, and delivery status built in.',
+    note: 'Honestly, I kind of regret designing this component. Unlike the rest of the library which stays firmly in the UI layer, ChatMessage inevitably reaches into business territory — chat paradigms, message statuses, long-press menus. It breaks my own design philosophy and may well be a thankless effort (lol). But in the age of LLMs and chat-driven apps, it is undeniably useful. So here it is — take it, fork it, bend it to your will. This is an opinionated starting point, not a universal chat UI solution.',
     cssVars: {
       gap: 'Gap between avatar and body.',
       wrapperPadding: 'Outer wrapper padding.',

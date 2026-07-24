@@ -21,6 +21,7 @@ export const ChatMessageMobile = () => {
       <MobilePropsSheet propsTables={propsTables} cssVarsTables={cssVarsTables} />
       <div style={{ padding: '10px 12px', display: 'flex', 'flex-direction': 'column', 'min-height': '100%' }}>
 
+        <div style={{ 'font-size': '0.7rem', color: '#9ca3af', 'text-align': 'center', padding: '6px 8px 10px', 'line-height': 1.55 }}>{t('chatMessage.note')}</div>
         {/* ── Content Types ── */}
         <ChatMessage position="left" messageType="plainText" content="Hey! How are you doing? 👋" avatar={A} name="Alice" time="10:30" />
         <ChatMessage position="right" messageType="plainText"  content="I'm good! Just shipped a new component 🎉" time="10:31" status="read" />
