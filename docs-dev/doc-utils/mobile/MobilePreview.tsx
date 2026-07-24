@@ -179,7 +179,7 @@ export const MobilePreview: Component<MobilePreviewProps> = (props) => {
       </Show>
 
       {/* Scrollable demo area */}
-      <div class={styles.body}>
+      <div class={styles.body} classList={{ [styles.bodyIframe!]: inIframe() }}>
         {props.children}
       </div>
 
