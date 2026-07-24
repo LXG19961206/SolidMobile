@@ -53,8 +53,8 @@ export interface ChatMessageProps {
   time?: string;
   /** 发送状态 */
   status?: 'sending' | 'sent' | 'read' | 'failed';
-  /** 状态图标位置：'meta' 在时间旁（默认），'bubble' 浮在气泡内右下 */
-  statusPosition?: 'meta' | 'bubble';
+  /** 状态图标位置：'meta' 在时间旁（默认），'bubble' 气泡内右下，'side' 气泡右侧 */
+  statusPosition?: 'meta' | 'bubble' | 'side';
   /** 自定义状态图标：{ sent: <MyCheck />, read: <BlueCheck /> }，未覆盖的用内置默认 */
   statusIcon?: Partial<Record<'sending' | 'sent' | 'read' | 'failed', JSX.Element>>;
 
