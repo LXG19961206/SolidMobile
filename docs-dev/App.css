@@ -68,11 +68,10 @@ html.dark .top-nav {
   flex-shrink: 0;
 }
 
-.top-nav-logo img {
+.top-nav-logo svg {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
 }
 
 .top-nav-title {

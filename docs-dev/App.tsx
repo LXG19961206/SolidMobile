@@ -192,8 +192,13 @@ export function App() {
           {/* ══ Top Nav Tabs ══ */}
           <header class="top-nav">
             <div class="top-nav-brand">
-              <span class="top-nav-logo">
-                <img src="./logo.jpg" alt="solid-mobile" />
+              <span class="top-nav-logo" aria-label="solid-mobile">
+                <svg viewBox="0 0 32 32" fill="none">
+                  {/* 3 stacked component cards — building-block motif */}
+                  <rect x="2" y="2" width="18" height="18" rx="4" fill="var(--sc-color-primary, #1677ff)" opacity="0.35" />
+                  <rect x="7" y="7" width="18" height="18" rx="4" fill="var(--sc-color-primary, #1677ff)" opacity="0.65" />
+                  <rect x="12" y="12" width="18" height="18" rx="4" fill="var(--sc-color-primary, #1677ff)" />
+                </svg>
               </span>
               <span class="top-nav-title">solid-mobile</span>
             </div>
