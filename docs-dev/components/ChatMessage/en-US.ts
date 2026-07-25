@@ -3,7 +3,7 @@ export default {
     props: {
       position: "Bubble position: 'left' (other) | 'right' (self).",
       messageType: "Message type: plainText | image | video | file | custom.",
-      content: 'Text / markdown content.',
+      content: 'Text content.',
       src: "Image, video, or file URL.",
       fileName: 'File display name — extension auto-matched against iconMap.',
       fileSize: 'File display size, e.g. "2.4 MB".',
