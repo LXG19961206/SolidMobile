@@ -8,9 +8,9 @@ export function showI18nNotice() {
   i18nNoticeShown = true;
   setTimeout(() => {
     DialogAPI.alert({
-      title: '关于国际化 / About i18n',
+      title: 'About i18n / 关于国际化',
       message: 'Main content — component descriptions, prop docs, etc. — has been internationalized, and the library itself has full i18n support.\n\nDue to limited solo-maintainer bandwidth, demo placeholder data (names, options, labels, etc.) is shown in simple English only. Nothing fancy — just basic vocabulary.\n\n——\n\n组件功能描述、属性说明等主要内容已做了基本的国际化，组件库自身也具备完善的多语言支持能力。\n\n受限于个人维护精力，文档 demo 中的示例数据（姓名、选项、提示文案等）仅提供一套简单英文，没有做中英双语对照。不过用的都是基础词汇，不影响理解。',
-      confirmText: '知道了 / Got it',
+      confirmText: 'Got it / 知道了',
     });
   }, 100);
 }
