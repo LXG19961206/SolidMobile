@@ -22,6 +22,7 @@
   --sc-chat-avatar-font-size: var(--sc-font-size-xs, 0.75rem);
   --sc-chat-img-max-size: 220px;
   --sc-chat-video-max-width: 240px;
+  --sc-chat-video-play-size: 36px;
   --sc-chat-file-gap: 10px;
   --sc-chat-file-icon-size: 36px;
   --sc-chat-file-icon-radius: var(--sc-border-radius-md, 8px);
@@ -186,13 +187,29 @@
   width: 100%;
   border-radius: inherit;
 }
-/* ── Video: hide controls until hover ── */
-.videoBubble video::-webkit-media-controls-panel {
-  opacity: 0;
-  transition: opacity .2s;
+.videoPlayBtn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.2);
+  pointer-events: none;
 }
-.videoBubble:hover video::-webkit-media-controls-panel {
-  opacity: 1;
+.videoPlayBtn svg {
+  width: var(--sc-chat-video-play-size, 36px);
+  height: var(--sc-chat-video-play-size, 36px);
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.3));
+}
+.videoPreviewOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.85);
+  cursor: pointer;
 }
 
 /* ── File bubble ── */

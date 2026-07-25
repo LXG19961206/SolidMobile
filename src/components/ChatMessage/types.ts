@@ -9,6 +9,8 @@ export interface ChatMessageProps {
   content?: string;
   /** 图片 / 视频 / 文件下载 URL */
   src?: string;
+  /** 视频封面图，未传时用视频首帧 */
+  poster?: string;
   /** 文件名，自动提取后缀匹配 iconMap */
   fileName?: string;
   /** 文件大小，如 '2.4 MB' */

@@ -1,4 +1,4 @@
-import { mergeProps, splitProps, Show, For, createSignal, onCleanup, type Component, type JSX } from 'solid-js';
+import { mergeProps, splitProps, Show, For, createSignal, onCleanup, onMount, type Component, type JSX } from 'solid-js';
 import type { ChatMessageProps } from './types';
 import { cn, scopedStyle } from '../../utils';
 import { Image } from '../Image';
@@ -23,7 +23,7 @@ const defaultProps: Partial<ChatMessageProps> = {
 export const ChatMessage: Component<ChatMessageProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
   const [local] = splitProps(props, [
-    'position', 'messageType', 'content', 'src', 'fileName', 'fileSize',
+    'position', 'messageType', 'content', 'src', 'poster', 'fileName', 'fileSize',
     'iconMap', 'progress', 'children',
     'avatar', 'avatarSize', 'avatarShape', 'showAvatar',
     'tail', 'maxWidth', 'bgColor', 'borderRadius',
@@ -108,21 +108,36 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
           </Show>
         );
 
-      case 'video':
+      case 'video': {
+        const [vidOpen, setVidOpen] = createSignal(false);
+        let vidRef: HTMLVideoElement | undefined;
+        onMount(() => {
+          if (vidRef && local.poster) {
+            vidRef.load(); // trigger first-frame render for poster fallback
+          }
+        });
         return (
-          <div
-            class={styles.videoBubble}
-            onClick={e => {
-              const vid = (e.currentTarget as HTMLElement).querySelector('video');
-              if (!vid) return;
-              vid.paused ? vid.play() : vid.pause();
-            }}
-          >
-            <Show when={local.src}>
-              <video src={local.src} controls playsinline />
+          <>
+            <div class={styles.videoBubble} onClick={() => setVidOpen(true)}>
+              <Show when={local.src}>
+                <video src={local.src} ref={vidRef} playsinline
+                  poster={local.poster} preload="metadata" />
+              </Show>
+              <div class={styles.videoPlayBtn}>
+                <svg viewBox="0 0 36 36" fill="white"><polygon points="14,10 14,26 27,18" /></svg>
+              </div>
+            </div>
+            <Show when={vidOpen()}>
+              <div class={styles.videoPreviewOverlay} onClick={() => setVidOpen(false)}>
+                <video src={local.src} controls autoplay playsinline
+                  poster={local.poster} preload="auto"
+                  onClick={e => e.stopPropagation()}
+                  style={{ 'max-width': '90vw', 'max-height': '90vh', 'border-radius': '8px' }} />
+              </div>
             </Show>
-          </div>
+          </>
         );
+      }
 
       case 'file':
         return (
