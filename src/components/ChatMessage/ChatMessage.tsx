@@ -12,6 +12,9 @@ function fileExt(name: string): string {
   return i > 0 ? name.slice(i + 1).toLowerCase() : '';
 }
 
+// shared across all ChatMessage instances — only one menu open at a time
+let activeMenuClose: (() => void) | null = null;
+
 const defaultProps: Partial<ChatMessageProps> = {
   showAvatar: true,
   avatarSize: 36,
@@ -196,6 +199,9 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
         sel?.removeAllRanges();
         sel?.addRange(range);
       } else if (hasMenu()) {
+        // close any previously open menu (only one at a time)
+        if (activeMenuClose && activeMenuClose !== dismissMenu) activeMenuClose();
+        activeMenuClose = dismissMenu;
         setMenuOpen(true);
         if (typeof document !== 'undefined') document.documentElement.style.setProperty('--sc-tooltip-bg', 'transparent');
       }
@@ -206,9 +212,13 @@ const DEFAULT_ICON_MAP: Record<string, string> = {
   };
   const dismissMenu = () => {
     setMenuOpen(false);
+    activeMenuClose = null;
     if (typeof document !== 'undefined') document.documentElement.style.removeProperty('--sc-tooltip-bg');
   };
-  onCleanup(() => { if (longPressTimer) clearTimeout(longPressTimer); });
+  onCleanup(() => {
+    if (longPressTimer) clearTimeout(longPressTimer);
+    if (activeMenuClose === dismissMenu) activeMenuClose = null;
+  });
 
   // Click outside → dismiss
   const handleOutsideClick = (e: MouseEvent) => {
