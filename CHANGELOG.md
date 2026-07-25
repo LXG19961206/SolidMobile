@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.4] - 2026-07-25
+
+### Fixed
+- Move `@testing-library/user-event` from `dependencies` to `devDependencies` (0 runtime deps)
+
 ## [0.1.3] - 2026-07-25
 
 ### Added
