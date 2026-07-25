@@ -23,7 +23,7 @@ export default {
       time: 'Timestamp string. Overridden by footer.',
       footer: 'Custom JSX below bubble, replaces time + status when provided.',
       status: "Delivery state: 'sending' | 'sent' | 'read' | 'failed'.",
-      statusPosition: "Icon position: 'meta' (after time), 'bubble' (inside bubble), 'side' (between avatar & bubble).",
+      statusPosition: "Icon position: 'meta' (after time), 'bubble' (inside bubble), 'side' (next to bubble).",
       statusIcon: "Custom status icons: { sent: <MyCheck />, read: <BlueCheck /> }. Falls back to built-in defaults.",
       onRetry: 'Retry callback when status=failed.',
       onAvatarClick: 'Avatar click callback.',
