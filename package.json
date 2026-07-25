@@ -71,6 +71,7 @@
   },
   "devDependencies": {
     "@solidjs/testing-library": "^0.8.10",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^22.10.0",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
@@ -87,6 +88,5 @@
     "vitest": "^2.1.8"
   },
   "dependencies": {
-    "@testing-library/user-event": "^14.6.1"
   }
 }
