@@ -231,7 +231,7 @@ function App() {
               <td style={{ 'font-weight': 600 }}>localeMessages</td>
               <td style={{ color: '#6b7280', 'font-size': '0.8rem' }}>{`Record<string, TranslationDict>`}</td>
               <td style={{ color: '#9ca3af', 'font-size': '0.8rem' }}>—</td>
-              <td>自定义语言字典，Depth 合并到内置字典。传Arbitrary  locale 字符串作为 key，值与内置字典同结构。用户词条优先。</td>
+              <td>Partial locale dictionary, deep-merged into built-in. Keys are locale strings, values follow built-in structure. User entries take priority.</td>
             </tr>
           </tbody>
         </table>
@@ -244,20 +244,20 @@ function App() {
         <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.85rem' }}>
           <thead>
             <tr style={{ 'border-bottom': '2px solid #e5e7eb', 'text-align': 'left' }}>
-              <th style={{ padding: '8px 12px' }}>字段</th>
-              <th style={{ padding: '8px 12px' }}>类型</th>
-              <th style={{ padding: '8px 12px' }}>Default 值</th>
-              <th style={{ padding: '8px 12px' }}>说明</th>
+              <th style={{ padding: '8px 12px' }}>Field</th>
+              <th style={{ padding: '8px 12px' }}>Type</th>
+              <th style={{ padding: '8px 12px' }}>Default</th>
+              <th style={{ padding: '8px 12px' }}>Description</th>
             </tr>
           </thead>
           <tbody>
             {[
-              ['prefix', 'string', "'sc'", 'CSS 变量前缀。如 primary 生成 --sc-color-primary'],
-              ['darkMode', "'class' | 'media'", "'class'", "暗色模式策略。class → 给 html 加 .dark；media → @media (prefers-color-scheme: dark)"],
-              ['locale', 'string', "'zh-CN'", '内置文本语言。Supports Arbitrary  locale 字符串，内置字典仅含 zh-CN / en-US'],
-              ['colors', 'ThemeColors', '见下方', '完整色彩系统，含 light / dark 两套色板'],
-              ['typography', 'TypographyConfig', '见下方', '字体族、字号、字重、行高'],
-              ['borderRadius', 'BorderRadiusConfig', '见下方', '圆角尺寸 (sm/md/lg/full)'],
+              ['prefix', 'string', "'sc'", 'CSS variable prefix. primary → --sc-color-primary'],
+              ['darkMode', "'class' | 'media'", "'class'", "Dark mode strategy. class → toggle .dark on html; media → @media (prefers-color-scheme: dark)"],
+              ['locale', 'string', "'en-US'", 'Built-in locale. Supports arbitrary locale strings; built-in dict covers en-US / zh-CN'],
+              ['colors', 'ThemeColors', 'see below', 'Full color system with light / dark palettes'],
+              ['typography', 'TypographyConfig', 'see below', 'Font family, size, weight, line-height'],
+              ['borderRadius', 'BorderRadiusConfig', 'see below', 'Border radius sizes (sm/md/lg/full)'],
             ].map(([name, type, def, desc]) => (
               <tr>
                 <td style={{ 'font-weight': 600 }}>{name}</td>
@@ -279,7 +279,7 @@ function App() {
               <th>Token</th>
               <th>Light</th>
               <th>Dark</th>
-              <th>CSS 变量</th>
+              <th>CSS Variable</th>
             </tr>
           </thead>
           <tbody>
