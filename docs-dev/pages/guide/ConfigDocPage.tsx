@@ -308,8 +308,8 @@ function App() {
         <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.85rem' }}>
           <thead>
             <tr style={{ 'border-bottom': '2px solid #e5e7eb', 'text-align': 'left' }}>
-              <th style={{ padding: '8px 12px' }}>字段</th>
-              <th style={{ padding: '8px 12px' }}>值</th>
+              <th style={{ padding: '8px 12px' }}>Field</th>
+              <th style={{ padding: '8px 12px' }}>Value</th>
             </tr>
           </thead>
           <tbody>
@@ -328,9 +328,9 @@ function App() {
         <table style={{ width: '100%', 'border-collapse': 'collapse', 'font-size': '0.85rem' }}>
           <thead>
             <tr style={{ 'border-bottom': '2px solid #e5e7eb', 'text-align': 'left' }}>
-              <th style={{ padding: '8px 12px' }}>字段</th>
-              <th style={{ padding: '8px 12px' }}>值</th>
-              <th style={{ padding: '8px 12px' }}>CSS 变量</th>
+              <th style={{ padding: '8px 12px' }}>Field</th>
+              <th style={{ padding: '8px 12px' }}>Value</th>
+              <th style={{ padding: '8px 12px' }}>CSS Variable</th>
             </tr>
           </thead>
           <tbody>
@@ -370,7 +370,7 @@ function App() {
 function MyComp() {
   const cfg = useConfig();
   console.log(cfg.colors.light.primary); // '#1677ff'
-  console.log(cfg.locale);               // 'zh-CN'
+  console.log(cfg.locale);               // 'en-US'
 }`} />
     </div>
   );
