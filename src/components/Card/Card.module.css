@@ -44,7 +44,8 @@
 
 /* ── 暗色模式 ── */
 :global(html.dark) .card {
-  --sc-card-bg: #1f2228;
+  --sc-color-surface: #1f2228;
+  --sc-card-bg: var(--sc-color-surface);
   --sc-card-border: #334155;
   --sc-card-title: #e2e8f0;
   --sc-card-subtitle: #94a3b8;

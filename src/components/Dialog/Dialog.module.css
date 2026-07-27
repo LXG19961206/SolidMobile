@@ -25,7 +25,7 @@
 }
 
 :global(html.dark) .card {
-  --sc-dialog-bg: #1f2228;
+  --sc-dialog-bg: var(--sc-color-surface, #1f2228);
   --sc-dialog-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 

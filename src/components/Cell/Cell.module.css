@@ -3,7 +3,7 @@
   --sc-color-cell-bg: #fff;
 }
 :global(html.dark) {
-  --sc-color-cell-bg: #1f2228;
+  --sc-color-cell-bg: var(--sc-color-surface, #1f2228);
 }
 
 .cell { -webkit-tap-highlight-color: transparent; }
@@ -38,7 +38,7 @@
 
 :global(html.dark) .cells,
 :global(html.dark) .cell {
-  --sc-color-cell-bg: #1f2228;
+  --sc-color-cell-bg: var(--sc-color-surface, #1f2228);
 }
 
 /* ── Cell ── */
