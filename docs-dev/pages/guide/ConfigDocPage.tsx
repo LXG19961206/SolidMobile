@@ -214,10 +214,10 @@ function App() {
         <table>
           <thead>
             <tr>
-              <th>属性</th>
-              <th>类型</th>
-              <th>Default 值</th>
-              <th>说明</th>
+              <th>Prop</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
             </tr>
           </thead>
           <tbody>
