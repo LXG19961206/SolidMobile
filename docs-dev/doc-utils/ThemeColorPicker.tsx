@@ -1,8 +1,8 @@
 import { createSignal, Show, type Component } from 'solid-js';
 
 export const THEME_PRESETS = [
-  '#1677ff', '#fa2c19', '#07c160', '#fa8c16',
-  '#722ed1', '#ec4899', '#14b8a6', '#576b95',
+  '#1677ff', '#6366f1', '#8b5cf6', '#ec4899',
+  '#f43f5e', '#f59e0b', '#10b981', '#0ea5e9',
 ];
 
 export const ThemeColorPicker: Component<{ color: string; onChange: (c: string) => void }> = (props) => {
