@@ -279,8 +279,9 @@ html.dark .nav-group-title {
 .nav-item {
   display: block;
   width: 100%;
-  padding: 7px 12px;
-  font-size: 0.825rem;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 450;
   color: #4b5563;
   text-decoration: none;
   border: none;
@@ -290,6 +291,7 @@ html.dark .nav-group-title {
   cursor: pointer;
   margin-bottom: 1px;
   transition: all 0.15s ease;
+  letter-spacing: 0.01em;
 }
 
 .nav-item:hover {
