@@ -225,7 +225,7 @@ function App() {
               <td style={{ 'font-weight': 600 }}>config</td>
               <td style={{ color: '#6b7280', 'font-size': '0.8rem' }}>PartialSolidComponentConfig</td>
               <td style={{ color: '#9ca3af', 'font-size': '0.8rem' }}>—</td>
-              <td>部分配置覆盖，Depth 合并到 defaultConfig。只传需要改的字段。</td>
+              <td>Partial config override, deep-merged into defaultConfig. Only pass fields you want to change.</td>
             </tr>
             <tr>
               <td style={{ 'font-weight': 600 }}>localeMessages</td>
