@@ -141,3 +141,17 @@
   background: #1677ff;
   opacity: 0.85;
 }
+
+/* ── Dark mode ── */
+:global(html.dark) .intro { color: #94a3b8; }
+:global(html.dark) .intro code { background: #2a2d33; }
+:global(html.dark) .h2 { color: #e2e8f0; border-bottom-color: #2a2d33; }
+:global(html.dark) .hr { border-top-color: #2a2d33; }
+:global(html.dark) .swatchOutline { border-color: #475569; }
+:global(html.dark) .swatchLabel { color: #94a3b8; }
+:global(html.dark) .swatchHex { color: #64748b; }
+:global(html.dark) .typoRow { border-bottom-color: #2a2d33; }
+:global(html.dark) .typoLabel { color: #64748b; }
+:global(html.dark) .typoSample { color: #e2e8f0; }
+:global(html.dark) .typoValue { color: #94a3b8; }
+:global(html.dark) .groupTitle { color: #64748b; }
