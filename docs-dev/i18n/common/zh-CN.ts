@@ -598,7 +598,8 @@ export default {
             textInverse: '反色文字',
             border: '边框',
             borderHover: '边框悬停',
-            focus: '聚焦环'
+            focus: '聚焦环',
+            surface: '卡片表面色 (--sc-color-surface)',
         },
         typography: {
             title: '字体排印',

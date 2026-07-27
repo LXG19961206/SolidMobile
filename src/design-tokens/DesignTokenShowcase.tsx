@@ -50,6 +50,7 @@ function ColorGroups() {
       { labelKey: 'designTokens.colors.border', color: tokens.border },
       { labelKey: 'designTokens.colors.borderHover', color: tokens.borderHover },
       { labelKey: 'designTokens.colors.focus', color: tokens.focus },
+      { labelKey: 'designTokens.colors.surface', color: mode === 'light' ? '#ffffff' : '#1f2228' },
     ];
   };
 

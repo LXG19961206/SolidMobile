@@ -588,7 +588,8 @@ export default {
             textInverse: 'Text Inverse',
             border: 'Border',
             borderHover: 'Border Hover',
-            focus: 'Focus Ring'
+            focus: 'Focus Ring',
+            surface: 'Card Surface (--sc-color-surface)',
         },
         typography: {
             title: 'Typography',
