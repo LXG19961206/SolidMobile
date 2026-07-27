@@ -11,7 +11,7 @@ import enUS from './en-US';
 import { useBadgeTableData } from './tableData';
 registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
-const AVATAR_URL = '/avatar-demo.svg';
+const AVATAR_URL = './avatar-demo.svg';
 const row = { display: 'flex', 'flex-wrap': 'wrap' as const, gap: '12px', 'align-items': 'center' as const };
 
 export const BadgeMobile = () => {

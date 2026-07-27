@@ -26,7 +26,7 @@ export const ChatMessageMobile = () => {
         <ChatMessage position="left" messageType="plainText" content="Hey! How are you doing? 👋" avatar={A} name="Alice" time="10:30" />
         <ChatMessage position="right" messageType="plainText"  content="I'm good! Just shipped a new component 🎉" time="10:31" status="read" />
         <ChatMessage position="left" messageType="image" src={IMG} name="Alice" time="10:32" avatar={A} />
-        <ChatMessage position="right" messageType="video"  src="/demo-video.mp4" time="10:33" status="read" />
+        <ChatMessage position="right" messageType="video"  src="./demo-video.mp4" time="10:33" status="read" />
         <ChatMessage position="left" messageType="file" fileName="design-spec.pdf" fileSize="2.4 MB" name="Alice" time="10:34" avatar={A} />
         <ChatMessage position="right" messageType="file"  fileName="report.xlsx" fileSize="1.8 MB" progress={65} time="10:34" status="sending" />
         <ChatMessage position="left" messageType="file" fileName="contract.pdf" fileSize="1.2 MB" name="Alice" time="10:35" avatar={A}
