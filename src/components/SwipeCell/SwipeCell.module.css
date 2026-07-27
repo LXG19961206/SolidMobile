@@ -11,7 +11,7 @@
 }
 
 :global(html.dark) .wrapper {
-  --sc-swipecell-bg: #1e293b;
+  --sc-swipecell-bg: #1a1d21;
   --sc-swipecell-action-default: #64748b;
 }
 

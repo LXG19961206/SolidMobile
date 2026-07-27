@@ -101,7 +101,7 @@
 }
 :global(html.dark) .overlayBody { color: var(--sc-color-text-secondary, #94a3b8); }
 :global(html.dark) .btn { background: #24282d; border-color: #3a3d42; color: var(--sc-color-text, #e2e8f0); }
-:global(html.dark) .btn:hover { background: #1e293b; }
+:global(html.dark) .btn:hover { background: #1a1d21; }
 :global(html.dark) .btnPrimary { background: var(--sc-color-primary, #5195ff); color: #fff; border-color: var(--sc-color-primary, #5195ff); }
 :global(html.dark) .btnPrimary:hover { background: var(--sc-color-primary-hover, #7ab0ff); }
 

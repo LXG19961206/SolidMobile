@@ -18,5 +18,5 @@
 :global(html.dark) .h1 { color: #f1f5f9; }
 :global(html.dark) .intro { color: #94a3b8; }
 :global(html.dark) .h2 { color: #cbd5e1; border-bottom-color: #334155; }
-:global(html.dark) .demoBtn { background: #1e293b; border-color: #334155; color: #e2e8f0; }
+:global(html.dark) .demoBtn { background: #1a1d21; border-color: #334155; color: #e2e8f0; }
 :global(html.dark) .demoBtn:hover { background: #24282d; }

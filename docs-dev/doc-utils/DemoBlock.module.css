@@ -146,13 +146,13 @@
 }
 
 :global(html.dark) .demo {
-  background: #1e293b;
+  background: #1a1d21;
   border-color: #334155;
 }
 
 :global(html.dark) .codeDetails {
   border-color: #334155;
-  background: #1e293b;
+  background: #1a1d21;
 }
 
 :global(html.dark) .codeSummary {

@@ -51,7 +51,7 @@
 
 /* ---- Dark mode ---- */
 :global(html.dark) .table {
-  background: #1e293b;
+  background: #1a1d21;
   border-color: #334155;
 }
 :global(html.dark) .table th {
@@ -60,7 +60,7 @@
   border-bottom-color: #334155;
 }
 :global(html.dark) .table td {
-  background: #1e293b;
+  background: #1a1d21;
   border-bottom-color: #334155;
   color: #cbd5e1;
 }

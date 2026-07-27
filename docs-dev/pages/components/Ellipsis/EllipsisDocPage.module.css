@@ -7,4 +7,4 @@
 :global(html.dark) .h1 { color: var(--sc-color-text, #f1f5f9); }
 :global(html.dark) .intro { color: var(--sc-color-text-secondary, #94a3b8); }
 :global(html.dark) .h2 { color: var(--sc-color-text-secondary, #cbd5e1); border-bottom-color: var(--sc-color-border, #334155); }
-:global(html.dark) .demoText { background: var(--sc-color-background-secondary, #1e293b); }
+:global(html.dark) .demoText { background: var(--sc-color-background-secondary, #1a1d21); }

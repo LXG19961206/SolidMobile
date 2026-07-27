@@ -12,7 +12,7 @@
 /* 暗色模式：气泡底色变亮、文字变暗 */
 :global(html.dark) {
   --sc-tooltip-bg: #e2e8f0;
-  --sc-tooltip-color: #1e293b;
+  --sc-tooltip-color: #1a1d21;
 }
 
 /* ── 触发元素包裹器 ── */

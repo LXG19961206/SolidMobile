@@ -17,8 +17,8 @@
   --sc-doc-card-text: #cbd5e1;
   --sc-doc-card-muted: #64748b;
   --sc-doc-card-border: #334155;
-  --sc-doc-card-divider: #1e293b;
-  --sc-doc-card-placeholder: #1e293b;
+  --sc-doc-card-divider: #1a1d21;
+  --sc-doc-card-placeholder: #1a1d21;
   --sc-doc-card-demo: #1a1d21;
 }
 
@@ -282,7 +282,7 @@
 }
 :global(html.dark) .drawerItem {
   color: #e2e8f0;
-  border-color: #1e293b;
+  border-color: #1a1d21;
 }
 :global(html.dark) .drawerItemActive {
   background: color-mix(in srgb, var(--sc-color-primary, #5195ff) 12%, transparent);
@@ -291,7 +291,7 @@
   color: #64748b;
 }
 :global(html.dark) .drawerCloseBtn:active {
-  background: #1e293b;
+  background: #1a1d21;
 }
 :global(html.dark) .sheet {
   background: #1a1d21;
@@ -300,12 +300,12 @@
   color: #e2e8f0;
 }
 :global(html.dark) .propsTable th {
-  background: #1e293b;
+  background: #1a1d21;
   color: #e2e8f0;
   border-color: #334155;
 }
 :global(html.dark) .propsTable td {
-  border-color: #1e293b;
+  border-color: #1a1d21;
   color: #cbd5e1;
 }
 :global(html.dark) .propType {

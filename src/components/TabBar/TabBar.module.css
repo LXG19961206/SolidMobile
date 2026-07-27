@@ -48,5 +48,5 @@
 /* ── Dark mode ── */
 :global(html.dark) .tabbar {
   background: #1a1d21;
-  border-color: #1e293b;
+  border-color: #1a1d21;
 }

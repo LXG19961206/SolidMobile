@@ -18,7 +18,7 @@
 }
 
 :global(html.dark) .sheet {
-  --sc-cascader-bg: #1e293b;
+  --sc-cascader-bg: #1a1d21;
   --sc-cascader-text-color: #f1f5f9;
   --sc-cascader-text-secondary: #94a3b8;
   --sc-cascader-active-color: var(--sc-color-primary, #5195ff);

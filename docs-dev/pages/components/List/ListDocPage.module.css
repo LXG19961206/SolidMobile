@@ -13,5 +13,5 @@
 :global(html.dark) .intro { color: var(--sc-color-text-secondary, #94a3b8); }
 :global(html.dark) .h2 { color: var(--sc-color-text-secondary, #cbd5e1); border-bottom-color: var(--sc-color-border, #334155); }
 :global(html.dark) .demoList { border-color: #334155; }
-:global(html.dark) .item { border-color: #1e293b; }
-:global(html.dark) .virtualItem { border-color: #1e293b; }
+:global(html.dark) .item { border-color: #1a1d21; }
+:global(html.dark) .virtualItem { border-color: #1a1d21; }

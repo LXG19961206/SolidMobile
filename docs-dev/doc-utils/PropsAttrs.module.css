@@ -34,7 +34,7 @@
 /* ── 暗色 ── */
 :global(html.dark) .table { border-color: #334155; }
 :global(html.dark) .th { background: #1a1d21; color: #94a3b8; border-bottom-color: #334155; }
-:global(html.dark) .td { border-bottom-color: #1e293b; color: #cbd5e1; }
+:global(html.dark) .td { border-bottom-color: #1a1d21; color: #cbd5e1; }
 :global(html.dark) .propName { color: #a5b4fc; }
 :global(html.dark) .typeCell { color: #67e8f9; }
 :global(html.dark) .descCell { color: #cbd5e1; }

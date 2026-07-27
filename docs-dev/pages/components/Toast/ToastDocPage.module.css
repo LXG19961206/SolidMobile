@@ -30,5 +30,5 @@
 :global(html.dark) .h1 { color: #f1f5f9; }
 :global(html.dark) .lead { color: #94a3b8; }
 :global(html.dark) .h2 { color: #cbd5e1; border-bottom-color: #334155; }
-:global(html.dark) .table th { background: #1e293b; color: #cbd5e1; border-bottom-color: #334155; }
-:global(html.dark) .table td { border-bottom-color: #1e293b; color: #94a3b8; }
+:global(html.dark) .table th { background: #1a1d21; color: #cbd5e1; border-bottom-color: #334155; }
+:global(html.dark) .table td { border-bottom-color: #1a1d21; color: #94a3b8; }
