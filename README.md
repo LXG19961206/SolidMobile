@@ -1,8 +1,5 @@
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./docs-dev/public/logo.jpg">
-    <img src="./docs-dev/public/logo.jpg" alt="Solid Mobile" width="80" height="80" style="border-radius: 12px" />
-  </picture>
+  <img src="./docs-dev/public/logo.svg" alt="Solid Mobile" width="80" height="80" />
 </p>
 
 <h1 align="center">Solid Mobile</h1>
