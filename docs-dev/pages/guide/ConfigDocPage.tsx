@@ -70,7 +70,7 @@ const ConfigDocPage: Component = () => {
       <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>{t('config.quickDesc')}</p>
       <CodeBlock lang="jsx" code={`import { ProviderConfig } from 'solid-mobile';
 
-// 把主题配置提到组件外面，只传 primary，其余状态色自动推导
+// Pass only primary — all derivative state colors are auto-computed
 const theme = {
   colors: { light: { primary: '#6366f1' } },
 };
@@ -78,66 +78,61 @@ const theme = {
 function App() {
   return (
     <ProviderConfig config={theme}>
-      <div>你的应用内容</div>
+      <div>your app content</div>
     </ProviderConfig>
   );
 }
 
-// 自动推导结果（HSL 色彩空间）：
-//   primaryHover   → 基色提亮 10%
-//   primaryActive  → 基色压暗 10%
-//   primaryPale    → 高亮度 + 低饱和浅底
-//   secondary      → 以 primaryHover 为基色再派生全套
-//   focus          → 基色 + 40% alpha`} />
+// Auto-derived (HSL color space):
+//   primaryHover   → lighten by 10%
+//   primaryActive  → darken by 10%
+//   primaryPale    → high lightness + low saturation
+//   secondary      → derived from primaryHover
+//   focus          → primary + 40% alpha`} />
 
       <h2 style={SECTION_H2}>{t('config.fullTitle')}</h2>
       <p style={{ color: '#6b7280', margin: '0 0 0.75rem' }}>{t('config.fullDesc')}</p>
       <CodeBlock lang="jsx" code={`import { ProviderConfig } from 'solid-mobile';
 
-// 把配置提到组件外面，清晰且高亮正确
 const appConfig = {
-  // ══════════════════════════════════════
-  // 全局设置
-  // ══════════════════════════════════════
-  prefix: 'sc',              // CSS 变量前缀 → 生成 --sc-color-primary 等
-  darkMode: 'class',         // 暗色模式策略: 'class' = .dark 类名, 'media' = 系统偏好
-  locale: 'zh-CN',           // 内置文本语言: Arbitrary  locale 字符串，内置字典仅含 'zh-CN' | 'en-US'
+  // ══ General ══
+  prefix: 'sc',              // CSS var prefix → --sc-color-primary etc.
+  darkMode: 'class',         // 'class' = .dark class, 'media' = system
+  locale: 'en-US',           // built-in: 'en-US' | 'zh-CN'
 
-  // ══════════════════════════════════════
-  // 色彩系统 — light / dark 双色板
-  // 每个语义色含 5 级: base / hover / active / disabled / pale
-  // ══════════════════════════════════════
+  // ══ Colors — light/dark palettes ══
+  // Each semantic color has 5 levels: base / hover / active / disabled / pale
   colors: {
     light: {
-      // 主色 — 按钮、选中态、品牌色
+      // Primary — buttons, selections, brand
       primary: '#1677ff',
       primaryHover: '#4096ff',
       primaryActive: '#0958d9',
       primaryDisabled: 'rgba(22,119,255,0.35)',
       primaryPale: 'rgba(22,119,255,0.08)',
 
-      // 次级色 — 辅助按钮、次要元素
+      // Secondary — auxiliary elements
       secondary: '#6ba3ff',
       secondaryHover: '#8ab8ff',
       secondaryActive: '#4d8ae0',
       secondaryDisabled: 'rgba(107,163,255,0.35)',
       secondaryPale: 'rgba(107,163,255,0.08)',
 
-      // 表面 — 页面 / 卡片背景
+      // Surfaces — page / card backgrounds
       background: '#eff2f5',
       backgroundSecondary: '#f7f8fa',
 
-      // 文字 — 四级层级
+      // Text — 4-level hierarchy
       text: '#323233',
       textSecondary: '#969799',
       textTertiary: '#afaba9',
       textInverse: '#ffffff',
 
-      // 边框
+      // Borders
       border: '#dcdee0',
       borderHover: '#c5c7ca',
 
-      // 语义色 — 危险 / 成功 / 警告 / 信息
+      // Semantic — danger / success / warning / info
       danger: '#fc000a',
       dangerHover: '#ff3b43',
       dangerActive: '#d90008',
@@ -154,37 +149,35 @@ const appConfig = {
       warningDisabled: 'rgba(255,145,98,0.35)',
       warningPale: 'rgba(255,145,98,0.08)',
 
-      // 信息色 / 聚焦环
+      // Info / focus ring
       info: '#969799',
       focus: 'rgba(22,119,255,0.25)',
     },
 
-    // 暗色模式 — 字段结构与 light 完全一致
+    // Dark mode — same structure as light
     dark: {
       primary: '#5195ff',
       primaryHover: '#7ab0ff',
       primaryActive: '#3678e0',
       primaryDisabled: 'rgba(81,149,255,0.35)',
       primaryPale: 'rgba(81,149,255,0.12)',
-      // ... 其余字段同上结构，此处省略
+      // ... remaining fields same as above, omitted
     },
   },
 
-  // ══════════════════════════════════════
-  // 排版 — 字体 / 字号 / 字重 / 行高
-  // ══════════════════════════════════════
+  // ══ Typography — font / size / weight / line-height ══
   typography: {
     'font-family': {
-      base: 'system-ui, -apple-system, sans-serif',  // 正文
-      mono: 'ui-monospace, SFMono-Regular, monospace', // 代码
+      base: 'system-ui, -apple-system, sans-serif',  // body
+      mono: 'ui-monospace, SFMono-Regular, monospace', // code
     },
     'font-size': {
-      xs: '0.75rem',    // 12px — 辅助文字
-      sm: '0.875rem',   // 14px — 次要文字
-      md: '1rem',       // 16px — 正文
-      lg: '1.125rem',   // 18px — 小标题
-      xl: '1.25rem',    // 20px — 大标题
-      xxl: '1.5rem',    // 24px — 超大标题
+      xs: '0.75rem',    // 12px — captions
+      sm: '0.875rem',   // 14px — secondary
+      md: '1rem',       // 16px — body
+      lg: '1.125rem',   // 18px — subtitle
+      xl: '1.25rem',    // 20px — heading
+      xxl: '1.5rem',    // 24px — hero
     },
     'font-weight': {
       normal: 400,
@@ -193,20 +186,18 @@ const appConfig = {
       bold: 700,
     },
     'line-height': {
-      tight: 1.25,     // 标题
-      normal: 1.5,     // 正文
-      relaxed: 1.75,   // 长文本
+      tight: 1.25,     // headings
+      normal: 1.5,     // body
+      relaxed: 1.75,   // long text
     },
   },
 
-  // ══════════════════════════════════════
-  // 圆角 — 四级尺寸
-  // ══════════════════════════════════════
+  // ══ Border Radius — 4 tiers ══
   'border-radius': {
-    sm: '4px',         // 小元素: Tag、Badge
-    md: '8px',         // 按钮、输入框
-    lg: '12px',        // 卡片、弹窗
-    full: '9999px',    // 胶囊形状、头像
+    sm: '4px',         // tags, badges
+    md: '8px',         // buttons, inputs
+    lg: '12px',        // cards, modals
+    full: '9999px',    // pills, avatars
   },
 };
 
