@@ -1,0 +1,149 @@
+/* Trigger */
+.trigger {
+  display: flex;
+  align-items: center;
+  padding: var(--sc-treeselect-trigger-padding, 8px 12px);
+  border: 1px solid var(--sc-color-border, #dcdee0);
+  border-radius: var(--sc-border-radius-md, 8px);
+  background: var(--sc-color-background, #fff);
+  cursor: pointer;
+  min-height: var(--sc-treeselect-trigger-height, 44px);
+}
+.triggerText { flex: 1; font-size: 0.9rem; color: var(--sc-color-text, #323233); }
+.triggerPlaceholder { color: var(--sc-color-text-secondary, #969799); }
+.triggerArrow { color: var(--sc-color-text-secondary, #969799); flex-shrink: 0; }
+.disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--sc-treeselect-zindex, 1100);
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.content {
+  width: 100%;
+  max-height: 80vh;
+  background: var(--sc-treeselect-bg, #fff);
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  position: relative;
+  flex-shrink: 0;
+}
+.headerCancel {
+  position: absolute;
+  left: 16px;
+  font-size: 0.9rem;
+  color: var(--sc-color-text-secondary, #969799);
+  cursor: pointer;
+}
+.headerTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--sc-color-text, #323233);
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  align-items: center;
+  padding: 0 16px 10px;
+  overflow-x: auto;
+  flex-shrink: 0;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  font-size: 0.85rem;
+  color: var(--sc-color-text-secondary, #969799);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.tabActive { color: var(--sc-color-primary, #1677ff); font-weight: 600; }
+.tabSep { margin: 0 4px; color: #c0c4cc; }
+
+/* List */
+.list {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.item {
+  display: flex;
+  align-items: center;
+  padding: var(--sc-treeselect-item-padding, 12px 16px);
+  cursor: pointer;
+  border-bottom: 1px solid var(--sc-color-border, #f3f4f6);
+  transition: background 0.15s;
+}
+.item:active { background: var(--sc-color-background-secondary, #f7f8fa); }
+.item.disabled { opacity: 0.4; cursor: not-allowed; }
+.selectAll { border-bottom: 1px solid var(--sc-color-border, #e5e7eb); }
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--sc-color-border, #c8c9cc);
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  transition: all 0.2s;
+}
+.checked {
+  border-color: var(--sc-color-primary, #1677ff);
+  background: var(--sc-color-primary, #1677ff);
+}
+.indeterminate {
+  border-color: var(--sc-color-primary, #1677ff);
+  background: var(--sc-color-primary, #1677ff);
+}
+.checkMark { color: #fff; font-size: 12px; font-weight: 700; line-height: 1; }
+
+.itemLabel { flex: 1; font-size: 0.9rem; color: var(--sc-color-text, #323233); }
+.itemCount { font-size: 0.75rem; color: var(--sc-color-text-secondary, #969799); margin-right: 6px; }
+.itemArrow { color: var(--sc-color-text-secondary, #969799); }
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-top: 1px solid var(--sc-color-border, #f3f4f6);
+  flex-shrink: 0;
+}
+.footerCount { font-size: 0.85rem; color: var(--sc-color-text-secondary, #969799); }
+.footerBtn {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--sc-color-primary, #1677ff);
+  cursor: pointer;
+  padding: 6px 16px;
+}
+
+/* Dark */
+:global(html.dark) .overlay { background: rgba(0,0,0,0.6); }
+:global(html.dark) .content { background: var(--sc-treeselect-bg, #1f2228); }
+:global(html.dark) .headerTitle { color: var(--sc-color-text, #e2e8f0); }
+:global(html.dark) .itemLabel { color: var(--sc-color-text, #e2e8f0); }
+:global(html.dark) .item:active { background: #2a2d33; }
+:global(html.dark) .list { border-color: #2a2d33; }
+:global(html.dark) .footer { border-color: #2a2d33; }
+:global(html.dark) .trigger { background: var(--sc-color-background, #1a1d21); }

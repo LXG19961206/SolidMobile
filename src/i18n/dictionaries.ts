@@ -56,6 +56,15 @@ export const messages: LocaleMessages = {
       cascader: {
         placeholder: '请选择',
       },
+      treeselect: {
+        title: '请选择',
+        placeholder: '请选择',
+        confirm: '确定',
+        selectAll: '全选',
+        all: '全部',
+        selected: '项已选',
+        itemUnit: '项',
+      },
       list: {
         loading: '加载中...',
         finished: '没有更多了',
@@ -140,6 +149,15 @@ export const messages: LocaleMessages = {
       },
       cascader: {
         placeholder: 'Please select',
+      },
+      treeselect: {
+        title: 'Select',
+        placeholder: 'Please select',
+        confirm: 'Done',
+        selectAll: 'Select All',
+        all: 'All',
+        selected: 'selected',
+        itemUnit: 'items',
       },
       list: {
         loading: 'Loading...',

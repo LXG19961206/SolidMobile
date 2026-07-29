@@ -83,6 +83,9 @@ export type { CalendarProps, CalendarType, DayInfo } from './components/Calendar
 export { Cascader } from './components/Cascader';
 export type { CascaderProps, CascaderOption } from './components/Cascader';
 
+export { TreeSelect } from './components/TreeSelect';
+export type { TreeSelectProps, TreeSelectOption } from './components/TreeSelect';
+
 export { DatePicker } from './components/DatePicker';
 export type { DatePickerProps, DatePickerType } from './components/DatePicker';
 
