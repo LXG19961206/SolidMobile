@@ -1,18 +1,12 @@
 import { type Component } from 'solid-js';
 import { useT, registerLocale } from '../../doc-i18n';
+import { componentCount } from '../../doc-registry';
 import zhCN from './About/zh-CN';
 import enUS from './About/en-US';
 registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const AboutPage: Component = () => {
   const t = useT();
-  const completed = ['Button', 'Icon', 'Center', 'Divider', 'Layout', 'SafeArea',
-    'Card', 'ScrollBar', 'Sidebar', 'Avatar', 'Badge', 'Tag', 'Image', 'Empty', 'Lazyload', 'List', 'SwipeCell', 'Swiper', 'Ellipsis', 'Tooltip', 'FloatingBall', 'BackTop', 'Marquee', 'PullRefresh',
-    'Tabs', 'TabBar', 'NavBar', 'Cell',
-    'Picker', 'Calendar', 'Cascader', 'DatePicker', 'TimePicker', 'CityPicker',
-    'Toast', 'Notify', 'Dialog', 'Overlay', 'ActionSheet', 'Loading',
-    'Form', 'Input', 'Textarea', 'Radio', 'Checkbox', 'Switch', 'Rate', 'Stepper', 'Slider', 'Select', 'Upload'];
-  // const upcoming = ['Grid', 'Table', 'SKU', 'RichText', 'LiveRoom'];
 
   return (
     <div class="guide-card">
@@ -34,7 +28,7 @@ const AboutPage: Component = () => {
 
       <h2 style={{ 'font-size': '1.1rem', 'font-weight': 600, margin: '2rem 0 0.75rem' }}>{t('about.status')}</h2>
       <p style={{ color: '#6b7280', 'line-height': 1.8 }}>
-        {t('about.statusP1')}<strong>{completed.length}</strong>{t('about.statusP1After')}
+        {t('about.statusP1')}<strong>{componentCount}</strong>{t('about.statusP1After')}
       </p>
 
       <div style={{ 'margin-top': '1rem', display: 'grid', 'grid-template-columns': 'repeat(auto-fill, minmax(240px, 1fr))', gap: '1rem' }}>

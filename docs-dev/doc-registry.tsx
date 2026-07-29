@@ -94,3 +94,6 @@ export const GUIDE_PAGES: Record<string, Component> = {
 // ── Flat component list (for mobile nav) ──
 export const allComponentItems: { name: string; key: string }[] =
   GROUPS.flatMap(g => g.items);
+
+// ── Auto-counted component total ──
+export const componentCount: number = Object.keys(docModules).length;
