@@ -47,6 +47,9 @@ export type { MarqueeProps } from './components/Marquee';
 export { Sidebar } from './components/Sidebar';
 export type { SidebarProps, SidebarItem } from './components/Sidebar';
 
+export { Skeleton } from './components/Skeleton';
+export type { SkeletonProps } from './components/Skeleton';
+
 export { SwipeCell } from './components/SwipeCell';
 export type { SwipeCellProps, SwipeAction } from './components/SwipeCell';
 

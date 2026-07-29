@@ -1,5 +1,40 @@
 # Release Notes
 
+## 0.1.5 (2026-07-29)
+
+### New Components
+
+- **ChatMessage** — chat bubble with 5 message types, avatar, tail, status, long press menu, 30 tests
+- **Skeleton** — placeholder component with shimmer animation, 3 sizes, 3 shapes, 7 tests
+
+### Enhancements
+
+- Docs navbar brand redesign: SVG logo, favicon, cleaner typography
+- Sidebar nav items: fuller font-size/weight/padding for English mode
+- Theme color picker presets: modern Tailwind palette (indigo, violet, emerald, sky)
+- Default locale `en-US`, EN/CN button order swapped
+- Dark mode: `--sc-color-surface` variable unifying all component surface backgrounds
+- Phone simulator: notch enlarged (30→34px), safe-area tuned, navbar height 44px
+- About page: auto-count components via `import.meta.glob`, no more manual numbers
+- `import.meta.glob` auto-discovery for DocPage/Mobile pages in docs registry
+
+### Bug Fixes
+
+- Doc page flash on navigation: Suspense + shimmer skeleton fallback
+- Phone simulator padding-top strip scoped to iframe only
+- iframe locale default synced with app
+- Config page: all hardcoded Chinese translated to English
+- Design Tokens showcase: full dark mode styles
+- Static assets: relative paths for GitHub Pages compatibility
+- `@testing-library/user-event` moved to devDependencies (0 runtime deps)
+- Long press menu: only one open at a time across ChatMessage instances
+
+### Docs
+
+- ChatMessage: 18 code blocks + mobile simulator, props table + 17 CSS vars, designer's note
+- Skeleton: 6 code blocks + mobile demo with Switch toggle, 8 CSS vars
+- README updated with SVG logo, community post drafts
+
 ## 0.1.1 (2026-07-22)
 
 ### New Components
