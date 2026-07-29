@@ -1,5 +1,11 @@
 # Release Notes
 
+## 0.1.6 (2026-07-29)
+
+### Known Issues
+
+- **WeChat on HarmonyOS / OpenHarmony**: keyboard open/close causes viewport flicker on Input and Textarea. This is a WeChat ArkWeb bug (native `<input>` reproduces the issue; system browser works fine). Not fixable from the component layer.
+
 ## 0.1.5 (2026-07-29)
 
 ### New Components
