@@ -99,7 +99,7 @@ export const Textarea: Component<TextareaProps> = (rawProps) => {
 
   function handleBlur(e: Event) {
     local.onBlur?.(e);
-    if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !/Android|Harmony/.test(navigator.userAgent)) {
+    if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !/Android|Harmony|MicroMessenger/.test(navigator.userAgent)) {
       const sy = window.scrollY;
       window.scrollTo(0, sy + 1);
       requestAnimationFrame(() => window.scrollTo(0, sy));
