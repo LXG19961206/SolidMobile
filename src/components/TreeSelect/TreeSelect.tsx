@@ -1,5 +1,5 @@
 import {
-  createSignal, createEffect, on, mergeProps, splitProps,
+  createSignal, createEffect, createMemo, on, mergeProps, splitProps,
   Show, For, type Component,
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
@@ -48,8 +48,8 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
 
   const [open, setOpen] = createSignal(false);
   const [stack, setStack] = createSignal<TreeSelectOption[][]>([local.options]);
-  const currentOptions = () => stack()[stack().length - 1];
-  const currentPath = () => stack().slice(0, -1).map(g => g.find(o => o.children) ?? g[0]);
+  const currentOptions = createMemo(() => stack()[stack().length - 1]);
+  const currentPath = createMemo(() => stack().slice(0, -1).map(g => g.find(o => o.children) ?? g[0]));
 
   const push = (opt: TreeSelectOption) => {
     if (!opt.children || opt.children.length === 0) return; // leaf
@@ -159,7 +159,7 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
               {/* List */}
               <div class={styles.list}>
                 {/* Select All */}
-                <div class={cn(styles.item, styles.selectAll)} onClick={selectAll}>
+                <div class={cn(styles.item, styles.selectAll)} onClick={e => { e.stopPropagation(); selectAll(); }}>
                   <span class={cn(styles.checkbox, allChecked() && styles.checked, someChecked() && styles.indeterminate)}>
                     <Show when={allChecked() || someChecked()}><span class={styles.checkMark}>✓</span></Show>
                   </span>
@@ -170,7 +170,7 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                   {opt => (
                     <div
                       class={cn(styles.item, opt.disabled && styles.disabled)}
-                      onClick={() => {
+                      onClick={e => { e.stopPropagation();
                         if (opt.disabled) return;
                         if (isLeaf(opt)) toggleOption(opt);
                         else push(opt);
