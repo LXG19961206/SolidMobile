@@ -492,6 +492,7 @@ export default {
         rate: 'Rate',
         safearea: 'SafeArea',
         select: 'Select',
+        treeselect: 'TreeSelect',
         slider: 'Slider',
         stepper: 'Stepper',
         swipecell: 'SwipeCell',

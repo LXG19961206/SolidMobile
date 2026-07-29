@@ -502,6 +502,7 @@ export default {
         rate: 'Rate 评分',
         safearea: 'SafeArea 安全区域',
         select: 'Select 选择器',
+        treeselect: 'TreeSelect 树选择',
         slider: 'Slider 滑块',
         stepper: 'Stepper 步进器',
         swipecell: 'SwipeCell 滑动单元格',
