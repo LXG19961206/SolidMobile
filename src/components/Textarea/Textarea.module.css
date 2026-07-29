@@ -3,7 +3,8 @@
   --sc-textarea-text-color: var(--sc-color-text, #323233);
   --sc-textarea-placeholder-color: var(--sc-color-text-secondary, #969799);
   --sc-textarea-border-color: var(--sc-color-border, #dcdee0);
-  transform: translateZ(0); /* GPU layer — prevents WeChat keyboard flicker */
+  transform: translateZ(0);
+  will-change: transform; /* GPU layer — prevents WeChat keyboard flicker */
   --sc-textarea-border-focus-color: var(--sc-color-primary, #1677ff);
   --sc-textarea-disabled-opacity: 0.5;
   --sc-textarea-count-font-size: 0.75rem;

@@ -3,7 +3,8 @@
   --sc-input-text-color: var(--sc-color-text, #323233);
   --sc-input-placeholder-color: var(--sc-color-text-secondary, #969799);
   --sc-input-disabled-opacity: 0.5;
-  transform: translateZ(0); /* GPU layer — prevents WeChat keyboard flicker */
+  transform: translateZ(0);
+  will-change: transform; /* GPU layer — prevents WeChat keyboard flicker */
   --sc-input-gap: 6px;
   --sc-input-affix-color: var(--sc-color-text-secondary, #969799);
   --sc-input-affix-font-size: 0.9rem;
