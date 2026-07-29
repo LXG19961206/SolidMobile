@@ -100,12 +100,12 @@ export const Input: Component<InputProps> = (rawProps) => {
     extOnKeyDown?.call(void 0, e);
   }
 
+  const isWeChat = /MicroMessenger/.test(navigator.userAgent);
+  const needsIOSFix = /iPhone|iPad|iPod/.test(navigator.userAgent) && !/Android|Harmony|MicroMessenger/.test(navigator.userAgent);
+
   function handleBlur(e: Event) {
     local.onBlur?.(e);
-    // iOS Safari: after the keyboard dismisses the viewport can get
-    // "stuck" — touches stop scrolling the page for 1–3 seconds.
-    // A micro-scroll on blur forces the viewport to re-attach scrolling.
-    if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !/Android|Harmony|MicroMessenger/.test(navigator.userAgent)) {
+    if (needsIOSFix) {
       const sy = window.scrollY;
       window.scrollTo(0, sy + 1);
       requestAnimationFrame(() => window.scrollTo(0, sy));
@@ -114,12 +114,6 @@ export const Input: Component<InputProps> = (rawProps) => {
 
   function handleFocus(e: Event) {
     local.onFocus?.(e);
-    // WeChat browser viewport resize on keyboard open causes flicker.
-    // A micro-scroll on focus smooths the transition.
-    if (/MicroMessenger/.test(navigator.userAgent)) {
-      const sy = window.scrollY;
-      requestAnimationFrame(() => window.scrollTo(0, sy));
-    }
   }
 
   /* ── Render ── */

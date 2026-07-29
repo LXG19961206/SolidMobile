@@ -97,9 +97,11 @@ export const Textarea: Component<TextareaProps> = (rawProps) => {
     extOnKeyDown?.call(void 0, e);
   }
 
+  const needsIOSFix = /iPhone|iPad|iPod/.test(navigator.userAgent) && !/Android|Harmony|MicroMessenger/.test(navigator.userAgent);
+
   function handleBlur(e: Event) {
     local.onBlur?.(e);
-    if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !/Android|Harmony|MicroMessenger/.test(navigator.userAgent)) {
+    if (needsIOSFix) {
       const sy = window.scrollY;
       window.scrollTo(0, sy + 1);
       requestAnimationFrame(() => window.scrollTo(0, sy));
@@ -108,10 +110,6 @@ export const Textarea: Component<TextareaProps> = (rawProps) => {
 
   function handleFocus(e: Event) {
     local.onFocus?.(e);
-    if (/MicroMessenger/.test(navigator.userAgent)) {
-      const sy = window.scrollY;
-      requestAnimationFrame(() => window.scrollTo(0, sy));
-    }
   }
 
   /* ── Render ── */
