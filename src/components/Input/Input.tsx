@@ -105,7 +105,7 @@ export const Input: Component<InputProps> = (rawProps) => {
     // iOS Safari: after the keyboard dismisses the viewport can get
     // "stuck" — touches stop scrolling the page for 1–3 seconds.
     // A micro-scroll on blur forces the viewport to re-attach scrolling.
-    if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+    if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !/Android|Harmony/.test(navigator.userAgent)) {
       const sy = window.scrollY;
       window.scrollTo(0, sy + 1);
       requestAnimationFrame(() => window.scrollTo(0, sy));
