@@ -57,22 +57,27 @@ export const Textarea: Component<TextareaProps> = (rawProps) => {
   /* ── autoSize ── */
   let textareaEl!: HTMLTextAreaElement;
 
+  let rafId = 0;
   function resize() {
     if (!local.autoSize || !textareaEl) return;
-    textareaEl.style.height = 'auto';
-    const minRows = typeof local.autoSize === 'object' ? (local.autoSize.minRows ?? local.rows ?? 3) : (local.rows ?? 3);
-    const maxRows = typeof local.autoSize === 'object' ? local.autoSize.maxRows : undefined;
+    // batch in a single rAF frame to avoid forced synchronous layouts
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => {
+      textareaEl.style.height = 'auto';
+      const minRows = typeof local.autoSize === 'object' ? (local.autoSize.minRows ?? local.rows ?? 3) : (local.rows ?? 3);
+      const maxRows = typeof local.autoSize === 'object' ? local.autoSize.maxRows : undefined;
 
-    const lineH = parseFloat(getComputedStyle(textareaEl).lineHeight) || 20;
-    const minH = minRows * lineH;
-    let scrollH = textareaEl.scrollHeight;
+      const lineH = parseFloat(getComputedStyle(textareaEl).lineHeight) || 20;
+      const minH = minRows * lineH;
+      let scrollH = textareaEl.scrollHeight;
 
-    if (maxRows) {
-      const maxH = maxRows * lineH;
-      scrollH = Math.min(scrollH, maxH);
-    }
+      if (maxRows) {
+        const maxH = maxRows * lineH;
+        scrollH = Math.min(scrollH, maxH);
+      }
 
-    textareaEl.style.height = Math.max(minH, scrollH) + 'px';
+      textareaEl.style.height = Math.max(minH, scrollH) + 'px';
+    });
   }
 
   onMount(() => {
