@@ -527,6 +527,7 @@ export default {
         mobileHome: 'Home 首页',
         marquee: 'Marquee 跑马灯',
         scrollbar: 'ScrollBar 滚动条',
+        skeleton: 'Skeleton 骨架屏',
         sidebar: 'Sidebar 侧边导航',
         drawerTitle: '组件 / Components',
         drawerGuideGroup: 'Guide 指南',
