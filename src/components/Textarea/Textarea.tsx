@@ -108,6 +108,10 @@ export const Textarea: Component<TextareaProps> = (rawProps) => {
 
   function handleFocus(e: Event) {
     local.onFocus?.(e);
+    if (/MicroMessenger/.test(navigator.userAgent)) {
+      const sy = window.scrollY;
+      requestAnimationFrame(() => window.scrollTo(0, sy));
+    }
   }
 
   /* ── Render ── */

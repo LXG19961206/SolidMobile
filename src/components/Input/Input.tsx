@@ -114,6 +114,12 @@ export const Input: Component<InputProps> = (rawProps) => {
 
   function handleFocus(e: Event) {
     local.onFocus?.(e);
+    // WeChat browser viewport resize on keyboard open causes flicker.
+    // A micro-scroll on focus smooths the transition.
+    if (/MicroMessenger/.test(navigator.userAgent)) {
+      const sy = window.scrollY;
+      requestAnimationFrame(() => window.scrollTo(0, sy));
+    }
   }
 
   /* ── Render ── */
