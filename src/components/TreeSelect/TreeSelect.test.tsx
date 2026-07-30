@@ -32,13 +32,15 @@ describe('TreeSelect', () => {
     expect(document.querySelector('[class*="content"]')).not.toBeNull();
   });
 
-  it('renders options in overlay', async () => {
+  it('renders options with expand arrows for parents', async () => {
     const { container } = render(() => <TreeSelect options={opts} />);
     const trigger = container.querySelector('[class*="trigger"]') as HTMLElement;
     trigger.click();
     await new Promise(r => setTimeout(r, 50));
     expect(document.body.textContent).toContain('East');
     expect(document.body.textContent).toContain('West');
+    // parent nodes have expand zone
+    expect(document.querySelectorAll('[class*="itemExpand"]').length).toBeGreaterThan(0);
   });
 
   it('shows select all option', async () => {

@@ -49,6 +49,16 @@ export const TreeSelectDocPage = () => {
       code: '<TreeSelect options={opts} max={3} />',
       desc: t('treeselect.demoDesc.maxLimit'),
     },
+    {
+      title: t('treeselect.demo.modeExpand'),
+      code: '<TreeSelect options={opts}\n  mode="expand"\n/>',
+      desc: t('treeselect.demoDesc.modeExpand'),
+    },
+    {
+      title: t('treeselect.demo.customRender'),
+      code: '<TreeSelect options={opts}\n  renderItem={(node, selected, expand) => (\n    <div style={{display:"flex",alignItems:"center",padding:"12px 16px"}}>\n      <span style={{flex:1}}>{selected ? \'✓ \' : \'\'}{node.label}</span>\n      {!node.children ? null :\n        <span onClick={expand} style={{padding:"4px 12px",background:"#eee",borderRadius:4,cursor:"pointer"}}>›</span>\n      }\n    </div>\n  )}\n/>',
+      desc: t('treeselect.demoDesc.customRender'),
+    },
   ];
 
   return (

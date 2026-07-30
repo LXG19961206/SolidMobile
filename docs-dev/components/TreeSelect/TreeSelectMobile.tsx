@@ -1,4 +1,4 @@
-import { createSignal } from 'solid-js';
+import { createSignal, For } from 'solid-js';
 import { useT, registerLocale } from '../../doc-i18n';
 import { Card } from '../../../src/components/Card';
 import { TreeSelect } from '../../../src/components/TreeSelect';
@@ -31,6 +31,7 @@ export const TreeSelectMobile = () => {
   const { propsTables, cssVarsTables } = useTreeSelectTableData();
   const [v1, setV1] = createSignal<(string | number)[]>([]);
   const [v2, setV2] = createSignal<(string | number)[]>([]);
+  const [v3, setV3] = createSignal<(string | number)[]>([]);
 
   return (
     <MobilePreview title="TreeSelect">
@@ -38,16 +39,33 @@ export const TreeSelectMobile = () => {
       <div style={{ padding: '12px', display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
         <Card title={t('treeselect.demo.basic')}>
           <div style={{ 'margin-bottom': '8px', 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>
-            {v1().length > 0 ? `已选: ${v1().join(', ')}` : '请选择地区'}
+            {v1().length > 0 ? `Selected: ${v1().join(', ')}` : 'Tap to select'}
           </div>
-          <TreeSelect options={opts} value={v1()} onChange={setV1} placeholder="请选择地区" />
+          <TreeSelect options={opts} value={v1()} onChange={setV1} placeholder="Select regions" searchable={true} searchMode="global" />
         </Card>
 
         <Card title={t('treeselect.demo.maxLimit')}>
           <div style={{ 'margin-bottom': '8px', 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>
-            最多 3 项 — {v2().length > 0 ? `已选: ${v2().join(', ')}` : '请选择'}
+            Max 3 — {v2().length > 0 ? `${v2().join(', ')}` : 'undefined'}
           </div>
-          <TreeSelect options={opts} value={v2()} onChange={setV2} max={3} placeholder="最多选 3 个" />
+          <TreeSelect options={opts} value={v2()} onChange={setV2} max={3} placeholder="Max 3" />
+        </Card>
+
+        <Card title={t('treeselect.demo.modeExpand')}>
+          <div style={{ display: 'flex', gap: '12px' }}>
+            <div style={{ flex: 1 }}>
+              <div style={{ 'margin-bottom': '6px', 'font-size': '0.65rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'text-align': 'center' }}>
+                select (click to select)
+              </div>
+              <TreeSelect options={opts} value={v1()} onChange={setV1} placeholder="Select mode" />
+            </div>
+            <div style={{ flex: 1 }}>
+              <div style={{ 'margin-bottom': '6px', 'font-size': '0.65rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'text-align': 'center' }}>
+                expand (click to expand)
+              </div>
+              <TreeSelect options={opts} mode="expand" value={v3()} onChange={setV3} placeholder="Expand mode" />
+            </div>
+          </div>
         </Card>
       </div>
     </MobilePreview>
