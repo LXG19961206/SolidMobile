@@ -35,6 +35,9 @@ export const ButtonMobile = () => {
         <Card title={t('button.demo.block')}>
           <Button block round type="primary">Block Round</Button>
         </Card>
+        <Card title={t('button.demo.customColor')} subtitle="color & textColor">
+          <Row><Button color="#6366f1">Indigo</Button><Button color="#ec4899">Pink</Button><Button color="#14b8a6" textColor="#fff">Teal</Button></Row>
+        </Card>
       </div>
     </MobilePreview>
   );

@@ -19,6 +19,7 @@ export const ButtonDocPage = () => {
     { title: t('button.demo.icon'), code: `<Button icon="star">Favorite</Button>\n<Button icon="arrow-right" iconPosition="right">Next</Button>` },
     { title: t('button.demo.loading'), code: `<Button type="primary" loading>Submitting...</Button>\n<Button disabled>Disabled</Button>` },
     { title: t('button.demo.block'), code: `<Button block round type="primary">Block Round</Button>` },
+    { title: t('button.demo.customColor'), code: `<Button color="#6366f1">Indigo</Button>\n<Button color="#ec4899">Pink</Button>\n<Button color="#14b8a6" textColor="#fff">Teal</Button>`, desc: t('button.demoDesc.button_customColor') },
   ];
 
   return (
