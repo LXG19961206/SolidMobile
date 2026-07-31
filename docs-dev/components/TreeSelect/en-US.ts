@@ -39,5 +39,6 @@ export default {
       asyncLoad: 'Load children dynamically on first expand.',
     },
     intro: 'Push-based multi-select tree component. Navigate through levels, select leaf nodes, view count per parent.',
+    wipBanner: '⚠️ This component is under active development. APIs may change. Use with caution in production.',
   },
 };

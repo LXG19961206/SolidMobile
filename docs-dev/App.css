@@ -771,6 +771,54 @@ html.dark .content {
   }
 }
 
+/* ── Nav item badge ── */
+.nav-item-badge,
+.drawer-item-badge {
+  display: inline-block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: #fef3c7;
+  color: #b45309;
+  margin-left: 5px;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  line-height: 1.4;
+}
+
+html.dark .nav-item-badge,
+html.dark .drawer-item-badge {
+  background: #3b2e0a;
+  color: #fbbf24;
+}
+
+/* ── WIP Banner (for incomplete component docs) ── */
+.doc-wip-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  border-radius: 8px;
+  color: #92400e;
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.doc-wip-banner .doc-wip-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+html.dark .doc-wip-banner {
+  background: #3b2e0a;
+  border-color: #7c6200;
+  color: #fde68a;
+}
+
 /* ── Logo pulse animation ── */
 @keyframes sc-logo-pulse {
 

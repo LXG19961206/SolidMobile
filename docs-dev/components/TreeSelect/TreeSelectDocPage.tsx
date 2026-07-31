@@ -64,6 +64,10 @@ export const TreeSelectDocPage = () => {
   return (
     <DocLayout>
       <div style={{ padding: '24px 32px', 'max-width': '960px', margin: '0 auto' }}>
+        <div class="doc-wip-banner">
+          <span class="doc-wip-icon">&#x26a0;</span>
+          <span>{t('treeselect.wipBanner')}</span>
+        </div>
         <h1 style={{ 'font-size': '1.75rem', 'font-weight': 700, margin: '0 0 4px' }}>TreeSelect</h1>
         <p style={{ 'font-size': '0.9rem', color: '#6b7280', margin: '0 0 24px' }}>{t('treeselect.intro')}</p>
         <PropsAttrs propsTables={propsTables} cssVarsTables={cssVarsTables} />

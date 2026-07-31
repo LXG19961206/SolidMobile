@@ -2,7 +2,7 @@ export interface MenuGroup {
   title: string;
   /** i18n key for the group title — resolve via t(`nav.${titleKey}`) */
   titleKey: string;
-  items: { name: string; key: string }[];
+  items: { name: string; key: string; badge?: string }[];
 }
 
 export const GROUPS: MenuGroup[] = [
@@ -63,7 +63,7 @@ export const GROUPS: MenuGroup[] = [
       { name: 'Form 表单', key: 'form' }, { name: 'Input 输入框', key: 'input' }, { name: 'Textarea 多行', key: 'textarea' },
       { name: 'Radio 单选框', key: 'radio' }, { name: 'Checkbox 复选框', key: 'checkbox' }, { name: 'Switch 开关', key: 'switch' },
       { name: 'Rate 评分', key: 'rate' }, { name: 'Stepper 步进器', key: 'stepper' }, { name: 'Slider 滑块', key: 'slider' },
-      { name: 'Select 选择器', key: 'select' }, { name: 'TreesSelect 树选择', key: 'treeselect' }, { name: 'Upload 上传', key: 'upload' },
+      { name: 'Select 选择器', key: 'select' }, { name: 'TreesSelect 树选择', key: 'treeselect', badge: 'WIP' }, { name: 'Upload 上传', key: 'upload' },
     ],
   },
 ];

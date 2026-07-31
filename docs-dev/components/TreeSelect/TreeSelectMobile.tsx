@@ -35,6 +35,10 @@ export const TreeSelectMobile = () => {
 
   return (
     <MobilePreview title="TreeSelect">
+      <div class="doc-wip-banner" style="margin: 0 12px;">
+        <span class="doc-wip-icon">&#x26a0;</span>
+        <span>{t('treeselect.wipBanner')}</span>
+      </div>
       <MobilePropsSheet propsTables={propsTables} cssVarsTables={cssVarsTables} />
       <div style={{ padding: '12px', display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
         <Card title={t('treeselect.demo.basic')}>
