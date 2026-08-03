@@ -31,6 +31,16 @@ const asyncOpts: TreeSelectOption[] = [
   { label: 'City', value: 'city' },
 ];
 
+// 30 regions × 60 cities = 1,800 options
+const bigOpts: TreeSelectOption[] = Array.from({ length: 30 }, (_, i) => ({
+  label: `Region ${String.fromCharCode(65 + i)}`,
+  value: `r${i}`,
+  children: Array.from({ length: 60 }, (_, j) => ({
+    label: `City ${String.fromCharCode(65 + i)}-${j + 1}`,
+    value: `c${i}-${j + 1}`,
+  })),
+}));
+
 export const TreeSelectMobile = () => {
   const t = useT();
   const { propsTables, cssVarsTables } = useTreeSelectTableData();
@@ -39,6 +49,7 @@ export const TreeSelectMobile = () => {
   const [v3, setV3] = createSignal<(string | number)[]>([]);
   const [v4, setV4] = createSignal<(string | number)[]>([]);
   const [v5, setV5] = createSignal<(string | number)[]>([]);
+  const [v6, setV6] = createSignal<(string | number)[]>([]);
   const loadChildren = (node: TreeSelectOption) =>
     new Promise<TreeSelectOption[]>((resolve) => {
       setTimeout(() => {
@@ -121,6 +132,20 @@ export const TreeSelectMobile = () => {
             {v4().length > 0 ? `Selected: ${v4().join(', ')}` : 'Expand a node to lazy-load children'}
           </div>
           <TreeSelect options={asyncOpts} value={v4()} onChange={setV4} onLoadChildren={loadChildren} placeholder="Lazy load" />
+        </Card>
+
+        <Card title={t('treeselect.demo.bigData')}>
+          <div style={{ 'margin-bottom': '8px', 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>
+            {v6().length > 0 ? `Selected: ${v6().join(', ')}` : '1,800 options — type in the search box'}
+          </div>
+          <TreeSelect
+            options={bigOpts}
+            value={v6()}
+            onChange={setV6}
+            searchable
+            searchMode="global"
+            placeholder="Type to search 1,800 options"
+          />
         </Card>
       </div>
     </MobilePreview>

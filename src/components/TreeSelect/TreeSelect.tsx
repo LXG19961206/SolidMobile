@@ -134,6 +134,9 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
 
   const popTo = (idx: number) => { clearSearch(); setStack(stack().slice(0, idx + 1)); };
 
+  // Cap on how many global-search rows we render at once (big trees).
+  const MAX_SEARCH_RESULTS = 100;
+
   // ── Global search: collect (option, path) pairs from entire tree ──
   const searchResults = createMemo(() => {
     const kw = search().trim().toLowerCase();
@@ -141,6 +144,7 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
     const results: { opt: TreeSelectOption; path: TreeSelectOption[] }[] = [];
     function walk(list: TreeSelectOption[], path: TreeSelectOption[]) {
       for (const o of list) {
+        if (results.length >= MAX_SEARCH_RESULTS) return;
         if (optLabel(o).toLowerCase().includes(kw)) results.push({ opt: o, path: [...path] });
         const kids = optChildren(o);
         if (kids && kids.length > 0) walk(kids, [...path, o]);

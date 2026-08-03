@@ -38,6 +38,7 @@ export default {
       modeExpand: '展开模式',
       customRender: '自定义渲染',
       asyncLoad: '异步加载',
+      bigData: '海量数据 + 搜索',
     },
     demoDesc: {
       basic: '两级树形多选，点行选中、箭头展开。父节点自动统计子节点选中数量。',
@@ -45,6 +46,7 @@ export default {
       modeExpand: "mode='expand'：点行展开进入子级，右侧箭头选中。",
       customRender: 'renderItem 完全控制每行的渲染。',
       asyncLoad: '展开时动态加载子节点。',
+      bigData: '1800 个选项，配合 global 搜索，输入关键词即可从整棵树中快速定位。结果最多展示 100 条。',
     },
     intro: 'Push 式多选树组件。逐层导航，勾选叶子节点，父级自动显示已选计数。',
   },

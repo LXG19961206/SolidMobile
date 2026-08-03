@@ -234,4 +234,34 @@ describe('TreeSelect', () => {
     await tick();
     expect([...val()].sort()).toEqual(['sh', 'zj']);
   });
+
+  it('caps global search results on a big tree at 100 rows', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>([]);
+    const big = Array.from({ length: 30 }, (_, i) => ({
+      label: `Region ${String.fromCharCode(65 + i)}`,
+      value: `r${i}`,
+      children: Array.from({ length: 60 }, (_, j) => ({
+        label: `City ${String.fromCharCode(65 + i)}-${j + 1}`,
+        value: `c${i}-${j + 1}`,
+      })),
+    }));
+    render(() => (
+      <TreeSelect options={big} value={val()} onChange={setVal} searchable searchMode="global" />
+    ));
+    const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
+    trigger.click();
+    await tick();
+
+    // "city" matches all 1,800 children — results must be capped
+    const input = document.querySelector('[class*="searchInput"]') as HTMLInputElement;
+    input.value = 'city';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    await tick();
+    await tick();
+
+    // count only row divs (they contain an itemBody), not itemBody/itemLabel spans
+    const rows = (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[]).filter(el =>
+      !!el.querySelector('[class*="itemBody"]') && el.textContent?.includes('City'));
+    expect(rows.length).toBe(100);
+  });
 });

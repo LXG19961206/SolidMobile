@@ -84,6 +84,21 @@ export const TreeSelectDocPage = () => {
 <TreeSelect options={opts} onLoadChildren={loadChildren} />`,
       desc: t('treeselect.demoDesc.asyncLoad'),
     },
+    {
+      title: t('treeselect.demo.bigData'),
+      code: `// 30 regions × 60 cities = 1,800 options
+const bigOpts = Array.from({ length: 30 }, (_, i) => ({
+  label: 'Region ' + String.fromCharCode(65 + i),
+  value: 'r' + i,
+  children: Array.from({ length: 60 }, (_, j) => ({
+    label: 'City ' + String.fromCharCode(65 + i) + '-' + (j + 1),
+    value: 'c' + i + '-' + (j + 1),
+  })),
+}));
+
+<TreeSelect options={bigOpts} searchable searchMode="global" placeholder="Type to search" />`,
+      desc: t('treeselect.demoDesc.bigData'),
+    },
   ];
 
   return (
