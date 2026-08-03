@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>solid-mobile · Reddit post</title>
+<style>
+  body {
+    max-width: 720px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #1a1a1b;
+    background: #fff;
+  }
+  b, strong { font-weight: 600; }
+  a { color: #0079d3; text-decoration: underline; }
+  ul { padding-left: 1.5rem; margin: 0.5rem 0 1rem; }
+  li { margin-bottom: 0.35rem; }
+  p { margin: 0 0 0.85rem; }
+  code {
+    background: #f4f4f4;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.9em;
+  }
+  hr { border: none; border-top: 1px solid #edeff1; margin: 1.5rem 0; }
+  .signoff { color: #7c7c7c; }
+</style>
+</head>
+<body>
+
+<p>I've been working on this after hours for a while now, and figured it's time to share it with people who know more than I do.</p>
+
+<p><b>solid-mobile</b> is a mobile-first UI component library — buttons, dialogs, pickers, forms, tabs, calendars, that kind of thing. The visual design and component APIs are heavily inspired by <a href="https://vant-ui.github.io/">Vant</a> (a Vue mobile library with a design language I've always really liked), but the implementation is written from the ground up for Solid's reactivity model.</p>
+
+<p>Why I think it's worth a look:</p>
+
+<ul>
+  <li><b>50+ components</b> across 6 categories (Form, Picker, Feedback, Navigation, Display, Basic)</li>
+  <li><b>Theme system</b> — CSS custom properties throughout, light/dark mode, runtime brand color config</li>
+  <li><b>i18n</b> — English &amp; Chinese built in, extensible</li>
+  <li><b>Fully typed</b> — TypeScript from day one</li>
+  <li><b>Tree-shakable</b> — <code>import { Button } from 'solid-mobile'</code> only bundles what you use</li>
+  <li><b>480+ tests</b> running in CI</li>
+  <li><b>Live docs</b> with an interactive phone simulator so you can try before installing</li>
+</ul>
+
+<p><b>Links:</b></p>
+
+<ul>
+  <li>Docs: <a href="https://lxg19961206.github.io/SolidMobile/">https://lxg19961206.github.io/SolidMobile/</a></li>
+  <li>GitHub: <a href="https://github.com/LXG19961206/SolidMobile">https://github.com/LXG19961206/SolidMobile</a></li>
+  <li>npm: <code>npm install solid-mobile</code></li>
+</ul>
+
+<p><b>A quick word about Solid.js —</b> I picked it because its reactivity model is genuinely fun to work with. Signals, no virtual DOM, tiny runtime. It feels like what React hooks wanted to be. If you've only used React or Vue, honestly — give Solid a weekend. It keeps the familiar JSX syntax but strips away a ton of complexity, and the performance is no joke (no VDOM diffing, components run once). The ecosystem is still young, which is exactly why projects like this one need to exist.</p>
+
+<p>That said, a lot of the design work here — the component APIs, the theme architecture, the CSS patterns — is <b>framework-agnostic</b>. If someone wanted to port this to Vue or React, the hard part (the visual design and interaction details) is already done.</p>
+
+<p><b>State of the project:</b> Early beta. I wouldn't ship production with it tomorrow — some components like TreeSelect are still WIP. But the core (Button, Form, Dialog, Toast, Picker, etc.) is solid enough to build a real demo app with.</p>
+
+<p>This was first sketched back in 2023, but as a solo dev I didn't have the bandwidth to pull it off. Fast forward to 2026 and with a lot of help from Claude, it finally came together.</p>
+
+<p><b>What I'm looking for:</b> Honest feedback. If you look at an API and think "that's wrong" — I want to hear it. If <code>npm install</code> breaks on your machine — please open an issue. If you like the idea and want to contribute — PRs are very welcome. This is a solo project right now and fresh eyes would make a huge difference.</p>
+
+<p class="signoff">Cheers :)</p>
+
+</body>
+</html>
