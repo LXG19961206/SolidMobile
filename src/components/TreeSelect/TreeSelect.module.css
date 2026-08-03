@@ -34,6 +34,18 @@
   overflow: hidden;
 }
 
+/* Entrance animation */
+.overlayEnter { animation: scTreeSelectOverlayIn 0.2s ease; }
+.contentEnter { animation: scTreeSelectContentIn 0.25s ease; }
+@keyframes scTreeSelectOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scTreeSelectContentIn {
+  from { transform: translateY(30%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
 /* Header */
 .header {
   display: flex;
@@ -172,6 +184,24 @@
   font-weight: 600;
   color: var(--sc-color-primary, #1677ff);
   cursor: pointer;
+}
+.headerClose {
+  position: absolute;
+  left: 16px;
+  font-size: 1.05rem;
+  line-height: 1;
+  color: var(--sc-color-text-secondary, #969799);
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Loading placeholder when async-loading a level */
+.loadingWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 0;
+  color: var(--sc-color-text-secondary, #969799);
 }
 
 /* Footer */

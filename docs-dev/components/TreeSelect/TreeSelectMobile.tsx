@@ -11,19 +11,24 @@ import { useTreeSelectTableData } from './tableData';
 registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const opts: TreeSelectOption[] = [
-  { label: '华东', value: 'east', children: [
-    { label: '上海', value: 'sh' },
-    { label: '浙江', value: 'zj' },
-    { label: '江苏', value: 'js' },
+  { label: 'East', value: 'east', children: [
+    { label: 'Shanghai', value: 'sh' },
+    { label: 'Zhejiang', value: 'zj' },
+    { label: 'Jiangsu', value: 'js' },
   ]},
-  { label: '华南', value: 'south', children: [
-    { label: '广东', value: 'gd' },
-    { label: '深圳', value: 'sz' },
+  { label: 'South', value: 'south', children: [
+    { label: 'Guangdong', value: 'gd' },
+    { label: 'Shenzhen', value: 'sz' },
   ]},
-  { label: '华北', value: 'north', children: [
-    { label: '北京', value: 'bj' },
-    { label: '天津', value: 'tj' },
+  { label: 'North', value: 'north', children: [
+    { label: 'Beijing', value: 'bj' },
+    { label: 'Tianjin', value: 'tj' },
   ]},
+];
+
+const asyncOpts: TreeSelectOption[] = [
+  { label: 'Region', value: 'region' },
+  { label: 'City', value: 'city' },
 ];
 
 export const TreeSelectMobile = () => {
@@ -32,13 +37,20 @@ export const TreeSelectMobile = () => {
   const [v1, setV1] = createSignal<(string | number)[]>([]);
   const [v2, setV2] = createSignal<(string | number)[]>([]);
   const [v3, setV3] = createSignal<(string | number)[]>([]);
+  const [v4, setV4] = createSignal<(string | number)[]>([]);
+  const [v5, setV5] = createSignal<(string | number)[]>([]);
+  const loadChildren = (node: TreeSelectOption) =>
+    new Promise<TreeSelectOption[]>((resolve) => {
+      setTimeout(() => {
+        resolve([
+          { label: `${node.label}-A`, value: `${node.value}-a` },
+          { label: `${node.label}-B`, value: `${node.value}-b` },
+        ]);
+      }, 800);
+    });
 
   return (
     <MobilePreview title="TreeSelect">
-      <div class="doc-wip-banner" style="margin: 0 12px;">
-        <span class="doc-wip-icon">&#x26a0;</span>
-        <span>{t('treeselect.wipBanner')}</span>
-      </div>
       <MobilePropsSheet propsTables={propsTables} cssVarsTables={cssVarsTables} />
       <div style={{ padding: '12px', display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
         <Card title={t('treeselect.demo.basic')}>
@@ -70,6 +82,45 @@ export const TreeSelectMobile = () => {
               <TreeSelect options={opts} mode="expand" value={v3()} onChange={setV3} placeholder="Expand mode" />
             </div>
           </div>
+        </Card>
+
+        <Card title={t('treeselect.demo.customRender')}>
+          <div style={{ 'margin-bottom': '8px', 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>
+            {v5().length > 0 ? `Selected: ${v5().join(', ')}` : 'Tap a row to select, › to open'}
+          </div>
+          <TreeSelect
+            options={opts}
+            value={v5()}
+            onChange={setV5}
+            placeholder="Custom render"
+            renderItem={(node, selected, expand, toggle) => (
+              <div
+                onClick={() => toggle?.()}
+                style={{
+                  display: 'flex',
+                  'align-items': 'center',
+                  padding: '12px 16px',
+                  cursor: 'pointer',
+                  background: selected ? 'var(--sc-color-primary-pale, #eef4ff)' : 'transparent',
+                }}
+              >
+                <span style={{ flex: 1 }}>{selected ? '✓ ' : ''}{node.label}</span>
+                {node.children ? (
+                  <span
+                    onClick={(e) => { e.stopPropagation(); expand(); }}
+                    style={{ padding: '4px 12px', background: '#eee', 'border-radius': '4px', cursor: 'pointer' }}
+                  >›</span>
+                ) : null}
+              </div>
+            )}
+          />
+        </Card>
+
+        <Card title={t('treeselect.demo.asyncLoad')}>
+          <div style={{ 'margin-bottom': '8px', 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>
+            {v4().length > 0 ? `Selected: ${v4().join(', ')}` : 'Expand a node to lazy-load children'}
+          </div>
+          <TreeSelect options={asyncOpts} value={v4()} onChange={setV4} onLoadChildren={loadChildren} placeholder="Lazy load" />
         </Card>
       </div>
     </MobilePreview>

@@ -64,6 +64,7 @@ export const messages: LocaleMessages = {
         all: '全部',
         selected: '项已选',
         itemUnit: '项',
+        searchPlaceholder: '搜索',
       },
       list: {
         loading: '加载中...',
@@ -158,6 +159,7 @@ export const messages: LocaleMessages = {
         all: 'All',
         selected: 'selected',
         itemUnit: 'items',
+        searchPlaceholder: 'Search',
       },
       list: {
         loading: 'Loading...',

@@ -9,20 +9,20 @@ import { useTreeSelectTableData } from './tableData';
 registerLocale({ 'zh-CN': zhCN, 'en-US': enUS });
 
 const opts = [
-  { label: '华东', value: 'east', children: [
-    { label: '上海', value: 'sh' },
-    { label: '浙江', value: 'zj' },
-    { label: '江苏', value: 'js' },
-    { label: '安徽', value: 'ah' },
+  { label: 'East', value: 'east', children: [
+    { label: 'Shanghai', value: 'sh' },
+    { label: 'Zhejiang', value: 'zj' },
+    { label: 'Jiangsu', value: 'js' },
+    { label: 'Anhui', value: 'ah' },
   ]},
-  { label: '华南', value: 'south', children: [
-    { label: '广东', value: 'gd' },
-    { label: '深圳', value: 'sz' },
-    { label: '福建', value: 'fj' },
+  { label: 'South', value: 'south', children: [
+    { label: 'Guangdong', value: 'gd' },
+    { label: 'Shenzhen', value: 'sz' },
+    { label: 'Fujian', value: 'fj' },
   ]},
-  { label: '华北', value: 'north', children: [
-    { label: '北京', value: 'bj' },
-    { label: '天津', value: 'tj' },
+  { label: 'North', value: 'north', children: [
+    { label: 'Beijing', value: 'bj' },
+    { label: 'Tianjin', value: 'tj' },
   ]},
 ];
 
@@ -56,18 +56,39 @@ export const TreeSelectDocPage = () => {
     },
     {
       title: t('treeselect.demo.customRender'),
-      code: '<TreeSelect options={opts}\n  renderItem={(node, selected, expand) => (\n    <div style={{display:"flex",alignItems:"center",padding:"12px 16px"}}>\n      <span style={{flex:1}}>{selected ? \'✓ \' : \'\'}{node.label}</span>\n      {!node.children ? null :\n        <span onClick={expand} style={{padding:"4px 12px",background:"#eee",borderRadius:4,cursor:"pointer"}}>›</span>\n      }\n    </div>\n  )}\n/>',
+      code: `<TreeSelect options={opts}
+  renderItem={(node, selected, expand, toggle) => (
+    <div onClick={() => toggle?.()}
+      style={{ display: 'flex', alignItems: 'center', padding: '12px 16px', cursor: 'pointer' }}>
+      <span style={{ flex: 1 }}>{selected ? '✓ ' : ''}{node.label}</span>
+      {node.children && (
+        <span onClick={(e) => { e.stopPropagation(); expand(); }}
+          style={{ padding: '4px 12px', background: '#eee', borderRadius: 4 }}>›</span>
+      )}
+    </div>
+  )}
+/>`,
       desc: t('treeselect.demoDesc.customRender'),
+    },
+    {
+      title: t('treeselect.demo.asyncLoad'),
+      code: `const loadChildren = (node) => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve([
+      { label: node.label + '-A', value: node.value + '-a' },
+      { label: node.label + '-B', value: node.value + '-b' },
+    ]);
+  }, 800);
+});
+
+<TreeSelect options={opts} onLoadChildren={loadChildren} />`,
+      desc: t('treeselect.demoDesc.asyncLoad'),
     },
   ];
 
   return (
     <DocLayout>
       <div style={{ padding: '24px 32px', 'max-width': '960px', margin: '0 auto' }}>
-        <div class="doc-wip-banner">
-          <span class="doc-wip-icon">&#x26a0;</span>
-          <span>{t('treeselect.wipBanner')}</span>
-        </div>
         <h1 style={{ 'font-size': '1.75rem', 'font-weight': 700, margin: '0 0 4px' }}>TreeSelect</h1>
         <p style={{ 'font-size': '0.9rem', color: '#6b7280', margin: '0 0 24px' }}>{t('treeselect.intro')}</p>
         <PropsAttrs propsTables={propsTables} cssVarsTables={cssVarsTables} />
