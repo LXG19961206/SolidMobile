@@ -157,6 +157,14 @@ html.dark .tb-btn {
   color: #e2e8f0;
 }
 
+.tb-btn:hover {
+  background: #f3f4f6;
+}
+
+html.dark .tb-btn:hover {
+  background: #2f353b;
+}
+
 /* ── App Body (sidebar + main) ── */
 .app-body {
   flex: 1;
