@@ -176,7 +176,7 @@ export function App() {
                           classList={{ [drawerStyles.drawerItemActive!]: activeKey() === item.key }}
                           onClick={() => { closeMobileDrawer(); navigateTo(item.key); }}
                         >
-                          <span>{t('nav.' + item.key) || item.name}{item.badge && <span class="drawer-item-badge">{item.badge}</span>}</span>
+                          <span>{t('nav.' + item.key) || item.name}{('badge' in item && item.badge) && <span class="drawer-item-badge">{item.badge}</span>}</span>
                           <span class={drawerStyles.drawerItemArrow}>›</span>
                         </div>
                       )}
