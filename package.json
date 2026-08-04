@@ -39,7 +39,10 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles.css": "./dist/solid-mobile.css"
+    "./styles.css": {
+      "types": "./dist/styles.css.d.ts",
+      "default": "./dist/solid-mobile.css"
+    }
   },
   "sideEffects": [
     "**/*.css"
