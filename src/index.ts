@@ -10,6 +10,7 @@ export type {
 
 export { Icon } from './components/Icon';
 export type { IconName, IconProps } from './components/Icon';
+export * from './components/Icon/icons';
 
 export { Center } from './components/Center';
 export type { CenterProps } from './components/Center';

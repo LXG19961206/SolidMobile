@@ -15,7 +15,7 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "dist-dev",
     "baseUrl": ".",
     "paths": {
       "solid-component": ["src/index.ts"],
@@ -23,9 +23,5 @@
     }
   },
   "include": ["src"],
-  "exclude": [
-    "node_modules", "dist", "docs-dev", "playground",
-    "src/internal.ts",
-    "**/*.test.ts", "**/*.test.tsx", "**/*.stories.tsx"
-  ]
+  "exclude": ["node_modules", "dist", "docs-dev", "playground", "**/*.test.ts", "**/*.test.tsx", "**/*.stories.tsx"]
 }
