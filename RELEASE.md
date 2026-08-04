@@ -1,5 +1,59 @@
 # Release Notes
 
+## 0.1.9 (2026-08-04)
+
+### Bug Fixes
+
+- `import 'solid-mobile/styles.css'` no longer triggers a TS/VSCode "cannot find module or its type declarations" error — the `./styles.css` export now ships a `types` declaration (`dist/styles.css.d.ts`)
+- Types emitted at dist root; icons exported from the main entry
+
+## 0.1.8 (2026-08-04)
+
+### New / Enhanced Components
+
+- **TreeSelect** — async loading & search
+  - `onLoadChildren` lazy loading with per-node loading state and cache
+  - `onSearch` async remote search with stale-guard and loading indicator
+  - Controlled `show`/`onUpdateShow`/`onClose`, `closeable`, `teleport`, `zIndex`, `maxHeight`
+  - `renderItem` gains optional toggle callback so custom rows can select nodes
+  - Global search results capped at 100, big-data search demo
+  - i18n search placeholder (zh/en)
+
+### Docs
+
+- TreeSelect WIP badge/banner removed (production-ready)
+- English demo mock data, custom render live demo, prop tables + translations expanded
+- GitHub icon link added to toolbar, nav typo fix
+- Docs site rebuilt
+
+### Internal
+
+- Remove flaky tests from CI, add pre-commit hook for passing tests
+
+## 0.1.7 (2026-07-31)
+
+### New / Enhanced Components
+
+- **TreeSelect** — push-based multi-select tree
+  - Push navigation with breadcrumb tabs
+  - Dual mode: `select` (click to select, arrow to expand) / `expand` (click to expand, checkbox to select)
+  - `fieldNames` for custom data mapping (value/label/children/leaf)
+  - `renderItem` for full custom row rendering
+  - `searchable` + `searchMode` ('local' | 'global') with toolbar layout
+  - Select All with checkbox, max selection limit
+  - Round checkbox/expand button per row, dark mode, `--sc-treeselect-*` CSS variables
+
+### Bug Fixes
+
+- Button: `touch-action: manipulation` + tap-highlight to prevent sticky `:active` on mobile
+- Button: `:hover` wrapped in `@media (hover: hover)` to prevent sticky hover on mobile
+- TreeSelect: `createMemo` + `stopPropagation` to prevent event coupling
+
+### Docs
+
+- About page auto-counts components via `import.meta.glob`; Config page Chinese → English
+- Docs site rebuilt
+
 ## 0.1.6 (2026-07-29)
 
 ### Known Issues
