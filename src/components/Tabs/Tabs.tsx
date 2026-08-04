@@ -159,7 +159,7 @@ export const Tabs: Component<TabsProps> = (rawProps) => {
   };
 
   createEffect(on(activeName, () => { updateIndicator(); scrollToActive(); }));
-  createEffect(() => { tabs(); updateIndicator(); });
+  createEffect(() => { tabs(); updateIndicator(); scrollToActive(); });
   if (typeof window !== 'undefined') {
     window.addEventListener('resize', updateIndicator);
   }

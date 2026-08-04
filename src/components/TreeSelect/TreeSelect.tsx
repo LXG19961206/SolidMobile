@@ -8,6 +8,9 @@ import { cn, scopedStyle } from '../../utils';
 import { Icon } from '../Icon';
 import { Checkbox } from '../Checkbox';
 import { Loading } from '../Loading';
+import { Tabs, Tab } from '../Tabs';
+import { ScrollBar } from '../ScrollBar';
+import { useSwipeGesture } from '../../hooks';
 import { useT } from '../../i18n';
 import rawStyles from './TreeSelect.module.css';
 const styles = scopedStyle(rawStyles, 'sc-treeselect');
@@ -20,6 +23,7 @@ const defaultProps: Partial<TreeSelectProps> = {
   searchable: false,
   searchMode: 'local',
   closeable: false,
+  swipeable: false,
 };
 
 /** Collect all leaf keys under an option */
@@ -36,7 +40,7 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
     'options', 'value', 'defaultValue', 'onChange', 'max',
     'fieldNames', 'mode', 'renderItem',
     'placeholder', 'title', 'disabled', 'searchable', 'searchMode', 'onSearch', 'onLoadChildren',
-    'show', 'onUpdateShow', 'onClose', 'closeable', 'teleport', 'zIndex', 'maxHeight',
+    'show', 'onUpdateShow', 'onClose', 'closeable', 'swipeable', 'teleport', 'zIndex', 'maxHeight',
     'class', 'style',
   ]);
   const t = useT();
@@ -53,6 +57,8 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
   const nodeKey = (o: TreeSelectOption) => String(optKey(o));
   // A node without children is still expandable when an async loader exists
   const canLoad = (o: TreeSelectOption) => !!local.onLoadChildren && !optChildren(o);
+  // Left-swipe only navigates into nodes that actually expand
+  const canEnter = (o: TreeSelectOption) => !o.disabled && (!!optChildren(o) || canLoad(o));
   const isLeaf = (o: TreeSelectOption) => {
     if (leafKey()) return (o[leafKey()!] as boolean) === true;
     const kids = optChildren(o);
@@ -79,6 +85,36 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
   const currentPath = createMemo(() => stack().slice(0, -1).map(g =>
     g.find(o => !!optChildren(o)) ?? g[0]));
 
+  // ── breadcrumb (Tabs nav) data ──
+  const levelIndex = () => stack().length - 1;
+  const breadcrumbTabs = () => [
+    { name: '0', title: t('component.treeselect.all') },
+    ...currentPath().map((opt, i) => ({ name: String(i + 1), title: optLabel(opt) })),
+  ];
+  // Tabs registers tabs imperatively and never unregisters, so key the whole
+  // nav on the current path — a change remounts it with a fresh tab list.
+  // Root level has nothing to navigate back to, so hide the nav entirely ('').
+  const breadcrumbKey = () => (stack().length > 1
+    ? `${levelIndex()}:${currentPath().map(optKey).join('>')}`
+    : '');
+
+  // ── level-switch slide transition ──
+  let listRef: HTMLDivElement | undefined;
+  let levelAnim: Animation | undefined;
+  const slideLevel = (dir: 'forward' | 'back') => {
+    const el = listRef;
+    if (!el || typeof el.animate !== 'function') return;
+    const from = dir === 'forward' ? 36 : -36;
+    levelAnim?.cancel();
+    levelAnim = el.animate(
+      [
+        { transform: `translateX(${from}px)`, opacity: 0.3 },
+        { transform: 'translateX(0px)', opacity: 1 },
+      ],
+      { duration: 220, easing: 'cubic-bezier(0.25, 0.9, 0.4, 1)' },
+    );
+  };
+
   // ── async-loaded children cache ──
   const [loadedChildren, setLoadedChildren] = createSignal<Record<string, TreeSelectOption[]>>({});
   const [loadingKeys, setLoadingKeys] = createSignal<Set<string>>(new Set());
@@ -86,22 +122,27 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
   const push = async (opt: TreeSelectOption) => {
     if (opt.disabled) return;
     const kids = optChildren(opt);
-    if (kids && kids.length > 0) { setStack([...stack(), kids]); return; }
+    if (kids && kids.length > 0) { navigateForward(kids); return; }
     if (!local.onLoadChildren) return;
     const key = nodeKey(opt);
     if (loadingKeys().has(key)) return;
     const cached = loadedChildren()[key];
-    if (cached) { setStack([...stack(), cached]); return; }
+    if (cached) { navigateForward(cached); return; }
     setLoadingKeys(prev => new Set(prev).add(key));
     try {
       const children = await local.onLoadChildren(opt);
       if (children && children.length > 0) {
         setLoadedChildren(prev => ({ ...prev, [key]: children }));
-        setStack([...stack(), children]);
+        navigateForward(children);
       }
     } finally {
       setLoadingKeys(prev => { const s = new Set(prev); s.delete(key); return s; });
     }
+  };
+
+  const navigateForward = (kids: TreeSelectOption[]) => {
+    setStack([...stack(), kids]);
+    slideLevel('forward');
   };
 
   // ── search ──
@@ -132,7 +173,11 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
     return currentOptions().filter(o => optLabel(o).toLowerCase().includes(kw));
   });
 
-  const popTo = (idx: number) => { clearSearch(); setStack(stack().slice(0, idx + 1)); };
+  const popTo = (idx: number) => {
+    clearSearch();
+    setStack(stack().slice(0, idx + 1));
+    slideLevel('back');
+  };
 
   // Cap on how many global-search rows we render at once (big trees).
   const MAX_SEARCH_RESULTS = 100;
@@ -158,6 +203,7 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
     const lastLevel = kids && kids.length > 0 ? [...path, opt] : path;
     setStack([local.options, ...lastLevel.map(o => optChildren(o) ?? [])]);
     clearSearch();
+    slideLevel('forward');
   };
 
   // helper: all leaf keys under an option
@@ -284,20 +330,21 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                 <span class={styles.headerConfirm} onClick={confirm}>{t('component.treeselect.confirm')}</span>
               </div>
 
-              <div class={styles.tabs}>
-                <span class={cn(styles.tab, stack().length === 1 && styles.tabActive)} onClick={() => popTo(0)}>
-                  {t('component.treeselect.all')}
-                </span>
-                <For each={currentPath()}>
-                  {(opt, i) => (
-                    <span class={cn(styles.tab, i() === stack().length - 2 && styles.tabActive)} onClick={() => popTo(i() + 1)}>
-                      <span class={styles.tabSep}>/</span> {optLabel(opt)}
-                    </span>
-                  )}
-                </For>
-              </div>
+              <Show when={breadcrumbKey()} keyed>
+                <Tabs
+                  active={String(levelIndex())}
+                  onChange={name => popTo(Number(name))}
+                  type="line"
+                  class={styles.tabsNav}
+                >
+                  <For each={breadcrumbTabs()}>
+                    {tab => <Tab name={tab.name} title={tab.title} />}
+                  </For>
+                </Tabs>
+              </Show>
 
-              <div class={styles.list}>
+              <ScrollBar>
+                <div ref={listRef} class={styles.list}>
                 {/* Search + Select All toolbar */}
                 <Show when={local.searchable}>
                   <div class={styles.toolbar}>
@@ -322,7 +369,7 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                 <Show when={!local.searchable}>
                   <div class={cn(styles.item, allChecked() && styles.selected)} onClick={e => { e.stopPropagation(); selectAll(); }}>
                     <span class={styles.itemLabel}>{t('component.treeselect.selectAll')}</span>
-                    <span class={styles.itemExpand} onClick={e => { e.stopPropagation(); selectAll(); }}>
+                    <span class={cn(styles.itemExpand, styles.itemExpandCheck)} onClick={e => { e.stopPropagation(); selectAll(); }}>
                       <Checkbox value="__all__" checked={allChecked()} />
                     </span>
                   </div>
@@ -388,10 +435,20 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                         : leafKeys(opt).some(v => sel().includes(v));
                       const expand = () => { if (!opt.disabled) push(opt); };
 
+                      // Swipe navigation: left = into children, right = back a
+                      // level. The swipe flag suppresses the row's tap action so
+                      // a swipe never also toggles/enters.
+                      const swipe = useSwipeGesture({
+                        disabled: () => !local.swipeable,
+                        onSwipeLeft: () => { if (canEnter(opt)) push(opt); },
+                        onSwipeRight: () => { if (stack().length > 1) popTo(stack().length - 2); },
+                      });
+
                       return local.renderItem ? local.renderItem(opt, isSel(), expand, () => toggleOption(opt)) : (
                         <div
                           class={cn(styles.item, opt.disabled && styles.disabled, isSel() && styles.selected)}
-                          onClick={e => { e.stopPropagation(); if (!opt.disabled) bodyAction(opt); }}
+                          {...swipe.handlers}
+                          onClick={e => { e.stopPropagation(); if (swipe.consumeClick()) return; if (!opt.disabled) bodyAction(opt); }}
                         >
                           <span class={styles.itemBody}>
                             <span class={styles.itemLabel}>{optLabel(opt)}</span>
@@ -399,15 +456,21 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                               <span class={styles.itemCount}>{sel().filter(v => leafKeys(opt).includes(v)).length}/{countAll(opt)}</span>
                             </Show>
                           </span>
-                          <span class={styles.itemExpand} onClick={e => { e.stopPropagation(); if (!opt.disabled) arrowAction(opt); }}>
-                            <Show when={!isLoading(opt)} fallback={<Loading size={14} />}>
-                              {local.mode === 'expand' ? (
-                                <Checkbox value={optKey(opt)} checked={isSel()} />
-                              ) : (
-                                <Icon name="arrow-right" size={18} />
-                              )}
-                            </Show>
-                          </span>
+                          {/* Right-side zone: checkbox in expand mode, expand arrow in
+                              select mode. In select mode a leaf has nowhere to expand,
+                              so only render it for expandable nodes (which includes
+                              async-loadable ones when onLoadChildren is provided). */}
+                          <Show when={local.mode === 'expand' || !isLeaf(opt)}>
+                            <span class={cn(styles.itemExpand, local.mode === 'expand' && styles.itemExpandCheck)} onClick={e => { e.stopPropagation(); if (swipe.consumeClick()) return; if (!opt.disabled) arrowAction(opt); }}>
+                              <Show when={!isLoading(opt)} fallback={<Loading size={14} />}>
+                                {local.mode === 'expand' ? (
+                                  <Checkbox value={optKey(opt)} checked={isSel()} />
+                                ) : (
+                                  <Icon name="arrow-right" size={18} />
+                                )}
+                              </Show>
+                            </span>
+                          </Show>
                         </div>
                       );
                     }}
@@ -415,6 +478,7 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                 </Show>
 
               </div>
+              </ScrollBar>
 
               <div class={styles.footer}>
                 <span class={styles.footerCount}>{selected().length} {t('component.treeselect.itemUnit')}</span>

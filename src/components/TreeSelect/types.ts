@@ -36,6 +36,9 @@ export interface TreeSelectProps {
   fieldNames?: TreeSelectFieldNames;
   /** Interaction mode: 'select' = click row to select (default), 'expand' = click row to expand */
   mode?: 'select' | 'expand';
+  /** Enable swipe navigation on rows: left-swipe a row to enter its children,
+   *  right-swipe (on any row) to go back a level. Default false. */
+  swipeable?: boolean;
   /** Custom render for each option. (node, selected, expand, toggle) => JSX */
   renderItem?: (
     opt: TreeSelectOption,

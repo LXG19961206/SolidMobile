@@ -16,6 +16,28 @@ const opts = [
 
 const tick = () => new Promise(r => setTimeout(r, 20));
 
+/* dispatch a synthetic pointer event (happy-dom lacks PointerEvent) */
+const dispatchPointer = (el: HTMLElement, type: string, init: Record<string, unknown> = {}) => {
+  const evt = new Event(type, { bubbles: true, cancelable: true });
+  Object.assign(evt, init);
+  el.dispatchEvent(evt);
+};
+
+/* simulate a horizontal swipe (left or right) on a row */
+const swipeRow = (el: HTMLElement, dir: 'left' | 'right') => {
+  const startX = dir === 'left' ? 200 : 40;
+  const endX = dir === 'left' ? 40 : 200;
+  dispatchPointer(el, 'pointerdown', { clientX: startX, clientY: 100, pointerType: 'touch', button: 0 });
+  dispatchPointer(el, 'pointermove', { clientX: startX + (dir === 'left' ? -20 : 20), clientY: 102, pointerType: 'touch' });
+  dispatchPointer(el, 'pointermove', { clientX: endX, clientY: 104, pointerType: 'touch' });
+  dispatchPointer(el, 'pointerup', { pointerType: 'touch' });
+};
+
+/* find any row div (leaf or parent) by its label */
+const findItem = (text: string) =>
+  (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[])
+    .find(el => el.textContent?.includes(text) && !!el.querySelector('[class*="itemBody"]'))!;
+
 describe('TreeSelect', () => {
   it('renders placeholder when no value', () => {
     render(() => <TreeSelect options={opts} placeholder="Pick" />);
@@ -95,9 +117,8 @@ describe('TreeSelect', () => {
     await new Promise(r => setTimeout(r, 50));
     expect(document.body.textContent).toContain('Shanghai');
 
-    // click the Shanghai row body
-    const shanghaiRow = (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[])
-      .find(el => el.textContent?.includes('Shanghai') && !!el.querySelector('[class*="itemExpand"]'))!;
+    // click the Shanghai row body (a leaf — no expand arrow, so findItem not findRow)
+    const shanghaiRow = findItem('Shanghai');
     shanghaiRow.click();
     await new Promise(r => setTimeout(r, 50));
     expect(val()).toEqual(['sh']);
@@ -263,5 +284,100 @@ describe('TreeSelect', () => {
     const rows = (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[]).filter(el =>
       !!el.querySelector('[class*="itemBody"]') && el.textContent?.includes('City'));
     expect(rows.length).toBe(100);
+  });
+
+  it('hides the expand arrow on leaf rows in select mode', async () => {
+    render(() => <TreeSelect options={opts} />);
+    const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
+    trigger.click();
+    await tick();
+
+    // parent rows keep the expand arrow
+    expect(findItem('East').querySelector('[class*="itemExpand"]')).not.toBeNull();
+
+    // navigate into East → the leaf rows (Shanghai/Zhejiang) have no arrow
+    (findItem('East').querySelector('[class*="itemExpand"]') as HTMLElement).click();
+    await tick();
+    expect(findItem('Shanghai').querySelector('[class*="itemExpand"]')).toBeNull();
+    expect(findItem('Zhejiang').querySelector('[class*="itemExpand"]')).toBeNull();
+  });
+
+  it('renders the breadcrumb as a scrollable Tabs nav', async () => {
+    render(() => <TreeSelect options={opts} />);
+    const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
+    trigger.click();
+    await tick();
+
+    // root level → nav is hidden (nothing to navigate back to)
+    let titles = Array.from(document.querySelectorAll('[class*="tabTitle"]')) as HTMLElement[];
+    expect(titles.length).toBe(0);
+
+    // navigate into East → breadcrumb appears with an "All" + "East" segment
+    (findItem('East').querySelector('[class*="itemExpand"]') as HTMLElement).click();
+    await tick();
+    titles = Array.from(document.querySelectorAll('[class*="tabTitle"]')) as HTMLElement[];
+    expect(titles.map(t => t.textContent).join(' ')).toContain('All');
+    expect(titles.map(t => t.textContent).join(' ')).toContain('East');
+
+    // clicking the "All" tab pops back to root, the nav hides again, no stale tabs
+    const allTab = titles.find(t => t.textContent?.trim() === 'All') as HTMLElement;
+    allTab.click();
+    await tick();
+    titles = Array.from(document.querySelectorAll('[class*="tabTitle"]')) as HTMLElement[];
+    expect(titles.length).toBe(0);
+    expect(document.body.textContent).toContain('West');
+  });
+
+  it('swipe left on a parent enters its children without selecting', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>([]);
+    render(() => <TreeSelect options={opts} value={val()} onChange={setVal} swipeable />);
+    const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
+    trigger.click();
+    await tick();
+
+    swipeRow(findItem('East'), 'left');
+    await tick();
+
+    // navigated into East's children
+    expect(document.body.textContent).toContain('Shanghai');
+    expect(document.body.textContent).not.toContain('West');
+    // and no selection happened
+    expect(val()).toEqual([]);
+  });
+
+  it('swipe left on a leaf does nothing and suppresses the tap click', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>([]);
+    render(() => <TreeSelect options={opts} value={val()} onChange={setVal} swipeable />);
+    const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
+    trigger.click();
+    await tick();
+
+    // go into East first so we have a leaf row
+    (findItem('East').querySelector('[class*="itemExpand"]') as HTMLElement).click();
+    await tick();
+
+    swipeRow(findItem('Shanghai'), 'left');
+    findItem('Shanghai').click(); // the tap that follows a swipe must be suppressed
+    await tick();
+
+    expect(val()).toEqual([]);
+    expect(document.body.textContent).toContain('Shanghai'); // no navigation
+  });
+
+  it('swipe right goes back a level', async () => {
+    render(() => <TreeSelect options={opts} swipeable />);
+    const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
+    trigger.click();
+    await tick();
+
+    (findItem('East').querySelector('[class*="itemExpand"]') as HTMLElement).click();
+    await tick();
+    expect(document.body.textContent).toContain('Shanghai');
+
+    swipeRow(findItem('Shanghai'), 'right');
+    await tick();
+
+    expect(document.body.textContent).not.toContain('Shanghai');
+    expect(document.body.textContent).toContain('West');
   });
 });

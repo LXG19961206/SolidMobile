@@ -68,7 +68,7 @@ export const TreeSelectMobile = () => {
           <div style={{ 'margin-bottom': '8px', 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>
             {v1().length > 0 ? `Selected: ${v1().join(', ')}` : 'Tap to select'}
           </div>
-          <TreeSelect options={opts} value={v1()} onChange={setV1} placeholder="Select regions" searchable={true} searchMode="global" />
+          <TreeSelect options={opts} value={v1()} onChange={setV1} placeholder="Select regions" searchable={true} searchMode="global" swipeable />
         </Card>
 
         <Card title={t('treeselect.demo.maxLimit')}>
@@ -90,7 +90,7 @@ export const TreeSelectMobile = () => {
               <div style={{ 'margin-bottom': '6px', 'font-size': '0.65rem', color: 'var(--sc-doc-card-muted, #9ca3af)', 'text-align': 'center' }}>
                 expand (click to expand)
               </div>
-              <TreeSelect options={opts} mode="expand" value={v3()} onChange={setV3} placeholder="Expand mode" />
+              <TreeSelect options={opts} mode="expand" value={v3()} onChange={setV3} placeholder="Expand mode" swipeable />
             </div>
           </div>
         </Card>
@@ -131,7 +131,7 @@ export const TreeSelectMobile = () => {
           <div style={{ 'margin-bottom': '8px', 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>
             {v4().length > 0 ? `Selected: ${v4().join(', ')}` : 'Expand a node to lazy-load children'}
           </div>
-          <TreeSelect options={asyncOpts} value={v4()} onChange={setV4} onLoadChildren={loadChildren} placeholder="Lazy load" />
+          <TreeSelect options={asyncOpts} value={v4()} onChange={setV4} onLoadChildren={loadChildren} placeholder="Lazy load" swipeable />
         </Card>
 
         <Card title={t('treeselect.demo.bigData')}>

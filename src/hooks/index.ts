@@ -22,6 +22,9 @@ export interface UseControllableStateOptions<T> {
  * });
  * ```
  */
+export { useSwipeGesture } from './useSwipeGesture';
+export type { UseSwipeGestureOptions, SwipeGestureHandlers } from './useSwipeGesture';
+
 export function useControllableState<T>(
   options: UseControllableStateOptions<T>,
 ): [Accessor<T>, Setter<T>] {
