@@ -5,7 +5,7 @@
 <h1 align="center">Solid Mobile</h1>
 
 <p align="center">
-  A <b>53-component</b> mobile UI library for <a href="https://www.solidjs.com/">Solid.js</a><br/>
+  A <b>55-component</b> mobile UI library for <a href="https://www.solidjs.com/">Solid.js</a><br/>
   Theme system · i18n · Dark mode · Tree-shakable · Fully typed
 </p>
 
@@ -63,6 +63,12 @@ render(() => <App />, document.getElementById('root')!);
 | **Form** | `Form` `Input` `Textarea` `Radio` `Checkbox` `Switch` `Rate` `Stepper` `Slider` `Upload` |
 
 > Full API reference, interactive demos, and a **phone simulator** are available on the [documentation site →](https://lxg19961206.github.io/SolidMobile/).
+
+## Stability
+
+**From v0.2.1 through 1.0.0**, the library will not undergo large-scale feature expansion. Our focus is on **thorough testing** and **more approachable documentation**.
+
+Props and APIs are **additive-only** going forward — they may grow, but existing APIs will not be removed or broken (except to fix genuine design bugs). What works now will keep working in every subsequent release.
 
 ## Why Solid Mobile?
 
