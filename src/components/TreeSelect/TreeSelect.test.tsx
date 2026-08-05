@@ -5,16 +5,18 @@ import { TreeSelect } from './TreeSelect';
 import type { TreeSelectOption } from './types';
 
 const opts = [
-  { label: 'East', value: 'east', children: [
-    { label: 'Shanghai', value: 'sh' },
-    { label: 'Zhejiang', value: 'zj' },
-  ]},
-  { label: 'West', value: 'west', children: [
-    { label: 'Sichuan', value: 'sc' },
-  ]},
+  {
+    label: 'East',
+    value: 'east',
+    children: [
+      { label: 'Shanghai', value: 'sh' },
+      { label: 'Zhejiang', value: 'zj' },
+    ],
+  },
+  { label: 'West', value: 'west', children: [{ label: 'Sichuan', value: 'sc' }] },
 ];
 
-const tick = () => new Promise(r => setTimeout(r, 20));
+const tick = () => new Promise((r) => setTimeout(r, 20));
 
 /* dispatch a synthetic pointer event (happy-dom lacks PointerEvent) */
 const dispatchPointer = (el: HTMLElement, type: string, init: Record<string, unknown> = {}) => {
@@ -27,16 +29,26 @@ const dispatchPointer = (el: HTMLElement, type: string, init: Record<string, unk
 const swipeRow = (el: HTMLElement, dir: 'left' | 'right') => {
   const startX = dir === 'left' ? 200 : 40;
   const endX = dir === 'left' ? 40 : 200;
-  dispatchPointer(el, 'pointerdown', { clientX: startX, clientY: 100, pointerType: 'touch', button: 0 });
-  dispatchPointer(el, 'pointermove', { clientX: startX + (dir === 'left' ? -20 : 20), clientY: 102, pointerType: 'touch' });
+  dispatchPointer(el, 'pointerdown', {
+    clientX: startX,
+    clientY: 100,
+    pointerType: 'touch',
+    button: 0,
+  });
+  dispatchPointer(el, 'pointermove', {
+    clientX: startX + (dir === 'left' ? -20 : 20),
+    clientY: 102,
+    pointerType: 'touch',
+  });
   dispatchPointer(el, 'pointermove', { clientX: endX, clientY: 104, pointerType: 'touch' });
   dispatchPointer(el, 'pointerup', { pointerType: 'touch' });
 };
 
 /* find any row div (leaf or parent) by its label */
 const findItem = (text: string) =>
-  (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[])
-    .find(el => el.textContent?.includes(text) && !!el.querySelector('[class*="itemBody"]'))!;
+  (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[]).find(
+    (el) => el.textContent?.includes(text) && !!el.querySelector('[class*="itemBody"]'),
+  )!;
 
 describe('TreeSelect', () => {
   it('renders placeholder when no value', () => {
@@ -54,7 +66,7 @@ describe('TreeSelect', () => {
     const trigger = container.querySelector('[class*="trigger"]') as HTMLElement;
     trigger.click();
     // overlay content should appear
-    await new Promise(r => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 50));
     expect(document.querySelector('[class*="content"]')).not.toBeNull();
   });
 
@@ -62,7 +74,7 @@ describe('TreeSelect', () => {
     const { container } = render(() => <TreeSelect options={opts} />);
     const trigger = container.querySelector('[class*="trigger"]') as HTMLElement;
     trigger.click();
-    await new Promise(r => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 50));
     expect(document.body.textContent).toContain('East');
     expect(document.body.textContent).toContain('West');
     // parent nodes have expand zone
@@ -73,7 +85,7 @@ describe('TreeSelect', () => {
     const { container } = render(() => <TreeSelect options={opts} />);
     const trigger = container.querySelector('[class*="trigger"]') as HTMLElement;
     trigger.click();
-    await new Promise(r => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 50));
     expect(document.body.textContent).toContain('Select All');
   });
 
@@ -82,22 +94,23 @@ describe('TreeSelect', () => {
     render(() => <TreeSelect options={opts} value={val()} onChange={setVal} />);
     const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
     trigger.click();
-    await new Promise(r => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 50));
 
     // a row is the .item div that also contains an expand zone
     const findRow = (text: string) =>
-      (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[])
-        .find(el => el.textContent?.includes(text) && !!el.querySelector('[class*="itemExpand"]'))!;
+      (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[]).find(
+        (el) => el.textContent?.includes(text) && !!el.querySelector('[class*="itemExpand"]'),
+      )!;
 
     // clicking the parent row selects all its leaves
     const eastRow = findRow('East');
     eastRow.click();
-    await new Promise(r => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 50));
     expect([...val()].sort()).toEqual(['sh', 'zj']);
 
     // clicking again deselects
     eastRow.click();
-    await new Promise(r => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 50));
     expect(val()).toEqual([]);
   });
 
@@ -106,21 +119,22 @@ describe('TreeSelect', () => {
     render(() => <TreeSelect options={opts} value={val()} onChange={setVal} />);
     const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
     trigger.click();
-    await new Promise(r => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 50));
 
     const findRow = (text: string) =>
-      (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[])
-        .find(el => el.textContent?.includes(text) && !!el.querySelector('[class*="itemExpand"]'))!;
+      (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[]).find(
+        (el) => el.textContent?.includes(text) && !!el.querySelector('[class*="itemExpand"]'),
+      )!;
 
     // navigate into East via its arrow
     (findRow('East').querySelector('[class*="itemExpand"]') as HTMLElement).click();
-    await new Promise(r => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 50));
     expect(document.body.textContent).toContain('Shanghai');
 
     // click the Shanghai row body (a leaf — no expand arrow, so findItem not findRow)
     const shanghaiRow = findItem('Shanghai');
     shanghaiRow.click();
-    await new Promise(r => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 50));
     expect(val()).toEqual(['sh']);
   });
 
@@ -129,13 +143,16 @@ describe('TreeSelect', () => {
     render(() => <TreeSelect options={opts} mode="expand" value={val()} onChange={setVal} />);
     const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
     trigger.click();
-    await new Promise(r => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 50));
 
     // click the checkbox inside the East row's expand zone (should toggle once, not navigate)
-    const eastRow = (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[])
-      .find(el => el.textContent?.includes('East') && !!el.querySelector('[class*="itemExpand"]'))!;
+    const eastRow = (
+      Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[]
+    ).find(
+      (el) => el.textContent?.includes('East') && !!el.querySelector('[class*="itemExpand"]'),
+    )!;
     (eastRow.querySelector('[role="checkbox"]') as HTMLElement).click();
-    await new Promise(r => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 50));
     expect([...val()].sort()).toEqual(['sh', 'zj']);
     // and the picker should NOT have navigated into children (still showing East/West)
     expect(document.body.textContent).toContain('East');
@@ -145,19 +162,30 @@ describe('TreeSelect', () => {
   it('loads children asynchronously on expand', async () => {
     const [val, setVal] = createSignal<(string | number)[]>([]);
     let resolveChildren!: (c: TreeSelectOption[]) => void;
-    const loadFn = vi.fn((_opt: TreeSelectOption) =>
-      new Promise<TreeSelectOption[]>(r => { resolveChildren = r; }),
+    const loadFn = vi.fn(
+      (_opt: TreeSelectOption) =>
+        new Promise<TreeSelectOption[]>((r) => {
+          resolveChildren = r;
+        }),
     );
     render(() => (
-      <TreeSelect options={[{ label: 'Root', value: 'root' }]} value={val()} onChange={setVal} onLoadChildren={loadFn} />
+      <TreeSelect
+        options={[{ label: 'Root', value: 'root' }]}
+        value={val()}
+        onChange={setVal}
+        onLoadChildren={loadFn}
+      />
     ));
     const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
     trigger.click();
     await tick();
 
     // Root has no children but is expandable via onLoadChildren → shows an expand zone
-    const rootRow = (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[])
-      .find(el => el.textContent?.includes('Root') && !!el.querySelector('[class*="itemExpand"]'))!;
+    const rootRow = (
+      Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[]
+    ).find(
+      (el) => el.textContent?.includes('Root') && !!el.querySelector('[class*="itemExpand"]'),
+    )!;
     (rootRow.querySelector('[class*="itemExpand"]') as HTMLElement).click();
     await tick();
 
@@ -175,7 +203,9 @@ describe('TreeSelect', () => {
   it('shows remote search results from onSearch', async () => {
     const [val, setVal] = createSignal<(string | number)[]>([]);
     const onSearch = vi.fn((kw: string) => Promise.resolve([{ label: `R-${kw}`, value: kw }]));
-    render(() => <TreeSelect options={opts} value={val()} onChange={setVal} searchable onSearch={onSearch} />);
+    render(() => (
+      <TreeSelect options={opts} value={val()} onChange={setVal} searchable onSearch={onSearch} />
+    ));
     const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
     trigger.click();
     await tick();
@@ -215,7 +245,7 @@ describe('TreeSelect', () => {
     const closeBtn = document.querySelector('[class*="headerClose"]') as HTMLElement;
     expect(closeBtn).not.toBeNull();
     closeBtn.click();
-    await new Promise(r => setTimeout(r, 250)); // closeSheet unmounts after 200ms
+    await new Promise((r) => setTimeout(r, 250)); // closeSheet unmounts after 200ms
     expect(closed).toBe(true);
     expect(document.querySelector('[class*="content"]')).toBeNull();
   });
@@ -236,7 +266,9 @@ describe('TreeSelect', () => {
         onChange={setVal}
         renderItem={(node, selected, _expand, toggle) => (
           <div data-custom-row={node.value}>
-            <span>{selected ? '✓' : '·'} {node.label}</span>
+            <span>
+              {selected ? '✓' : '·'} {node.label}
+            </span>
             <button onClick={() => toggle?.()}>t</button>
           </div>
         )}
@@ -281,8 +313,9 @@ describe('TreeSelect', () => {
     await tick();
 
     // count only row divs (they contain an itemBody), not itemBody/itemLabel spans
-    const rows = (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[]).filter(el =>
-      !!el.querySelector('[class*="itemBody"]') && el.textContent?.includes('City'));
+    const rows = (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[]).filter(
+      (el) => !!el.querySelector('[class*="itemBody"]') && el.textContent?.includes('City'),
+    );
     expect(rows.length).toBe(100);
   });
 
@@ -316,11 +349,11 @@ describe('TreeSelect', () => {
     (findItem('East').querySelector('[class*="itemExpand"]') as HTMLElement).click();
     await tick();
     titles = Array.from(document.querySelectorAll('[class*="tabTitle"]')) as HTMLElement[];
-    expect(titles.map(t => t.textContent).join(' ')).toContain('All');
-    expect(titles.map(t => t.textContent).join(' ')).toContain('East');
+    expect(titles.map((t) => t.textContent).join(' ')).toContain('All');
+    expect(titles.map((t) => t.textContent).join(' ')).toContain('East');
 
     // clicking the "All" tab pops back to root, the nav hides again, no stale tabs
-    const allTab = titles.find(t => t.textContent?.trim() === 'All') as HTMLElement;
+    const allTab = titles.find((t) => t.textContent?.trim() === 'All') as HTMLElement;
     allTab.click();
     await tick();
     titles = Array.from(document.querySelectorAll('[class*="tabTitle"]')) as HTMLElement[];
@@ -379,5 +412,64 @@ describe('TreeSelect', () => {
 
     expect(document.body.textContent).not.toContain('Shanghai');
     expect(document.body.textContent).toContain('West');
+  });
+
+  it('renders checkbox on the left when checkboxPosition="left"', async () => {
+    render(() => <TreeSelect options={opts} mode="expand" checkboxPosition="left" />);
+    const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
+    trigger.click();
+    await tick();
+
+    // checkbox is inside itemBody, in a left-checkbox wrapper before the label
+    const eastRow = findItem('East');
+    const body = eastRow.querySelector('[class*="itemBody"]') as HTMLElement;
+    const checkLeft = body.querySelector('[class*="itemCheckLeft"]') as HTMLElement;
+    expect(checkLeft).not.toBeNull();
+    expect(checkLeft.querySelector('[role="checkbox"]')).not.toBeNull();
+
+    // right zone still shows arrow for non-leaf nodes (but no checkbox)
+    const expand = eastRow.querySelector('[class*="itemExpand"]') as HTMLElement;
+    expect(expand).not.toBeNull();
+    expect(expand.querySelector('[role="checkbox"]')).toBeNull();
+  });
+
+  it('checkboxPosition="left" hides right zone on leaf rows', async () => {
+    render(() => <TreeSelect options={opts} mode="expand" checkboxPosition="left" />);
+    const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
+    trigger.click();
+    await tick();
+
+    // enter East → see child leaf rows
+    (findItem('East').querySelector('[class*="itemExpand"]') as HTMLElement).click();
+    await tick();
+
+    // leaf rows have no right-side expand zone (only left checkbox)
+    expect(findItem('Shanghai').querySelector('[class*="itemExpand"]')).toBeNull();
+    // but they do have a checkbox on the left
+    expect(findItem('Shanghai').querySelector('[role="checkbox"]')).not.toBeNull();
+  });
+
+  it('checkboxPosition="left" right arrow navigates instead of toggling', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>([]);
+    render(() => (
+      <TreeSelect
+        options={opts}
+        mode="expand"
+        checkboxPosition="left"
+        value={val()}
+        onChange={setVal}
+      />
+    ));
+    const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
+    trigger.click();
+    await tick();
+
+    // click the right arrow on East → should navigate into children, not toggle
+    const expand = findItem('East').querySelector('[class*="itemExpand"]') as HTMLElement;
+    expand.click();
+    await tick();
+
+    expect(document.body.textContent).toContain('Shanghai');
+    expect(val()).toEqual([]);
   });
 });

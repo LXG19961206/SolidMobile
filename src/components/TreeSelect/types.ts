@@ -1,10 +1,10 @@
 import type { JSX } from 'solid-js';
 
 export interface TreeSelectFieldNames {
-  value?: string;    // default 'value'
-  label?: string;    // default 'label'
+  value?: string; // default 'value'
+  label?: string; // default 'label'
   children?: string; // default 'children'
-  leaf?: string;     // if set, use this boolean field to determine leaf instead of children.length
+  leaf?: string; // if set, use this boolean field to determine leaf instead of children.length
 }
 
 export interface TreeSelectOption {
@@ -39,6 +39,8 @@ export interface TreeSelectProps {
   /** Enable swipe navigation on rows: left-swipe a row to enter its children,
    *  right-swipe (on any row) to go back a level. Default false. */
   swipeable?: boolean;
+  /** Checkbox position in expand mode. Default 'right'. */
+  checkboxPosition?: 'left' | 'right';
   /** Custom render for each option. (node, selected, expand, toggle) => JSX */
   renderItem?: (
     opt: TreeSelectOption,
@@ -51,7 +53,10 @@ export interface TreeSelectProps {
   /** 'local' filters current level, 'global' searches entire tree with result dropdown */
   searchMode?: 'local' | 'global';
   /** Async search callback. If omitted, filters locally by label */
-  onSearch?: (keyword: string, options: TreeSelectOption[]) => Promise<TreeSelectOption[]> | TreeSelectOption[];
+  onSearch?: (
+    keyword: string,
+    options: TreeSelectOption[],
+  ) => Promise<TreeSelectOption[]> | TreeSelectOption[];
   /** Async load children */
   onLoadChildren?: (option: TreeSelectOption) => Promise<TreeSelectOption[]>;
   /** Controlled open state */

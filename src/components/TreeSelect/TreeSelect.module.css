@@ -10,17 +10,29 @@
   min-height: var(--sc-treeselect-trigger-height, 44px);
   -webkit-tap-highlight-color: transparent;
 }
-.triggerText { flex: 1; font-size: 0.9rem; color: var(--sc-color-text, #323233); }
-.triggerPlaceholder { color: var(--sc-color-text-secondary, #969799); }
-.triggerArrow { color: var(--sc-color-text-secondary, #969799); flex-shrink: 0; }
-.disabled { opacity: 0.5; cursor: not-allowed; }
+.triggerText {
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--sc-color-text, #323233);
+}
+.triggerPlaceholder {
+  color: var(--sc-color-text-secondary, #969799);
+}
+.triggerArrow {
+  color: var(--sc-color-text-secondary, #969799);
+  flex-shrink: 0;
+}
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 /* Overlay */
 .overlay {
   position: fixed;
   inset: 0;
   z-index: var(--sc-treeselect-zindex, 1100);
-  background: rgba(0,0,0,0.35);
+  background: rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -36,15 +48,29 @@
 }
 
 /* Entrance animation */
-.overlayEnter { animation: scTreeSelectOverlayIn 0.2s ease; }
-.contentEnter { animation: scTreeSelectContentIn 0.25s ease; }
+.overlayEnter {
+  animation: scTreeSelectOverlayIn 0.2s ease;
+}
+.contentEnter {
+  animation: scTreeSelectContentIn 0.25s ease;
+}
 @keyframes scTreeSelectOverlayIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes scTreeSelectContentIn {
-  from { transform: translateY(30%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(30%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* Header */
@@ -80,7 +106,11 @@
   background: var(--sc-color-background-secondary, #f7f8fa);
   border-radius: 8px;
 }
-.searchIcon { color: var(--sc-color-text-secondary, #969799); flex-shrink: 0; margin-right: 6px; }
+.searchIcon {
+  color: var(--sc-color-text-secondary, #969799);
+  flex-shrink: 0;
+  margin-right: 6px;
+}
 .searchInput {
   flex: 1;
   border: none;
@@ -90,8 +120,18 @@
   color: var(--sc-color-text, #323233);
   min-width: 0;
 }
-.searchClear { color: var(--sc-color-text-secondary, #969799); cursor: pointer; font-size: 0.8rem; padding: 0 4px; }
-.searchPath { font-size: 0.72rem; color: var(--sc-color-text-secondary, #969799); margin-right: 4px; white-space: nowrap; }
+.searchClear {
+  color: var(--sc-color-text-secondary, #969799);
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0 4px;
+}
+.searchPath {
+  font-size: 0.72rem;
+  color: var(--sc-color-text-secondary, #969799);
+  margin-right: 4px;
+  white-space: nowrap;
+}
 .toolbarSelectAll {
   display: flex;
   align-items: center;
@@ -99,16 +139,33 @@
   cursor: pointer;
   flex-shrink: 0;
 }
-.toolbarLabel { font-size: 0.78rem; color: var(--sc-color-text-secondary, #969799); white-space: nowrap; }
-:global(html.dark) .searchWrap { background: #2a2d33; }
-:global(html.dark) .searchInput { color: #e2e8f0; }
+.toolbarLabel {
+  font-size: 0.78rem;
+  color: var(--sc-color-text-secondary, #969799);
+  white-space: nowrap;
+}
+:global(html.dark) .searchWrap {
+  background: #2a2d33;
+}
+:global(html.dark) .searchInput {
+  color: #e2e8f0;
+}
 
 /* Breadcrumb nav — uses the shared Tabs component */
-.tabsNav { padding: 0 16px; flex-shrink: 0; }
+.tabsNav {
+  padding: 0 16px;
+  flex-shrink: 0;
+}
 /* Inside the TreeSelect sheet we only use Tabs' header, never its panels */
-:global(.sc-treeselect-content) :global(.sc-tabs-content) { display: none; }
-:global(.sc-treeselect-tabsNav) :global(.sc-tabs-header) { background: transparent; }
-:global(.sc-treeselect-tabsNav) :global(.sc-tabs-tabTitle) { padding: 0.5rem 0.6rem; }
+:global(.sc-treeselect-content) :global(.sc-tabs-content) {
+  display: none;
+}
+:global(.sc-treeselect-tabsNav) :global(.sc-tabs-header) {
+  background: transparent;
+}
+:global(.sc-treeselect-tabsNav) :global(.sc-tabs-tabTitle) {
+  padding: 0.5rem 0.6rem;
+}
 
 /* List */
 .list {
@@ -128,9 +185,16 @@
   user-select: none;
   -webkit-user-select: none;
 }
-.item:active { background: var(--sc-color-background-secondary, #f7f8fa); }
-.item.disabled { opacity: 0.4; cursor: not-allowed; }
-.selected { background: color-mix(in srgb, var(--sc-color-primary, #1677ff) 6%, transparent); }
+.item:active {
+  background: var(--sc-color-background-secondary, #f7f8fa);
+}
+.item.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.selected {
+  background: color-mix(in srgb, var(--sc-color-primary, #1677ff) 6%, transparent);
+}
 
 .itemBody {
   display: flex;
@@ -143,12 +207,25 @@
      height as parent rows — both are driven by the same token. */
   min-height: var(--sc-treeselect-expand-size, 30px);
 }
-.itemLabel { flex: 1; font-size: 0.9rem; color: var(--sc-color-text, #323233); }
-.itemCount { font-size: 0.75rem; color: var(--sc-color-text-secondary, #969799); margin-right: 6px; }
+.itemLabel {
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--sc-color-text, #323233);
+}
+.itemCount {
+  font-size: 0.75rem;
+  color: var(--sc-color-text-secondary, #969799);
+  margin-right: 6px;
+}
 .itemCheck {
   color: var(--sc-color-primary, #1677ff);
   flex-shrink: 0;
   margin-left: 8px;
+}
+/* Left-side checkbox wrapper in expand mode */
+.itemCheckLeft {
+  margin-right: var(--sc-treeselect-checkbox-left-margin, 8px);
+  flex-shrink: 0;
 }
 
 /* expand hot zone */
@@ -168,15 +245,31 @@
   font-size: 1rem;
   font-weight: 700;
 }
-.itemExpand:active { background: color-mix(in srgb, var(--sc-color-primary, #1677ff) 16%, transparent); }
+.itemExpand:active {
+  background: color-mix(in srgb, var(--sc-color-primary, #1677ff) 16%, transparent);
+}
 /* Checkbox mode (expand): the zone holds a Checkbox — drop the tinted circle */
-.itemExpandCheck { background: transparent; }
-.itemExpandCheck:active { background: transparent; }
-:global(html.dark) .itemExpand { background: color-mix(in srgb, var(--sc-color-primary, #5195ff) 10%, transparent); }
-:global(html.dark) .itemExpand:active { background: color-mix(in srgb, var(--sc-color-primary, #5195ff) 20%, transparent); }
-:global(html.dark) .itemExpandCheck { background: transparent; }
-:global(html.dark) .itemExpandCheck:active { background: transparent; }
-:global(html.dark) .selected { background: color-mix(in srgb, var(--sc-color-primary, #5195ff) 10%, transparent); }
+.itemExpandCheck {
+  background: transparent;
+}
+.itemExpandCheck:active {
+  background: transparent;
+}
+:global(html.dark) .itemExpand {
+  background: color-mix(in srgb, var(--sc-color-primary, #5195ff) 10%, transparent);
+}
+:global(html.dark) .itemExpand:active {
+  background: color-mix(in srgb, var(--sc-color-primary, #5195ff) 20%, transparent);
+}
+:global(html.dark) .itemExpandCheck {
+  background: transparent;
+}
+:global(html.dark) .itemExpandCheck:active {
+  background: transparent;
+}
+:global(html.dark) .selected {
+  background: color-mix(in srgb, var(--sc-color-primary, #5195ff) 10%, transparent);
+}
 
 .headerConfirm {
   position: absolute;
@@ -214,13 +307,32 @@
   border-top: 1px solid var(--sc-color-border, #f3f4f6);
   flex-shrink: 0;
 }
-.footerCount { font-size: 0.85rem; color: var(--sc-color-text-secondary, #969799); }
+.footerCount {
+  font-size: 0.85rem;
+  color: var(--sc-color-text-secondary, #969799);
+}
 /* Dark */
-:global(html.dark) .overlay { background: rgba(0,0,0,0.6); }
-:global(html.dark) .content { background: var(--sc-treeselect-bg, #1f2228); }
-:global(html.dark) .headerTitle { color: var(--sc-color-text, #e2e8f0); }
-:global(html.dark) .itemLabel { color: var(--sc-color-text, #e2e8f0); }
-:global(html.dark) .item:active { background: #2a2d33; }
-:global(html.dark) .list { border-color: #2a2d33; }
-:global(html.dark) .footer { border-color: #2a2d33; }
-:global(html.dark) .trigger { background: var(--sc-color-background, #1a1d21); }
+:global(html.dark) .overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+:global(html.dark) .content {
+  background: var(--sc-treeselect-bg, #1f2228);
+}
+:global(html.dark) .headerTitle {
+  color: var(--sc-color-text, #e2e8f0);
+}
+:global(html.dark) .itemLabel {
+  color: var(--sc-color-text, #e2e8f0);
+}
+:global(html.dark) .item:active {
+  background: #2a2d33;
+}
+:global(html.dark) .list {
+  border-color: #2a2d33;
+}
+:global(html.dark) .footer {
+  border-color: #2a2d33;
+}
+:global(html.dark) .trigger {
+  background: var(--sc-color-background, #1a1d21);
+}

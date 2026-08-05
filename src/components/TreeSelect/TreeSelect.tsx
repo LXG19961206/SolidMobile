@@ -1,6 +1,13 @@
 import {
-  createSignal, createEffect, createMemo, on, mergeProps, splitProps,
-  Show, For, type Component,
+  createSignal,
+  createEffect,
+  createMemo,
+  on,
+  mergeProps,
+  splitProps,
+  Show,
+  For,
+  type Component,
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
 import type { TreeSelectProps, TreeSelectOption } from './types';
@@ -24,24 +31,51 @@ const defaultProps: Partial<TreeSelectProps> = {
   searchMode: 'local',
   closeable: false,
   swipeable: false,
+  checkboxPosition: 'right' as const,
 };
 
 /** Collect all leaf keys under an option */
-function collectLeafKeys(opt: TreeSelectOption, vk: string, ck: string, lk?: string): (string | number)[] {
+function collectLeafKeys(
+  opt: TreeSelectOption,
+  vk: string,
+  ck: string,
+  lk?: string,
+): (string | number)[] {
   if (lk && opt[lk] === true) return [opt[vk]];
   const kids = opt[ck] as TreeSelectOption[] | undefined;
   if (!kids || kids.length === 0) return [opt[vk]];
-  return kids.flatMap(c => collectLeafKeys(c, vk, ck, lk));
+  return kids.flatMap((c) => collectLeafKeys(c, vk, ck, lk));
 }
 
 export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
   const [local] = splitProps(props, [
-    'options', 'value', 'defaultValue', 'onChange', 'max',
-    'fieldNames', 'mode', 'renderItem',
-    'placeholder', 'title', 'disabled', 'searchable', 'searchMode', 'onSearch', 'onLoadChildren',
-    'show', 'onUpdateShow', 'onClose', 'closeable', 'swipeable', 'teleport', 'zIndex', 'maxHeight',
-    'class', 'style',
+    'options',
+    'value',
+    'defaultValue',
+    'onChange',
+    'max',
+    'fieldNames',
+    'mode',
+    'renderItem',
+    'placeholder',
+    'title',
+    'disabled',
+    'searchable',
+    'searchMode',
+    'onSearch',
+    'onLoadChildren',
+    'show',
+    'onUpdateShow',
+    'onClose',
+    'closeable',
+    'swipeable',
+    'checkboxPosition',
+    'teleport',
+    'zIndex',
+    'maxHeight',
+    'class',
+    'style',
   ]);
   const t = useT();
 
@@ -53,12 +87,13 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
 
   const optLabel = (o: TreeSelectOption) => o[lKey()] as string;
   const optKey = (o: TreeSelectOption) => o[vKey()] as string | number;
-  const optChildren = (o: TreeSelectOption) => (o[cKey()] as TreeSelectOption[] | undefined);
+  const optChildren = (o: TreeSelectOption) => o[cKey()] as TreeSelectOption[] | undefined;
   const nodeKey = (o: TreeSelectOption) => String(optKey(o));
   // A node without children is still expandable when an async loader exists
   const canLoad = (o: TreeSelectOption) => !!local.onLoadChildren && !optChildren(o);
   // Left-swipe only navigates into nodes that actually expand
   const canEnter = (o: TreeSelectOption) => !o.disabled && (!!optChildren(o) || canLoad(o));
+  const checkboxOnLeft = () => local.checkboxPosition === 'left';
   const isLeaf = (o: TreeSelectOption) => {
     if (leafKey()) return (o[leafKey()!] as boolean) === true;
     const kids = optChildren(o);
@@ -67,23 +102,40 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
   };
 
   const isControlled = () => local.value !== undefined;
-  const [innerVal, setInnerVal] = createSignal<(string | number)[]>(local.value ?? local.defaultValue ?? []);
-  createEffect(on(() => local.value, v => { if (v !== undefined) setInnerVal(v); }));
+  const [innerVal, setInnerVal] = createSignal<(string | number)[]>(
+    local.value ?? local.defaultValue ?? [],
+  );
+  createEffect(
+    on(
+      () => local.value,
+      (v) => {
+        if (v !== undefined) setInnerVal(v);
+      },
+    ),
+  );
   const selected = () => innerVal();
 
   // ── open state (controlled via `show`) ──
   const [internalOpen, setInternalOpen] = createSignal(local.show ?? false);
   const [animated, setAnimated] = createSignal(false);
-  createEffect(on(() => local.show, (v) => {
-    if (v === true) openSheet();
-    else if (v === false) closeSheet();
-  }));
+  createEffect(
+    on(
+      () => local.show,
+      (v) => {
+        if (v === true) openSheet();
+        else if (v === false) closeSheet();
+      },
+    ),
+  );
 
   // ── navigation stack ──
   const [stack, setStack] = createSignal<TreeSelectOption[][]>([local.options]);
   const currentOptions = createMemo(() => stack()[stack().length - 1]);
-  const currentPath = createMemo(() => stack().slice(0, -1).map(g =>
-    g.find(o => !!optChildren(o)) ?? g[0]));
+  const currentPath = createMemo(() =>
+    stack()
+      .slice(0, -1)
+      .map((g) => g.find((o) => !!optChildren(o)) ?? g[0]),
+  );
 
   // ── breadcrumb (Tabs nav) data ──
   const levelIndex = () => stack().length - 1;
@@ -94,9 +146,8 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
   // Tabs registers tabs imperatively and never unregisters, so key the whole
   // nav on the current path — a change remounts it with a fresh tab list.
   // Root level has nothing to navigate back to, so hide the nav entirely ('').
-  const breadcrumbKey = () => (stack().length > 1
-    ? `${levelIndex()}:${currentPath().map(optKey).join('>')}`
-    : '');
+  const breadcrumbKey = () =>
+    stack().length > 1 ? `${levelIndex()}:${currentPath().map(optKey).join('>')}` : '';
 
   // ── level-switch slide transition ──
   let listRef: HTMLDivElement | undefined;
@@ -122,21 +173,31 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
   const push = async (opt: TreeSelectOption) => {
     if (opt.disabled) return;
     const kids = optChildren(opt);
-    if (kids && kids.length > 0) { navigateForward(kids); return; }
+    if (kids && kids.length > 0) {
+      navigateForward(kids);
+      return;
+    }
     if (!local.onLoadChildren) return;
     const key = nodeKey(opt);
     if (loadingKeys().has(key)) return;
     const cached = loadedChildren()[key];
-    if (cached) { navigateForward(cached); return; }
-    setLoadingKeys(prev => new Set(prev).add(key));
+    if (cached) {
+      navigateForward(cached);
+      return;
+    }
+    setLoadingKeys((prev) => new Set(prev).add(key));
     try {
       const children = await local.onLoadChildren(opt);
       if (children && children.length > 0) {
-        setLoadedChildren(prev => ({ ...prev, [key]: children }));
+        setLoadedChildren((prev) => ({ ...prev, [key]: children }));
         navigateForward(children);
       }
     } finally {
-      setLoadingKeys(prev => { const s = new Set(prev); s.delete(key); return s; });
+      setLoadingKeys((prev) => {
+        const s = new Set(prev);
+        s.delete(key);
+        return s;
+      });
     }
   };
 
@@ -150,19 +211,32 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
   const [remoteResults, setRemoteResults] = createSignal<TreeSelectOption[]>([]);
   const [searchLoading, setSearchLoading] = createSignal(false);
   const remoteMode = () => !!local.onSearch && search().trim().length > 0;
-  const clearSearch = () => { setSearch(''); setRemoteResults([]); setSearchLoading(false); };
+  const clearSearch = () => {
+    setSearch('');
+    setRemoteResults([]);
+    setSearchLoading(false);
+  };
 
   const handleSearchInput = (v: string) => {
     setSearch(v);
     if (!local.onSearch) return;
     const kw = v.trim();
-    if (!kw) { setRemoteResults([]); setSearchLoading(false); return; }
+    if (!kw) {
+      setRemoteResults([]);
+      setSearchLoading(false);
+      return;
+    }
     setSearchLoading(true);
     Promise.resolve(local.onSearch(kw, local.options))
-      .then(res => {
-        if (search().trim() === kw) { setRemoteResults(res); setSearchLoading(false); }
+      .then((res) => {
+        if (search().trim() === kw) {
+          setRemoteResults(res);
+          setSearchLoading(false);
+        }
       })
-      .catch(() => { if (search().trim() === kw) setSearchLoading(false); });
+      .catch(() => {
+        if (search().trim() === kw) setSearchLoading(false);
+      });
   };
 
   const filteredOptions = createMemo(() => {
@@ -170,7 +244,7 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
     const kw = search().trim().toLowerCase();
     if (!kw || !local.searchable) return currentOptions();
     if (local.searchMode === 'global') return []; // global mode uses searchResults instead
-    return currentOptions().filter(o => optLabel(o).toLowerCase().includes(kw));
+    return currentOptions().filter((o) => optLabel(o).toLowerCase().includes(kw));
   });
 
   const popTo = (idx: number) => {
@@ -201,23 +275,21 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
   const jumpTo = (path: TreeSelectOption[], opt: TreeSelectOption) => {
     const kids = optChildren(opt);
     const lastLevel = kids && kids.length > 0 ? [...path, opt] : path;
-    setStack([local.options, ...lastLevel.map(o => optChildren(o) ?? [])]);
+    setStack([local.options, ...lastLevel.map((o) => optChildren(o) ?? [])]);
     clearSearch();
     slideLevel('forward');
   };
 
   // helper: all leaf keys under an option
-  const leafKeys = (opt: TreeSelectOption) =>
-    collectLeafKeys(opt, vKey(), cKey(), leafKey());
-  const countAll = (opt: TreeSelectOption) =>
-    leafKeys(opt).length;
+  const leafKeys = (opt: TreeSelectOption) => collectLeafKeys(opt, vKey(), cKey(), leafKey());
+  const countAll = (opt: TreeSelectOption) => leafKeys(opt).length;
 
   // The options currently on screen: remote search results, global search
   // result nodes, or the filtered current level.
   const visibleOptions = createMemo(() => {
     if (remoteMode()) return remoteResults();
     const sr = searchResults();
-    if (sr) return sr.map(r => r.opt);
+    if (sr) return sr.map((r) => r.opt);
     return filteredOptions();
   });
 
@@ -233,19 +305,19 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
     else toggleOption(opt);
   };
   const arrowAction = (opt: TreeSelectOption) => {
-    if (local.mode === 'expand') toggleOption(opt);
-    else push(opt);
+    if (checkboxOnLeft() || local.mode !== 'expand') push(opt);
+    else toggleOption(opt);
   };
 
   const toggleOption = (opt: TreeSelectOption) => {
     const current = selected();
     const vals = isLeaf(opt) ? [optKey(opt)] : leafKeys(opt);
-    const allSel = vals.every(v => current.includes(v));
+    const allSel = vals.every((v) => current.includes(v));
     let next: (string | number)[];
     if (allSel) {
-      next = current.filter(v => !vals.includes(v));
+      next = current.filter((v) => !vals.includes(v));
     } else {
-      const toAdd = vals.filter(v => !current.includes(v));
+      const toAdd = vals.filter((v) => !current.includes(v));
       if (local.max && local.max > 0 && current.length + toAdd.length > local.max) return;
       next = [...current, ...toAdd];
     }
@@ -255,12 +327,12 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
   const selectAll = () => {
     const leaves = visibleOptions().flatMap(leafKeys);
     const current = selected();
-    const allSelected = leaves.length > 0 && leaves.every(v => current.includes(v));
+    const allSelected = leaves.length > 0 && leaves.every((v) => current.includes(v));
     let next: (string | number)[];
     if (allSelected) {
-      next = current.filter(v => !leaves.includes(v));
+      next = current.filter((v) => !leaves.includes(v));
     } else {
-      const toAdd = leaves.filter(v => !current.includes(v));
+      const toAdd = leaves.filter((v) => !current.includes(v));
       if (local.max && local.max > 0 && current.length + toAdd.length > local.max) return;
       next = [...current, ...toAdd];
     }
@@ -269,7 +341,7 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
 
   const allChecked = () => {
     const leaves = visibleOptions().flatMap(leafKeys);
-    return leaves.length > 0 && leaves.every(v => selected().includes(v));
+    return leaves.length > 0 && leaves.every((v) => selected().includes(v));
   };
 
   // ── open / close ──
@@ -301,7 +373,7 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
     <>
       <div
         class={cn(styles.trigger, local.class, local.disabled && styles.disabled)}
-        style={typeof local.style === 'object' ? local.style as Record<string, any> : undefined}
+        style={typeof local.style === 'object' ? (local.style as Record<string, any>) : undefined}
         onClick={openSheet}
       >
         <span class={cn(styles.triggerText, selected().length === 0 && styles.triggerPlaceholder)}>
@@ -311,7 +383,12 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
       </div>
 
       <Show when={internalOpen()}>
-        <Portal mount={local.teleport as Node ?? (typeof document !== 'undefined' ? document.body : undefined)}>
+        <Portal
+          mount={
+            (local.teleport as Node) ??
+            (typeof document !== 'undefined' ? document.body : undefined)
+          }
+        >
           <div
             class={cn(styles.overlay, animated() && styles.overlayEnter)}
             style={local.zIndex !== undefined ? { 'z-index': local.zIndex } : undefined}
@@ -319,169 +396,278 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
           >
             <div
               class={cn(styles.content, animated() && styles.contentEnter)}
-              style={local.maxHeight ? { 'max-height': typeof local.maxHeight === 'number' ? `${local.maxHeight}px` : local.maxHeight } : undefined}
-              onClick={e => e.stopPropagation()}
+              style={
+                local.maxHeight
+                  ? {
+                      'max-height':
+                        typeof local.maxHeight === 'number'
+                          ? `${local.maxHeight}px`
+                          : local.maxHeight,
+                    }
+                  : undefined
+              }
+              onClick={(e) => e.stopPropagation()}
             >
               <div class={styles.header}>
-                <span class={styles.headerTitle}>{local.title || t('component.treeselect.title')}</span>
+                <span class={styles.headerTitle}>
+                  {local.title || t('component.treeselect.title')}
+                </span>
                 <Show when={local.closeable}>
-                  <span class={styles.headerClose} onClick={closeSheet}>✕</span>
+                  <span class={styles.headerClose} onClick={closeSheet}>
+                    ✕
+                  </span>
                 </Show>
-                <span class={styles.headerConfirm} onClick={confirm}>{t('component.treeselect.confirm')}</span>
+                <span class={styles.headerConfirm} onClick={confirm}>
+                  {t('component.treeselect.confirm')}
+                </span>
               </div>
 
               <Show when={breadcrumbKey()} keyed>
                 <Tabs
                   active={String(levelIndex())}
-                  onChange={name => popTo(Number(name))}
+                  onChange={(name) => popTo(Number(name))}
                   type="line"
                   class={styles.tabsNav}
                 >
                   <For each={breadcrumbTabs()}>
-                    {tab => <Tab name={tab.name} title={tab.title} />}
+                    {(tab) => <Tab name={tab.name} title={tab.title} />}
                   </For>
                 </Tabs>
               </Show>
 
               <ScrollBar>
                 <div ref={listRef} class={styles.list}>
-                {/* Search + Select All toolbar */}
-                <Show when={local.searchable}>
-                  <div class={styles.toolbar}>
-                    <div class={styles.searchWrap}>
-                      <Icon name="search" size={14} class={styles.searchIcon} />
-                      <input
-                        class={styles.searchInput}
-                        placeholder={t('component.treeselect.searchPlaceholder')}
-                        value={search()}
-                        onInput={e => handleSearchInput((e.target as HTMLInputElement).value)}
-                      />
-                      <Show when={search().length > 0}>
-                        <span class={styles.searchClear} onClick={() => handleSearchInput('')}>✕</span>
-                      </Show>
+                  {/* Search + Select All toolbar */}
+                  <Show when={local.searchable}>
+                    <div class={styles.toolbar}>
+                      <div class={styles.searchWrap}>
+                        <Icon name="search" size={14} class={styles.searchIcon} />
+                        <input
+                          class={styles.searchInput}
+                          placeholder={t('component.treeselect.searchPlaceholder')}
+                          value={search()}
+                          onInput={(e) => handleSearchInput((e.target as HTMLInputElement).value)}
+                        />
+                        <Show when={search().length > 0}>
+                          <span class={styles.searchClear} onClick={() => handleSearchInput('')}>
+                            ✕
+                          </span>
+                        </Show>
+                      </div>
+                      <div class={styles.toolbarSelectAll} onClick={selectAll}>
+                        <Checkbox value="__all__" checked={allChecked()} />
+                        <span class={styles.toolbarLabel}>
+                          {t('component.treeselect.selectAll')}
+                        </span>
+                      </div>
                     </div>
-                    <div class={styles.toolbarSelectAll} onClick={selectAll}>
-                      <Checkbox value="__all__" checked={allChecked()} />
-                      <span class={styles.toolbarLabel}>{t('component.treeselect.selectAll')}</span>
-                    </div>
-                  </div>
-                </Show>
-                <Show when={!local.searchable}>
-                  <div class={cn(styles.item, allChecked() && styles.selected)} onClick={e => { e.stopPropagation(); selectAll(); }}>
-                    <span class={styles.itemLabel}>{t('component.treeselect.selectAll')}</span>
-                    <span class={cn(styles.itemExpand, styles.itemExpandCheck)} onClick={e => { e.stopPropagation(); selectAll(); }}>
-                      <Checkbox value="__all__" checked={allChecked()} />
-                    </span>
-                  </div>
-                </Show>
+                  </Show>
+                  <Show when={!local.searchable}>
+                    <Show
+                      when={checkboxOnLeft()}
+                      fallback={
+                        <div
+                          class={cn(styles.item, allChecked() && styles.selected)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            selectAll();
+                          }}
+                        >
+                          <span class={styles.itemLabel}>
+                            {t('component.treeselect.selectAll')}
+                          </span>
+                          <span
+                            class={cn(styles.itemExpand, styles.itemExpandCheck)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              selectAll();
+                            }}
+                          >
+                            <Checkbox value="__all__" checked={allChecked()} />
+                          </span>
+                        </div>
+                      }
+                    >
+                      <div
+                        class={cn(styles.item, allChecked() && styles.selected)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          selectAll();
+                        }}
+                      >
+                        <span class={styles.itemBody}>
+                          <span class={styles.itemCheckLeft}>
+                            <Checkbox value="__all__" checked={allChecked()} />
+                          </span>
+                          <span class={styles.itemLabel}>
+                            {t('component.treeselect.selectAll')}
+                          </span>
+                        </span>
+                      </div>
+                    </Show>
+                  </Show>
 
-                {/* Remote (onSearch) results */}
-                <Show when={remoteMode()}>
-                  <Show
-                    when={!searchLoading()}
-                    fallback={<div class={styles.loadingWrap}><Loading size={22} /></div>}
-                  >
-                    <For each={remoteResults()}>
-                      {opt => {
-                        const sel = isLeaf(opt)
-                          ? selected().includes(optKey(opt))
-                          : leafKeys(opt).some(v => selected().includes(v));
+                  {/* Remote (onSearch) results */}
+                  <Show when={remoteMode()}>
+                    <Show
+                      when={!searchLoading()}
+                      fallback={
+                        <div class={styles.loadingWrap}>
+                          <Loading size={22} />
+                        </div>
+                      }
+                    >
+                      <For each={remoteResults()}>
+                        {(opt) => {
+                          const sel = isLeaf(opt)
+                            ? selected().includes(optKey(opt))
+                            : leafKeys(opt).some((v) => selected().includes(v));
+                          return (
+                            <div
+                              class={cn(styles.item, sel && styles.selected)}
+                              onClick={() => toggleOption(opt)}
+                            >
+                              <span class={styles.itemBody}>
+                                <span class={styles.itemLabel}>{optLabel(opt)}</span>
+                                <Show when={sel}>
+                                  <Icon name="check" size={16} class={styles.itemCheck} />
+                                </Show>
+                              </span>
+                            </div>
+                          );
+                        }}
+                      </For>
+                    </Show>
+                  </Show>
+
+                  {/* Global search results dropdown */}
+                  <Show when={!remoteMode() && searchResults()}>
+                    <For each={searchResults()!}>
+                      {(item) => {
+                        const sel = isLeaf(item.opt)
+                          ? selected().includes(optKey(item.opt))
+                          : leafKeys(item.opt).some((v) => selected().includes(v));
                         return (
-                          <div class={cn(styles.item, sel && styles.selected)} onClick={() => toggleOption(opt)}>
-                            <span class={styles.itemBody}>
-                              <span class={styles.itemLabel}>{optLabel(opt)}</span>
+                          <div
+                            class={cn(styles.item, sel && styles.selected)}
+                            onClick={() => jumpTo(item.path, item.opt)}
+                          >
+                            <div class={styles.itemBody}>
+                              <span class={styles.searchPath}>
+                                {item.path.map((o) => optLabel(o)).join(' / ')} /{' '}
+                              </span>
+                              <span class={styles.itemLabel}>{optLabel(item.opt)}</span>
                               <Show when={sel}>
                                 <Icon name="check" size={16} class={styles.itemCheck} />
                               </Show>
-                            </span>
+                            </div>
                           </div>
                         );
                       }}
                     </For>
                   </Show>
-                </Show>
 
-                {/* Global search results dropdown */}
-                <Show when={!remoteMode() && searchResults()}>
-                  <For each={searchResults()!}>
-                    {item => {
-                      const sel = isLeaf(item.opt)
-                        ? selected().includes(optKey(item.opt))
-                        : leafKeys(item.opt).some(v => selected().includes(v));
-                      return (
-                        <div class={cn(styles.item, sel && styles.selected)} onClick={() => jumpTo(item.path, item.opt)}>
-                          <div class={styles.itemBody}>
-                            <span class={styles.searchPath}>
-                              {item.path.map(o => optLabel(o)).join(' / ')} /{' '}
-                            </span>
-                            <span class={styles.itemLabel}>{optLabel(item.opt)}</span>
-                            <Show when={sel}>
-                              <Icon name="check" size={16} class={styles.itemCheck} />
-                            </Show>
-                          </div>
-                        </div>
-                      );
-                    }}
-                  </For>
-                </Show>
+                  {/* Normal list (when not searching) */}
+                  <Show when={!remoteMode() && !searchResults()}>
+                    <For each={filteredOptions()}>
+                      {(opt) => {
+                        const sel = () => selected();
+                        const isSel = () =>
+                          isLeaf(opt)
+                            ? sel().includes(optKey(opt))
+                            : leafKeys(opt).some((v) => sel().includes(v));
+                        const expand = () => {
+                          if (!opt.disabled) push(opt);
+                        };
 
-                {/* Normal list (when not searching) */}
-                <Show when={!remoteMode() && !searchResults()}>
-                  <For each={filteredOptions()}>
-                    {opt => {
-                      const sel = () => selected();
-                      const isSel = () => isLeaf(opt)
-                        ? sel().includes(optKey(opt))
-                        : leafKeys(opt).some(v => sel().includes(v));
-                      const expand = () => { if (!opt.disabled) push(opt); };
+                        // Swipe navigation: left = into children, right = back a
+                        // level. The swipe flag suppresses the row's tap action so
+                        // a swipe never also toggles/enters.
+                        const swipe = useSwipeGesture({
+                          disabled: () => !local.swipeable,
+                          onSwipeLeft: () => {
+                            if (canEnter(opt)) push(opt);
+                          },
+                          onSwipeRight: () => {
+                            if (stack().length > 1) popTo(stack().length - 2);
+                          },
+                        });
 
-                      // Swipe navigation: left = into children, right = back a
-                      // level. The swipe flag suppresses the row's tap action so
-                      // a swipe never also toggles/enters.
-                      const swipe = useSwipeGesture({
-                        disabled: () => !local.swipeable,
-                        onSwipeLeft: () => { if (canEnter(opt)) push(opt); },
-                        onSwipeRight: () => { if (stack().length > 1) popTo(stack().length - 2); },
-                      });
-
-                      return local.renderItem ? local.renderItem(opt, isSel(), expand, () => toggleOption(opt)) : (
-                        <div
-                          class={cn(styles.item, opt.disabled && styles.disabled, isSel() && styles.selected)}
-                          {...swipe.handlers}
-                          onClick={e => { e.stopPropagation(); if (swipe.consumeClick()) return; if (!opt.disabled) bodyAction(opt); }}
-                        >
-                          <span class={styles.itemBody}>
-                            <span class={styles.itemLabel}>{optLabel(opt)}</span>
-                            <Show when={!!optChildren(opt)}>
-                              <span class={styles.itemCount}>{sel().filter(v => leafKeys(opt).includes(v)).length}/{countAll(opt)}</span>
-                            </Show>
-                          </span>
-                          {/* Right-side zone: checkbox in expand mode, expand arrow in
-                              select mode. In select mode a leaf has nowhere to expand,
-                              so only render it for expandable nodes (which includes
-                              async-loadable ones when onLoadChildren is provided). */}
-                          <Show when={local.mode === 'expand' || !isLeaf(opt)}>
-                            <span class={cn(styles.itemExpand, local.mode === 'expand' && styles.itemExpandCheck)} onClick={e => { e.stopPropagation(); if (swipe.consumeClick()) return; if (!opt.disabled) arrowAction(opt); }}>
-                              <Show when={!isLoading(opt)} fallback={<Loading size={14} />}>
-                                {local.mode === 'expand' ? (
+                        return local.renderItem ? (
+                          local.renderItem(opt, isSel(), expand, () => toggleOption(opt))
+                        ) : (
+                          <div
+                            class={cn(
+                              styles.item,
+                              opt.disabled && styles.disabled,
+                              isSel() && styles.selected,
+                            )}
+                            {...swipe.handlers}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (swipe.consumeClick()) return;
+                              if (!opt.disabled) bodyAction(opt);
+                            }}
+                          >
+                            <span class={styles.itemBody}>
+                              {/* Left-side checkbox (expand mode, checkboxPosition="left") */}
+                              <Show when={checkboxOnLeft() && local.mode === 'expand'}>
+                                <span class={styles.itemCheckLeft}>
                                   <Checkbox value={optKey(opt)} checked={isSel()} />
-                                ) : (
-                                  <Icon name="arrow-right" size={18} />
-                                )}
+                                </span>
+                              </Show>
+                              <span class={styles.itemLabel}>{optLabel(opt)}</span>
+                              <Show when={!!optChildren(opt)}>
+                                <span class={styles.itemCount}>
+                                  {sel().filter((v) => leafKeys(opt).includes(v)).length}/
+                                  {countAll(opt)}
+                                </span>
                               </Show>
                             </span>
-                          </Show>
-                        </div>
-                      );
-                    }}
-                  </For>
-                </Show>
-
-              </div>
+                            {/* Right-side zone: checkbox (expand mode, right) or expand arrow.
+                              With checkboxPosition="left", the right zone only shows the arrow
+                              for non-leaf nodes — the checkbox is already on the left. */}
+                            <Show
+                              when={
+                                checkboxOnLeft()
+                                  ? !isLeaf(opt)
+                                  : local.mode === 'expand' || !isLeaf(opt)
+                              }
+                            >
+                              <span
+                                class={cn(
+                                  styles.itemExpand,
+                                  local.mode === 'expand' &&
+                                    !checkboxOnLeft() &&
+                                    styles.itemExpandCheck,
+                                )}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (swipe.consumeClick()) return;
+                                  if (!opt.disabled) arrowAction(opt);
+                                }}
+                              >
+                                <Show when={!isLoading(opt)} fallback={<Loading size={14} />}>
+                                  {local.mode === 'expand' && !checkboxOnLeft() ? (
+                                    <Checkbox value={optKey(opt)} checked={isSel()} />
+                                  ) : (
+                                    <Icon name="arrow-right" size={18} />
+                                  )}
+                                </Show>
+                              </span>
+                            </Show>
+                          </div>
+                        );
+                      }}
+                    </For>
+                  </Show>
+                </div>
               </ScrollBar>
 
               <div class={styles.footer}>
-                <span class={styles.footerCount}>{selected().length} {t('component.treeselect.itemUnit')}</span>
+                <span class={styles.footerCount}>
+                  {selected().length} {t('component.treeselect.itemUnit')}
+                </span>
               </div>
             </div>
           </div>
