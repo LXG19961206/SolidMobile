@@ -37,6 +37,7 @@ npm install solid-mobile   # or pnpm / yarn
 ```tsx
 import { render } from 'solid-js/web';
 import { ProviderConfig, Button, Toast } from 'solid-mobile';
+import 'solid-mobile/styles.css';
 
 function App() {
   return (
