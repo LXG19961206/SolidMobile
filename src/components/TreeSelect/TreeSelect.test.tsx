@@ -50,6 +50,19 @@ const findItem = (text: string) =>
     (el) => el.textContent?.includes(text) && !!el.querySelector('[class*="itemBody"]'),
   )!;
 
+/* find a parent row (has an expand zone) by its label */
+const findRow = (text: string) =>
+  (Array.from(document.querySelectorAll('[class*="item"]')) as HTMLElement[]).find(
+    (el) => el.textContent?.includes(text) && !!el.querySelector('[class*="itemExpand"]'),
+  )!;
+
+/* open the sheet by clicking the trigger */
+const openPicker = async () => {
+  const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
+  trigger.click();
+  await tick();
+};
+
 describe('TreeSelect', () => {
   it('renders placeholder when no value', () => {
     render(() => <TreeSelect options={opts} placeholder="Pick" />);
@@ -471,5 +484,453 @@ describe('TreeSelect', () => {
 
     expect(document.body.textContent).toContain('Shanghai');
     expect(val()).toEqual([]);
+  });
+
+  /* ═══════════════════════════════════════════════════════════
+     Indeterminate parent state
+     ═══════════════════════════════════════════════════════════ */
+
+  it('shows indeterminate checkbox for a partially selected parent', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>(['sh']);
+    render(() => <TreeSelect options={opts} mode="expand" value={val()} onChange={setVal} />);
+    await openPicker();
+    const cb = findRow('East').querySelector('[role="checkbox"]') as HTMLElement;
+    expect(cb.getAttribute('aria-checked')).toBe('mixed');
+  });
+
+  it('shows checked (not indeterminate) when all leaves are selected', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>(['sh', 'zj']);
+    render(() => <TreeSelect options={opts} mode="expand" value={val()} onChange={setVal} />);
+    await openPicker();
+    const cb = findRow('East').querySelector('[role="checkbox"]') as HTMLElement;
+    expect(cb.getAttribute('aria-checked')).toBe('true');
+  });
+
+  it('clicking an indeterminate parent checkbox selects all its leaves', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>(['sh']);
+    render(() => <TreeSelect options={opts} mode="expand" value={val()} onChange={setVal} />);
+    await openPicker();
+    const cb = findRow('East').querySelector('[role="checkbox"]') as HTMLElement;
+    cb.click();
+    await tick();
+    expect([...val()].sort()).toEqual(['sh', 'zj']);
+  });
+
+  it('select all shows indeterminate when only part of the visible leaves are selected', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>(['sh']);
+    render(() => <TreeSelect options={opts} value={val()} onChange={setVal} />);
+    await openPicker();
+    const cb = findRow('Select All').querySelector('[role="checkbox"]') as HTMLElement;
+    expect(cb.getAttribute('aria-checked')).toBe('mixed');
+  });
+
+  /* ═══════════════════════════════════════════════════════════
+     Disabled nodes
+     ═══════════════════════════════════════════════════════════ */
+
+  it('selecting a parent only selects its non-disabled leaves', async () => {
+    const tree = [
+      {
+        label: 'A',
+        value: 'a',
+        children: [
+          { label: 'A1', value: 'a1', disabled: true },
+          { label: 'A2', value: 'a2' },
+        ],
+      },
+    ];
+    const [val, setVal] = createSignal<(string | number)[]>([]);
+    render(() => <TreeSelect options={tree} value={val()} onChange={setVal} />);
+    await openPicker();
+    findItem('A').click();
+    await tick();
+    expect(val()).toEqual(['a2']);
+  });
+
+  it('select all skips disabled leaves', async () => {
+    const tree = [
+      {
+        label: 'A',
+        value: 'a',
+        children: [
+          { label: 'A1', value: 'a1', disabled: true },
+          { label: 'A2', value: 'a2' },
+        ],
+      },
+    ];
+    const [val, setVal] = createSignal<(string | number)[]>([]);
+    render(() => <TreeSelect options={tree} value={val()} onChange={setVal} />);
+    await openPicker();
+    findRow('Select All').click();
+    await tick();
+    expect(val()).toEqual(['a2']);
+  });
+
+  it('does not select disabled options from remote search results', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>([]);
+    const onSearch = vi.fn(() =>
+      Promise.resolve([{ label: 'Locked', value: 'locked', disabled: true }]),
+    );
+    render(() => (
+      <TreeSelect options={opts} value={val()} onChange={setVal} searchable onSearch={onSearch} />
+    ));
+    await openPicker();
+    const input = document.querySelector('[class*="searchInput"]') as HTMLInputElement;
+    input.value = 'x';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    await tick();
+    await tick();
+    findItem('Locked').click();
+    await tick();
+    expect(val()).toEqual([]);
+  });
+
+  it('does not select a disabled parent through renderItem toggle', async () => {
+    const tree = [
+      { label: 'A', value: 'a', disabled: true, children: [{ label: 'A1', value: 'a1' }] },
+    ];
+    const [val, setVal] = createSignal<(string | number)[]>([]);
+    render(() => (
+      <TreeSelect
+        options={tree}
+        value={val()}
+        onChange={setVal}
+        renderItem={(node, _sel, _expand, toggle) => (
+          <div data-custom-row={node.value}>
+            <button onClick={() => toggle?.()}>t</button>
+          </div>
+        )}
+      />
+    ));
+    await openPicker();
+    const row = document.querySelector('[data-custom-row="a"]') as HTMLElement;
+    (row.querySelector('button') as HTMLElement).click();
+    await tick();
+    expect(val()).toEqual([]);
+  });
+
+  /* ═══════════════════════════════════════════════════════════
+     Confirm / Cancel
+     ═══════════════════════════════════════════════════════════ */
+
+  it('fires onConfirm with the current value when tapping confirm', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>([]);
+    let confirmed: (string | number)[] | null = null;
+    render(() => (
+      <TreeSelect
+        options={opts}
+        value={val()}
+        onChange={setVal}
+        onConfirm={(v) => (confirmed = v)}
+      />
+    ));
+    await openPicker();
+    findItem('East').click(); // select both leaves
+    await tick();
+    (document.querySelector('[class*="headerConfirm"]') as HTMLElement).click();
+    await new Promise((r) => setTimeout(r, 250));
+    expect(confirmed).toEqual(['sh', 'zj']);
+  });
+
+  it('fires onCancel when tapping the overlay backdrop', async () => {
+    let cancelled = false;
+    render(() => <TreeSelect options={opts} onCancel={() => (cancelled = true)} />);
+    await openPicker();
+    (document.querySelector('[class*="overlay"]') as HTMLElement).click();
+    await new Promise((r) => setTimeout(r, 250));
+    expect(cancelled).toBe(true);
+  });
+
+  it('fires onCancel when tapping the close button', async () => {
+    let cancelled = false;
+    render(() => <TreeSelect options={opts} closeable onCancel={() => (cancelled = true)} />);
+    await openPicker();
+    (document.querySelector('[class*="headerClose"]') as HTMLElement).click();
+    await new Promise((r) => setTimeout(r, 250));
+    expect(cancelled).toBe(true);
+  });
+
+  /* ═══════════════════════════════════════════════════════════
+     Empty state
+     ═══════════════════════════════════════════════════════════ */
+
+  it('shows the empty state when the tree has no options', async () => {
+    render(() => <TreeSelect options={[]} />);
+    await openPicker();
+    expect(document.body.textContent).toContain('No results');
+  });
+
+  it('shows the empty state when a local search has no matches', async () => {
+    render(() => <TreeSelect options={opts} searchable />);
+    await openPicker();
+    const input = document.querySelector('[class*="searchInput"]') as HTMLInputElement;
+    input.value = 'zzz';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    await tick();
+    expect(document.body.textContent).toContain('No results');
+  });
+
+  it('supports a custom emptyText', async () => {
+    render(() => <TreeSelect options={[]} emptyText="Nothing here" />);
+    await openPicker();
+    expect(document.body.textContent).toContain('Nothing here');
+  });
+
+  /* ═══════════════════════════════════════════════════════════
+     Async load error + retry
+     ═══════════════════════════════════════════════════════════ */
+
+  it('shows a retry control on async load failure and retries on tap', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>([]);
+    let calls = 0;
+    const loadFn = vi.fn(() => {
+      calls++;
+      if (calls === 1) return Promise.reject(new Error('boom'));
+      return Promise.resolve([{ label: 'Child', value: 'child' }]);
+    });
+    render(() => (
+      <TreeSelect
+        options={[{ label: 'Root', value: 'root' }]}
+        value={val()}
+        onChange={setVal}
+        onLoadChildren={loadFn}
+      />
+    ));
+    await openPicker();
+
+    // expand Root → the first load fails → retry text appears
+    (findRow('Root').querySelector('[class*="itemExpand"]') as HTMLElement).click();
+    await tick();
+    await tick();
+    expect(document.body.textContent).toContain('Load failed');
+
+    // tap the retry → second load succeeds → children render
+    const retry = document.querySelector('[class*="itemRetry"]') as HTMLElement;
+    retry.click();
+    await tick();
+    await tick();
+    expect(loadFn).toHaveBeenCalledTimes(2);
+    expect(document.body.textContent).toContain('Child');
+  });
+
+  /* ═══════════════════════════════════════════════════════════
+     checkStrictly / onlyLeafCheckable
+     ═══════════════════════════════════════════════════════════ */
+
+  it('checkStrictly selects the parent node itself instead of its leaves', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>([]);
+    render(() => <TreeSelect options={opts} checkStrictly value={val()} onChange={setVal} />);
+    await openPicker();
+    findItem('East').click();
+    await tick();
+    expect(val()).toEqual(['east']);
+  });
+
+  it('checkStrictly works in expand mode via the row checkbox', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>([]);
+    render(() => (
+      <TreeSelect options={opts} mode="expand" checkStrictly value={val()} onChange={setVal} />
+    ));
+    await openPicker();
+    (findRow('East').querySelector('[role="checkbox"]') as HTMLElement).click();
+    await tick();
+    expect(val()).toEqual(['east']);
+  });
+
+  it('onlyLeafCheckable turns a parent tap in select mode into navigation', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>([]);
+    render(() => <TreeSelect options={opts} onlyLeafCheckable value={val()} onChange={setVal} />);
+    await openPicker();
+    findItem('East').click();
+    await tick();
+    expect(document.body.textContent).toContain('Shanghai');
+    expect(val()).toEqual([]);
+  });
+
+  it('onlyLeafCheckable hides the parent checkbox in expand mode', async () => {
+    render(() => <TreeSelect options={opts} mode="expand" onlyLeafCheckable />);
+    await openPicker();
+    const eastRow = findRow('East');
+    // no checkbox anywhere on the parent row; the right zone shows the arrow
+    expect(eastRow.querySelector('[role="checkbox"]')).toBeNull();
+    expect(eastRow.querySelector('[class*="itemExpand"]')).not.toBeNull();
+    // leaves still get a checkbox after navigating in
+    (eastRow.querySelector('[class*="itemExpand"]') as HTMLElement).click();
+    await tick();
+    expect(findItem('Shanghai').querySelector('[role="checkbox"]')).not.toBeNull();
+  });
+
+  /* ═══════════════════════════════════════════════════════════
+     Trigger: clearable / format / readonly / renderTrigger
+     ═══════════════════════════════════════════════════════════ */
+
+  it('clearable shows a clear button that resets the value without opening', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>(['sh']);
+    render(() => <TreeSelect options={opts} clearable value={val()} onChange={setVal} />);
+    const clearBtn = document.querySelector('[class*="triggerClear"]') as HTMLElement;
+    expect(clearBtn).not.toBeNull();
+    clearBtn.click();
+    await tick();
+    expect(val()).toEqual([]);
+    expect(document.querySelector('[class*="content"]')).toBeNull();
+  });
+
+  it('format customizes the trigger text', () => {
+    render(() => (
+      <TreeSelect options={opts} value={['sh', 'zj']} format={(v) => `Picked:${v.length}`} />
+    ));
+    expect(document.body.textContent).toContain('Picked:2');
+  });
+
+  it('readonly does not open the sheet on tap', async () => {
+    render(() => <TreeSelect options={opts} readonly />);
+    const trigger = document.querySelector('[class*="trigger"]') as HTMLElement;
+    trigger.click();
+    await tick();
+    expect(document.querySelector('[class*="content"]')).toBeNull();
+  });
+
+  it('renderTrigger fully replaces the trigger', async () => {
+    render(() => (
+      <TreeSelect
+        options={opts}
+        renderTrigger={({ text, open }) => (
+          <button data-testid="my-trigger" onClick={open}>
+            {text}
+          </button>
+        )}
+      />
+    ));
+    const btn = document.querySelector('[data-testid="my-trigger"]') as HTMLElement;
+    expect(btn).not.toBeNull();
+    btn.click();
+    await tick();
+    expect(document.querySelector('[class*="content"]')).not.toBeNull();
+  });
+
+  /* ═══════════════════════════════════════════════════════════
+     Body scroll lock
+     ═══════════════════════════════════════════════════════════ */
+
+  it('locks body scroll while open and restores it after close', async () => {
+    render(() => <TreeSelect options={opts} />);
+    await openPicker();
+    expect(document.body.style.overflow).toBe('hidden');
+    (document.querySelector('[class*="overlay"]') as HTMLElement).click();
+    await new Promise((r) => setTimeout(r, 250));
+    expect(document.body.style.overflow).toBe('');
+  });
+
+  /* ═══════════════════════════════════════════════════════════
+     Imperative handle (ref)
+     ═══════════════════════════════════════════════════════════ */
+
+  it('exposes the full imperative handle via ref', () => {
+    let handle: any = null;
+    render(() => <TreeSelect options={opts} ref={(h) => (handle = h)} />);
+    expect(handle).not.toBeNull();
+    for (const m of ['open', 'close', 'setValue', 'getValue', 'clear', 'resetNavigation']) {
+      expect(typeof handle[m]).toBe('function');
+    }
+  });
+
+  it('ref.setValue / getValue work in uncontrolled mode', async () => {
+    let handle: any = null;
+    render(() => (
+      <TreeSelect options={opts} ref={(h) => (handle = h)} defaultValue={['sh']} placeholder="Pick" />
+    ));
+    expect(handle.getValue()).toEqual(['sh']);
+    handle.setValue(['zj', 'sc']);
+    await tick();
+    expect(handle.getValue()).toEqual(['zj', 'sc']);
+    expect(document.body.textContent).toContain('2');
+  });
+
+  it('ref.setValue in controlled mode fires onChange', async () => {
+    const [val, setVal] = createSignal<(string | number)[]>([]);
+    let handle: any = null;
+    render(() => (
+      <TreeSelect options={opts} ref={(h) => (handle = h)} value={val()} onChange={setVal} />
+    ));
+    handle.setValue(['sh']);
+    await tick();
+    expect(val()).toEqual(['sh']);
+    expect(handle.getValue()).toEqual(['sh']);
+  });
+
+  it('ref.clear resets the value in uncontrolled mode', async () => {
+    let handle: any = null;
+    render(() => (
+      <TreeSelect options={opts} ref={(h) => (handle = h)} defaultValue={['sh']} placeholder="Pick" />
+    ));
+    handle.clear();
+    await tick();
+    expect(handle.getValue()).toEqual([]);
+    expect(document.body.textContent).toContain('Pick');
+  });
+
+  it('ref.open opens the sheet and ref.close closes it without onCancel', async () => {
+    let handle: any = null;
+    let cancelled = 0;
+    render(() => (
+      <TreeSelect options={opts} ref={(h) => (handle = h)} onCancel={() => cancelled++} />
+    ));
+    handle.open();
+    await tick();
+    expect(document.querySelector('[class*="content"]')).not.toBeNull();
+    handle.close();
+    await new Promise((r) => setTimeout(r, 250));
+    expect(document.querySelector('[class*="content"]')).toBeNull();
+    expect(cancelled).toBe(0); // programmatic close is not a user cancel
+  });
+
+  it('ref.open on a controlled show delegates to onUpdateShow', async () => {
+    let handle: any = null;
+    let shown: boolean | null = null;
+    render(() => (
+      <TreeSelect options={opts} show={false} ref={(h) => (handle = h)} onUpdateShow={(v) => (shown = v)} />
+    ));
+    handle.open();
+    await tick();
+    expect(shown).toBe(true);
+    expect(document.querySelector('[class*="content"]')).toBeNull(); // parent never flipped show
+    handle.close();
+    expect(shown).toBe(false);
+  });
+
+  it('ref.open is a no-op when disabled', async () => {
+    let handle: any = null;
+    render(() => <TreeSelect options={opts} disabled ref={(h) => (handle = h)} />);
+    handle.open();
+    await tick();
+    expect(document.querySelector('[class*="content"]')).toBeNull();
+  });
+
+  it('ref.resetNavigation goes back to the root level and clears search', async () => {
+    let handle: any = null;
+    render(() => <TreeSelect options={opts} searchable ref={(h) => (handle = h)} />);
+    await openPicker();
+    // navigate into East
+    (findRow('East').querySelector('[class*="itemExpand"]') as HTMLElement).click();
+    await tick();
+    expect(document.body.textContent).toContain('Shanghai');
+    // type a search keyword
+    const input = document.querySelector('[class*="searchInput"]') as HTMLInputElement;
+    input.value = 'sh';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    await tick();
+    // reset → back to root, search cleared
+    handle.resetNavigation();
+    await tick();
+    expect(document.body.textContent).toContain('West');
+    expect((document.querySelector('[class*="searchInput"]') as HTMLInputElement).value).toBe('');
+  });
+
+  it('calls ref with null on unmount', () => {
+    let handle: any = 'not-null';
+    const { unmount } = render(() => <TreeSelect options={opts} ref={(h) => (handle = h)} />);
+    expect(handle).not.toBeNull();
+    unmount();
+    expect(handle).toBeNull();
   });
 });

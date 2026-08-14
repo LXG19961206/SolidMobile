@@ -65,6 +65,8 @@ export const messages: LocaleMessages = {
         selected: '项已选',
         itemUnit: '项',
         searchPlaceholder: '搜索',
+        empty: '暂无数据',
+        loadError: '加载失败',
       },
       list: {
         loading: '加载中...',
@@ -160,6 +162,8 @@ export const messages: LocaleMessages = {
         selected: 'selected',
         itemUnit: 'items',
         searchPlaceholder: 'Search',
+        empty: 'No results',
+        loadError: 'Load failed',
       },
       list: {
         loading: 'Loading...',

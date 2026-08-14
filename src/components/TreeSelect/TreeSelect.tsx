@@ -3,6 +3,8 @@ import {
   createEffect,
   createMemo,
   on,
+  onMount,
+  onCleanup,
   mergeProps,
   splitProps,
   Show,
@@ -10,7 +12,7 @@ import {
   type Component,
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
-import type { TreeSelectProps, TreeSelectOption } from './types';
+import type { TreeSelectProps, TreeSelectOption, TreeSelectHandle } from './types';
 import { cn, scopedStyle } from '../../utils';
 import { Icon } from '../Icon';
 import { Checkbox } from '../Checkbox';
@@ -32,6 +34,10 @@ const defaultProps: Partial<TreeSelectProps> = {
   closeable: false,
   swipeable: false,
   checkboxPosition: 'right' as const,
+  checkStrictly: false,
+  onlyLeafCheckable: false,
+  clearable: false,
+  readonly: false,
 };
 
 /** Collect all leaf keys under an option */
@@ -47,6 +53,36 @@ function collectLeafKeys(
   return kids.flatMap((c) => collectLeafKeys(c, vk, ck, lk));
 }
 
+/** Collect the leaf keys that are actually checkable under an option —
+ *  a disabled node (leaf or parent) excludes its whole subtree. */
+function collectSelectableLeaves(
+  opt: TreeSelectOption,
+  vk: string,
+  ck: string,
+  lk?: string,
+): (string | number)[] {
+  if (opt.disabled) return [];
+  if (lk && opt[lk] === true) return [opt[vk]];
+  const kids = opt[ck] as TreeSelectOption[] | undefined;
+  if (!kids || kids.length === 0) return [opt[vk]];
+  return kids.flatMap((c) => collectSelectableLeaves(c, vk, ck, lk));
+}
+
+/* ── Body scroll lock while the sheet is open (instance-safe) ── */
+let scrollLockCount = 0;
+let prevBodyOverflow = '';
+function lockBodyScroll() {
+  if (typeof document === 'undefined') return;
+  if (scrollLockCount === 0) prevBodyOverflow = document.body.style.overflow;
+  scrollLockCount++;
+  document.body.style.overflow = 'hidden';
+}
+function unlockBodyScroll() {
+  if (typeof document === 'undefined') return;
+  scrollLockCount = Math.max(0, scrollLockCount - 1);
+  if (scrollLockCount === 0) document.body.style.overflow = prevBodyOverflow;
+}
+
 export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
   const props = mergeProps(defaultProps, rawProps);
   const [local] = splitProps(props, [
@@ -54,9 +90,13 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
     'value',
     'defaultValue',
     'onChange',
+    'onConfirm',
+    'onCancel',
     'max',
     'fieldNames',
     'mode',
+    'checkStrictly',
+    'onlyLeafCheckable',
     'renderItem',
     'placeholder',
     'title',
@@ -65,6 +105,8 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
     'searchMode',
     'onSearch',
     'onLoadChildren',
+    'emptyText',
+    'loadErrorText',
     'show',
     'onUpdateShow',
     'onClose',
@@ -74,6 +116,11 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
     'teleport',
     'zIndex',
     'maxHeight',
+    'format',
+    'clearable',
+    'readonly',
+    'renderTrigger',
+    'ref',
     'class',
     'style',
   ]);
@@ -94,6 +141,8 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
   // Left-swipe only navigates into nodes that actually expand
   const canEnter = (o: TreeSelectOption) => !o.disabled && (!!optChildren(o) || canLoad(o));
   const checkboxOnLeft = () => local.checkboxPosition === 'left';
+  const checkStrictly = () => local.checkStrictly ?? false;
+  const onlyLeafCheckable = () => local.onlyLeafCheckable ?? false;
   const isLeaf = (o: TreeSelectOption) => {
     if (leafKey()) return (o[leafKey()!] as boolean) === true;
     const kids = optChildren(o);
@@ -124,6 +173,17 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
       (v) => {
         if (v === true) openSheet();
         else if (v === false) closeSheet();
+      },
+    ),
+  );
+
+  // ── body scroll lock while open ──
+  createEffect(
+    on(
+      () => internalOpen(),
+      (open) => {
+        if (open) lockBodyScroll();
+        else unlockBodyScroll();
       },
     ),
   );
@@ -169,6 +229,17 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
   // ── async-loaded children cache ──
   const [loadedChildren, setLoadedChildren] = createSignal<Record<string, TreeSelectOption[]>>({});
   const [loadingKeys, setLoadingKeys] = createSignal<Set<string>>(new Set());
+  const [errorKeys, setErrorKeys] = createSignal<Set<string>>(new Set());
+  const isLoading = (opt: TreeSelectOption) => loadingKeys().has(nodeKey(opt));
+  const isError = (opt: TreeSelectOption) => errorKeys().has(nodeKey(opt));
+  const retryLoad = (opt: TreeSelectOption) => {
+    setErrorKeys((prev) => {
+      const s = new Set(prev);
+      s.delete(nodeKey(opt));
+      return s;
+    });
+    push(opt);
+  };
 
   const push = async (opt: TreeSelectOption) => {
     if (opt.disabled) return;
@@ -181,7 +252,7 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
     const key = nodeKey(opt);
     if (loadingKeys().has(key)) return;
     const cached = loadedChildren()[key];
-    if (cached) {
+    if (cached && cached.length > 0) {
       navigateForward(cached);
       return;
     }
@@ -191,7 +262,12 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
       if (children && children.length > 0) {
         setLoadedChildren((prev) => ({ ...prev, [key]: children }));
         navigateForward(children);
+      } else {
+        // cache empty results too, so we don't refetch a node with no children
+        setLoadedChildren((prev) => ({ ...prev, [key]: [] }));
       }
+    } catch {
+      setErrorKeys((prev) => new Set(prev).add(key));
     } finally {
       setLoadingKeys((prev) => {
         const s = new Set(prev);
@@ -293,25 +369,78 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
     return filteredOptions();
   });
 
+  // Empty state: nothing visible while searching, or the tree itself is empty.
+  const isEmpty = () => {
+    if (visibleOptions().length > 0) return false;
+    if (searchLoading()) return false;
+    return search().trim().length > 0 || local.options.length === 0;
+  };
+
   // Commit a new selection, respecting controlled/uncontrolled.
   const commit = (next: (string | number)[]) => {
     if (isControlled()) local.onChange?.(next);
     else setInnerVal(next);
   };
 
+  // ── selection semantics ──
+  // Keys a row actually toggles. In strict mode every node is its own item;
+  // otherwise parents toggle all their *checkable* leaves (disabled subtrees
+  // are never selected).
+  const toggleKeysOf = (opt: TreeSelectOption) => {
+    if (checkStrictly()) return [optKey(opt)];
+    if (isLeaf(opt)) return [optKey(opt)];
+    return collectSelectableLeaves(opt, vKey(), cKey(), leafKey());
+  };
+
+  // Row highlight.
+  const isSel = (opt: TreeSelectOption) => {
+    if (checkStrictly()) return selected().includes(optKey(opt));
+    return isLeaf(opt)
+      ? selected().includes(optKey(opt))
+      : leafKeys(opt).some((v) => selected().includes(v));
+  };
+
+  // Checkbox visual state: checked / indeterminate / unchecked.
+  const checkState = (opt: TreeSelectOption): 'checked' | 'indeterminate' | 'unchecked' => {
+    if (checkStrictly()) return selected().includes(optKey(opt)) ? 'checked' : 'unchecked';
+    if (isLeaf(opt)) return selected().includes(optKey(opt)) ? 'checked' : 'unchecked';
+    const leaves = collectSelectableLeaves(opt, vKey(), cKey(), leafKey());
+    if (leaves.length === 0) return 'unchecked';
+    const n = leaves.filter((v) => selected().includes(v)).length;
+    if (n === 0) return 'unchecked';
+    if (n === leaves.length) return 'checked';
+    return 'indeterminate';
+  };
+
   // mode-driven: what does clicking the main body do?
   const bodyAction = (opt: TreeSelectOption) => {
-    if (local.mode === 'expand' && !isLeaf(opt)) push(opt);
-    else toggleOption(opt);
+    if (local.mode === 'expand' && !isLeaf(opt)) {
+      push(opt);
+      return;
+    }
+    // "only leaf checkable" turns a parent-row tap in select mode into navigation
+    if (local.mode === 'select' && onlyLeafCheckable() && !isLeaf(opt)) {
+      push(opt);
+      return;
+    }
+    toggleOption(opt);
   };
+
+  // Whether the right-side zone holds a checkbox (expand mode, right position,
+  // and the node is checkable — parents are excluded under onlyLeafCheckable).
+  const expandShowsCheckbox = (opt: TreeSelectOption) =>
+    local.mode === 'expand' && !checkboxOnLeft() && !(onlyLeafCheckable() && !isLeaf(opt));
+
   const arrowAction = (opt: TreeSelectOption) => {
-    if (checkboxOnLeft() || local.mode !== 'expand') push(opt);
-    else toggleOption(opt);
+    if (expandShowsCheckbox(opt)) toggleOption(opt);
+    else push(opt);
   };
 
   const toggleOption = (opt: TreeSelectOption) => {
+    if (opt.disabled) return;
     const current = selected();
-    const vals = isLeaf(opt) ? [optKey(opt)] : leafKeys(opt);
+    const vals = toggleKeysOf(opt);
+    if (vals.length === 0) return; // every leaf is disabled — nothing to toggle
     const allSel = vals.every((v) => current.includes(v));
     let next: (string | number)[];
     if (allSel) {
@@ -324,8 +453,18 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
     commit(next);
   };
 
+  // Keys the "select all" control covers for the visible rows (deduped).
+  const selectableKeysOfVisible = () =>
+    [
+      ...new Set(
+        visibleOptions().flatMap((o) =>
+          checkStrictly() ? [optKey(o)] : collectSelectableLeaves(o, vKey(), cKey(), leafKey()),
+        ),
+      ),
+    ];
+
   const selectAll = () => {
-    const leaves = visibleOptions().flatMap(leafKeys);
+    const leaves = selectableKeysOfVisible();
     const current = selected();
     const allSelected = leaves.length > 0 && leaves.every((v) => current.includes(v));
     let next: (string | number)[];
@@ -340,18 +479,28 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
   };
 
   const allChecked = () => {
-    const leaves = visibleOptions().flatMap(leafKeys);
+    const leaves = selectableKeysOfVisible();
     return leaves.length > 0 && leaves.every((v) => selected().includes(v));
+  };
+
+  const allIndeterminate = () => {
+    const leaves = selectableKeysOfVisible();
+    if (leaves.length === 0) return false;
+    const n = leaves.filter((v) => selected().includes(v)).length;
+    return n > 0 && n < leaves.length;
   };
 
   // ── open / close ──
   function openSheet() {
-    if (local.disabled) return;
+    if (local.disabled || local.readonly) return;
     setStack([local.options]);
+    clearSearch();
     setInternalOpen(true);
     requestAnimationFrame(() => setAnimated(true));
   }
-  function closeSheet() {
+  function closeSheet(reason?: 'confirm' | 'cancel') {
+    if (reason === 'confirm') local.onConfirm?.(selected());
+    else if (reason === 'cancel') local.onCancel?.();
     setAnimated(false);
     setTimeout(() => {
       setInternalOpen(false);
@@ -359,28 +508,90 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
       local.onClose?.();
     }, 200);
   }
-  const confirm = closeSheet;
+  const confirm = () => closeSheet('confirm');
 
   const displayText = () => {
     const s = selected();
     if (s.length === 0) return local.placeholder || t('component.treeselect.placeholder');
+    if (local.format) return local.format(s, local.options);
     return `${s.length} ${t('component.treeselect.selected')}`;
   };
 
-  const isLoading = (opt: TreeSelectOption) => loadingKeys().has(nodeKey(opt));
+  const clearValue = () => {
+    if (local.disabled || local.readonly) return;
+    commit([]);
+  };
+
+  const loadErrorText = () => local.loadErrorText || t('component.treeselect.loadError');
+
+  // ── imperative handle (ref) ──
+  // When `show` is controlled, open/close delegate to onUpdateShow so the
+  // parent's state stays the source of truth; otherwise drive internally.
+  const apiOpen = () => {
+    if (local.show !== undefined) local.onUpdateShow?.(true);
+    else openSheet();
+  };
+  const apiClose = () => {
+    if (local.show !== undefined) local.onUpdateShow?.(false);
+    else closeSheet();
+  };
+  onMount(() => {
+    const handle: TreeSelectHandle = {
+      open: apiOpen,
+      close: apiClose,
+      setValue: (v) => commit(v),
+      getValue: () => selected(),
+      clear: clearValue,
+      resetNavigation: () => {
+        setStack([local.options]);
+        clearSearch();
+      },
+    };
+    local.ref?.(handle);
+  });
+  onCleanup(() => {
+    local.ref?.(null as any);
+  });
 
   return (
     <>
-      <div
-        class={cn(styles.trigger, local.class, local.disabled && styles.disabled)}
-        style={typeof local.style === 'object' ? (local.style as Record<string, any>) : undefined}
-        onClick={openSheet}
-      >
-        <span class={cn(styles.triggerText, selected().length === 0 && styles.triggerPlaceholder)}>
-          {displayText()}
-        </span>
-        <Icon name="arrow-down" size={16} class={styles.triggerArrow} />
-      </div>
+      {local.renderTrigger ? (
+        local.renderTrigger({
+          value: selected(),
+          text: displayText(),
+          open: openSheet,
+          clear: clearValue,
+        })
+      ) : (
+        <div
+          class={cn(
+            styles.trigger,
+            local.class,
+            local.disabled && styles.disabled,
+            local.readonly && styles.readonly,
+          )}
+          style={typeof local.style === 'object' ? (local.style as Record<string, any>) : undefined}
+          onClick={openSheet}
+        >
+          <span
+            class={cn(styles.triggerText, selected().length === 0 && styles.triggerPlaceholder)}
+          >
+            {displayText()}
+          </span>
+          <Show when={local.clearable && selected().length > 0 && !local.disabled && !local.readonly}>
+            <span
+              class={styles.triggerClear}
+              onClick={(e) => {
+                e.stopPropagation();
+                clearValue();
+              }}
+            >
+              ✕
+            </span>
+          </Show>
+          <Icon name="arrow-down" size={16} class={styles.triggerArrow} />
+        </div>
+      )}
 
       <Show when={internalOpen()}>
         <Portal
@@ -392,7 +603,7 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
           <div
             class={cn(styles.overlay, animated() && styles.overlayEnter)}
             style={local.zIndex !== undefined ? { 'z-index': local.zIndex } : undefined}
-            onClick={closeSheet}
+            onClick={() => closeSheet('cancel')}
           >
             <div
               class={cn(styles.content, animated() && styles.contentEnter)}
@@ -413,7 +624,7 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                   {local.title || t('component.treeselect.title')}
                 </span>
                 <Show when={local.closeable}>
-                  <span class={styles.headerClose} onClick={closeSheet}>
+                  <span class={styles.headerClose} onClick={() => closeSheet('cancel')}>
                     ✕
                   </span>
                 </Show>
@@ -455,7 +666,11 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                         </Show>
                       </div>
                       <div class={styles.toolbarSelectAll} onClick={selectAll}>
-                        <Checkbox value="__all__" checked={allChecked()} />
+                        <Checkbox
+                          value="__all__"
+                          checked={allChecked()}
+                          indeterminate={allIndeterminate()}
+                        />
                         <span class={styles.toolbarLabel}>
                           {t('component.treeselect.selectAll')}
                         </span>
@@ -483,7 +698,11 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                               selectAll();
                             }}
                           >
-                            <Checkbox value="__all__" checked={allChecked()} />
+                            <Checkbox
+                              value="__all__"
+                              checked={allChecked()}
+                              indeterminate={allIndeterminate()}
+                            />
                           </span>
                         </div>
                       }
@@ -497,7 +716,11 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                       >
                         <span class={styles.itemBody}>
                           <span class={styles.itemCheckLeft}>
-                            <Checkbox value="__all__" checked={allChecked()} />
+                            <Checkbox
+                              value="__all__"
+                              checked={allChecked()}
+                              indeterminate={allIndeterminate()}
+                            />
                           </span>
                           <span class={styles.itemLabel}>
                             {t('component.treeselect.selectAll')}
@@ -519,12 +742,10 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                     >
                       <For each={remoteResults()}>
                         {(opt) => {
-                          const sel = isLeaf(opt)
-                            ? selected().includes(optKey(opt))
-                            : leafKeys(opt).some((v) => selected().includes(v));
+                          const sel = isSel(opt);
                           return (
                             <div
-                              class={cn(styles.item, sel && styles.selected)}
+                              class={cn(styles.item, opt.disabled && styles.disabled, sel && styles.selected)}
                               onClick={() => toggleOption(opt)}
                             >
                               <span class={styles.itemBody}>
@@ -544,13 +765,17 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                   <Show when={!remoteMode() && searchResults()}>
                     <For each={searchResults()!}>
                       {(item) => {
-                        const sel = isLeaf(item.opt)
-                          ? selected().includes(optKey(item.opt))
-                          : leafKeys(item.opt).some((v) => selected().includes(v));
+                        const sel = isSel(item.opt);
                         return (
                           <div
-                            class={cn(styles.item, sel && styles.selected)}
-                            onClick={() => jumpTo(item.path, item.opt)}
+                            class={cn(
+                              styles.item,
+                              item.opt.disabled && styles.disabled,
+                              sel && styles.selected,
+                            )}
+                            onClick={() => {
+                              if (!item.opt.disabled) jumpTo(item.path, item.opt);
+                            }}
                           >
                             <div class={styles.itemBody}>
                               <span class={styles.searchPath}>
@@ -572,10 +797,8 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                     <For each={filteredOptions()}>
                       {(opt) => {
                         const sel = () => selected();
-                        const isSel = () =>
-                          isLeaf(opt)
-                            ? sel().includes(optKey(opt))
-                            : leafKeys(opt).some((v) => sel().includes(v));
+                        const isSelRow = () => isSel(opt);
+                        const state = () => checkState(opt);
                         const expand = () => {
                           if (!opt.disabled) push(opt);
                         };
@@ -594,13 +817,13 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                         });
 
                         return local.renderItem ? (
-                          local.renderItem(opt, isSel(), expand, () => toggleOption(opt))
+                          local.renderItem(opt, isSelRow(), expand, () => toggleOption(opt))
                         ) : (
                           <div
                             class={cn(
                               styles.item,
                               opt.disabled && styles.disabled,
-                              isSel() && styles.selected,
+                              isSelRow() && styles.selected,
                             )}
                             {...swipe.handlers}
                             onClick={(e) => {
@@ -611,13 +834,23 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                           >
                             <span class={styles.itemBody}>
                               {/* Left-side checkbox (expand mode, checkboxPosition="left") */}
-                              <Show when={checkboxOnLeft() && local.mode === 'expand'}>
+                              <Show
+                                when={
+                                  checkboxOnLeft() &&
+                                  local.mode === 'expand' &&
+                                  (!onlyLeafCheckable() || isLeaf(opt))
+                                }
+                              >
                                 <span class={styles.itemCheckLeft}>
-                                  <Checkbox value={optKey(opt)} checked={isSel()} />
+                                  <Checkbox
+                                    value={optKey(opt)}
+                                    checked={state() === 'checked'}
+                                    indeterminate={state() === 'indeterminate'}
+                                  />
                                 </span>
                               </Show>
                               <span class={styles.itemLabel}>{optLabel(opt)}</span>
-                              <Show when={!!optChildren(opt)}>
+                              <Show when={!!optChildren(opt) && !checkStrictly()}>
                                 <span class={styles.itemCount}>
                                   {sel().filter((v) => leafKeys(opt).includes(v)).length}/
                                   {countAll(opt)}
@@ -637,9 +870,7 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                               <span
                                 class={cn(
                                   styles.itemExpand,
-                                  local.mode === 'expand' &&
-                                    !checkboxOnLeft() &&
-                                    styles.itemExpandCheck,
+                                  expandShowsCheckbox(opt) && styles.itemExpandCheck,
                                 )}
                                 onClick={(e) => {
                                   e.stopPropagation();
@@ -648,11 +879,30 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                                 }}
                               >
                                 <Show when={!isLoading(opt)} fallback={<Loading size={14} />}>
-                                  {local.mode === 'expand' && !checkboxOnLeft() ? (
-                                    <Checkbox value={optKey(opt)} checked={isSel()} />
-                                  ) : (
-                                    <Icon name="arrow-right" size={18} />
-                                  )}
+                                  <Show
+                                    when={!isError(opt)}
+                                    fallback={
+                                      <span
+                                        class={styles.itemRetry}
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          retryLoad(opt);
+                                        }}
+                                      >
+                                        {loadErrorText()}
+                                      </span>
+                                    }
+                                  >
+                                    {expandShowsCheckbox(opt) ? (
+                                      <Checkbox
+                                        value={optKey(opt)}
+                                        checked={state() === 'checked'}
+                                        indeterminate={state() === 'indeterminate'}
+                                      />
+                                    ) : (
+                                      <Icon name="arrow-right" size={18} />
+                                    )}
+                                  </Show>
                                 </Show>
                               </span>
                             </Show>
@@ -660,6 +910,13 @@ export const TreeSelect: Component<TreeSelectProps> = (rawProps) => {
                         );
                       }}
                     </For>
+                  </Show>
+
+                  {/* Empty state: no options at all, or search found nothing */}
+                  <Show when={isEmpty()}>
+                    <div class={styles.emptyWrap}>
+                      {local.emptyText || t('component.treeselect.empty')}
+                    </div>
                   </Show>
                 </div>
               </ScrollBar>

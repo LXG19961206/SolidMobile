@@ -1,5 +1,25 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+- **TreeSelect** — selection UX & API round
+  - Parent checkboxes now show an **indeterminate** (half-checked) state when only some leaves are selected — also applied to the Select All control
+  - `onConfirm` / `onCancel` callbacks — distinguish "confirmed" from "dismissed", consistent with Picker/Select
+  - Empty state (`emptyText`) when the tree is empty or a search returns no results
+  - Async-load error handling: `onLoadChildren` failures show a per-node retry control (`loadErrorText`)
+  - `checkStrictly` — checking a parent selects the node itself instead of cascading to all leaves
+  - `onlyLeafCheckable` — only leaf nodes can be checked; tapping a parent row navigates into its children
+  - Trigger enhancements: `clearable` (clear button), `format` (custom selected text), `readonly`, `renderTrigger`
+  - Body scroll lock while the sheet is open (instance-safe across multiple TreeSelects)
+  - `ref` imperative handle (`TreeSelectHandle`): `open` / `close` / `setValue` / `getValue` / `clear` / `resetNavigation` — for uncontrolled usage, consistent with the Form ref API
+- Disabled nodes are now excluded from parent toggles, Select All, remote search results, and the `renderItem` toggle callback
+- i18n: `treeselect.empty` / `treeselect.loadError` (zh-CN & en-US)
+
+### Fixed
+- Disabled options could previously be selected via Select All, remote search results, or the `renderItem` toggle
+- Search keyword and remote results persisted across open/close; they are now cleared on open
+
 ## [0.1.9] - 2026-08-04
 
 ### Fixed
