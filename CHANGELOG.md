@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [0.2.3] - 2026-08-14
 
 ### Added
 - **TreeSelect** — selection UX & API round
