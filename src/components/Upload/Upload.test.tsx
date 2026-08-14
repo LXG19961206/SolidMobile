@@ -219,7 +219,7 @@ describe('Upload', () => {
     expect(api).toHaveBeenCalledTimes(1);
 
     // Click error overlay to retry
-    const errorOverlay = container.querySelector('[class*="overlay"]')!;
+    const errorOverlay = container.querySelector('[class*="overlay"]') as HTMLElement;
     errorOverlay.click();
     await new Promise(r => setTimeout(r, 50));
     expect(api).toHaveBeenCalledTimes(2);

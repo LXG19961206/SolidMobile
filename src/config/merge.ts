@@ -9,9 +9,14 @@
  *   deepMerge(defaults, { colors: { light: { primary: '#000' } } })
  *   → only `colors.light.primary` is overridden; all other tokens stay default.
  */
+/** Recursive partial: nested objects stay partially-typed. */
+export type DeepPartial<T> = {
+  [K in keyof T]?: T[K] extends Record<string, unknown> ? DeepPartial<T[K]> : T[K];
+};
+
 export function deepMerge<T extends Record<string, unknown>>(
   target: T,
-  source: Partial<T>,
+  source: DeepPartial<T> & Record<string, unknown>,
 ): T {
   const result = { ...target };
 

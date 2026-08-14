@@ -28,18 +28,18 @@ describe('List', () => {
   });
 
   it('renders empty state when data is empty', () => {
-    render(() => <List data={[]}>{(item) => <span>{item.name}</span>}</List>);
+    render(() => <List data={[] as { name: string }[]}>{(item) => <span>{item.name}</span>}</List>);
     expect(screen.getByText('暂无数据')).toBeDefined();
   });
 
   it('renders custom empty string', () => {
-    render(() => <List data={[]} empty="没有记录">{(item) => <span>{item.name}</span>}</List>);
+    render(() => <List data={[] as { name: string }[]} empty="没有记录">{(item) => <span>{item.name}</span>}</List>);
     expect(screen.getByText('没有记录')).toBeDefined();
   });
 
   it('renders custom empty JSX', () => {
     render(() => (
-      <List data={[]} empty={<span data-testid="custom-empty">自定义空</span>}>
+      <List data={[] as { name: string }[]} empty={<span data-testid="custom-empty">自定义空</span>}>
         {(item) => <span>{item.name}</span>}
       </List>
     ));

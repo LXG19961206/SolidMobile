@@ -28,7 +28,10 @@
       "solid-component/*": [
         "src/*"
       ]
-    }
+    },
+    "types": [
+      "vitest/globals"
+    ]
   },
   "include": [
     "src",
@@ -37,8 +40,6 @@
   "exclude": [
     "node_modules",
     "dist",
-    "playground",
-    "**/*.test.ts",
-    "**/*.test.tsx"
+    "playground"
   ]
 }
