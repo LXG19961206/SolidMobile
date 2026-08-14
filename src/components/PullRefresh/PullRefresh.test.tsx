@@ -18,13 +18,13 @@ describe('PullRefresh', () => {
 
   it('shows loading state', () => {
     const { container } = render(() => <PullRefresh loading />);
-    expect(container.textContent).toContain('刷新中...');
+    expect(container.textContent).toContain('Refreshing...');
   });
 
   it('shows success state', () => {
     const { container } = render(() => <PullRefresh loading={false} />);
     // loading=false means not in loading state — should show nothing
-    expect(container.textContent).not.toContain('刷新中...');
+    expect(container.textContent).not.toContain('Refreshing...');
   });
 
   it('renders with custom text', () => {

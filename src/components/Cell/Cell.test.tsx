@@ -25,7 +25,7 @@ describe('Cell', () => {
 
   it('renders clickable state with arrow', () => {
     const { container } = render(() => <Cell title="设置" clickable />);
-    expect(container.querySelector('svg')).not.toBeNull();
+    expect(container.querySelector('[class*="arrow"]')).not.toBeNull();
   });
 
   it('calls onClick when clicked and clickable', () => {

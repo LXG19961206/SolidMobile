@@ -29,7 +29,7 @@ describe('List', () => {
 
   it('renders empty state when data is empty', () => {
     render(() => <List data={[] as { name: string }[]}>{(item) => <span>{item.name}</span>}</List>);
-    expect(screen.getByText('暂无数据')).toBeDefined();
+    expect(screen.getByText('No data')).toBeDefined();
   });
 
   it('renders custom empty string', () => {
@@ -48,7 +48,7 @@ describe('List', () => {
 
   it('does not show empty when data has items', () => {
     render(() => <List data={items}>{(item) => <span>{item.name}</span>}</List>);
-    expect(screen.queryByText('暂无数据')).toBeNull();
+    expect(screen.queryByText('No data')).toBeNull();
   });
 
   it('renders children with correct index', () => {
@@ -71,7 +71,7 @@ describe('List', () => {
       </List>
     ));
     // After load returns empty, finished text should appear
-    expect(screen.getByText('暂无数据')).toBeDefined();
+    expect(screen.getByText('No data')).toBeDefined();
   });
 
   it('accepts custom class', () => {
@@ -140,6 +140,6 @@ describe('List', () => {
         {(item: Item) => <span>{item.name}</span>}
       </List>
     ));
-    expect(screen.getByText('暂无数据')).toBeDefined();
+    expect(screen.getByText('No data')).toBeDefined();
   });
 });

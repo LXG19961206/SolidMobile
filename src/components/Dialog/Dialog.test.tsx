@@ -21,22 +21,22 @@ describe('DialogComponent (declarative)', () => {
   it('renders confirm button by default', async () => {
     render(() => <DialogComponent show={true} message="确认操作" />);
     await waitFor(() => {
-      expect(screen.getByText('确认')).toBeDefined();
+      expect(screen.getByText('OK')).toBeDefined();
     });
   });
 
   it('renders cancel button when showCancelButton is true', async () => {
     render(() => <DialogComponent show={true} showCancelButton message="确认删除？" />);
     await waitFor(() => {
-      expect(screen.getByText('取消')).toBeDefined();
-      expect(screen.getByText('确认')).toBeDefined();
+      expect(screen.getByText('Cancel')).toBeDefined();
+      expect(screen.getByText('OK')).toBeDefined();
     });
   });
 
   it('hides confirm button when showConfirmButton is false', async () => {
     render(() => <DialogComponent show={true} showConfirmButton={false} message="提示" />);
     await waitFor(() => {
-      expect(screen.queryByText('确认')).toBeNull();
+      expect(screen.queryByText('OK')).toBeNull();
     });
   });
 
@@ -51,24 +51,24 @@ describe('DialogComponent (declarative)', () => {
   it('calls onConfirm when confirm clicked', async () => {
     const onConfirm = vi.fn();
     render(() => <DialogComponent show={true} message="测试" onConfirm={onConfirm} />);
-    await waitFor(() => screen.getByText('确认'));
-    fireEvent.click(screen.getByText('确认'));
+    await waitFor(() => screen.getByText('OK'));
+    fireEvent.click(screen.getByText('OK'));
     await waitFor(() => expect(onConfirm).toHaveBeenCalled());
   });
 
   it('calls onCancel when cancel clicked', async () => {
     const onCancel = vi.fn();
     render(() => <DialogComponent show={true} showCancelButton message="测试" onCancel={onCancel} />);
-    await waitFor(() => screen.getByText('取消'));
-    fireEvent.click(screen.getByText('取消'));
+    await waitFor(() => screen.getByText('Cancel'));
+    fireEvent.click(screen.getByText('Cancel'));
     await waitFor(() => expect(onCancel).toHaveBeenCalled());
   });
 
   it('disables buttons when disabled', async () => {
     render(() => <DialogComponent show={true} showCancelButton confirmDisabled cancelDisabled message="测试" />);
     await waitFor(() => {
-      expect((screen.getByText('确认') as HTMLButtonElement).disabled).toBe(true);
-      expect((screen.getByText('取消') as HTMLButtonElement).disabled).toBe(true);
+      expect((screen.getByText('OK') as HTMLButtonElement).disabled).toBe(true);
+      expect((screen.getByText('Cancel') as HTMLButtonElement).disabled).toBe(true);
     });
   });
 });
@@ -97,7 +97,7 @@ describe('Dialog (imperative)', () => {
     Dialog.alert({ title: '警告', message: 'alert 模式' });
     await waitFor(() => {
       expect(screen.getByText('警告')).toBeDefined();
-      expect(screen.queryByText('取消')).toBeNull();
+      expect(screen.queryByText('Cancel')).toBeNull();
     });
   });
 
@@ -133,8 +133,8 @@ describe('Dialog (imperative)', () => {
     const onConfirm = vi.fn();
     render(Wrapper);
     Dialog.show({ message: 'test', onConfirm });
-    await waitFor(() => screen.getByText('确认'));
-    fireEvent.click(screen.getByText('确认'));
+    await waitFor(() => screen.getByText('OK'));
+    fireEvent.click(screen.getByText('OK'));
     await waitFor(() => expect(onConfirm).toHaveBeenCalled());
   });
 });

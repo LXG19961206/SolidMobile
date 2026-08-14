@@ -18,7 +18,7 @@ describe('TimePicker', () => {
     render(() => <TimePicker />);
     // Should show the default i18n placeholder or empty
     const cell = document.querySelector('[data-testid]');
-    expect(cell || screen.getByText(/请选择时间/)).toBeTruthy();
+    expect(cell || screen.getByText(/Please select a time/)).toBeTruthy();
   });
 
   it('opens picker when clicking trigger cell', async () => {

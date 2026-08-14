@@ -62,8 +62,8 @@ describe('Picker', () => {
 
   it('renders confirm and cancel buttons with default i18n', () => {
     render(() => <Picker columns={flatColumns} show={true} />);
-    expect(screen.getByText('确认')).toBeDefined();
-    expect(screen.getByText('取消')).toBeDefined();
+    expect(screen.getByText('Confirm')).toBeDefined();
+    expect(screen.getByText('Cancel')).toBeDefined();
   });
 
   it('renders custom confirm/cancel text', () => {
@@ -129,7 +129,7 @@ describe('Picker', () => {
   it('calls onConfirm with selected items and values', () => {
     const onConfirm = vi.fn();
     render(() => <Picker columns={treeColumns} show={true} onConfirm={onConfirm} />);
-    fireEvent.click(screen.getByText('确认'));
+    fireEvent.click(screen.getByText('Confirm'));
     expect(onConfirm).toHaveBeenCalledTimes(1);
 
     const [items, vals] = onConfirm.mock.calls[0];
@@ -140,7 +140,7 @@ describe('Picker', () => {
   it('calls onCancel', () => {
     const onCancel = vi.fn();
     render(() => <Picker columns={treeColumns} show={true} onCancel={onCancel} />);
-    fireEvent.click(screen.getByText('取消'));
+    fireEvent.click(screen.getByText('Cancel'));
     expect(onCancel).toHaveBeenCalledTimes(1);
   });
 
@@ -149,7 +149,7 @@ describe('Picker', () => {
     render(() => (
       <Picker columns={treeColumns} show={true} onUpdateShow={onUpdateShow} />
     ));
-    fireEvent.click(screen.getByText('取消'));
+    fireEvent.click(screen.getByText('Cancel'));
     expect(onUpdateShow).toHaveBeenCalledWith(false);
   });
 
@@ -158,7 +158,7 @@ describe('Picker', () => {
     render(() => (
       <Picker columns={treeColumns} show={true} onUpdateShow={onUpdateShow} />
     ));
-    fireEvent.click(screen.getByText('确认'));
+    fireEvent.click(screen.getByText('Confirm'));
     expect(onUpdateShow).toHaveBeenCalledWith(false);
   });
 
@@ -198,7 +198,7 @@ describe('Picker', () => {
   it('handles empty columns gracefully', () => {
     render(() => <Picker columns={[]} show={true} />);
     // Should render without crashing — just an empty sheet
-    expect(screen.getByText('确认')).toBeDefined();
+    expect(screen.getByText('Confirm')).toBeDefined();
   });
 
   it('handles single-option column', () => {

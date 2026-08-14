@@ -14,12 +14,12 @@ function createFile(name: string, size = 1024, type = 'image/png'): File {
 describe('Upload', () => {
   it('renders add button by default (image type)', () => {
     const { container } = render(() => <Upload />);
-    expect(container.textContent).toContain('上传');
+    expect(container.textContent).toContain('Upload');
   });
 
   it('renders add button for file type', () => {
     const { container } = render(() => <Upload type="file" />);
-    expect(container.textContent).toContain('添加文件');
+    expect(container.textContent).toContain('Add File');
   });
 
   it('renders defaultFileList', () => {

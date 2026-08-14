@@ -7,12 +7,12 @@ describe('DatePicker', () => {
   it('renders trigger Cell by default (auto mode)', () => {
     render(() => <DatePicker />);
     // Should render a clickable trigger cell instead of being empty
-    expect(screen.getByText('请选择日期')).toBeDefined();
+    expect(screen.getByText('Please select a date')).toBeDefined();
   });
 
   it('opens picker panel when trigger is clicked', async () => {
     render(() => <DatePicker />);
-    fireEvent.click(screen.getByText('请选择日期'));
+    fireEvent.click(screen.getByText('Please select a date'));
     // After clicking, the Picker should render columns
     const columns = document.body.querySelectorAll('[data-testid="picker-column"]');
     expect(columns.length).toBe(3);
@@ -20,14 +20,14 @@ describe('DatePicker', () => {
 
   it('renders 3 columns for date type when open', async () => {
     render(() => <DatePicker />);
-    fireEvent.click(screen.getByText('请选择日期'));
+    fireEvent.click(screen.getByText('Please select a date'));
     const columns = document.body.querySelectorAll('[data-testid="picker-column"]');
     expect(columns.length).toBe(3);
   });
 
   it('renders 2 columns for year-month type when open', async () => {
     render(() => <DatePicker type="year-month" />);
-    fireEvent.click(screen.getByText('请选择日期'));
+    fireEvent.click(screen.getByText('Please select a date'));
     const columns = document.body.querySelectorAll('[data-testid="picker-column"]');
     expect(columns.length).toBe(2);
   });
@@ -43,7 +43,7 @@ describe('DatePicker', () => {
     await new Promise((r) => setTimeout(r, 0));
 
     // Click confirm
-    fireEvent.click(screen.getByText('确认'));
+    fireEvent.click(screen.getByText('Confirm'));
     expect(onConfirm).toHaveBeenCalledWith('2024-03-15');
   });
 
@@ -51,10 +51,10 @@ describe('DatePicker', () => {
     const onCancel = vi.fn();
     render(() => <DatePicker onCancel={onCancel} />);
 
-    fireEvent.click(screen.getByText('请选择日期'));
+    fireEvent.click(screen.getByText('Please select a date'));
     await new Promise((r) => setTimeout(r, 0));
 
-    fireEvent.click(screen.getByText('取消'));
+    fireEvent.click(screen.getByText('Cancel'));
     expect(onCancel).toHaveBeenCalled();
   });
 
