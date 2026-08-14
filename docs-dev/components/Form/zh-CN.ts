@@ -14,7 +14,7 @@ export default {
       controlAlign: '控件区对齐，默认 left。设为 right 时控件靠右。',
       colon: '标签后是否追加冒号，默认 false。',
       scrollToError: '提交校验失败时是否自动滚动到第一个错误字段。',
-      ref: '挂载回调，接收 { setFormValue, resetFormValue, submit, validateAll }。',
+      ref: 'ref 回调，挂载时注入命令式句柄，卸载时传入 null。可用方法见下方 "Ref Methods" 表格。',
       class: '自定义 CSS class。',
       style: '内联样式。',
     },

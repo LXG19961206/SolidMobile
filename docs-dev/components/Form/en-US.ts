@@ -14,7 +14,7 @@ export default {
       controlAlign: 'Control area alignment, default left. Set right to push controls to the end.',
       colon: 'Append colon after label, default false.',
       scrollToError: 'Auto-scroll to the first error field on submit failure.',
-      ref: 'Mount callback, receives { setFormValue, resetFormValue, submit, validateAll }.',
+      ref: 'Ref callback — receives the imperative handle on mount, null on unmount. Available methods are listed in the "Ref Methods" table below.',
       class: 'Custom CSS class.',
       style: 'Inline styles.',
     },

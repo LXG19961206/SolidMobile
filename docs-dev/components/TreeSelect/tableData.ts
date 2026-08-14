@@ -6,6 +6,7 @@ export function useTreeSelectTableData() {
 
   const propsTables: TableSection[] = [
     {
+      title: 'TreeSelect',
       rows: [
         { name: 'options', type: 'TreeSelectOption[]', def: '—', desc: 'treeselect.props.options' },
         { name: 'value', type: '(string | number)[]', def: '—', desc: 'treeselect.props.value' },
@@ -21,12 +22,31 @@ export function useTreeSelectTableData() {
           def: '—',
           desc: 'treeselect.props.onChange',
         },
+        {
+          name: 'onConfirm',
+          type: '(value: (string | number)[]) => void',
+          def: '—',
+          desc: 'treeselect.props.onConfirm',
+        },
+        { name: 'onCancel', type: '() => void', def: '—', desc: 'treeselect.props.onCancel' },
         { name: 'max', type: 'number', def: '0', desc: 'treeselect.props.max' },
         {
           name: 'mode',
           type: "'select' | 'expand'",
           def: "'select'",
           desc: 'treeselect.props.mode',
+        },
+        {
+          name: 'checkStrictly',
+          type: 'boolean',
+          def: 'false',
+          desc: 'treeselect.props.checkStrictly',
+        },
+        {
+          name: 'onlyLeafCheckable',
+          type: 'boolean',
+          def: 'false',
+          desc: 'treeselect.props.onlyLeafCheckable',
         },
         { name: 'searchable', type: 'boolean', def: 'false', desc: 'treeselect.props.searchable' },
         {
@@ -56,6 +76,18 @@ export function useTreeSelectTableData() {
           def: '—',
           desc: 'treeselect.props.onLoadChildren',
         },
+        {
+          name: 'emptyText',
+          type: 'string',
+          def: '—',
+          desc: 'treeselect.props.emptyText',
+        },
+        {
+          name: 'loadErrorText',
+          type: 'string',
+          def: '—',
+          desc: 'treeselect.props.loadErrorText',
+        },
         { name: 'show', type: 'boolean', def: '—', desc: 'treeselect.props.show' },
         {
           name: 'onUpdateShow',
@@ -80,8 +112,54 @@ export function useTreeSelectTableData() {
           def: "'80vh'",
           desc: 'treeselect.props.maxHeight',
         },
+        {
+          name: 'format',
+          type: '(value: (string | number)[], options: TreeSelectOption[]) => string',
+          def: '—',
+          desc: 'treeselect.props.format',
+        },
+        { name: 'clearable', type: 'boolean', def: 'false', desc: 'treeselect.props.clearable' },
+        { name: 'readonly', type: 'boolean', def: 'false', desc: 'treeselect.props.readonly' },
+        {
+          name: 'renderTrigger',
+          type: '({ value, text, open, clear }) => JSX.Element',
+          def: '—',
+          desc: 'treeselect.props.renderTrigger',
+        },
+        {
+          name: 'ref',
+          type: '(handle: TreeSelectHandle) => void',
+          def: '—',
+          desc: 'treeselect.props.ref',
+        },
         { name: 'class', type: 'string', def: '—', desc: 'treeselect.props.class' },
         { name: 'style', type: 'CSSProperties | string', def: '—', desc: 'treeselect.props.style' },
+      ],
+    },
+    {
+      title: 'Ref Methods',
+      rows: [
+        { name: 'open', type: '() => void', def: '—', desc: 'treeselect.refMethods.open' },
+        { name: 'close', type: '() => void', def: '—', desc: 'treeselect.refMethods.close' },
+        {
+          name: 'setValue',
+          type: '(value: (string | number)[]) => void',
+          def: '—',
+          desc: 'treeselect.refMethods.setValue',
+        },
+        {
+          name: 'getValue',
+          type: '() => (string | number)[]',
+          def: '—',
+          desc: 'treeselect.refMethods.getValue',
+        },
+        { name: 'clear', type: '() => void', def: '—', desc: 'treeselect.refMethods.clear' },
+        {
+          name: 'resetNavigation',
+          type: '() => void',
+          def: '—',
+          desc: 'treeselect.refMethods.resetNavigation',
+        },
       ],
     },
   ];

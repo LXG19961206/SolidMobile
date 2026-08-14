@@ -49,22 +49,6 @@ export const FormDocPage = () => {
         <PropsAttrs propsTables={propsTables} cssVarsTables={cssVarsTables} />
 
         <div style={{
-          margin: '24px 0', padding: '16px 20px',
-          background: 'var(--sc-card-bg, #fff)', 'border-radius': '8px',
-          border: '1px solid var(--sc-color-border, #ebedf0)',
-          'font-size': '0.9rem', 'line-height': 1.8,
-        }}>
-          <p style={{ margin: '0 0 8px', 'font-weight': 600 }}>{t('form.refApi.title')}</p>
-          <p style={{ margin: '0 0 8px', color: '#6b7280' }}>{t('form.refApi.desc')}</p>
-          <ul style={{ margin: 0, 'padding-left': '1.2rem', color: '#6b7280' }}>
-            <li><code style={{ background: '#f3f4f6', padding: '1px 4px', 'border-radius': '3px' }}>setFormValue(v)</code> — {t('form.refApi.setFormValue')}</li>
-            <li><code style={{ background: '#f3f4f6', padding: '1px 4px', 'border-radius': '3px' }}>resetFormValue()</code> — {t('form.refApi.resetFormValue')}</li>
-            <li><code style={{ background: '#f3f4f6', padding: '1px 4px', 'border-radius': '3px' }}>submit()</code> — {t('form.refApi.submit')}</li>
-            <li><code style={{ background: '#f3f4f6', padding: '1px 4px', 'border-radius': '3px' }}>validateAll()</code> — {t('form.refApi.validateAll')}</li>
-          </ul>
-        </div>
-
-        <div style={{
           padding: '12px',
           'border-left': '3px solid var(--sc-color-primary, #1677ff)',
           background: 'linear-gradient(135deg, color-mix(in srgb, var(--sc-color-primary, #1677ff) 4%, transparent), transparent)',

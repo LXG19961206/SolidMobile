@@ -25,6 +25,14 @@ export function useFormTableData() {
       { name: 'style', type: 'CSSProperties | string', def: '—', desc: 'form.props.style' },
     ],
   }, {
+    title: 'Ref Methods',
+    rows: [
+      { name: 'setFormValue', type: '(v: T) => void', def: '—', desc: 'form.refApi.setFormValue' },
+      { name: 'resetFormValue', type: '() => void', def: '—', desc: 'form.refApi.resetFormValue' },
+      { name: 'submit', type: '() => void', def: '—', desc: 'form.refApi.submit' },
+      { name: 'validateAll', type: '() => Promise<boolean>', def: '—', desc: 'form.refApi.validateAll' },
+    ],
+  }, {
     title: 'FormItem',
     rows: [
       { name: 'name', type: 'string', def: '—', desc: 'form.itemProps.name' },

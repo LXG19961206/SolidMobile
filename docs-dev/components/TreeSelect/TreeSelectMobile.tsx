@@ -1,6 +1,7 @@
 import { createSignal, For } from 'solid-js';
 import { useT, registerLocale } from '../../doc-i18n';
 import { Card } from '../../../src/components/Card';
+import { Button } from '../../../src/components/Button';
 import { TreeSelect } from '../../../src/components/TreeSelect';
 import type { TreeSelectOption } from '../../../src/components/TreeSelect';
 import { MobilePropsSheet } from '../../doc-utils/MobilePropsSheet';
@@ -50,6 +51,10 @@ export const TreeSelectMobile = () => {
   const [v4, setV4] = createSignal<(string | number)[]>([]);
   const [v5, setV5] = createSignal<(string | number)[]>([]);
   const [v6, setV6] = createSignal<(string | number)[]>([]);
+  const [v7, setV7] = createSignal<(string | number)[]>([]);
+  const [v8, setV8] = createSignal<(string | number)[]>([]);
+  const [v9, setV9] = createSignal<(string | number)[]>([]);
+  let treeRef: any;
   const loadChildren = (node: TreeSelectOption) =>
     new Promise<TreeSelectOption[]>((resolve) => {
       setTimeout(() => {
@@ -146,6 +151,57 @@ export const TreeSelectMobile = () => {
             searchMode="global"
             placeholder="Type to search 1,800 options"
           />
+        </Card>
+
+        <Card title={t('treeselect.demo.checkStrictly')}>
+          <div style={{ 'margin-bottom': '8px', 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>
+            {v8().length > 0 ? `Selected: ${v8().join(', ')}` : 'Check a parent to select it itself'}
+          </div>
+          <TreeSelect
+            options={opts}
+            value={v8()}
+            onChange={setV8}
+            checkStrictly
+            placeholder="Strict mode"
+          />
+        </Card>
+
+        <Card title={t('treeselect.demo.trigger')}>
+          <div style={{ 'margin-bottom': '8px', 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>
+            {v7().length > 0 ? `Selected: ${v7().join(', ')}` : 'Clearable + custom format'}
+          </div>
+          <TreeSelect
+            options={opts}
+            value={v7()}
+            onChange={setV7}
+            clearable
+            format={(values) => `${values.length} selected`}
+            placeholder="Tap to pick"
+          />
+        </Card>
+
+        <Card title={t('treeselect.demo.ref')}>
+          <div style={{ 'margin-bottom': '8px', 'font-size': '0.75rem', color: 'var(--sc-doc-card-muted, #9ca3af)' }}>
+            {v9().length > 0 ? `Selected: ${v9().join(', ')}` : 'Drive it via the buttons below'}
+          </div>
+          <TreeSelect
+            options={opts}
+            ref={(r) => (treeRef = r)}
+            value={v9()}
+            onChange={setV9}
+            placeholder="Pick regions"
+          />
+          <div style={{ display: 'flex', gap: '8px', 'margin-top': '10px' }}>
+            <Button size="sm" type="primary" onClick={() => treeRef?.open()}>
+              Open
+            </Button>
+            <Button size="sm" onClick={() => treeRef?.clear()}>
+              Clear
+            </Button>
+            <Button size="sm" onClick={() => treeRef?.setValue(['zj'])}>
+              Pick Zhejiang
+            </Button>
+          </div>
         </Card>
       </div>
     </MobilePreview>

@@ -99,6 +99,34 @@ const bigOpts = Array.from({ length: 30 }, (_, i) => ({
 <TreeSelect options={bigOpts} searchable searchMode="global" placeholder="Type to search" />`,
       desc: t('treeselect.demoDesc.bigData'),
     },
+    {
+      title: t('treeselect.demo.checkStrictly'),
+      code: `<TreeSelect options={opts} checkStrictly
+  value={sel} onChange={setSel} />`,
+      desc: t('treeselect.demoDesc.checkStrictly'),
+    },
+    {
+      title: t('treeselect.demo.trigger'),
+      code: `<TreeSelect options={opts} clearable
+  format={(values) => values.length + ' region(s) selected'} />`,
+      desc: t('treeselect.demoDesc.trigger'),
+    },
+    {
+      title: t('treeselect.demo.ref'),
+      code: `let treeRef: any;
+
+<TreeSelect
+  ref={(r) => { treeRef = r; }}
+  options={opts}
+  defaultValue={['sh']}
+  placeholder="Pick regions"
+/>
+
+<Button size="sm" onClick={() => treeRef?.open()}>Open</Button>
+<Button size="sm" onClick={() => treeRef?.clear()}>Clear</Button>
+<Button size="sm" onClick={() => treeRef?.setValue(['zj'])}>Pick Zhejiang</Button>`,
+      desc: t('treeselect.demoDesc.ref'),
+    },
   ];
 
   return (
