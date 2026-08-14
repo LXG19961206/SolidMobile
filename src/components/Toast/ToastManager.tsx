@@ -1,4 +1,4 @@
-import { createSignal, For, Show, createEffect, onCleanup } from 'solid-js';
+import { createSignal, For, Show, onMount } from 'solid-js';
 import { render, Portal } from 'solid-js/web';
 import { ToastItem } from './ToastItem';
 import type { ToastOptions, ToastHandle, ToastType } from './types';
@@ -136,18 +136,24 @@ export const Toast = {
  * the first `Toast.*()` call auto-creates a renderer in `document.body`.
  */
 export function ToastRenderer() {
-  // Auto-cleanup happens when the renderer's DOM parent is removed.
-  // For auto-mounted nodes this is the detached div; for user-placed
-  // nodes this is whatever parent they chose.
+  // Mark the renderer's mount node so `ensureRenderer()` won't spin up a
+  // second auto renderer when a manual `<ToastRenderer />` is present —
+  // otherwise the same toasts() signal gets rendered twice.
+  let rootRef: HTMLDivElement | undefined;
+  onMount(() => {
+    rootRef?.setAttribute('data-sc-toast-root', '');
+  });
   return (
-    <For each={toasts()}>
-      {(t) => (
-        <Show when={t.portalMount} fallback={<ToastItem {...t} onDismiss={remove} />}>
-          <Portal mount={t.portalMount!}>
-            <ToastItem {...t} onDismiss={remove} />
-          </Portal>
-        </Show>
-      )}
-    </For>
+    <div ref={rootRef} style={{ display: 'contents' }}>
+      <For each={toasts()}>
+        {(t) => (
+          <Show when={t.portalMount} fallback={<ToastItem {...t} onDismiss={remove} />}>
+            <Portal mount={t.portalMount!}>
+              <ToastItem {...t} onDismiss={remove} />
+            </Portal>
+          </Show>
+        )}
+      </For>
+    </div>
   );
 }

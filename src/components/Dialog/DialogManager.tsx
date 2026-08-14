@@ -1,4 +1,4 @@
-import { createSignal, For } from 'solid-js';
+import { createSignal, For , onMount } from 'solid-js';
 import { render } from 'solid-js/web';
 import { DialogComponent } from './Dialog';
 import type { DialogOptions, DialogHandle } from './types';
@@ -83,7 +83,14 @@ export const DialogAPI = {
 /* ---------------------------------------------------------------------- */
 
 export function DialogRenderer() {
+  // Mark the renderer's mount node so `ensureRenderer()` won't create a
+  // second auto renderer when a manual `<DialogRenderer />` is present.
+  let rootRef: HTMLDivElement | undefined;
+  onMount(() => {
+    rootRef?.setAttribute('data-sc-dialog-root', '');
+  });
   return (
+    <div ref={rootRef} style={{ display: 'contents' }}>
     <For each={dialogs()}>
       {(d) => (
         <DialogComponent
@@ -100,5 +107,6 @@ export function DialogRenderer() {
         />
       )}
     </For>
+    </div>
   );
 }

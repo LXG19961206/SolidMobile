@@ -1,4 +1,4 @@
-import { createSignal, For } from 'solid-js';
+import { createSignal, For, onMount } from 'solid-js';
 import { render } from 'solid-js/web';
 import { NotifyItem } from './NotifyItem';
 import type { JSX } from 'solid-js';
@@ -100,9 +100,17 @@ export const Notify = {
 /* ---------------------------------------------------------------------- */
 
 export function NotifyRenderer() {
+  // Mark the renderer's mount node so `ensureRenderer()` won't create a
+  // second auto renderer when a manual `<NotifyRenderer />` is present.
+  let rootRef: HTMLDivElement | undefined;
+  onMount(() => {
+    rootRef?.setAttribute('data-sc-notify-root', '');
+  });
   return (
-    <For each={notifies()}>
-      {(n) => <NotifyItem {...n} onDismiss={remove} />}
-    </For>
+    <div ref={rootRef} style={{ display: 'contents' }}>
+      <For each={notifies()}>
+        {(n) => <NotifyItem {...n} onDismiss={remove} />}
+      </For>
+    </div>
   );
 }
