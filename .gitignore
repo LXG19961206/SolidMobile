@@ -10,3 +10,4 @@ dist-storybook
 coverage
 .vite
 dist-dev
+solid-mobile-*.tgz

@@ -34,11 +34,13 @@
     ]
   },
   "include": [
-    "src",
-    "docs-dev"
+    "src"
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.stories.tsx"
   ]
 }

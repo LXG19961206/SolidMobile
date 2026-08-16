@@ -129,13 +129,19 @@ setEventBusHandler(({ component, type, payload }) => {
 
 ## Development
 
+The library and the docs site are separate projects now.
+
 ```bash
+# Library
 git clone https://github.com/LXG19961206/SolidMobile.git
 cd SolidMobile && npm install
+npm run build       # Library → dist/  (also: npm pack → .tgz)
+npm test            # 590+ tests
 
-npm run dev:docs    # Docs site at localhost:3000
-npm run build       # Library → dist/
-npm test            # 480+ tests
+# Docs site (independent project, consumes the published package)
+git clone <SolidMobile-Docs repo>   # separate repository
+npm install
+npm run dev         # Docs site at localhost:3000
 ```
 
 ## License

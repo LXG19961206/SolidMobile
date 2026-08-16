@@ -14,33 +14,32 @@ npm install
 
 | Command | What it does |
 |---------|-------------|
-| `npm run dev:docs` | Start docs site at `localhost:3000` |
-| `npm test` | Run 480+ tests (vitest) |
+| `npm test` | Run 590+ tests (vitest) |
 | `npm run test:coverage` | Run tests with coverage report |
 | `npm run build` | Build library → `dist/` |
-| `npm run build:docs` | Build docs site → `docs/` |
+| `npm pack` | Produce the tarball the docs site installs via `file:` |
+| `npm run dev` (in the docs repo) | Start docs site at `localhost:3000` |
 
 ## Project Structure
 
 ```
 src/           Library source (components, config, i18n, hooks, utils)
-docs-dev/      Documentation site (Solid app, component demos, pages)
-  components/  Per-component doc page + mobile demo + i18n
-  doc-utils/   Shared docs UI (layout, code blocks, phone simulator)
-  pages/       Route pages (guide, mobile home)
 ```
+The docs site lives in its own repository (`SolidMobile-Docs`) and consumes
+this package via `file:` tarball during development, registry after release.
 
 ## Adding a Component
 
 1. Create `src/components/YourComponent/` with `YourComponent.tsx`, `types.ts`, `index.ts`
 2. Add tests in `src/components/YourComponent/YourComponent.test.tsx`
-3. Create docs entries under `docs-dev/components/YourComponent/`:
+3. Docs entries live in the separate docs repository
+   (`SolidMobile-Docs/docs-dev/components/YourComponent/`):
    - `YourComponentDocPage.tsx` — desktop doc page (code demos)
    - `YourComponentMobile.tsx` — mobile demo (interactive)
    - `zh-CN.ts` / `en-US.ts` — i18n strings
    - `tableData.ts` — props & CSS vars tables
-4. Add navigation entry to `docs-dev/nav.ts`
-5. Run `npm test` to verify, then `npm run dev:docs` to preview
+4. Add navigation entry to the docs repo's `nav.ts`
+5. Run `npm test` to verify, then `npm run dev` in the docs repo to preview
 
 ## Code Style
 
