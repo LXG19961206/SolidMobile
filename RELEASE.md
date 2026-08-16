@@ -1,5 +1,15 @@
 # Release Notes
 
+## 0.2.4 (2026-08-17)
+
+### Bug Fixes
+
+- **7 components were missing from the public API since 0.1**: `Card`, `SafeArea`, `BackTop`, `Ellipsis`, `FloatingBall`, `Popup`, `Tooltip` existed, were documented and tested, but were never re-exported from `src/index.ts` — so npm consumers couldn't `import { Card } from 'solid-mobile'`. Surfaced by migrating the docs site to consume the published package instead of source code.
+
+### Internal
+
+- Docs site split into an independent project that consumes the published package (`file:` tarball in development, registry in CI). Removed the docs site, `src/internal.ts`, the `merge-doc-i18n` script, the `dictionaries.ts.backup` hack, and the `redirectSrcToDist` Vite plugin from the library repo.
+
 ## 0.2.3 (2026-08-14)
 
 ### New / Enhanced Components
