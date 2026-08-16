@@ -21,8 +21,14 @@ export type { DividerProps } from './components/Divider';
 export { Row, Col } from './components/Layout';
 export type { RowProps, ColProps } from './components/Layout';
 
+export { SafeArea } from './components/SafeArea';
+export type { SafeAreaProps } from './components/SafeArea';
+
 export { Avatar } from './components/Avatar';
 export type { AvatarProps, AvatarSize } from './components/Avatar';
+
+export { Card } from './components/Card';
+export type { CardProps } from './components/Card';
 
 export { Badge } from './components/Badge';
 export type { BadgeProps } from './components/Badge';
@@ -50,6 +56,18 @@ export type { SidebarProps, SidebarItem } from './components/Sidebar';
 
 export { Skeleton } from './components/Skeleton';
 export type { SkeletonProps } from './components/Skeleton';
+
+export { BackTop } from './components/BackTop';
+export type { BackTopProps } from './components/BackTop';
+
+export { Ellipsis } from './components/Ellipsis';
+export type { EllipsisProps } from './components/Ellipsis';
+
+export { FloatingBall } from './components/FloatingBall';
+export type { FloatingBallProps, FloatingBallInset } from './components/FloatingBall';
+
+export { Tooltip } from './components/Tooltip';
+export type { TooltipProps, TooltipPlacement, TooltipTrigger, TooltipDelay } from './components/Tooltip';
 
 export { SwipeCell } from './components/SwipeCell';
 export type { SwipeCellProps, SwipeAction } from './components/SwipeCell';
@@ -104,6 +122,9 @@ export type { NotifyOptions, NotifyType, NotifyPosition } from './components/not
 
 export { Dialog, DialogComponent, DialogRenderer } from './components/Dialog';
 export type { DialogOptions, DialogProps, DialogHandle } from './components/Dialog';
+
+export { Popup } from './components/Popup';
+export type { PopupProps } from './components/Popup';
 
 export { Overlay } from './components/Overlay';
 export type { OverlayProps } from './components/Overlay';
