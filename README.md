@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./docs-dev/public/logo.svg" alt="Solid Mobile" width="80" height="80" />
+  <img src="./logo.svg" alt="Solid Mobile" width="80" height="80" />
 </p>
 
 <h1 align="center">Solid Mobile</h1>
