@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.5] - 2026-08-31
+
+### Internal
+- **CSS variable prefix is now frozen to `sc`** — the `prefix` config option is removed from the type surface. It could never take effect (component styles reference `--sc-*` literally), and changing it silently broke theming; it's now an internal constant. Type-level change only — behavior is unchanged.
+- Docs-only `designTokens` i18n strings removed from the library dictionaries (the docs site now owns them).
+- Removed the legacy `public/old/` directory (old project source remnants).
+
+### Docs
+- README logo path fixed (the `docs-dev/` directory was removed in the docs split).
+- Built docs site synced into the library repo's `docs/`; community posts updated.
+
 ## [0.2.4] - 2026-08-17
 
 ### Fixed
