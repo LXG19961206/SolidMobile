@@ -1,32 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="./logo.svg" />
-    <title>Solid Mobile — Component Library</title>
-    <script>
-      // 在渲染前读取暗色模式标志，防止闪白
-      (function() {
-        var isDark = localStorage.getItem('sc-docs-dark-mode') === '1';
-        if (!isDark) {
-          isDark = new URLSearchParams(location.search).get('dark') === '1';
-        }
-        if (!isDark) {
-          try { isDark = matchMedia('(prefers-color-scheme:dark)').matches; } catch(e) {}
-        }
-        if (isDark) document.documentElement.classList.add('dark');
-      })();
-    </script>
-    <style>
-      /* 隐藏滚动条但保留滚动 */
-      html { -ms-overflow-style: none; scrollbar-width: none; }
-      html::-webkit-scrollbar { display: none; }
-    </style>
-    <script type="module" crossorigin src="./assets/index-DvnxeU6a.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-B8UvY1rk.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solid Mobile — Docs</title>
+  <!-- Fallback: instant meta refresh (no JS / no hash preservation) -->
+  <meta http-equiv="refresh" content="0; url=https://lxg19961206.github.io/solid-mobile-docs/">
+  <script>
+    // Smart redirect: preserve the old hash so deep links keep working
+    // (e.g. SolidMobile/#/components/button → solid-mobile-docs/#/components/button)
+    location.replace('https://lxg19961206.github.io/solid-mobile-docs/' + location.hash);
+  </script>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      display: flex; align-items: center; justify-content: center;
+      height: 100vh; margin: 0; background: #fff; color: #333;
+    }
+    a { color: #1677ff; }
+  </style>
+</head>
+<body>
+  <p>
+    solid-mobile docs have moved to
+    <a href="https://lxg19961206.github.io/solid-mobile-docs/">lxg19961206.github.io/solid-mobile-docs</a>
+    — redirecting…
+  </p>
+</body>
 </html>
