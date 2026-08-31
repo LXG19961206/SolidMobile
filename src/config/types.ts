@@ -98,8 +98,6 @@ export type DarkModeStrategy = 'class' | 'media';
 // ---- Full Config ----
 
 export interface SolidComponentConfig {
-  /** CSS custom property prefix, e.g. "sc" produces --sc-color-primary */
-  prefix: string;
   /** Dark mode strategy: "class" toggles .dark on <html>, "media" uses prefers-color-scheme */
   darkMode: DarkModeStrategy;
   /** Light and dark color palettes */

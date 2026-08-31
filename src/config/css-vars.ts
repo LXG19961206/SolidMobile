@@ -56,24 +56,31 @@ function formatVars(vars: Record<string, string>): string {
  *   :root { ... light colors + typography + border-radius ... }
  *   @media (prefers-color-scheme: dark) { :root { ... dark overrides ... } }
  */
+/**
+ * The CSS variable prefix is fixed at build time — component styles reference
+ * `--sc-*` literally, so a configurable prefix could never take effect.
+ * Kept as an internal constant; not part of the user-facing config.
+ */
+const CSS_VAR_PREFIX = 'sc';
+
 export function generateCSSVars(config: SolidComponentConfig): string {
-  const { prefix, darkMode, colors, typography, borderRadius } = config;
+  const { darkMode, colors, typography, borderRadius } = config;
 
   // Light color tokens
-  const lightColorVars = flattenObject(colors.light as unknown as Record<string, unknown>, prefix, 'color');
+  const lightColorVars = flattenObject(colors.light as unknown as Record<string, unknown>, CSS_VAR_PREFIX, 'color');
 
   // Dark color tokens
-  const darkColorVars = flattenObject(colors.dark as unknown as Record<string, unknown>, prefix, 'color');
+  const darkColorVars = flattenObject(colors.dark as unknown as Record<string, unknown>, CSS_VAR_PREFIX, 'color');
 
   // Non-color tokens — each top-level key is a category (fontFamily → font-family, etc.)
   const typographyVars: Record<string, string> = {};
   for (const [cat, tokens] of Object.entries(typography)) {
     Object.assign(
       typographyVars,
-      flattenObject(tokens as unknown as Record<string, unknown>, prefix, toKebab(cat)),
+      flattenObject(tokens as unknown as Record<string, unknown>, CSS_VAR_PREFIX, toKebab(cat)),
     );
   }
-  const radiusVars = flattenObject(borderRadius as unknown as Record<string, unknown>, prefix, 'border-radius');
+  const radiusVars = flattenObject(borderRadius as unknown as Record<string, unknown>, CSS_VAR_PREFIX, 'border-radius');
 
   // :root block
   const rootVars = {

@@ -48,16 +48,14 @@ describe('generateCSSVars', () => {
     expect(css).toContain('--sc-color-primary: #5195ff');
   });
 
-  it('honors custom prefix', () => {
-    const config = { ...defaultConfig, prefix: 'myapp' };
-    const css = generateCSSVars(config);
-    expect(css).toContain('--myapp-color-primary:');
-    expect(css).not.toContain('--sc-color-primary:');
+  it('always emits the fixed sc- prefix', () => {
+    const css = generateCSSVars(defaultConfig);
+    expect(css).toContain('--sc-color-primary:');
+    expect(css).not.toContain('--myapp-');
   });
 
   it('converts camelCase keys to kebab-case', () => {
-    const config = { ...defaultConfig, prefix: 'sc' };
-    const css = generateCSSVars(config);
+    const css = generateCSSVars(defaultConfig);
     expect(css).toContain('--sc-color-primary-hover:');
     expect(css).toContain('--sc-color-background-secondary:');
     expect(css).toContain('--sc-color-text-inverse:');

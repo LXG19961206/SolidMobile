@@ -32,7 +32,6 @@ const warningOrange = deriveColorSet('#ff9162');
  * a matching set from your own brand color.
  */
 export const defaultConfig: SolidComponentConfig = {
-  prefix: 'sc',
   darkMode: 'class',
 
   colors: {
